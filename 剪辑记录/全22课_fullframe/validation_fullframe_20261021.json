@@ -1,0 +1,63 @@
+{
+  "created_at": "2026-10-21T13:12:51",
+  "source_manifest": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\material_fullframe_20261021\\全部22parts_训练样本清单_20261020.csv",
+  "source_uncertainties": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\material_fullframe_20261021\\全部22parts_不确定与不足项_20261020.csv",
+  "output_manifest": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\material_fullframe_20261021\\dataset_manifest_fullframe_20261021.csv",
+  "expected": {
+    "width": 352,
+    "height": 288,
+    "fps": 20.0
+  },
+  "counts": {
+    "source_clips": 225,
+    "recovered_candidates": 8,
+    "output_clips": 233,
+    "categories": 140
+  },
+  "parts": {
+    "p01": 23,
+    "p02": 14,
+    "p03": 3,
+    "p04": 6,
+    "p05": 16,
+    "p06": 15,
+    "p07": 4,
+    "p08": 8,
+    "p09": 7,
+    "p10": 5,
+    "p11": 5,
+    "p12": 13,
+    "p13": 12,
+    "p14": 4,
+    "p15": 11,
+    "p16": 20,
+    "p17": 9,
+    "p18": 20,
+    "p19": 10,
+    "p20": 7,
+    "p21": 11,
+    "p22": 10
+  },
+  "recovered": [
+    "p15_005",
+    "p16_004",
+    "p16_006",
+    "p16_008",
+    "p17_004",
+    "p18_009",
+    "p18_011",
+    "p21_003"
+  ],
+  "checks": {
+    "missing_output": 0,
+    "resolution_mismatches": 0,
+    "fps_mismatches": 0,
+    "audio_streams": 0,
+    "duration_mismatches": 0,
+    "decode_failures": 0
+  },
+  "limitations": [
+    "This release changes only the picture extent: no picture crop is used.",
+    "Uncertainty rows without exact export ranges remain unexported."
+  ]
+}

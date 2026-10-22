@@ -1,0 +1,64 @@
+{
+  "created_at": "2026-10-21T20:25:59+08:00",
+  "source_csv": "剪裁方法/中国手语教程_P01对话_已核对动作边界_20261021.csv",
+  "source_video": "video/P1-1.第一课 问候_《中国手语教程》_倪兰.mp4",
+  "source_metadata": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 25.0,
+    "duration_seconds": 386.65,
+    "audio_streams": 1,
+    "video_line": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080 [SAR 1:1 DAR 16:9], 5251 kb/s, 25 fps, 25 tbr, 16k tbn (default)"
+  },
+  "output_directory": "material_fullframe_20261021",
+  "output_clips": 31,
+  "counts_by_folder": {
+    "你好，你叫什么名字？": 4,
+    "我叫张山，你呢？": 2,
+    "我叫王红。": 2,
+    "很高兴认识你！": 2,
+    "我也很高兴！": 2,
+    "你好，好久不见！": 3,
+    "是啊，你过得好不好？": 3,
+    "很好，你呢？": 2,
+    "我也很好！": 2,
+    "工作忙吗？": 2,
+    "很忙，最近经常加班。": 3,
+    "一起去吃饭吧！我请客。": 2,
+    "好啊！": 2
+  },
+  "total_frames": 2415,
+  "output_profile": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 25,
+    "video_codec": "H.264 / libx264 CRF 18",
+    "pixel_format": "yuv420p",
+    "audio_streams": 0,
+    "frame_ranges": "start inclusive, end exclusive"
+  },
+  "existing_mp4_count_before_export": 233,
+  "checks": {
+    "missing_outputs": 0,
+    "frame_count_mismatches": 0,
+    "resolution_mismatches": 0,
+    "fps_mismatches": 0,
+    "audio_streams": 0,
+    "duration_mismatches": 0,
+    "full_decode_failures": 0,
+    "manifest_rows": 31,
+    "staging_file_count": 31,
+    "staging_hash_mismatches": 0
+  },
+  "source_manifest_rows_before_filter": 31,
+  "excluded_missing_clip_action_ids": [],
+  "counts_by_target_person": {
+    "右侧女子": 8,
+    "左侧男子": 7,
+    "单人女子（第1轮A）": 4,
+    "单人男子（第1轮B）": 2,
+    "单人男子（第2轮A）": 4,
+    "单人女子（第2轮B）": 6
+  },
+  "folder_layout": "one folder per exact 词句上下文; action ids retained in filenames"
+}
