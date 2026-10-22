@@ -4,3 +4,5 @@ __pycache__/
 _inspect/
 工具/losslesscut/
 raw/
+
+# video/ 为线下传播共享目录（raw+done+记录），不参与提交
