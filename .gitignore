@@ -6,3 +6,18 @@ _inspect/
 raw/
 
 # video/ 为线下传播共享目录（raw+done+记录），不参与提交
+
+# ---- Vivado 工程可再生成的构建产物（xpr+srcs 入库，产物不入）----
+pynq-vision/fpga/project/**/*.cache/
+pynq-vision/fpga/project/**/*.gen/
+pynq-vision/fpga/project/**/*.runs/
+pynq-vision/fpga/project/**/*.sim/
+pynq-vision/fpga/project/**/*.hw/
+pynq-vision/fpga/project/**/*.ip_user_files/
+pynq-vision/fpga/project/**/NA/
+*.jou
+hs_err_pid*
+# Vivado 控制台/构建日志（可再生；脚本自带的日志说明除外）
+pynq-vision/fpga/scripts/*.log
+pynq-vision/fpga/project/**/*.log
+pynq-vision/fpga/project/**/*.jou
