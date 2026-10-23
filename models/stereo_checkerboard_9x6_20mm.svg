@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="230mm" height="180mm" viewBox="0 0 230 180">
+  <title>OpenCV stereo calibration checkerboard, 9x6 inner corners, 20 mm squares</title>
+  <desc>Print at 100 percent. The checkered target has ten columns and seven rows of 20 millimeter squares, giving nine by six inner corners.</desc>
+  <rect x="0" y="0" width="230" height="180" fill="#fff"/>
+  <g shape-rendering="crispEdges">
+  <rect x="15" y="10" width="20" height="20" fill="#000"/>
+  <rect x="55" y="10" width="20" height="20" fill="#000"/>
+  <rect x="95" y="10" width="20" height="20" fill="#000"/>
+  <rect x="135" y="10" width="20" height="20" fill="#000"/>
+  <rect x="175" y="10" width="20" height="20" fill="#000"/>
+  <rect x="35" y="30" width="20" height="20" fill="#000"/>
+  <rect x="75" y="30" width="20" height="20" fill="#000"/>
+  <rect x="115" y="30" width="20" height="20" fill="#000"/>
+  <rect x="155" y="30" width="20" height="20" fill="#000"/>
+  <rect x="195" y="30" width="20" height="20" fill="#000"/>
+  <rect x="15" y="50" width="20" height="20" fill="#000"/>
+  <rect x="55" y="50" width="20" height="20" fill="#000"/>
+  <rect x="95" y="50" width="20" height="20" fill="#000"/>
+  <rect x="135" y="50" width="20" height="20" fill="#000"/>
+  <rect x="175" y="50" width="20" height="20" fill="#000"/>
+  <rect x="35" y="70" width="20" height="20" fill="#000"/>
+  <rect x="75" y="70" width="20" height="20" fill="#000"/>
+  <rect x="115" y="70" width="20" height="20" fill="#000"/>
+  <rect x="155" y="70" width="20" height="20" fill="#000"/>
+  <rect x="195" y="70" width="20" height="20" fill="#000"/>
+  <rect x="15" y="90" width="20" height="20" fill="#000"/>
+  <rect x="55" y="90" width="20" height="20" fill="#000"/>
+  <rect x="95" y="90" width="20" height="20" fill="#000"/>
+  <rect x="135" y="90" width="20" height="20" fill="#000"/>
+  <rect x="175" y="90" width="20" height="20" fill="#000"/>
+  <rect x="35" y="110" width="20" height="20" fill="#000"/>
+  <rect x="75" y="110" width="20" height="20" fill="#000"/>
+  <rect x="115" y="110" width="20" height="20" fill="#000"/>
+  <rect x="155" y="110" width="20" height="20" fill="#000"/>
+  <rect x="195" y="110" width="20" height="20" fill="#000"/>
+  <rect x="15" y="130" width="20" height="20" fill="#000"/>
+  <rect x="55" y="130" width="20" height="20" fill="#000"/>
+  <rect x="95" y="130" width="20" height="20" fill="#000"/>
+  <rect x="135" y="130" width="20" height="20" fill="#000"/>
+  <rect x="175" y="130" width="20" height="20" fill="#000"/>
+  </g>
+  <text x="15" y="168" font-family="sans-serif" font-size="4" fill="#000">9 x 6 inner corners; square size 20 mm. Print at 100% / actual size and verify with a ruler.</text>
+</svg>

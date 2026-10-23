@@ -1,6 +1,8 @@
 训练视频/
 video/
 __pycache__/
+*.py[cod]
+.pytest_cache/
 _inspect/
 工具/losslesscut/
 raw/
