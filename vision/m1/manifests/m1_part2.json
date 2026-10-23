@@ -1,0 +1,115 @@
+{
+  "purpose": "m1_dtw_baseline",
+  "samples": [
+    {
+      "id": "c011",
+      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\很\\3_很.mp4",
+      "label": "很",
+      "sha256": "d410cea282e3faf2be5d0b3bffe5d4ce6a9db1d122ec3114111b75f74444e513",
+      "source_group": "全22课全画幅样本_fullframe_264条_20261021",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c012",
+      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\很\\4_很.mp4",
+      "label": "很",
+      "sha256": "9a7ef25d48172d6f0c10e4631509590ef84b4514c36815d287bd7ac83f5d4fad",
+      "source_group": "全22课全画幅样本_fullframe_264条_20261021",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c013",
+      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\待会儿见\\p09_cqa_001_待会儿见.mp4",
+      "label": "待会儿见",
+      "sha256": "58171bfbdf49e9da8c88653a17636b1af9c877038566eda5cc80138bf845620a",
+      "source_group": "全22课全画幅样本_fullframe_264条_20261021",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c014",
+      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\待会儿见\\p09_cqa_002_待会儿见.mp4",
+      "label": "待会儿见",
+      "sha256": "6a454ef00e669e09d98ad37bed9893aa73e53acf90d43b2a442eed6f90d961c5",
+      "source_group": "全22课全画幅样本_fullframe_264条_20261021",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c015",
+      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\待会儿见\\p09_cqa_003_待会儿见.mp4",
+      "label": "待会儿见",
+      "sha256": "f87b0a2fbdeb155fa7b734e1f5ef8ae6a01f94147325a4ba54c0bd04667751e7",
+      "source_group": "全22课全画幅样本_fullframe_264条_20261021",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c016",
+      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\待会儿见\\p09_cqa_004_待会儿见.mp4",
+      "label": "待会儿见",
+      "sha256": "1c492570748eb7513a2f5faf5cd9a096b598a87fc3ac699b2546332963878d9c",
+      "source_group": "全22课全画幅样本_fullframe_264条_20261021",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c017",
+      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\再见\\p09_cqa_005_再见.mp4",
+      "label": "再见",
+      "sha256": "571bac6373ba4a3ab3cc2aa1ac0accff7893877d51cf6ece879cf7f70ddc9987",
+      "source_group": "全22课全画幅样本_fullframe_264条_20261021",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c018",
+      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\再见\\p09_cqa_006_再见.mp4",
+      "label": "再见",
+      "sha256": "f7cc399e22afa0cf03449a82e4b993e51e6042f58f9870aa2fecee3f83236dd1",
+      "source_group": "全22课全画幅样本_fullframe_264条_20261021",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c019",
+      "file": "..\\..\\..\\video\\done\\Tomcat\\第九课聚会_NL09_102条_20261022\\没关系\\NL09_016_C1_没关系.mp4",
+      "label": "没关系",
+      "sha256": "1a9fd6424d79daccaff263ebf92edfd34bf01aa56df5897d1767edaf3d30ab0e",
+      "source_group": "第九课聚会_NL09_102条_20261022",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c020",
+      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\没关系\\p08_cqa_007_没关系.mp4",
+      "label": "没关系",
+      "sha256": "e1772a8c95b04fd779a0fac77070d4933680aff7944fe22ce5a256e8c8ce370b",
+      "source_group": "全22课全画幅样本_fullframe_264条_20261021",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "purpose": "extraction_only",
+  "samples": [
+    {
+      "id": "hello",
+      "file": "../../video/clips/hello.mp4",
+      "label": "你好",
+      "sha256": "2af8eb4d4ac976341e006f08c725b265e43cebfe92b44c84ae24ad6b57073643",
+      "source_group": "BV1Hs411E7aP_p01",
+      "source_url": "https://www.bilibili.com/video/BV1Hs411E7aP/",
+      "source_start_s": 137.1,
+      "source_end_s": 139.3,
+      "signer_id": null,
+      "session_id": null,
+      "split": "unassigned",
+      "annotation_status": "coarse_playback_boundaries_not_training_verified"
+    },
+    {
+      "id": "morning",
+      "file": "../../video/clips/morning.mp4",
+      "label": "早上好",
+      "sha256": "3b9696e3bb93079a78607df052742979bc4fedc2934203b06771832d0d04a0d2",
+      "source_group": "BV1Hs411E7aP_p01",
+      "source_url": "https://www.bilibili.com/video/BV1Hs411E7aP/",
+      "source_start_s": 139.3,
+      "source_end_s": 141.6,
+      "signer_id": null,
+      "session_id": null,
+      "split": "unassigned",
+      "annotation_status": "coarse_playback_boundaries_not_training_verified"
+    },
+    {
+      "id": "how_are_you",
+      "file": "../../video/clips/how_are_you.mp4",
+      "label": "你好吗",
+      "sha256": "a5dbded3671eeb38fa296668c73cdfffa909d1e7c88072375b989f290c2fcee5",
+      "source_group": "BV1Hs411E7aP_p01",
+      "source_url": "https://www.bilibili.com/video/BV1Hs411E7aP/",
+      "source_start_s": 141.6,
+      "source_end_s": 143.3,
+      "signer_id": null,
+      "session_id": null,
+      "split": "unassigned",
+      "annotation_status": "coarse_playback_boundaries_not_training_verified"
+    },
+    {
+      "id": "very_good",
+      "file": "../../video/clips/very_good.mp4",
+      "label": "很好",
+      "sha256": "083f8057236ad4ff448e17217c22c31581f363419c20c73fbf743681e0cc2976",
+      "source_group": "BV1Hs411E7aP_p01",
+      "source_url": "https://www.bilibili.com/video/BV1Hs411E7aP/",
+      "source_start_s": 143.3,
+      "source_end_s": 144.8,
+      "signer_id": null,
+      "session_id": null,
+      "split": "unassigned",
+      "annotation_status": "coarse_playback_boundaries_not_training_verified"
+    },
+    {
+      "id": "thanks",
+      "file": "../../video/clips/thanks.mp4",
+      "label": "谢谢",
+      "sha256": "cf209de246172045be7555ba25ebab3eeb9ce167698f0946bce700aa4e3618a9",
+      "source_group": "BV1Hs411E7aP_p01",
+      "source_url": "https://www.bilibili.com/video/BV1Hs411E7aP/",
+      "source_start_s": 144.8,
+      "source_end_s": 146.5,
+      "signer_id": null,
+      "session_id": null,
+      "split": "unassigned",
+      "annotation_status": "coarse_playback_boundaries_not_training_verified"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+# Install in a separate PC environment, not the running audio environment.
+mediapipe==0.10.21
+numpy>=1.26,<2
+jax==0.4.35
+jaxlib==0.4.35
+# Avoid resolver downloading newer scientific wheels that require NumPy 2.
+scipy==1.14.1
+ml-dtypes==0.4.1
+contourpy>=1.2,<1.4
+opencv-contrib-python>=4.8,<4.12
+pytest>=8

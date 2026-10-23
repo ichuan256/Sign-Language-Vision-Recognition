@@ -1,0 +1,93 @@
+{
+  "purpose": "m1_dtw_baseline",
+  "samples": [
+    {
+      "id": "c021",
+      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\没关系\\p08_cqa_008_没关系.mp4",
+      "label": "没关系",
+      "sha256": "ec2126d53119d3a7ebf65039eea990c3708892a9bc220f3ea2f7446f60ff24db",
+      "source_group": "全22课全画幅样本_fullframe_264条_20261021",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c022",
+      "file": "..\\..\\..\\video\\done\\Tomcat\\第八课购物_NL08_85条_20261022\\可以。\\NL08_039_C1_可以。.mp4",
+      "label": "可以。",
+      "sha256": "8fa79bb43354dd99a20321dd4f3f2bcb3f08e8924aca22e9e09957725051de1c",
+      "source_group": "第八课购物_NL08_85条_20261022",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c023",
+      "file": "..\\..\\..\\video\\done\\Tomcat\\第八课购物_NL08_85条_20261022\\可以。\\NL08_047_C1_可以。.mp4",
+      "label": "可以。",
+      "sha256": "8cf16f6fd5de617afe236c9a1cfabf130eb0ee1d89375e54bd3a1feca526b980",
+      "source_group": "第八课购物_NL08_85条_20261022",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c024",
+      "file": "..\\..\\..\\video\\done\\Tomcat\\第八课购物_NL08_85条_20261022\\可以。\\NL08_053_C1_可以。.mp4",
+      "label": "可以。",
+      "sha256": "effaecfcb6d0bd958e806ccdb8b66cff3db520e7ddf69f788d4bd4d32067b35a",
+      "source_group": "第八课购物_NL08_85条_20261022",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c025",
+      "file": "..\\..\\..\\video\\done\\Tomcat\\第八课购物_NL08_85条_20261022\\可以。\\NL08_057_C1_可以。.mp4",
+      "label": "可以。",
+      "sha256": "8543c3fb82d5704eb85685cc256a1a6f6ff78d69f3c17859484b7261c7646233",
+      "source_group": "第八课购物_NL08_85条_20261022",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c026",
+      "file": "..\\..\\..\\video\\done\\Tomcat\\第十课旅游_NL10_100条_20261022\\可以。\\NL10_062_C1_可以。.mp4",
+      "label": "可以。",
+      "sha256": "c1f50b39e99fd6ff6eebe16229da05db3d7b2d94d5e3e7580ef29b089ee92004",
+      "source_group": "第十课旅游_NL10_100条_20261022",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c027",
+      "file": "..\\..\\..\\video\\done\\Tomcat\\第九课聚会_NL09_102条_20261022\\服务\\NL09_006_C1_服务.mp4",
+      "label": "服务",
+      "sha256": "131cd7ca8e994e79609564c48cde3b3250ab87b75b95077a9b8b45a68993637a",
+      "source_group": "第九课聚会_NL09_102条_20261022",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    },
+    {
+      "id": "c028",
+      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\服务\\p14_003_服务.mp4",
+      "label": "服务",
+      "sha256": "2b9c0af826d67d9d24935adc07a97a1a58cca575bae0976940455df59543b511",
+      "source_group": "全22课全画幅样本_fullframe_264条_20261021",
+      "signer_id": null,
+      "session_id": null,
+      "split": "loo_eval",
+      "annotation_status": "reviewed_boundaries_20261021_22"
+    }
+  ]
+}

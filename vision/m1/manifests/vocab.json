@@ -1,0 +1,13 @@
+{
+  "vocab": {
+    "谢谢": "greeting",
+    "早上": "greeting",
+    "很": "word",
+    "待会儿见": "phrase",
+    "再见": "greeting",
+    "没关系": "phrase",
+    "可以。": "phrase",
+    "服务": "word"
+  },
+  "n_samples": 28
+}
