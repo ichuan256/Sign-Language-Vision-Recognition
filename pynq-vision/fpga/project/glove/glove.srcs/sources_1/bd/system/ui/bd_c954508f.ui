@@ -1,0 +1,81 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.638661",
+   "Default View_TopLeft":"-88,3",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -lvl 8 -x 2690 -y 60 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 8 -x 2690 -y 80 -defaultsOSRD
+preplace port IIC_1 -pg 1 -lvl 8 -x 2690 -y 40 -defaultsOSRD
+preplace port port-id_spia_sclk -pg 1 -lvl 8 -x 2690 -y 900 -defaultsOSRD
+preplace port port-id_spia_mosi -pg 1 -lvl 8 -x 2690 -y 920 -defaultsOSRD
+preplace port port-id_spia_miso -pg 1 -lvl 0 -x 0 -y 1020 -defaultsOSRD
+preplace port port-id_spib_sclk -pg 1 -lvl 8 -x 2690 -y 1120 -defaultsOSRD
+preplace port port-id_spib_mosi -pg 1 -lvl 8 -x 2690 -y 1140 -defaultsOSRD
+preplace port port-id_spib_miso -pg 1 -lvl 0 -x 0 -y 1190 -defaultsOSRD
+preplace port port-id_audio_clk_10MHz -pg 1 -lvl 8 -x 2690 -y -70 -defaultsOSRD
+preplace port port-id_bclk -pg 1 -lvl 8 -x 2690 -y 490 -defaultsOSRD
+preplace port port-id_lrclk -pg 1 -lvl 8 -x 2690 -y 510 -defaultsOSRD
+preplace port port-id_sdata_o -pg 1 -lvl 8 -x 2690 -y 530 -defaultsOSRD
+preplace port port-id_sdata_i -pg 1 -lvl 0 -x 0 -y 490 -defaultsOSRD
+preplace portBus spia_cs -pg 1 -lvl 8 -x 2690 -y 940 -defaultsOSRD
+preplace portBus spib_cs -pg 1 -lvl 8 -x 2690 -y 1160 -defaultsOSRD
+preplace portBus codec_addr -pg 1 -lvl 8 -x 2690 -y 550 -defaultsOSRD
+preplace inst ps7 -pg 1 -lvl 5 -x 1720 -y 110 -defaultsOSRD
+preplace inst ps7_axi_periph -pg 1 -lvl 2 -x 580 -y 670 -defaultsOSRD
+preplace inst rst_ps7_100M -pg 1 -lvl 1 -x 200 -y 130 -defaultsOSRD
+preplace inst proc_sys_reset_0 -pg 1 -lvl 1 -x 200 -y 340 -defaultsOSRD
+preplace inst ts0 -pg 1 -lvl 4 -x 1290 -y 1110 -defaultsOSRD
+preplace inst sif_l -pg 1 -lvl 5 -x 1720 -y 930 -defaultsOSRD
+preplace inst sif_r -pg 1 -lvl 5 -x 1720 -y 1150 -defaultsOSRD
+preplace inst mrg -pg 1 -lvl 2 -x 580 -y 910 -defaultsOSRD
+preplace inst axi_dma_0 -pg 1 -lvl 3 -x 950 -y 720 -defaultsOSRD
+preplace inst axi_s2mm_hp -pg 1 -lvl 4 -x 1290 -y 610 -defaultsOSRD
+preplace inst kws_accel_0 -pg 1 -lvl 6 -x 2180 -y 160 -defaultsOSRD
+preplace inst axi_mem_intercon -pg 1 -lvl 7 -x 2510 -y 210 -defaultsOSRD
+preplace inst clk_wiz_audio -pg 1 -lvl 6 -x 2180 -y -60 -defaultsOSRD
+preplace inst audio_codec_ctrl_0 -pg 1 -lvl 6 -x 2180 -y 520 -defaultsOSRD
+preplace netloc audio_codec_ctrl_0_bclk 1 6 2 NJ 490 NJ
+preplace netloc audio_codec_ctrl_0_codec_address 1 6 2 NJ 550 NJ
+preplace netloc audio_codec_ctrl_0_lrclk 1 6 2 NJ 510 NJ
+preplace netloc audio_codec_ctrl_0_sdata_o 1 6 2 NJ 530 NJ
+preplace netloc axi_dma_0_s2mm_introut 1 3 2 1110J 450 1440
+preplace netloc clk_wiz_audio_clk_out1 1 6 2 NJ -70 NJ
+preplace netloc proc_sys_reset_0_peripheral_aresetn 1 1 6 370 1000 780 820 1150 730 1500 550 2000 60 2370
+preplace netloc ps7_FCLK_CLK0 1 0 7 30 240 380 1010 770 620 1140 740 1490 -60 1990 80 2360
+preplace netloc ps7_FCLK_RESET0_N 1 0 6 20 -40 NJ -40 NJ -40 NJ -40 NJ -40 1930
+preplace netloc rst_ps7_100M_peripheral_aresetn 1 1 1 390 170n
+preplace netloc sdata_i_1 1 0 6 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 1940J
+preplace netloc sif_l_cs_n 1 5 3 NJ 940 N 940 N
+preplace netloc sif_l_mosi 1 5 3 NJ 920 N 920 N
+preplace netloc sif_l_sclk 1 5 3 NJ 900 N 900 N
+preplace netloc sif_r_cs_n 1 5 3 NJ 1160 N 1160 N
+preplace netloc sif_r_mosi 1 5 3 NJ 1140 N 1140 N
+preplace netloc sif_r_sclk 1 5 3 NJ 1120 N 1120 N
+preplace netloc spia_miso_1 1 0 5 NJ 1020 NJ 1020 790J 970 NJ 970 NJ
+preplace netloc spib_miso_1 1 0 5 NJ 1190 NJ 1190 NJ 1190 NJ 1190 NJ
+preplace netloc ts0_tick 1 4 1 1510 930n
+preplace netloc ts0_timestamp 1 4 1 1520 950n
+preplace netloc axi_dma_0_M_AXI_S2MM 1 3 1 1120 550n
+preplace netloc axi_mem_intercon_M00_AXI 1 4 4 1520 -20 2010J 10 NJ 10 2650
+preplace netloc axi_s2mm_hp_M00_AXI 1 4 1 1430 80n
+preplace netloc kws_accel_0_m_axi_gmem 1 6 1 N 150
+preplace netloc mrg_m_axis 1 2 1 740 700n
+preplace netloc ps7_DDR 1 5 3 NJ 50 N 50 2660
+preplace netloc ps7_FIXED_IO 1 5 3 NJ 70 N 70 2660
+preplace netloc ps7_IIC_1 1 5 3 2010J 40 NJ 40 NJ
+preplace netloc ps7_M_AXI_GP0 1 1 5 410 -30 NJ -30 NJ -30 NJ -30 1920
+preplace netloc ps7_axi_periph_M00_AXI 1 2 4 740 -50 NJ -50 NJ -50 1940J
+preplace netloc ps7_axi_periph_M01_AXI 1 2 1 760 670n
+preplace netloc ps7_axi_periph_M02_AXI 1 2 4 750J 480 NJ 480 NJ 480 1950
+preplace netloc sif_l_m_axis 1 1 5 400 460 NJ 460 NJ 460 NJ 460 1920
+preplace netloc sif_r_m_axis 1 1 5 420 470 NJ 470 NJ 470 NJ 470 1930
+levelinfo -pg 1 0 200 580 950 1290 1720 2180 2510 2690
+pagesize -pg 1 -db -bbox -sgen -120 -130 2860 1260
+"
+}
+{
+   "da_axi4_cnt":"4",
+   "da_ps7_cnt":"1"
+}

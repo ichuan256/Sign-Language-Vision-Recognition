@@ -1,0 +1,19 @@
+{
+  "recorded_date": "2026-10-18",
+  "tool": "Vivado 2024.1",
+  "hardware_validation": "User reported HDMI picture visible; not repeated during closeout",
+  "artifacts": [
+    {
+      "file": "kws_hdmi.bit",
+      "bytes": 4045674,
+      "sha256": "cb85dcf60867d0474e6b5e4ac524b0aa6d487924232231b7a639c0bf27471917",
+      "matches": "fpga/project/glove/glove.runs/impl_1/system_wrapper.bit"
+    },
+    {
+      "file": "kws_hdmi.hwh",
+      "bytes": 817082,
+      "sha256": "7a809a8f1446cfd29f905337ddea0b29ebf38d5fe44db14032162a865f12acd4",
+      "matches": "fpga/project/glove/glove.gen/sources_1/bd/system/hw_handoff/system.hwh"
+    }
+  ]
+}

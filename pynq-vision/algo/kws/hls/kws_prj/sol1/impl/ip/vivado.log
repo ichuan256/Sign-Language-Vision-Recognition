@@ -1,0 +1,97 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Wed Oct 14 11:57:34 2026
+# Process ID: 32756
+# Current directory: F:/PLD/pld-sign-glove/algo/kws/hls/kws_prj/sol1/impl/ip
+# Command line: vivado.exe -notrace -mode batch -source run_ippack.tcl
+# Log file: F:/PLD/pld-sign-glove/algo/kws/hls/kws_prj/sol1/impl/ip/vivado.log
+# Journal file: F:/PLD/pld-sign-glove/algo/kws/hls/kws_prj/sol1/impl/ip\vivado.jou
+# Running On        :LAPTOP-2K88VM5F
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :26200
+# Processor Detail  :Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency     :3072 MHz
+# CPU Physical cores:24
+# CPU Logical cores :24
+# Host memory       :33752 MB
+# Swap memory       :20132 MB
+# Total Virtual     :53885 MB
+# Available Virtual :21596 MB
+#-----------------------------------------------------------
+source run_ippack.tcl -notrace
+INFO: calling package_hls_ip ip_types=vitis sysgen json_file=F:/PLD/pld-sign-glove/algo/kws/hls/kws_prj/sol1/sol1_data.json outdir=F:/PLD/pld-sign-glove/algo/kws/hls/kws_prj/sol1/impl/ip srcdir=F:/PLD/pld-sign-glove/algo/kws/hls/kws_prj/sol1 sort_interfaces_ports=false
+INFO: Copied 1 ipmisc file(s) to F:/PLD/pld-sign-glove/algo/kws/hls/kws_prj/sol1/impl/ip/misc
+INFO: Copied 87 verilog file(s) to F:/PLD/pld-sign-glove/algo/kws/hls/kws_prj/sol1/impl/ip/hdl/verilog
+INFO: Copied 62 vhdl file(s) to F:/PLD/pld-sign-glove/algo/kws/hls/kws_prj/sol1/impl/ip/hdl/vhdl
+INFO: Copied 10 swdriver file(s) to F:/PLD/pld-sign-glove/algo/kws/hls/kws_prj/sol1/impl/ip/drivers
+Generating 8 subcores in F:/PLD/pld-sign-glove/algo/kws/hls/kws_prj/sol1/impl/ip/hdl/ip.tmp:
+impl/misc/kws_accel_faddfsub_32ns_32ns_32_5_full_dsp_1_ip.tcl
+impl/misc/kws_accel_fcmp_32ns_32ns_1_2_no_dsp_1_ip.tcl
+impl/misc/kws_accel_fdiv_32ns_32ns_32_16_no_dsp_1_ip.tcl
+impl/misc/kws_accel_flog_32ns_32ns_32_13_full_dsp_1_ip.tcl
+impl/misc/kws_accel_fmul_32ns_32ns_32_4_max_dsp_1_ip.tcl
+impl/misc/kws_accel_fsqrt_32ns_32ns_32_16_no_dsp_1_ip.tcl
+impl/misc/kws_accel_sitofp_32ns_32_6_no_dsp_1_ip.tcl
+impl/misc/kws_accel_sitofp_32s_32_6_no_dsp_1_ip.tcl
+INFO: Using COE_DIR=F:/PLD/pld-sign-glove/algo/kws/hls/kws_prj/sol1/impl/ip/hdl/verilog
+INFO: Generating kws_accel_faddfsub_32ns_32ns_32_5_full_dsp_1_ip via file impl/misc/kws_accel_faddfsub_32ns_32ns_32_5_full_dsp_1_ip.tcl
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'F:/APP/Xilinx/Vivado/2024.1/data/ip'.
+WARNING: [IP_Flow 19-4832] The IP name 'kws_accel_faddfsub_32ns_32ns_32_5_full_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'kws_accel_faddfsub_32ns_32ns_32_5_full_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'kws_accel_faddfsub_32ns_32ns_32_5_full_dsp_1_ip'...
+INFO: Done generating kws_accel_faddfsub_32ns_32ns_32_5_full_dsp_1_ip via file impl/misc/kws_accel_faddfsub_32ns_32ns_32_5_full_dsp_1_ip.tcl
+INFO: Generating kws_accel_fcmp_32ns_32ns_1_2_no_dsp_1_ip via file impl/misc/kws_accel_fcmp_32ns_32ns_1_2_no_dsp_1_ip.tcl
+WARNING: [IP_Flow 19-4832] The IP name 'kws_accel_fcmp_32ns_32ns_1_2_no_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'kws_accel_fcmp_32ns_32ns_1_2_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'kws_accel_fcmp_32ns_32ns_1_2_no_dsp_1_ip'...
+INFO: Done generating kws_accel_fcmp_32ns_32ns_1_2_no_dsp_1_ip via file impl/misc/kws_accel_fcmp_32ns_32ns_1_2_no_dsp_1_ip.tcl
+INFO: Generating kws_accel_fdiv_32ns_32ns_32_16_no_dsp_1_ip via file impl/misc/kws_accel_fdiv_32ns_32ns_32_16_no_dsp_1_ip.tcl
+WARNING: [IP_Flow 19-4832] The IP name 'kws_accel_fdiv_32ns_32ns_32_16_no_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'kws_accel_fdiv_32ns_32ns_32_16_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'kws_accel_fdiv_32ns_32ns_32_16_no_dsp_1_ip'...
+INFO: Done generating kws_accel_fdiv_32ns_32ns_32_16_no_dsp_1_ip via file impl/misc/kws_accel_fdiv_32ns_32ns_32_16_no_dsp_1_ip.tcl
+INFO: Generating kws_accel_flog_32ns_32ns_32_13_full_dsp_1_ip via file impl/misc/kws_accel_flog_32ns_32ns_32_13_full_dsp_1_ip.tcl
+WARNING: [IP_Flow 19-4832] The IP name 'kws_accel_flog_32ns_32ns_32_13_full_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'kws_accel_flog_32ns_32ns_32_13_full_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'kws_accel_flog_32ns_32ns_32_13_full_dsp_1_ip'...
+INFO: Done generating kws_accel_flog_32ns_32ns_32_13_full_dsp_1_ip via file impl/misc/kws_accel_flog_32ns_32ns_32_13_full_dsp_1_ip.tcl
+INFO: Generating kws_accel_fmul_32ns_32ns_32_4_max_dsp_1_ip via file impl/misc/kws_accel_fmul_32ns_32ns_32_4_max_dsp_1_ip.tcl
+WARNING: [IP_Flow 19-4832] The IP name 'kws_accel_fmul_32ns_32ns_32_4_max_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'kws_accel_fmul_32ns_32ns_32_4_max_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'kws_accel_fmul_32ns_32ns_32_4_max_dsp_1_ip'...
+INFO: Done generating kws_accel_fmul_32ns_32ns_32_4_max_dsp_1_ip via file impl/misc/kws_accel_fmul_32ns_32ns_32_4_max_dsp_1_ip.tcl
+INFO: Generating kws_accel_fsqrt_32ns_32ns_32_16_no_dsp_1_ip via file impl/misc/kws_accel_fsqrt_32ns_32ns_32_16_no_dsp_1_ip.tcl
+WARNING: [IP_Flow 19-4832] The IP name 'kws_accel_fsqrt_32ns_32ns_32_16_no_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'kws_accel_fsqrt_32ns_32ns_32_16_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'kws_accel_fsqrt_32ns_32ns_32_16_no_dsp_1_ip'...
+INFO: Done generating kws_accel_fsqrt_32ns_32ns_32_16_no_dsp_1_ip via file impl/misc/kws_accel_fsqrt_32ns_32ns_32_16_no_dsp_1_ip.tcl
+INFO: Generating kws_accel_sitofp_32ns_32_6_no_dsp_1_ip via file impl/misc/kws_accel_sitofp_32ns_32_6_no_dsp_1_ip.tcl
+WARNING: [IP_Flow 19-4832] The IP name 'kws_accel_sitofp_32ns_32_6_no_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'kws_accel_sitofp_32ns_32_6_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'kws_accel_sitofp_32ns_32_6_no_dsp_1_ip'...
+INFO: Done generating kws_accel_sitofp_32ns_32_6_no_dsp_1_ip via file impl/misc/kws_accel_sitofp_32ns_32_6_no_dsp_1_ip.tcl
+INFO: Generating kws_accel_sitofp_32s_32_6_no_dsp_1_ip via file impl/misc/kws_accel_sitofp_32s_32_6_no_dsp_1_ip.tcl
+WARNING: [IP_Flow 19-4832] The IP name 'kws_accel_sitofp_32s_32_6_no_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'kws_accel_sitofp_32s_32_6_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'kws_accel_sitofp_32s_32_6_no_dsp_1_ip'...
+INFO: Done generating kws_accel_sitofp_32s_32_6_no_dsp_1_ip via file impl/misc/kws_accel_sitofp_32s_32_6_no_dsp_1_ip.tcl
+INFO: Import ports from HDL: F:/PLD/pld-sign-glove/algo/kws/hls/kws_prj/sol1/impl/ip/hdl/vhdl/kws_accel.vhd (kws_accel)
+INFO: Add axi4lite interface s_axi_control
+INFO: Add clock interface ap_clk
+INFO: Add reset interface ap_rst_n
+INFO: Add interrupt interface interrupt
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'F:/APP/Xilinx/Vivado/2024.1/data/ip'.
+INFO: Add axi4full interface m_axi_gmem
+INFO: Calling post_process_vitis to specialize IP
+INFO: Calling post_process_sysgen to specialize IP
+Generating sysgen info xml from json file
+INFO: Created IP F:/PLD/pld-sign-glove/algo/kws/hls/kws_prj/sol1/impl/ip/component.xml
+INFO: Created IP archive F:/PLD/pld-sign-glove/algo/kws/hls/kws_prj/sol1/impl/ip/xilinx_com_hls_kws_accel_1_0.zip
+INFO: [Common 17-206] Exiting Vivado at Wed Oct 14 11:57:52 2026...

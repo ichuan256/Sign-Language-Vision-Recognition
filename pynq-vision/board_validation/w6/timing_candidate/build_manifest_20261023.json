@@ -1,0 +1,18 @@
+{
+  "build_date": "2026-10-23T02:20:16+08:00",
+  "builder": "Vivado 2024.1 @ F:\\APP\\Xilinx（run_w6_hdmi.bat + launch_w6_build.bat）",
+  "source_repo": "F:\\PLD_new\\Sign-Language-Vision-Recognition\\pynq-vision",
+  "project": "fpga/project/glove/glove.xpr（薄拷贝自 pld-sign-glove，路径已全面重定位）",
+  "rtl_baseline": "pld-sign-glove@77cd56f（2026-10-18），merge_stream.v 取 492beb4（BD module_ref 需 CLK_FREQ_HZ）",
+  "timing": {"WNS_ns": 1.244084, "status": "write_bitstream Complete!", "gates": "methodology/timing gates passed"},
+  "artifacts": {
+    "kws_hdmi.bit": {"sha256": "8dc531122b2660ad611a1ec73ac5122b5a4eaeb298a264c01e6b0e7548618378", "bytes": 4045674},
+    "kws_hdmi.hwh": {"sha256": "1122802613872ea406baa7104285e6276d1c1517718da868aaaef285c42c027f", "bytes": 817482}
+  },
+  "vs_release_20261018": {
+    "bit": "字节级不同（内嵌构建时间戳），尺寸一致 4045674",
+    "hwh": "差异 42 行：时间戳 + 传感器模块新增参数记录（ADC_SAMPLE_MASK/MPU_ACCEL_FS_SEL/MPU_GYRO_FS_SEL，值为 BD 实例化缺省）；HDMI/音频链路无差异",
+    "结论": "本构建证明移植工程可从仓库干净重建；传感器模块为冻结遗留逻辑，新系统不使用"
+  },
+  "board_validation": "未做——需部署后目视确认（见 M0_移植清单.md 下一步）"
+}

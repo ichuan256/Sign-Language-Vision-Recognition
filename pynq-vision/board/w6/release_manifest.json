@@ -1,0 +1,34 @@
+{
+  "recorded_date": "2026-10-18",
+  "tool": "Vivado 2024.1",
+  "build_completed": "2026-10-18 12:06:45 Asia/Shanghai",
+  "wns_ns": 0.451,
+  "tns_ns": 0,
+  "whs_ns": 0.017,
+  "ths_ns": 0,
+  "fixed_methodology_rules": [
+    "TIMING-4",
+    "TIMING-27",
+    "TIMING-36"
+  ],
+  "hardware_validation": "PASS: normal reboot loaded the new overlay; 720p DISPLAY_RUNNING; dynamic pixel clock status=0x1; VDMA status=0x11000; user confirmed HDMI lit and stable in this conversation on 2026-10-18",
+  "limitations": [
+    "TMDS receiver/cable timing not characterized",
+    "TIMING-18 association warnings remain; see audit report",
+    "External SPI/audio trace delay budgets are engineering assumptions"
+  ],
+  "artifacts": [
+    {
+      "file": "kws_hdmi.bit",
+      "bytes": 4045674,
+      "sha256": "8ecb4eb10b1f11c22bd8e8a3505e4fb1c42b9fe23e8ba4bfdb4a1ebe6e878a00"
+    },
+    {
+      "file": "kws_hdmi.hwh",
+      "bytes": 817040,
+      "sha256": "d84e1dfdcd35ea6a29ffab658e8e086ce8fd9455a49d0d8c44d6fe42d5b4d3e5"
+    }
+  ],
+  "board_evidence": "analysis/timing_20261018/board_hdmi_retest.log",
+  "release_status": "Adopted current board_validation/w6 release; original visible baseline preserved in baseline_20261018_visible"
+}

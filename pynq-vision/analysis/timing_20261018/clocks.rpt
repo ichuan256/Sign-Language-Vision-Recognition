@@ -1,0 +1,115 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+| Date         : Fri Oct 23 02:20:05 2026
+| Host         : LAPTOP-2K88VM5F running 64-bit major release  (build 9200)
+| Command      : report_clocks -file F:/PLD_new/Sign-Language-Vision-Recognition/pynq-vision/analysis/timing_20261018/clocks.rpt
+| Design       : system_wrapper
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Clock Report
+
+
+Attributes
+  P: Propagated
+  G: Generated
+  A: Auto-derived
+  R: Renamed
+  V: Virtual
+  I: Inverted
+  S: Pin phase-shifted with Latency mode
+
+Clock                            Period(ns)  Waveform(ns)       Attributes  Sources
+clk_fpga_0                       10.000      {0.000 5.000}      P           {system_i/ps7/inst/PS7_i/FCLKCLK[0]}
+clk_fpga_1                       7.000       {0.000 3.500}      P           {system_i/ps7/inst/PS7_i/FCLKCLK[1]}
+audio_bclk                       320.000     {160.000 320.000}  P,G         {bclk}
+hdmi_forwarded                   10.000      {0.000 5.000}      P,G         {hdmi_out_clk_p}
+spia_external                    1000.000    {0.000 500.000}    P,G         {spia_sclk}
+spib_external                    1000.000    {0.000 500.000}    P,G         {spib_sclk}
+I                                2.000       {0.000 1.000}      P,G,A       {system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/CLKOUT0}
+axi_dynclk_PXL_CLK_O             10.000      {0.000 4.000}      P,G,A       {system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/O}
+clk_out1_system_clk_wiz_audio_0  100.000     {0.000 50.000}     P,G,A       {system_i/clk_wiz_audio/inst/mmcm_adv_inst/CLKOUT0}
+clkfbout_system_clk_wiz_audio_0  20.000      {0.000 10.000}     P,G,A       {system_i/clk_wiz_audio/inst/mmcm_adv_inst/CLKFBOUT}
+mmcm_fbclk_out                   10.000      {0.000 5.000}      P,G,A       {system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/CLKFBOUT}
+
+
+====================================================
+Generated Clocks
+====================================================
+
+Generated Clock     : audio_bclk
+Master Source       : system_i/audio_codec_ctrl_0/U0/USER_LOGIC_I/clk_cntr_reg[4]/C
+Master Clock        : clk_fpga_0
+Edges               : {33 65 97}
+Generated Sources   : {bclk}
+
+Generated Clock     : hdmi_forwarded
+Master Source       : system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/SerializerMaster/CLK
+Master Clock        : I
+Divide By           : 5
+Generated Sources   : {hdmi_out_clk_p}
+
+Generated Clock     : spia_external
+Master Source       : system_i/sif_l/inst/u_spi/sclk_reg/C
+Master Clock        : clk_fpga_0
+Divide By           : 100
+Generated Sources   : {spia_sclk}
+
+Generated Clock     : spib_external
+Master Source       : system_i/sif_r/inst/u_spi/sclk_reg/C
+Master Clock        : clk_fpga_0
+Divide By           : 100
+Generated Sources   : {spib_sclk}
+
+Generated Clock     : I
+Master Source       : system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/CLKIN1
+Master Clock        : clk_fpga_0
+Multiply By         : 5
+Generated Sources   : {system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/CLKOUT0}
+
+Generated Clock     : axi_dynclk_PXL_CLK_O
+Master Source       : system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/I
+Master Clock        : I
+Edges               : {1 2 3}
+Edge Shifts(ns)     : {0.000 3.000 8.000}
+Generated Sources   : {system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/O}
+
+Generated Clock     : clk_out1_system_clk_wiz_audio_0
+Master Source       : system_i/clk_wiz_audio/inst/mmcm_adv_inst/CLKIN1
+Master Clock        : clk_fpga_0
+Edges               : {1 2 3}
+Edge Shifts(ns)     : {0.000 45.000 90.000}
+Generated Sources   : {system_i/clk_wiz_audio/inst/mmcm_adv_inst/CLKOUT0}
+
+Generated Clock     : clkfbout_system_clk_wiz_audio_0
+Master Source       : system_i/clk_wiz_audio/inst/mmcm_adv_inst/CLKIN1
+Master Clock        : clk_fpga_0
+Edges               : {1 2 3}
+Edge Shifts(ns)     : {0.000 5.000 10.000}
+Generated Sources   : {system_i/clk_wiz_audio/inst/mmcm_adv_inst/CLKFBOUT}
+
+Generated Clock     : mmcm_fbclk_out
+Master Source       : system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/CLKIN1
+Master Clock        : clk_fpga_0
+Multiply By         : 1
+Generated Sources   : {system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/CLKFBOUT}
+
+
+
+====================================================
+User Uncertainty
+====================================================
+
+
+
+====================================================
+User Jitter
+====================================================
+
+Clock       Jitter(ns)
+clk_fpga_0  0.300
+clk_fpga_1  0.210
+
