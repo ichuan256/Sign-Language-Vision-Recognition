@@ -6,22 +6,45 @@
 
 ---
 
+## 0. 可见性约定（2026-10-23 用户指示）
+
+本文档分两类内容，**逐节标注**：
+
+- **【通用】**：工程性知识与流程（构建、部署、契约、踩坑），可直接给队友的 agent 看。
+- **【本机专用】**：只在用户本人这台机器上成立的内容——代理端口与网络配置、
+  本机绝对路径、板卡局域网地址与凭据、开机自启项。给队友时**整段剔除或替换**，
+  不要把本机网络/凭据细节外传。
+
+各节标题后均带标注；未标注的子节默认【通用】。
+
+---
+
 ## 1. 环境与路径速查
+
+### 1a. 本机环境【本机专用】
 
 | 项 | 位置 / 值 |
 |---|---|
 | 仓库根 = 工作区根 | `F:\PLD_new\Sign-Language-Vision-Recognition`（一切产出都在此目录内，别写到别处） |
-| GitHub 远程 | `git@github.com:ichuan256/Sign-Language-Vision-Recognition.git` —— **走本机代理** |
 | 代理 | 猫猫云在 `127.0.0.1:10090`（2026-10-23 起 Clash Verge 退役，统一走猫猫云）；`~/.ssh/config` 里 github.com 的 ProxyCommand 指向 10090。**代理没开时 git 报 `errno=10061`**；大包推送低速期分段推：`git push origin <sha>:main`（见 `F:\网络\网络问题排查与维护记录.md` 第五章） |
 | Vivado/Vitis | 2024.1，`F:\APP\Xilinx\Vivado\2024.1\bin\vivado.bat`（**必须走 cmd 批处理调用，见 §4**） |
 | 视觉 Python | `F:\PLD\.venv-vision\Scripts\python.exe`（mediapipe 0.10.21、opencv 4.11，工作区外，只引用） |
 | 音频/下载 Python | `F:\PLD\.venv-audio\Scripts\python.exe`（sherpa-onnx 等，工作区外，只引用） |
 | ASR 模型 | `F:\PLD\asr_test\sherpa-onnx-streaming-zipformer-zh-14M-2023-02-23`（工作区外） |
 | 板卡 | PYNQ-Z2 @ `192.168.2.99`，SSH 免密已配；sudo 密码 `xilinx`；UART 在 COM5@115200 |
-| 板卡固件 | `pynq-vision/board/w6/kws_hdmi.bit/.hwh`（旧 W6 合一固件：含传感器 SPI+DMA、旧 HLS KWS、音频 codec、HDMI 输出。**传感器与 KWS 在新系统闲置不用**，M0b 重建时剥离，见方案 §5 D3） |
 | 机器内存 | 32GB；Vivado 并行构建会 OOM（见 §4） |
 
-## 2. 全局铁律（违者会烧板子/丢数据，已各有血泪史）
+### 1b. 通用工程参数【通用】
+
+| 项 | 值 |
+|---|---|
+| GitHub 远程 | `git@github.com:ichuan256/Sign-Language-Vision-Recognition.git`（SSH 协议，勿用 HTTPS） |
+| 目标器件 | Zynq-7020 `xc7z020clg400-1`，Vivado 2024.1 工程 `pynq-vision/fpga/project/glove/glove.xpr` |
+| 板卡固件 | `pynq-vision/board/w6/kws_hdmi.bit/.hwh`（旧 W6 合一固件：含传感器 SPI+DMA、旧 HLS KWS、音频 codec、HDMI 输出、BTN0-3 GPIO。**传感器与 KWS 在新系统闲置不用**，M0b 重建时剥离，见方案 §5 D3） |
+| 视觉特征契约 | 392 维 `sign_xy_v1`（`vision/sign_video/features.py`）；帧源统一接口 `vision/framesource/` |
+| 依赖版本 | mediapipe 0.10.21、opencv 4.11、numpy 1.26、sherpa-onnx（流式 zipformer-zh-14M） |
+
+## 2. 全局铁律【通用】（违者会烧板子/丢数据，已各有血泪史）
 
 1. **运行中的板子绝不二次加载 bitstream**——100% 硬复位。新 bit 一律 scp 覆盖后 `sudo reboot`，由冷启动加载一次；接管已加载的固件一律 `Overlay(path, download=False)`。
 2. **不要运行任何加载 `base.bit` 的旧脚本**（`asr/recog_live_ncnn.py`、`asr/recog_ncnn.py` 等）——会覆盖合一固件并硬复位。
@@ -31,7 +54,9 @@
 6. 删文件、改启动项、动用户浏览器配置前，先向用户确认。
 7. **动手前确认没有并行会话在写本仓库**——2026-10-23 已发生两会话并行写 `vision/` 互相覆盖的事故。发现他人新增文件先读、再合并，不覆盖不删除。
 
-## 3. 常用操作卡片
+## 3. 常用操作卡片【通用流程 + 本机路径】
+
+> 命令里的绝对路径是本机的（见 §1a）；流程与脚本参数【通用】，队友机器上替换路径即可。
 
 ### 3.1 FPGA 构建（Vivado，Windows 批处理）
 
@@ -94,9 +119,10 @@ git pull --no-rebase --no-edit origin main  # 本仓库一贯 merge 风格
 git push origin main
 ```
 
-- 代理没开先开代理；`non-fast-forward` = 远程有新提交，先 pull
+- `non-fast-forward` = 远程有新提交，先 pull
+- 【本机专用】代理没开先开猫猫云；大包低速期分段推 `git push origin <sha>:main`
 
-## 4. 踩过的坑速查（别再踩）
+## 4. 踩过的坑速查【通用】（别再踩）
 
 | 现象 | 根因 | 处置 |
 |---|---|---|
@@ -112,7 +138,7 @@ git push origin main
 | 并行会话改仓库互相覆盖 | 两 agent 同写 `vision/` | 铁律 §2.7；合并记录见 `vision/m1/README.md` |
 | 板端 ASR 旧脚本 | 会加载 base.bit | 已标记过期，禁止运行 |
 
-## 4b. BTN0 一键启动音频演示（2026-10-23 起）
+## 4b. BTN0 一键启动音频演示（2026-10-23 起）【设计通用；部署实例本机专用】
 
 **用法**：板子通电 → 等 2~3 分钟（固件冷启动 + PC 常驻服务就绪）→ 按一下 **BTN0**
 （LD0 旁的按钮）→ 约 1 秒后开始识别，HDMI 出字幕与手语视频。停止用网页
@@ -128,7 +154,7 @@ git push origin main
 **注意**：板子先开、PC 后开时按键会被忽略（隧道未建），PC 就绪后再按一次。
 日志：PC 侧 `_tmp/audio_resident.log`；板侧 `journalctl -u button-watch.service`。
 
-## 5. 状态与证据入口（动手前必读）
+## 5. 状态与证据入口【通用】（动手前必读）
 
 | 文档 | 内容 |
 |---|---|
@@ -139,10 +165,10 @@ git push origin main
 | `asr/README.md` | 音频线现状、启动、验收顺序 |
 | `video/`（不入库） | 素材库；精剪清单在 `video/done/*/manifest_*_reviewed_*.csv` |
 
-## 6. 当前未结待办（接手时核对）
+## 6. 当前未结待办【通用】（接手时核对）
 
-- M0 收尾：新工程全量构建出 bit 并与 release 对照；板端点亮 + 音频回路复验
+- M0 已完成：新工程全量重建出 bit、板端点亮 + 音频回路复验通过（2026-10-23，见移植清单）
 - M0b：从空目录重建脚本化（源工程此路径未验收过）；剥离传感器 SPI/DMA 与旧 HLS KWS，释放 PL 资源
 - 视觉线：`再见` 缺一条片段待核对；短词类（很/服务/待会儿见）DTW 混淆待排查；USB 摄像头实测未做
-- 音频线：长期稳定性与断电自动启动未验收
-- M2/M3：HDMI 输入子系统、OV5640 双目（Pmod JA/JB + Arduino IO 已预留）
+- 音频线：长期稳定性与断电自动启动未验收；BTN0 停止语义（当前幂等开始，停止走网页）
+- M3：OV5640 双目采集（已定方案，Pmod JA/JB + Arduino IO 已预留；M2 HDMI-in 暂缓）
