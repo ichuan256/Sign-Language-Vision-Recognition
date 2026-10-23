@@ -104,11 +104,29 @@ git push origin main
 | HDMI 黑屏、PS 读 PL 寄存器死机 | 142M 域复位/时钟链路缺驱动 + 切片 TUSER_WIDTH=0 截断 SOF | `w6_hdmi_bd.tcl` 补丁已修复 |
 | **Git Bash 直调 vivado 无输出/假死** | MSYS 环境缺 UCRT DLL，且 batch 模式挂 stdin 成僵尸 | **一律 `cmd //c run_*.bat`**；僵尸用 `taskkill //PID <pid> //F`（PID 以 tasklist 为准，ps -W 列错位） |
 | **残留 vivado.exe 导致新构建 BD 打开报 `bd.tcl: No error`** | 僵尸进程锁安装目录文件 | tasklist 查、`taskkill //F` 清干净再构建（2026-10-23 实测） |
-| Vivado `bad allocation`/OOM | 并行 IP 综合内存爆 | 清残留 vivado.exe，跑 `run_w6_resume.bat`（串行续跑） |
+| Vivado `bad allocation`/OOM | 并行 IP 综合内存爆（有残留进程时更易发） | 清残留 vivado.exe，跑 `run_w6_resume.bat`（串行续跑） |
+| **重建固件 module_ref 报参数不存在** | BD 用旧参数集（如 merge_stream 的 CLK_FREQ_HZ），main 新版 RTL 已删 | `fpga/rtl/` 是发布当日冻结版，见该目录 README；**勿在此目录做新开发** |
+| 板上 systemd 服务里 pynq 报 `No Devices Found` | 缺 XRT 环境变量 | service 里加 `Environment=XILINX_XRT=/usr`（button-watch.service 2026-10-23 已踩） |
 | 板上 `import pynq` 失败 | pynq 在 pynq-venv，不在系统 python | `sudo env XILINX_XRT=/usr /usr/local/share/pynq-venv/bin/python` |
 | ping 不通板子 | JP1 不在 SD 侧 / eth0 别名未生效 | 跳线 SD 侧；上电后等 1~3 分钟 |
 | 并行会话改仓库互相覆盖 | 两 agent 同写 `vision/` | 铁律 §2.7；合并记录见 `vision/m1/README.md` |
 | 板端 ASR 旧脚本 | 会加载 base.bit | 已标记过期，禁止运行 |
+
+## 4b. BTN0 一键启动音频演示（2026-10-23 起）
+
+**用法**：板子通电 → 等 2~3 分钟（固件冷启动 + PC 常驻服务就绪）→ 按一下 **BTN0**
+（LD0 旁的按钮）→ 约 1 秒后开始识别，HDMI 出字幕与手语视频。停止用网页
+`http://127.0.0.1:8765` 的停止钮，或再按 BTN0（当前版本为幂等开始，停止走网页）。
+
+**链路**：BTN0 → `axi_gpio_btns`（0x43C10000，固件 build_manifest_20261023_btngpio）
+→ 板端 `button-watch.service`（`pynq-vision/board/w6/button_watch.py`）
+→ ssh 触发隧道（板端 18770 → PC 18770，免防火墙入站规则）
+→ PC 常驻服务 `asr/audio_resident.py`（开机自启：Startup 文件夹
+`audio_resident_autostart.bat`；ASR 模型开机预载，app 待机不识别）
+→ POST `/start` 开始识别。演示监督仍由 `run_audio_line.py` 负责（被收养不重复加载）。
+
+**注意**：板子先开、PC 后开时按键会被忽略（隧道未建），PC 就绪后再按一次。
+日志：PC 侧 `_tmp/audio_resident.log`；板侧 `journalctl -u button-watch.service`。
 
 ## 5. 状态与证据入口（动手前必读）
 

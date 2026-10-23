@@ -12,8 +12,23 @@ import time
 from pathlib import Path
 from urllib.request import build_opener, ProxyHandler
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
+BOARD_DIR = ROOT / 'pynq-vision' / 'board' / 'w6'
 BOARD_PYTHON = '/usr/local/share/pynq-venv/bin/python'
+
+
+def accepted_bit_hashes():
+    """发布版(2026-10-18)与本仓库全部已验收重建版的 kws_hdmi.bit 哈希集合。"""
+    hashes = set()
+    manifest = json.loads((BOARD_DIR / 'release_manifest.json').read_text())
+    for item in manifest['artifacts']:
+        if item['file'] == 'kws_hdmi.bit':
+            hashes.add(item['sha256'])
+    candidates = BOARD_DIR.parent.parent / 'board_validation' / 'w6' / 'timing_candidate'
+    for rebuild in candidates.glob('build_manifest_*.json'):
+        entry = json.loads(rebuild.read_text())['artifacts']['kws_hdmi.bit']
+        hashes.add(entry['sha256'])
+    return hashes
 
 
 def fetch(url):
@@ -60,14 +75,12 @@ class AudioLine:
         if self.ssh('systemctl show -p SubState --value bootpy.service') != 'exited':
             raise RuntimeError('Waiting for bootpy.service to finish')
         current_boot = self.ssh('cat /proc/sys/kernel/random/boot_id')
-        expected = json.loads((ROOT / 'board_validation/w6/release_manifest.json').read_text())
-        digest = next(x['sha256'] for x in expected['artifacts'] if x['file'] == 'kws_hdmi.bit')
-        if self.ssh('sha256sum /home/xilinx/kws_hdmi.bit').split()[0] != digest:
+        if self.ssh('sha256sum /home/xilinx/kws_hdmi.bit').split()[0] not in accepted_bit_hashes():
             raise RuntimeError('Board bit file differs from the accepted W6 release')
         if deploy or current_boot != self.boot_id:
-            sources = [ROOT / 'ps/asr/board_audio_stream.py', ROOT / 'ps/asr/board_pcm_capture.c',
-                       ROOT / 'board_validation/w6/hdmi_audio_receiver.py',
-                       ROOT / 'board_validation/w6/hdmi_display.py']
+            sources = [ROOT / 'asr/board_audio_stream.py', ROOT / 'asr/board_pcm_capture.c',
+                       BOARD_DIR / 'hdmi_audio_receiver.py',
+                       BOARD_DIR / 'hdmi_display.py']
             subprocess.run(['scp', *self.ssh_options, *map(str, sources),
                             self.args.board + ':/home/xilinx/'], check=True, timeout=45,
                            env=self.environment)
@@ -111,14 +124,20 @@ class AudioLine:
     def ensure_app(self):
         if self.app is None or self.app.poll() is not None:
             if self.app is None:
-                # Never replace an unrelated listener on the application port.
                 with socket.socket() as probe:
-                    if probe.connect_ex(('127.0.0.1', 8765)) == 0:
-                        raise RuntimeError('Port 8765 already in use; stop the old audio app first')
+                    in_use = probe.connect_ex(('127.0.0.1', 8765)) == 0
+                if in_use:
+                    # 常驻服务已预载模型并占用 8765：/state 正常即收养，不重复加载
+                    try:
+                        fetch('http://127.0.0.1:8765/state')
+                        return
+                    except OSError:
+                        raise RuntimeError('Port 8765 in use by an unhealthy app; stop it first')
             self.app = self.child('app', [sys.executable, '-X', 'utf8',
-                str(ROOT / 'ps/asr/audio_loop.py'), '--model', self.args.model,
-                '--manifest', str(ROOT / 'video/phrases_sd.json'),
-                '--board-audio-url', 'http://127.0.0.1:18766/pcm', '--listen-on-start'])
+                str(ROOT / 'asr/audio_loop.py'), '--model', self.args.model,
+                '--manifest', str(ROOT / 'asr/phrases_sd.json'),
+                '--board-audio-url', 'http://127.0.0.1:18766/pcm'])
+                # 不带 --listen-on-start：模型在构造时已预载，识别由 BTN0 触发 POST /start
 
     def run(self):
         owner = self.prepare(deploy=True)

@@ -1,0 +1,13 @@
+[Unit]
+Description=PYNQ-Z2 BTN0 watcher (start audio demo on button press)
+After=bootpy.service
+# 冷启动固件由 bootpy.service 加载；本服务只读 0x43C10000，绝不重载 bitstream
+
+[Service]
+Environment=XILINX_XRT=/usr
+ExecStart=/usr/local/share/pynq-venv/bin/python -u /home/xilinx/button_watch.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

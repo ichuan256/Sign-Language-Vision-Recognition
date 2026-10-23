@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Fri Oct 23 02:20:05 2026
+| Date         : Fri Oct 23 11:56:10 2026
 | Host         : LAPTOP-2K88VM5F running 64-bit major release  (build 9200)
 | Command      : check_timing -verbose -file F:/PLD_new/Sign-Language-Vision-Recognition/pynq-vision/analysis/timing_20261018/check_timing.rpt
 | Design       : system_wrapper
@@ -19,7 +19,7 @@ Table of Contents
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
 4. checking unconstrained_internal_endpoints (0)
-5. checking no_input_delay (0)
+5. checking no_input_delay (4)
 6. checking no_output_delay (8)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
@@ -50,9 +50,14 @@ Table of Contents
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
-5. checking no_input_delay (0)
+5. checking no_input_delay (4)
 ------------------------------
- There are 0 input ports with no input delay specified.
+ There are 4 input ports with no input delay specified. (HIGH)
+
+btn[0]
+btn[1]
+btn[2]
+btn[3]
 
  There are 0 input ports with no input delay but user has a false path constraint.
 

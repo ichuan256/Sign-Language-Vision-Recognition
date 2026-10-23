@@ -49,7 +49,8 @@ class AudioInput:
     def __init__(self, session, model, device=None, board_audio_url=None):
         self.session, self.model, self.device = session, model, device
         self.board_audio_url = board_audio_url
-        self.recognizer = None
+        # 构造即预载模型（2026-10-23，BTN0 快速启动方案）：识别线程启动时不再加载
+        self.recognizer = create_recognizer(model)
         self.stop_event = threading.Event()
         self.guard = threading.Lock()
         self.thread = None

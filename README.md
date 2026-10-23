@@ -17,13 +17,15 @@ PYNQ-Z2 手语识别系统·新主线：**视频输入 → 高动态手势识别
 
 ## 当前进度（2026-10-23）
 
-- **M0 移植**：HDMI+音频合一工程已从本仓库干净重建出 bitstream
-  （`write_bitstream Complete!`，WNS=+1.244 ns，6 分钟），产物与对照见
-  `pynq-vision/board_validation/w6/timing_candidate/`；板端点亮验收待板子上线。
+- **M0 移植**：HDMI+音频合一工程已从本仓库干净重建出 bitstream 并**通过板端验收**
+  （部署哈希一致、720p 画面目视确认、LINE IN 左声道信号正常）；
+  产物与对照见 `pynq-vision/board_validation/w6/timing_candidate/`。
+- **BTN0 一键启动**：通电后按板载 BTN0，约 1 秒开始音频识别演示（ASR 模型 PC 开机预载，
+  板端 button-watch.service 监听按键）。链路与用法见 `AGENTS.md` §4b。
 - **M1 识别基线**：8 类 28 条已审定精剪片段，DTW 留出法基线已跑通；
   滑窗实时识别演示（文件源流式输入）端到端命中。结果与口径说明见
   `vision/m1/README.md`。
-- 下一步：板端点亮复验 → USB 摄像头实测 → M2 板端 HDMI 输入。
+- 下一步：USB 摄像头实测 → M2 板端 HDMI 输入。
 
 ## 快速开始
 

@@ -352,6 +352,24 @@
             },
             "V12": {
                 "VT": "AC",
+                "BA": "0x43C10000",
+                "HA": "0x43C1FFFF",
+                "BP": "C_BASEADDR",
+                "HP": "C_HIGHADDR",
+                "MA": "Data",
+                "MX": "/ps7",
+                "MI": "M_AXI_GP0",
+                "MS": "SEG_axi_gpio_btns_Reg",
+                "MV": "xilinx.com:ip:processing_system7:5.5",
+                "SX": "/axi_gpio_btns",
+                "SI": "S_AXI",
+                "SS": "Reg",
+                "SV": "xilinx.com:ip:axi_gpio:2.0",
+                "TM": "both",
+                "TU": "register"
+            },
+            "V13": {
+                "VT": "AC",
                 "BA": "0x44A00000",
                 "HA": "0x44A0FFFF",
                 "BP": "C_BASEADDR",
@@ -368,7 +386,7 @@
                 "TM": "both",
                 "TU": "register"
             },
-            "V13": {
+            "V14": {
                 "VT": "AC",
                 "BA": "0x44A10000",
                 "HA": "0x44A1FFFF",
@@ -386,7 +404,7 @@
                 "TM": "both",
                 "TU": "register"
             },
-            "V14": {
+            "V15": {
                 "VT": "AC",
                 "BA": "0x44A20000",
                 "HA": "0x44A2FFFF",
@@ -471,6 +489,11 @@
             },
             {
                 "src": "V14",
+                "trg": "V2",
+                "EH": "2"
+            },
+            {
+                "src": "V15",
                 "trg": "V2",
                 "EH": "2"
             }

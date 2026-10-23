@@ -1,0 +1,13 @@
+{
+  "build_date": "2026-10-23T11:56:21+08:00",
+  "builder": "Vivado 2024.1（btn_gpio_bd.tcl + run_w6_hdmi.bat + launch_w6_build.bat）",
+  "change": "新增 axi_gpio_btns @ 0x43C10000（BTN0-3，端口 btn[3:0]，约束 btns_w6.xdc）；其余链路不变",
+  "purpose": "通电后按 BTN0 启动音频演示（button_watch.py 读该 GPIO）",
+  "timing": {"WNS_ns": 0.504317, "status": "write_bitstream Complete!", "gates": "methodology/timing gates passed"},
+  "artifacts": {
+    "kws_hdmi.bit": {"sha256": "c45d7d08ee13861c3d4f62fc0f1dcbd9cb13f22788268013039b4f8c9b37ddbd"},
+    "kws_hdmi.hwh": {"sha256": "bafc4905ab5398c0fa22baf4e2453f154b49b60941df396d8b3a89f6cb8b8279"}
+  },
+  "supersedes": "build_manifest_20261023.json（首次重建版，无按键 GPIO）",
+  "board_validation": "见 M0_移植清单.md 验收记录表"
+}

@@ -21,3 +21,4 @@ hs_err_pid*
 pynq-vision/fpga/scripts/*.log
 pynq-vision/fpga/project/**/*.log
 pynq-vision/fpga/project/**/*.jou
+_tmp/
