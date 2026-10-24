@@ -8,6 +8,7 @@ const processedVideo = $("#processedVideo");
 const downloadButton = $("#downloadButton");
 const processedFrame = $("#processedFrame");
 const placeholder = $("#mediaPlaceholder");
+const mediaStage = $("#mediaStage");
 const frameOverlay = $("#frameOverlay");
 const resultEmpty = $("#resultEmpty");
 const resultContent = $("#resultContent");
@@ -83,17 +84,55 @@ function setActiveTab() {
   document.querySelectorAll(".view-tab").forEach((button) => {
     button.classList.toggle("active", button.dataset.view === currentView);
   });
-  const showOriginal = Boolean(selectedFile && currentView === "original");
-  const showResultVideo = Boolean(currentView === "processed" && annotatedVideoUrl);
-  const showProcessedFrame = Boolean(currentView === "processed" && !showResultVideo && hasProcessedFrame);
+  const compare = Boolean(selectedFile && currentView === "compare");
+  mediaStage.classList.toggle("compare", compare);
+  const showOriginal = Boolean(selectedFile && (currentView === "original" || compare));
+  const showResultVideo = Boolean(annotatedVideoUrl && (currentView === "processed" || compare));
+  const showProcessedFrame = Boolean(!annotatedVideoUrl && hasProcessedFrame && (currentView === "processed" || compare));
   sourceVideo.hidden = !showOriginal;
   processedVideo.hidden = !showResultVideo;
   processedFrame.hidden = !showProcessedFrame;
-  frameOverlay.hidden = !showProcessedFrame;
+  frameOverlay.hidden = !showProcessedFrame || compare;
   placeholder.hidden = showOriginal || showResultVideo || showProcessedFrame;
   downloadButton.hidden = !annotatedVideoUrl;
   downloadButton.disabled = !annotatedVideoUrl;
 }
+
+function syncComparePlay() {
+  // 并列对比：原视频与标注视频同起点同步播放（静音以满足浏览器自动播放策略）
+  if (!annotatedVideoUrl || currentView !== "compare") return;
+  for (const video of [sourceVideo, processedVideo]) {
+    video.currentTime = 0;
+    video.muted = true;
+  }
+  sourceVideo.play().catch(() => {});
+  processedVideo.play().catch(() => {});
+}
+
+function mirrorCompareControl(source, target) {
+  // 任一视频被拖动/暂停/播放时，另一个跟随（仅并列对比模式生效）
+  source.addEventListener("play", () => {
+    if (currentView === "compare" && annotatedVideoUrl) target.play().catch(() => {});
+  });
+  source.addEventListener("pause", () => {
+    if (currentView === "compare" && annotatedVideoUrl) target.pause();
+  });
+  source.addEventListener("seeked", () => {
+    if (currentView === "compare" && annotatedVideoUrl
+        && Math.abs(target.currentTime - source.currentTime) > 0.15) {
+      target.currentTime = source.currentTime;
+    }
+  });
+}
+mirrorCompareControl(sourceVideo, processedVideo);
+mirrorCompareControl(processedVideo, sourceVideo);
+window.setInterval(() => {
+  // 播放漂移纠偏：差异超 0.25s 时把标注视频拉回齐
+  if (currentView === "compare" && annotatedVideoUrl && !sourceVideo.paused
+      && Math.abs(sourceVideo.currentTime - processedVideo.currentTime) > 0.25) {
+    processedVideo.currentTime = sourceVideo.currentTime;
+  }
+}, 500);
 
 function clearAnnotatedVideo() {
   processedVideo.pause();
@@ -131,7 +170,11 @@ dropzone.addEventListener("drop", (event) => {
   selectFile(event.dataTransfer.files[0]);
 });
 document.querySelectorAll(".view-tab").forEach((button) => {
-  button.addEventListener("click", () => { currentView = button.dataset.view; setActiveTab(); });
+  button.addEventListener("click", () => {
+    currentView = button.dataset.view;
+    setActiveTab();
+    if (currentView === "compare") syncComparePlay();
+  });
 });
 runButton.addEventListener("click", startJob);
 cancelButton.addEventListener("click", cancelJob);
@@ -249,9 +292,10 @@ function renderResult(result, jobId = activeJobId) {
     annotatedVideoFilename = result.video_filename || ((sourceName || "video") + "-annotated.mp4");
     processedVideo.src = annotatedVideoUrl;
     processedVideo.load();
-    currentView = "processed";
+    if (currentView !== "compare") currentView = "processed";
     $("#mediaHint").textContent = "识别完成 · 标注视频可播放/下载（无音轨，保留 1 小时）";
     setActiveTab();
+    syncComparePlay();
   }
   if (!candidates.length) { toast("没有生成候选结果。", "error"); return; }
   resultEmpty.hidden = true;
