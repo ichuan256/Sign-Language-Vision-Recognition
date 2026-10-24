@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101820">
+  <title>Sign Vision Lab</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div><p class="eyebrow">手语识别 · 计算机视觉</p><h1>Sign Vision <em>Lab</em></h1></div>
+      </div>
+      <div class="top-status"><span class="status-dot" id="healthDot"></span><span id="healthText">检查模型中</span><span class="divider"></span><span class="local-tag">本机原型</span></div>
+    </header>
+
+    <main>
+      <section class="intro-row">
+        <div><h2>手语视频识别</h2><p class="intro-copy">上传一段已剪好的视频，逐帧查看人体与姿态定位，并在处理完成后获取整段视频的候选词语。</p></div>
+        <div class="model-chip"><span class="chip-icon">✳</span><div><strong>MobileNetV2 + DTW</strong><small>单段视频 · 8帧抽样</small></div></div>
+      </section>
+
+      <section class="workspace">
+        <div class="main-column">
+          <article class="panel upload-panel">
+            <div class="section-head"><div><p class="eyebrow">视频输入</p><h3>选择视频片段</h3></div><span class="step-number">01</span></div>
+            <label class="dropzone" id="dropzone" for="videoInput">
+              <input id="videoInput" type="file" accept="video/mp4,video/quicktime,video/x-msvideo,video/x-matroska,.mp4,.mov,.avi,.mkv">
+              <span class="upload-icon" aria-hidden="true">↑</span>
+              <span class="drop-title" id="dropTitle">拖入视频，或 <b>浏览文件</b></span>
+              <span class="drop-meta" id="dropMeta">MP4 / MOV / AVI / MKV · 单段手语视频</span>
+            </label>
+            <div class="action-row">
+              <div class="selected-file"><span class="file-dot"></span><span id="fileName">尚未选择视频</span><small id="fileSize"></small></div>
+              <div class="button-row"><button id="cancelButton" class="button button-quiet" disabled>取消</button><button id="runButton" class="button button-primary" disabled><span>开始识别</span><span class="button-arrow">↗</span></button></div>
+            </div>
+          </article>
+
+          <article class="panel preview-panel">
+            <div class="section-head preview-head"><div><p class="eyebrow">实时处理</p><h3>视频与检测画面</h3></div><div class="view-switch"><button class="view-tab active" data-view="original">原视频</button><button class="view-tab" data-view="processed">处理帧</button></div></div>
+            <div class="media-stage">
+              <div class="media-placeholder" id="mediaPlaceholder"><div class="scan-symbol"><span></span><span></span><span></span><span></span></div><strong>等待输入视频</strong><small>选择片段后，可预览原视频或实时处理帧</small></div>
+              <video id="sourceVideo" controls playsinline hidden></video>
+              <video id="processedVideo" controls playsinline preload="metadata" hidden aria-label="识别标注后的视频"></video>
+              <img id="processedFrame" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="当前人体与姿态检测结果" hidden>
+              <div class="frame-overlay" id="frameOverlay" hidden><span class="live-indicator"></span><span id="frameLabel">等待推理帧</span><span class="overlay-frame-count" id="frameCount">— / —</span></div>
+            </div>
+            <div class="media-actions"><span id="mediaHint">识别过程中查看处理帧；完成后可播放标注视频</span><button id="downloadButton" class="button button-quiet" hidden disabled>下载标注视频</button></div>
+            <div class="telemetry">
+              <div><span class="telemetry-label">任务状态</span><strong id="jobStatus">待机</strong></div>
+              <div><span class="telemetry-label">处理帧</span><strong id="frameMetric">—</strong></div>
+              <div><span class="telemetry-label">处理速度</span><strong id="fpsMetric">— <small>FPS</small></strong></div>
+              <div><span class="telemetry-label">人体 / 姿态</span><strong id="personMetric">— / —</strong></div>
+            </div>
+            <div class="progress-wrap"><div class="progress-meta"><span id="progressLabel">处理进度</span><span id="progressPercent">0%</span></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div></div>
+          </article>
+        </div>
+
+        <aside class="side-column">
+          <article class="panel result-panel">
+            <div class="section-head"><div><p class="eyebrow">整段识别结果</p><h3>识别结果</h3></div><span class="result-orbit">◎</span></div>
+            <div class="result-empty" id="resultEmpty"><div class="result-glyph">字</div><strong>等待片段处理完成</strong><p>分类基于整段视频的时序特征，结果会在抽帧与比对完成后显示。</p></div>
+            <div class="result-content" id="resultContent" hidden>
+              <div class="winner-label">最佳匹配</div><div class="winner-card"><div><small>候选词语</small><strong id="winnerLabel">—</strong></div><span class="rank-badge">#01</span></div>
+              <div class="candidate-list" id="candidateList"></div>
+              <div class="metric-note"><span>i</span><p>DTW 距离越低表示越接近模板；分数未校准为概率，结果仅供原型测试。</p></div>
+            </div>
+          </article>
+
+          <article class="panel pipeline-panel">
+            <div class="section-head"><div><p class="eyebrow">识别流程</p><h3>处理流程</h3></div><span class="step-number">02</span></div>
+            <ol class="pipeline-list">
+              <li class="pipeline-item done"><span class="pipeline-index">01</span><div><strong>整帧人体检测</strong><small>MediaPipe · 224×224 输入</small></div><span class="pipeline-state">●</span></li>
+              <li class="pipeline-item done"><span class="pipeline-index">02</span><div><strong>姿态与区域细化</strong><small>肩 / 肘 / 腕 / 手部锚点</small></div><span class="pipeline-state">●</span></li>
+              <li class="pipeline-item" id="classifyStep"><span class="pipeline-index">03</span><div><strong>片段时序匹配</strong><small>MobileNetV2 特征 + DTW</small></div><span class="pipeline-state">○</span></li>
+            </ol>
+          </article>
+
+          <div class="prototype-warning"><span>!</span><p><strong>实验原型</strong><br>当前模板来自裁剪视频；整帧实拍精度和 Zynq 板端速度尚未验证。</p></div>
+        </aside>
+      </section>
+    </main>
+    <footer><span>Sign Vision Lab <span class="footer-sep">/</span> 本地版原型</span><span id="backendNote">服务检查中</span></footer>
+  </div>
+  <div class="toast" id="toast" hidden></div>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
