@@ -3,3 +3,13 @@
 .media-stage.compare{grid-template-columns:1fr 1fr;place-items:stretch;aspect-ratio:auto;gap:8px;padding:8px}
 .media-stage.compare video,.media-stage.compare img{width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#080d11;border-radius:6px}
 .media-stage.compare .frame-overlay{display:none}
+
+/* w2 片段库：课次选项卡 + 词条芯片 */
+.lesson-tabs{display:flex;gap:4px;padding:3px;border:1px solid var(--line);border-radius:8px;background:#111c24;margin-bottom:9px}
+.lesson-tab{flex:1;border:0;border-radius:5px;background:transparent;color:#9cacb2;font-size:12px;padding:7px 6px;cursor:pointer}
+.lesson-tab.active{background:rgba(133,243,210,.13);color:var(--mint)}
+.chip-list{display:flex;flex-wrap:wrap;gap:5px;max-height:132px;overflow-y:auto;padding:2px}
+.clip-chip{border:1px solid var(--line);border-radius:100px;background:#101a22;color:#c9d6da;font-size:11.5px;padding:5px 11px;cursor:pointer;white-space:nowrap}
+.clip-chip:hover{border-color:var(--mint2);color:var(--mint)}
+.clip-chip.active{background:rgba(133,243,210,.15);border-color:var(--mint2);color:var(--mint)}
+.library-note{color:#7c8f97;display:block;margin-top:7px}

@@ -21,7 +21,62 @@ let currentView = "original";
 let hasProcessedFrame = false;
 let annotatedVideoUrl = null;
 let annotatedVideoFilename = "annotated.mp4";
+let clipLibrary = [];
+let activeLesson = "8";
+const variantCursor = {};
 const EMPTY_PIXEL = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+
+async function loadLibrary() {
+  try {
+    const response = await fetch("/api/clips");
+    clipLibrary = (await response.json()).clips || [];
+  } catch (_) { clipLibrary = []; }
+  renderChips();
+}
+
+function renderChips() {
+  const list = $("#chipList");
+  list.replaceChildren();
+  const byLabel = new Map();
+  clipLibrary.filter((c) => c.lesson === activeLesson).forEach((c) => {
+    if (!byLabel.has(c.label)) byLabel.set(c.label, []);
+    byLabel.get(c.label).push(c);
+  });
+  if (!byLabel.size) {
+    const empty = document.createElement("small");
+    empty.textContent = "本课暂无片段";
+    list.append(empty);
+    return;
+  }
+  for (const [label, variants] of byLabel) {
+    const chip = document.createElement("button");
+    chip.className = "clip-chip";
+    chip.dataset.label = label;
+    chip.textContent = label + (variants.length > 1 ? " ×" + variants.length : "");
+    chip.title = variants.map((v) => v.name).join("\n");
+    chip.addEventListener("click", () => selectLibraryClip(label, variants));
+    list.append(chip);
+  }
+}
+
+async function selectLibraryClip(label, variants) {
+  if (activeJobId) { toast("识别进行中，完成后可切换下一段。", ""); return; }
+  const key = activeLesson + "|" + label;
+  const index = (variantCursor[key] || 0) % variants.length;
+  variantCursor[key] = index + 1;
+  const clip = variants[index];
+  try {
+    setStatus("载入片段…");
+    const response = await fetch("/api/clips/" + clip.id + "/file");
+    if (!response.ok) throw new Error("library fetch failed");
+    const blob = await response.blob();
+    selectFile(new File([blob], clip.name + ".mp4", { type: "video/mp4" }));
+    document.querySelectorAll(".clip-chip").forEach((c) => {
+      c.classList.toggle("active", c.dataset.label === label);
+    });
+    startJob();  // 快速切换：选中即自动开始识别
+  } catch (_) { toast("片段载入失败。", "error"); }
+}
 
 function toast(message, kind) {
   const node = $("#toast");
@@ -101,6 +156,7 @@ function setActiveTab() {
 function syncComparePlay() {
   // 并列对比：原视频与标注视频同起点同步播放（静音以满足浏览器自动播放策略）
   if (!annotatedVideoUrl || currentView !== "compare") return;
+  if (!sourceVideo.paused && !processedVideo.paused) return;  // 已在同步播放，不重头开始
   for (const video of [sourceVideo, processedVideo]) {
     video.currentTime = 0;
     video.muted = true;
@@ -126,6 +182,12 @@ function mirrorCompareControl(source, target) {
 }
 mirrorCompareControl(sourceVideo, processedVideo);
 mirrorCompareControl(processedVideo, sourceVideo);
+processedVideo.addEventListener("loadeddata", () => {
+  // 标注视频数据就绪时的兜底（完成回调的 play() 早于数据就绪的竞态）；已播放则不重头来
+  if (currentView === "compare" && annotatedVideoUrl
+      && sourceVideo.paused && processedVideo.paused
+      && !sourceVideo.ended && !processedVideo.ended) syncComparePlay();
+});
 window.setInterval(() => {
   // 播放漂移纠偏：差异超 0.25s 时把标注视频拉回齐
   if (currentView === "compare" && annotatedVideoUrl && !sourceVideo.paused
@@ -179,6 +241,13 @@ document.querySelectorAll(".view-tab").forEach((button) => {
 runButton.addEventListener("click", startJob);
 cancelButton.addEventListener("click", cancelJob);
 downloadButton.addEventListener("click", downloadAnnotatedVideo);
+document.querySelectorAll(".lesson-tab").forEach((button) => {
+  button.addEventListener("click", () => {
+    activeLesson = button.dataset.lesson;
+    document.querySelectorAll(".lesson-tab").forEach((b) => b.classList.toggle("active", b === button));
+    renderChips();
+  });
+});
 
 function startJob() {
   if (!selectedFile || activeJobId) return;
@@ -292,7 +361,7 @@ function renderResult(result, jobId = activeJobId) {
     annotatedVideoFilename = result.video_filename || ((sourceName || "video") + "-annotated.mp4");
     processedVideo.src = annotatedVideoUrl;
     processedVideo.load();
-    if (currentView !== "compare") currentView = "processed";
+    currentView = "compare";  // w2：识别完成默认并列对比并自动同步播放
     $("#mediaHint").textContent = "识别完成 · 标注视频可播放/下载（无音轨，保留 1 小时）";
     setActiveTab();
     syncComparePlay();
@@ -378,3 +447,4 @@ async function checkHealth() {
   }
 }
 checkHealth();
+loadLibrary();
