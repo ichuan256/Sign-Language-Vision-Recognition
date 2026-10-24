@@ -1,5 +1,7 @@
 # 双目测距代码评审（2026-10-24，Tomcat）
 
+> 历史评审快照：本次整理未重新核查列出的问题是否已修复，不作为当前缺陷清单。
+
 对象：曹同学 cfx 合并的 `src/signrec/stereo.py`、`scripts/calibrate_stereo.py`、
 `scripts/measure_stereo_range.py`、`tests/test_stereo.py`。
 **仓库中目前没有双目摄像头 RTL**（OV5640 采集控制器属方案 M3 待写）；

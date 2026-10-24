@@ -4,7 +4,7 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 _inspect/
-工具/losslesscut/
+tools/portable/losslesscut/
 raw/
 
 # video/ 为线下传播共享目录（raw+done+记录），不参与提交

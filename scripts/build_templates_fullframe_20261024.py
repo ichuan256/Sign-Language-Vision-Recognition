@@ -34,7 +34,7 @@ def resolve_feature_layer(model_path: Path, preferred: str) -> str:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--manifest", type=Path,
-                    default=ROOT / "剪辑记录" / "manifest_fullframe_20261024.csv")
+                    default=ROOT / "data" / "manifests" / "manifest_fullframe_20261024.csv")
     ap.add_argument("--repo-root", type=Path, default=ROOT)
     ap.add_argument("--model", type=Path, default=DEFAULT_BACKBONE_PATH)
     ap.add_argument("--output", type=Path,

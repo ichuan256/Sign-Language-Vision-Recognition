@@ -14,7 +14,7 @@ from signrec.dataset import load_manifest, sample_video_frames  # noqa: E402
 from signrec.features import DEFAULT_BACKBONE_PATH, MobileNetV2Embedder  # noqa: E402
 from signrec.recognizer import ClipTemplate, save_templates  # noqa: E402
 
-DEFAULT_MANIFEST = ROOT / "material" / "dataset_manifest_20261020.csv"
+DEFAULT_MANIFEST = ROOT / "data" / "legacy" / "material" / "dataset_manifest_20261020.csv"
 DEFAULT_OUTPUT = ROOT / "models" / "sign_templates_cropped.npz"
 
 

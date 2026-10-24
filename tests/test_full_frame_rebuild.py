@@ -68,8 +68,8 @@ def test_build_plan_targets_separate_full_frame_root(tmp_path: Path) -> None:
     plans, output_root, _ = build_plan(manifest, tmp_path)
 
     assert len(plans) == 1
-    assert output_root == (tmp_path / "FullFrameMaterial").resolve()
-    assert plans[0].output_path == (tmp_path / "FullFrameMaterial" / "你好" / "clip.mp4").resolve()
+    assert output_root == (tmp_path / "data/exports/full_frame_dataset").resolve()
+    assert plans[0].output_path == (tmp_path / "data/exports/full_frame_dataset" / "你好" / "clip.mp4").resolve()
     assert plans[0].source_path == (tmp_path / "video" / "source.mp4").resolve()
 
 

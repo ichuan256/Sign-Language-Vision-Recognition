@@ -9,4 +9,4 @@ Model size: 3,872,948 bytes
 Upstream model card: https://github.com/opencv/opencv_zoo/tree/47534e27c9851bb1128ccc0102f1145e27f23f98/models/image_classification_mobilenet
 License: Apache-2.0; the full upstream license is retained at `src/signrec/_vendor/opencv_zoo/LICENSE`.
 
-Input frames are letterboxed to 224×224 after RGB ImageNet normalization; no frame content is cropped or stretched. Results trained with the current `material/` clips are a cropped-domain prototype and must not be taken as full-frame/camera accuracy.
+Input frames are letterboxed to 224×224 after RGB ImageNet normalization; no frame content is cropped or stretched. Results trained with the current `data/legacy/material/` clips are a cropped-domain prototype and must not be taken as full-frame/camera accuracy.

@@ -163,6 +163,10 @@ git push origin main
 | `pynq-vision/board/w6/README.md` + `release_manifest.json` | HDMI 合一固件验收、黑屏根因、发布哈希 |
 | `vision/m1/README.md` | 视频识别线现状、首版基线结果、并行合并说明 |
 | `asr/README.md` | 音频线现状、启动、验收顺序 |
+| `analysis/README.md` | 分析目录索引；区分当前资料和历史实验证据 |
+| `analysis/dataset/README.md` | 当前样本总量、有效评测限制、标签复核与补采计划 |
+| `analysis/r3/README.md` | 当前 PL 阶段状态及量化训练、HLS 对齐、综合证据 |
+| `data/README.md` + `tools/README.md` | 数据/清单与辅助工具目录；原剪辑记录在 `data/manifests/`，原剪裁方法在 `tools/clipping/` |
 | `video/`（不入库） | 素材库；精剪清单在 `video/done/*/manifest_*_reviewed_*.csv` |
 
 ## 6. 当前未结待办【通用】（接手时核对）
@@ -172,3 +176,5 @@ git push origin main
 - 视觉线：`再见` 缺一条片段待核对；短词类（很/服务/待会儿见）DTW 混淆待排查；USB 摄像头实测未做
 - 音频线：长期稳定性与断电自动启动未验收；BTN0 停止语义（当前幂等开始，停止走网页）
 - M3：OV5640 双目采集（已定方案，Pmod JA/JB + Arduino IO 已预留；M2 HDMI-in 暂缓）
+- 路线 3：HLS C 综合已跑通，资源/时序门禁未通过，未导出 IP；阶段状态与证据只在 `analysis/r3/README.md` 汇总，复跑脚本放 `scripts/r3/`。
+- 数据：清单审计已完成，语义清洗/人物标注/补采未完成；当前样本与补采只在 `analysis/dataset/README.md` 汇总，审计工具放 `scripts/dataset/`。提交者署名不能当人物 ID。

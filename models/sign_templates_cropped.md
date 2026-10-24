@@ -3,11 +3,11 @@
 This experimental archive uses the existing cropped clips, not full-frame camera recordings. It is a reproducible baseline only and must not be treated as camera-domain accuracy.
 
 - Archive: `sign_templates_cropped.npz`
-- Source manifest: `material/dataset_manifest_20261020.csv`
+- Source manifest: `data/legacy/material/dataset_manifest_20261020.csv`
 - Input clips: 225 videos / 132 labels; 77 labels have only one video.
 - Feature model: OpenCV Zoo MobileNetV2 INT8, 1280-D GlobalAveragePool features, L2 normalized.
 - Temporal matching: cosine-distance DTW over 8 uniformly sampled frames per clip.
-- Rebuild: `python scripts/build_templates.py --manifest material/dataset_manifest_20261020.csv --output models/sign_templates_cropped.npz --frames 8 --overwrite`
+- Rebuild: `python scripts/build_templates.py --manifest data/legacy/material/dataset_manifest_20261020.csv --output models/sign_templates_cropped.npz --frames 8 --overwrite`
 - Inference: `python scripts/infer_sign.py <video.mp4> --templates models/sign_templates_cropped.npz --frames 8 --top-k 5`
 - Evaluation: `python scripts/evaluate_templates.py --templates models/sign_templates_cropped.npz`
 - Archive SHA-256: `D35C2B62C631B71705C8324196A23D572F3D5809BA9B1D3D9617C8EDD2B395E0`

@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DONE = ROOT / "video" / "done"
-OUT = ROOT / "剪辑记录" / "manifest_fullframe_20261024.csv"
+OUT = ROOT / "data" / "manifests" / "manifest_fullframe_20261024.csv"
 
 
 def main():
@@ -24,7 +24,7 @@ def main():
             "样本编号": mp4.stem,
             "part": person,
         })
-    OUT.parent.mkdir(exist_ok=True)
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     with OUT.open("w", encoding="utf-8-sig", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["类别", "输出路径", "样本编号", "part"])
         w.writeheader()

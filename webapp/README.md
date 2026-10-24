@@ -7,7 +7,7 @@ A local browser UI for one pre-segmented sign clip. It streams person/pose overl
 From the repository root on the development PC:
 
 ```powershell
-python -m pip install -r requirements-web.txt
+python -m pip install -r webapp/requirements.txt
 python -m uvicorn webapp.app:app --host 127.0.0.1 --port 8000
 ```
 

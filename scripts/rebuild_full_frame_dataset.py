@@ -13,8 +13,8 @@ from pathlib import Path, PurePosixPath, PureWindowsPath
 import cv2
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_MANIFEST = ROOT / "material" / "dataset_manifest_20261020.csv"
-DEFAULT_OUTPUT_ROOT = Path("FullFrameMaterial")
+DEFAULT_MANIFEST = ROOT / "data" / "legacy" / "material" / "dataset_manifest_20261020.csv"
+DEFAULT_OUTPUT_ROOT = Path("data/exports/full_frame_dataset")
 
 
 @dataclass(frozen=True)
@@ -45,7 +45,9 @@ def _output_relative_path(raw_path: str, row_number: int) -> Path:
     if pure.is_absolute() or any(part in {"..", "."} for part in pure.parts):
         raise ValueError(f"row {row_number}: invalid output path")
     parts = list(pure.parts)
-    if parts and parts[0].casefold() == "material":
+    if [part.casefold() for part in parts[:3]] == ["data", "legacy", "material"]:
+        parts = parts[3:]
+    elif parts and parts[0].casefold() == "material":
         parts = parts[1:]
     if not parts:
         raise ValueError(f"row {row_number}: output path has no filename")

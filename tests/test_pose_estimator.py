@@ -69,7 +69,7 @@ def test_draw_pose_does_not_modify_source_frame() -> None:
 def test_pose_estimator_extracts_landmarks_from_sample_clip() -> None:
     if not DEFAULT_MODEL_PATH.is_file() or not DEFAULT_POSE_MODEL_PATH.is_file():
         pytest.skip("detector/pose ONNX assets are not installed")
-    video = ROOT / "material" / "你好" / "01_你好_示范01.mp4"
+    video = ROOT / "data" / "legacy" / "material" / "你好" / "01_你好_示范01.mp4"
     if not video.is_file():
         pytest.skip("sample clip is unavailable")
 

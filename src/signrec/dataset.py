@@ -28,8 +28,9 @@ def load_manifest(
     """Read the CSV manifest and resolve its relative paths from repo_root.
 
     By default, the repository root is the parent of the manifest's directory
-    (the current manifest lives under ``material/``). No path-prefix remapping
-    or image cropping/resizing is performed.
+    (a conventional one-level manifest layout). For nested manifests such as
+    ``data/legacy/material/``, pass the repository root explicitly. No path-prefix
+    remapping or image cropping/resizing is performed.
     """
     manifest = Path(manifest_path).expanduser().resolve()
     if not manifest.is_file():

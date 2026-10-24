@@ -85,7 +85,7 @@ def test_uniform_frame_indices_repeat_short_clip_for_fixed_length() -> None:
 
 
 def test_sample_video_frames_keeps_source_resolution() -> None:
-    sample = ROOT / "material" / "你好" / "01_你好_示范01.mp4"
+    sample = ROOT / "data" / "legacy" / "material" / "你好" / "01_你好_示范01.mp4"
     if not sample.is_file():
         pytest.skip("bundled sample clip is unavailable")
 
