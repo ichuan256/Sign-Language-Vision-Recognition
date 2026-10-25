@@ -39,15 +39,16 @@ class USBCamSource(FrameSource):
     def read(self):
         if self._released:
             return None
-        ok, frame = self.cap.read()
-        if not ok:
-            return None
-        now = time.perf_counter()
-        if self._t0 is None:
-            self._t0 = now
-        t = now - self._t0
-        if t < self._next_emit:
-            return self.read()  # drop to the next frame within the rate budget
+        while True:
+            ok, frame = self.cap.read()
+            if not ok:
+                return None
+            now = time.perf_counter()
+            if self._t0 is None:
+                self._t0 = now
+            t = now - self._t0
+            if t >= self._next_emit:
+                break  # iterative dropping: no recursive stack growth
         self._next_emit = t + 1.0 / self._max_fps
         frame_id = self._next_id
         self._next_id += 1
