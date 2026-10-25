@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
-from project.scripts.check_layout import bound_csv, confined, require
+from project.scripts.check_layout import bound_csv, confined, require, check_root_dirs
 
 class LayoutContractTests(unittest.TestCase):
     def test_outside_paths_are_rejected(self):
@@ -36,5 +36,29 @@ class LayoutContractTests(unittest.TestCase):
                 bound_csv(root,"pointer.json","manifest")
     def test_checks_remain_active_without_assert_statements(self):
         with self.assertRaises(ValueError): require(False,"invalid contract")
+
+    def roots(self, root):
+        for name in ("ASR", "docs", "project", "vision"):
+            (root/name).mkdir()
+    def test_exact_four_roots_are_accepted(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);self.roots(root)
+            self.assertEqual(check_root_dirs(root),[])
+    def test_unrecorded_extra_root_is_rejected(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);self.roots(root);(root/"unexpected").mkdir()
+            with self.assertRaisesRegex(ValueError,"Unexpected root"):
+                check_root_dirs(root)
+    def test_retained_tool_requires_exact_files_and_sha(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);self.roots(root);(root/"tools").mkdir()
+            asset=root/"tools/tool.bin";asset.write_bytes(b"original")
+            p=root/"vision/analysis/materials/20261025_merge/local_layout_residue.json"
+            p.parent.mkdir(parents=True)
+            p.write_text(json.dumps({"roots":{"tools":[{"path":"tools/tool.bin","bytes":8,"sha256":hashlib.sha256(asset.read_bytes()).hexdigest()}]}}),encoding="utf-8")
+            self.assertEqual(check_root_dirs(root),["tools"])
+            asset.write_bytes(b"modified")
+            with self.assertRaisesRegex(ValueError,"SHA changed"):
+                check_root_dirs(root)
 
 if __name__=="__main__":unittest.main()

@@ -1,0 +1,22 @@
+{
+  "merged_remote": "94a60c0ce4b763707fe56d8b9d560bea0aac0123",
+  "merge_commit": "ba879d0",
+  "snapshot_commit": "b272988",
+  "branch": "main",
+  "pytest_passed": 150,
+  "subtests_passed": 32,
+  "warnings": 2,
+  "protected_media_sha_verified": 816,
+  "available_sha_verified": 551,
+  "pending_excluded": 85,
+  "raw_sources": 32,
+  "asr_vocabulary": 142,
+  "legacy_fixture": 1,
+  "m1_samples_readable": 28,
+  "numeric_source_hash_mismatches": 0,
+  "portable_original_files_retained": 120,
+  "portable_copies_sha_equal": true,
+  "real_clipping_preflight": "passed",
+  "pushed": false,
+  "board_or_startup_changed": false
+}

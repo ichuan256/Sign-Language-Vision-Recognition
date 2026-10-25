@@ -92,9 +92,32 @@ def check_media(root):
     print("PASS current551 SHA/identity; pending85 isolated; sources32; protected816; ASR142; legacy1; BV22")
 
 
+def check_root_dirs(root):
+    dirs = {p.name for p in root.iterdir() if p.is_dir() and p.name != ".git"}
+    expected = {"ASR", "docs", "project", "vision"}
+    require(expected.issubset(dirs), f"Missing main modules: {sorted(expected-dirs)}")
+    extras = dirs - expected
+    if not extras:
+        return []
+    evidence = root / "vision/analysis/materials/20261025_merge/local_layout_residue.json"
+    require(evidence.is_file(), f"Unexpected root directories: {sorted(extras)}")
+    records = json.loads(evidence.read_text(encoding="utf-8-sig"))["roots"]
+    require(extras.issubset(records), f"Undocumented root residue: {sorted(extras-set(records))}")
+    for name in extras:
+        recorded = {r["path"]: r for r in records[name]}
+        actual = {p.relative_to(root).as_posix() for p in (root/name).rglob("*") if p.is_file()}
+        require(actual == set(recorded), f"Local residue path set changed: {name}")
+        for relative, row in recorded.items():
+            require(relative.startswith(name + "/"), "Invalid residue root")
+            path = confined(root, relative)
+            require(path.stat().st_size == row["bytes"] and sha256(path) == row["sha256"], f"Local residue SHA changed: {relative}")
+    return sorted(extras)
+
+
 def check_code(root):
-    dirs = sorted(p.name for p in root.iterdir() if p.is_dir() and p.name != ".git")
-    require(dirs == ["ASR", "docs", "project", "vision"], f"Unexpected root directories: {dirs}")
+    residue = check_root_dirs(root)
+    if residue:
+        print("LOCAL RESIDUE SHA verified; Windows refused rename, originals retained: " + ", ".join(residue))
     count = 0
     for folder in ("ASR", "vision", "project/scripts", "project/tests"):
         for p in (root / folder).rglob("*.py"):

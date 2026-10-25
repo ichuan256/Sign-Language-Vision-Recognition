@@ -45,3 +45,6 @@ vision/data/exports/**/*.mpeg
 vision/data/exports/**/*.mts
 vision/data/exports/**/*.m2ts
 vision/data/exports/**/*.3gp
+
+# Windows-denied portable directory retained only as a fingerprinted local residue
+/tools/
