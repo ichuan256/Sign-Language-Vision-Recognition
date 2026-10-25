@@ -1,5 +1,6 @@
 # 视觉模块
 
+- **当前优先：无语义的通用实时关键点**，见 [演示与指标定义](keypoints/README.md)、[文件源基准](analysis/keypoints_20261025/README.md)。
 - [样本现状与补采](analysis/dataset/README.md)、[来源审计](analysis/dataset/label_source_audit_20261025.md)
 - [数据与清单](data/README.md)、[分析索引](analysis/README.md)、[辅助工具](tools/README.md)
 - [M1 关键点识别](m1/README.md)、[网页演示](webapp/README.md)、[复跑脚本](scripts/README.md)

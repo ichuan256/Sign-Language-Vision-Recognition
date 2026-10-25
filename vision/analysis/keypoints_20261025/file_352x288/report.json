@@ -1,0 +1,129 @@
+{
+  "schema_version": "keypoint_benchmark_v1",
+  "semantic_classifier": false,
+  "source": "file:vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/谢谢/1_谢谢.mp4",
+  "input_kind": "file",
+  "scenario": "general",
+  "requested_max_fps": 30.0,
+  "requested_camera_size": [
+    640,
+    480
+  ],
+  "headless": true,
+  "save_landmarks": false,
+  "seconds_limit": 60.0,
+  "max_frames": 120,
+  "detector_options": {
+    "static_image_mode": false,
+    "model_complexity": 1,
+    "smooth_landmarks": true,
+    "enable_segmentation": false,
+    "refine_face_landmarks": false,
+    "min_detection_confidence": 0.5,
+    "min_tracking_confidence": 0.5
+  },
+  "versions": {
+    "mediapipe": "0.10.21",
+    "opencv": "4.11.0",
+    "numpy": "2.5.4",
+    "python": "3.12.14"
+  },
+  "host": "Windows AMD64",
+  "timestamp": "2026-10-25T17:57:47.293138+08:00",
+  "limitations": [
+    "Availability is detector output presence, not landmark accuracy or recall against ground truth.",
+    "No sensor-exposure timestamp; camera/driver buffering and true capture-to-display latency are unknown.",
+    "host_result_ms: immediately before source.read() to detector completion, including read/rate-limit wait.",
+    "host_preview_submit_ms: read start to imshow/waitKey return; not physical display latency.",
+    "File mode runs unpaced, not a live-camera or realtime-replay benchmark.",
+    "Model/source initialization and final summary excluded from processed_fps; frame JSONL writes included.",
+    "No warmup frames excluded. Missing spans include hands outside view and cannot establish occlusion recovery latency.",
+    "No handedness accuracy, jitter accuracy, multi-person identity or metric 3D validation."
+  ],
+  "source_nominal_fps": 20.0,
+  "source_sha256": "e5757f56a24a777d59256c047a4d84967dd527a912f17d558da572e50619d217",
+  "setup_ms": 42.248499987181276,
+  "actual_frame_size": [
+    352,
+    288
+  ],
+  "stop_reason": "end_of_stream",
+  "error": null,
+  "measurement_mode": "offline_file_throughput",
+  "frames": 56,
+  "loop_elapsed_s": 1.8463435000157915,
+  "processed_fps": 30.330217535101696,
+  "timing_ms": {
+    "read_ms": {
+      "p50": 0.1568999869050458,
+      "p95": 0.23389999842038378,
+      "mean": 0.2609553542112865,
+      "first": 5.5822000140324235
+    },
+    "inference_ms": {
+      "p50": 30.266050016507506,
+      "p95": 32.866325018403586,
+      "mean": 32.6650214280692,
+      "first": 152.3585999966599
+    },
+    "host_result_ms": {
+      "p50": 30.422150011872873,
+      "p95": 33.00152501469711,
+      "mean": 32.925976782280486,
+      "first": 157.94080001069233
+    },
+    "host_preview_submit_ms": null
+  },
+  "availability": {
+    "pose": {
+      "detected_frames": 56,
+      "detected_rate": 1.0,
+      "missing_runs": [],
+      "longest_missing_frames": 0,
+      "longest_observed_missing_span_s": 0
+    },
+    "left_hand": {
+      "detected_frames": 56,
+      "detected_rate": 1.0,
+      "missing_runs": [],
+      "longest_missing_frames": 0,
+      "longest_observed_missing_span_s": 0
+    },
+    "right_hand": {
+      "detected_frames": 51,
+      "detected_rate": 0.9107142857142857,
+      "missing_runs": [
+        {
+          "frames": 2,
+          "observed_span_s": 0.10000000000000009,
+          "recovered": true
+        },
+        {
+          "frames": 3,
+          "observed_span_s": 0.15000000000000036,
+          "recovered": true
+        }
+      ],
+      "longest_missing_frames": 3,
+      "longest_observed_missing_span_s": 0.15000000000000036
+    },
+    "both_hands": {
+      "detected_frames": 51,
+      "detected_rate": 0.9107142857142857,
+      "missing_runs": [
+        {
+          "frames": 2,
+          "observed_span_s": 0.10000000000000009,
+          "recovered": true
+        },
+        {
+          "frames": 3,
+          "observed_span_s": 0.15000000000000036,
+          "recovered": true
+        }
+      ],
+      "longest_missing_frames": 3,
+      "longest_observed_missing_span_s": 0.15000000000000036
+    }
+  }
+}
