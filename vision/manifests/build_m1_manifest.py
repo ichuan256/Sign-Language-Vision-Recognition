@@ -12,7 +12,7 @@ import json
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
-CSV_PATH = (REPO / "video/done/wsy/全22课全画幅样本_fullframe_264条_20261021"
+CSV_PATH = (REPO / "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021"
             / "dataset_manifest_fullframe_20261021.csv")
 MEDIA_ROOT = CSV_PATH.parent
 OUT = Path(__file__).resolve().parent / "m1_vocabulary_20261023.json"
@@ -44,7 +44,7 @@ def main():
         label = row["类别"]
         if label not in chosen:
             continue
-        rel_media = Path("video/done/wsy") / CSV_PATH.parent.name / label / Path(row["输出路径"]).name
+        rel_media = Path("vision/video/done/wsy") / CSV_PATH.parent.name / label / Path(row["输出路径"]).name
         media = REPO / rel_media
         if not media.is_file():
             errors.append({"label": label, "missing": str(media)})

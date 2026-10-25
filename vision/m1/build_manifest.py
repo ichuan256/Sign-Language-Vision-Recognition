@@ -33,7 +33,7 @@ def collect(repo_root: Path, manifest_dir: Path) -> list[dict]:
     import os
     samples = []
     for label in VOCAB:
-        hits = sorted(p for p in repo_root.glob(f"video/done/*/*/{label}/*.mp4"))
+        hits = sorted(p for p in repo_root.glob(f"vision/video/done/*/*/{label}/*.mp4"))
         if not hits:
             print(f"警告：标签 {label!r} 无片段，跳过")
             continue

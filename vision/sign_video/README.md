@@ -24,9 +24,9 @@
 
 ```powershell
 F:/PLD/.venv-audio/Scripts/python.exe -m venv F:/PLD/.venv-vision
-F:/PLD/.venv-vision/Scripts/python.exe -m pip install -r algo/sign_video/requirements.txt
-F:/PLD/.venv-vision/Scripts/python.exe -m pytest tests/test_sign_video_features.py -q
-F:/PLD/.venv-vision/Scripts/python.exe -X utf8 -m algo.sign_video.extract --manifest algo/sign_video/smoke_manifest.json --output analysis/sign_video_20261020/run01
+F:/PLD/.venv-vision/Scripts/python.exe -m pip install -r vision/sign_video/requirements.txt
+F:/PLD/.venv-vision/Scripts/python.exe -m pytest vision/tests/integration/test_sign_video_features.py -q
+F:/PLD/.venv-vision/Scripts/python.exe -X utf8 -m vision.sign_video.extract --manifest vision/sign_video/smoke_manifest.json --output vision/analysis/sign_video_20261020/run01
 ```
 
 输出目录必须不存在，避免覆盖已有实验。新增视频通过独立 manifest 接入，文件路径相对 manifest 所在目录；不自动扫描另一个 agent 尚在下载的文件。样本字段示例见 `smoke_manifest.json`。每个样本必填唯一 `id`、`file`、`source_group`；建议提供 `sha256`，提取前校验。长课程须先人工确认动作起止、去掉讲解和标题页，再建立训练片段；本入口把整个输入文件作为一个待提取序列。
@@ -35,12 +35,12 @@ F:/PLD/.venv-vision/Scripts/python.exe -X utf8 -m algo.sign_video.extract --mani
 
 首轮输入是已有“你好、早上好、你好吗、很好、谢谢”五个播放片段，来自同一原始课程第 1 集。它们只用于提取流程验证，动作起止沿用此前人工初划范围，**没有作为训练集或测试集**。录制者/会话未知，不虚构被试身份；全部 `split=unassigned`，共享同一 `source_group`。
 
-首轮实际提取成功：139 个采样帧，双手同时检测覆盖 115 帧（82.7%），七项特征测试通过。发现“谢谢”片段预览仍显示“早上好”字幕，须复核动作语义和切片边界；不能直接按旧播放标签训练。完整结果、预览与限制见[首轮记录](../../analysis/sign_video_20261020/README.md)。
+首轮实际提取成功：139 个采样帧，双手同时检测覆盖 115 帧（82.7%），七项特征测试通过。发现“谢谢”片段预览仍显示“早上好”字幕，须复核动作语义和切片边界；不能直接按旧播放标签训练。完整结果、预览与限制见首轮记录（历史引用，当前仓库未收录原报告）。
 
 下载的新教程接入后，先按约 5～10 个动作建词表、逐段标注、检查左右手与漏检，再增加独立录制样本，建立 DTW 或小型时序分类基线。同源切片、抽帧、锐化与其他增强版本必须归同一分组，不能随机拆到训练和测试集。按完整源视频分组只是最低要求；跨人或跨会话泛化需要相应身份标签和独立样本。不能用五条模板匹配自身得出的结果宣称识别准确率。
 
 锐化默认关闭；原图提取通过后才单独对比锐化版本的检测覆盖和识别结果。
 
-2026-10-20 已完成三条件、两轮的 CPU 锐化对照：原图双手检测覆盖 82.7%，α=0.25 为 71.2%，α=0.5 为 28.1%，两轮计数一致。因此当前素材识别继续使用原图；这不是分类准确率实验。详见[锐化对照记录](../../analysis/sharpen_compare_20261020/README.md)。可用 `python -m algo.sign_video.compare_sharpen --manifest algo/sign_video/smoke_manifest.json --output <新目录> --repeats 2` 复现。提取入口也支持 `--sharpen-quarter 0/1/2`；输出记录 CPU 预处理参数与耗时，不表示已有 FPGA 核。
+2026-10-20 已完成三条件、两轮的 CPU 锐化对照：原图双手检测覆盖 82.7%，α=0.25 为 71.2%，α=0.5 为 28.1%，两轮计数一致。因此当前素材识别继续使用原图；这不是分类准确率实验。详见锐化对照记录（历史引用，当前仓库未收录原报告）。可用 `python -m vision.sign_video.compare_sharpen --manifest vision/sign_video/smoke_manifest.json --output <新目录> --repeats 2` 复现。提取入口也支持 `--sharpen-quarter 0/1/2`；输出记录 CPU 预处理参数与耗时，不表示已有 FPGA 核。
 
 参考：[MediaPipe Holistic 官方实现与说明](https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/holistic.md)、[固定版本 Python 包](https://pypi.org/project/mediapipe/0.10.21/)。
