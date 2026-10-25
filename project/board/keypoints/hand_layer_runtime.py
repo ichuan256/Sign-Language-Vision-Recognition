@@ -69,9 +69,13 @@ class LayerHardwareBackend(HardwareBackend):
         self._alloc=alloc
         self.la=alloc(802816,np.int16)
         self.config=alloc(16,np.int32)
-        self.va,self.vb,self.vo=alloc(262144,np.int16),alloc(4096,np.int16),alloc(4096,np.int16)
+        self.vector_capacity=int(self.regs.get('vector_capacity',4096))
+        if self.vector_capacity not in (4096,65536):raise ValueError('Unsupported vector capacity')
+        self.va,self.vb,self.vo=alloc(262144,np.int16),alloc(self.vector_capacity,np.int16),alloc(self.vector_capacity,np.int16)
         self.mac_calls=self.vector_calls=0
         self.profile=dict(input_copy_flush_s=0.,launch_wait_s=0.,output_invalidate_view_s=0.,vector_wall_s=0.)
+        self.profile['cpu_sync_s']=0.
+        self._dirty_outputs=set()
         self.traffic=dict(input_bytes_copied=0,resident_input_layers=0)
     def prepare(self,graph,weights):
         if hasattr(self,'resident'):raise RuntimeError('Parameters are immutable; create a new backend to replace them')
@@ -83,6 +87,7 @@ class LayerHardwareBackend(HardwareBackend):
             for key,offset in fields.items()} for name,fields in offsets.items()}
         self.outputs={spec['name']:self._alloc(int(np.prod(spec['output_shape'])),np.int16)
             for spec in graph if spec['kind'] in ('Conv2D','DepthwiseConv2D','Dense')}
+        for buffer in self.outputs.values():buffer.flush()
         self.output_addresses={int(buffer.physical_address) for buffer in self.outputs.values()}
     def layer(self,x,w,bias,shift,spec,relu):
         cfg=configuration(x,w,spec,relu)
@@ -104,12 +109,17 @@ class LayerHardwareBackend(HardwareBackend):
             b=pointers['kernel'],bias=pointers['bias'],shift=pointers['shift'],
             out_r=destination.physical_address,config_r=self.config.physical_address))
         self.profile['launch_wait_s']+=time.perf_counter()-tick
-        tick=time.perf_counter();destination.invalidate()
+        tick=time.perf_counter();self._dirty_outputs.add(int(destination.physical_address))
         # Dedicated output per layer preserves residual branches and repeatability.
         result=destination.reshape(spec['output_shape'])
         self.profile['output_invalidate_view_s']+=time.perf_counter()-tick
         self.mac_calls+=1
         return result
+    def sync_for_cpu(self,array):
+        address=getattr(array,'physical_address',None)
+        if address in self._dirty_outputs:
+            tick=time.perf_counter();array.invalidate();self._dirty_outputs.remove(address)
+            self.profile['cpu_sync_s']+=time.perf_counter()-tick
     def vector(self,*args,**kwargs):
         tick=time.perf_counter()
         result=super().vector(*args,**kwargs)

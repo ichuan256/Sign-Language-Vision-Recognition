@@ -14,6 +14,7 @@ def main():
     p.add_argument('--result',type=Path,required=True)
     p.add_argument('--hdmi',type=Path,required=True)
     p.add_argument('--screen-confirmed',action='store_true',help='Only after explicit physical screen confirmation')
+    p.add_argument('--display-mode',choices=('static','dynamic'),default='static')
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--baseline',type=Path,help='Prior measured board JSON for a clearly scoped comparison')
     a=p.parse_args()
@@ -48,12 +49,12 @@ def main():
         layer_group_wall_s=dict(totals),mac_calls=board['mac_calls'],vector_calls=board['vector_calls'],
         hand_presence=board['hand_presence'],coordinates_roi_units=board['coordinates_roi_units'],
         cold_boot_confirmed=True,overlay_downloaded_by_test=False,
-        hdmi=dict(static_ROI=True,frame_writes_confirmed_at_least=hdmi['frame_writes_confirmed_at_least'],
+        hdmi=dict(static_ROI=a.display_mode=='static',frame_writes_confirmed_at_least=hdmi['frame_writes_confirmed_at_least'],
             receiver_bounded_seconds=hdmi['receiver_bounded_seconds'],screen_visually_confirmed=a.screen_confirmed,
-            confirmation='User explicitly confirmed ROI and skeleton overlay normal' if a.screen_confirmed else None),
+            confirmation=('User confirmed moving video and changing PL results' if a.display_mode=='dynamic' else 'User explicitly confirmed ROI and skeleton overlay normal') if a.screen_confirmed else None),
         limitations=['One ROI hardware numeric test; not annotated landmark accuracy or arbitrary-video generalization',
             'PS schedules and packs tensors; forward wall time includes this overhead and DDR transfers',
-            'Not real time; no camera/video decode/automatic ROI/body/both-hands included',
+            'Single-ROI timing excludes camera/video decode/automatic ROI/body/both-hands; not end-to-end real-time acceptance',
             'Routed methodology retains TIMING-18 I/O budgets and vendor LUTAR/control-set warnings'],
         evidence_dirs=[str(path.relative_to(ROOT)) if path.is_absolute() else path.as_posix() for path in (a.build,a.result,a.hdmi)])
     if 'layer_profile_s' in board:data['layer_profile_s']=board['layer_profile_s']

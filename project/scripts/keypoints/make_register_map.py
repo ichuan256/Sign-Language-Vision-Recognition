@@ -21,6 +21,9 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--layer-ip',type=Path)
+    parser.add_argument('--vector-ip',type=Path)
+    parser.add_argument('--vector-capacity',type=int,choices=(4096,65536),default=4096)
+    parser.add_argument('--cached',action='store_true')
     args=parser.parse_args()
     output=args.output.resolve()
     if not output.is_relative_to(ROOT) or output.exists():raise ValueError('Use a new workspace output file')
@@ -31,9 +34,12 @@ def main():
         ip=ROOT/'project/_tmp'/directory/'solution1/impl/ip'
         if name=='mac' and args.layer_ip:
             core='kp_layer';ip=args.layer_ip
+        if name=='vector' and args.vector_ip:ip=args.vector_ip
         header=ip/f'drivers/{core}_v1_0/src/x{core}_hw.h'
         report[name]=dict(instance=instance,registers=parse(header,'X'+core.upper()))
     if args.layer_ip:report['architecture']='whole_layer_v2'
+    if args.vector_ip:report['vector_capacity']=args.vector_capacity
+    if args.cached:report['layer_variant']='input_cache_v1'
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps(report,indent=2)+'\n')
     print('REGISTER_MAP_READY '+str(output))

@@ -51,12 +51,16 @@ if {$mode eq "inspect"} {
     set repos $original_ip_repos
     set mac_repo [file join $repo project _tmp kp_mac_ip_v1 tile_prj solution1 impl ip]
     set mac_top kp_gemm_tile
-    if {[file exists [file join $out compute_ip.tcl]]} {source [file join $out compute_ip.tcl]}
     set vec_repo [file join $repo project _tmp kp_vector_ip_v1 vector_prj solution1 impl ip]
+    if {[file exists [file join $out compute_ip.tcl]]} {source [file join $out compute_ip.tcl]}
     foreach r [list $mac_repo $vec_repo] {
         if {![file exists [file join $r component.xml]]} {error "Missing validated HLS IP: $r"}
     }
     create_project kp_hand [file join $out vivado] -part $part
+    if {[info exists shared_ip_cache]} {
+        config_ip_cache -use_cache_location $shared_ip_cache
+        puts "KEYPOINTS_MANAGED_IP_CACHE $shared_ip_cache"
+    }
     set_property target_language Verilog [current_project]
     set_property ip_repo_paths [concat $repos [list $mac_repo $vec_repo]] [current_project]
     update_ip_catalog -rebuild

@@ -77,7 +77,7 @@ def main():
         cached_ROI_only=True,source=str(source.relative_to(ROOT)),source_sha256=record['sha256'],
         hand_index=record['hand_index'],requested_video_fps=args.fps,seconds=args.seconds,
         limitations=['PC cached ROI tracking on one SHA-matched clip; not autonomous arbitrary-video detection',
-            'Last PL pose mapped into current PC ROI; finger pose is delayed, age/source ID shown',
+            'Left shows PC ROI box only; right shows actual PL input and pose, age/source ID shown',
             'Display FPS is independent of PL update rate; no camera exposure latency measurement'])
     with (out/'worker_stderr.log').open('wb') as stderr:
         process=subprocess.Popen(['ssh','-T',*options,args.board,command],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=stderr,env=env)
@@ -112,7 +112,7 @@ def main():
             try:process.wait(timeout=5)
             except subprocess.TimeoutExpired:process.kill();process.wait(timeout=5)
             raise RuntimeError(shared['error'] or 'PL worker not ready in 60 seconds')
-        started=time.monotonic();frames=0;link=None
+        started=time.monotonic();frames=0;roi_frames=0;link=None
         try:
             with LatestFrameServer(args.pc_port) as server,ReplaySource(source,max_fps=args.fps,loop=True) as replay:
                 args.output=out/'hdmi'
@@ -133,18 +133,18 @@ def main():
                             rgb,inverse=canonical_roi(frame,hand)
                             codes=np.clip(np.rint(np.ldexp(rgb,shared['fraction'])),-32768,32767).astype(np.int16)
                             slot.put(dict(codes=codes,rgb=rgb,frame_id=frame_id,timestamp=timestamp,submitted=now))
+                            roi_frames+=1
                         except ValueError:pass
                     with lock:latest=shared['result']
-                    if latest and inverse is not None and latest['response']['outputs'][63]>.5:
-                        points=np.array(latest['response']['outputs'][:63]).reshape(21,3)[:,:2]
-                        mapped=np.c_[points,np.ones(21)]@inverse.T
-                        skeleton(frame,mapped)
+                    if inverse is not None:
+                        corners=np.array([[0,0,1],[223,0,1],[223,223,1],[0,223,1]],np.float64)@inverse.T
+                        cv2.polylines(frame,[np.rint(corners).astype(np.int32)],True,(0,220,220),2)
                     canvas=np.zeros((720,1280,3),np.uint8)
                     scale=min(880/frame.shape[1],570/frame.shape[0]);w,h=round(frame.shape[1]*scale),round(frame.shape[0]*scale)
                     canvas[120:120+h,10:10+w]=cv2.resize(frame,(w,h))
                     lines=[f'MOVING REPLAY | FRAME {frame_id} | SOURCE {timestamp:.2f}s',
                            f'VIDEO {frames/max(now-started,.001):.1f} FPS | PC CACHED ROI -> ACTUAL PL POSE',
-                           'PL pose is delayed; current ROI position comes from PC cache']
+                           'LEFT: PC ROI box | '+('ROI READY' if inverse is not None else 'NO NEW ROI')+' | RIGHT: actual PL input/pose']
                     if latest:
                         response=latest['response'];pose=np.array(response['outputs'][:63]).reshape(21,3)[:,:2]
                         roi=cv2.cvtColor(np.clip(latest['rgb']*255,0,255).astype(np.uint8),cv2.COLOR_RGB2BGR)
@@ -157,7 +157,7 @@ def main():
                     for i,line in enumerate(lines):cv2.putText(canvas,line,(12,26+i*22),cv2.FONT_HERSHEY_SIMPLEX,.55,(240,240,240),1)
                     server.publish(canvas,frame_id,timestamp)
                     if frames%15==0:
-                        live=dict(active=True,video_frames=frames,elapsed_s=now-started,source_timestamp_s=timestamp,
+                        live=dict(active=True,video_frames=frames,ROI_frames=roi_frames,elapsed_s=now-started,source_timestamp_s=timestamp,
                             pl_results=len(results),unique_PL_inputs=len({r['input_sha256'] for r in results}),
                             unique_PL_outputs=len({r['output_sha256'] for r in results}),
                             latest_PL_forward_s=results[-1]['board_forward_s'] if results else None,
@@ -166,7 +166,7 @@ def main():
                     if link is None:
                         link=threading.Thread(target=run_link,daemon=True);link.start()
                     if link_done.is_set():break
-                report.update(video_frames=frames,elapsed_s=time.monotonic()-started,hdmi_publish_state=server.state(),replay_loops=replay.loops)
+                report.update(video_frames=frames,ROI_frames=roi_frames,elapsed_s=time.monotonic()-started,hdmi_publish_state=server.state(),replay_loops=replay.loops)
         finally:
             stop.set();thread.join(timeout=40)
             if thread.is_alive():process.terminate()

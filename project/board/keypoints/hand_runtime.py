@@ -127,7 +127,7 @@ class HardwareBackend:
 
     def vector(self,a,b,count,op,shift,alpha=0,beta=0,limit=-1,kernel=1):
         a = np.asarray(a,dtype=np.int16).reshape(-1)
-        if count>4096 or a.size>262144:
+        if count>getattr(self,'vector_capacity',4096) or a.size>262144:
             raise ValueError('Vector tile exceeds hardware bounds')
         self.va[:a.size] = a
         self.va[:a.size].flush()
@@ -184,8 +184,9 @@ class HandGraph:
         a = np.asarray(a,dtype=np.int16).reshape(-1,kernel)
         b = None if b is None else np.asarray(b,dtype=np.int16).reshape(-1)
         output = np.empty(len(a),np.int16)
-        for start in range(0,len(a),4096):
-            n = min(4096,len(a)-start)
+        capacity=getattr(self.backend,'vector_capacity',4096)
+        for start in range(0,len(a),capacity):
+            n = min(capacity,len(a)-start)
             output[start:start+n] = self.backend.vector(a[start:start+n],
                 None if b is None else b[start:start+n],n,op,shift,alpha,beta,limit,kernel)
         return output
@@ -200,12 +201,17 @@ class HandGraph:
             if kind=='InputLayer':
                 y = np.asarray(roi_codes,dtype=np.int16).reshape(s['output_shape'])
             elif kind=='Concatenate':
+                if hasattr(self.backend,'sync_for_cpu'):
+                    for key in s['inputs']:self.backend.sync_for_cpu(values[key])
                 result = np.concatenate([np.ldexp(values[k].astype(np.float64),-fractions[k]) for k in s['inputs']],axis=-1)[0]
                 return result,dict(elapsed_s=time.perf_counter()-start,backend=self.backend.name,
                     mac_calls=self.backend.mac_calls,vector_calls=self.backend.vector_calls,trace=trace)
             else:
                 xs = [values[k] for k in s['inputs']]
                 x = xs[0]
+                if (hasattr(self.backend,'sync_for_cpu') and
+                    kind not in ('Conv2D','DepthwiseConv2D','Dense') and name not in self.fused_names):
+                    for array in xs:self.backend.sync_for_cpu(array)
                 if kind in ('Conv2D','DepthwiseConv2D','Dense'):
                     w,bias,shift = (self.weights[name+suffix] for suffix in ('_kernel','_bias','_shift'))
                     if hasattr(self.backend,'layer'):

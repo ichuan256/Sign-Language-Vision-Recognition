@@ -46,7 +46,8 @@ def test_layer_driver_flushes_only_valid_ranges_and_uses_generated_config_name()
         setattr(backend,name,Buffer(name,16 if name=='config' else 64,dtype,4096*(index+1)))
     backend.regs={'mac':{'registers':{}}};backend.mac=object();backend.mac_calls=0
     backend.resident={'conv':dict(kernel=0x12000,bias=0x14000,shift=0x16000)}
-    backend.profile=dict(input_copy_flush_s=0.,launch_wait_s=0.,output_invalidate_view_s=0.)
+    backend.profile=dict(input_copy_flush_s=0.,launch_wait_s=0.,output_invalidate_view_s=0.,cpu_sync_s=0.)
+    backend._dirty_outputs=set()
     backend.outputs={'conv':backend.lo[:2]};backend.output_addresses=set()
     backend.traffic=dict(input_bytes_copied=0,resident_input_layers=0)
     calls=[];backend._call=lambda ip,regs,values:calls.append(values)
@@ -57,7 +58,11 @@ def test_layer_driver_flushes_only_valid_ranges_and_uses_generated_config_name()
     assert actual.reshape(-1).tolist()==[123,-456]
     assert ('la','flush',6) in events
     assert not any(name in ('lb','bias','shifts') for name,op,size in events)
+    assert ('lo','invalidate',4) not in events
+    backend.sync_for_cpu(actual)
     assert ('lo','invalidate',4) in events
+    before=len(events);backend.sync_for_cpu(actual)
+    assert len(events)==before
     assert calls[0]['config_r']==backend.config.physical_address
     assert 'config' not in calls[0]
     assert calls[0]['b']==0x12000 and calls[0]['bias']==0x14000 and calls[0]['shift']==0x16000
@@ -80,3 +85,16 @@ def test_resident_parameters_preserve_each_layer_layout_and_offsets():
             start=offsets[name][key]
             assert np.array_equal(packed[key][start:start+n],weights[name+'_'+key])
     assert offsets['dense']==dict(kernel=6,bias=6,shift=6)
+
+def test_large_vector_batches_respect_selected_hardware_capacity():
+    calls=[]
+    class Backend:
+        vector_capacity=65536
+        def vector(self,a,b,count,*args):
+            calls.append(count)
+            return a.reshape(-1)[:count].copy()
+    graph=object.__new__(HandGraph);graph.backend=Backend()
+    source=np.arange(70003,dtype=np.int64).astype(np.int16)
+    actual=graph._vector(source,None,5,0)
+    assert calls==[65536,4467]
+    assert np.array_equal(actual,source)
