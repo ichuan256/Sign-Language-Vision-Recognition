@@ -167,6 +167,7 @@ git push origin main
 | `vision/analysis/dataset/README.md` | 当前样本总量、有效评测限制、标签复核与补采计划 |
 | `project/analysis/r3/README.md` | 当前 PL 阶段状态及量化训练、HLS 对齐、综合证据 |
 | `vision/data/README.md` + `vision/tools/README.md` | 数据/清单与辅助工具目录；原剪辑记录在 `vision/data/manifests/`，原剪裁方法在 `vision/tools/clipping/` |
+| `docs/协作/素材工作区约定.md` | 当前551条可用子集、待审版本及路径映射 |
 | `vision/video/`（不入库） | 素材库；精剪清单在 `vision/video/done/*/manifest_*_reviewed_*.csv` |
 
 ## 6. 当前未结待办【通用】（接手时核对）
@@ -180,3 +181,5 @@ git push origin main
 - 当前输入路线（2026-10-25 用户更新）：单目 OV5640 未到货，只留 `OV5640MonoSource` 接口；原双目路线改为历史兼容。先用 `replay:` 录制视频按实时节拍模拟摄像头，PC 叠加关键点后传到板卡 HDMI；操作卡 `vision/keypoints/HDMI_REPLAY.md`。连续运动已目视确认；接收有时限，到时保留最后一帧，不能误当作仍在播放。
 - 路线 3：HLS C 综合已跑通，资源/时序门禁未通过，未导出 IP；阶段状态与证据只在 `project/analysis/r3/README.md` 汇总，复跑脚本放 `project/scripts/r3/`。
 - 数据：清单审计已完成，语义清洗/人物标注/补采未完成；当前样本与补采只在 `vision/analysis/dataset/README.md` 汇总，审计工具放 `vision/scripts/dataset/`。提交者署名不能当人物 ID。
+
+- 本机素材整理：正式551条SHA一致素材（wsy264＋P08/P09/P10共287）；原片在`vision/video/raw/<来源族>`。历史归档已不在工作区，第二三课85条不同SHA版本现保留于done/wsy并由`pending_lesson02_03_current.csv`列为待审，inbox重复副本已清理。旧636清单和模型保持不变；新素材先放inbox，清单生成必须显式指定新输出并绑定审核清单/SHA，禁止盲扫后覆盖旧清单。旧裁剪媒体仅留1个真实测试样例，ASR142条词库不可当废弃缓存删除。当前清理记录见`vision/analysis/materials/20261025_cleanup/清理记录.md`。

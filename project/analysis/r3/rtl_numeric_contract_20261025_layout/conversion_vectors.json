@@ -1,0 +1,180 @@
+{
+  "kind": "synthetic_assignment_boundaries_not_layer_golden",
+  "vectors": [
+    {
+      "format": "input",
+      "input": "0",
+      "raw": 0
+    },
+    {
+      "format": "input",
+      "input": "-1/549755813888",
+      "raw": -1
+    },
+    {
+      "format": "input",
+      "input": "1/549755813888",
+      "raw": 0
+    },
+    {
+      "format": "input",
+      "input": "-2",
+      "raw": -549755813888
+    },
+    {
+      "format": "input",
+      "input": "549755813887/274877906944",
+      "raw": 549755813887
+    },
+    {
+      "format": "input",
+      "input": "-549755813889/274877906944",
+      "raw": 549755813887
+    },
+    {
+      "format": "input",
+      "input": "2",
+      "raw": -549755813888
+    },
+    {
+      "format": "output",
+      "input": "0",
+      "raw": 0
+    },
+    {
+      "format": "output",
+      "input": "-1/32768",
+      "raw": -1
+    },
+    {
+      "format": "output",
+      "input": "1/32768",
+      "raw": 0
+    },
+    {
+      "format": "output",
+      "input": "-512",
+      "raw": -8388608
+    },
+    {
+      "format": "output",
+      "input": "8388607/16384",
+      "raw": 8388607
+    },
+    {
+      "format": "output",
+      "input": "-8388609/16384",
+      "raw": 8388607
+    },
+    {
+      "format": "output",
+      "input": "512",
+      "raw": -8388608
+    },
+    {
+      "format": "bn_scale",
+      "input": "0",
+      "raw": 0
+    },
+    {
+      "format": "bn_scale",
+      "input": "-1/33554432",
+      "raw": -1
+    },
+    {
+      "format": "bn_scale",
+      "input": "1/33554432",
+      "raw": 0
+    },
+    {
+      "format": "bn_scale",
+      "input": "-32768",
+      "raw": -549755813888
+    },
+    {
+      "format": "bn_scale",
+      "input": "549755813887/16777216",
+      "raw": 549755813887
+    },
+    {
+      "format": "bn_scale",
+      "input": "-549755813889/16777216",
+      "raw": 549755813887
+    },
+    {
+      "format": "bn_scale",
+      "input": "32768",
+      "raw": -549755813888
+    },
+    {
+      "format": "bn_bias",
+      "input": "0",
+      "raw": 0
+    },
+    {
+      "format": "bn_bias",
+      "input": "-1/33554432",
+      "raw": -1
+    },
+    {
+      "format": "bn_bias",
+      "input": "1/33554432",
+      "raw": 0
+    },
+    {
+      "format": "bn_bias",
+      "input": "-32768",
+      "raw": -549755813888
+    },
+    {
+      "format": "bn_bias",
+      "input": "549755813887/16777216",
+      "raw": 549755813887
+    },
+    {
+      "format": "bn_bias",
+      "input": "-549755813889/16777216",
+      "raw": 549755813887
+    },
+    {
+      "format": "bn_bias",
+      "input": "32768",
+      "raw": -549755813888
+    },
+    {
+      "format": "bn_result",
+      "input": "0",
+      "raw": 0
+    },
+    {
+      "format": "bn_result",
+      "input": "-1/2097152",
+      "raw": -1
+    },
+    {
+      "format": "bn_result",
+      "input": "1/2097152",
+      "raw": 0
+    },
+    {
+      "format": "bn_result",
+      "input": "-8388608",
+      "raw": -8796093022208
+    },
+    {
+      "format": "bn_result",
+      "input": "8796093022207/1048576",
+      "raw": 8796093022207
+    },
+    {
+      "format": "bn_result",
+      "input": "-8796093022209/1048576",
+      "raw": 8796093022207
+    },
+    {
+      "format": "bn_result",
+      "input": "8388608",
+      "raw": -8796093022208
+    }
+  ]
+}

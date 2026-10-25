@@ -1,0 +1,8 @@
+test_each_dataset_and_output_argument_is_explicitly_required (test_template_build_cli.TemplateBuildCliTests.test_each_dataset_and_output_argument_is_explicitly_required) ... ok
+test_existing_model_is_protected_before_optional_imports_or_input_reads (test_template_build_cli.TemplateBuildCliTests.test_existing_model_is_protected_before_optional_imports_or_input_reads) ... ok
+test_help_is_available_and_creates_no_artifacts (test_template_build_cli.TemplateBuildCliTests.test_help_is_available_and_creates_no_artifacts) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.543s
+
+OK

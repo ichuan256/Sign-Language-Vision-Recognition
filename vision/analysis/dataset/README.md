@@ -5,6 +5,18 @@
 
 当前媒体清单：`vision/data/manifests/manifest_fullframe_20261024.csv`；媒体仍在根目录 `vision/video/`。
 
+2026-10-25 本机素材整理后，旧636条清单与历史模型保留；新增
+`vision/data/manifests/manifest_available_sha_verified_20261025_layout.csv`，包含本机可按正式路径读取、
+且与旧审计SHA一致的551条（wsy264＋P08/P09/P10共287）。整理期间新出现的三课共享包
+全部匹配旧审计SHA，P09/P10的202条已恢复。第二、三课85条仅有不同SHA版本，
+现保留在`vision/video/done/wsy/第二课学习/`和`第三课家庭/`，由
+`vision/data/manifests/pending_lesson02_03_layout.csv`明确列为待审，未纳入551条已验证子集；
+inbox中的85个同SHA重复副本已清理。首阶段349条清单另行保留。
+这次只调整物理路径和建立可用子集，没有重训、重标或改变下表历史审计总量。
+原片位于 `vision/video/raw/<来源族>/`；历史归档目前已不在工作区。
+当前保留范围见[清理记录](../materials/20261025_cleanup/清理记录.md)，
+早先路径整理经过见[执行记录](../materials/20261025_organization/执行记录.md)。
+
 逐条问题见 [标签与来源审计](label_source_audit_20261025.md)；模型与综合证据见
 [R3 入口](../../../project/analysis/r3/README.md)。
 
@@ -99,3 +111,5 @@ DTW 的不同词表和 LOO 读数仍作为各自历史实验，不能与 42.9% �
 依据：本地标签来源审计与 HLS 记录。人物/来源必须整体分组留出，参见
 [scikit-learn 分组交叉验证说明](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation-iterators-for-grouped-data)。
 以上人数、次数与负样本数量是本项目的建议采样设计，并非该文档给出的数量要求。
+
+迁后活动清单以 current_available_fullframe.json / source_registry_current.json 为准；旧r2、clean及旧validation文件原样保留作历史证据。新布局核验见 `vision/analysis/materials/20261025_merge/`。

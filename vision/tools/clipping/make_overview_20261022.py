@@ -11,12 +11,17 @@ import io
 import subprocess
 from pathlib import Path
 
-from PIL import Image, ImageDraw
 
-ROOT = Path(__file__).resolve().parents[2]
-FFMPEG = ROOT.parent / "_tools" / "ffmpeg.exe"
-RAW_DIR = (ROOT / "vision/video/raw" / "手语配套视频 《中国手语教程》（初级）倪兰"
-           / "手语配套视频 《中国手语教程》（初级）倪兰")
+
+try:
+    from .media_paths import add_source_arguments, find_ffmpeg, resolve_source, print_preflight
+except ImportError:
+    from media_paths import add_source_arguments, find_ffmpeg, resolve_source, print_preflight
+
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file())
+FFMPEG = None
+SOURCE_ROOT = None
+
 INSPECT = ROOT / "project/_tmp" / "inspect_frames"
 LESSON_PREFIX = {8: "P8-", 9: "P9-", 10: "P10-"}
 
@@ -38,14 +43,24 @@ def grab(src, t):
 
 
 def main():
+    global ROOT, FFMPEG, SOURCE_ROOT, INSPECT, Image, ImageDraw
     ap = argparse.ArgumentParser()
+    add_source_arguments(ap)
     ap.add_argument("--lesson", type=int, required=True, choices=[8, 9, 10])
     ap.add_argument("--from", dest="frm", type=float, required=True)
     ap.add_argument("--to", dest="to", type=float, required=True)
     ap.add_argument("--name", required=True)
     args = ap.parse_args()
+    ROOT = args.repo_root.resolve()
+    SOURCE_ROOT = args.source_root
+    FFMPEG = find_ffmpeg(ROOT, args.ffmpeg)
+    INSPECT = ROOT / "project/_tmp/inspect_frames"
 
-    src = next(RAW_DIR.glob(LESSON_PREFIX[args.lesson] + "*.mp4"))
+    src = resolve_source(ROOT, family="NL_tutorial", lesson=args.lesson, source_root=SOURCE_ROOT)
+    if args.preflight:
+        print_preflight([src], FFMPEG, inspection_root=str(INSPECT))
+        return
+    from PIL import Image, ImageDraw
     out_dir = INSPECT / f"P{args.lesson:02d}"
     out_dir.mkdir(parents=True, exist_ok=True)
 

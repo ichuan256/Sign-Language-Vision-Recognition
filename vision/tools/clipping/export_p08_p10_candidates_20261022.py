@@ -21,12 +21,17 @@ import sys
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-FFMPEG = ROOT.parent / "_tools" / "ffmpeg.exe"
+try:
+    from .media_paths import add_source_arguments, find_ffmpeg, resolve_source, print_preflight
+except ImportError:
+    from media_paths import add_source_arguments, find_ffmpeg, resolve_source, print_preflight
+
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file())
+FFMPEG = None
+SOURCE_ROOT = None
 STRATEGY_CSV = Path(__file__).resolve().parent / "中国手语教程_10课_逐词句剪裁策略_20261021.csv"
-RAW_DIR = (ROOT / "vision/video/raw" / "手语配套视频 《中国手语教程》（初级）倪兰"
-           / "手语配套视频 《中国手语教程》（初级）倪兰")
-OUT_ROOT = ROOT / "data" / "exports" / "material_candidates_P08-P10_20261022"
+
+OUT_ROOT = ROOT / "vision/data" / "exports" / "material_candidates_P08-P10_20261022"
 
 LESSON_FILE_PREFIX = {8: "P8-", 9: "P9-", 10: "P10-"}
 PAD = 0.2  # 起点/终点规则：前后各留约 0.2 秒
@@ -101,15 +106,25 @@ def _manifest_row(row, start, end, dur, out_path):
 
 
 def main():
+    global ROOT, FFMPEG, SOURCE_ROOT, OUT_ROOT, STRATEGY_CSV
     ap = argparse.ArgumentParser()
+    add_source_arguments(ap)
     ap.add_argument("--lesson", type=int, required=True, choices=[8, 9, 10])
     ap.add_argument("--from", dest="frm", type=int, default=0)
     ap.add_argument("--to", dest="to", type=int, default=10**9)
     ap.add_argument("--jobs", type=int, default=4)
     ap.add_argument("--overwrite", action="store_true")
     args = ap.parse_args()
+    ROOT = args.repo_root.resolve()
+    SOURCE_ROOT = args.source_root
+    FFMPEG = find_ffmpeg(ROOT, args.ffmpeg)
+    OUT_ROOT = ROOT / "vision/data/exports/material_candidates_P08-P10_20261022"
+    STRATEGY_CSV = ROOT / "vision/tools/clipping/中国手语教程_10课_逐词句剪裁策略_20261021.csv"
 
-    src = next(RAW_DIR.glob(LESSON_FILE_PREFIX[args.lesson] + "*.mp4"))
+    src = resolve_source(ROOT, family="NL_tutorial", lesson=args.lesson, source_root=SOURCE_ROOT)
+    if args.preflight:
+        print_preflight([src], FFMPEG, output_root=str(OUT_ROOT))
+        return
     src_dur = probe_duration(src)
     cands = load_candidates({args.lesson})
     chunk = cands[args.frm:args.to]

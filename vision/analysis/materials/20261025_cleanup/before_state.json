@@ -1,0 +1,15 @@
+{
+  "authorized_request": "删掉历史归档和用不到的视频",
+  "historical_directories_already_absent": [
+    "video/archive",
+    "_tmp/material_inspection_legacy_20261025",
+    "_tmp/root_cache_archive_20261025",
+    "_tmp/workspace_organization_backup_20261025"
+  ],
+  "planned_delete_files": 317,
+  "planned_delete_videos": 315,
+  "planned_delete_bytes": 286094154,
+  "protected_video_files": 816,
+  "protected_scope": "551 verified formal +85 different-SHA versions now in done +32 original sources +142 ASR cache +5 local lexicon clips +1 legacy test sample",
+  "scope_note": "No media backup created; retain manifests/deletion evidence only; historical directories already absent are not counted as this operation"
+}

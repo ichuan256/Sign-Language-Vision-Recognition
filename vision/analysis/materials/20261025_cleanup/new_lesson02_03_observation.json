@@ -1,0 +1,597 @@
+[
+  {
+    "path": "video/done/wsy/第二课学习/上课/上课.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/上课/上课.mp4",
+    "sha256": "56d12531666674aedf0c493b7412ebb3073ffff28931cf80c5dceb45e8c1a6ec",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/上课了。/上课了。.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/上课了。/上课了。.mp4",
+    "sha256": "375f84db946c00c4359cfb9069fd83b459643ce90827153a2f9b88d01a2d2592",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/下课/下课.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/下课/下课.mp4",
+    "sha256": "97559a2e7bdf6d4606066f2c9d3b3b08cc8008ed3bd4b6db73e3874c2298c2bf",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/下课了，休息吧。/下课了，休息吧。.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/下课了，休息吧。/下课了，休息吧。.mp4",
+    "sha256": "a1976a2b6678028f0a1b0efbcb8a7514eab4ad3ee0785639aef31554103ea565",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/不会/不会.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/不会/不会.mp4",
+    "sha256": "bd732b38a8a7c159ee27d34055ddc87bb5f266017098e2b371cd15761af4838b",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/不懂-不知道/不懂-不知道.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/不懂-不知道/不懂-不知道.mp4",
+    "sha256": "3ba424042ee848aeb233a1b58194156163141da550957f2ebe0d8b1ab5910214",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/专心-认真/专心-认真.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/专心-认真/专心-认真.mp4",
+    "sha256": "77acfcd16b87cd20ecf78bbb44140aed62c32b0389d9b13c619c3c5c0c973f24",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/举手/举手.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/举手/举手.mp4",
+    "sha256": "9e9680f4d006a8e4da4c22e121ae13e8e32f210a624c3908e815676db3d4c55c",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/互相/互相.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/互相/互相.mp4",
+    "sha256": "bc2f89cd98c2eab3e2246a02dd5207efed0a670d140bc404dd92562f44664193",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/什么时候交作业？/什么时候交作业？.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/什么时候交作业？/什么时候交作业？.mp4",
+    "sha256": "b0ad829541309ac47308aaf8bca0073c57ab42a32245085651c703fab33c8061",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/休息/休息.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/休息/休息.mp4",
+    "sha256": "994693ebc668fd0d18aad3f00bfe176aafc5400081573a45b95dfb23a18a18d3",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/会/会.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/会/会.mp4",
+    "sha256": "310f36d6ee0820d21e4f54cbe4e97457563d8f9958a5833ec546158ef69970a7",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/作业/作业.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/作业/作业.mp4",
+    "sha256": "42b39f576bb317cb458c62017aacb2c7aaf24bf83435d0bd040c8060ce9a556d",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/你们可以互相帮助。/你们可以互相帮助。.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/你们可以互相帮助。/你们可以互相帮助。.mp4",
+    "sha256": "b93a1532c76540df462ac20b0e2bb6456c3ac8be31d1bd4d3bf9e9df0bc12dbc",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/你们回家要复习。/你们回家要复习。.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/你们回家要复习。/你们回家要复习。.mp4",
+    "sha256": "4e4e792f4122a8774cc47316e942587634a61d10853ea619e80cd9e1a8549c73",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/再见/再见.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/再见/再见.mp4",
+    "sha256": "0025d39c6da7abb32a0b59c7d0847508431ecedb63bef2941a6a71e09c882569",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/回家/回家.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/回家/回家.mp4",
+    "sha256": "4a07d481a28c8db19aa52f9a9a37cca22df2ad9c13c3c66ac47f97913a39ebe1",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/复习/复习.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/复习/复习.mp4",
+    "sha256": "cdff4989d3a53eed488a54bf0d58dfe381039e2757bb6735b76ac7a719fff17c",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/大家好。/大家好。.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/大家好。/大家好。.mp4",
+    "sha256": "67786fd63e40b3284a742e82944d5dcf23dd938d07fb457378828fac5f9a7429",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/学习/学习.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/学习/学习.mp4",
+    "sha256": "7068b14336023cd27424a276688051dfdc4c367893ae324a279891699ed911a4",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/学校/学校.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/学校/学校.mp4",
+    "sha256": "0070697360b8068f668e9fb574f76a4e9a31babf3eb7369c7edea61899959704",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/学生/学生.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/学生/学生.mp4",
+    "sha256": "fe5a59c2c862b476ac55421f669134af0583c5aeb1585e7904b6b53f748ac49a",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/帮助/帮助.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/帮助/帮助.mp4",
+    "sha256": "b23c1bf2a6c301a34db90db0b8c4bcd099fd84615059b35287cb7bd4d462277f",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/懂-明白-知道/懂-明白-知道.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/懂-明白-知道/懂-明白-知道.mp4",
+    "sha256": "d53f52ed37bb014b73348caefeb83ee273dde4e4e1b5c50d6aa043ecc1e12a47",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/手语-打手语/手语-打手语.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/手语-打手语/手语-打手语.mp4",
+    "sha256": "4a38153cded88d76b3c8a940a24cd888bf29be297215de7c298a61b02c371531",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/教/教.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/教/教.mp4",
+    "sha256": "371e073482c06669eff6ea796a2aa6ffb896bfa678029b44723972b98a3b9be3",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/教室/教室.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/教室/教室.mp4",
+    "sha256": "eebf30a3d2fa4d37af9f7d9a10688f48aa6fe7ecb9124b7a7e65f8316dd9da70",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/有问题可以问我。/有问题可以问我。.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/有问题可以问我。/有问题可以问我。.mp4",
+    "sha256": "6d4594fbde3ce50842ea0aea1caecc5ef07aef2c8425b4665613e02601854954",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/正确/正确.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/正确/正确.mp4",
+    "sha256": "e06eb636377e610107ae6695c8f544800c7f704ef8795a1b7f07d0d410507414",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/简单/简单.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/简单/简单.mp4",
+    "sha256": "b4fd96dbf4e35156da20b201074a6a93c95268f27fd6058e693ab508df4a8c8f",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/练习/练习.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/练习/练习.mp4",
+    "sha256": "6298c0420195b80d3fa88125147105cdd56bb2bbafa52a24362d4e75bb911ce4",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/老师/老师.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/老师/老师.mp4",
+    "sha256": "558bc9f4b8b68a03af1884c80945371630ddbf863dd6b8132d38835c3be34874",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/考试/考试.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/考试/考试.mp4",
+    "sha256": "8b1e3cb1e00653e7483433c806806c718777297425d5609ba515fef723435c5e",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/要/要.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/要/要.mp4",
+    "sha256": "fb1daa2a5418c782362f37a71e06a4751f7d512d2ba49963af775e643e8cb9f0",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/记住/记住.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/记住/记住.mp4",
+    "sha256": "0101c1fe02951ab5589648dee504cbb1edca9ec96dff492d1be7d12509cff7aa",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/词语/词语.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/词语/词语.mp4",
+    "sha256": "0b4d08fe52232104182842cf86a990dda36a817320288c833994c4a7ade7a263",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/说/说.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/说/说.mp4",
+    "sha256": "510dc1559cc4d19bb7a8d861f6a8286b16f4801f94a0dc67c597b614c4a4e26f",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/请大家专心。/请大家专心。.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/请大家专心。/请大家专心。.mp4",
+    "sha256": "7fa3b5002bde10a5635c2344422dcbd1d6d063fae082d74a5f755a9373e3fdfe",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/读书/读书.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/读书/读书.mp4",
+    "sha256": "1492a1c02f0b90a30100167833a4db43cbcf86b8d48b97be0564e1f95f5a61bc",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/读书/读书_1.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/读书/读书_1.mp4",
+    "sha256": "819505abd35122fea47c828ff3ad20752b5ace54900dbbad3e6ca2eff5cd2313",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/进步/进步.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/进步/进步.mp4",
+    "sha256": "fb971729601737c5176bd8db9e38abb4eb4b29066479af5af01fad2cf6314621",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/退步/退步.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/退步/退步.mp4",
+    "sha256": "f9747a50c2d2697c7822b47f4fd8cf7a1aa7bdf521efb62a6ff6ca2e8d2f5ce6",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/错误/错误.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/错误/错误.mp4",
+    "sha256": "f2eaf36949751d2c9208fb204f26d593e5826686844e16c5f2f288aec8d9c198",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/问/问.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/问/问.mp4",
+    "sha256": "79645c3e60c300c1fb94de695192e10d0fc3734d47f678cc3205cd504cbddd98",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/问答/问答.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/问答/问答.mp4",
+    "sha256": "b5e4f211a825b8cfb62b62287659046ae1db99dd5de10de17408a9a5afde5042",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/问题/问题.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/问题/问题.mp4",
+    "sha256": "51d8a14d3b8d493dc93bb97e31e31422009921d6cb7eb1e6344332fb32369a8f",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第二课学习/难/难.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第二课学习/难/难.mp4",
+    "sha256": "e1d4095a7e9ae78c8730c935fe30262ff736ae6e80a315366ee234e93e58c7c3",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/不是/不是.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/不是/不是.mp4",
+    "sha256": "72f5ef982fae9e6303bc08d4c0a5eebb39e67c44c8fd39399e88cce9ef834963",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/亲戚-亲人/亲戚-亲人.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/亲戚-亲人/亲戚-亲人.mp4",
+    "sha256": "e1e50f94c6a41844e11ee6c33743abb8f926c938dacc7647b1691a6874cb47d6",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/人/人.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/人/人.mp4",
+    "sha256": "2a0dbe4bb3ccc90877405dd12c63c434697916e300ced772f6a0765554504c0e",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/他不是医生，是学生。/他不是医生，是学生。.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/他不是医生，是学生。/他不是医生，是学生。.mp4",
+    "sha256": "7121ba361ff852b8c61c7ede78f4459ebbe07bb4d90e01d7fb157856e23e67c6",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/他和我是同事，也是同学。/他和我是同事，也是同学。.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/他和我是同事，也是同学。/他和我是同事，也是同学。.mp4",
+    "sha256": "87677a1050fca03e4674cb44d76a76fe9cb1aeb2438055542cf18e3b92d491c3",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/你做什么工作？/你做什么工作？.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/你做什么工作？/你做什么工作？.mp4",
+    "sha256": "102b357e5060d07d694f2a742ca44d30a5166fa4be4934afd5f212d83e7e3ab1",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/关心/关心.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/关心/关心.mp4",
+    "sha256": "d5b8e90fb568e01c6572b024d7eca5d273a82a315f27eabffad36e18838e1d87",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/出生/出生.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/出生/出生.mp4",
+    "sha256": "cd557a1a27496fae99fa27ed6457a26552c18a2d97789658d8e8855e1a4aa971",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/医生/医生.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/医生/医生.mp4",
+    "sha256": "b5a8ad689d782e81cd6e13a39afe457552c670b05c756c49732dcfb0400a48e2",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/同事/同事.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/同事/同事.mp4",
+    "sha256": "536742ccc9c33d1cb64dd080136b923e7c0ac6564e5bc70fd02b4de259237ddc",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/同学/同学.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/同学/同学.mp4",
+    "sha256": "7d979f507ce361b87da3d81627a0576d6c17cbe3bdaf64464a1c7e788f3ea978",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/在/在.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/在/在.mp4",
+    "sha256": "457af3c353999881b11d8eab2c00b42c7b2b22350b4f4e3b3bd8470193318328",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/女/女.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/女/女.mp4",
+    "sha256": "e34a21692aafbea88169ef2060d13cce9bca550b03e290ae8dd06c8e1657816f",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/她-他是谁？/她-他是谁？.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/她-他是谁？/她-他是谁？.mp4",
+    "sha256": "0b9777cf3e5a0352162cda885c3bd99f1f61d0727fa7e3a38d8707d4d33723cc",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/孩子/孩子.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/孩子/孩子.mp4",
+    "sha256": "b9896f93e40c94e9337079cc6e1478282d0e1f85ab84dcb8067fe8ad0c3b2ca7",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/家/家.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/家/家.mp4",
+    "sha256": "cb207c3f179d4d7165f6694bb92b6482ac85cdc2d62527b651bb3412d6768dfb",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/开始/开始.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/开始/开始.mp4",
+    "sha256": "26604eee0f35f561d98399e08c6f573c068ddd6721212cb14c87e03acab6459b",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/我和他是朋友。/我和他是朋友。.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/我和他是朋友。/我和他是朋友。.mp4",
+    "sha256": "391337acc189453891d10423c3d21d69afe0ed9eb4206fe9b158f37e018563a6",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/我姐姐是警察/我姐姐是警察.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/我姐姐是警察/我姐姐是警察.mp4",
+    "sha256": "6e7a5900bec47ced729b03b9b9435c6f1018eaa7dba6425ddb6f02524d64b941",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/我家有五口人/我家有五口人.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/我家有五口人/我家有五口人.mp4",
+    "sha256": "37cb3ed1591881bebd8d5584d2b7fad4b661ea29866ae8b55bee65d70b6fd0a9",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/我没有叔叔/我没有叔叔.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/我没有叔叔/我没有叔叔.mp4",
+    "sha256": "1b83025a486b8681ada1f4f5f6a055a7e840620906d029d1b145f29be6927e7c",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/是/是.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/是/是.mp4",
+    "sha256": "889f2f3363a9605eed264ef127c5dcca5ff9b51e4bf03eeb1c7fa2050639b713",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/有/有.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/有/有.mp4",
+    "sha256": "99322ee1d381b6a8da8ee7d468491575c4c6f368bcf2d6650dba38252aabb20c",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/朋友/朋友.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/朋友/朋友.mp4",
+    "sha256": "34f74654d70915adb56b88608bc540ad5d704c0c78ff4bf3c0511efd1be69179",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/毕业/毕业.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/毕业/毕业.mp4",
+    "sha256": "ae5db877c270d9e5a83ce1fe6cc811ace2ba83029b20b4290df2f0d6c780bb54",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/爱/爱.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/爱/爱.mp4",
+    "sha256": "ec31c2d628bc88eb8b5affd9def6a16f8806df6b7583c8542c855cce3f336de6",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/现在-今天/现在-今天.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/现在-今天/现在-今天.mp4",
+    "sha256": "039f621b81516423b969b7cc1c9b93fb07ad8e0eb4597dac2755b63dca5565e5",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/男/男.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/男/男.mp4",
+    "sha256": "0d666ff01f3d9240b705de350ce1952ee0a4b173649f1500bf4c1eb0e4cd82a7",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/睡觉/睡觉.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/睡觉/睡觉.mp4",
+    "sha256": "8f9d385c9fe0c0da628c13bcd0a91d4ebfd6c765bbde6d923059c5a462ff6410",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/老人/老人.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/老人/老人.mp4",
+    "sha256": "baa99e07d0f8737f99f1789f94a60ef247be88a5fe0ac73733796702183742d4",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/自己/自己.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/自己/自己.mp4",
+    "sha256": "bb387ed0bd7887b1e86df60dd2f6b30178cde9b076fbac8b4990a28c14209e0f",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/警察/警察.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/警察/警察.mp4",
+    "sha256": "c07acb4d824e94b4056a9150cda9e3e9493690c8cf04bf6fa5091a25f3ee0ded",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/谁/谁.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/谁/谁.mp4",
+    "sha256": "5524815772b48d09d553bb08bee64128823473acf45ee27c7c0b5e88589288ed",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/跟/跟.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/跟/跟.mp4",
+    "sha256": "93418dc65cb623026c0b233fbac03a8425f0e87f84ced1e54baf8db4ab4b78c1",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/这/这.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/这/这.mp4",
+    "sha256": "1cdd035b445b25e6bc020d6e8ccfaa8845fd7ffaed18b170c0a503ad94803a6d",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/那/那.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/那/那.mp4",
+    "sha256": "96ec8f384ed492acc348fb94091ac672704ea47c70d743fbbbd31a444940a868",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/邻居/邻居.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/邻居/邻居.mp4",
+    "sha256": "5eee0e2201f334c57dcd8002983ed7412694458ef8757cb03a279888de21c5cb",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  },
+  {
+    "path": "video/done/wsy/第三课家庭/青年/青年.mp4",
+    "expected_path": "video/done/wsy/第2 第3课/第三课家庭/青年/青年.mp4",
+    "sha256": "e245c38d4ab9960f0d3575d3383bd72075e45a76a89549e6e8eaa866c56a15dc",
+    "matches_old_audit": false,
+    "matches_prior_pending": true
+  }
+]

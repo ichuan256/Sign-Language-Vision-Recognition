@@ -1,0 +1,35 @@
+
+=================================== ERRORS ====================================
+__________ ERROR collecting vision/tests/test_keypoint_benchmark.py ___________
+ImportError while importing test module 'C:\Users\Icarie\Documents\ChatGPT\Sign-Language-Vision-Recognition\.git\recovery\merge_20261025\integration\vision\tests\test_keypoint_benchmark.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Python314\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vision\tests\test_keypoint_benchmark.py:8: in <module>
+    from vision.keypoints.metrics import KeypointMetrics
+vision\keypoints\__init__.py:2: in <module>
+    from .holistic import HolisticTracker
+vision\keypoints\holistic.py:11: in <module>
+    import mediapipe as mp
+E   ModuleNotFoundError: No module named 'mediapipe'
+______________ ERROR collecting vision/tests/test_replay_hdmi.py ______________
+ImportError while importing test module 'C:\Users\Icarie\Documents\ChatGPT\Sign-Language-Vision-Recognition\.git\recovery\merge_20261025\integration\vision\tests\test_replay_hdmi.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Python314\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vision\tests\test_replay_hdmi.py:11: in <module>
+    from vision.keypoints.frame_server import LatestFrameServer, hdmi_jpeg
+vision\keypoints\__init__.py:2: in <module>
+    from .holistic import HolisticTracker
+vision\keypoints\holistic.py:11: in <module>
+    import mediapipe as mp
+E   ModuleNotFoundError: No module named 'mediapipe'
+=========================== short test summary info ===========================
+ERROR vision/tests/test_keypoint_benchmark.py
+ERROR vision/tests/test_replay_hdmi.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!
+2 errors in 1.56s

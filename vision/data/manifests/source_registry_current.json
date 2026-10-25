@@ -1,0 +1,6 @@
+{
+  "registry": "vision/data/manifests/source_registry_20261025_layout.csv",
+  "rows": 32,
+  "sha256": "fd93cce51fce566cb079257804803b354fb4d38887ed38ec403a2693e4feb8e7",
+  "historical_registry": "vision/data/manifests/source_registry_20261025_clean.csv"
+}

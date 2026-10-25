@@ -20,6 +20,8 @@ PYNQ-Z2 手语识别系统·新主线：**视频输入 → 高动态手势识别
 
 ## 当前阅读入口（2026-10-25）
 
+- [素材工作区约定](docs/协作/素材工作区约定.md)：当前551条SHA一致子集、85条待审版本与原片位置；[清理记录](vision/analysis/materials/20261025_cleanup/清理记录.md)。
+
 - **当前先做无语义的通用实时关键点**：[启动与指标](vision/keypoints/README.md)、[文件源基准](vision/analysis/keypoints_20261025/README.md)。摄像头实测待验收，暂不推进词表语义和 PL 分类器。
 - **单手关键点子网已上 PL**：[上板实测与延迟](project/analysis/keypoints_pl_20261025/single_hand_board.md)。PC 提供 ROI，64 输出对整数参考完全一致，HDMI 叠加通过；12.28 秒/ROI，仍需优化到实时。
 - [样本现状与补采](vision/analysis/dataset/README.md)：数据总量、标签问题与下一轮采样设计。

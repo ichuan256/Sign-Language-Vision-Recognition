@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """生成 P10 已审定动作边界 CSV（2026-10-22 人工目检审定结果）。"""
+import argparse
 import csv
 from pathlib import Path
 
@@ -114,14 +115,23 @@ rows = [
     ("NL10_100", "澳大利亚", "拓展词语", 488.883, 491.200, "NL10_100.jpg", "按自动检测值审定"),
 ]
 
-out = Path(__file__).resolve().parent / "中国手语教程_P10_已审定动作边界_20261022.csv"
-with open(out, "w", encoding="utf-8-sig", newline="") as f:
-    w = csv.writer(f)
-    w.writerow(["动作编号", "候选编号", "课次", "词句标签", "片段类型", "起始秒", "结束秒_不含",
-                "帧率", "复核状态", "核验图", "核对说明"])
-    for cid, label, typ, s, e, img, note in rows:
-        w.writerow([f"{cid}_C1", cid, "10", label, typ, f"{s:.3f}", f"{e:.3f}", "24",
-                    "已目检边界核验图/逐秒总览图", img, note])
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, required=True, help="New output CSV; existing files are never overwritten")
+    args = parser.parse_args()
+    out = args.output
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with open(out, "x", encoding="utf-8-sig", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["动作编号", "候选编号", "课次", "词句标签", "片段类型", "起始秒", "结束秒_不含",
+                    "帧率", "复核状态", "核验图", "核对说明"])
+        for cid, label, typ, s, e, img, note in rows:
+            w.writerow([f"{cid}_C1", cid, "10", label, typ, f"{s:.3f}", f"{e:.3f}", "24",
+                        "已目检边界核验图/逐秒总览图", img, note])
 
-auto = sum(1 for r in rows if "按自动检测值审定" in r[6])
-print("rows:", len(rows), "auto:", auto, "adjusted:", len(rows) - auto)
+    auto = sum(1 for r in rows if "按自动检测值审定" in r[6])
+    print("rows:", len(rows), "auto:", auto, "adjusted:", len(rows) - auto)
+
+
+if __name__ == "__main__":
+    main()

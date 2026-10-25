@@ -6,6 +6,7 @@ and refuses to overwrite an existing package.
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import json
@@ -16,14 +17,18 @@ from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+try:
+    from .media_paths import add_source_arguments, find_ffmpeg, resolve_source, print_preflight
+except ImportError:
+    from media_paths import add_source_arguments, find_ffmpeg, resolve_source, print_preflight
+
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file())
 SOURCE_CSV = Path(__file__).resolve().parent / "中国手语教程_P01对话_已核对动作边界_20261021.csv"
-DATASET_ROOT = ROOT / "data" / "exports" / "material_fullframe_20261021"
+DATASET_ROOT = ROOT / "vision/data" / "exports" / "material_fullframe_20261021"
 FINAL_DIR = DATASET_ROOT / "第一课_动作周期_已核对_20261021"
 INSPECT_DIR = ROOT / "project/_tmp" / "inspect"
-FFMPEG = next(
-    (ROOT / "训练视频" / ".tools" / "imageio_ffmpeg" / "binaries").glob("ffmpeg*.exe")
-)
+FFMPEG = None
+SOURCE_ROOT = None
 EXPECTED_WIDTH = 1920
 EXPECTED_HEIGHT = 1080
 EXPECTED_FPS = 25
@@ -155,7 +160,7 @@ def preflight(rows: list[dict[str, str]]) -> tuple[Path, dict[str, object], list
         seen_ids.add(action_id)
         if "已核对" not in row["复核状态"]:
             raise ValueError(f"Unreviewed row: {action_id} ({row['复核状态']})")
-        source = (ROOT / Path(row["原片路径"])).resolve()
+        source = resolve_source(ROOT, family="NL_tutorial", recorded_path=row["原片路径"], source_root=SOURCE_ROOT)
         if not source.is_file():
             raise FileNotFoundError(source)
         source_paths.add(source)
@@ -239,6 +244,24 @@ def encode_one(source: Path, stage: Path, row: dict[str, str]) -> tuple[Path, in
 
 
 def main() -> None:
+    global ROOT, FFMPEG, SOURCE_ROOT, SOURCE_CSV, DATASET_ROOT, FINAL_DIR, INSPECT_DIR
+    parser = argparse.ArgumentParser(description=__doc__)
+    add_source_arguments(parser)
+    parser.add_argument("--source-csv", type=Path)
+    parser.add_argument("--dataset-root", type=Path)
+    args = parser.parse_args()
+    ROOT = args.repo_root.resolve()
+    SOURCE_ROOT = args.source_root
+    FFMPEG = find_ffmpeg(ROOT, args.ffmpeg)
+    SOURCE_CSV = args.source_csv or ROOT / "vision/tools/clipping/中国手语教程_P01对话_已核对动作边界_20261021.csv"
+    DATASET_ROOT = args.dataset_root or ROOT / "vision/data/exports/material_fullframe_20261021"
+    FINAL_DIR = DATASET_ROOT / "第一课_动作周期_已核对_20261021"
+    INSPECT_DIR = ROOT / "project/_tmp/inspect"
+    if args.preflight:
+        source_rows, _ = read_rows()
+        sources = sorted({resolve_source(ROOT, family="NL_tutorial", recorded_path=r["原片路径"], source_root=SOURCE_ROOT) for r in source_rows})
+        print_preflight(sources, FFMPEG, dataset_root=str(DATASET_ROOT), output_root=str(FINAL_DIR))
+        return
     rows, source_fields = read_rows()
     source, source_metadata, old_files = preflight(rows)
     INSPECT_DIR.mkdir(parents=True, exist_ok=True)
@@ -326,7 +349,7 @@ def main() -> None:
         validation = {
             "created_at": datetime.now().astimezone().isoformat(timespec="seconds"),
             "source_csv": SOURCE_CSV.relative_to(ROOT).as_posix(),
-            "source_video": source.relative_to(ROOT).as_posix(),
+            "source_video": source.relative_to(ROOT).as_posix() if source.is_relative_to(ROOT) else str(source),
             "source_metadata": source_metadata,
             "output_directory": FINAL_DIR.relative_to(ROOT).as_posix(),
             "output_clips": len(staged_rows),

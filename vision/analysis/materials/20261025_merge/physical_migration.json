@@ -1,0 +1,27 @@
+{
+  "already_moved_before_resume": [
+    "video -> vision/video",
+    "integration/project/_cache -> project/_cache",
+    "integration/project/_tmp -> project/_tmp"
+  ],
+  "operations": [
+    {
+      "source": "tools/portable/losslesscut",
+      "target": "vision/tools/portable/losslesscut",
+      "status": "copy_sha_verified_original_retained_windows_denied_rename",
+      "files": 120
+    },
+    {
+      "source": "工具",
+      "target": "project/_cache/legacy_layout_residue/portable_resources"
+    },
+    {
+      "source": "scripts",
+      "target": "project/_cache/legacy_layout_residue/scripts"
+    },
+    {
+      "source": "tests",
+      "target": "project/_cache/legacy_layout_residue/tests"
+    }
+  ]
+}

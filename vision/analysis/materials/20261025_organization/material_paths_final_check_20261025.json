@@ -1,0 +1,9 @@
+{
+  "ffmpeg": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\tools\\portable\\losslesscut\\resources\\ffmpeg.exe",
+  "ffmpeg_exists": true,
+  "sources_checked": 25,
+  "all_sources_exist": true,
+  "all_sources_under_new_raw": true,
+  "parsed_python_files": 12,
+  "method": "Reused completed preflight paths, checked existence and final tool preference; no media decoding or inventory rerun."
+}

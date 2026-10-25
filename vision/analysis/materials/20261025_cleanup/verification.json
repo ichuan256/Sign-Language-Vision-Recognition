@@ -1,0 +1,21 @@
+{
+  "recycled_files": 317,
+  "recycled_videos": 315,
+  "bytes_removed_from_workspace": 286094154,
+  "mib_removed_from_workspace": 272.84,
+  "permanent_delete_command": "rejected_by_automatic_policy_review_without_specific_reason",
+  "completed_method": "Windows Recycle Bin; bin not emptied",
+  "retained_videos_sha_verified": 816,
+  "retained_unique_contents": 674,
+  "verified_manifest_rows": 551,
+  "different_sha_pending_rows": 85,
+  "raw_source_videos": 32,
+  "active_ASR_videos": 142,
+  "local_lexicon_clips": 5,
+  "legacy_test_fixtures": 1,
+  "old_manifest_and_audit_unchanged": true,
+  "missing_or_changed_protected_files": 0,
+  "historical_archive_absent_before_operation": true,
+  "new_media_backup_created": false,
+  "source_index_rows_verified": 22
+}

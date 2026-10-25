@@ -18,14 +18,18 @@ import io
 import subprocess
 from pathlib import Path
 
-import numpy as np
-from PIL import Image, ImageDraw
 
-ROOT = Path(__file__).resolve().parents[2]
-FFMPEG = ROOT.parent / "_tools" / "ffmpeg.exe"
+
+try:
+    from .media_paths import add_source_arguments, find_ffmpeg, resolve_source, print_preflight
+except ImportError:
+    from media_paths import add_source_arguments, find_ffmpeg, resolve_source, print_preflight
+
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file())
+FFMPEG = None
+SOURCE_ROOT = None
 STRATEGY_CSV = Path(__file__).resolve().parent / "中国手语教程_10课_逐词句剪裁策略_20261021.csv"
-RAW_DIR = (ROOT / "vision/video/raw" / "手语配套视频 《中国手语教程》（初级）倪兰"
-           / "手语配套视频 《中国手语教程》（初级）倪兰")
+
 INSPECT = ROOT / "project/_tmp" / "inspect_frames"
 LESSON_PREFIX = {8: "P8-", 9: "P9-", 10: "P10-"}
 
@@ -173,13 +177,25 @@ def make_strip(src, name, start, end, out_path):
 
 
 def main():
+    global ROOT, FFMPEG, SOURCE_ROOT, INSPECT, Image, ImageDraw, np, STRATEGY_CSV
     ap = argparse.ArgumentParser()
+    add_source_arguments(ap)
     ap.add_argument("--lesson", type=int, required=True, choices=[8, 9, 10])
     ap.add_argument("--from", dest="frm", type=int, default=0)
     ap.add_argument("--to", dest="to", type=int, default=10**9)
     args = ap.parse_args()
+    ROOT = args.repo_root.resolve()
+    SOURCE_ROOT = args.source_root
+    FFMPEG = find_ffmpeg(ROOT, args.ffmpeg)
+    INSPECT = ROOT / "project/_tmp/inspect_frames"
+    STRATEGY_CSV = ROOT / "vision/tools/clipping/中国手语教程_10课_逐词句剪裁策略_20261021.csv"
 
-    src = next(RAW_DIR.glob(LESSON_PREFIX[args.lesson] + "*.mp4"))
+    src = resolve_source(ROOT, family="NL_tutorial", lesson=args.lesson, source_root=SOURCE_ROOT)
+    if args.preflight:
+        print_preflight([src], FFMPEG, inspection_root=str(INSPECT))
+        return
+    from PIL import Image, ImageDraw
+    import numpy as np
     cands = load_candidates(args.lesson)[args.frm:args.to]
     out_dir = INSPECT / f"P{args.lesson:02d}"
     strip_dir = out_dir / "strips"

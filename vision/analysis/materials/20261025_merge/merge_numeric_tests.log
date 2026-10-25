@@ -1,0 +1,12 @@
+test_convergent_ties_and_neighbours (test_rtl_numeric_contract.FixedTests.test_convergent_ties_and_neighbours) ... ok
+test_export_marks_missing_goldens_and_preserves_existing (test_rtl_numeric_contract.FixedTests.test_export_marks_missing_goldens_and_preserves_existing) ... ok
+test_formats_and_fail_closed (test_rtl_numeric_contract.FixedTests.test_formats_and_fail_closed) ... ok
+test_full_uint8_binary32_mapping (test_rtl_numeric_contract.FixedTests.test_full_uint8_binary32_mapping) ... ok
+test_negative_truncation_is_floor (test_rtl_numeric_contract.FixedTests.test_negative_truncation_is_floor) ... ok
+test_unsigned_and_roundtrip_all_raw_codes (test_rtl_numeric_contract.FixedTests.test_unsigned_and_roundtrip_all_raw_codes) ... ok
+test_wrap_and_saturation_at_both_signed_limits (test_rtl_numeric_contract.FixedTests.test_wrap_and_saturation_at_both_signed_limits) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.067s
+
+OK

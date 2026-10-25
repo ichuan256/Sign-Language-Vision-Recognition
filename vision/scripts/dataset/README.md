@@ -13,3 +13,15 @@ F:\PLD\.venv-r3\Scripts\python.exe -X utf8 vision/scripts/dataset/audit_labels_s
 可用 `--output-prefix` 将复跑结果写入新快照；既有日期是对应数据版本的快照名，
 新增素材后应使用新的输出名。当前样本与补采入口：
 [analysis/dataset/README.md](../../analysis/dataset/README.md)。
+
+`inventory_video_materials.py` 递归盘点含忽略目录的本地视频，计算SHA、重复组、
+旧清单覆盖及可选ffprobe元数据；必须指定不存在的新输出目录，媒体只读。
+`organize_workspace_materials_20261025.ps1` 是本次已执行的单次迁移计划，默认仅预检，
+`-Apply` 拒绝覆盖目标；整理后不要重新应用，恢复按执行日志中的逆向映射。
+实际执行中的工具占用及续作记录见
+[执行记录](../../analysis/materials/20261025_organization/执行记录.md)。
+
+用户随后授权清理；历史归档/完整回退ZIP当前已不存在。当前保留范围与清理证据见
+[清理记录](../../analysis/materials/20261025_cleanup/清理记录.md)。
+`recycle_unused_materials_20261025.ps1`为此次317文件的单次回收操作：默认只检查计划，
+`-Apply`发送到Windows回收站，拒绝越界、链接和SHA变化，不清空回收站，执行后不要重复应用。

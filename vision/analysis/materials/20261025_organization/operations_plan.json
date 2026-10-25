@@ -1,0 +1,1266 @@
+{
+  "copies": [
+    {
+      "source": "video/done/5888元。/NL08_063_C1_5888元。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/5888元。/NL08_063_C1_5888元。.mp4",
+      "sha256": "7c6fe25806420a07def40eb3c44ef457b6306863c8f7d73559339bc561dec830",
+      "label": "5888元。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/5888元。/NL08_071_C1_5888元。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/5888元。/NL08_071_C1_5888元。.mp4",
+      "sha256": "2da99d686e9958c6f28abb9d97ee4f84f6e5ee4296cd7bfb08b074e9c997443e",
+      "label": "5888元。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/800块。/NL08_043_C1_800块。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/800块。/NL08_043_C1_800块。.mp4",
+      "sha256": "24f3a689ac899ac72e1ba79a88cf8a8d9ed89e7c2c3b9cc5e5003441763060fd",
+      "label": "800块。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/800块。/NL08_055_C1_800块。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/800块。/NL08_055_C1_800块。.mp4",
+      "sha256": "aab930478252e07c9623fe44eee2846e080fc1ba643693e6da24d8d200ccb3c0",
+      "label": "800块。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/一元/NL08_005_C1_一元.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/一元/NL08_005_C1_一元.mp4",
+      "sha256": "4f30840f1049562cf4421867631a741364b203eb2353ec1d214fdab6f20d2519",
+      "label": "一元",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/一分/NL08_007_C1_一分.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/一分/NL08_007_C1_一分.mp4",
+      "sha256": "7daf0ff6c70cf3be03f69f6e10875aa0b5fa3ddf35b29e9108bf6f102cfa2aee",
+      "label": "一分",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/一角/NL08_006_C1_一角.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/一角/NL08_006_C1_一角.mp4",
+      "sha256": "abe7e5b0854a3aa4bb4ef183036732a9957bdee88676a99feeb22a8a5a007ce1",
+      "label": "一角",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/东西/NL08_004_C1_东西.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/东西/NL08_004_C1_东西.mp4",
+      "sha256": "803bda61d77dd06b9c2bd5482228cd158e732bfa9eca375fcd602a4653c34c35",
+      "label": "东西",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/买/NL08_009_C1_买.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/买/NL08_009_C1_买.mp4",
+      "sha256": "680fb6da67404b933a1ab17a7d16a8227b9752cd1f88c7eade7ce3c273bc51db",
+      "label": "买",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/今天刚好有活动，可以打八折。/NL08_034_C1_今天刚好有活动，可以打八折。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/今天刚好有活动，可以打八折。/NL08_034_C1_今天刚好有活动，可以打八折。.mp4",
+      "sha256": "21ba08b1bed3f54efcf271ef51584fba4f5dae09faf6d5cd48497f3500e9cec1",
+      "label": "今天刚好有活动，可以打八折。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/今天刚好有活动，可以打八折。/NL08_045_C1_今天刚好有活动，可以打八折。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/今天刚好有活动，可以打八折。/NL08_045_C1_今天刚好有活动，可以打八折。.mp4",
+      "sha256": "603693d642aa62320bd3ffaa2c70a8c38a4c10423e526cbe0f2957941c0d2f9c",
+      "label": "今天刚好有活动，可以打八折。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/今天刚好有活动，可以打八折。/NL08_056_C1_今天刚好有活动，可以打八折。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/今天刚好有活动，可以打八折。/NL08_056_C1_今天刚好有活动，可以打八折。.mp4",
+      "sha256": "0b757ee4ac9e62f1e43037b1c8dcd651e07934e5679addd63f1db9b435d84409",
+      "label": "今天刚好有活动，可以打八折。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/便宜/NL08_003_C1_便宜.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/便宜/NL08_003_C1_便宜.mp4",
+      "sha256": "cc3ec26531b268364b5c6f03f6076468b523296f2a482efcc6cfadd1069a30d8",
+      "label": "便宜",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/假/NL08_030_C1_假.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/假/NL08_030_C1_假.mp4",
+      "sha256": "e004de4eba45fa3ab75bb9f82fe4a9850fbfede84dbb2b2c21b35bde83e0d406",
+      "label": "假",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/再/NL08_014_C1_再.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/再/NL08_014_C1_再.mp4",
+      "sha256": "b3e9cb495359d18595481f32f56385700afb11333fa2b099846c920e4d192f38",
+      "label": "再",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/刷卡/NL08_017_C1_刷卡.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/刷卡/NL08_017_C1_刷卡.mp4",
+      "sha256": "6c167f6dac505f4216be8b0b129c1251d136c957d5d2d8b3936c1dc920701e31",
+      "label": "刷卡",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/化妆品/NL08_013_C1_化妆品.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/化妆品/NL08_013_C1_化妆品.mp4",
+      "sha256": "5e33aac00439006405b29ce88d397d491cba6f917797a42cec5d00858f306409",
+      "label": "化妆品",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/卖/NL08_008_C1_卖.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/卖/NL08_008_C1_卖.mp4",
+      "sha256": "fe2a722a84280e17e4b151c3db749c99f9beada260d7b27210c5b05339f25e73",
+      "label": "卖",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/又好又便宜的。/NL08_060_C1_又好又便宜的。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/又好又便宜的。/NL08_060_C1_又好又便宜的。.mp4",
+      "sha256": "2c4894d05fd49a086758077ac9a6284c43b9809ee165b77fce41c311b7d8196e",
+      "label": "又好又便宜的。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/又好又便宜的。/NL08_066_C1_又好又便宜的。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/又好又便宜的。/NL08_066_C1_又好又便宜的。.mp4",
+      "sha256": "6ae7206b2fb47cf135e63369b45a743813769684ade1c93c502bf9f199fd1b32",
+      "label": "又好又便宜的。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/可以。/NL08_039_C1_可以。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/可以。/NL08_039_C1_可以。.mp4",
+      "sha256": "8fa79bb43354dd99a20321dd4f3f2bcb3f08e8924aca22e9e09957725051de1c",
+      "label": "可以。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/可以。/NL08_047_C1_可以。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/可以。/NL08_047_C1_可以。.mp4",
+      "sha256": "8cf16f6fd5de617afe236c9a1cfabf130eb0ee1d89375e54bd3a1feca526b980",
+      "label": "可以。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/可以。/NL08_053_C1_可以。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/可以。/NL08_053_C1_可以。.mp4",
+      "sha256": "effaecfcb6d0bd958e806ccdb8b66cff3db520e7ddf69f788d4bd4d32067b35a",
+      "label": "可以。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/可以。/NL08_057_C1_可以。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/可以。/NL08_057_C1_可以。.mp4",
+      "sha256": "8543c3fb82d5704eb85685cc256a1a6f6ff78d69f3c17859484b7261c7646233",
+      "label": "可以。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/咖啡色_棕色/NL08_083_C1_咖啡色_棕色.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/咖啡色_棕色/NL08_083_C1_咖啡色_棕色.mp4",
+      "sha256": "e50d6d12d2b304b2c81c805e268dfe2fa9e25d50f04beba0590e4d66493141de",
+      "label": "咖啡色_棕色",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/多少钱？/NL08_062_C1_多少钱？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/多少钱？/NL08_062_C1_多少钱？.mp4",
+      "sha256": "8305b6870c7139eb5321aaab82e483b016d36e11211ea546b6889caaca319b9b",
+      "label": "多少钱？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/多少钱？/NL08_067_C1_多少钱？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/多少钱？/NL08_067_C1_多少钱？.mp4",
+      "sha256": "f5b3800faa0bd9e49fb7ed6d61fac466948bfdabb459477525a217104748558e",
+      "label": "多少钱？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/大/NL08_023_C1_大.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/大/NL08_023_C1_大.mp4",
+      "sha256": "619e61d12175eb72f2da91cc63a91eed7b92f3aa5b0d46432f14e95aa26e12d6",
+      "label": "大",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/太贵了，可以便宜些吗？/NL08_044_C1_太贵了，可以便宜些吗？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/太贵了，可以便宜些吗？/NL08_044_C1_太贵了，可以便宜些吗？.mp4",
+      "sha256": "ab1a0ddb347c9d8dee11ca2bc7423b74352a1f83129b6ad528c5e861d8ecb05d",
+      "label": "太贵了，可以便宜些吗？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/太贵了，可以便宜些吗？/NL08_051_C1_太贵了，可以便宜些吗？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/太贵了，可以便宜些吗？/NL08_051_C1_太贵了，可以便宜些吗？.mp4",
+      "sha256": "386d0d648e39f85991f293f7314ddc4d477d3198bd288bc36c7b3fe28530f092",
+      "label": "太贵了，可以便宜些吗？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/太贵了，可以便宜点吗_/NL08_033_C1_太贵了，可以便宜点吗_.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/太贵了，可以便宜点吗_/NL08_033_C1_太贵了，可以便宜点吗_.mp4",
+      "sha256": "f76bf926f8e804c30b3bd7b183fd0b5aad499858d74dde6d4f3c3a27290235f3",
+      "label": "太贵了，可以便宜点吗_",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/太贵了，我再看看吧。/NL08_064_C1_太贵了，我再看看吧。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/太贵了，我再看看吧。/NL08_064_C1_太贵了，我再看看吧。.mp4",
+      "sha256": "2967c9fce6dba951c0ed942494dda2d4818b2ae6994028be999f174285572c50",
+      "label": "太贵了，我再看看吧。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/太贵了，我再看看吧。/NL08_068_C1_太贵了，我再看看吧。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/太贵了，我再看看吧。/NL08_068_C1_太贵了，我再看看吧。.mp4",
+      "sha256": "78fbedf94e9b0033b3a0bb098ca776c5ea0320e689251d35a595cd8645ab08d2",
+      "label": "太贵了，我再看看吧。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/好的，微信支付可以吗？/NL08_046_C1_好的，微信支付可以吗？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/好的，微信支付可以吗？/NL08_046_C1_好的，微信支付可以吗？.mp4",
+      "sha256": "21b8849ae701c76f869a0d7665cd7ca1930123af57a52fb8f76fa94bc1e12f0d",
+      "label": "好的，微信支付可以吗？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/好的，微信支付可以吗？/NL08_052_C1_好的，微信支付可以吗？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/好的，微信支付可以吗？/NL08_052_C1_好的，微信支付可以吗？.mp4",
+      "sha256": "e79d2fa3e4bc565414643ddbb87b58513c452e6211f890ca0814bb654041390a",
+      "label": "好的，微信支付可以吗？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/小/NL08_024_C1_小.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/小/NL08_024_C1_小.mp4",
+      "sha256": "04e63879660cb7300736bb5fdad5f44a74868f97e0551eee67576a121a5abdc2",
+      "label": "小",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/微信/NL08_015_C1_微信.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/微信/NL08_015_C1_微信.mp4",
+      "sha256": "a4a16ea8974c7d676736618ea8c8d97dfdfab375552b65c1e23e24a218c5268b",
+      "label": "微信",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/微信支付可以吗？/NL08_037_C1_微信支付可以吗？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/微信支付可以吗？/NL08_037_C1_微信支付可以吗？.mp4",
+      "sha256": "45d4fe3d285177ee04812d9596aabfd15d218ceaecd75db378aecb9636834bf5",
+      "label": "微信支付可以吗？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/您需要什么样的？/NL08_059_C1_您需要什么样的？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/您需要什么样的？/NL08_059_C1_您需要什么样的？.mp4",
+      "sha256": "27b39e5ae4fdf5d8d1834a274d0713f91f60f14e06cd6d8d4df02e8192f26f4f",
+      "label": "您需要什么样的？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/您需要什么样的？/NL08_069_C1_您需要什么样的？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/您需要什么样的？/NL08_069_C1_您需要什么样的？.mp4",
+      "sha256": "0ed854db7a1eb7361db86557bdeab4c79081ffd8d96688517333d3ea670e91fb",
+      "label": "您需要什么样的？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/我想买台电脑。/NL08_058_C1_我想买台电脑。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/我想买台电脑。/NL08_058_C1_我想买台电脑。.mp4",
+      "sha256": "28ecd97ed71cc8b9d62dd76be379faa1c018edac9686639dd7d26e6540ff76f1",
+      "label": "我想买台电脑。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/我想买台电脑。/NL08_065_C1_我想买台电脑。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/我想买台电脑。/NL08_065_C1_我想买台电脑。.mp4",
+      "sha256": "1e771c014e1e121530bac13006ab6325b76b46e98924f74691c513c13324e43f",
+      "label": "我想买台电脑。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/我想看下那件衣服，可以试穿吗？/NL08_038_C1_我想看下那件衣服，可以试穿吗？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/我想看下那件衣服，可以试穿吗？/NL08_038_C1_我想看下那件衣服，可以试穿吗？.mp4",
+      "sha256": "13c161849d35975fbd4b7c66a138f0044540433faebaaa76f78929f62e82b53f",
+      "label": "我想看下那件衣服，可以试穿吗？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/我想看下那件衣服，可以试穿吗？/NL08_048_C1_我想看下那件衣服，可以试穿吗？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/我想看下那件衣服，可以试穿吗？/NL08_048_C1_我想看下那件衣服，可以试穿吗？.mp4",
+      "sha256": "0c4fe855ce451de659180fa78367d6768a4c0564fb74ed62802399bc3770281e",
+      "label": "我想看下那件衣服，可以试穿吗？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/手机_电话/NL08_012_C1_手机_电话.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/手机_电话/NL08_012_C1_手机_电话.mp4",
+      "sha256": "bb519792cc1735b1ef74313c689e881d0afc78610e34d6ffdedfaf9fa87ac6bb",
+      "label": "手机_电话",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/打折/NL08_031_C1_打折.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/打折/NL08_031_C1_打折.mp4",
+      "sha256": "62615eef8abf41f6937afdb302a4ec19d3776f5bb95994d2d50e949b8319c1f4",
+      "label": "打折",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/支付/NL08_018_C1_支付.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/支付/NL08_018_C1_支付.mp4",
+      "sha256": "589bf3b2f86436fd83fde5e23a1f6ca919593d6252512c3f8e71c49b038daf45",
+      "label": "支付",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/新/NL08_027_C1_新.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/新/NL08_027_C1_新.mp4",
+      "sha256": "bf80712f98ff73f5be2d9057b52d95584e5ad0eecea8a1eaf0503e9eb1f73e90",
+      "label": "新",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/旧/NL08_028_C1_旧.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/旧/NL08_028_C1_旧.mp4",
+      "sha256": "63e90c8f2570cb56ea3f1afa10a2c16a65b3c7a65e8a3b99eb4d8dec1a3cee12",
+      "label": "旧",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/有，这件是大号。/NL08_041_C1_有，这件是大号。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/有，这件是大号。/NL08_041_C1_有，这件是大号。.mp4",
+      "sha256": "e1745a275f102817d560350ad2d5890d407cd84afc9b6a396170dcb0b1cb89a6",
+      "label": "有，这件是大号。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/有，这件是大号。/NL08_054_C1_有，这件是大号。.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/有，这件是大号。/NL08_054_C1_有，这件是大号。.mp4",
+      "sha256": "f918560ce751ddbc1156393dc38911779442843f27dc7094b433f8030bc5c6fd",
+      "label": "有，这件是大号。",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/松/NL08_026_C1_松.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/松/NL08_026_C1_松.mp4",
+      "sha256": "9f3d3bb349d3726bfa198d19ff19a8b079f358291e24872b24bcdae013701d16",
+      "label": "松",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/橙色/NL08_081_C1_橙色.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/橙色/NL08_081_C1_橙色.mp4",
+      "sha256": "05698876471dc0ce99b4167ad85b398add92ede662e359fc6781566dc3e39eda",
+      "label": "橙色",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/正好/NL08_020_C1_正好.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/正好/NL08_020_C1_正好.mp4",
+      "sha256": "5bc1eea49032f48d73677ac39bfb34c52388e22ed3a9a8b5ebebdab2a4ac65cd",
+      "label": "正好",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/活动/NL08_019_C1_活动.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/活动/NL08_019_C1_活动.mp4",
+      "sha256": "0c37c18d49913a292b033a786f8d47339d213546d710216ecf41a010503667b2",
+      "label": "活动",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/浅绿色/NL08_085_C1_浅绿色.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/浅绿色/NL08_085_C1_浅绿色.mp4",
+      "sha256": "db014cc875c049dc621a19174895cced29a0ccf5c84daf9879dedbc16e79845c",
+      "label": "浅绿色",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/深绿色/NL08_084_C1_深绿色.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/深绿色/NL08_084_C1_深绿色.mp4",
+      "sha256": "1da7183dcb81f2b8b23c6a0fa228a0b2ecefd2a08086e208e35b6a0aff1d7108",
+      "label": "深绿色",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/灰色/NL08_079_C1_灰色.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/灰色/NL08_079_C1_灰色.mp4",
+      "sha256": "6800f7506e4ff974be9874f556c373dbc594475c6ead1cff90e941e9b97c5dfe",
+      "label": "灰色",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/白色/NL08_077_C1_白色.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/白色/NL08_077_C1_白色.mp4",
+      "sha256": "6a1ce5716dee80072cf11787c76563a5806c368844d8f9656bf969f2df1fe988",
+      "label": "白色",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/真/NL08_029_C1_真.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/真/NL08_029_C1_真.mp4",
+      "sha256": "d336080e77dc33bbf985966f3f113a6484e9b139f1eeef7cdf67fd86c3840077",
+      "label": "真",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/穿/NL08_011_C1_穿.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/穿/NL08_011_C1_穿.mp4",
+      "sha256": "dda4285c520bd300b542355af5e0cf51f04992148f57717e974fd8ede542bd86",
+      "label": "穿",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/穿着正合适，这件多少钱？/NL08_042_C1_穿着正合适，这件多少钱？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/穿着正合适，这件多少钱？/NL08_042_C1_穿着正合适，这件多少钱？.mp4",
+      "sha256": "55978adee47e9d130b888a64a4609da292c10435eb037e5d02c915e00b635b27",
+      "label": "穿着正合适，这件多少钱？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/穿着正合适，这件多少钱？/NL08_050_C1_穿着正合适，这件多少钱？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/穿着正合适，这件多少钱？/NL08_050_C1_穿着正合适，这件多少钱？.mp4",
+      "sha256": "e1dbe6021afe371c8da91332395c8f638c1946f0f0849b4e6202fd4e31ab42dd",
+      "label": "穿着正合适，这件多少钱？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/紧/NL08_025_C1_紧.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/紧/NL08_025_C1_紧.mp4",
+      "sha256": "9f9d6d0c861b269d3f8898304bd56547b5fa6c8b8f30df22a75bea95e0f8ac75",
+      "label": "紧",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/紫色/NL08_082_C1_紫色.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/紫色/NL08_082_C1_紫色.mp4",
+      "sha256": "91379675eb67de1c117db8c32ba2b65acdbf34d5ad1897b19a9daf15abe53f7a",
+      "label": "紫色",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/红色/NL08_078_C1_红色.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/红色/NL08_078_C1_红色.mp4",
+      "sha256": "4f12292358a61925dc9ff3e36eb7058ed1e21bbc027f5936faaf18c31a3f1220",
+      "label": "红色",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/绿色/NL08_075_C1_绿色.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/绿色/NL08_075_C1_绿色.mp4",
+      "sha256": "3cb1556183b9e0787cb8bf0b57b98543d14e14eff5e1587305cc10fc0b4bff2a",
+      "label": "绿色",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/蓝色/NL08_074_C1_蓝色.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/蓝色/NL08_074_C1_蓝色.mp4",
+      "sha256": "370e2395a664225646099dc570154cd23ea8c80a101df359368f188b50e9dad4",
+      "label": "蓝色",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/行，这台可以吗？/NL08_061_C1_行，这台可以吗？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/行，这台可以吗？/NL08_061_C1_行，这台可以吗？.mp4",
+      "sha256": "20ec8c93407def6138d680734618396850238cbc5c468ce3a3f41767c4a33d39",
+      "label": "行，这台可以吗？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/行，这台可以吗？/NL08_070_C1_行，这台可以吗？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/行，这台可以吗？/NL08_070_C1_行，这台可以吗？.mp4",
+      "sha256": "24a463d0a6a0b3a4143af4b07f84638776c9183e54d28e3f891d60841d156c48",
+      "label": "行，这台可以吗？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/试一试/NL08_022_C1_试一试.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/试一试/NL08_022_C1_试一试.mp4",
+      "sha256": "f9948ae42cd96eb8c1becba8c8da30450fb69a5574d03d738d12044af9fa114a",
+      "label": "试一试",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/请问你付现金还是刷卡？/NL08_036_C1_请问你付现金还是刷卡？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/请问你付现金还是刷卡？/NL08_036_C1_请问你付现金还是刷卡？.mp4",
+      "sha256": "4133a1c12a79bbd04e5f098cca829081ce2c14df5bb6f5510740d13f770c38ef",
+      "label": "请问你付现金还是刷卡？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/质量/NL08_021_C1_质量.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/质量/NL08_021_C1_质量.mp4",
+      "sha256": "d6201b9083fa49fda631f55ba13c73b82f2bde39c10fa6f99d4c92d06f051dc7",
+      "label": "质量",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/贵/NL08_002_C1_贵.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/贵/NL08_002_C1_贵.mp4",
+      "sha256": "a256bac93dd39e9cb8a183416299e1f6f9f23d0f4f1c8942b9fdcd2b50994311",
+      "label": "贵",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/这件太紧了，有大一点的吗？/NL08_040_C1_这件太紧了，有大一点的吗？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/这件太紧了，有大一点的吗？/NL08_040_C1_这件太紧了，有大一点的吗？.mp4",
+      "sha256": "a1a9fb024a139119831b95d0f0950e68e13d0a786b46ddf27ae6b2a337715b20",
+      "label": "这件太紧了，有大一点的吗？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/这件太紧了，有大一点的吗？/NL08_049_C1_这件太紧了，有大一点的吗？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/这件太紧了，有大一点的吗？/NL08_049_C1_这件太紧了，有大一点的吗？.mp4",
+      "sha256": "20ecf21da2e8d14ca1627e82306e081707df4c54aa64f221f007d407132e17f7",
+      "label": "这件太紧了，有大一点的吗？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/这件衣服可以试穿吗？/NL08_032_C1_这件衣服可以试穿吗？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/这件衣服可以试穿吗？/NL08_032_C1_这件衣服可以试穿吗？.mp4",
+      "sha256": "1f095550324cae7268d949298638321cfc0c83af4171da02fbab14bc1f5fe56b",
+      "label": "这件衣服可以试穿吗？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/这台电脑多少钱？/NL08_035_C1_这台电脑多少钱？.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/这台电脑多少钱？/NL08_035_C1_这台电脑多少钱？.mp4",
+      "sha256": "6c6c595c35aa066a3a11262409e52c9f250400cb9b8c360ef70baea451da81fd",
+      "label": "这台电脑多少钱？",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/选择/NL08_010_C1_选择.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/选择/NL08_010_C1_选择.mp4",
+      "sha256": "a3364b8d4c3fbdfc0647225093116a6db9fbe92a7158b1f60b83a076b9594cef",
+      "label": "选择",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/钱/NL08_001_C1_钱.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/钱/NL08_001_C1_钱.mp4",
+      "sha256": "123328f65bb61473abe2cf921657868f9472abbda846fd8263a2d79ab5abfbb2",
+      "label": "钱",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/银行卡/NL08_016_C1_银行卡.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/银行卡/NL08_016_C1_银行卡.mp4",
+      "sha256": "b6f92d3868910e7101d05fe13050c4650cbe9956f4212af3b2263108dd15cff9",
+      "label": "银行卡",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/青色/NL08_073_C1_青色.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/青色/NL08_073_C1_青色.mp4",
+      "sha256": "2883fe6bd055b11bb6b027334ac6137b19b2a7d44eaba1594ae07c545bc05153",
+      "label": "青色",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/颜色_彩色/NL08_072_C1_颜色_彩色.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/颜色_彩色/NL08_072_C1_颜色_彩色.mp4",
+      "sha256": "7d4b3fa7e9e0013746b1cab83d9c48d34d74f33871c5918c7128ad251772c161",
+      "label": "颜色_彩色",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/黄色/NL08_080_C1_黄色.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/黄色/NL08_080_C1_黄色.mp4",
+      "sha256": "218d5876a5f774b229047cf08a97de51ec5e8e7e1ea5c0df03540c7058cd86df",
+      "label": "黄色",
+      "action": "建议复制后校验，当前未执行"
+    },
+    {
+      "source": "video/done/黑色/NL08_076_C1_黑色.mp4",
+      "proposed_target": "video/done/Tomcat/第八课购物_NL08_85条_20261022/黑色/NL08_076_C1_黑色.mp4",
+      "sha256": "88d6fa5c499e86ddfb2ff44fa08120bef4fc5f96590b9aa19c429341d5477fd0",
+      "label": "黑色",
+      "action": "建议复制后校验，当前未执行"
+    }
+  ],
+  "moves": [
+    {
+      "source": "video/done/5888元。",
+      "target": "video/archive/import_P08_flat_20261025/5888元。",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/800块。",
+      "target": "video/archive/import_P08_flat_20261025/800块。",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/白色",
+      "target": "video/archive/import_P08_flat_20261025/白色",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/便宜",
+      "target": "video/archive/import_P08_flat_20261025/便宜",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/橙色",
+      "target": "video/archive/import_P08_flat_20261025/橙色",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/穿",
+      "target": "video/archive/import_P08_flat_20261025/穿",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/穿着正合适，这件多少钱？",
+      "target": "video/archive/import_P08_flat_20261025/穿着正合适，这件多少钱？",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/打折",
+      "target": "video/archive/import_P08_flat_20261025/打折",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/大",
+      "target": "video/archive/import_P08_flat_20261025/大",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/东西",
+      "target": "video/archive/import_P08_flat_20261025/东西",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/多少钱？",
+      "target": "video/archive/import_P08_flat_20261025/多少钱？",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/贵",
+      "target": "video/archive/import_P08_flat_20261025/贵",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/好的，微信支付可以吗？",
+      "target": "video/archive/import_P08_flat_20261025/好的，微信支付可以吗？",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/黑色",
+      "target": "video/archive/import_P08_flat_20261025/黑色",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/红色",
+      "target": "video/archive/import_P08_flat_20261025/红色",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/化妆品",
+      "target": "video/archive/import_P08_flat_20261025/化妆品",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/黄色",
+      "target": "video/archive/import_P08_flat_20261025/黄色",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/灰色",
+      "target": "video/archive/import_P08_flat_20261025/灰色",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/活动",
+      "target": "video/archive/import_P08_flat_20261025/活动",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/假",
+      "target": "video/archive/import_P08_flat_20261025/假",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/今天刚好有活动，可以打八折。",
+      "target": "video/archive/import_P08_flat_20261025/今天刚好有活动，可以打八折。",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/紧",
+      "target": "video/archive/import_P08_flat_20261025/紧",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/旧",
+      "target": "video/archive/import_P08_flat_20261025/旧",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/咖啡色_棕色",
+      "target": "video/archive/import_P08_flat_20261025/咖啡色_棕色",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/可以。",
+      "target": "video/archive/import_P08_flat_20261025/可以。",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/蓝色",
+      "target": "video/archive/import_P08_flat_20261025/蓝色",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/绿色",
+      "target": "video/archive/import_P08_flat_20261025/绿色",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/买",
+      "target": "video/archive/import_P08_flat_20261025/买",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/卖",
+      "target": "video/archive/import_P08_flat_20261025/卖",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/您需要什么样的？",
+      "target": "video/archive/import_P08_flat_20261025/您需要什么样的？",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/钱",
+      "target": "video/archive/import_P08_flat_20261025/钱",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/浅绿色",
+      "target": "video/archive/import_P08_flat_20261025/浅绿色",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/青色",
+      "target": "video/archive/import_P08_flat_20261025/青色",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/请问你付现金还是刷卡？",
+      "target": "video/archive/import_P08_flat_20261025/请问你付现金还是刷卡？",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/深绿色",
+      "target": "video/archive/import_P08_flat_20261025/深绿色",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/试一试",
+      "target": "video/archive/import_P08_flat_20261025/试一试",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/手机_电话",
+      "target": "video/archive/import_P08_flat_20261025/手机_电话",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/刷卡",
+      "target": "video/archive/import_P08_flat_20261025/刷卡",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/松",
+      "target": "video/archive/import_P08_flat_20261025/松",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/太贵了，可以便宜点吗_",
+      "target": "video/archive/import_P08_flat_20261025/太贵了，可以便宜点吗_",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/太贵了，可以便宜些吗？",
+      "target": "video/archive/import_P08_flat_20261025/太贵了，可以便宜些吗？",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/太贵了，我再看看吧。",
+      "target": "video/archive/import_P08_flat_20261025/太贵了，我再看看吧。",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/微信",
+      "target": "video/archive/import_P08_flat_20261025/微信",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/微信支付可以吗？",
+      "target": "video/archive/import_P08_flat_20261025/微信支付可以吗？",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/我想看下那件衣服，可以试穿吗？",
+      "target": "video/archive/import_P08_flat_20261025/我想看下那件衣服，可以试穿吗？",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/我想买台电脑。",
+      "target": "video/archive/import_P08_flat_20261025/我想买台电脑。",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/小",
+      "target": "video/archive/import_P08_flat_20261025/小",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/新",
+      "target": "video/archive/import_P08_flat_20261025/新",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/行，这台可以吗？",
+      "target": "video/archive/import_P08_flat_20261025/行，这台可以吗？",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/选择",
+      "target": "video/archive/import_P08_flat_20261025/选择",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/颜色_彩色",
+      "target": "video/archive/import_P08_flat_20261025/颜色_彩色",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/一分",
+      "target": "video/archive/import_P08_flat_20261025/一分",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/一角",
+      "target": "video/archive/import_P08_flat_20261025/一角",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/一元",
+      "target": "video/archive/import_P08_flat_20261025/一元",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/银行卡",
+      "target": "video/archive/import_P08_flat_20261025/银行卡",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/有，这件是大号。",
+      "target": "video/archive/import_P08_flat_20261025/有，这件是大号。",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/又好又便宜的。",
+      "target": "video/archive/import_P08_flat_20261025/又好又便宜的。",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/再",
+      "target": "video/archive/import_P08_flat_20261025/再",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/这件太紧了，有大一点的吗？",
+      "target": "video/archive/import_P08_flat_20261025/这件太紧了，有大一点的吗？",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/这件衣服可以试穿吗？",
+      "target": "video/archive/import_P08_flat_20261025/这件衣服可以试穿吗？",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/这台电脑多少钱？",
+      "target": "video/archive/import_P08_flat_20261025/这台电脑多少钱？",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/真",
+      "target": "video/archive/import_P08_flat_20261025/真",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/正好",
+      "target": "video/archive/import_P08_flat_20261025/正好",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/支付",
+      "target": "video/archive/import_P08_flat_20261025/支付",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/质量",
+      "target": "video/archive/import_P08_flat_20261025/质量",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/紫色",
+      "target": "video/archive/import_P08_flat_20261025/紫色",
+      "kind": "directory"
+    },
+    {
+      "source": "video/done/manifest_P08_reviewed_20261022.csv",
+      "target": "video/archive/import_P08_flat_20261025/manifest_P08_reviewed_20261022.csv",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p00.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p00.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p01_greetings-proj.llc",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p01_greetings-proj.llc",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p01_greetings.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p01_greetings.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p01_greetings.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p01_greetings.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p01-proj.llc",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p01-proj.llc",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p01.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p01.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p01.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p01.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p02.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p02.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p02.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p02.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p03.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p03.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p03.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p03.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p04.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p04.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p04.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p04.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p05.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p05.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p05.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p05.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p06.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p06.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p06.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p06.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p07.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p07.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p07.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p07.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p08.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p08.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p08.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p08.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p09.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p09.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p09.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p09.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p10.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p10.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p10.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p10.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p11.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p11.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p11.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p11.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p12.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p12.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p12.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p12.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p13.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p13.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p13.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p13.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p14.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p14.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p14.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p14.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p15.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p15.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p15.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p15.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p16.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p16.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p16.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p16.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p17.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p17.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p17.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p17.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p18.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p18.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p18.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p18.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p19.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p19.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p19.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p19.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p20.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p20.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p20.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p20.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p21.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p21.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p21.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p21.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p22.info.json",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p22.info.json",
+      "kind": "file"
+    },
+    {
+      "source": "video/BV1Hs411E7aP_p22.mp4",
+      "target": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p22.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/P1-1.第一课 问候_《中国手语教程》_倪兰.mp4",
+      "target": "video/raw/NL_tutorial/P1-1.第一课 问候_《中国手语教程》_倪兰.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/P10-10.第十课 旅游_《中国手语教程》_倪兰.mp4",
+      "target": "video/raw/NL_tutorial/P10-10.第十课 旅游_《中国手语教程》_倪兰.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/P2-2.第二课 学习_《中国手语教程》_倪兰.mp4",
+      "target": "video/raw/NL_tutorial/P2-2.第二课 学习_《中国手语教程》_倪兰.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/P3-3.第三课 家庭_《中国手语教程》_倪兰.mp4",
+      "target": "video/raw/NL_tutorial/P3-3.第三课 家庭_《中国手语教程》_倪兰.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/P4-4.第四课 兴趣_《中国手语教程》_倪兰.mp4",
+      "target": "video/raw/NL_tutorial/P4-4.第四课 兴趣_《中国手语教程》_倪兰.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/P5-5.第五课 天气_《中国手语教程》_倪兰.mp4",
+      "target": "video/raw/NL_tutorial/P5-5.第五课 天气_《中国手语教程》_倪兰.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/P6-6.第六课 节日_《中国手语教程》_倪兰.mp4",
+      "target": "video/raw/NL_tutorial/P6-6.第六课 节日_《中国手语教程》_倪兰.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/P7-7.第七课 出行_《中国手语教程》_倪兰.mp4",
+      "target": "video/raw/NL_tutorial/P7-7.第七课 出行_《中国手语教程》_倪兰.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/P8-8.第八课 购物_《中国手语教程》_倪兰.mp4",
+      "target": "video/raw/NL_tutorial/P8-8.第八课 购物_《中国手语教程》_倪兰.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "video/P9-9.第九课 聚会_《中国手语教程》_倪兰.mp4",
+      "target": "video/raw/NL_tutorial/P9-9.第九课 聚会_《中国手语教程》_倪兰.mp4",
+      "kind": "file"
+    },
+    {
+      "source": "material_fullframe_20261021",
+      "target": "video/archive/material_fullframe_20261021",
+      "kind": "directory"
+    },
+    {
+      "source": "material_fullframe_第二三课分类_20261023",
+      "target": "video/inbox/lesson02_03_version_review_20261025",
+      "kind": "directory"
+    },
+    {
+      "source": "训练视频",
+      "target": "video/archive/work_batches_20261020",
+      "kind": "directory"
+    },
+    {
+      "source": "_inspect",
+      "target": "_tmp/material_inspection_legacy_20261025",
+      "kind": "directory"
+    },
+    {
+      "source": "工具/losslesscut",
+      "target": "tools/portable/losslesscut",
+      "kind": "directory"
+    },
+    {
+      "source": "剪裁方法",
+      "target": "_tmp/root_cache_archive_20261025/剪裁方法",
+      "kind": "directory"
+    },
+    {
+      "source": "__pycache__",
+      "target": "_tmp/root_cache_archive_20261025/__pycache__",
+      "kind": "directory"
+    }
+  ]
+}

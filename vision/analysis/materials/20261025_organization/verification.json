@@ -1,0 +1,24 @@
+{
+  "original_videos_verified": 1574,
+  "additional_P08_copies_verified": 85,
+  "current_video_files": 1659,
+  "unique_video_sha256": 921,
+  "original_media_lost_or_changed": 0,
+  "unexpected_video_paths": 0,
+  "old_636_manifest_unchanged": true,
+  "old_audit_unchanged": true,
+  "model_files_unchanged": 5,
+  "source_index_rows_verified": 22,
+  "portable_tool_files_verified": 120,
+  "portable_tool_bytes": 661471093,
+  "tool_residual_path": "工具/losslesscut/resources",
+  "tool_residual_retained": true,
+  "media_deleted": false,
+  "media_reencoded": false,
+  "backup": "_tmp/workspace_organization_backup_20261025/tracked_HEAD.zip",
+  "skipped_links": [
+    ".git",
+    "_tmp/material_inspection_legacy_20261025/hands_down_boundaries_20261021/node_modules",
+    "_tmp/material_inspection_legacy_20261025/new_lesson_csv_20261021/node_modules"
+  ]
+}

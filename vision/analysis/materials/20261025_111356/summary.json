@@ -1,0 +1,1140 @@
+{
+  "inventory_version": 1,
+  "started_utc": "2026-10-25T03:12:00.370772+00:00",
+  "finished_utc": "2026-10-25T03:12:44.251280+00:00",
+  "workspace_root": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition",
+  "output_directory": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\analysis\\materials\\20261025_111356",
+  "scan_policy": "os.walk includes ignored/local files; .git, all directory junctions/symlinks and file symlinks excluded",
+  "video_extensions": [
+    ".264",
+    ".265",
+    ".3g2",
+    ".3gp",
+    ".asf",
+    ".avi",
+    ".f4v",
+    ".flv",
+    ".h264",
+    ".h265",
+    ".hevc",
+    ".m2ts",
+    ".m2v",
+    ".m4v",
+    ".mkv",
+    ".mov",
+    ".mp4",
+    ".mpeg",
+    ".mpg",
+    ".mpv",
+    ".mts",
+    ".ogv",
+    ".rm",
+    ".rmvb",
+    ".ts",
+    ".vob",
+    ".webm",
+    ".wmv"
+  ],
+  "skipped_links_and_git": [
+    ".git",
+    "_inspect/hands_down_boundaries_20261021/node_modules",
+    "_inspect/new_lesson_csv_20261021/node_modules"
+  ],
+  "scan_errors": [],
+  "video_files": 1574,
+  "video_bytes": 2156401755,
+  "unique_contents": 921,
+  "unique_content_bytes": 1688349280,
+  "exact_duplicate_groups": 416,
+  "files_in_duplicate_groups": 1069,
+  "redundant_copies": 653,
+  "theoretical_redundant_bytes": 468052475,
+  "deduplication_boundary": "Theoretical byte upper bound only; deleting any copy may break live/historical manifests. No deletions or moves performed.",
+  "git_ls_files_ok": true,
+  "git_tracked_video_files": 367,
+  "hash_errors": [],
+  "historical_csv_read_errors": [],
+  "historical_manifest_sources": [
+    {
+      "path": "_inspect/hands_down_boundaries_20261021/strategy_before_P01_review.csv",
+      "rows": 942,
+      "media_references": 942
+    },
+    {
+      "path": "_inspect/hands_down_boundaries_20261021/P01_solo_completion_20261021/cycles_before.csv",
+      "rows": 15,
+      "media_references": 15
+    },
+    {
+      "path": "_inspect/hands_down_boundaries_20261021/P01_solo_completion_20261021/strategy_before.csv",
+      "rows": 942,
+      "media_references": 942
+    },
+    {
+      "path": "_inspect/p01_action_folders_20261021_n93drybk/第一课动作周期剪辑清单_20261021.csv",
+      "rows": 27,
+      "media_references": 54
+    },
+    {
+      "path": "_inspect/p01_action_folders_20261021_oj78dakp/第一课动作周期剪辑清单_20261021.csv",
+      "rows": 27,
+      "media_references": 54
+    },
+    {
+      "path": "_inspect/p01_package_before_action_folders_20261021_211106/第一课动作周期剪辑清单_20261021.csv",
+      "rows": 31,
+      "media_references": 62
+    },
+    {
+      "path": "data/legacy/material/dataset_manifest_20261020.csv",
+      "rows": 225,
+      "media_references": 450
+    },
+    {
+      "path": "data/legacy/material_fullframe_20261021/dataset_manifest_fullframe_20261021.csv",
+      "rows": 126,
+      "media_references": 126
+    },
+    {
+      "path": "data/manifests/P08_购物/manifest_P08_reviewed_20261022.csv",
+      "rows": 85,
+      "media_references": 85
+    },
+    {
+      "path": "data/manifests/P09_聚会/manifest_P09_reviewed_20261022.csv",
+      "rows": 102,
+      "media_references": 102
+    },
+    {
+      "path": "data/manifests/P10_旅游/manifest_P10_reviewed_20261022.csv",
+      "rows": 100,
+      "media_references": 100
+    },
+    {
+      "path": "data/manifests/全22课_fullframe/dataset_manifest_fullframe_20261021.csv",
+      "rows": 233,
+      "media_references": 466
+    },
+    {
+      "path": "data/manifests/全22课_fullframe/recovered_candidates_fullframe_20261021.csv",
+      "rows": 8,
+      "media_references": 16
+    },
+    {
+      "path": "data/manifests/全22课_fullframe/全部22parts_训练样本清单_20261020.csv",
+      "rows": 225,
+      "media_references": 450
+    },
+    {
+      "path": "data/manifests/全22课_fullframe/第一课动作周期剪辑清单_20261021.csv",
+      "rows": 31,
+      "media_references": 62
+    },
+    {
+      "path": "material_fullframe_20261021/dataset_manifest_fullframe_20261021.csv",
+      "rows": 233,
+      "media_references": 466
+    },
+    {
+      "path": "material_fullframe_20261021/recovered_candidates_fullframe_20261021.csv",
+      "rows": 8,
+      "media_references": 16
+    },
+    {
+      "path": "material_fullframe_20261021/全部22parts_训练样本清单_20261020.csv",
+      "rows": 225,
+      "media_references": 450
+    },
+    {
+      "path": "material_fullframe_20261021/第一课动作周期剪辑清单_20261021.csv",
+      "rows": 31,
+      "media_references": 62
+    },
+    {
+      "path": "tools/clipping/中国手语教程_10课_逐词句剪裁策略_20261021.csv",
+      "rows": 942,
+      "media_references": 942
+    },
+    {
+      "path": "tools/clipping/中国手语教程_P01对话_已核对动作边界_20261021.csv",
+      "rows": 31,
+      "media_references": 31
+    },
+    {
+      "path": "video/done/manifest_P08_reviewed_20261022.csv",
+      "rows": 85,
+      "media_references": 85
+    },
+    {
+      "path": "训练视频/_greetings_review/_draft_export_20261019/切分清单.csv",
+      "rows": 12,
+      "media_references": 12
+    },
+    {
+      "path": "训练视频/_greetings_review/_动作净版22条候选_已归档/动作切分清单.csv",
+      "rows": 22,
+      "media_references": 22
+    },
+    {
+      "path": "训练视频/p02-p11_工作_20261020/p02-p11_内容验收清单_首版_20261020.csv",
+      "rows": 81,
+      "media_references": 81
+    },
+    {
+      "path": "训练视频/p02-p11_工作_20261020/p02-p11_切分清单.csv",
+      "rows": 81,
+      "media_references": 81
+    },
+    {
+      "path": "训练视频/p02-p11_工作_20261020/p02-p11_切分清单_技术批次旧版_20261020.csv",
+      "rows": 82,
+      "media_references": 82
+    },
+    {
+      "path": "训练视频/p02-p11_工作_20261020/技术批次_内容验收不通过_20261020.csv",
+      "rows": 82,
+      "media_references": 82
+    },
+    {
+      "path": "训练视频/p02-p11_工作_20261020/首版候选清单_修订前_20261020.csv",
+      "rows": 83,
+      "media_references": 83
+    },
+    {
+      "path": "训练视频/p12-p22_工作_20261020/p13-p22_切分清单.csv",
+      "rows": 106,
+      "media_references": 106
+    },
+    {
+      "path": "训练视频/p12-p22_工作_20261020/rejected_batch1_原10秒导出/首次清单及核验/p13-p22_切分清单.csv",
+      "rows": 67,
+      "media_references": 67
+    },
+    {
+      "path": "训练视频/p12-p22_工作_20261020/rejected_batch2_首版4秒_视觉复核/p13-p22_切分清单_首版.csv",
+      "rows": 65,
+      "media_references": 65
+    },
+    {
+      "path": "训练视频/p12_工作_20261020/p12切分清单.csv",
+      "rows": 13,
+      "media_references": 13
+    },
+    {
+      "path": "训练视频/第01课_问候_分段_20261019/切分清单.csv",
+      "rows": 12,
+      "media_references": 12
+    },
+    {
+      "path": "训练视频/第01课_问候_动作净版_20261019/动作切分清单.csv",
+      "rows": 23,
+      "media_references": 23
+    }
+  ],
+  "full_manifest": {
+    "path": "data/manifests/manifest_fullframe_20261024.csv",
+    "sha256": "4c4d786b61e32f9ac287722a82adb6b14a95ce834b216fc593b651896f8ccbb6",
+    "rows": 636,
+    "expected_rows": 636,
+    "matches_expected_rows": true,
+    "audit_record_count": 636,
+    "audit_sha256": "220ca78505d5d1717a14a140fae6f5432e644d546460184baccfc58cef2fc5ca",
+    "audit_declared_manifest_sha256_matches": true,
+    "coverage_counts": {
+      "missing": 202,
+      "relocated_sha_verified": 85,
+      "direct_sha_verified": 264,
+      "name_candidate_only": 85
+    },
+    "direct_exists": 264,
+    "rows_with_sha_verified_content": 349,
+    "missing_content_rows": 287,
+    "rows_with_multiple_verified_copies": 264
+  },
+  "reference_class_file_counts": {
+    "unreferenced_candidate_review": 26,
+    "current_636_sha_verified": 831,
+    "historical_sha_verified": 512,
+    "current_636_name_candidate_only": 170,
+    "historical_name_candidate_only": 3,
+    "historical_path_reference": 32
+  },
+  "reference_class_unique_contents": {
+    "current_636_name_candidate_only": 85,
+    "current_636_sha_verified": 349,
+    "historical_name_candidate_only": 3,
+    "historical_path_reference": 32,
+    "historical_sha_verified": 436,
+    "unreferenced_candidate_review": 16
+  },
+  "candidate_boundary": "No current-manifest or known historical hash/path/name reference means candidate for review, not proven newly added. mtime is descriptive only; names/paths are weaker than SHA.",
+  "shallow_video_done_files": 85,
+  "shallow_video_done_lesson_hints": {
+    "08": 85
+  },
+  "directory_groups": [
+    {
+      "directory_group": "_inspect",
+      "files": 83,
+      "bytes": 110844225,
+      "unique_contents": 29,
+      "unique_content_bytes": 38078505,
+      "tracked_files": 0,
+      "reference_classes": {
+        "unreferenced_candidate_review": 2,
+        "current_636_sha_verified": 81
+      }
+    },
+    {
+      "directory_group": "asr",
+      "files": 142,
+      "bytes": 24083590,
+      "unique_contents": 142,
+      "unique_content_bytes": 24083590,
+      "tracked_files": 142,
+      "reference_classes": {
+        "current_636_sha_verified": 137,
+        "unreferenced_candidate_review": 5
+      }
+    },
+    {
+      "directory_group": "data/legacy/material",
+      "files": 225,
+      "bytes": 34733538,
+      "unique_contents": 225,
+      "unique_content_bytes": 34733538,
+      "tracked_files": 225,
+      "reference_classes": {
+        "historical_sha_verified": 225
+      }
+    },
+    {
+      "directory_group": "material_fullframe_20261021",
+      "files": 349,
+      "bytes": 325305758,
+      "unique_contents": 349,
+      "unique_content_bytes": 325305758,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 264,
+        "current_636_name_candidate_only": 85
+      }
+    },
+    {
+      "directory_group": "material_fullframe_第二三课分类_20261023",
+      "files": 85,
+      "bytes": 248478423,
+      "unique_contents": 85,
+      "unique_content_bytes": 248478423,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_name_candidate_only": 85
+      }
+    },
+    {
+      "directory_group": "video",
+      "files": 43,
+      "bytes": 1194416025,
+      "unique_contents": 38,
+      "unique_content_bytes": 1194046201,
+      "tracked_files": 0,
+      "reference_classes": {
+        "historical_name_candidate_only": 1,
+        "historical_path_reference": 32,
+        "unreferenced_candidate_review": 10
+      }
+    },
+    {
+      "directory_group": "video/done/5888元。",
+      "files": 2,
+      "bytes": 1311004,
+      "unique_contents": 2,
+      "unique_content_bytes": 1311004,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 2
+      }
+    },
+    {
+      "directory_group": "video/done/800块。",
+      "files": 2,
+      "bytes": 1204775,
+      "unique_contents": 2,
+      "unique_content_bytes": 1204775,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 2
+      }
+    },
+    {
+      "directory_group": "video/done/wsy/全22课全画幅样本_fullframe_264条_20261021",
+      "files": 264,
+      "bytes": 76827335,
+      "unique_contents": 264,
+      "unique_content_bytes": 76827335,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 264
+      }
+    },
+    {
+      "directory_group": "video/done/一元",
+      "files": 1,
+      "bytes": 478126,
+      "unique_contents": 1,
+      "unique_content_bytes": 478126,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/一分",
+      "files": 1,
+      "bytes": 605430,
+      "unique_contents": 1,
+      "unique_content_bytes": 605430,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/一角",
+      "files": 1,
+      "bytes": 478198,
+      "unique_contents": 1,
+      "unique_content_bytes": 478198,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/东西",
+      "files": 1,
+      "bytes": 612614,
+      "unique_contents": 1,
+      "unique_content_bytes": 612614,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/买",
+      "files": 1,
+      "bytes": 649131,
+      "unique_contents": 1,
+      "unique_content_bytes": 649131,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/今天刚好有活动，可以打八折。",
+      "files": 3,
+      "bytes": 3851704,
+      "unique_contents": 3,
+      "unique_content_bytes": 3851704,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 3
+      }
+    },
+    {
+      "directory_group": "video/done/便宜",
+      "files": 1,
+      "bytes": 687932,
+      "unique_contents": 1,
+      "unique_content_bytes": 687932,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/假",
+      "files": 1,
+      "bytes": 768547,
+      "unique_contents": 1,
+      "unique_content_bytes": 768547,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/再",
+      "files": 1,
+      "bytes": 450135,
+      "unique_contents": 1,
+      "unique_content_bytes": 450135,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/刷卡",
+      "files": 1,
+      "bytes": 1122404,
+      "unique_contents": 1,
+      "unique_content_bytes": 1122404,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/化妆品",
+      "files": 1,
+      "bytes": 876619,
+      "unique_contents": 1,
+      "unique_content_bytes": 876619,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/卖",
+      "files": 1,
+      "bytes": 594438,
+      "unique_contents": 1,
+      "unique_content_bytes": 594438,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/又好又便宜的。",
+      "files": 2,
+      "bytes": 1979083,
+      "unique_contents": 2,
+      "unique_content_bytes": 1979083,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 2
+      }
+    },
+    {
+      "directory_group": "video/done/可以。",
+      "files": 4,
+      "bytes": 2019830,
+      "unique_contents": 4,
+      "unique_content_bytes": 2019830,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 4
+      }
+    },
+    {
+      "directory_group": "video/done/咖啡色_棕色",
+      "files": 1,
+      "bytes": 1247253,
+      "unique_contents": 1,
+      "unique_content_bytes": 1247253,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/多少钱？",
+      "files": 2,
+      "bytes": 1132005,
+      "unique_contents": 2,
+      "unique_content_bytes": 1132005,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 2
+      }
+    },
+    {
+      "directory_group": "video/done/大",
+      "files": 1,
+      "bytes": 904436,
+      "unique_contents": 1,
+      "unique_content_bytes": 904436,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/太贵了，可以便宜些吗？",
+      "files": 2,
+      "bytes": 1427435,
+      "unique_contents": 2,
+      "unique_content_bytes": 1427435,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 2
+      }
+    },
+    {
+      "directory_group": "video/done/太贵了，可以便宜点吗_",
+      "files": 1,
+      "bytes": 706725,
+      "unique_contents": 1,
+      "unique_content_bytes": 706725,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/太贵了，我再看看吧。",
+      "files": 2,
+      "bytes": 1725951,
+      "unique_contents": 2,
+      "unique_content_bytes": 1725951,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 2
+      }
+    },
+    {
+      "directory_group": "video/done/好的，微信支付可以吗？",
+      "files": 2,
+      "bytes": 1840048,
+      "unique_contents": 2,
+      "unique_content_bytes": 1840048,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 2
+      }
+    },
+    {
+      "directory_group": "video/done/小",
+      "files": 1,
+      "bytes": 684737,
+      "unique_contents": 1,
+      "unique_content_bytes": 684737,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/微信",
+      "files": 1,
+      "bytes": 702606,
+      "unique_contents": 1,
+      "unique_content_bytes": 702606,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/微信支付可以吗？",
+      "files": 1,
+      "bytes": 790473,
+      "unique_contents": 1,
+      "unique_content_bytes": 790473,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/您需要什么样的？",
+      "files": 2,
+      "bytes": 1746365,
+      "unique_contents": 2,
+      "unique_content_bytes": 1746365,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 2
+      }
+    },
+    {
+      "directory_group": "video/done/我想买台电脑。",
+      "files": 2,
+      "bytes": 2492014,
+      "unique_contents": 2,
+      "unique_content_bytes": 2492014,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 2
+      }
+    },
+    {
+      "directory_group": "video/done/我想看下那件衣服，可以试穿吗？",
+      "files": 2,
+      "bytes": 3163889,
+      "unique_contents": 2,
+      "unique_content_bytes": 3163889,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 2
+      }
+    },
+    {
+      "directory_group": "video/done/手机_电话",
+      "files": 1,
+      "bytes": 596705,
+      "unique_contents": 1,
+      "unique_content_bytes": 596705,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/打折",
+      "files": 1,
+      "bytes": 1181916,
+      "unique_contents": 1,
+      "unique_content_bytes": 1181916,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/支付",
+      "files": 1,
+      "bytes": 833492,
+      "unique_contents": 1,
+      "unique_content_bytes": 833492,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/新",
+      "files": 1,
+      "bytes": 1048555,
+      "unique_contents": 1,
+      "unique_content_bytes": 1048555,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/旧",
+      "files": 1,
+      "bytes": 897702,
+      "unique_contents": 1,
+      "unique_content_bytes": 897702,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/有，这件是大号。",
+      "files": 2,
+      "bytes": 1606956,
+      "unique_contents": 2,
+      "unique_content_bytes": 1606956,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 2
+      }
+    },
+    {
+      "directory_group": "video/done/松",
+      "files": 1,
+      "bytes": 962873,
+      "unique_contents": 1,
+      "unique_content_bytes": 962873,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/橙色",
+      "files": 1,
+      "bytes": 1113654,
+      "unique_contents": 1,
+      "unique_content_bytes": 1113654,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/正好",
+      "files": 1,
+      "bytes": 841200,
+      "unique_contents": 1,
+      "unique_content_bytes": 841200,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/活动",
+      "files": 1,
+      "bytes": 849103,
+      "unique_contents": 1,
+      "unique_content_bytes": 849103,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/浅绿色",
+      "files": 1,
+      "bytes": 1074391,
+      "unique_contents": 1,
+      "unique_content_bytes": 1074391,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/深绿色",
+      "files": 1,
+      "bytes": 1081094,
+      "unique_contents": 1,
+      "unique_content_bytes": 1081094,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/灰色",
+      "files": 1,
+      "bytes": 815825,
+      "unique_contents": 1,
+      "unique_content_bytes": 815825,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/白色",
+      "files": 1,
+      "bytes": 919715,
+      "unique_contents": 1,
+      "unique_content_bytes": 919715,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/真",
+      "files": 1,
+      "bytes": 974547,
+      "unique_contents": 1,
+      "unique_content_bytes": 974547,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/穿",
+      "files": 1,
+      "bytes": 651027,
+      "unique_contents": 1,
+      "unique_content_bytes": 651027,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/穿着正合适，这件多少钱？",
+      "files": 2,
+      "bytes": 2972474,
+      "unique_contents": 2,
+      "unique_content_bytes": 2972474,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 2
+      }
+    },
+    {
+      "directory_group": "video/done/紧",
+      "files": 1,
+      "bytes": 1042831,
+      "unique_contents": 1,
+      "unique_content_bytes": 1042831,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/紫色",
+      "files": 1,
+      "bytes": 987715,
+      "unique_contents": 1,
+      "unique_content_bytes": 987715,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/红色",
+      "files": 1,
+      "bytes": 849844,
+      "unique_contents": 1,
+      "unique_content_bytes": 849844,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/绿色",
+      "files": 1,
+      "bytes": 1105141,
+      "unique_contents": 1,
+      "unique_content_bytes": 1105141,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/蓝色",
+      "files": 1,
+      "bytes": 1094964,
+      "unique_contents": 1,
+      "unique_content_bytes": 1094964,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/行，这台可以吗？",
+      "files": 2,
+      "bytes": 1773789,
+      "unique_contents": 2,
+      "unique_content_bytes": 1773789,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 2
+      }
+    },
+    {
+      "directory_group": "video/done/试一试",
+      "files": 1,
+      "bytes": 822011,
+      "unique_contents": 1,
+      "unique_content_bytes": 822011,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/请问你付现金还是刷卡？",
+      "files": 1,
+      "bytes": 1210400,
+      "unique_contents": 1,
+      "unique_content_bytes": 1210400,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/质量",
+      "files": 1,
+      "bytes": 951229,
+      "unique_contents": 1,
+      "unique_content_bytes": 951229,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/贵",
+      "files": 1,
+      "bytes": 603125,
+      "unique_contents": 1,
+      "unique_content_bytes": 603125,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/这件太紧了，有大一点的吗？",
+      "files": 2,
+      "bytes": 2983605,
+      "unique_contents": 2,
+      "unique_content_bytes": 2983605,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 2
+      }
+    },
+    {
+      "directory_group": "video/done/这件衣服可以试穿吗？",
+      "files": 1,
+      "bytes": 893105,
+      "unique_contents": 1,
+      "unique_content_bytes": 893105,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/这台电脑多少钱？",
+      "files": 1,
+      "bytes": 790554,
+      "unique_contents": 1,
+      "unique_content_bytes": 790554,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/选择",
+      "files": 1,
+      "bytes": 726772,
+      "unique_contents": 1,
+      "unique_content_bytes": 726772,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/钱",
+      "files": 1,
+      "bytes": 662981,
+      "unique_contents": 1,
+      "unique_content_bytes": 662981,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/银行卡",
+      "files": 1,
+      "bytes": 1155647,
+      "unique_contents": 1,
+      "unique_content_bytes": 1155647,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/青色",
+      "files": 1,
+      "bytes": 1238829,
+      "unique_contents": 1,
+      "unique_content_bytes": 1238829,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/颜色_彩色",
+      "files": 1,
+      "bytes": 1076278,
+      "unique_contents": 1,
+      "unique_content_bytes": 1076278,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/黄色",
+      "files": 1,
+      "bytes": 921957,
+      "unique_contents": 1,
+      "unique_content_bytes": 921957,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "video/done/黑色",
+      "files": 1,
+      "bytes": 1015734,
+      "unique_contents": 1,
+      "unique_content_bytes": 1015734,
+      "tracked_files": 0,
+      "reference_classes": {
+        "current_636_sha_verified": 1
+      }
+    },
+    {
+      "directory_group": "训练视频",
+      "files": 298,
+      "bytes": 65131214,
+      "unique_contents": 277,
+      "unique_content_bytes": 62222526,
+      "tracked_files": 0,
+      "reference_classes": {
+        "historical_sha_verified": 287,
+        "unreferenced_candidate_review": 9,
+        "historical_name_candidate_only": 2
+      }
+    }
+  ],
+  "ffprobe": "C:\\Users\\Icarie\\AppData\\Local\\Microsoft\\WinGet\\Packages\\ch.LosslessCut_Microsoft.Winget.Source_8wekyb3d8bbwe\\resources\\ffprobe.exe",
+  "probe_unique_status_counts": {
+    "metadata_ok": 921
+  },
+  "probe_boundary": "Container/stream metadata only; no full frame decoding, semantic label validation or visual acceptance.",
+  "unexpanded_archives": [
+    {
+      "relative_path": "pynq-vision/algo/kws/hls/kws_prj/sol1/impl/ip/xilinx_com_hls_kws_accel_1_0.zip",
+      "bytes": 362536,
+      "git_tracked": true
+    },
+    {
+      "relative_path": "pynq-vision/algo/video_hls/color_convert/color_convert/solution1/impl/ip/xilinx_com_hls_color_convert_1_0.zip",
+      "bytes": 45744,
+      "git_tracked": true
+    },
+    {
+      "relative_path": "pynq-vision/algo/video_hls/pixel_unpack/pixel_unpack/solution1/impl/ip/xilinx_com_hls_pixel_unpack_1_0.zip",
+      "bytes": 65076,
+      "git_tracked": true
+    },
+    {
+      "relative_path": "训练视频/p02-p11_工作_20261020/tools/pydeps/numpy/random/tests/data/generator_pcg64_np121.pkl.gz",
+      "bytes": 203,
+      "git_tracked": false
+    },
+    {
+      "relative_path": "训练视频/p02-p11_工作_20261020/tools/pydeps/numpy/random/tests/data/generator_pcg64_np126.pkl.gz",
+      "bytes": 208,
+      "git_tracked": false
+    },
+    {
+      "relative_path": "训练视频/p02-p11_工作_20261020/tools/pydeps/numpy/random/tests/data/sfc64_np126.pkl.gz",
+      "bytes": 290,
+      "git_tracked": false
+    }
+  ],
+  "classification_refinement": {
+    "source_snapshot": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\analysis\\materials\\20261025_161500",
+    "refined_utc": "2026-10-25T03:13:56.161118+00:00",
+    "method": "Reclassified current-636 same-name candidates using completed inventory and coverage tables; no media rescan, hash or probe repeated."
+  }
+}

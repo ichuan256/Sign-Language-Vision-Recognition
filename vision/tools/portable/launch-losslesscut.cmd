@@ -1,7 +1,7 @@
 @echo off
 rem Launch the workspace-local portable LosslessCut.
 rem Usage:  launch-losslesscut.cmd [media files ...]
-rem Example: launch-losslesscut.cmd "..\video\BV1Hs411E7aP_p01.mp4"
+rem From repo root: vision\tools\portable\launch-losslesscut.cmd "vision\video\raw\BV1Hs411E7aP\BV1Hs411E7aP_p01.mp4"
 
 setlocal
 set "LLC=%~dp0losslesscut\LosslessCut.exe"

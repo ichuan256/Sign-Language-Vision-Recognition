@@ -5,6 +5,7 @@ into place. The previous package is retained under _inspect/ for recovery.
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import json
@@ -16,8 +17,8 @@ from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-PACKAGE = ROOT / "data" / "exports" / "material_fullframe_20261021" / "第一课_动作周期_已核对_20261021"
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file())
+PACKAGE = ROOT / "vision/data" / "exports" / "material_fullframe_20261021" / "第一课_动作周期_已核对_20261021"
 INSPECT = ROOT / "project/_tmp" / "inspect"
 MANIFEST_NAME = "第一课动作周期剪辑清单_20261021.csv"
 VALIDATION_NAME = "validation_P01_actions_20261021.json"
@@ -77,6 +78,18 @@ def make_readme(rows: list[dict[str, str]], excluded_ids: list[str]) -> str:
 
 
 def main() -> None:
+    global ROOT, PACKAGE, INSPECT
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--repo-root", type=Path, default=ROOT)
+    parser.add_argument("--package", type=Path)
+    parser.add_argument("--preflight", action="store_true")
+    args = parser.parse_args()
+    ROOT = args.repo_root.resolve()
+    PACKAGE = args.package or ROOT / "vision/data/exports/material_fullframe_20261021/第一课_动作周期_已核对_20261021"
+    INSPECT = ROOT / "project/_tmp/inspect"
+    if args.preflight:
+        print(json.dumps({"package": str(PACKAGE), "exists": PACKAGE.is_dir(), "inspection_root": str(INSPECT)}, ensure_ascii=False))
+        return
     if not PACKAGE.is_dir():
         raise FileNotFoundError(PACKAGE)
     INSPECT.mkdir(parents=True, exist_ok=True)

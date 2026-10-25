@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "status": "partial_source_contract",
+  "model_golden_ready": false,
+  "rtl_numeric_contract_ready": false,
+  "trained_weights_exported": false,
+  "full_network_reference_implemented": false,
+  "sources_sha256": {
+    "scripts/r3/r3_baseline_20261024.py": "8c7eb47c886e885123bfa675ffa8c5c2a5cc4fc9d5f7d5bb7cd4034768ccd4f2",
+    "scripts/r3/r3_hls_synth_20261025.py": "f0c2b7b0e89fc4f8f6d32cdeb8d18acf9e624b81467ef5c142bb441d07b18f28",
+    "scripts/r3/r3_hls4ml_20261024.py": "0e9f28b69b0492ffa4269bbecaa57197657d30b5f5941298cd33217e22ac4775",
+    "analysis/r3/r3_hls_synth_20261025.json": "8d3f04c506ab75edcb018854ae2509df6956537ea64f642c53c90ad9f10d0bdf",
+    "scripts/r3/export_rtl_numeric_contract.py": "f0f2086079ea7f7808e74ffbf9e7ed185557a51be9de075fe53461f3cba62684"
+  },
+  "expected_artifacts": {
+    "_tmp/r3/r3_model_quant.keras": false,
+    "_tmp/r3/tensors.npz": false,
+    "_tmp/r3/r3_hls_synth_rf576_p40/firmware/defines.h": false,
+    "_tmp/r3/r3_hls_synth_rf576_p40/firmware/parameters.h": false,
+    "_tmp/r3/r3_hls_synth_rf576_p40/firmware/gesture_cls.cpp": false
+  },
+  "formats": {
+    "input": {
+      "width": 40,
+      "integer": 2,
+      "signed": true,
+      "rounding": "AP_TRN",
+      "overflow": "AP_WRAP",
+      "fractional": 38,
+      "lsb": "2^-38",
+      "note": "Integer width includes sign bit for signed formats"
+    },
+    "output": {
+      "width": 24,
+      "integer": 10,
+      "signed": true,
+      "rounding": "AP_TRN",
+      "overflow": "AP_WRAP",
+      "fractional": 14,
+      "lsb": "2^-14",
+      "note": "Integer width includes sign bit for signed formats"
+    },
+    "bn_scale": {
+      "width": 40,
+      "integer": 16,
+      "signed": true,
+      "rounding": "AP_TRN",
+      "overflow": "AP_WRAP",
+      "fractional": 24,
+      "lsb": "2^-24",
+      "note": "Integer width includes sign bit for signed formats"
+    },
+    "bn_bias": {
+      "width": 40,
+      "integer": 16,
+      "signed": true,
+      "rounding": "AP_TRN",
+      "overflow": "AP_WRAP",
+      "fractional": 24,
+      "lsb": "2^-24",
+      "note": "Integer width includes sign bit for signed formats"
+    },
+    "bn_result": {
+      "width": 44,
+      "integer": 24,
+      "signed": true,
+      "rounding": "AP_TRN",
+      "overflow": "AP_WRAP",
+      "fractional": 20,
+      "lsb": "2^-20",
+      "note": "Integer width includes sign bit for signed formats"
+    }
+  },
+  "provenance": {
+    "input": "conversion script setting, not recovered generated type",
+    "bn_and_output": "historical R3.3 report, not new tool execution"
+  },
+  "layers": [
+    {
+      "order": 0,
+      "operation": "Input",
+      "source_line": 87,
+      "expression": "Input((size, size, frames))",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 1,
+      "operation": "Conv",
+      "source_line": 88,
+      "expression": "Conv(16, 3, padding='same', name='conv1', **kw)(inp)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 2,
+      "operation": "BatchNormalization",
+      "source_line": 89,
+      "expression": "BatchNormalization()(x)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 3,
+      "operation": "Act",
+      "source_line": 90,
+      "expression": "Act('act1')(x)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 4,
+      "operation": "MaxPooling2D",
+      "source_line": 91,
+      "expression": "MaxPooling2D()(x)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 5,
+      "operation": "Conv",
+      "source_line": 92,
+      "expression": "Conv(32, 3, padding='same', name='conv2', **kw)(x)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 6,
+      "operation": "BatchNormalization",
+      "source_line": 93,
+      "expression": "BatchNormalization()(x)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 7,
+      "operation": "Act",
+      "source_line": 94,
+      "expression": "Act('act2')(x)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 8,
+      "operation": "MaxPooling2D",
+      "source_line": 95,
+      "expression": "MaxPooling2D()(x)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 9,
+      "operation": "Conv",
+      "source_line": 96,
+      "expression": "Conv(64, 3, padding='same', name='conv3', **kw)(x)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 10,
+      "operation": "BatchNormalization",
+      "source_line": 97,
+      "expression": "BatchNormalization()(x)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 11,
+      "operation": "Act",
+      "source_line": 98,
+      "expression": "Act('act3')(x)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 12,
+      "operation": "MaxPooling2D",
+      "source_line": 99,
+      "expression": "MaxPooling2D()(x)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 13,
+      "operation": "Conv",
+      "source_line": 100,
+      "expression": "Conv(64, 3, padding='same', name='conv4', **kw)(x)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 14,
+      "operation": "BatchNormalization",
+      "source_line": 101,
+      "expression": "BatchNormalization()(x)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 15,
+      "operation": "Act",
+      "source_line": 102,
+      "expression": "Act('act4')(x)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 16,
+      "operation": "GlobalAveragePooling2D",
+      "source_line": 103,
+      "expression": "GlobalAveragePooling2D()(x)",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    },
+    {
+      "order": 17,
+      "operation": "QDense",
+      "source_line": 105,
+      "expression": "QDense(num_classes, kernel_quantizer='quantized_bits(4,0)', bias_quantizer='quantized_bits(4,0)', name='qdense')",
+      "hls_input_type": null,
+      "hls_output_type": null,
+      "hls_accumulator_type": null,
+      "cast_sites": null,
+      "status": "source_configuration_only"
+    }
+  ],
+  "source_quantizers": [
+    {
+      "expression": "'quantized_bits(4,0)'",
+      "source_line": 84
+    },
+    {
+      "expression": "'quantized_bits(4,0)'",
+      "source_line": 84
+    },
+    {
+      "expression": "'quantized_relu(6,2)'",
+      "source_line": 85
+    },
+    {
+      "expression": "'quantized_bits(4,0)'",
+      "source_line": 105
+    },
+    {
+      "expression": "'quantized_bits(4,0)'",
+      "source_line": 106
+    }
+  ],
+  "normalization_expression": "data['X'][indices].astype(np.float32) / 255.0",
+  "input_mapping": {
+    "count": 256,
+    "differing_from_exact_rational": 254,
+    "max_abs_raw_delta": 8160,
+    "validation": "binary32 software model; no original NumPy or Vitis replay"
+  },
+  "unknowns": [
+    "trained quantized weights and convolution/Dense biases",
+    "BN moving mean, variance, gamma, beta, epsilon and transformed scale/bias",
+    "generated product/accumulator types, rounding and assignment/cast sites",
+    "generated activation, pooling and GAP intermediate semantics",
+    "generated weight layout, layer ordering/fusions and expression promotion",
+    "original tensors, label order, holdout indices and per-layer golden tensors"
+  ]
+}

@@ -2,6 +2,8 @@
 
 This experimental archive uses the existing cropped clips, not full-frame camera recordings. It is a reproducible baseline only and must not be treated as camera-domain accuracy.
 
+2026-10-25 workspace cleanup: the template archive and its historical results remain unchanged, but 224 source clips were removed from the workspace. Only one real test fixture remains. The old 225-row source manifest is provenance metadata, not a complete locally available dataset; a full feature rebuild requires the original media again. `build_templates.py` now requires explicit `--manifest` and `--output` arguments.
+
 - Archive: `sign_templates_cropped.npz`
 - Source manifest: `vision/data/legacy/material/dataset_manifest_20261020.csv`
 - Input clips: 225 videos / 132 labels; 77 labels have only one video.

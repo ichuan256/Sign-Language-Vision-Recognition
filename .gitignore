@@ -27,3 +27,24 @@ project/_tmp/
 
 # Local caches and migration evidence
 project/_cache/
+
+# Local exports, transition paths and retained locked tools
+/video/
+/_tmp/
+/工具/
+/vision/tools/portable/losslesscut/
+vision/data/exports/**/*.mp4
+vision/data/exports/**/*.mov
+vision/data/exports/**/*.mkv
+vision/data/exports/**/*.avi
+vision/data/exports/**/*.webm
+vision/data/exports/**/*.m4v
+vision/data/exports/**/*.wmv
+vision/data/exports/**/*.mpg
+vision/data/exports/**/*.mpeg
+vision/data/exports/**/*.mts
+vision/data/exports/**/*.m2ts
+vision/data/exports/**/*.3gp
+
+# Windows-denied portable directory retained only as a fingerprinted local residue
+/tools/

@@ -25,3 +25,5 @@
 - 调整路径时同步脚本默认输出、文档链接和导入；不保留旧路径下的重复副本。
 
 复跑工具入口：[scripts/README.md](../scripts/README.md)。系统运行入口：[根 README](../../README.md)。
+
+素材盘点与清理见 [materials/README.md](materials/README.md)；当前551条与85条待审版本的边界见[数据入口](dataset/README.md)。

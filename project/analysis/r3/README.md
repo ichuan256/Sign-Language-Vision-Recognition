@@ -1,5 +1,12 @@
 # R3：量化模型与 PL 部署证据
 
+## RTL前置进度（2026-10-25）
+
+[定点基础与缺口](rtl_numeric_contract_20261025/README.md)和
+[验证记录](rtl_numeric_contract_20261025/VERIFICATION.md)已生成。
+第一步部分完成：原模型、张量和生成HLS工程缺失，未恢复权重或逐层golden，
+完整数值契约尚未就绪。下述历史R3验收状态保持不变。
+
 截至 2026-10-25：PC 量化训练、hls4ml 转换及 HLS C 综合已跑通，当前模型
 **资源/时序门禁未通过，未导出 IP、未部署 PL**。样本审计和补采见
 [数据入口](../../../vision/analysis/dataset/README.md)。
@@ -17,3 +24,5 @@ RTL co-sim 门禁。帧差/MHI、DS-CNN 尚未产生本项目实测结果。
 R3.4 集成和 R3.5 板端验收尚未开始。复跑脚本见
 [scripts/r3/README.md](../../scripts/r3/README.md)。原脚本名中的日期保留用于对应实验，
 脚本默认仍使用 `project/_tmp/r3/` 的模型和张量；复跑会写实验产物，应先读参数说明。
+
+迁后来源契约见 [rtl_numeric_contract_20261025_layout/README.md](rtl_numeric_contract_20261025_layout/README.md)；旧文件保留及边界见[迁移说明](rtl_numeric_contract_20261025/MIGRATION.md)。仅更新路径与来源哈希，不构成完整网络或RTL验收。

@@ -1,0 +1,16 @@
+{
+  "ffmpeg": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\tools\\portable\\losslesscut\\resources\\ffmpeg.exe",
+  "checks": [
+    {
+      "family": "BV1Hs411E7aP",
+      "path": "video/raw/BV1Hs411E7aP/BV1Hs411E7aP_p01.mp4",
+      "decode_first_frame_return_code": 0
+    },
+    {
+      "family": "NL_tutorial",
+      "path": "video/raw/NL_tutorial/P8-8.第八课 购物_《中国手语教程》_倪兰.mp4",
+      "decode_first_frame_return_code": 0
+    }
+  ],
+  "boundary": "one frame per source family; no output media or full decode"
+}
