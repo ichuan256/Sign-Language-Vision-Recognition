@@ -1,0 +1,185 @@
+{
+  "status": "stage1_model_and_MAC_tile_verified_not_PL_landmark_deployed",
+  "user_approved_scope": "single_hand_21_landmarks_first_PC_supplies_ROI",
+  "float_conversion": {
+    "status": "float_conversion_passed",
+    "model_sha256": "048edd3645c9bf7397d19a9f6e3a42957d6e414c9bea6598030a2e9b624156e6",
+    "samples": 31,
+    "synthetic_samples": 3,
+    "real_roi_samples": 28,
+    "coordinate_max_abs_error_roi_units": 0.00092315673828125,
+    "presence_max_abs_error": 2.205371856689453e-06,
+    "parameters": 968640,
+    "operators": {
+      "DEQUANTIZE": 98,
+      "CONV_2D": 31,
+      "DEPTHWISE_CONV_2D": 16,
+      "MAX_POOL_2D": 1,
+      "ADD": 10,
+      "MEAN": 1,
+      "FULLY_CONNECTED": 2,
+      "LOGISTIC": 1
+    },
+    "input_contract": "224x224 RGB float32 [0,1], externally cropped hand ROI",
+    "output_contract": "63 raw ROI x/y/z values followed by hand presence; not word classes or metric world coordinates",
+    "limitations": [
+      "Float conversion only; no fixed-point, HLS, resource or PL deployment validation.",
+      "Synthetic conversion checks are not hand-detection accuracy evaluation."
+    ]
+  },
+  "roi_probes": {
+    "samples": 28,
+    "calibration": 21,
+    "validation": 7,
+    "validation_source_groups": [
+      "NL_lesson_08",
+      "NL_lesson_09",
+      "NL_lesson_10"
+    ],
+    "limitations": [
+      "PC supplies landmark-guided rotated ROIs; this is not autonomous PL detection.",
+      "ROIs are numerical probes, not manually annotated hand-landmark ground truth.",
+      "Crop follows a documented canonical transform, not a bit-exact reconstruction of MediaPipe ROI calculators."
+    ]
+  },
+  "integer_candidates": [
+    {
+      "status": "integer_reference_evaluated_not_hardware_validated",
+      "weight_bits": 8,
+      "activation_bits": 16,
+      "accumulator_bits": 48,
+      "calibration_rois": 21,
+      "validation_rois": 7,
+      "coordinate_max_abs_error_roi_units": 22.130271911621094,
+      "coordinate_mean_abs_error_roi_units": 2.1250293337147323,
+      "presence_max_abs_error": 0.2067408412694931,
+      "coordinates_within_2_roi_units": false,
+      "presence_within_002": false,
+      "validation_clipped_elements": 0,
+      "max_observed_accumulator_code": 10153302687744,
+      "kernel_values": 957152,
+      "kernel_packed_bytes": 957152,
+      "kernel_container_bytes": 957152,
+      "macs_per_roi": 145562816,
+      "max_activation_elements": 802816,
+      "limitations": [
+        "Numerical drift vs imported float model, not manually annotated landmark accuracy.",
+        "Only seven held-out numerical ROI probes; no generalization or hardware latency claim.",
+        "Float64 exact-integer convolution bound checked; averaging/rescaling and LUT still require independent C/RTL parity.",
+        "No CSim, synthesis, bitstream or PL inference has been completed by this script."
+      ],
+      "float_presence_accepted_rois": 5,
+      "presence_decision_mismatches": 1,
+      "accepted_coordinate_max_abs_error_roi_units": 12.02166748046875
+    },
+    {
+      "status": "integer_reference_evaluated_not_hardware_validated",
+      "weight_bits": 12,
+      "activation_bits": 16,
+      "accumulator_bits": 48,
+      "calibration_rois": 21,
+      "validation_rois": 7,
+      "coordinate_max_abs_error_roi_units": 14.056259155273438,
+      "coordinate_mean_abs_error_roi_units": 0.6763183095947217,
+      "presence_max_abs_error": 0.016769900918006897,
+      "coordinates_within_2_roi_units": false,
+      "presence_within_002": true,
+      "validation_clipped_elements": 0,
+      "max_observed_accumulator_code": 10153302687744,
+      "kernel_values": 957152,
+      "kernel_packed_bytes": 1435728,
+      "kernel_container_bytes": 1914304,
+      "macs_per_roi": 145562816,
+      "max_activation_elements": 802816,
+      "limitations": [
+        "Numerical drift vs imported float model, not manually annotated landmark accuracy.",
+        "Only seven held-out numerical ROI probes; no generalization or hardware latency claim.",
+        "Float64 exact-integer convolution bound checked; averaging/rescaling and LUT still require independent C/RTL parity.",
+        "No CSim, synthesis, bitstream or PL inference has been completed by this script."
+      ],
+      "float_presence_accepted_rois": 5,
+      "presence_decision_mismatches": 0,
+      "accepted_coordinate_max_abs_error_roi_units": 1.5789566040039062
+    },
+    {
+      "status": "integer_reference_evaluated_not_hardware_validated",
+      "weight_bits": 16,
+      "activation_bits": 16,
+      "accumulator_bits": 48,
+      "calibration_rois": 21,
+      "validation_rois": 7,
+      "coordinate_max_abs_error_roi_units": 13.110946655273438,
+      "coordinate_mean_abs_error_roi_units": 0.561567576143484,
+      "presence_max_abs_error": 0.019435226917266846,
+      "coordinates_within_2_roi_units": false,
+      "presence_within_002": true,
+      "validation_clipped_elements": 0,
+      "max_observed_accumulator_code": 10153302687744,
+      "kernel_values": 957152,
+      "kernel_packed_bytes": 1914304,
+      "kernel_container_bytes": 1914304,
+      "macs_per_roi": 145562816,
+      "max_activation_elements": 802816,
+      "limitations": [
+        "Numerical drift vs imported float model, not manually annotated landmark accuracy.",
+        "Only seven held-out numerical ROI probes; no generalization or hardware latency claim.",
+        "Float64 exact-integer convolution bound checked; averaging/rescaling and LUT still require independent C/RTL parity.",
+        "No CSim, synthesis, bitstream or PL inference has been completed by this script."
+      ],
+      "float_presence_accepted_rois": 5,
+      "presence_decision_mismatches": 1,
+      "accepted_coordinate_max_abs_error_roi_units": 0.9852066040039062
+    }
+  ],
+  "tile": {
+    "scope": "MAC_tile_only_not_hand_landmark_inference",
+    "tool_return_code": 0,
+    "target": "xc7z020clg400-1",
+    "clock_target_ns": 10,
+    "lanes": 16,
+    "test_cases": 6,
+    "synthesis_requested": true,
+    "bitstream_generated": false,
+    "board_programmed": false,
+    "rtl_cosimulation_requested": true,
+    "real_first_convolution_probe": true,
+    "sources_sha256": {
+      "kp_gemm_tile.cpp": "25852d8309ff5baf22537b57d27f0ab234881fd52e80d8f7437faccad30625f8",
+      "kp_gemm_tile.hpp": "2e8adb6dd7f13fa89a234a824b039e3165d9270d896040bf8dd91cf728f529af",
+      "kp_gemm_tile_test.cpp": "50e4c845af4cc0907afa4a35c6b00e051f675f383f0e1b01140d1586a436c0fb"
+    },
+    "resources": {
+      "BRAM_18K": "23",
+      "DSP": "24",
+      "FF": "8124",
+      "LUT": "9944",
+      "URAM": "0"
+    },
+    "timing_estimate": {
+      "unit": "ns",
+      "EstimatedClockPeriod": "7.300"
+    },
+    "csim_log_tail": [
+      "   Compiling ../../../../../../algo/keypoints/kp_gemm_tile.cpp in debug mode",
+      "   Generating csim.exe",
+      "CASES=6 MATCHED=596 MAX_LSB_ERROR=0",
+      "INFO: [SIM 1] CSim done with 0 errors.",
+      "INFO: [SIM 3] *************** CSIM finish ***************"
+    ],
+    "cosim_report": "Report time       : Sun Oct 25 19:34:22     2026.\nSolution          : solution1.\nSimulation tool   : xsim.\n\n+----------+----------+-----------------------------------------------+-----------------------------------------------+----------------------+\n|          |          |             Latency(Clock Cycles)             |              Interval(Clock Cycles)           | Total Execution Time |\n+   RTL    +  Status  +-----------------------------------------------+-----------------------------------------------+    (Clock Cycles)    +\n|          |          |      min      |      avg      |      max      |      min      |      avg      |      max      |                      |\n+----------+----------+-----------------------------------------------+-----------------------------------------------+----------------------+\n|      VHDL|        NA|             NA|             NA|             NA|             NA|             NA|             NA|                    NA|\n|   Verilog|      Pass|             52|           2665|          12731|            591|           3095|          12725|                 18625|\n+----------+----------+-----------------------------------------------+-----------------------------------------------+----------------------+\n"
+  },
+  "evidence_sha256": {
+    "project/_tmp/kp_float_real_v1/report.json": "3d22e660ef60001734146d046d3d065eafd2ee248cefac0a3661b5eea07b8347",
+    "project/_tmp/kp_rois_v1/report.json": "c153a41f3cc6121e0d64651dfe34c5a059c008fdb90dbd9a8229f1183a3b406b",
+    "project/_tmp/kp_tile_hls_v4/report.json": "452b1fb6c091f2440e0d38a7c0a4b4f218c242202b45e356d7fe1c37bce976fc"
+  },
+  "pending": [
+    "Independent whole-network C/integer parity, including depthwise/non-MAC operations.",
+    "DDR graph scheduler and model transport; complete AXI integration.",
+    "Full-design implementation/timing and matching bit/hwh.",
+    "Cold-boot deployment and actual ROI-to-landmark latency/accuracy evaluation."
+  ],
+  "whole_landmark_network_synthesized": false,
+  "bitstream_generated": false,
+  "board_programmed": false
+}
