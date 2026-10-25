@@ -125,6 +125,20 @@ def test_hdmi_attach_existing_owner_never_reloads(monkeypatch):
     assert not any(sudo for command,sudo in commands)
 
 
+def test_hdmi_explicit_candidate_requires_both_hashes(monkeypatch,tmp_path):
+    import json
+    candidate=tmp_path/'candidate.json'
+    candidate.write_text(json.dumps({'artifacts':{'bit':{'sha256':'newbit'},
+                                                  'hwh':{'sha256':'newhwh'}}}))
+    link,commands=mock_link(monkeypatch,pair=('newbit','newhwh'))
+    link.args.release_manifest=candidate
+    assert link.prepare()['bit_sha256']=='newbit'
+    link,commands=mock_link(monkeypatch,pair=('newbit','hwh'))
+    link.args.release_manifest=candidate
+    with pytest.raises(RuntimeError,match='bit/hwh'):
+        link.prepare()
+
+
 @pytest.mark.parametrize('changes,message', [({'writers':True},'writer'),
     ({'pair':('wrong','hwh')},'bit/hwh'),({'boot':'start'},'Cold boot')])
 def test_hdmi_refuses_unsafe_attach(monkeypatch, changes, message):

@@ -89,6 +89,7 @@ def main():
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--synth',action='store_true')
     parser.add_argument('--cosim',action='store_true',help='Run XSim C/RTL co-simulation after synthesis')
+    parser.add_argument('--export-ip',action='store_true')
     parser.add_argument('--integer-model',type=Path)
     parser.add_argument('--rois',type=Path)
     parser.add_argument('--vitis-hls',type=Path,default=Path('F:/APP/Xilinx/Vitis_HLS/2024.1/bin/vitis_hls.bat'))
@@ -119,8 +120,9 @@ def main():
         'set_part {xc7z020clg400-1}',
         'create_clock -period 10',
         'csim_design -clean',
-        'csynth_design' if args.synth or args.cosim else '',
+        'csynth_design' if args.synth or args.cosim or args.export_ip else '',
         'cosim_design -rtl verilog -tool xsim -trace_level none' if args.cosim else '',
+        'export_design -format ip_catalog -rtl verilog' if args.export_ip else '',
         'exit',''])
     (output/'build.tcl').write_text(tcl,encoding='utf-8')
     with (output/'console.log').open('w',encoding='utf-8') as log:
@@ -131,6 +133,7 @@ def main():
                   test_cases=len(cases),synthesis_requested=args.synth,
                   bitstream_generated=False,board_programmed=False)
     report['rtl_cosimulation_requested'] = args.cosim
+    report['ip_export_requested'] = args.export_ip
     report['real_first_convolution_probe'] = bool(args.integer_model)
     report['sources_sha256'] = {p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in src.glob('*') if p.is_file()}
     xml = output/'tile_prj/solution1/syn/report/kp_gemm_tile_csynth.xml'

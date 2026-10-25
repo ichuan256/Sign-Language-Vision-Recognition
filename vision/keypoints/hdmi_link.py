@@ -60,7 +60,12 @@ class HDMILink:
             raise RuntimeError('Cold boot has not finished; do not load/reconfigure FPGA')
         hashes = self.ssh('sha256sum /home/xilinx/kws_hdmi.bit /home/xilinx/kws_hdmi.hwh').splitlines()
         pair = tuple(row.split()[0] for row in hashes)
-        if pair not in accepted_pairs():
+        allowed = accepted_pairs()
+        candidate = getattr(self.args,'release_manifest',None)
+        if candidate is not None:
+            release = json.loads(Path(candidate).read_text(encoding='utf-8'))
+            allowed.add(tuple(release['artifacts'][suffix]['sha256'] for suffix in ('bit','hwh')))
+        if pair not in allowed:
             raise RuntimeError('Board bit/hwh pair does not match an accepted local release')
         for script in ('hdmi_display.py','hdmi_audio_receiver.py'):
             expected = hashlib.sha256((BOARD_DIR/script).read_bytes()).hexdigest()
@@ -156,6 +161,7 @@ def main():
     parser.add_argument('--seconds', type=int, default=600, help='Link duration, default 10 minutes; last frame remains after exit')
     parser.add_argument('--fps', type=int, default=15)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--release-manifest',type=Path,help='Explicit paired candidate manifest; does not change global accepted releases')
     args = parser.parse_args()
     if not 1 <= args.seconds <= 600 or not 1 <= args.fps <= 30:
         parser.error('seconds must be in [1,600]; fps in [1,30]')
