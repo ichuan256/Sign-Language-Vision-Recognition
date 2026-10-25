@@ -1,0 +1,45 @@
+{
+  "scope": "moving_replay_with_PC_cached_ROI_and_actual_PL_pose",
+  "observation": {
+    "active": true,
+    "video_frames": 3840,
+    "elapsed_s": 254.18799999999464,
+    "source_timestamp_s": 254.16666666666666,
+    "pl_results": 125,
+    "unique_PL_inputs": 16,
+    "unique_PL_outputs": 16,
+    "latest_PL_forward_s": 2.0293409629998678,
+    "pending_ROIs_replaced": 1907,
+    "hdmi_state": {
+      "frames_published": 3840,
+      "frame_requests": 1394,
+      "frame_id": 3839,
+      "source_timestamp_s": 254.16666666666666,
+      "size": [
+        1280,
+        720
+      ],
+      "published_monotonic_s": 198702.296
+    },
+    "cpu_neural_fallback": false
+  },
+  "screen_visually_confirmed": true,
+  "confirmation": "User confirmed moving video, increasing FRAME and changing PL result number",
+  "source_SHA_verified": true,
+  "ROI_transport_SHA_verified_per_result": true,
+  "observed_results": 125,
+  "unique_inputs": 16,
+  "unique_outputs": 16,
+  "PL_forward_median_s": 1.9752364280000165,
+  "input_source": "one looping SHA-matched video, PC cached hand ROI",
+  "PC_roi_position_tracking": true,
+  "PL_pose_source_frame_and_age_displayed": true,
+  "cpu_neural_fallback": false,
+  "evidence_dir": "project/_tmp/kp_dynamic_pl_v1",
+  "limitations": [
+    "Snapshot during bounded 600-second run; not a heartbeat or completed 10-minute stability test",
+    "PC publish FPS is not HDMI physical refresh FPS or PL pose FPS",
+    "Last PL finger pose mapped into current PC ROI; delayed pose, not autonomous PL detector",
+    "One known video and cached ROI track; not arbitrary input-video acceptance"
+  ]
+}

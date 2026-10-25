@@ -5,7 +5,7 @@
 原始结构、模型 SHA256、算子清单和资源依据见 [preflight.json](preflight.json)。
 
 以上为最初前置检查快照。用户随后已确认单手 21 点先行，最新实施状态见
-[整网上板记录](single_hand_board.md)；模型转换与定点精度证据见 [单手阶段记录](single_hand_stage1.md)。
+[第二阶段加速记录](single_hand_acceleration.md)；首版上板见 [整网上板记录](single_hand_board.md)，模型转换与定点精度证据见 [单手阶段记录](single_hand_stage1.md)。
 
 以下为初始检查的历史记录，不代表后续实施状态。
 

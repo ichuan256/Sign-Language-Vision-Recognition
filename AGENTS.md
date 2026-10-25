@@ -173,7 +173,9 @@ git push origin main
 ## 6. 当前未结待办【通用】（接手时核对）
 
 - 当前优先级（2026-10-25）：先做无语义的通用身体/双手实时关键点，再做动作/词义分类；纯关键点入口 `vision/keypoints/live_demo.py`，用法 `vision/keypoints/README.md`，文件源基准 `vision/analysis/keypoints_20261025/README.md`。USB 实时、交叉/遮挡和快速运动尚未验收，文件 FPS 不能当摄像头实时 FPS。
-- 通用关键点 PL：单手 21 点完整网络已上板，PC 提供规范化 ROI，PL 执行神经网络、PS 调度搬运；1 ROI 的 64 输出与整数参考完全一致，前向 12.276 秒，尚不实时。新固件冷启动加载、HDMI 静态 ROI 叠加已目视通过；当前状态及哈希只在 `project/analysis/keypoints_pl_20261025/single_hand_board.md/.json`。本机板上正在运行该候选，旧 W6 本地发布文件未覆盖；HDMI 接管需显式 `--release-manifest`，旧 ASR 固件核验可能拒绝，未验收新固件音频。禁止为迁就旧哈希运行中重载 bit。原固件备份记录在 `project/_tmp/kp_board_deploy_v2/deployment.json`。该路线不是 R3 词语分类 CNN。
+- 通用关键点 PL：单手 21 点完整网络已上板，PC 提供规范化 ROI，PL 执行网络、PS 调度。第二阶段首轮：整层核、融合 ReLU、专用 depthwise、参数及卷积输出常驻 DDR；115 次调用/ROI，36 层直接复用输入地址。1 个 ROI 重复 3 次、每次 64 输出均与整数参考完全一致；前向 1.859～1.878 秒，比首版 12.276 秒约快 6.6 倍，仍未达到 5Hz。HDMI 静态叠加与耗时已目视确认。当前状态及哈希只在 `project/analysis/keypoints_pl_20261025/single_hand_acceleration.md/.json`；首版记录保留。主要剩余瓶颈是 depthwise 读取和卷积流水线，不能把 HDMI 刷新率当关键点帧率。该路线不是 R3 词语分类 CNN。
+- 【本机专用】板上当前为整层加速候选，旧 W6 本地发布文件未覆盖；HDMI 接管显式指定当前 `--release-manifest`。旧 ASR 固件核验可能拒绝，未验收本候选音频；禁止为迁就旧哈希运行中重载 bit。上一版 12.276 秒固件备份记录在 `project/_tmp/kp_layer_deploy_v1/deployment.json`，更早 W6 备份在 `project/_tmp/kp_board_deploy_v2/deployment.json`。
+- PL 动态演示入口：`python -m vision.keypoints.dynamic_pl`，板端常驻 `stream_hand_board.py`；使用已知视频及缓存 PC ROI 定位，PL 提供延迟的手指姿态，没有 CPU 网络回退。视频连续、帧号和 PL 编号变化已目视确认，证据 `project/analysis/keypoints_pl_20261025/dynamic_replay.json`。PC 发布目标 15fps 不等于 HDMI 或 PL 帧率，PL 并发约 1.97 秒/ROI；600 秒后停止并留最后一帧。`show_hand_result.py` 只用于静态验收，不能再当动态入口。
 - M0 已完成：新工程全量重建出 bit、板端点亮 + 音频回路复验通过（2026-10-23，见移植清单）
 - M0b：从空目录重建脚本化（源工程此路径未验收过）；剥离传感器 SPI/DMA 与旧 HLS KWS，释放 PL 资源
 - 视觉线：`再见` 缺一条片段待核对；短词类（很/服务/待会儿见）DTW 混淆待排查；USB 摄像头实测未做

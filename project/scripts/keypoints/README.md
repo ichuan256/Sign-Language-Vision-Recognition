@@ -13,6 +13,7 @@
 | `pack_hand_model.py` | 将定点候选打包为纯整数权重、bias 和控制参数，vision 环境 |
 | `validate_hand_runtime.py` | 编译真实 HLS C 核并执行完整网络，对齐整数参考，vision 环境 |
 | `build_vector_hls.py` | 非 MAC 算子的 CSim / HLS 综合 / C-RTL / IP 导出，vision 环境 |
+| `build_layer_hls.py` | 整层卷积/专用 depthwise/融合 ReLU 的 CSim、综合、C-RTL、IP 导出 |
 | `make_register_map.py` | 从 HLS 生成的驱动头解析寄存器偏移，vision 环境 |
 | `run_system_build.py` | 独立 Vivado 工程 inspect / prepare / synth / impl，串行构建 |
 | `deploy_hand_board.py` | 校验、备份当前 pair、成对替换并冷重启；默认只准备清单 |
@@ -20,7 +21,7 @@
 | `show_hand_result.py` | 将已验证的 PL 坐标叠加到静态 ROI，有界显示 HDMI |
 | `publish_hand_board.py` | 从板端输出、实现报告和 HDMI 验收生成紧凑证据 JSON |
 
-当前已通过的实际部署状态见 [整网上板记录](../../analysis/keypoints_pl_20261025/single_hand_board.md)，
+当前已通过的实际部署状态见 [第二阶段加速记录](../../analysis/keypoints_pl_20261025/single_hand_acceleration.md)，
 驱动和板端入口见 [board/keypoints](../../board/keypoints/README.md)。
 
 典型执行顺序：
@@ -52,3 +53,11 @@ F:\PLD\.venv-vision\Scripts\python.exe project/scripts/keypoints/run_system_buil
 构建过程中不要启动其他 Vivado 综合/实现。`constraints_resume` 仅用于已停止的隔离工程补齐旧 W6
 时序配置并重置顶层运行；`--attempt` 用于保留不同重试日志，不覆盖失败证据。
 所有候选都须通过 routed setup/hold、时钟方法学和实际板端数值门禁；已有旧接口告警边界见当前记录。
+
+整层版本：主机验证加 `--layer`；`build_layer_hls.py --export-ip` 导出层核后，
+`run_system_build.py prepare --layer-ip <导出 impl/ip>` 选择该核，`make_register_map.py --layer-ip <同一路径>`
+生成 `whole_layer_v2` 寄存器映射。不要混用旧分块固件和新寄存器文件。
+板端测速可用 `run_hand_remote.py --repeat 3`，同进程复用模型和缓冲区，逐次核对完整输出。
+
+`show_hand_result.py` 只显示静态验收 ROI。连续动态演示用 `python -m vision.keypoints.dynamic_pl`，
+具体命令见 [板端说明](../../board/keypoints/README.md)；两种入口不能混称视频实时追踪。
