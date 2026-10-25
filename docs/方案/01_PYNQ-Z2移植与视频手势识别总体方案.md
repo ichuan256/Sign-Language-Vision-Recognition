@@ -1,7 +1,7 @@
 # PYNQ-Z2 移植与视频输入高动态手势识别总体方案
 
 设计基线日期：2026-10-23。实施状态已更新，见 [仓库入口](../../README.md)；
-当前样本见 [数据入口](../../analysis/dataset/README.md)，PL 分类器见 [R3 入口](../../analysis/r3/README.md)。
+当前样本见 [数据入口](../../vision/analysis/dataset/README.md)，PL 分类器见 [R3 入口](../../project/analysis/r3/README.md)。
 源工程：`F:\PLD\pld-sign-glove`（妙手通言）。目标仓库：`F:\PLD_new\Sign-Language-Vision-Recognition`（随 git 上传）。
 
 > 本文保留移植与视频识别线的总体设计基线。源工程既有的接口冻结、
@@ -58,7 +58,7 @@
 
 ```
 Sign-Language-Vision-Recognition\
-  pynq-vision\                  # 新板端工程（沿用源工程目录约定）
+  project\                  # 新板端工程（沿用源工程目录约定）
     fpga\ip_repo\               # rgb2dvi / axi_dynclk / color_swap / audio_codec_ctrl / tmds if
     fpga\scripts\               # 更名后的 w6_* 构建脚本 + 新增 hdmi_in / ov5640 脚本
     fpga\xdc\                   # hdmi.xdc / audio.xdc（后续 hdmi_in.xdc / ov5640.xdc）
@@ -68,8 +68,8 @@ Sign-Language-Vision-Recognition\
   vision\                       # 视频手势识别（自 algo/sign_video 演进）
     framesource\                # §4 的输入抽象层
     keypoints\  features\  classify\
-  asr\                          # 音频线上位机（自 ps/asr 裁剪）
-  video\                        # 现有视频素材库（gitignore，不上传）
+  ASR\                          # 音频线上位机（自 ps/asr 裁剪）
+  vision\video\                        # 现有视频素材库（gitignore，不上传）
   docs\                         # 本方案及后续接口冻结
 ```
 

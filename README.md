@@ -8,24 +8,20 @@ PYNQ-Z2 手语识别系统·新主线：**视频输入 → 高动态手势识别
 
 | 目录 | 内容 |
 |---|---|
-| `pynq-vision/` | 板端工程：Vivado 2024.1 工程（xc7z020clg400）、IP 仓库、构建脚本、板端脚本、已发布与新构建固件 |
-| `vision/` | 视频手势识别：帧源抽象 `framesource/`、流式关键点 `keypoints/`、DTW 基线 `classify/`、特征提取 `sign_video/`、M1 运行器与结果 `m1/` |
-| `asr/` | 音频线上位机（sherpa-onnx 流式 ASR → HDMI 字幕/手语视频连播） |
-| `docs/方案/` | 总体方案与接口约定 |
-| `analysis/` | 数据现状、PL 状态与历史实验证据，见 [分析入口](analysis/README.md) |
-| `scripts/` | 运行与复跑工具；数据审计在 `dataset/`，量化/HLS 在 `r3/` |
-| `data/` | 数据清单、历史素材与导出产物，见 [数据目录](data/README.md) |
-| `tools/` | 剪裁/核验和便携工具，见 [工具入口](tools/README.md) |
-| `video/` | 素材库（**不入库**，线下共享；精剪清单 CSV 在库内） |
-| `AGENTS.md` | 工具链操作手册（构建/部署/踩坑，接手必读） |
+| [ASR/](ASR/README.md) | 音频识别、上位机启动器与音频演示 |
+| [docs/](docs/README.md) | 总体方案、接口约定与协作记录 |
+| [vision/](vision/README.md) | 视觉代码、网页、模型、测试、数据清单、素材与分析 |
+| [project/](project/README.md) | FPGA/板端工程、R3 量化与 HLS、构建缓存与日志 |
+
+根目录仅保留这四个主目录，以及 `README.md`、`AGENTS.md` 和 Git 必需文件。
 
 共享素材交接见 [共享包说明](docs/协作/共享包说明.md)，网页依赖在
-`webapp/requirements.txt`。新增清单、导出数据、便携工具均放入对应目录，避免根目录平铺。
+`vision/webapp/requirements.txt`。新增清单、导出数据、便携工具均放入对应目录，避免根目录平铺。
 
 ## 当前阅读入口（2026-10-25）
 
-- [样本现状与补采](analysis/dataset/README.md)：数据总量、标签问题与下一轮采样设计。
-- [PL 路线状态](analysis/r3/README.md)：量化基线、CSim 对齐、资源门禁；当前模型未部署。
+- [样本现状与补采](vision/analysis/dataset/README.md)：数据总量、标签问题与下一轮采样设计。
+- [PL 路线状态](project/analysis/r3/README.md)：量化基线、CSim 对齐、资源门禁；当前模型未部署。
 - [系统总体方案](docs/方案/01_PYNQ-Z2移植与视频手势识别总体方案.md) 与
   [PL 分类器方案](docs/方案/02_路线3_PL加速板端离线识别设计.md)：目标架构和接口。
 
@@ -33,7 +29,7 @@ PYNQ-Z2 手语识别系统·新主线：**视频输入 → 高动态手势识别
 
 - **M0 移植**：HDMI+音频合一工程已从本仓库干净重建出 bitstream 并**通过板端验收**
   （部署哈希一致、720p 画面目视确认、LINE IN 左声道信号正常）；
-  产物与对照见 `pynq-vision/board_validation/w6/timing_candidate/`。
+  产物与对照见 `project/board_validation/w6/timing_candidate/`。
 - **BTN0 一键启动**：通电后按板载 BTN0，约 1 秒开始音频识别演示（ASR 模型 PC 开机预载，
   板端 button-watch.service 监听按键）。链路与用法见 `AGENTS.md` §4b。
 - **M1 识别基线**：8 类 28 条已审定精剪片段，DTW 留出法基线已跑通；
@@ -49,8 +45,8 @@ PYNQ-Z2 手语识别系统·新主线：**视频输入 → 高动态手势识别
 F:\PLD\.venv-vision\Scripts\python.exe -X utf8 -m vision.m1.live_demo --source file:<片段.mp4> --templates vision/m1/runs/extract_part1 vision/m1/runs/extract_part2 vision/m1/runs/extract_part3
 
 # FPGA 构建（Vivado 2024.1，必须走 cmd 批处理）
-pynq-vision\fpga\scripts\run_w6_hdmi.bat
-pynq-vision\fpga\scripts\launch_w6_build.bat
+project\fpga\scripts\run_w6_hdmi.bat
+project\fpga\scripts\launch_w6_build.bat
 ```
 
 详细操作卡片与踩坑表见 [AGENTS.md](AGENTS.md)；系统级方案见
