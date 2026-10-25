@@ -16,9 +16,9 @@ F:/PLD/.venv-audio/Scripts/python.exe -X utf8 ps/asr/run_audio_line.py --model F
 
 浏览器打开 `http://127.0.0.1:8765`。统一启动默认使用板端麦克风并开始聆听，界面的“停止聆听”仍有效。退出启动器用 Ctrl+C，它清理自己创建的电脑服务与隧道，不重刷 FPGA、不释放原输出进程的帧缓冲。不要同时启动旧手工服务或第二个启动器；端口 18767 防止重复启动，已有其他 8765 服务会报告冲突。
 
-日志在 `_tmp/audio_line/`，sudo 密码仅用于当前启动器进程，不写入仓库，也不传给识别服务。这个入口是手动启动后守护，不代表已经安装 Windows 登录启动项或板卡全自动开机服务。
+日志在 `project/_tmp/audio_line/`，sudo 密码仅用于当前启动器进程，不写入仓库，也不传给识别服务。这个入口是手动启动后守护，不代表已经安装 Windows 登录启动项或板卡全自动开机服务。
 
-2026-10-20 已实际验证专用 SSH 隧道中断后音频与 HDMI 自动恢复、原显示 PID 保持不变；专项回归增加到 10 项，包括网络恢复与 Windows 子进程退出清理。冷启动后全自动恢复及更长时间负载仍需另行验证，见[本轮记录](../../analysis/audio_loop_20261020/README.md)。
+2026-10-20 已实际验证专用 SSH 隧道中断后音频与 HDMI 自动恢复、原显示 PID 保持不变；专项回归增加到 10 项，包括网络恢复与 Windows 子进程退出清理。冷启动后全自动恢复及更长时间负载仍需另行验证，见本轮记录（历史引用，当前仓库未收录原报告）。
 
 ## 当前状态
 
@@ -30,8 +30,8 @@ F:/PLD/.venv-audio/Scripts/python.exe -X utf8 ps/asr/run_audio_line.py --model F
 - 原有识别与播放检查，加上音频断流重连和 Windows 子进程退出清理，共 10 项专项回归通过。
 - 用户已接好板端麦克风并重新开机，原矩形已由用户确认可见。当前使用 W6 中的 LINE IN 左声道，不加载 base.bit，也不使用电脑麦克风。
 - 板端三秒探测：48 kHz，左声道 RMS 0.0732、峰值 0.8948，右声道接近静音。已部署连续原生采样及本地 HTTP 音频服务，经 SSH 转发供电脑 ASR 使用。
-- 已从指定 B 站视频下载 22 个分段，整理第一课的五条静音手语片段，复制到板卡 SD。电脑启动时从 SD 读取并验证哈希后缓存，见[素材索引](../../video/README.md)。
-- 现场音频日志已识别“你好”并触发真实手语片段；用户已明确确认“字幕和对应视频都正常”。保存快照时 4 次任务完成，共 176 帧视频，HDMI 接收持续更新，帧地址保持 `0x15c00000`，见[联调记录](../../analysis/audio_loop_20261019/README.md)。
+- 已从指定 B 站视频下载 22 个分段，整理第一课的五条静音手语片段，复制到板卡 SD。电脑启动时从 SD 读取并验证哈希后缓存，见[素材共享约定](../docs/协作/共享包说明.md)。
+- 现场音频日志已识别“你好”并触发真实手语片段；用户已明确确认“字幕和对应视频都正常”。保存快照时 4 次任务完成，共 176 帧视频，HDMI 接收持续更新，帧地址保持 `0x15c00000`，见联调记录（历史引用，当前仓库未收录原报告）。
 - 识别停止后重新开始、实际 SSH 通信中断恢复均已测试。服务累计运行至少 684 秒，恢复后另采样 293 秒、60 次状态检查，无新增异常。更长期稳定性、逐类定量识别、物理断电自动启动仍待验证，没有把首批词库当作任意语句手语翻译。
 
 ## 当前板端输入模式
@@ -54,7 +54,7 @@ ssh -N -o ExitOnForwardFailure=yes -L 18766:127.0.0.1:8766 -R 18765:127.0.0.1:87
 电脑启动实际闭环服务：
 
 ```powershell
-F:/PLD/.venv-audio/Scripts/python.exe -X utf8 ps/asr/audio_loop.py --model F:/PLD/asr_test/sherpa-onnx-streaming-zipformer-zh-14M-2023-02-23 --manifest video/phrases_sd.json --board-audio-url http://127.0.0.1:18766/pcm
+F:/PLD/.venv-audio/Scripts/python.exe -X utf8 ps/asr/audio_loop.py --model F:/PLD/asr_test/sherpa-onnx-streaming-zipformer-zh-14M-2023-02-23 --manifest vision/video/phrases_sd.json --board-audio-url http://127.0.0.1:18766/pcm
 ```
 
 浏览器点击开始后读的是板端麦克风。启动前必须先让板端音频/素材服务与隧道可用。局域服务连接显式绕过系统 HTTP 代理，避免本机端口被系统代理转成 502。

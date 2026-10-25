@@ -23,7 +23,7 @@ from pathlib import Path
 from urllib.request import Request, build_opener, ProxyHandler
 
 ROOT = Path(__file__).resolve().parents[1]
-LOG_DIR = ROOT / '_tmp'
+LOG_DIR = ROOT / 'project/_tmp'
 TRIGGER_PORT = 18770           # 本服务监听（触发隧道落点）
 APP_PORT = 8765
 BOARD = 'xilinx@192.168.2.99'
@@ -58,7 +58,7 @@ class Resident:
             return
         env = dict(os.environ, AUDIO_BOARD_SUDO_PASSWORD='xilinx')
         self.line = subprocess.Popen(
-            [sys.executable, '-X', 'utf8', str(ROOT / 'asr' / 'run_audio_line.py'),
+            [sys.executable, '-X', 'utf8', str(ROOT / 'ASR' / 'run_audio_line.py'),
              '--model', self.model],
             stdout=(LOG_DIR / 'audio_line.out.log').open('ab'),
             stderr=(LOG_DIR / 'audio_line.err.log').open('ab'), env=env)

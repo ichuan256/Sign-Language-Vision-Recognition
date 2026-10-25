@@ -13,7 +13,7 @@ from pathlib import Path
 from urllib.request import build_opener, ProxyHandler
 
 ROOT = Path(__file__).resolve().parents[1]
-BOARD_DIR = ROOT / 'pynq-vision' / 'board' / 'w6'
+BOARD_DIR = ROOT / 'project' / 'board' / 'w6'
 BOARD_PYTHON = '/usr/local/share/pynq-venv/bin/python'
 
 
@@ -42,7 +42,7 @@ class AudioLine:
         self.password = os.environ.get('AUDIO_BOARD_SUDO_PASSWORD')
         if self.password is None:
             self.password = getpass.getpass('Board sudo password: ')
-        self.directory = ROOT / '_tmp' / 'audio_line'
+        self.directory = ROOT / 'project/_tmp' / 'audio_line'
         self.directory.mkdir(parents=True, exist_ok=True)
         self.tunnel = self.app = None
         self.boot_id = None
@@ -78,7 +78,7 @@ class AudioLine:
         if self.ssh('sha256sum /home/xilinx/kws_hdmi.bit').split()[0] not in accepted_bit_hashes():
             raise RuntimeError('Board bit file differs from the accepted W6 release')
         if deploy or current_boot != self.boot_id:
-            sources = [ROOT / 'asr/board_audio_stream.py', ROOT / 'asr/board_pcm_capture.c',
+            sources = [ROOT / 'ASR/board_audio_stream.py', ROOT / 'ASR/board_pcm_capture.c',
                        BOARD_DIR / 'hdmi_audio_receiver.py',
                        BOARD_DIR / 'hdmi_display.py']
             subprocess.run(['scp', *self.ssh_options, *map(str, sources),
@@ -134,8 +134,8 @@ class AudioLine:
                     except OSError:
                         raise RuntimeError('Port 8765 in use by an unhealthy app; stop it first')
             self.app = self.child('app', [sys.executable, '-X', 'utf8',
-                str(ROOT / 'asr/audio_loop.py'), '--model', self.args.model,
-                '--manifest', str(ROOT / 'asr/phrases_sd.json'),
+                str(ROOT / 'ASR/audio_loop.py'), '--model', self.args.model,
+                '--manifest', str(ROOT / 'ASR/phrases_sd.json'),
                 '--board-audio-url', 'http://127.0.0.1:18766/pcm'])
                 # 不带 --listen-on-start：模型在构造时已预载，识别由 BTN0 触发 POST /start
 
