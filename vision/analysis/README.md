@@ -2,6 +2,7 @@
 
 当前优先验证 [通用关键点实时链路](keypoints_20261025/README.md)，不涉及词义分类。
 文件吞吐与摄像头实时验收分开记录，摄像头尚未实测。
+录制视频实时回放到板卡 HDMI 的连续运动已目视确认，见 [联调记录](keypoints_hdmi_20261025/README.md)；单目 OV5640 未到货。
 
 当前样本状态见 [dataset/README.md](dataset/README.md)，PL 路线状态见
 [r3/README.md](../../project/analysis/r3/README.md)。先读这两处，再查带日期的实验记录。

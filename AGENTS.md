@@ -176,6 +176,6 @@ git push origin main
 - M0b：从空目录重建脚本化（源工程此路径未验收过）；剥离传感器 SPI/DMA 与旧 HLS KWS，释放 PL 资源
 - 视觉线：`再见` 缺一条片段待核对；短词类（很/服务/待会儿见）DTW 混淆待排查；USB 摄像头实测未做
 - 音频线：长期稳定性与断电自动启动未验收；BTN0 停止语义（当前幂等开始，停止走网页）
-- M3：OV5640 双目采集（已定方案，Pmod JA/JB + Arduino IO 已预留；M2 HDMI-in 暂缓）
+- 当前输入路线（2026-10-25 用户更新）：单目 OV5640 未到货，只留 `OV5640MonoSource` 接口；原双目路线改为历史兼容。先用 `replay:` 录制视频按实时节拍模拟摄像头，PC 叠加关键点后传到板卡 HDMI；操作卡 `vision/keypoints/HDMI_REPLAY.md`。连续运动已目视确认；接收有时限，到时保留最后一帧，不能误当作仍在播放。
 - 路线 3：HLS C 综合已跑通，资源/时序门禁未通过，未导出 IP；阶段状态与证据只在 `project/analysis/r3/README.md` 汇总，复跑脚本放 `project/scripts/r3/`。
 - 数据：清单审计已完成，语义清洗/人物标注/补采未完成；当前样本与补采只在 `vision/analysis/dataset/README.md` 汇总，审计工具放 `vision/scripts/dataset/`。提交者署名不能当人物 ID。
