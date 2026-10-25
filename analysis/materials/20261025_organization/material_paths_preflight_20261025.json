@@ -1,0 +1,99 @@
+[
+  {
+    "script": "cut_reviewed_20261022.py",
+    "exit_code": 0,
+    "paths": {
+      "sources": [
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\NL_tutorial\\P8-8.第八课 购物_《中国手语教程》_倪兰.mp4"
+      ],
+      "ffmpeg": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\工具\\losslesscut\\resources\\ffmpeg.exe",
+      "output_root": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\data\\exports\\material_candidates_P08-P10_20261022"
+    }
+  },
+  {
+    "script": "detect_boundaries_20261022.py",
+    "exit_code": 0,
+    "paths": {
+      "sources": [
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\NL_tutorial\\P8-8.第八课 购物_《中国手语教程》_倪兰.mp4"
+      ],
+      "ffmpeg": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\工具\\losslesscut\\resources\\ffmpeg.exe",
+      "inspection_root": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\_tmp\\inspect_frames"
+    }
+  },
+  {
+    "script": "export_fullframe_dataset.py",
+    "exit_code": 0,
+    "paths": {
+      "sources": [
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p01.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p02.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p03.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p04.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p05.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p06.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p07.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p08.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p09.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p10.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p11.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p12.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p13.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p14.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p15.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p16.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p17.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p18.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p19.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p20.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p21.mp4",
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\BV1Hs411E7aP\\BV1Hs411E7aP_p22.mp4"
+      ],
+      "ffmpeg": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\工具\\losslesscut\\resources\\ffmpeg.exe",
+      "output_root": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\data\\exports\\material_fullframe_20261021"
+    }
+  },
+  {
+    "script": "export_p01_reviewed_actions.py",
+    "exit_code": 0,
+    "paths": {
+      "sources": [
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\NL_tutorial\\P1-1.第一课 问候_《中国手语教程》_倪兰.mp4"
+      ],
+      "ffmpeg": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\工具\\losslesscut\\resources\\ffmpeg.exe",
+      "dataset_root": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\data\\exports\\material_fullframe_20261021",
+      "output_root": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\data\\exports\\material_fullframe_20261021\\第一课_动作周期_已核对_20261021"
+    }
+  },
+  {
+    "script": "export_p08_p10_candidates_20261022.py",
+    "exit_code": 0,
+    "paths": {
+      "sources": [
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\NL_tutorial\\P10-10.第十课 旅游_《中国手语教程》_倪兰.mp4"
+      ],
+      "ffmpeg": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\工具\\losslesscut\\resources\\ffmpeg.exe",
+      "output_root": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\data\\exports\\material_candidates_P08-P10_20261022"
+    }
+  },
+  {
+    "script": "make_overview_20261022.py",
+    "exit_code": 0,
+    "paths": {
+      "sources": [
+        "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\video\\raw\\NL_tutorial\\P10-10.第十课 旅游_《中国手语教程》_倪兰.mp4"
+      ],
+      "ffmpeg": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\工具\\losslesscut\\resources\\ffmpeg.exe",
+      "inspection_root": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\_tmp\\inspect_frames"
+    }
+  },
+  {
+    "script": "reorganize_p01_action_folders.py",
+    "exit_code": 0,
+    "paths": {
+      "package": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\data\\exports\\material_fullframe_20261021\\第一课_动作周期_已核对_20261021",
+      "exists": false,
+      "inspection_root": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\_tmp\\inspect"
+    }
+  }
+]

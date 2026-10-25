@@ -5,6 +5,21 @@ __pycache__/
 .pytest_cache/
 _inspect/
 tools/portable/losslesscut/
+# Read-only residue retained after locked portable resources were copied.
+/工具/
+# Exported media stay local; CSV/JSON manifests and validation records remain visible.
+data/exports/**/*.mp4
+data/exports/**/*.mov
+data/exports/**/*.mkv
+data/exports/**/*.avi
+data/exports/**/*.webm
+data/exports/**/*.m4v
+data/exports/**/*.wmv
+data/exports/**/*.mpg
+data/exports/**/*.mpeg
+data/exports/**/*.mts
+data/exports/**/*.m2ts
+data/exports/**/*.3gp
 raw/
 
 # video/ 为线下传播共享目录（raw+done+记录），不参与提交

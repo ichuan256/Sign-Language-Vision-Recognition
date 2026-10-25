@@ -15,10 +15,15 @@ import sys
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
+try:
+    from .media_paths import add_source_arguments, find_ffmpeg, resolve_source, print_preflight
+except ImportError:
+    from media_paths import add_source_arguments, find_ffmpeg, resolve_source, print_preflight
+
 ROOT = Path(__file__).resolve().parents[2]
-FFMPEG = ROOT.parent / "_tools" / "ffmpeg.exe"
-RAW_DIR = (ROOT / "raw" / "手语配套视频 《中国手语教程》（初级）倪兰"
-           / "手语配套视频 《中国手语教程》（初级）倪兰")
+FFMPEG = None
+SOURCE_ROOT = None
+
 LESSON_PREFIX = {"8": "P8-", "9": "P9-", "10": "P10-"}
 OUT_ROOT = ROOT / "data" / "exports" / "material_candidates_P08-P10_20261022"
 INVALID = str.maketrans({'/': '_', '\\': '_', ':': '_', '*': '_', '?': '_',
@@ -43,7 +48,7 @@ def cut(row, overwrite=False):
     cid = row["动作编号"]
     label = row["词句标签"].translate(INVALID).strip().rstrip(".")
     s, e = float(row["起始秒"]), float(row["结束秒_不含"])
-    src = next(RAW_DIR.glob(LESSON_PREFIX[row["课次"]] + "*.mp4"))
+    src = resolve_source(ROOT, family="NL_tutorial", lesson=row["课次"], source_root=SOURCE_ROOT)
     out_dir = OUT_ROOT / label
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / f"{cid}_{label}.mp4"
@@ -70,16 +75,26 @@ def cut(row, overwrite=False):
 
 
 def main():
+    global ROOT, FFMPEG, SOURCE_ROOT, OUT_ROOT
     ap = argparse.ArgumentParser()
+    add_source_arguments(ap)
     ap.add_argument("--csv", required=True)
     ap.add_argument("--from", dest="frm", type=int, default=0)
     ap.add_argument("--to", dest="to", type=int, default=10**9)
     ap.add_argument("--jobs", type=int, default=4)
     ap.add_argument("--overwrite", action="store_true")
     args = ap.parse_args()
+    ROOT = args.repo_root.resolve()
+    SOURCE_ROOT = args.source_root
+    FFMPEG = find_ffmpeg(ROOT, args.ffmpeg)
+    OUT_ROOT = ROOT / "data/exports/material_candidates_P08-P10_20261022"
 
     with open(args.csv, encoding="utf-8-sig") as f:
         rows = list(csv.DictReader(f))[args.frm:args.to]
+    if args.preflight:
+        sources = sorted({resolve_source(ROOT, family="NL_tutorial", lesson=r["课次"], source_root=SOURCE_ROOT) for r in rows})
+        print_preflight(sources, FFMPEG, output_root=str(OUT_ROOT))
+        return
     print(f"本批 {len(rows)} 条")
     with ThreadPoolExecutor(max_workers=args.jobs) as ex:
         results = list(ex.map(lambda r: cut(r, args.overwrite), rows))

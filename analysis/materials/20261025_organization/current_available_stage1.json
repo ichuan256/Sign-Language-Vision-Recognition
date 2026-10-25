@@ -1,0 +1,13 @@
+{
+  "manifest": "data/manifests/manifest_available_sha_verified_20261025.csv",
+  "sha256": "c7ad17f7e08f56cd515777658abacb8738ad3578e8fa2abb0ce25cfa73ef1e86",
+  "rows": 349,
+  "raw_labels": 218,
+  "contributors": {
+    "Tomcat": 85,
+    "wsy": 264
+  },
+  "selection": "available paths with SHA equal to supplied historical audit; no semantic cleaning or new evaluation",
+  "source_manifest": "data/manifests/manifest_fullframe_20261024.csv",
+  "old_model_templates_unchanged": true
+}

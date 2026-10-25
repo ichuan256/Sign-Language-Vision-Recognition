@@ -1,0 +1,21 @@
+{
+  "verification_scope": "Reuses original 1574-media and 85-copy SHA verification; checks all 296 late-package files and destinations; verifies complete final path set",
+  "original_videos_preserved": 1574,
+  "first_P08_copies": 85,
+  "late_package_videos_preserved": 287,
+  "additional_P09_P10_copies": 202,
+  "current_video_files": 2148,
+  "unique_video_sha256": 1123,
+  "available_manifest_rows": 551,
+  "available_raw_labels": 363,
+  "pending_different_sha_rows": 85,
+  "P09_P10_missing_rows": 0,
+  "old_manifest_and_audit_unchanged": true,
+  "model_files_unchanged": 5,
+  "late_metadata_files_verified": 9,
+  "original_content_lost_or_changed": 0,
+  "media_deleted": false,
+  "media_reencoded": false,
+  "portable_tool_files_verified": 120,
+  "portable_tool_residue_retained": true
+}

@@ -21,6 +21,11 @@ from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
+try:
+    from .media_paths import add_source_arguments, find_ffmpeg, resolve_source, print_preflight
+except ImportError:
+    from media_paths import add_source_arguments, find_ffmpeg, resolve_source, print_preflight
+
 METHOD_DIR = Path(__file__).resolve().parent
 ROOT = METHOD_DIR.parents[1]
 DEFAULT_OUTPUT = ROOT / "data" / "exports" / "material_fullframe_20261021"
@@ -28,7 +33,8 @@ SOURCE_RECORDS = ROOT / "data" / "manifests" / "全22课_fullframe"
 SOURCE_MANIFEST = SOURCE_RECORDS / "全部22parts_训练样本清单_20261020.csv"
 SOURCE_UNCERTAINTIES = SOURCE_RECORDS / "全部22parts_不确定与不足项_20261020.csv"
 SOURCE_DESCRIPTION = SOURCE_RECORDS / "全部22parts_导出说明_20261020.md"
-FFMPEG = next((ROOT / "训练视频" / ".tools" / "imageio_ffmpeg" / "binaries").glob("ffmpeg*.exe"))
+FFMPEG = None
+SOURCE_ROOT = None
 EXPECTED_WIDTH = 352
 EXPECTED_HEIGHT = 288
 EXPECTED_FPS = 20.0
@@ -70,7 +76,7 @@ def run(command: list[str]) -> subprocess.CompletedProcess[str]:
 
 
 def source_path(part: str) -> Path:
-    return ROOT / "video" / f"BV1Hs411E7aP_{part}.mp4"
+    return resolve_source(ROOT, family="BV1Hs411E7aP", lesson=part, source_root=SOURCE_ROOT)
 
 
 def source_duration(path: Path) -> float:
@@ -269,14 +275,26 @@ def full_decode(path: Path) -> int:
 
 
 def main() -> None:
+    global ROOT, FFMPEG, SOURCE_ROOT, SOURCE_RECORDS, SOURCE_MANIFEST, SOURCE_UNCERTAINTIES, SOURCE_DESCRIPTION
     parser = argparse.ArgumentParser(description="按既有时间清单生成原尺寸全画幅视频")
-    parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUTPUT)
+    add_source_arguments(parser)
+    parser.add_argument("--out-dir", type=Path)
     parser.add_argument("--overwrite", action="store_true", help="允许覆盖输出文件")
     parser.add_argument("--skip-encode", action="store_true", help="只核验已有输出")
     args = parser.parse_args()
-    args.out_dir = args.out_dir.resolve()
-    args.out_dir.mkdir(parents=True, exist_ok=True)
+    ROOT = args.repo_root.resolve()
+    SOURCE_ROOT = args.source_root
+    FFMPEG = find_ffmpeg(ROOT, args.ffmpeg)
+    SOURCE_RECORDS = ROOT / "data/manifests/全22课_fullframe"
+    SOURCE_MANIFEST = SOURCE_RECORDS / "全部22parts_训练样本清单_20261020.csv"
+    SOURCE_UNCERTAINTIES = SOURCE_RECORDS / "全部22parts_不确定与不足项_20261020.csv"
+    SOURCE_DESCRIPTION = SOURCE_RECORDS / "全部22parts_导出说明_20261020.md"
+    args.out_dir = (args.out_dir or ROOT / "data/exports/material_fullframe_20261021").resolve()
     rows = build_rows()
+    if args.preflight:
+        print_preflight(sorted({Path(row["原片路径"]) for row in rows}), FFMPEG, output_root=str(args.out_dir))
+        return
+    args.out_dir.mkdir(parents=True, exist_ok=True)
     for row in rows:
         target = output_path(args.out_dir, row)
         row["输出路径"] = str(target)

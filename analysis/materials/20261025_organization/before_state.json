@@ -1,0 +1,21 @@
+{
+  "head": "8613fc6516f614d1dfec3b5918ceef7ca836804d",
+  "timestamp": "2026-10-25T11:23:29.9891890+08:00",
+  "status": [
+    " M scripts/build_fullframe_manifest_20261024.py",
+    " M tools/clipping/cut_reviewed_20261022.py",
+    " M tools/clipping/detect_boundaries_20261022.py",
+    " M tools/clipping/export_fullframe_dataset.py",
+    " M tools/clipping/export_p01_reviewed_actions.py",
+    " M tools/clipping/export_p08_p10_candidates_20261022.py",
+    " M tools/clipping/make_overview_20261022.py",
+    " M tools/clipping/reorganize_p01_action_folders.py",
+    " M tools/clipping/write_p10_reviewed_csv_20261022.py",
+    "?? analysis/materials/",
+    "?? scripts/dataset/inventory_video_materials.py",
+    "?? scripts/dataset/organize_workspace_materials_20261025.ps1",
+    "?? tools/clipping/media_paths.py",
+    "?? \"\\345\\267\\245\\345\\205\\267/\""
+  ],
+  "backup": "C:\\Users\\Icarie\\Documents\\ChatGPT\\Sign-Language-Vision-Recognition\\_tmp\\workspace_organization_backup_20261025"
+}

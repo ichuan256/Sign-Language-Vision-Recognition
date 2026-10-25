@@ -1,0 +1,90 @@
+{
+  "训练视频": {
+    "files": 18816,
+    "bytes": 3363176238
+  },
+  ".git": {
+    "files": 224,
+    "bytes": 1883455803
+  },
+  "video": {
+    "files": 423,
+    "bytes": 1347974834
+  },
+  "_inspect": {
+    "files": 4765,
+    "bytes": 729604823
+  },
+  "工具": {
+    "files": 120,
+    "bytes": 661471093
+  },
+  "material_fullframe_20261021": {
+    "files": 358,
+    "bytes": 325725415
+  },
+  "material_fullframe_第二三课分类_20261023": {
+    "files": 85,
+    "bytes": 248478423
+  },
+  "models": {
+    "files": 11,
+    "bytes": 49130688
+  },
+  "data": {
+    "files": 247,
+    "bytes": 35500286
+  },
+  "asr": {
+    "files": 160,
+    "bytes": 24208196
+  },
+  "pynq-vision": {
+    "files": 455,
+    "bytes": 23667109
+  },
+  "analysis": {
+    "files": 196,
+    "bytes": 16678198
+  },
+  "vision": {
+    "files": 102,
+    "bytes": 5174260
+  },
+  "tools": {
+    "files": 21,
+    "bytes": 1179180
+  },
+  "src": {
+    "files": 14,
+    "bytes": 225259
+  },
+  "scripts": {
+    "files": 20,
+    "bytes": 136549
+  },
+  "webapp": {
+    "files": 9,
+    "bytes": 73458
+  },
+  "tests": {
+    "files": 12,
+    "bytes": 43194
+  },
+  "剪裁方法": {
+    "files": 2,
+    "bytes": 41946
+  },
+  "docs": {
+    "files": 3,
+    "bytes": 21275
+  },
+  "__pycache__": {
+    "files": 1,
+    "bytes": 19563
+  },
+  "(root files)": {
+    "files": 3,
+    "bytes": 17630
+  }
+}
