@@ -3,7 +3,7 @@
   "samples": [
     {
       "id": "c001",
-      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\谢谢\\1_谢谢.mp4",
+      "file": "../../video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/谢谢/1_谢谢.mp4",
       "label": "谢谢",
       "sha256": "e5757f56a24a777d59256c047a4d84967dd527a912f17d558da572e50619d217",
       "source_group": "全22课全画幅样本_fullframe_264条_20261021",
@@ -14,7 +14,7 @@
     },
     {
       "id": "c002",
-      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\谢谢\\2_谢谢.mp4",
+      "file": "../../video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/谢谢/2_谢谢.mp4",
       "label": "谢谢",
       "sha256": "1e7b0ced72f7b24fc91a1d3fe468b2b79dce7c92c2796ac931df655dc450eb57",
       "source_group": "全22课全画幅样本_fullframe_264条_20261021",
@@ -25,7 +25,7 @@
     },
     {
       "id": "c003",
-      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\谢谢\\p04_cqa_005_谢谢.mp4",
+      "file": "../../video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/谢谢/p04_cqa_005_谢谢.mp4",
       "label": "谢谢",
       "sha256": "da4b8dd53d23d215ce4a13cad9bb2414838ec71c483258d7c1e7058e748fa6a6",
       "source_group": "全22课全画幅样本_fullframe_264条_20261021",
@@ -36,7 +36,7 @@
     },
     {
       "id": "c004",
-      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\谢谢\\p04_cqa_006_谢谢.mp4",
+      "file": "../../video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/谢谢/p04_cqa_006_谢谢.mp4",
       "label": "谢谢",
       "sha256": "3fe699f27700a87407871d16fef0491526fc33954a49656cdef4411918947134",
       "source_group": "全22课全画幅样本_fullframe_264条_20261021",
@@ -47,7 +47,7 @@
     },
     {
       "id": "c005",
-      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\早上\\1_早上.mp4",
+      "file": "../../video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/早上/1_早上.mp4",
       "label": "早上",
       "sha256": "19d7f5ab2acfcd770d46dbf2c1d1f4b4b94f892d37ebd0cd5f9a026551ca7613",
       "source_group": "全22课全画幅样本_fullframe_264条_20261021",
@@ -58,7 +58,7 @@
     },
     {
       "id": "c006",
-      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\早上\\2_早上.mp4",
+      "file": "../../video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/早上/2_早上.mp4",
       "label": "早上",
       "sha256": "70a4e94179e7ddf3c494a8b7c7b191b623995ba1b8479238f44db4e5a6a5ebf4",
       "source_group": "全22课全画幅样本_fullframe_264条_20261021",
@@ -69,7 +69,7 @@
     },
     {
       "id": "c007",
-      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\早上\\3_早上.mp4",
+      "file": "../../video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/早上/3_早上.mp4",
       "label": "早上",
       "sha256": "3e8824d56d2360395954ce32208b8cf061c0f5ea5746c24a4c08159aaf51afa8",
       "source_group": "全22课全画幅样本_fullframe_264条_20261021",
@@ -80,7 +80,7 @@
     },
     {
       "id": "c008",
-      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\早上\\4_早上.mp4",
+      "file": "../../video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/早上/4_早上.mp4",
       "label": "早上",
       "sha256": "1884448b3c95d939cfaa8d9f5b9195d5ee57dad7661bb60120a9b2328b0bf416",
       "source_group": "全22课全画幅样本_fullframe_264条_20261021",
@@ -91,7 +91,7 @@
     },
     {
       "id": "c009",
-      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\很\\1_很.mp4",
+      "file": "../../video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/很/1_很.mp4",
       "label": "很",
       "sha256": "3a693ddd8205632d1142413bc89f95d7b162ed964702071e98ce3c7528dcdc42",
       "source_group": "全22课全画幅样本_fullframe_264条_20261021",
@@ -102,7 +102,7 @@
     },
     {
       "id": "c010",
-      "file": "..\\..\\..\\video\\done\\wsy\\全22课全画幅样本_fullframe_264条_20261021\\很\\2_很.mp4",
+      "file": "../../video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/很/2_很.mp4",
       "label": "很",
       "sha256": "67088e0a011a43f51a8318962d8eb35874627882bb51dc759cf35801b3f52add",
       "source_group": "全22课全画幅样本_fullframe_264条_20261021",
