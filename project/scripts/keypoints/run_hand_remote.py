@@ -18,6 +18,7 @@ def main():
     p.add_argument('--reference',type=Path,required=True)
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--host',default='xilinx@192.168.2.99')
+    p.add_argument('--repeat',type=int,default=1)
     a=p.parse_args()
     out=a.output.resolve()
     if out.exists() or not out.is_relative_to(ROOT/'project/_tmp'):
@@ -32,6 +33,7 @@ def main():
     for key,value in [('bit','/home/xilinx/kws_hdmi.bit'),('manifest',work+'/manifest.json'),
         ('registers',work+'/registers.json'),('model',work+'/model'),('input',work+'/roi0.npy'),('output',result)]:
         command+=' --'+key+' '+q(value)
+    command+=' --repeat '+str(a.repeat)
     command='sudo -S -p '+q('')+' '+command
     out.mkdir(parents=True)
     start=time.perf_counter()
@@ -50,8 +52,12 @@ def main():
     if output.shape!=expected.shape or not np.isfinite(output).all():
         raise RuntimeError('Invalid board output')
     difference=float(np.max(np.abs(output-expected)))
+    repeated=report.get('repeat_runs',[dict(outputs=output.tolist(),elapsed_s=report['elapsed_s'])])
+    repeat_outputs=np.array([r['outputs'] for r in repeated])
+    all_exact=bool(np.array_equal(repeat_outputs,np.broadcast_to(expected,repeat_outputs.shape)))
     evidence=dict(scope='actual_PL_single_PC_ROI',exact_match=bool(np.array_equal(output,expected)),
-        max_abs_difference=difference,output_count=int(output.size),
+        max_abs_difference=difference,output_count=int(output.size),all_repeats_exact=all_exact,
+        repeat_forward_s=[r['elapsed_s'] for r in repeated],
         board_forward_s=report['elapsed_s'],board_with_setup_s=report['wall_with_setup_s'],
         ssh_request_wall_s=elapsed,mac_calls=report['mac_calls'],vector_calls=report['vector_calls'],
         hand_presence=report['hand_presence'],input_sha256=report['input_sha256'],
@@ -60,6 +66,6 @@ def main():
         output_sha256=hashlib.sha256((out/'output.npy').read_bytes()).hexdigest())
     (out/'alignment.json').write_text(json.dumps(evidence,indent=2)+'\n')
     print(json.dumps(evidence,indent=2))
-    if not evidence['exact_match']:raise RuntimeError('Actual PL/reference mismatch')
+    if not evidence['exact_match'] or not all_exact:raise RuntimeError('Actual PL/reference mismatch')
 
 if __name__=='__main__':main()

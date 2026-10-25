@@ -17,6 +17,7 @@ def main():
     parser.add_argument('--model',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--samples',type=int,default=1)
+    parser.add_argument('--layer',action='store_true')
     args = parser.parse_args()
     output = args.output.resolve()
     if not output.is_relative_to(ROOT) or output==ROOT or output.exists():
@@ -26,16 +27,22 @@ def main():
     tool = Path('F:/APP/Xilinx/Vitis_HLS/2024.1')
     compiler = tool/'tps/mingw/10.0.0/win64.o/nt/bin/g++.exe'
     dll = output/'kp_reference.dll'
+    names=['kp_gemm_tile.cpp','kp_vector.cpp','kp_host_bridge.cpp']
+    if args.layer:names+=['kp_layer.cpp','kp_layer_bridge.cpp']
     command = [str(compiler),'-O2','-std=c++11','-shared','-static-libgcc','-static-libstdc++',
                '-Wno-unknown-pragmas','-I'+str(tool/'include'),
-               *[str(src/name) for name in ('kp_gemm_tile.cpp','kp_vector.cpp','kp_host_bridge.cpp')],'-o',str(dll)]
+               *[str(src/name) for name in names],'-o',str(dll)]
     with (output/'compile.log').open('w') as log:
         result = subprocess.run(command,stdout=log,stderr=subprocess.STDOUT)
     if result.returncode:
         raise RuntimeError('Host HLS C compile failed; inspect compile.log')
     with np.load(args.model/'probes.npz') as data:
         inputs,expected = data['roi_codes'],data['reference']
-    backend = DLLBackend(dll,compiler.parent)
+    if args.layer:
+        sys.path.insert(0,str(ROOT/'project/board/keypoints'))
+        from hand_layer_runtime import LayerDLLBackend
+        backend=LayerDLLBackend(dll,compiler.parent)
+    else:backend = DLLBackend(dll,compiler.parent)
     graph = HandGraph(args.model,backend)
     actual,traces = [],[]
     for i,roi in enumerate(inputs[:args.samples]):

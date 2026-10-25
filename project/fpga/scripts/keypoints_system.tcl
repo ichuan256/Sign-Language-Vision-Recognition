@@ -50,6 +50,8 @@ if {$mode eq "inspect"} {
     set constraints $frozen_constraints
     set repos $original_ip_repos
     set mac_repo [file join $repo project _tmp kp_mac_ip_v1 tile_prj solution1 impl ip]
+    set mac_top kp_gemm_tile
+    if {[file exists [file join $out compute_ip.tcl]]} {source [file join $out compute_ip.tcl]}
     set vec_repo [file join $repo project _tmp kp_vector_ip_v1 vector_prj solution1 impl ip]
     foreach r [list $mac_repo $vec_repo] {
         if {![file exists [file join $r component.xml]]} {error "Missing validated HLS IP: $r"}
@@ -64,7 +66,7 @@ if {$mode eq "inspect"} {
     source [file join $out base_bd.tcl]
     current_bd_design system
 
-    foreach pair {{kp_mac kp_gemm_tile} {kp_vector kp_vector}} {
+    foreach pair [list [list kp_mac $mac_top] [list kp_vector kp_vector]] {
         lassign $pair instance name
         set definitions [get_ipdefs -quiet xilinx.com:hls:${name}:1.0]
         if {[llength $definitions]!=1} {error "Expected exactly one validated $name IP definition"}

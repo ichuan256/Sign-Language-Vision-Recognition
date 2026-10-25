@@ -12,6 +12,7 @@ def main():
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--seed',type=Path,help='Reuse only deliberate exported Tcl/inventory, never generated project state')
     parser.add_argument('--attempt',default='',help='Distinct alphanumeric log suffix for a deliberate retry')
+    parser.add_argument('--layer-ip',type=Path,help='Validated kp_layer IP repository, only for prepare')
     args=parser.parse_args()
     out=args.output.resolve()
     if not out.is_relative_to(ROOT) or out==ROOT:raise ValueError('Output must remain inside workspace')
@@ -21,6 +22,11 @@ def main():
         for name in ('base_bd.tcl','inventory.tcl'):
             shutil.copy2(args.seed/name,out/name)
     if args.attempt and not args.attempt.isalnum():raise ValueError('Alphanumeric attempt label required')
+    if args.layer_ip:
+        if args.mode!='prepare':raise ValueError('Select layer IP only when preparing a new project')
+        ip=args.layer_ip.resolve()
+        if not (ip/'component.xml').is_file():raise FileNotFoundError(ip/'component.xml')
+        (out/'compute_ip.tcl').write_text('set mac_top kp_layer\nset mac_repo {'+ip.as_posix()+'}\n')
     label=out.name+'_'+args.mode+('_'+args.attempt if args.attempt else '')
     log=out.parent/(label+'_console.log')
     if log.exists():raise FileExistsError(log)

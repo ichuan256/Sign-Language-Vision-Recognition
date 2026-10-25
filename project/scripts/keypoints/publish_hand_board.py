@@ -15,12 +15,13 @@ def main():
     p.add_argument('--hdmi',type=Path,required=True)
     p.add_argument('--screen-confirmed',action='store_true',help='Only after explicit physical screen confirmation')
     p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--baseline',type=Path,help='Prior measured board JSON for a clearly scoped comparison')
     a=p.parse_args()
     if a.output.exists() or not a.output.resolve().is_relative_to(ROOT):raise ValueError('Use a new workspace output file')
     board=json.loads((a.result/'report.json').read_text())
     alignment=json.loads((a.result/'alignment.json').read_text())
     hdmi=json.loads((a.hdmi/'report.json').read_text())
-    if not board['completed'] or not alignment['exact_match'] or not hdmi['valid_run']:
+    if not board['completed'] or not alignment['exact_match'] or not alignment.get('all_repeats_exact',True) or not hdmi['valid_run']:
         raise RuntimeError('Board numeric/HDMI gate missing')
     resource=(a.build/'utilization_routed.rpt').read_text()
     used={}
@@ -55,6 +56,19 @@ def main():
             'Not real time; no camera/video decode/automatic ROI/body/both-hands included',
             'Routed methodology retains TIMING-18 I/O budgets and vendor LUTAR/control-set warnings'],
         evidence_dirs=[str(path.relative_to(ROOT)) if path.is_absolute() else path.as_posix() for path in (a.build,a.result,a.hdmi)])
+    if 'layer_profile_s' in board:data['layer_profile_s']=board['layer_profile_s']
+    if 'layer_traffic' in board:data['layer_traffic']=board['layer_traffic']
+    if 'repeat_forward_s' in alignment:
+        data['repeat_forward_s']=alignment['repeat_forward_s']
+        data['all_repeats_exact']=alignment['all_repeats_exact']
+        data['independent_ROIs']=1
+    if a.baseline:
+        baseline=json.loads(a.baseline.read_text())
+        data['comparison']=dict(baseline_forward_s=baseline['latency_s']['board_forward'],
+            first_forward_speedup=baseline['latency_s']['board_forward']/board['elapsed_s'],
+            baseline_launches=baseline['mac_calls']+baseline['vector_calls'],
+            current_launches=board['mac_calls']+board['vector_calls'],
+            scope='same fixed ROI/model/scales, first forward wall time; not end-to-end video FPS')
     a.output.write_text(json.dumps(data,indent=2)+'\n',encoding='utf-8')
     print('Published',a.output)
 
