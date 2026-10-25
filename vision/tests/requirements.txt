@@ -1,0 +1,10 @@
+# Full regression environment validated with Python 3.12.
+# Keep the existing ONNX layer contract; OpenCV 5 is not validated here.
+pytest
+httpx2
+fastapi
+python-multipart
+uvicorn
+numpy==1.26.4
+opencv-contrib-python==4.11.0.86
+mediapipe==0.10.21

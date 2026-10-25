@@ -1,0 +1,5 @@
+# Release metadata must retain the exact released bytes.
+*.hwh -text
+*.bit -text
+# Manifest SHA contracts use canonical UTF-8 CSV files with CRLF records.
+/vision/data/manifests/*.csv text eol=crlf

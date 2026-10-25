@@ -1,0 +1,14 @@
+{
+  "remote": "94a60c0ce4b763707fe56d8b9d560bea0aac0123",
+  "snapshot": "b272988d72aecea2ba749363fe13dfe915fff58a",
+  "pytest_passed": 147,
+  "pytest_subtests_passed": 32,
+  "pytest_warnings": 2,
+  "protected_media_sha_verified": 816,
+  "current_available_rows": 551,
+  "pending_rows": 85,
+  "source_registry_rows": 32,
+  "m1_readable": 28,
+  "model_arrays_unchanged": true,
+  "pushed": false
+}

@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-25",
+  "input": "clock_paced_recorded_video_not_ov5640_capture",
+  "output": "PYNQ-Z2 HDMI OUT",
+  "semantic_classifier": false,
+  "initial_test_duration_s": 60,
+  "initial_test_frame_writes_confirmed_at_least": 300,
+  "retained_frame_address": "0x15c00000",
+  "initial_feedback_after_test": "只是一帧画面",
+  "diagnosis": "receiver_exited_at_time_limit_display_owner_retained_last_frame",
+  "followup_test_duration_s": 600,
+  "visible_frame_counter_added": true,
+  "source_frame_counter_samples": [866, 907],
+  "frame_request_counter_samples": [152, 165],
+  "sample_interval_approximately_s": 2,
+  "user_initial_overlay_confirmation": "视频和骨架叠加都正常",
+  "user_followup_motion_confirmation": "帧号持续变化，视频正常运动",
+  "continuous_playback_visually_confirmed": true,
+  "bitstream_downloaded": false,
+  "startup_configuration_modified": false,
+  "ov5640_mono_status": "hardware_pending_interface_placeholder_only"
+}

@@ -19,7 +19,7 @@
 
 ## 首版词表与数据
 
-8 类 28 条，全部来自 `video/done` 已审定边界精剪（标注状态
+8 类 28 条，全部来自 `vision/video/done` 已审定边界精剪（标注状态
 reviewed_boundaries_20261021_22）：谢谢、早上、很、待会儿见（各 4 条，
 全画幅组）、再见 2、没关系 3、服务 2、可以。5（跨 NL08/NL09/NL10 课次组）。
 清单由 `vision/m1/build_manifest.py` 生成（`vision/m1/manifests/`），

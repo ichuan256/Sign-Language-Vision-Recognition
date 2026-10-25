@@ -1,4 +1,4 @@
-"""M3 占位：OV5640 双目帧源。
+"""OV5640 帧源占位：当前目标为单目，双目类仅为历史接口兼容。
 
 硬件规划（docs/方案 §3，移植传感器后接口已释放）：
 - Pmod JA = 左目 8bit 数据，Pmod JB = 右目 8bit 数据；
@@ -10,6 +10,26 @@
 read_stereo() 供后续立体评估；下游特征/分类代码不变。
 """
 from .base import FrameSource
+
+
+class OV5640MonoSource(FrameSource):
+    """Single OV5640 placeholder. No USB substitution, pins or capture logic assumed."""
+    def __init__(self, endpoint="", *, max_fps=30.0, name=None):
+        super().__init__(name or "ov5640_mono_pending_hardware")
+        import math
+        if not math.isfinite(max_fps) or max_fps <= 0:
+            raise ValueError('max_fps must be positive')
+        self.endpoint, self._fps = endpoint, float(max_fps)
+
+    @property
+    def fps(self):
+        return self._fps
+
+    def read(self):
+        raise NotImplementedError('Single OV5640 hardware has not arrived; use replay:<video> temporarily')
+
+    def release(self):
+        pass
 
 
 class OV5640StereoSource(FrameSource):

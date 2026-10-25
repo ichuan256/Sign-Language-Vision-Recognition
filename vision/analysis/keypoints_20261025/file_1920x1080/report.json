@@ -1,0 +1,130 @@
+{
+  "schema_version": "keypoint_benchmark_v1",
+  "semantic_classifier": false,
+  "source": "file:vision/video/done/Tomcat/第九课聚会_NL09_102条_20261022/不好意思/NL09_020_C1_不好意思.mp4",
+  "input_kind": "file",
+  "scenario": "general",
+  "requested_max_fps": 30.0,
+  "requested_camera_size": [
+    640,
+    480
+  ],
+  "headless": true,
+  "save_landmarks": false,
+  "seconds_limit": 60.0,
+  "max_frames": 120,
+  "detector_options": {
+    "static_image_mode": false,
+    "model_complexity": 1,
+    "smooth_landmarks": true,
+    "enable_segmentation": false,
+    "refine_face_landmarks": false,
+    "min_detection_confidence": 0.5,
+    "min_tracking_confidence": 0.5
+  },
+  "versions": {
+    "mediapipe": "0.10.21",
+    "opencv": "4.11.0",
+    "numpy": "2.5.4",
+    "python": "3.12.14"
+  },
+  "host": "Windows AMD64",
+  "timestamp": "2026-10-25T17:57:50.280643+08:00",
+  "limitations": [
+    "Availability is detector output presence, not landmark accuracy or recall against ground truth.",
+    "No sensor-exposure timestamp; camera/driver buffering and true capture-to-display latency are unknown.",
+    "host_result_ms: immediately before source.read() to detector completion, including read/rate-limit wait.",
+    "host_preview_submit_ms: read start to imshow/waitKey return; not physical display latency.",
+    "File mode runs unpaced, not a live-camera or realtime-replay benchmark.",
+    "Model/source initialization and final summary excluded from processed_fps; frame JSONL writes included.",
+    "No warmup frames excluded. Missing spans include hands outside view and cannot establish occlusion recovery latency.",
+    "No handedness accuracy, jitter accuracy, multi-person identity or metric 3D validation."
+  ],
+  "source_nominal_fps": 24.0,
+  "source_sha256": "1f92014ac3a461d777227f0e953ea00ac58b71966cd26c9dbc97733528fde12c",
+  "setup_ms": 39.869300002465025,
+  "actual_frame_size": [
+    1920,
+    1080
+  ],
+  "stop_reason": "end_of_stream",
+  "error": null,
+  "measurement_mode": "offline_file_throughput",
+  "frames": 58,
+  "loop_elapsed_s": 2.4708399000228383,
+  "processed_fps": 23.473799334171307,
+  "timing_ms": {
+    "read_ms": {
+      "p50": 4.812250001123175,
+      "p95": 5.517904991575051,
+      "mean": 5.213967241459237,
+      "first": 32.532399985939264
+    },
+    "inference_ms": {
+      "p50": 35.829650005325675,
+      "p95": 39.06611500569852,
+      "mean": 37.332813792404366,
+      "first": 102.88340001716278
+    },
+    "host_result_ms": {
+      "p50": 40.659700011019595,
+      "p95": 43.43446002167184,
+      "mean": 42.5467810338636,
+      "first": 135.41580000310205
+    },
+    "host_preview_submit_ms": null
+  },
+  "availability": {
+    "pose": {
+      "detected_frames": 58,
+      "detected_rate": 1.0,
+      "missing_runs": [],
+      "longest_missing_frames": 0,
+      "longest_observed_missing_span_s": 0
+    },
+    "left_hand": {
+      "detected_frames": 0,
+      "detected_rate": 0.0,
+      "missing_runs": [
+        {
+          "frames": 58,
+          "observed_span_s": 2.375,
+          "recovered": false
+        }
+      ],
+      "longest_missing_frames": 58,
+      "longest_observed_missing_span_s": 2.375
+    },
+    "right_hand": {
+      "detected_frames": 32,
+      "detected_rate": 0.5517241379310345,
+      "missing_runs": [
+        {
+          "frames": 10,
+          "observed_span_s": 0.4166666666666667,
+          "recovered": true
+        },
+        {
+          "frames": 16,
+          "observed_span_s": 0.625,
+          "recovered": false
+        }
+      ],
+      "longest_missing_frames": 16,
+      "longest_observed_missing_span_s": 0.625
+    },
+    "both_hands": {
+      "detected_frames": 0,
+      "detected_rate": 0.0,
+      "missing_runs": [
+        {
+          "frames": 58,
+          "observed_span_s": 2.375,
+          "recovered": false
+        }
+      ],
+      "longest_missing_frames": 58,
+      "longest_observed_missing_span_s": 2.375
+    }
+  }
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "model": "sign_templates_cropped.npz",
+    "unchanged_arrays": [
+      "features",
+      "offsets",
+      "labels"
+    ]
+  },
+  {
+    "model": "sign_templates_fullframe_20261024.npz",
+    "unchanged_arrays": [
+      "features",
+      "offsets",
+      "labels"
+    ]
+  }
+]

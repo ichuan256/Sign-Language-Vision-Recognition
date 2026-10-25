@@ -1,0 +1,144 @@
+........................................... [ 43%]
+...F....F.....F.........................................              [100%]
+================================== FAILURES ===================================
+__________________ test_model_runs_on_full_frame_blank_image __________________
+
+    def test_model_runs_on_full_frame_blank_image() -> None:
+        detector = PersonDetector()
+>       detections = detector.detect(np.zeros((240, 320, 3), dtype=np.uint8))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+vision\tests\integration\test_person_detector.py:98:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+vision\src\signrec\person_detector.py:176: in detect
+    rows = self._model.infer(frame)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+vision\src\signrec\_vendor\opencv_zoo\mp_persondet.py:64: in infer
+    results = self._postprocess(output_blob, np.array([w, h]), pad_bias)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <signrec._vendor.opencv_zoo.mp_persondet.MPPersonDet object at 0x00000295FFE7FA10>
+output_blob = (array([[[ -81.05408 ],
+        [ -40.541824],
+        [-157.746   ],
+        ...,
+        [ -57.927444],
+        [ -5...760e-01, ...,
+         -2.95098096e-01, -3.52631420e-01,  9.29257572e-01]]],
+      shape=(1, 2254, 12), dtype=float32))
+original_shape = array([320, 240]), pad_bias = array([ 0, 40], dtype=int32)
+
+    def _postprocess(self, output_blob, original_shape, pad_bias):
+        score = output_blob[1][0, :, 0]
+        box_delta = output_blob[0][0, :, 0:4]
+        landmark_delta = output_blob[0][0, :, 4:]
+        scale = max(original_shape)
+
+        # get scores
+        score = score.astype(np.float64)
+        score = np.clip(score, -100, 100)
+        score = 1 / (1 + np.exp(-score))
+
+        # get boxes
+        cxy_delta = box_delta[:, :2] / self.input_size
+>       wh_delta = box_delta[:, 2:] / self.input_size
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: operands could not be broadcast together with shapes (2254,0) (2,)
+
+vision\src\signrec\_vendor\opencv_zoo\mp_persondet.py:81: ValueError
+___________ test_pose_estimator_extracts_landmarks_from_sample_clip ___________
+
+    def test_pose_estimator_extracts_landmarks_from_sample_clip() -> None:
+        if not DEFAULT_MODEL_PATH.is_file() or not DEFAULT_POSE_MODEL_PATH.is_file():
+            pytest.skip("detector/pose ONNX assets are not installed")
+        video = ROOT / "vision/data" / "legacy" / "material" / "你好" / "01_你好_示范01.mp4"
+        if not video.is_file():
+            pytest.skip("sample clip is unavailable")
+
+        frame = sample_video_frames(video, sample_count=1)[0]
+>       detection = PersonDetector().detect(frame)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+vision\tests\integration\test_pose_estimator.py:77:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+vision\src\signrec\person_detector.py:176: in detect
+    rows = self._model.infer(frame)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+vision\src\signrec\_vendor\opencv_zoo\mp_persondet.py:64: in infer
+    results = self._postprocess(output_blob, np.array([w, h]), pad_bias)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <signrec._vendor.opencv_zoo.mp_persondet.MPPersonDet object at 0x00000295FEFF3C50>
+output_blob = (array([[[-58.4728  ],
+        [-31.461092],
+        [-83.69132 ],
+        ...,
+        [-57.72982 ],
+        [-58.332...664838e-01, ...,
+         -1.6363920e-01, -1.3722557e-01,  7.1321416e-01]]],
+      shape=(1, 2254, 12), dtype=float32))
+original_shape = array([200, 250]), pad_bias = array([24,  0], dtype=int32)
+
+    def _postprocess(self, output_blob, original_shape, pad_bias):
+        score = output_blob[1][0, :, 0]
+        box_delta = output_blob[0][0, :, 0:4]
+        landmark_delta = output_blob[0][0, :, 4:]
+        scale = max(original_shape)
+
+        # get scores
+        score = score.astype(np.float64)
+        score = np.clip(score, -100, 100)
+        score = 1 / (1 + np.exp(-score))
+
+        # get boxes
+        cxy_delta = box_delta[:, :2] / self.input_size
+>       wh_delta = box_delta[:, 2:] / self.input_size
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: operands could not be broadcast together with shapes (2254,0) (2,)
+
+vision\src\signrec\_vendor\opencv_zoo\mp_persondet.py:81: ValueError
+____________ test_mobilenet_v2_produces_normalized_frame_features _____________
+
+    def test_mobilenet_v2_produces_normalized_frame_features() -> None:
+        if not DEFAULT_BACKBONE_PATH.is_file():
+            pytest.skip("optional MobileNetV2 ONNX asset is not installed")
+>       embedder = MobileNetV2Embedder()
+                   ^^^^^^^^^^^^^^^^^^^^^
+
+vision\tests\integration\test_recognizer.py:83:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <signrec.features.MobileNetV2Embedder object at 0x00000295FFFEC6E0>
+model_path = WindowsPath('C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/.git/recovery/merge_20261025/integration/vision/models/image_classification_mobilenet/image_classification_mobilenetv2_2022apr_int8bq.onnx')
+feature_layer = 'onnx_node!GlobalAveragePool_97', input_size = 224
+
+    def __init__(
+        self,
+        model_path: str | Path = DEFAULT_BACKBONE_PATH,
+        feature_layer: str = DEFAULT_FEATURE_LAYER,
+        input_size: int = DEFAULT_INPUT_SIZE,
+    ) -> None:
+        self.model_path = Path(model_path)
+        if not self.model_path.is_file():
+            raise FileNotFoundError(f"MobileNetV2 ONNX backbone not found: {self.model_path}")
+        if not hasattr(cv2, "dnn"):
+            raise RuntimeError("this OpenCV build has no DNN module")
+        if input_size <= 0:
+            raise ValueError("input_size must be positive")
+        self.feature_layer = feature_layer
+        self.input_size = input_size
+        self._net = cv2.dnn.readNet(str(self.model_path))
+        self._net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
+        self._net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
+        if self._net.getLayerId(feature_layer) <= 0:
+>           raise ValueError(f"feature layer is not present in ONNX model: {feature_layer}")
+E           ValueError: feature layer is not present in ONNX model: onnx_node!GlobalAveragePool_97
+
+vision\src\signrec\features.py:82: ValueError
+=========================== short test summary info ===========================
+FAILED vision/tests/integration/test_person_detector.py::test_model_runs_on_full_frame_blank_image
+FAILED vision/tests/integration/test_pose_estimator.py::test_pose_estimator_extracts_landmarks_from_sample_clip
+FAILED vision/tests/integration/test_recognizer.py::test_mobilenet_v2_produces_normalized_frame_features
+3 failed, 96 passed, 32 subtests passed in 9.50s
