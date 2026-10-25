@@ -172,7 +172,7 @@ git push origin main
 ## 6. 当前未结待办【通用】（接手时核对）
 
 - 当前优先级（2026-10-25）：先做无语义的通用身体/双手实时关键点，再做动作/词义分类；纯关键点入口 `vision/keypoints/live_demo.py`，用法 `vision/keypoints/README.md`，文件源基准 `vision/analysis/keypoints_20261025/README.md`。USB 实时、交叉/遮挡和快速运动尚未验收，文件 FPS 不能当摄像头实时 FPS。
-- 通用关键点 PL：用户已确认单手 21 点子网先行，PC 提供规范化 ROI；进展见 `project/analysis/keypoints_pl_20261025/single_hand_stage1.md`。浮点转换、定点候选和 MAC 核 C/RTL 验证已有实测，完整网络/DDR 调度/整板集成未完成，未生成新 bit 或上板。该路线不是 R3 词语分类 CNN。
+- 通用关键点 PL：单手 21 点完整网络已上板，PC 提供规范化 ROI，PL 执行神经网络、PS 调度搬运；1 ROI 的 64 输出与整数参考完全一致，前向 12.276 秒，尚不实时。新固件冷启动加载、HDMI 静态 ROI 叠加已目视通过；当前状态及哈希只在 `project/analysis/keypoints_pl_20261025/single_hand_board.md/.json`。本机板上正在运行该候选，旧 W6 本地发布文件未覆盖；HDMI 接管需显式 `--release-manifest`，旧 ASR 固件核验可能拒绝，未验收新固件音频。禁止为迁就旧哈希运行中重载 bit。原固件备份记录在 `project/_tmp/kp_board_deploy_v2/deployment.json`。该路线不是 R3 词语分类 CNN。
 - M0 已完成：新工程全量重建出 bit、板端点亮 + 音频回路复验通过（2026-10-23，见移植清单）
 - M0b：从空目录重建脚本化（源工程此路径未验收过）；剥离传感器 SPI/DMA 与旧 HLS KWS，释放 PL 资源
 - 视觉线：`再见` 缺一条片段待核对；短词类（很/服务/待会儿见）DTW 混淆待排查；USB 摄像头实测未做

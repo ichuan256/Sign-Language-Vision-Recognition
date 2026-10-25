@@ -10,6 +10,18 @@
 | `fixed_hand_reference.py` | 按来源分组校准与整数数值评估，r3 环境 |
 | `run_tile_hls.py` | 独立 MAC 分块核 CSim / HLS 综合 / XSim C-RTL，vision 环境 |
 | `publish_hand_stage.py` | 汇总小型证据 JSON，不提交权重和 ROI 图片，vision 环境 |
+| `pack_hand_model.py` | 将定点候选打包为纯整数权重、bias 和控制参数，vision 环境 |
+| `validate_hand_runtime.py` | 编译真实 HLS C 核并执行完整网络，对齐整数参考，vision 环境 |
+| `build_vector_hls.py` | 非 MAC 算子的 CSim / HLS 综合 / C-RTL / IP 导出，vision 环境 |
+| `make_register_map.py` | 从 HLS 生成的驱动头解析寄存器偏移，vision 环境 |
+| `run_system_build.py` | 独立 Vivado 工程 inspect / prepare / synth / impl，串行构建 |
+| `deploy_hand_board.py` | 校验、备份当前 pair、成对替换并冷重启；默认只准备清单 |
+| `run_hand_remote.py` | 执行实际板端 PL 推理、回传输出与延迟、对齐整数参考 |
+| `show_hand_result.py` | 将已验证的 PL 坐标叠加到静态 ROI，有界显示 HDMI |
+| `publish_hand_board.py` | 从板端输出、实现报告和 HDMI 验收生成紧凑证据 JSON |
+
+当前已通过的实际部署状态见 [整网上板记录](../../analysis/keypoints_pl_20261025/single_hand_board.md)，
+驱动和板端入口见 [board/keypoints](../../board/keypoints/README.md)。
 
 典型执行顺序：
 
@@ -21,5 +33,22 @@ F:\PLD\.venv-vision\Scripts\python.exe project/scripts/keypoints/run_tile_hls.py
 ```
 
 `run_tile_hls.py` 通过 cmd 调用 Vitis HLS 2024.1，不调用 Hardware Manager，不加载任何 bit。
+增加 `--export-ip` 可在通过综合/C-RTL 后导出 MAC IP。
 完整网络数值参考、MAC 核 CSim、MAC 核 RTL co-sim 是三个不同门禁，不能互相冒充。
 权重/模型从本机原始安装只读导出，派生产物留在忽略的 `project/_tmp/`；本轮没有训练或改媒体。
+
+整网与硬件工程的复跑示例（目录换成新的，HLS IP 路径需与 `keypoints_system.tcl` 中的已验证导出位置一致）：
+
+```powershell
+F:\PLD\.venv-vision\Scripts\python.exe project/scripts/keypoints/validate_hand_runtime.py --model project/_tmp/kp_packed_v1 --output project/_tmp/kp_graph_c_new --samples 7
+F:\PLD\.venv-vision\Scripts\python.exe project/scripts/keypoints/run_system_build.py inspect --output project/_tmp/kp_system_new
+F:\PLD\.venv-vision\Scripts\python.exe project/scripts/keypoints/run_system_build.py prepare --output project/_tmp/kp_system_new
+F:\PLD\.venv-vision\Scripts\python.exe project/scripts/keypoints/run_system_build.py synth --output project/_tmp/kp_system_new
+# 先核对综合资源，再进入实现
+F:\PLD\.venv-vision\Scripts\python.exe project/scripts/keypoints/run_system_build.py impl --output project/_tmp/kp_system_new
+```
+
+不要把原工程打开和新工程创建放进同一个 Vivado 进程；导出 Tcl 后退出再 prepare。
+构建过程中不要启动其他 Vivado 综合/实现。`constraints_resume` 仅用于已停止的隔离工程补齐旧 W6
+时序配置并重置顶层运行；`--attempt` 用于保留不同重试日志，不覆盖失败证据。
+所有候选都须通过 routed setup/hold、时钟方法学和实际板端数值门禁；已有旧接口告警边界见当前记录。

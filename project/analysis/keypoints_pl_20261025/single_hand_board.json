@@ -1,0 +1,195 @@
+{
+  "scope": "single_hand_21_points_PL_graph_PC_supplied_ROI",
+  "tool": "Vivado/Vitis HLS 2024.1",
+  "device": "xc7z020clg400-1",
+  "clock_mhz": 100,
+  "activation_bits": 16,
+  "weight_bits": 12,
+  "accumulator_bits": 48,
+  "board_samples": 1,
+  "outputs_per_sample": 64,
+  "integer_reference_exact_match": true,
+  "max_abs_difference": 0.0,
+  "cpu_neural_fallback": false,
+  "input_sha256": "0a606e9d542087c6453042e165ae6832917d9054309a701fe226ed84469af92b",
+  "output_sha256": "d5a667263a9cc2335a926d9ff08f89238e9ea6d353c7ec7039297430d1eb787b",
+  "artifacts": {
+    "bit": {
+      "sha256": "05895917772befbf4a6126857ce74258b2ecafe5088e9998491e9301d9b37587"
+    },
+    "hwh": {
+      "sha256": "1689a425b7f54b3c92fb0ec4527ce081b086f2e11cce7c6bbe12c47c28b9222d"
+    }
+  },
+  "resources": {
+    "lut": {
+      "used": 28387,
+      "available": 53200
+    },
+    "ff": {
+      "used": 37455,
+      "available": 106400
+    },
+    "bram36_tiles": {
+      "used": 59,
+      "available": 140
+    },
+    "dsp": {
+      "used": 117,
+      "available": 220
+    }
+  },
+  "timing_ns": {
+    "wns": 0.623,
+    "tns": 0.0,
+    "whs": 0.008,
+    "ths": 0.0
+  },
+  "latency_s": {
+    "board_forward": 12.276247249000022,
+    "setup_and_model_load": 14.138720046999993,
+    "board_with_setup": 26.414967296000015,
+    "ssh_request": 31.732137899991358
+  },
+  "layer_group_wall_s": {
+    "InputLayer": 6.756299998755821e-05,
+    "Conv2D": 4.622714190999858,
+    "ReLU": 3.3868965309998487,
+    "DepthwiseConv2D": 3.989071575000196,
+    "MaxPooling2D": 0.058824960000009696,
+    "Add": 0.1836331680000285,
+    "GlobalAveragePooling2D": 0.003404301999978543,
+    "Dense": 0.013551151000001482,
+    "Activation": 0.0015306280000118022
+  },
+  "mac_calls": 4846,
+  "vector_calls": 1047,
+  "hand_presence": 0.7578125,
+  "coordinates_roi_units": [
+    [
+      95.515625,
+      182.1640625,
+      0.0
+    ],
+    [
+      89.4765625,
+      142.0703125,
+      0.7265625
+    ],
+    [
+      95.7109375,
+      99.3046875,
+      -3.0234375
+    ],
+    [
+      108.6015625,
+      71.703125,
+      -7.234375
+    ],
+    [
+      116.40625,
+      53.53125,
+      -11.6328125
+    ],
+    [
+      90.1328125,
+      104.71875,
+      -9.828125
+    ],
+    [
+      103.53125,
+      79.1640625,
+      -15.109375
+    ],
+    [
+      121.578125,
+      62.1796875,
+      -18.6328125
+    ],
+    [
+      136.6875,
+      49.796875,
+      -21.1015625
+    ],
+    [
+      104.9609375,
+      117.6171875,
+      -13.0078125
+    ],
+    [
+      111.5625,
+      97.5625,
+      -17.625
+    ],
+    [
+      110.9375,
+      93.9765625,
+      -18.9140625
+    ],
+    [
+      108.546875,
+      92.0546875,
+      -20.4453125
+    ],
+    [
+      121.1171875,
+      132.65625,
+      -15.5
+    ],
+    [
+      124.53125,
+      117.2734375,
+      -17.9375
+    ],
+    [
+      120.734375,
+      121.921875,
+      -16.0703125
+    ],
+    [
+      116.1953125,
+      127.0546875,
+      -15.5546875
+    ],
+    [
+      135.9140625,
+      148.5390625,
+      -18.1328125
+    ],
+    [
+      138.296875,
+      134.5859375,
+      -18.9296875
+    ],
+    [
+      134.0234375,
+      138.2265625,
+      -17.0
+    ],
+    [
+      131.6875,
+      143.484375,
+      -16.2578125
+    ]
+  ],
+  "cold_boot_confirmed": true,
+  "overlay_downloaded_by_test": false,
+  "hdmi": {
+    "static_ROI": true,
+    "frame_writes_confirmed_at_least": 1,
+    "receiver_bounded_seconds": 60,
+    "screen_visually_confirmed": true,
+    "confirmation": "User explicitly confirmed ROI and skeleton overlay normal"
+  },
+  "limitations": [
+    "One ROI hardware numeric test; not annotated landmark accuracy or arbitrary-video generalization",
+    "PS schedules and packs tensors; forward wall time includes this overhead and DDR transfers",
+    "Not real time; no camera/video decode/automatic ROI/body/both-hands included",
+    "Routed methodology retains TIMING-18 I/O budgets and vendor LUTAR/control-set warnings"
+  ],
+  "evidence_dirs": [
+    "project/_tmp/kp_system_v3",
+    "project/_tmp/kp_board_result_v1",
+    "project/_tmp/kp_board_hdmi_v1"
+  ]
+}
