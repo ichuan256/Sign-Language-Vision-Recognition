@@ -35,10 +35,10 @@ import hls4ml
 from qkeras.utils import load_qmodel
 
 
-ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_CACHE = ROOT / "_tmp" / "r3"
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file())
+DEFAULT_CACHE = ROOT / "project/_tmp" / "r3"
 DEFAULT_HLS_DIR = DEFAULT_CACHE / "r3_hls4ml_vitis"
-DEFAULT_REPORT = ROOT / "analysis" / "r3" / "r3_hls4ml_20261024.json"
+DEFAULT_REPORT = ROOT / "project/analysis" / "r3" / "r3_hls4ml_20261024.json"
 PART = "xc7z020clg400-1"
 
 

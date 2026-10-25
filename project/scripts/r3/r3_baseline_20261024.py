@@ -19,9 +19,9 @@ os.environ.setdefault("TF_USE_LEGACY_KERAS", "1")  # QKeras 0.9 依赖 Keras 2�
 
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[2]
-CACHE = ROOT / "_tmp" / "r3"
-MANIFEST = ROOT / "data" / "manifests" / "manifest_fullframe_20261024.csv"
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file())
+CACHE = ROOT / "project/_tmp" / "r3"
+MANIFEST = ROOT / "vision/data" / "manifests" / "manifest_fullframe_20261024.csv"
 
 
 def build_tensors(min_per_class: int = 4, sample_count: int = 8, size: int = 64):
@@ -149,14 +149,14 @@ def main():
     tr_loss, tr_acc = model.evaluate(Xtr, ytr, verbose=0)
     print(f"\n=== R3.1 基线（{args.mode} 小 CNN, {len(labels)} 类）===")
     print(f"测试 top-1 准确率: {acc:.4f}  训练: {tr_acc:.4f}  用时 {time.time()-t0:.0f}s")
-    CACHE.mkdir(exist_ok=True)
+    CACHE.mkdir(parents=True, exist_ok=True)
     model.save(CACHE / f"r3_model_{args.mode}.keras")
     (CACHE / f"r3_baseline_{args.mode}.json").write_text(json.dumps({
         "classes": len(labels), "train": len(Xtr), "test": len(Xte),
         "test_top1": round(float(acc), 4), "train_top1": round(float(tr_acc), 4),
         "epochs": args.epochs, "mode": args.mode, "seconds": round(time.time() - t0),
     }, ensure_ascii=False, indent=2), encoding="utf-8")
-    print("模型与结果存于 _tmp/r3/")
+    print("模型与结果存于 project/_tmp/r3/")
 
 
 if __name__ == "__main__":

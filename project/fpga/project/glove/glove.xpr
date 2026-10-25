@@ -4,7 +4,7 @@
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.                   -->
 <!-- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.   -->
 
-<Project Product="Vivado" Version="7" Minor="67" Path="F:/PLD_new/Sign-Language-Vision-Recognition/pynq-vision/fpga/project/glove/glove.xpr">
+<Project Product="Vivado" Version="7" Minor="67" Path="F:/PLD_new/Sign-Language-Vision-Recognition/project/fpga/project/glove/glove.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="79de0dbedc034c5b846d056229a51cc7"/>
@@ -134,7 +134,7 @@
           <Attr Name="UsedInImplementation" Val="0"/>
           <Attr Name="UsedInSynthesis" Val="0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="system_rgb2dvi_0_0.xci" FileRelPathName="f:/PLD_new/Sign-Language-Vision-Recognition/pynq-vision/fpga/project/glove/glove.gen/sources_1/bd/system/ip/system_rgb2dvi_0_0/src/rgb2dvi_clocks.xdc">
+        <CompFileExtendedInfo CompFileName="system_rgb2dvi_0_0.xci" FileRelPathName="f:/PLD_new/Sign-Language-Vision-Recognition/project/fpga/project/glove/glove.gen/sources_1/bd/system/ip/system_rgb2dvi_0_0/src/rgb2dvi_clocks.xdc">
           <Attr Name="UsedInImplementation" Val="0"/>
           <Attr Name="UsedInSynthesis" Val="0"/>
         </CompFileExtendedInfo>

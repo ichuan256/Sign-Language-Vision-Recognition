@@ -13,9 +13,9 @@ import numpy as np
 import r3_hls4ml_20261024 as r32
 
 
-ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_OUTPUT = ROOT / "_tmp" / "r3" / "r3_hls_synth_rf576_p40"
-DEFAULT_REPORT = ROOT / "analysis" / "r3" / "r3_hls_synth_20261025.json"
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file())
+DEFAULT_OUTPUT = ROOT / "project/_tmp" / "r3" / "r3_hls_synth_rf576_p40"
+DEFAULT_REPORT = ROOT / "project/analysis" / "r3" / "r3_hls_synth_20261025.json"
 RESOURCE_LIMITS = {"LUT": 40.0, "DSP": 60.0, "BRAM_18K": 50.0}
 
 
