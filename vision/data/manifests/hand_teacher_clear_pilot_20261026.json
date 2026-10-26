@@ -1,0 +1,744 @@
+{
+  "schema": "hand_teacher_plan_v1",
+  "seed": 20261026,
+  "approved_pointer": "vision/data/manifests/current_available_fullframe.json",
+  "approved_pointer_sha256": "c5f2b179fc824a041b8dba0741dcaf78d0de20ef4ed6dc7c8c1ecf2a725852c6",
+  "approved_manifest": "vision/data/manifests/manifest_available_sha_verified_20261025_layout.csv",
+  "approved_manifest_sha256": "8ee0305afd431fb1720122c69232b3306008f60a502e78c2b4d94a504b4158ae",
+  "audit_sha256": "fd23b884918bec24e2d2e1041256afe3146dad7be49599b27ad8dba15c6c387c",
+  "approved_rows": 551,
+  "eligible_unique_files": 551,
+  "excluded": [],
+  "group_assignment": {
+    "BV1Hs411E7aP_p10": "test",
+    "BV1Hs411E7aP_p03": "test",
+    "BV1Hs411E7aP_p14": "test",
+    "BV1Hs411E7aP_p07": "validation",
+    "BV1Hs411E7aP_p15": "validation",
+    "BV1Hs411E7aP_p20": "validation",
+    "BV1Hs411E7aP_p19": "train",
+    "BV1Hs411E7aP_p17": "train",
+    "BV1Hs411E7aP_p12": "train",
+    "BV1Hs411E7aP_p13": "train",
+    "BV1Hs411E7aP_p05": "train",
+    "BV1Hs411E7aP_p08": "train",
+    "BV1Hs411E7aP_p21": "train",
+    "BV1Hs411E7aP_p11": "train",
+    "BV1Hs411E7aP_p06": "train",
+    "BV1Hs411E7aP_p04": "train",
+    "BV1Hs411E7aP_p18": "train",
+    "BV1Hs411E7aP_p02": "train",
+    "BV1Hs411E7aP_p16": "train",
+    "BV1Hs411E7aP_p22": "train",
+    "BV1Hs411E7aP_p01": "train",
+    "BV1Hs411E7aP_p09": "train",
+    "NL_lesson_09": "test",
+    "NL_lesson_10": "validation",
+    "NL_lesson_08": "train",
+    "NL_lesson_01": "train"
+  },
+  "selected": [
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/工作忙吗？/NL01_066_C1_工作忙吗.mp4",
+      "sha256": "9ec1852c8c07abd4c1791d7607b7119d974af1b0a96ddfbc549c8093f2fe214d",
+      "source_groups": [
+        "NL_lesson_01"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL01_066_C1_工作忙吗",
+      "contributor": "wsy",
+      "split_group": "NL_lesson_01",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第八课购物_NL08_85条_20261022/支付/NL08_018_C1_支付.mp4",
+      "sha256": "589bf3b2f86436fd83fde5e23a1f6ca919593d6252512c3f8e71c49b038daf45",
+      "source_groups": [
+        "NL_lesson_08"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL08_018_C1_支付",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_08",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第九课聚会_NL09_102条_20261022/蚊子/NL09_078_C1_蚊子.mp4",
+      "sha256": "75f5a16fb745fc425625a1894080be06199feb6540aad03fe8d597b442b782c0",
+      "source_groups": [
+        "NL_lesson_09"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL09_078_C1_蚊子",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_09",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第十课旅游_NL10_100条_20261022/谢谢！/NL10_070_C1_谢谢！.mp4",
+      "sha256": "5b155bf78e4a727649a7dcf391b9a557ff2b9b3fbbeeec4c1d1a1bb001c639f5",
+      "source_groups": [
+        "NL_lesson_10"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL10_070_C1_谢谢！",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_10",
+      "split": "validation"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/很好，你呢？/NL01_058_C1_很好你呢.mp4",
+      "sha256": "763b49514ae5231722c2af36a22a21570aeebc0956488a555ab80f7341084a59",
+      "source_groups": [
+        "NL_lesson_01"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL01_058_C1_很好你呢",
+      "contributor": "wsy",
+      "split_group": "NL_lesson_01",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第八课购物_NL08_85条_20261022/颜色_彩色/NL08_072_C1_颜色_彩色.mp4",
+      "sha256": "7d4b3fa7e9e0013746b1cab83d9c48d34d74f33871c5918c7128ad251772c161",
+      "source_groups": [
+        "NL_lesson_08"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL08_072_C1_颜色_彩色",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_08",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第九课聚会_NL09_102条_20261022/花/NL09_091_C1_花.mp4",
+      "sha256": "2603b0d5f7b5131b19dd44a3d3fc9db0b9b449a1969d70ec15a719efc100f03b",
+      "source_groups": [
+        "NL_lesson_09"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL09_091_C1_花",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_09",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第十课旅游_NL10_100条_20261022/山/NL10_024_C1_山.mp4",
+      "sha256": "ecab8e3fb42944f3124926586ab30d33103b4c3a671efb0afb0fb156f3a99169",
+      "source_groups": [
+        "NL_lesson_10"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL10_024_C1_山",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_10",
+      "split": "validation"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/我也很高兴！/NL01_050_C1_我也很高兴.mp4",
+      "sha256": "21dca97152997668afe2aea1f8c202481cf85ffb9ad03518935fed95ac29d5eb",
+      "source_groups": [
+        "NL_lesson_01"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL01_050_C1_我也很高兴",
+      "contributor": "wsy",
+      "split_group": "NL_lesson_01",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第八课购物_NL08_85条_20261022/您需要什么样的？/NL08_069_C1_您需要什么样的？.mp4",
+      "sha256": "0ed854db7a1eb7361db86557bdeab4c79081ffd8d96688517333d3ea670e91fb",
+      "source_groups": [
+        "NL_lesson_08"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL08_069_C1_您需要什么样的？",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_08",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第九课聚会_NL09_102条_20261022/酒店/NL09_002_C1_酒店.mp4",
+      "sha256": "5ccbf1045719f25f38251928f1d6bf5eefa596cb2e4f9fda5001d6fc3e070ac1",
+      "source_groups": [
+        "NL_lesson_09"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL09_002_C1_酒店",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_09",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第十课旅游_NL10_100条_20261022/可以。/NL10_062_C1_可以。.mp4",
+      "sha256": "c1f50b39e99fd6ff6eebe16229da05db3d7b2d94d5e3e7580ef29b089ee92004",
+      "source_groups": [
+        "NL_lesson_10"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL10_062_C1_可以。",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_10",
+      "split": "validation"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/是啊，你过得好不好？/NL01_068_C2_是啊你过得好不好.mp4",
+      "sha256": "cb13f3f17c02920bfef020efcf5152e175e43d7308fd8ca3b6e7110c160d28d2",
+      "source_groups": [
+        "NL_lesson_01"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL01_068_C2_是啊你过得好不好",
+      "contributor": "wsy",
+      "split_group": "NL_lesson_01",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第八课购物_NL08_85条_20261022/今天刚好有活动，可以打八折。/NL08_034_C1_今天刚好有活动，可以打八折。.mp4",
+      "sha256": "21ba08b1bed3f54efcf271ef51584fba4f5dae09faf6d5cd48497f3500e9cec1",
+      "source_groups": [
+        "NL_lesson_08"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL08_034_C1_今天刚好有活动，可以打八折。",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_08",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第九课聚会_NL09_102条_20261022/这是谁？我不认识。/NL09_053_C1_这是谁？我不认识。.mp4",
+      "sha256": "64e0c26738cb011300786b427e98d65c9b669f90ce3d307a0295c3c8c94c4767",
+      "source_groups": [
+        "NL_lesson_09"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL09_053_C1_这是谁？我不认识。",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_09",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第十课旅游_NL10_100条_20261022/你喜欢就好！/NL10_045_C1_你喜欢就好！.mp4",
+      "sha256": "603f6f2df712a80d94a15349d10025181e4630f4b6ece07b33a4e4b3e4e1c045",
+      "source_groups": [
+        "NL_lesson_10"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL10_045_C1_你喜欢就好！",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_10",
+      "split": "validation"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/你好，好久不见！/NL01_056_C2_你好好久不见.mp4",
+      "sha256": "9605d9c7ad9e33ed814c6ab12ca1f6dae32e90a6fd174c318ff7a3249452e0cf",
+      "source_groups": [
+        "NL_lesson_01"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL01_056_C2_你好好久不见",
+      "contributor": "wsy",
+      "split_group": "NL_lesson_01",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第八课购物_NL08_85条_20261022/便宜/NL08_003_C1_便宜.mp4",
+      "sha256": "cc3ec26531b268364b5c6f03f6076468b523296f2a482efcc6cfadd1069a30d8",
+      "source_groups": [
+        "NL_lesson_08"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL08_003_C1_便宜",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_08",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第九课聚会_NL09_102条_20261022/菜/NL09_027_C1_菜.mp4",
+      "sha256": "eba1cf8060e42041cba369cd3eda0a145227b9194f29cba2bedb23860b938b82",
+      "source_groups": [
+        "NL_lesson_09"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL09_027_C1_菜",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_09",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第十课旅游_NL10_100条_20261022/英国/NL10_095_C1_英国.mp4",
+      "sha256": "4e42bdcbabd5dbf973e976dde3c0974c33f0769369ec73e31fe4692f583f407b",
+      "source_groups": [
+        "NL_lesson_10"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL10_095_C1_英国",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_10",
+      "split": "validation"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/我叫张山，你呢？/NL01_054_C1_我叫张山你呢.mp4",
+      "sha256": "368e3e7f6e3e6ec9261c2cfdb3efa15a37c5105ed15637ea6f4514590dc67fd4",
+      "source_groups": [
+        "NL_lesson_01"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL01_054_C1_我叫张山你呢",
+      "contributor": "wsy",
+      "split_group": "NL_lesson_01",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第八课购物_NL08_85条_20261022/我想买台电脑。/NL08_058_C1_我想买台电脑。.mp4",
+      "sha256": "28ecd97ed71cc8b9d62dd76be379faa1c018edac9686639dd7d26e6540ff76f1",
+      "source_groups": [
+        "NL_lesson_08"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL08_058_C1_我想买台电脑。",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_08",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第九课聚会_NL09_102条_20261022/我们点些喝的吧！/NL09_057_C1_我们点些喝的吧！.mp4",
+      "sha256": "1a01d6bd2cc8afe6d10543df7c261c776bc07b26264ae8b3ca8277e16a9e2dca",
+      "source_groups": [
+        "NL_lesson_09"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL09_057_C1_我们点些喝的吧！",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_09",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第十课旅游_NL10_100条_20261022/德国/NL10_096_C1_德国.mp4",
+      "sha256": "ef81ac99ba5add22d0e18d158062cb62bed4dbffbbcc3add36c2e26c4efa13cd",
+      "source_groups": [
+        "NL_lesson_10"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL10_096_C1_德国",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_10",
+      "split": "validation"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/你好，你叫什么名字？/NL01_051_C2_你好你叫什么名字.mp4",
+      "sha256": "c674abddb8bb07bf0dc4b0d01b670c5db4995ce48805ea1cfd1338118c33f359",
+      "source_groups": [
+        "NL_lesson_01"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL01_051_C2_你好你叫什么名字",
+      "contributor": "wsy",
+      "split_group": "NL_lesson_01",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第八课购物_NL08_85条_20261022/真/NL08_029_C1_真.mp4",
+      "sha256": "d336080e77dc33bbf985966f3f113a6484e9b139f1eeef7cdf67fd86c3840077",
+      "source_groups": [
+        "NL_lesson_08"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL08_029_C1_真",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_08",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第九课聚会_NL09_102条_20261022/就去我们常去的那家酒店吧，服务好，菜好吃。/NL09_045_C1_就去我们常去的那家酒店吧，服务好，菜好吃。.mp4",
+      "sha256": "828642d6ae1273a1322e0a139f8ef64c57ca8657ca4777e64bc5645e780e6a4c",
+      "source_groups": [
+        "NL_lesson_09"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL09_045_C1_就去我们常去的那家酒店吧，服务好，菜好吃。",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_09",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第十课旅游_NL10_100条_20261022/联系/NL10_004_C1_联系.mp4",
+      "sha256": "c127f97c5ee8f87874f91d36fb1f02437110ded40bfe8661e13f16cf88c0e628",
+      "source_groups": [
+        "NL_lesson_10"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL10_004_C1_联系",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_10",
+      "split": "validation"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/你好，你叫什么名字？/NL01_051_C1_你好你叫什么名字.mp4",
+      "sha256": "325f7fa72b91e7da7d34adc9c7afae3f2cdbcfa383ed3fe601587d204cd1eb14",
+      "source_groups": [
+        "NL_lesson_01"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL01_051_C1_你好你叫什么名字",
+      "contributor": "wsy",
+      "split_group": "NL_lesson_01",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第八课购物_NL08_85条_20261022/蓝色/NL08_074_C1_蓝色.mp4",
+      "sha256": "370e2395a664225646099dc570154cd23ea8c80a101df359368f188b50e9dad4",
+      "source_groups": [
+        "NL_lesson_08"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL08_074_C1_蓝色",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_08",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第九课聚会_NL09_102条_20261022/结婚/NL09_007_C1_结婚.mp4",
+      "sha256": "a92d1393fa45d7797363ac883ef5c82fbd0ad37f2c7260417179884528f6a46f",
+      "source_groups": [
+        "NL_lesson_09"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL09_007_C1_结婚",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_09",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第十课旅游_NL10_100条_20261022/累/NL10_020_C1_累.mp4",
+      "sha256": "38c7688f3cd41029a8a1ca7fb0b00d86532e43e500b7ed972bec47f822f231aa",
+      "source_groups": [
+        "NL_lesson_10"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL10_020_C1_累",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_10",
+      "split": "validation"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/我也很高兴！/NL01_053_C1_我也很高兴.mp4",
+      "sha256": "a87990e92fa639ee47bc6e920964066a5e96b6464b837f0b36f50faab98dd397",
+      "source_groups": [
+        "NL_lesson_01"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL01_053_C1_我也很高兴",
+      "contributor": "wsy",
+      "split_group": "NL_lesson_01",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第八课购物_NL08_85条_20261022/白色/NL08_077_C1_白色.mp4",
+      "sha256": "6a1ce5716dee80072cf11787c76563a5806c368844d8f9656bf969f2df1fe988",
+      "source_groups": [
+        "NL_lesson_08"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL08_077_C1_白色",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_08",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第九课聚会_NL09_102条_20261022/有空儿常来玩。/NL09_033_C1_有空儿常来玩。.mp4",
+      "sha256": "9cadad472311468855248eac4efcfeb97cf26828b7f7fddfaf9e6776a75ffa9e",
+      "source_groups": [
+        "NL_lesson_09"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL09_033_C1_有空儿常来玩。",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_09",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第十课旅游_NL10_100条_20261022/很喜欢，我最近刚去了上海，给你看看照片。/NL10_053_C1_很喜欢，我最近刚去了上海，给你看看照片。.mp4",
+      "sha256": "bee4f65b7c00d759131ba4f23ba5e652785293e5a7ccf908774caef80331299c",
+      "source_groups": [
+        "NL_lesson_10"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL10_053_C1_很喜欢，我最近刚去了上海，给你看看照片。",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_10",
+      "split": "validation"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/很忙，最近经常加班。/NL01_070_C1_很忙最近经常加班.mp4",
+      "sha256": "0b44459bb50a215f88d90ac555bfc6b80e8bb1280ce4d27c7a80ba09835a3aa1",
+      "source_groups": [
+        "NL_lesson_01"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL01_070_C1_很忙最近经常加班",
+      "contributor": "wsy",
+      "split_group": "NL_lesson_01",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第八课购物_NL08_85条_20261022/新/NL08_027_C1_新.mp4",
+      "sha256": "bf80712f98ff73f5be2d9057b52d95584e5ad0eecea8a1eaf0503e9eb1f73e90",
+      "source_groups": [
+        "NL_lesson_08"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL08_027_C1_新",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_08",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第九课聚会_NL09_102条_20261022/祝你生日快乐！/NL09_029_C1_祝你生日快乐！.mp4",
+      "sha256": "ba92a062c9fbabac29dabce17a6b31d4e942889a88038ea606085747503351f8",
+      "source_groups": [
+        "NL_lesson_09"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL09_029_C1_祝你生日快乐！",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_09",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第十课旅游_NL10_100条_20261022/中国/NL10_076_C1_中国.mp4",
+      "sha256": "ef98d7437408ac1cb4b34e2dab131d7a7497cd57b601ccd0e8ef54a37ebfb4b8",
+      "source_groups": [
+        "NL_lesson_10"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "sample_id": "NL10_076_C1_中国",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_10",
+      "split": "validation"
+    }
+  ],
+  "source_resolution_filter": {
+    "min_width": 1280,
+    "min_height": 720,
+    "eligible_files": 318
+  },
+  "counts": {
+    "clips": 40,
+    "splits": {
+      "train": 20,
+      "test": 10,
+      "validation": 10
+    },
+    "source_components": {
+      "test": 4,
+      "validation": 4,
+      "train": 18
+    }
+  },
+  "limitations": [
+    "Contributor is not performer ID; this is source-video holdout, not cross-person evaluation",
+    "Word labels are not used as landmark truth; no review-negative labels exist yet"
+  ]
+}

@@ -2,7 +2,7 @@
 import json
 
 
-def write_review(directory,records,limit):
+def write_review(directory,records,limit,policy=None):
     buckets={}
     for r in records:buckets.setdefault((r['split'],r['kind']),[]).append(r)
     for items in buckets.values():items.sort(key=lambda r:r['sample_id'])
@@ -10,6 +10,10 @@ def write_review(directory,records,limit):
     while any(buckets.values()) and len(selected)<limit:
         for key in sorted(buckets):
             if buckets[key] and len(selected)<limit:selected.append(buckets[key].pop(0))
+    if policy is not None:
+        from .review_sampling import select_clear_review
+        selected,report=select_clear_review(records,limit,policy)
+        (directory/'selection.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     (directory/'queue.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in selected),encoding='utf-8')
     data=json.dumps(selected,ensure_ascii=False).replace('</','<\\/')
     html=r'''<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>关键点人工复核</title>
@@ -20,9 +24,10 @@ canvas{width:512px;height:512px;max-width:100%;background:#111;cursor:crosshair}
 button,select,input{font:inherit;padding:7px;margin:5px}button{cursor:pointer}#meta{max-width:1000px;overflow-wrap:anywhere}
 #notice{color:#9c3c00;font-weight:600}label{display:block;margin:8px 0}.toolbar{margin:12px 0}
 </style><h1>关键点人工复核 · 本地工具</h1>
-<p>教师点只是初始建议。逐点检查并修正可见点；遮挡点取消可见。未知区域须先判断有无手。
+<p>绿色点来自自动标注模型，只是初始建议。逐点检查并修正可见点；遮挡点取消可见。未知区域须先判断有无手。
 未保存的帧不进入人工标签；导出的 JSONL 需作为训练参数 --reviews 显式导入。</p>
-<div class="toolbar"><button id="prev">上一帧</button><button id="next">下一帧</button>
+<p>图像看不清时标为“无法判断”，不要当作无手。可先选择“只审核有无手”，熟悉流程后再核对坐标。</p>
+<div class="toolbar"><button id="prev">上一帧</button><button id="next">下一帧（不保存则跳过）</button>
 <button id="download">导出已复核 JSONL</button><input type="file" id="import" accept=".jsonl,.json">
 <span id="count"></span></div><p id="meta"></p>
 <div class="grid"><div class="card"><canvas id="canvas" width="512" height="512"></canvas>
@@ -36,12 +41,13 @@ button,select,input{font:inherit;padding:7px;margin:5px}button{cursor:pointer}#m
 <option value="fast_motion">快速运动</option><option value="crossing">交叉</option><option value="occlusion">遮挡/恢复</option></select></label>
 <label><input type="checkbox" id="presenceOnly">只审核有无手，不提交关键点真值</label>
 <label><input type="checkbox" id="checked">我已核对本帧，不是自动批准教师输出</label>
-<button id="save">保存此帧复核</button><p id="notice"></p>
+<button id="save">保存此帧复核</button><button id="ungradable">看不清 / 无法判断</button><p id="notice"></p>
 </div></div><script>
 const queue=__DATA__,saved=new Map(),$=id=>document.getElementById(id);
 let index=0,points=[],visible=[],active=0,bitmap=new Image();
 const edges=[[0,1],[1,2],[2,3],[3,4],[0,5],[5,6],[6,7],[7,8],[5,9],[9,10],[10,11],[11,12],[9,13],[13,14],[14,15],[15,16],[13,17],[0,17],[17,18],[18,19],[19,20]];
-for(let i=0;i<21;i++)$('point').add(new Option(i===0?'0 腕点':String(i),String(i)));
+const names=['腕点','拇指掌根','拇指近节','拇指远节','拇指尖','食指掌指关节','食指近关节','食指远关节','食指尖','中指掌指关节','中指近关节','中指远关节','中指尖','无名指掌指关节','无名指近关节','无名指远关节','无名指尖','小指掌指关节','小指近关节','小指远关节','小指尖'];
+for(let i=0;i<21;i++)$('point').add(new Option(`${i} ${names[i]}`,String(i)));
 function draw(){const c=$('canvas').getContext('2d');c.clearRect(0,0,512,512);c.drawImage(bitmap,0,0,512,512);
  c.lineWidth=2;c.strokeStyle='#36e09a';for(const [a,b] of edges)if(points[a]&&points[b]&&visible[a]&&visible[b]){
  c.beginPath();c.moveTo(points[a][0]*511,points[a][1]*511);c.lineTo(points[b][0]*511,points[b][1]*511);c.stroke();}
@@ -49,12 +55,12 @@ function draw(){const c=$('canvas').getContext('2d');c.clearRect(0,0,512,512);c.
 function show(){if(!queue.length){$('notice').textContent='复核队列为空';return;}
  const r=queue[index],s=saved.get(r.sample_id);points=structuredClone(s?.landmarks_xy??r.initial_xy??Array(21).fill(null));
  visible=s?.visible?.slice()??points.map(p=>p!==null);active=0;$('point').value='0';$('visible').checked=visible[0];
- $('presence').value=s?String(Number(s.presence)):(r.kind==='teacher_positive'?'1':'');
+ $('presence').value=s?.status==='ungradable'?'':(s?String(Number(s.presence)):(r.kind==='teacher_positive'?'1':''));
  $('handedness').value=s?.handedness===null||s?.handedness===undefined?'':String(s.handedness);
  $('scenario').value=s?.scenario??'general';$('presenceOnly').checked=!!s&&s.landmarks_xy===null&&s.presence;
- $('checked').checked=!!s;if(s?.reviewer)$('reviewer').value=s.reviewer;
+ $('checked').checked=s?.status==='accepted';if(s?.reviewer)$('reviewer').value=s.reviewer;
  $('meta').textContent=`${index+1}/${queue.length} | ${r.sample_id} | ${r.split} | ${r.split_group} | ${r.kind}`;
- $('source').textContent=`源帧 ${r.source_frame}, 时间 ${r.source_timestamp_s.toFixed(3)}s。框仅是候选，不是人工真值。`;
+ $('source').textContent=`原图 ${r.source_size?.join('×')??'未记录'}，ROI原生边长 ${Math.round(r.ROI_side_source_pixels??0)}px；源帧 ${r.source_frame}, ${r.source_timestamp_s.toFixed(3)}s。放大显示不会补出细节。`;
  $('context').src=r.context;bitmap=new Image();bitmap.onload=draw;bitmap.src=r.image;
  $('count').textContent=`已保存 ${saved.size} 帧`;$('notice').textContent='';}
 $('point').onchange=()=>{active=Number($('point').value);$('visible').checked=visible[active];draw();};
@@ -71,9 +77,12 @@ $('save').onclick=()=>{const reviewer=$('reviewer').value.trim(),value=$('presen
  handedness:presence&&$('handedness').value!==''?Number($('handedness').value):null,scenario:$('scenario').value,
  landmarks_xy:presence&&!only?points.map((p,i)=>visible[i]?p:null):null,visible:presence&&!only?visible.slice():Array(21).fill(false)});
  $('notice').textContent='此帧已存到内存；离开前请导出 JSONL。';$('count').textContent=`已保存 ${saved.size} 帧`;};
+$('ungradable').onclick=()=>{const reviewer=$('reviewer').value.trim();if(!reviewer){$('notice').textContent='请填写复核者';return;}
+ saved.set(queue[index].sample_id,{sample_id:queue[index].sample_id,status:'ungradable',annotation_origin:'human',human_verified:true,reviewer,reason:'blur_small_or_uncertain',presence:null,landmarks_xy:null});
+ $('notice').textContent='已标无法判断，不会作为有手、无手或坐标真值；请导出后继续。';$('count').textContent=`已保存 ${saved.size} 帧`;};
 $('download').onclick=()=>{if(!saved.size){$('notice').textContent='还没有已复核帧';return;}const blob=new Blob([[...saved.values()].map(v=>JSON.stringify(v)).join('\n')+'\n'],{type:'application/x-ndjson'});
  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='hand_review_annotations.jsonl';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);};
-$('import').onchange=async e=>{try{const ids=new Set(queue.map(r=>r.sample_id));for(const line of (await e.target.files[0].text()).split(/\r?\n/)){if(!line.trim())continue;const r=JSON.parse(line);if(!ids.has(r.sample_id)||r.status!=='accepted')throw Error('ID 或状态不匹配');saved.set(r.sample_id,r);}show();}catch(error){$('notice').textContent=String(error);}};
+$('import').onchange=async e=>{try{const ids=new Set(queue.map(r=>r.sample_id));for(const line of (await e.target.files[0].text()).split(/\r?\n/)){if(!line.trim())continue;const r=JSON.parse(line);if(!ids.has(r.sample_id)||!['accepted','ungradable'].includes(r.status))throw Error('ID 或状态不匹配');saved.set(r.sample_id,r);}show();}catch(error){$('notice').textContent=String(error);}};
 show();
 </script></html>'''.replace('__DATA__',data)
     (directory/'index.html').write_text(html,encoding='utf-8')

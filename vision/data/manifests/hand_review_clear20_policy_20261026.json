@@ -1,0 +1,22 @@
+{
+  "records_sha256": "555a5891f9dbd441f1aab3b479c90f1d921091ee56a1e84ca929ac8fa8e79d51",
+  "selection": {
+    "min_source_width": 1280,
+    "min_source_height": 720,
+    "min_native_side": 96,
+    "min_hand_focus": 15,
+    "max_per_clip": 2,
+    "min_time_gap_s": 0.4,
+    "excluded_source_sha256": [
+      "9605d9c7ad9e33ed814c6ab12ca1f6dae32e90a6fd174c318ff7a3249452e0cf"
+    ]
+  },
+  "exclusion_origin": "agent_visual_quality_screen",
+  "exclusions": [
+    {
+      "source_sha256": "9605d9c7ad9e33ed814c6ab12ca1f6dae32e90a6fd174c318ff7a3249452e0cf",
+      "reason": "Large caption crosses moving hand in the initial review candidates; exclude this clip from initial clarity calibration"
+    }
+  ],
+  "scope": "Candidate quality screening only; no human presence, visibility or coordinate annotations"
+}

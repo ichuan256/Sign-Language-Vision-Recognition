@@ -15,6 +15,7 @@ def main():
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--max-clips',type=int,default=40,help='0 selects all eligible unique files')
     p.add_argument('--seed',type=int,default=20261026)
+    p.add_argument('--min-source-width',type=int,default=0);p.add_argument('--min-source-height',type=int,default=0)
     a=p.parse_args();out=a.output.resolve()
     if a.max_clips<0 or out.exists() or not out.is_relative_to(ROOT):raise ValueError('New workspace output required')
     pointer=ROOT/'vision/data/manifests/current_available_fullframe.json'
@@ -39,13 +40,16 @@ def main():
         records.append(dict(path=path.relative_to(ROOT).as_posix(),sha256=sha,
             source_groups=sorted({r['provenance']['source_group'] for r in matches}),
             source_family=next(iter(families)),performer_id=None,
+            source_size=[matches[0]['media']['width'],matches[0]['media']['height']],
             sample_id=row['样本编号'],contributor=row['part']))
     records,assignment=grouped_split(records,a.seed)
-    selected=select_balanced(records,a.max_clips,a.seed)
+    eligible=[r for r in records if r['source_size'][0]>=a.min_source_width and r['source_size'][1]>=a.min_source_height]
+    selected=select_balanced(eligible,a.max_clips,a.seed)
     report=dict(schema='hand_teacher_plan_v1',seed=a.seed,approved_pointer=pointer.relative_to(ROOT).as_posix(),
         approved_pointer_sha256=digest(pointer),approved_manifest=current['manifest'],approved_manifest_sha256=digest(manifest),
         audit_sha256=digest(audit_path),approved_rows=len(rows),eligible_unique_files=len(records),
         excluded=excluded,group_assignment=assignment,selected=selected,
+        source_resolution_filter=dict(min_width=a.min_source_width,min_height=a.min_source_height,eligible_files=len(eligible)),
         counts=dict(clips=len(selected),splits=dict(Counter(r['split'] for r in selected)),
             source_components=dict(Counter(assignment.values()))),
         limitations=['Contributor is not performer ID; this is source-video holdout, not cross-person evaluation',

@@ -10,6 +10,7 @@ sys.path.insert(0,str(ROOT))
 import cv2
 import numpy as np
 from vision.keypoints.student_data import digest,hand_crop
+from vision.keypoints.review_sampling import hand_focus_score
 
 
 def main():
@@ -19,6 +20,7 @@ def main():
     p.add_argument('--plan',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
     p.add_argument('--fps',type=float,default=5);p.add_argument('--max-frames-per-clip',type=int,default=20)
     p.add_argument('--review-samples',type=int,default=200)
+    p.add_argument('--clear-review',action='store_true')
     a=p.parse_args();out=a.output.resolve()
     if out.exists() or not out.is_relative_to(ROOT/'project/_tmp'):raise ValueError('New project/_tmp dataset required')
     if not 0<a.fps<=30 or a.max_frames_per_clip<1:raise ValueError('Invalid sampling limits')
@@ -69,13 +71,19 @@ def main():
                         inverse=cv2.invertAffineTransform(affine)
                         polygon=np.array([[0,0],[127,0],[127,127],[0,127]],np.float32)@inverse[:,:2].T+inverse[:,2]
                         cv2.polylines(preview,[polygon.astype(np.int32)],True,(0,220,220) if suffix=='unknown' else (0,220,0),2)
-                        cv2.imwrite(str(out/'review/images'/(sid+'.jpg')),cv2.cvtColor(rgb,cv2.COLOR_RGB2BGR))
+                        review_affine=affine*(511/127)
+                        native_size=min(256,max(32,round(roi_side)))
+                        native=cv2.warpAffine(frame,affine*((native_size-1)/127),(native_size,native_size))
+                        focus=hand_focus_score(native,target[:63].reshape(21,3)[:,:2]) if kind=='teacher_positive' else 0.
+                        review_image=cv2.warpAffine(frame,review_affine,(512,512))
+                        cv2.imwrite(str(out/'review/images'/(sid+'.jpg')),review_image,[cv2.IMWRITE_JPEG_QUALITY,95])
                         records.append(dict(sample_id=sid,source_path=clip['path'],source_sha256=clip['sha256'],
                             source_groups=clip['source_groups'],split_group=clip['split_group'],split=clip['split'],
                             performer_id=None,source_frame=index,source_timestamp_s=timestamp,kind=kind,
                             pose_source='teacher' if suffix!='unknown' else 'none',presence_source='teacher' if suffix!='unknown' else 'none',
                             handedness_source='teacher' if suffix!='unknown' else 'none',teacher_confidence=None,
                             source_size=[w,h],affine_source_to_roi=affine.tolist(),ROI_side_source_pixels=float(roi_side),
+                            focus_score=focus,focus_method='eroded_hand_hull_clipped_Laplacian_energy_v1',review_image_size=512,
                             context='context/'+context_id+'.jpg',image='images/'+sid+'.jpg',
                             initial_xy=target[:63].reshape(21,3)[:,:2].tolist() if suffix!='unknown' else None,
                             review_status='pending'))
@@ -88,7 +96,9 @@ def main():
         print('TEACHER_CLIP_DONE',len(shards),'frames',sampled,'ROIs',sum(k.endswith(('_0','_1')) for k in ids),flush=True)
     metadata=out/'records.jsonl'
     metadata.write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in records),encoding='utf-8')
-    review=write_review(out/'review',records,a.review_samples)
+    policy=dict(min_source_width=1280,min_source_height=720,min_native_side=96,min_hand_focus=15,
+        max_per_clip=2,min_time_gap_s=.4) if a.clear_review else None
+    review=write_review(out/'review',records,a.review_samples,policy)
     model_hashes={}
     for name in ('hand_landmark/hand_landmark_full.tflite','pose_landmark/pose_landmark_full.tflite','holistic_landmark/hand_recrop.tflite'):
         path=Path(mp.__file__).parent/'modules'/name
@@ -98,7 +108,7 @@ def main():
             handedness='unmirrored anatomical association from Holistic, weak labels, left=0 right=1',confidence_available=False),
         frames_sampled=frame_count,frames_without_teacher_hand=no_hand_frames,records=len(records),
         counts=dict(Counter(r['kind'] for r in records)),split_counts=dict(Counter(r['split'] for r in records)),
-        records_sha256=digest(metadata),shards=shards,review_candidates=review,skipped_geometry=dict(skipped),
+        records_sha256=digest(metadata),shards=shards,review_candidates=review,review_selection_policy=policy,skipped_geometry=dict(skipped),
         output_ABI='hand_student_65_v1',targets='63 normalized ROI xyz; presence; right-hand label',
         limitations=['All teacher landmarks are pseudo-labels; visibility and confidence are not supplied by Holistic',
             'Unknown candidate masks are zero; undetected hand is never a no-hand training label',

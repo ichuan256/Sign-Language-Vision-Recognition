@@ -24,6 +24,7 @@
 | `build_hand_student.py` | r3 环境构建未训练学生网络，逐层核对形状和 kernel 数；不训练、不部署 |
 | `prepare_student_manifest.py` | vision环境；校验551素材池SHA，固定原片分组并抽取教师工程试跑清单 |
 | `export_hand_teacher.py` | vision环境；重新运行Holistic，导出手部ROI/伪标签与未知区域、离线人工复核工具 |
+| `prepare_hand_review.py` | vision环境；绑定候选元数据SHA，重筛清晰度、来源和时间门禁下的复核队列，不创建人工标签 |
 | `train_hand_student.py` | r3环境；固定来源划分、掩码损失、浮点蒸馏，人工精度和教师一致性分别报告 |
 | `evaluate_hand_student.py` | r3环境；独立评测已保存模型，输出点位对照图与掩码指标 |
 | `prepare_raw_video.py` | vision环境；从已核验片段生成有界720p raw短循环包，不修改原视频 |
@@ -80,7 +81,8 @@ F:\PLD\.venv-r3\Scripts\python.exe project/scripts/keypoints/build_hand_student.
 教师试训已实际执行，当前数据边界及结果见[试跑记录](../../analysis/keypoints_student_20261026/README.md)。
 教师是MediaPipe模型，教师未检出区域保持未知，不能自动当无手负例。人工复核以`--reviews <JSONL>`显式覆盖，
 必须有复核者、`annotation_origin=human`和`human_verified=true`；没有确认的负样本时禁用presence训练。
-旧200项队列低清占比过高，重筛前不作为正式人工定位集。
+旧200项队列低清占比过高，不再作为本轮入口；新20帧队列与步骤见[清晰复核说明](../../analysis/keypoints_student_20261026/清晰复核说明.md)。
+不需要逐帧标注全部录像，先做3～5帧校准流程；无法判断样本清零掩码，不当作无手。
 
 ```powershell
 # 以下为工程闭环示例；输出目录均须是新的。正式标注前先完成清晰度与来源配额重筛。

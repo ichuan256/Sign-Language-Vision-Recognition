@@ -95,10 +95,13 @@ def apply_reviews(targets,masks,records,path=None):
         item=json.loads(line);sid=item['sample_id']
         if sid not in by_id or sid in seen:raise ValueError('Unknown or duplicate review ID: '+sid)
         seen.add(sid)
-        if item.get('status')!='accepted' or not str(item.get('reviewer','')).strip():
+        if item.get('status') not in ('accepted','ungradable') or not str(item.get('reviewer','')).strip():
             raise ValueError('Accepted named reviewer required')
         if item.get('annotation_origin')!='human' or item.get('human_verified') is not True:
             raise ValueError('Explicit human verification required')
+        if item['status']=='ungradable':
+            i=by_id[sid];masks[i,:]=0;records[i].update(pose_source='none',presence_source='none',handedness_source='none',quality_status='human_ungradable')
+            continue
         if type(item.get('presence')) is not bool:raise ValueError('Explicit boolean presence required')
         i=by_id[sid];targets[i,63]=int(item['presence']);masks[i,63]=1
         records[i]['presence_source']='human';records[i]['scenario']=item.get('scenario','unassigned')

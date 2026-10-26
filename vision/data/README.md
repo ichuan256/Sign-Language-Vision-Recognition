@@ -10,7 +10,8 @@
 
 正式全画幅媒体仍位于仓库根的 `vision/video/`，不入库；部署/识别模型仍在 `vision/data/models/`。
 正式 `vision/video/done` 相对路径保留，原片在`vision/video/raw`；新增素材接收区为`vision/video/inbox`。
-现有第二三课85条差异版本保留在done/wsy，仍由独立待审表标记；历史归档已不在工作区。
+第二三课现存85条已核对为原审计SHA版本，位于done/wsy/第2 第3课，仍单列待审，不自动加入551条池。
+历史保护媒体中31个原片及5个旧演示片段缺失；历史归档已不在工作区。
 当前样本状态与补采见
 [analysis/dataset/README.md](../analysis/dataset/README.md)。
 
@@ -26,4 +27,5 @@
 
 当前学生试训只抽取了551条素材池中的40条，不是把全部素材都用于训练；
 训练670、验证136、测试191个教师手部ROI。教师指 MediaPipe Holistic 软件模型。
-人工复核与清晰度筛选尚未完成，见[试跑记录](../../project/analysis/keypoints_student_20261026/README.md)。
+新1080p候选已生成，并筛出20个不同帧供人工校准；人工复核尚未完成，
+见[试跑记录](../../project/analysis/keypoints_student_20261026/README.md)。
