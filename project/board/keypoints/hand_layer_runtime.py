@@ -41,7 +41,8 @@ class LayerDLLBackend(DLLBackend):
         self.mac_calls+=1
         return output
 
-def pack_parameters(graph,weights):
+def pack_parameters(graph,weights,alignment=1):
+    if alignment<1 or alignment&(alignment-1):raise ValueError('Power-of-two parameter alignment required')
     arrays={key:[] for key in ('kernel','bias','shift')};offsets={};sizes=dict.fromkeys(arrays,0)
     for spec in graph:
         if spec['kind'] not in ('Conv2D','DepthwiseConv2D','Dense'):continue
@@ -50,6 +51,8 @@ def pack_parameters(graph,weights):
         offsets[name]={}
         for key in arrays:
             value=weights[name+'_'+key].reshape(-1)
+            padding=(-sizes[key]*value.dtype.itemsize)%alignment//value.dtype.itemsize
+            if padding:arrays[key].append(np.zeros(padding,value.dtype));sizes[key]+=padding
             offsets[name][key]=sizes[key];sizes[key]+=value.size;arrays[key].append(value)
     if not offsets:raise ValueError('No layer parameters')
     return {key:np.ascontiguousarray(np.concatenate(parts)) for key,parts in arrays.items()},offsets
@@ -79,10 +82,12 @@ class LayerHardwareBackend(HardwareBackend):
         self.traffic=dict(input_bytes_copied=0,resident_input_layers=0)
     def prepare(self,graph,weights):
         if hasattr(self,'resident'):raise RuntimeError('Parameters are immutable; create a new backend to replace them')
-        packed,offsets=pack_parameters(graph,weights)
+        alignment=int(self.regs.get('parameter_alignment',1))
+        packed,offsets=pack_parameters(graph,weights,alignment)
         pools={}
         for key,data in packed.items():
             pool=self._alloc(data.size,data.dtype);pool[:]=data;pool.flush();pools[key]=pool
+            if int(pool.physical_address)%alignment:raise RuntimeError('Parameter pool violates AXI alignment')
         self.resident={name:{key:int(pools[key].physical_address)+offset*packed[key].dtype.itemsize
             for key,offset in fields.items()} for name,fields in offsets.items()}
         self.outputs={spec['name']:self._alloc(int(np.prod(spec['output_shape'])),np.int16)
@@ -103,6 +108,10 @@ class LayerHardwareBackend(HardwareBackend):
             self.la[:x.size]=x.reshape(-1);self.la[:x.size].flush()
             source_address=self.la.physical_address;self.traffic['input_bytes_copied']+=x.nbytes
         self.config[:]=cfg;self.config.flush()
+        alignment=int(self.regs.get('parameter_alignment',1))
+        addresses=[source_address,destination.physical_address,self.config.physical_address,*pointers.values()]
+        if any(int(address)%alignment for address in addresses):
+            raise RuntimeError('Layer buffer violates AXI alignment')
         self.profile['input_copy_flush_s']+=time.perf_counter()-tick
         tick=time.perf_counter()
         self._call(self.mac,self.regs['mac']['registers'],dict(a=source_address,

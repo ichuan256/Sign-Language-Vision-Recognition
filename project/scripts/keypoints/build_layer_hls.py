@@ -44,7 +44,10 @@ def cases():
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,required=True)
     p.add_argument('--export-ip',action='store_true');p.add_argument('--cached',action='store_true')
+    p.add_argument('--wide',action='store_true');p.add_argument('--stream',action='store_true')
     a=p.parse_args();out=a.output.resolve()
+    if a.stream:a.wide=True
+    if a.wide:a.cached=True
     if out.exists() or not out.is_relative_to(ROOT/'project/_tmp'):raise ValueError('New project/_tmp output required')
     out.mkdir(parents=True);data=list(cases())
     with (out/'layer_cases.txt').open('w') as f:
@@ -54,11 +57,13 @@ def main():
             for array in arrays:f.write(' '.join(map(str,array.reshape(-1)))+'\n')
     src=ROOT/'project/algo/keypoints'
     source=src/('kp_layer_cached.cpp' if a.cached else 'kp_layer.cpp')
+    flags='-std=c++11'+(' -DKP_WIDE=1' if a.wide else '')+(' -DKP_STREAM=1' if a.stream else '')
     tcl=['open_project {'+(out/'layer_prj').as_posix()+'}','set_top kp_layer',
-         'add_files {'+source.as_posix()+'} -cflags {-std=c++11}',
+         'add_files {'+source.as_posix()+'} -cflags {'+flags+'}',
          'add_files -tb {'+(src/'kp_layer_test.cpp').as_posix()+'} -cflags {-std=c++11}',
          'add_files -tb {'+(out/'layer_cases.txt').as_posix()+'}',
          'open_solution -flow_target vivado solution1','set_part {xc7z020clg400-1}','create_clock -period 10',
+         'config_interface -m_axi_alignment_byte_size 64 -m_axi_max_widen_bitwidth 128' if a.wide else '',
          'csim_design -clean','csynth_design','cosim_design -rtl verilog -tool xsim -trace_level none']
     if a.export_ip:tcl+=['export_design -format ip_catalog -rtl verilog']
     (out/'build.tcl').write_text('\n'.join(tcl+['exit','']))
@@ -66,8 +71,9 @@ def main():
         result=subprocess.run(['cmd.exe','/d','/c','F:/APP/Xilinx/Vitis_HLS/2024.1/bin/vitis_hls.bat','-f',str(out/'build.tcl')],cwd=out,stdout=log,stderr=subprocess.STDOUT)
     report=dict(scope='whole_layer_kernel_not_board',return_code=result.returncode,cases=len(data))
     report['cached']=a.cached
+    report.update(wide=a.wide,stream=a.stream,compile_flags=flags)
     report['sources_sha256']={path.name:hashlib.sha256(path.read_bytes()).hexdigest() for path in
-        (source,src/'kp_layer.hpp',src/'kp_layer_test.cpp',src/'kp_layer_math.hpp')}
+        (source,src/'kp_layer.hpp',src/'kp_layer_test.cpp',src/'kp_layer_math.hpp',src/'kp_layer_stream.hpp')}
     xml=out/'layer_prj/solution1/syn/report/kp_layer_csynth.xml'
     if xml.exists():
         tree=ET.parse(xml);report['resources']={n.tag:n.text for n in tree.findall('.//AreaEstimates/Resources/*')}

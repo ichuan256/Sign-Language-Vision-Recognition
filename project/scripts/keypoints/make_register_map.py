@@ -24,6 +24,7 @@ def main():
     parser.add_argument('--vector-ip',type=Path)
     parser.add_argument('--vector-capacity',type=int,choices=(4096,65536),default=4096)
     parser.add_argument('--cached',action='store_true')
+    parser.add_argument('--stream',action='store_true')
     args=parser.parse_args()
     output=args.output.resolve()
     if not output.is_relative_to(ROOT) or output.exists():raise ValueError('Use a new workspace output file')
@@ -40,6 +41,9 @@ def main():
     if args.layer_ip:report['architecture']='whole_layer_v2'
     if args.vector_ip:report['vector_capacity']=args.vector_capacity
     if args.cached:report['layer_variant']='input_cache_v1'
+    if args.stream:
+        if not args.layer_ip:raise ValueError('Stream variant requires a layer IP')
+        report.update(layer_variant='stream_wide_v1',parameter_alignment=64)
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps(report,indent=2)+'\n')
     print('REGISTER_MAP_READY '+str(output))

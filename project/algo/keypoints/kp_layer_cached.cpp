@@ -17,6 +17,15 @@ static int weight_address(int k,int channels,int c) {
     ap_uint<20> address=ap_uint<10>(k)*ap_uint<10>(channels)+ap_uint<10>(c);
     return address.to_uint();
 }
+// Called only after dimension guards: 224x224x672 fits 26 bits.
+static int shape_count(int height,int width,int channels) {
+    ap_uint<16> pixels=ap_uint<8>(height)*ap_uint<8>(width);
+    ap_uint<26> count=pixels*ap_uint<10>(channels);
+    return count.to_uint();
+}
+#ifdef KP_STREAM
+#include "kp_layer_stream.hpp"
+#endif
 
 int kp_layer(const short* a,const short* b,const long long* bias,
              const signed char* shift,short* out,const int* config) {
@@ -41,9 +50,11 @@ int kp_layer(const short* a,const short* b,const long long* bias,
         sy<1 || sy>2 || sx<1 || sx>2 || py<0 || py>=kh || px<0 || px>=kw ||
         dw<0 || dw>1 || relu<0 || relu>1 || rs<-31 || rs>47 || limit<-1 || limit>32767) return 1;
     int groups=(ci+15)/16;
-    int max_rows=((oh<4?oh:4)-1)*sy+kh;
-    if (ih*iw*ci>802816 || oh*ow*co>802816 || (dw && ci!=co) || (!dw && kh*kw*ci>1024)) return 2;
-    if (max_rows*iw*groups>4096 || (oh<4?oh:4)*ow*co>32768 || (!dw && kh*kw*ci*co>451584)) return 4;
+    int max_rows=(ap_uint<2>((oh<4?oh:4)-1)*ap_uint<2>(sy)).to_uint()+kh;
+    int kernel_depth=shape_count(kh,kw,ci);
+    if (shape_count(ih,iw,ci)>802816 || shape_count(oh,ow,co)>802816 || (dw && ci!=co) || (!dw && kernel_depth>1024)) return 2;
+    ap_uint<26> weight_count=ap_uint<16>(kernel_depth)*ap_uint<10>(co);
+    if (shape_count(max_rows,iw,groups)>4096 || shape_count(oh<4?oh:4,ow,co)>32768 || (!dw && weight_count>451584)) return 4;
     for (int c=0;c<co;++c) {
         if (shift[c]<-31 || shift[c]>47 || bias[c]>=(1LL<<47) || bias[c]<-(1LL<<47)) return 3;
     }
@@ -52,6 +63,9 @@ int kp_layer(const short* a,const short* b,const long long* bias,
 #pragma HLS ARRAY_PARTITION variable=cache complete dim=2
 #pragma HLS BIND_STORAGE variable=cache type=ram_2p impl=bram
     ap_int<16> output_cache[32768];
+#ifdef KP_WIDE
+#pragma HLS ARRAY_PARTITION variable=output_cache cyclic factor=8
+#endif
 #pragma HLS BIND_STORAGE variable=output_cache type=ram_2p impl=bram
     ap_int<16> weights[1024][16];
 #pragma HLS ARRAY_PARTITION variable=weights complete dim=2
@@ -60,8 +74,8 @@ int kp_layer(const short* a,const short* b,const long long* bias,
 #pragma HLS ARRAY_PARTITION variable=biases complete
 #pragma HLS ARRAY_PARTITION variable=shifts complete
     ROW_TILES: for (int ty=0;ty<oh;ty+=4) {
-        int rows=oh-ty<4?oh-ty:4,load_rows=(rows-1)*sy+kh;
-        CLEAR_CACHE: for (int index=0;index<load_rows*iw*groups;++index) {
+        int rows=oh-ty<4?oh-ty:4,load_rows=(ap_uint<2>(rows-1)*ap_uint<2>(sy)).to_uint()+kh;
+        CLEAR_CACHE: for (int index=0;index<shape_count(load_rows,iw,groups);++index) {
 #pragma HLS PIPELINE II=1
             for(int lane=0;lane<16;++lane) {
 #pragma HLS UNROLL
@@ -71,7 +85,21 @@ int kp_layer(const short* a,const short* b,const long long* bias,
         LOAD_Y: for (int y=0;y<load_rows;++y) {
             int iy=(ap_uint<8>(ty)*ap_uint<2>(sy)).to_int()-py+y;
             if(iy>=0 && iy<ih) {
-                int base=tensor_address(iy,0,0,iw,ci),length=iw*ci;
+                int base=tensor_address(iy,0,0,iw,ci),length=shape_count(1,iw,ci);
+#ifdef KP_WIDE
+                if(ci%8==0) {
+                    ap_uint<10> channel=0,last=ci-8;ap_uint<8> column=0;
+                    LOAD_ROW_WIDE:for(int index=0;index<length;index+=8) {
+#pragma HLS PIPELINE II=1
+#pragma HLS DEPENDENCE variable=cache inter false
+                        for(int lane=0;lane<8;++lane) {
+#pragma HLS UNROLL
+                            cache[cache_address(y,column.to_uint(),channel.to_uint()/16,iw,groups)][channel.to_uint()%16+lane]=a[base+index+lane];
+                        }
+                        if(channel==last){channel=0;++column;}else channel+=8;
+                    }
+                } else {
+#endif
                 ap_uint<10> channel=0,last=ci-1;ap_uint<8> column=0;
                 LOAD_ROW_BURST: for(int index=0;index<length;++index) {
 #pragma HLS PIPELINE II=1
@@ -81,6 +109,9 @@ int kp_layer(const short* a,const short* b,const long long* bias,
                     cache[cache_address(y,column.to_uint(),channel.to_uint()/16,iw,groups)][channel.to_uint()%16]=a[base+index];
                     if(channel==last){channel=0;++column;}else ++channel;
                 }
+#ifdef KP_WIDE
+                }
+#endif
             }
         }
         CHANNEL_BLOCKS: for (int cb=0;cb<co;cb+=16) {
@@ -89,13 +120,32 @@ int kp_layer(const short* a,const short* b,const long long* bias,
 #pragma HLS PIPELINE II=1
                 biases[c]=c<n?bias[cb+c]:0;shifts[c]=c<n?shift[cb+c]:0;
             }
-            int depth=dw?kh*kw:kh*kw*ci;
+            int depth=shape_count(kh,kw,dw?1:ci);
+#ifdef KP_WIDE
+            if(co%8==0) {
+                LOAD_WEIGHTS_WIDE:for(int k=0;k<depth;++k) {
+                    for(int c=0;c<16;c+=8) {
+#pragma HLS PIPELINE II=1
+                        for(int lane=0;lane<8;++lane) {
+#pragma HLS UNROLL
+                            weights[k][c+lane]=c+lane<n?b[weight_address(k,co,cb+c+lane)]:0;
+                        }
+                    }
+                }
+            } else {
+#endif
             for (int k=0;k<depth;++k) {
                 for (int c=0;c<16;++c) {
 #pragma HLS PIPELINE II=1
                     weights[k][c]=c<n?b[weight_address(k,co,cb+c)]:0;
                 }
             }
+#ifdef KP_WIDE
+            }
+#endif
+#ifdef KP_STREAM
+            compute_and_store(cache,weights,biases,shifts,output_cache,rows,ow,co,cb,n,iw,ci,groups,kh,kw,sy,sx,px,dw,relu,rs,limit);
+#else
             OUTPUT_Y: for (int y=0;y<rows;++y) {
                 OUTPUT_X: for (int x=0;x<ow;++x) {
                     ap_int<48> acc[16];
@@ -150,12 +200,27 @@ int kp_layer(const short* a,const short* b,const long long* bias,
                     }
                 }
             }
+#endif
         }
-        int output_base=tensor_address(ty,0,0,ow,co),output_length=rows*ow*co;
+        int output_base=tensor_address(ty,0,0,ow,co),output_length=shape_count(rows,ow,co);
+#ifdef KP_WIDE
+        if(output_base%8==0 && output_length%8==0) {
+            WRITE_TILE_WIDE:for(int index=0;index<output_length;index+=8) {
+#pragma HLS PIPELINE II=1
+                for(int lane=0;lane<8;++lane) {
+#pragma HLS UNROLL
+                    out[output_base+index+lane]=output_cache[index+lane];
+                }
+            }
+        } else {
+#endif
         WRITE_TILE_BURST: for(int index=0;index<output_length;++index) {
 #pragma HLS PIPELINE II=1
             out[output_base+index]=output_cache[index];
         }
+#ifdef KP_WIDE
+        }
+#endif
     }
     return 0;
 }

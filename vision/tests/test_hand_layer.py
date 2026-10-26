@@ -1,6 +1,7 @@
 """Layer geometry and safe graph fusion contracts; no board or TensorFlow."""
 import json
 import numpy as np
+import pytest
 from project.board.keypoints.hand_layer_runtime import configuration,LayerHardwareBackend,pack_parameters
 from project.board.keypoints.hand_runtime import HandGraph
 
@@ -72,6 +73,12 @@ def test_layer_driver_flushes_only_valid_ranges_and_uses_generated_config_name()
     backend.layer(previous,np.ones((1,1,3,2),np.int16),np.zeros(2,np.int64),np.zeros(2,np.int8),spec,None)
     assert not any(name=='la' for name,op,size in events)
     assert calls[-1]['a']==0x22000 and backend.traffic['resident_input_layers']==1
+    backend.regs['parameter_alignment']=64
+    backend.config.physical_address+=4
+    before=len(calls)
+    with pytest.raises(RuntimeError,match='AXI alignment'):
+        backend.layer(previous,np.ones((1,1,3,2),np.int16),np.zeros(2,np.int64),np.zeros(2,np.int8),spec,None)
+    assert len(calls)==before
 
 def test_resident_parameters_preserve_each_layer_layout_and_offsets():
     graph=[dict(name='dw',kind='DepthwiseConv2D'),dict(name='dense',kind='Dense')]
@@ -85,6 +92,14 @@ def test_resident_parameters_preserve_each_layer_layout_and_offsets():
             start=offsets[name][key]
             assert np.array_equal(packed[key][start:start+n],weights[name+'_'+key])
     assert offsets['dense']==dict(kernel=6,bias=6,shift=6)
+    aligned,positions=pack_parameters(graph,weights,64)
+    for name,n in [('dw',6),('dense',3)]:
+        for key in aligned:
+            start=positions[name][key]
+            assert start*aligned[key].dtype.itemsize%64==0
+            assert np.array_equal(aligned[key][start:start+n],weights[name+'_'+key])
+    with pytest.raises(ValueError,match='alignment'):
+        pack_parameters(graph,weights,3)
 
 def test_large_vector_batches_respect_selected_hardware_capacity():
     calls=[]

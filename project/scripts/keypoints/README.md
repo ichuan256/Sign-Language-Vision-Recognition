@@ -21,7 +21,7 @@
 | `show_hand_result.py` | 将已验证的 PL 坐标叠加到静态 ROI，有界显示 HDMI |
 | `publish_hand_board.py` | 从板端输出、实现报告和 HDMI 验收生成紧凑证据 JSON |
 
-当前已通过的实际部署状态见 [第二阶段加速记录](../../analysis/keypoints_pl_20261025/single_hand_acceleration.md)，
+当前已通过的实际部署状态见 [流式加速记录](../../analysis/keypoints_pl_20261026/stream_wide.md)，
 驱动和板端入口见 [board/keypoints](../../board/keypoints/README.md)。
 
 典型执行顺序：
@@ -53,6 +53,12 @@ F:\PLD\.venv-vision\Scripts\python.exe project/scripts/keypoints/run_system_buil
 构建过程中不要启动其他 Vivado 综合/实现。`constraints_resume` 仅用于已停止的隔离工程补齐旧 W6
 时序配置并重置顶层运行；`--attempt` 用于保留不同重试日志，不覆盖失败证据。
 所有候选都须通过 routed setup/hold、时钟方法学和实际板端数值门禁；已有旧接口告警边界见当前记录。
+
+缓存/流式候选复跑时，`validate_hand_runtime.py --stream` 与 `build_layer_hls.py --stream --export-ip`
+会同时启用缓存、宽访存和生产者/消费者流水线；单独 `--cached` 保留已测缓存版。
+`make_register_map.py --layer-ip <该轮IP> --vector-ip <fast-vector-IP> --vector-capacity 65536 --stream`
+记录 64 字节参数对齐，板端逐层参数池补齐且检查所有传入地址。
+旧寄存器表不得搭配新流式固件；宽度上限 128bit 不代表每个 AXI 端口都实际达到 128bit。
 
 整层版本：主机验证加 `--layer`；`build_layer_hls.py --export-ip` 导出层核后，
 `run_system_build.py prepare --layer-ip <导出 impl/ip>` 选择该核，`make_register_map.py --layer-ip <同一路径>`

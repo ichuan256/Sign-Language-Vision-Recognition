@@ -5,6 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import statistics
 
 ROOT=Path(__file__).resolve().parents[3]
 
@@ -17,6 +18,7 @@ def main():
     p.add_argument('--display-mode',choices=('static','dynamic'),default='static')
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--baseline',type=Path,help='Prior measured board JSON for a clearly scoped comparison')
+    p.add_argument('--dynamic-result',type=Path,help='Completed dynamic replay evidence directory')
     a=p.parse_args()
     if a.output.exists() or not a.output.resolve().is_relative_to(ROOT):raise ValueError('Use a new workspace output file')
     board=json.loads((a.result/'report.json').read_text())
@@ -27,9 +29,10 @@ def main():
     resource=(a.build/'utilization_routed.rpt').read_text()
     used={}
     for label,key in [('Slice LUTs','lut'),('Slice Registers','ff'),('Block RAM Tile','bram36_tiles'),('DSPs','dsp')]:
-        match=re.search(r'\| '+re.escape(label)+r'\s*\|\s*(\d+)\s*\|\s*0\s*\|\s*0\s*\|\s*(\d+)',resource)
+        match=re.search(r'\| '+re.escape(label)+r'\s*\|\s*(\d+(?:\.\d+)?)\s*\|\s*0\s*\|\s*0\s*\|\s*(\d+)',resource)
         if not match:raise RuntimeError('Resource report format changed: '+label)
-        used[key]=dict(used=int(match[1]),available=int(match[2]))
+        count=float(match[1])
+        used[key]=dict(used=int(count) if count.is_integer() else count,available=int(match[2]))
     timing=(a.build/'timing_routed.rpt').read_text()
     match=re.search(r'WNS\(ns\).*?\n\s*[- ]+\n\s*([-\d.]+)\s+([-\d.]+)\s+\d+\s+\d+\s+([-\d.]+)\s+([-\d.]+)',timing)
     if not match:raise RuntimeError('Timing report format changed')
@@ -70,6 +73,19 @@ def main():
             baseline_launches=baseline['mac_calls']+baseline['vector_calls'],
             current_launches=board['mac_calls']+board['vector_calls'],
             scope='same fixed ROI/model/scales, first forward wall time; not end-to-end video FPS')
+    if a.dynamic_result:
+        replay=json.loads((a.dynamic_result/'report.json').read_text())
+        if not replay['valid_run'] or replay['cpu_neural_fallback'] or replay['error']:
+            raise RuntimeError('Completed dynamic replay gate missing')
+        values=replay['pl_forward_s']
+        data['dynamic_replay']=dict(video_frames=replay['video_frames'],ROI_frames=replay['ROI_frames'],
+            pl_results=replay['pl_results'],elapsed_s=replay['elapsed_s'],
+            unique_inputs=replay['unique_PL_inputs'],unique_outputs=replay['unique_PL_outputs'],
+            PL_forward_median_s=statistics.median(values),
+            PL_forward_p95_s=statistics.quantiles(values,n=100,method='inclusive')[94],
+            observed_results_per_s=replay['pl_results']/replay['elapsed_s'],
+            source_sha256=replay['source_sha256'],screen_visually_confirmed=a.screen_confirmed,
+            scope='one known clip, cached PC ROI; result rate includes startup and missing ROI frames')
     a.output.write_text(json.dumps(data,indent=2)+'\n',encoding='utf-8')
     print('Published',a.output)
 

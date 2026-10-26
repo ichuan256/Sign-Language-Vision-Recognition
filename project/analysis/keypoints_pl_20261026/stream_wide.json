@@ -1,0 +1,234 @@
+{
+  "scope": "single_hand_21_points_PL_graph_PC_supplied_ROI",
+  "tool": "Vivado/Vitis HLS 2024.1",
+  "device": "xc7z020clg400-1",
+  "clock_mhz": 100,
+  "activation_bits": 16,
+  "weight_bits": 12,
+  "accumulator_bits": 48,
+  "board_samples": 1,
+  "outputs_per_sample": 64,
+  "integer_reference_exact_match": true,
+  "max_abs_difference": 0.0,
+  "cpu_neural_fallback": false,
+  "input_sha256": "0a606e9d542087c6453042e165ae6832917d9054309a701fe226ed84469af92b",
+  "output_sha256": "d5a667263a9cc2335a926d9ff08f89238e9ea6d353c7ec7039297430d1eb787b",
+  "artifacts": {
+    "bit": {
+      "sha256": "a30b84b2efbe769ac75ae233dd36be488ce9780b7a75c18b0ede8bdc7dad4a15"
+    },
+    "hwh": {
+      "sha256": "18ccd014d78c67c22de833c0dc11202d722e39cf548f9485260b06bfa5070fe0"
+    }
+  },
+  "resources": {
+    "lut": {
+      "used": 37742,
+      "available": 53200
+    },
+    "ff": {
+      "used": 46706,
+      "available": 106400
+    },
+    "bram36_tiles": {
+      "used": 119.5,
+      "available": 140
+    },
+    "dsp": {
+      "used": 165,
+      "available": 220
+    }
+  },
+  "timing_ns": {
+    "wns": 0.316,
+    "tns": 0.0,
+    "whs": 0.012,
+    "ths": 0.0
+  },
+  "latency_s": {
+    "board_forward": 0.5048681840000029,
+    "setup_and_model_load": 14.328306451999993,
+    "board_with_setup": 14.833174635999995,
+    "ssh_request": 21.081745500006946
+  },
+  "layer_group_wall_s": {
+    "InputLayer": 6.922500000428045e-05,
+    "Conv2D": 0.2997190500000215,
+    "ReLU": 0.001974252999929149,
+    "DepthwiseConv2D": 0.11374382599996125,
+    "MaxPooling2D": 0.019068086000004314,
+    "Add": 0.03602188199997158,
+    "GlobalAveragePooling2D": 0.00626314400000183,
+    "Dense": 0.006191279999995913,
+    "Activation": 0.0020937479999929565
+  },
+  "mac_calls": 49,
+  "vector_calls": 13,
+  "hand_presence": 0.7578125,
+  "coordinates_roi_units": [
+    [
+      95.515625,
+      182.1640625,
+      0.0
+    ],
+    [
+      89.4765625,
+      142.0703125,
+      0.7265625
+    ],
+    [
+      95.7109375,
+      99.3046875,
+      -3.0234375
+    ],
+    [
+      108.6015625,
+      71.703125,
+      -7.234375
+    ],
+    [
+      116.40625,
+      53.53125,
+      -11.6328125
+    ],
+    [
+      90.1328125,
+      104.71875,
+      -9.828125
+    ],
+    [
+      103.53125,
+      79.1640625,
+      -15.109375
+    ],
+    [
+      121.578125,
+      62.1796875,
+      -18.6328125
+    ],
+    [
+      136.6875,
+      49.796875,
+      -21.1015625
+    ],
+    [
+      104.9609375,
+      117.6171875,
+      -13.0078125
+    ],
+    [
+      111.5625,
+      97.5625,
+      -17.625
+    ],
+    [
+      110.9375,
+      93.9765625,
+      -18.9140625
+    ],
+    [
+      108.546875,
+      92.0546875,
+      -20.4453125
+    ],
+    [
+      121.1171875,
+      132.65625,
+      -15.5
+    ],
+    [
+      124.53125,
+      117.2734375,
+      -17.9375
+    ],
+    [
+      120.734375,
+      121.921875,
+      -16.0703125
+    ],
+    [
+      116.1953125,
+      127.0546875,
+      -15.5546875
+    ],
+    [
+      135.9140625,
+      148.5390625,
+      -18.1328125
+    ],
+    [
+      138.296875,
+      134.5859375,
+      -18.9296875
+    ],
+    [
+      134.0234375,
+      138.2265625,
+      -17.0
+    ],
+    [
+      131.6875,
+      143.484375,
+      -16.2578125
+    ]
+  ],
+  "cold_boot_confirmed": true,
+  "overlay_downloaded_by_test": false,
+  "hdmi": {
+    "static_ROI": false,
+    "frame_writes_confirmed_at_least": 600,
+    "receiver_bounded_seconds": 120,
+    "screen_visually_confirmed": true,
+    "confirmation": "User confirmed moving video and changing PL results"
+  },
+  "limitations": [
+    "One ROI hardware numeric test; not annotated landmark accuracy or arbitrary-video generalization",
+    "PS schedules and packs tensors; forward wall time includes this overhead and DDR transfers",
+    "Single-ROI timing excludes camera/video decode/automatic ROI/body/both-hands; not end-to-end real-time acceptance",
+    "Routed methodology retains TIMING-18 I/O budgets and vendor LUTAR/control-set warnings"
+  ],
+  "evidence_dirs": [
+    "project/_tmp/kp_stream_system_v2b",
+    "project/_tmp/kp_stream_board_v2",
+    "project/_tmp/kp_stream_dynamic_v2/hdmi"
+  ],
+  "layer_profile_s": {
+    "input_copy_flush_s": 0.031807825999919714,
+    "launch_wait_s": 0.34743562300002395,
+    "output_invalidate_view_s": 0.007588970000085737,
+    "vector_wall_s": 0.04089526899997509,
+    "cpu_sync_s": 0.00462368700007687
+  },
+  "layer_traffic": {
+    "input_bytes_copied": 662816,
+    "resident_input_layers": 36
+  },
+  "repeat_forward_s": [
+    0.5048681840000029,
+    0.4899938759999998,
+    0.49025175299999546
+  ],
+  "all_repeats_exact": true,
+  "independent_ROIs": 1,
+  "comparison": {
+    "baseline_forward_s": 0.5662040600000182,
+    "first_forward_speedup": 1.1214888914450094,
+    "baseline_launches": 62,
+    "current_launches": 62,
+    "scope": "same fixed ROI/model/scales, first forward wall time; not end-to-end video FPS"
+  },
+  "dynamic_replay": {
+    "video_frames": 2353,
+    "ROI_frames": 1242,
+    "pl_results": 243,
+    "elapsed_s": 155.71899999998277,
+    "unique_inputs": 10,
+    "unique_outputs": 10,
+    "PL_forward_median_s": 0.5329492239999922,
+    "PL_forward_p95_s": 0.6196059301999753,
+    "observed_results_per_s": 1.560503214123048,
+    "source_sha256": "1a9fd6424d79daccaff263ebf92edfd34bf01aa56df5897d1767edaf3d30ab0e",
+    "screen_visually_confirmed": true,
+    "scope": "one known clip, cached PC ROI; result rate includes startup and missing ROI frames"
+  }
+}
