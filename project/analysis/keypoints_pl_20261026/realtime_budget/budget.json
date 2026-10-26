@@ -1,0 +1,521 @@
+{
+  "scope": "analytic_design_budget_not_training_or_hardware_result",
+  "source_sha256": {
+    "graph.json": "0285a0f741eb6bc6d231f29ff21d1e7c8a02829da1969f1bfe093564fc58ea66",
+    "stream_wide.json": "a823f47d1df0811838a6f37de0645ae8ac7557a0d122cc040d0731f4fddfb766",
+    "hand_student_v1.json": "c2e122208558e7638e77f59644a4e4cdc1e5ce1ebc1a2f5c029a8fda78785c17"
+  },
+  "baseline": {
+    "macs_per_ROI": 145562816,
+    "kernel_values": 957152,
+    "learned_layers": 49,
+    "median_forward_ms": 490.25175299999546,
+    "clock_mhz": 100,
+    "MAC_lanes_assumed_for_floor": 16,
+    "measured_effective_GMAC_s": 0.29691442225195136,
+    "resources": {
+      "lut": {
+        "used": 37742,
+        "available": 53200
+      },
+      "ff": {
+        "used": 46706,
+        "available": 106400
+      },
+      "bram36_tiles": {
+        "used": 119.5,
+        "available": 140
+      },
+      "dsp": {
+        "used": 165,
+        "available": 220
+      }
+    }
+  },
+  "targets": {
+    "annotated_frame_hz_min": 20,
+    "annotated_frame_hz_stretch": 30,
+    "capture_fps": 30,
+    "display_scan_hz": 60,
+    "per_hand_updates_hz": 20,
+    "hands": 2,
+    "ROI_inferences_per_s": 40,
+    "frame_budget_ms": 50,
+    "ROI_slot_ms": 20,
+    "detector_and_control_budget_ms_per_pair": 10,
+    "display_age_p95_ms": 100,
+    "capture_width": 640,
+    "capture_height": 480,
+    "display_modes_budget": [
+      {
+        "width": 640,
+        "height": 480,
+        "triple_RGB888_frame_bytes": 2764800,
+        "frame_write_30fps_MB_s": 27.648,
+        "display_read_60Hz_MB_s": 55.296,
+        "total_minimum_MB_s": 82.944
+      },
+      {
+        "width": 1280,
+        "height": 720,
+        "triple_RGB888_frame_bytes": 8294400,
+        "frame_write_30fps_MB_s": 82.944,
+        "display_read_60Hz_MB_s": 165.888,
+        "total_minimum_MB_s": 248.832
+      }
+    ],
+    "resource_ceiling_fraction": 0.8,
+    "notes": [
+      "Targets only; detector+crop+control must fit the remaining shared budget",
+      "Frame buffers reside in DDR; display bandwidth excludes inference, detector, extra copies and arbitration",
+      "720p is the known display mode; VGA output requires monitor and timing validation",
+      "20 Hz hands does not include body pose; body network needs an additional measured budget"
+    ]
+  },
+  "candidates": [
+    {
+      "input_size": 96,
+      "trained": false,
+      "accuracy_measured": false,
+      "board_measured": false,
+      "layers": [
+        {
+          "name": "stem",
+          "kind": "Conv2D",
+          "input_shape": [
+            96,
+            96,
+            3
+          ],
+          "output_shape": [
+            48,
+            48,
+            16
+          ],
+          "kernel_values": 432,
+          "bias_values": 16,
+          "macs": 995328
+        },
+        {
+          "name": "dw_0",
+          "kind": "DepthwiseConv2D",
+          "input_shape": [
+            48,
+            48,
+            16
+          ],
+          "output_shape": [
+            48,
+            48,
+            16
+          ],
+          "kernel_values": 144,
+          "bias_values": 16,
+          "macs": 331776
+        },
+        {
+          "name": "pw_0",
+          "kind": "Conv2D",
+          "input_shape": [
+            48,
+            48,
+            16
+          ],
+          "output_shape": [
+            48,
+            48,
+            24
+          ],
+          "kernel_values": 384,
+          "bias_values": 24,
+          "macs": 884736
+        },
+        {
+          "name": "dw_1",
+          "kind": "DepthwiseConv2D",
+          "input_shape": [
+            48,
+            48,
+            24
+          ],
+          "output_shape": [
+            24,
+            24,
+            24
+          ],
+          "kernel_values": 216,
+          "bias_values": 24,
+          "macs": 124416
+        },
+        {
+          "name": "pw_1",
+          "kind": "Conv2D",
+          "input_shape": [
+            24,
+            24,
+            24
+          ],
+          "output_shape": [
+            24,
+            24,
+            32
+          ],
+          "kernel_values": 768,
+          "bias_values": 32,
+          "macs": 442368
+        },
+        {
+          "name": "dw_2",
+          "kind": "DepthwiseConv2D",
+          "input_shape": [
+            24,
+            24,
+            32
+          ],
+          "output_shape": [
+            12,
+            12,
+            32
+          ],
+          "kernel_values": 288,
+          "bias_values": 32,
+          "macs": 41472
+        },
+        {
+          "name": "pw_2",
+          "kind": "Conv2D",
+          "input_shape": [
+            12,
+            12,
+            32
+          ],
+          "output_shape": [
+            12,
+            12,
+            48
+          ],
+          "kernel_values": 1536,
+          "bias_values": 48,
+          "macs": 221184
+        },
+        {
+          "name": "dw_3",
+          "kind": "DepthwiseConv2D",
+          "input_shape": [
+            12,
+            12,
+            48
+          ],
+          "output_shape": [
+            6,
+            6,
+            48
+          ],
+          "kernel_values": 432,
+          "bias_values": 48,
+          "macs": 15552
+        },
+        {
+          "name": "pw_3",
+          "kind": "Conv2D",
+          "input_shape": [
+            6,
+            6,
+            48
+          ],
+          "output_shape": [
+            6,
+            6,
+            64
+          ],
+          "kernel_values": 3072,
+          "bias_values": 64,
+          "macs": 110592
+        },
+        {
+          "name": "dw_4",
+          "kind": "DepthwiseConv2D",
+          "input_shape": [
+            6,
+            6,
+            64
+          ],
+          "output_shape": [
+            3,
+            3,
+            64
+          ],
+          "kernel_values": 576,
+          "bias_values": 64,
+          "macs": 5184
+        },
+        {
+          "name": "pw_4",
+          "kind": "Conv2D",
+          "input_shape": [
+            3,
+            3,
+            64
+          ],
+          "output_shape": [
+            3,
+            3,
+            64
+          ],
+          "kernel_values": 4096,
+          "bias_values": 64,
+          "macs": 36864
+        },
+        {
+          "name": "coordinate_presence_handedness_head",
+          "kind": "Dense",
+          "input_shape": [
+            576
+          ],
+          "output_shape": [
+            65
+          ],
+          "kernel_values": 37440,
+          "bias_values": 65,
+          "macs": 37440
+        }
+      ],
+      "learned_layers": 12,
+      "macs_per_ROI": 3246912,
+      "kernel_values": 49384,
+      "kernel_bytes_at_W8": 49384,
+      "largest_activation_bytes_at_A8": 55296,
+      "largest_adjacent_tensor_pair_bytes_at_A8": 92160,
+      "operation_reduction": 44.83115526383222,
+      "arithmetic_only_floor_ms": 2.02932,
+      "same_effective_MAC_rate_heuristic_ms": 10.935514601728515,
+      "caveats": [
+        "Heuristic is not an HLS latency or board FPS prediction",
+        "No trained accuracy, detector cost, memory stalls, pipeline fill, quantization or display cost measured",
+        "Activation capacity excludes padding, banking, FIFOs, line buffers and double buffering"
+      ]
+    },
+    {
+      "input_size": 128,
+      "trained": false,
+      "accuracy_measured": false,
+      "board_measured": false,
+      "layers": [
+        {
+          "name": "stem",
+          "kind": "Conv2D",
+          "input_shape": [
+            128,
+            128,
+            3
+          ],
+          "output_shape": [
+            64,
+            64,
+            16
+          ],
+          "kernel_values": 432,
+          "bias_values": 16,
+          "macs": 1769472
+        },
+        {
+          "name": "dw_0",
+          "kind": "DepthwiseConv2D",
+          "input_shape": [
+            64,
+            64,
+            16
+          ],
+          "output_shape": [
+            64,
+            64,
+            16
+          ],
+          "kernel_values": 144,
+          "bias_values": 16,
+          "macs": 589824
+        },
+        {
+          "name": "pw_0",
+          "kind": "Conv2D",
+          "input_shape": [
+            64,
+            64,
+            16
+          ],
+          "output_shape": [
+            64,
+            64,
+            24
+          ],
+          "kernel_values": 384,
+          "bias_values": 24,
+          "macs": 1572864
+        },
+        {
+          "name": "dw_1",
+          "kind": "DepthwiseConv2D",
+          "input_shape": [
+            64,
+            64,
+            24
+          ],
+          "output_shape": [
+            32,
+            32,
+            24
+          ],
+          "kernel_values": 216,
+          "bias_values": 24,
+          "macs": 221184
+        },
+        {
+          "name": "pw_1",
+          "kind": "Conv2D",
+          "input_shape": [
+            32,
+            32,
+            24
+          ],
+          "output_shape": [
+            32,
+            32,
+            32
+          ],
+          "kernel_values": 768,
+          "bias_values": 32,
+          "macs": 786432
+        },
+        {
+          "name": "dw_2",
+          "kind": "DepthwiseConv2D",
+          "input_shape": [
+            32,
+            32,
+            32
+          ],
+          "output_shape": [
+            16,
+            16,
+            32
+          ],
+          "kernel_values": 288,
+          "bias_values": 32,
+          "macs": 73728
+        },
+        {
+          "name": "pw_2",
+          "kind": "Conv2D",
+          "input_shape": [
+            16,
+            16,
+            32
+          ],
+          "output_shape": [
+            16,
+            16,
+            48
+          ],
+          "kernel_values": 1536,
+          "bias_values": 48,
+          "macs": 393216
+        },
+        {
+          "name": "dw_3",
+          "kind": "DepthwiseConv2D",
+          "input_shape": [
+            16,
+            16,
+            48
+          ],
+          "output_shape": [
+            8,
+            8,
+            48
+          ],
+          "kernel_values": 432,
+          "bias_values": 48,
+          "macs": 27648
+        },
+        {
+          "name": "pw_3",
+          "kind": "Conv2D",
+          "input_shape": [
+            8,
+            8,
+            48
+          ],
+          "output_shape": [
+            8,
+            8,
+            64
+          ],
+          "kernel_values": 3072,
+          "bias_values": 64,
+          "macs": 196608
+        },
+        {
+          "name": "dw_4",
+          "kind": "DepthwiseConv2D",
+          "input_shape": [
+            8,
+            8,
+            64
+          ],
+          "output_shape": [
+            4,
+            4,
+            64
+          ],
+          "kernel_values": 576,
+          "bias_values": 64,
+          "macs": 9216
+        },
+        {
+          "name": "pw_4",
+          "kind": "Conv2D",
+          "input_shape": [
+            4,
+            4,
+            64
+          ],
+          "output_shape": [
+            4,
+            4,
+            64
+          ],
+          "kernel_values": 4096,
+          "bias_values": 64,
+          "macs": 65536
+        },
+        {
+          "name": "coordinate_presence_handedness_head",
+          "kind": "Dense",
+          "input_shape": [
+            1024
+          ],
+          "output_shape": [
+            65
+          ],
+          "kernel_values": 66560,
+          "bias_values": 65,
+          "macs": 66560
+        }
+      ],
+      "learned_layers": 12,
+      "macs_per_ROI": 5772288,
+      "kernel_values": 78504,
+      "kernel_bytes_at_W8": 78504,
+      "largest_activation_bytes_at_A8": 98304,
+      "largest_adjacent_tensor_pair_bytes_at_A8": 163840,
+      "operation_reduction": 25.217524835905625,
+      "arithmetic_only_floor_ms": 3.60768,
+      "same_effective_MAC_rate_heuristic_ms": 19.440914847517362,
+      "caveats": [
+        "Heuristic is not an HLS latency or board FPS prediction",
+        "No trained accuracy, detector cost, memory stalls, pipeline fill, quantization or display cost measured",
+        "Activation capacity excludes padding, banking, FIFOs, line buffers and double buffering"
+      ]
+    }
+  ]
+}

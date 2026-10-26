@@ -20,6 +20,8 @@
 | `run_hand_remote.py` | 执行实际板端 PL 推理、回传输出与延迟、对齐整数参考 |
 | `show_hand_result.py` | 将已验证的 PL 坐标叠加到静态 ROI，有界显示 HDMI |
 | `publish_hand_board.py` | 从板端输出、实现报告和 HDMI 验收生成紧凑证据 JSON |
+| `plan_realtime_hand.py` | 只读分析旧图，生成 96/128 学生模型的 MAC/容量与双手预算，不预测板端 FPS |
+| `build_hand_student.py` | r3 环境构建未训练学生网络，逐层核对形状和 kernel 数；不训练、不部署 |
 
 当前已通过的实际部署状态见 [流式加速记录](../../analysis/keypoints_pl_20261026/stream_wide.md)，
 驱动和板端入口见 [board/keypoints](../../board/keypoints/README.md)。
@@ -59,6 +61,15 @@ F:\PLD\.venv-vision\Scripts\python.exe project/scripts/keypoints/run_system_buil
 `make_register_map.py --layer-ip <该轮IP> --vector-ip <fast-vector-IP> --vector-capacity 65536 --stream`
 记录 64 字节参数对齐，板端逐层参数池补齐且检查所有传入地址。
 旧寄存器表不得搭配新流式固件；宽度上限 128bit 不代表每个 AXI 端口都实际达到 128bit。
+
+独立实时路线见 [专题方案](../../../docs/方案/03_Zynq7020独立实时关键点方案.md)。结构/预算复现：
+
+```powershell
+F:\PLD\.venv-vision\Scripts\python.exe project/scripts/keypoints/plan_realtime_hand.py --graph project/_tmp/kp_stream_model_v2/graph.json --baseline project/analysis/keypoints_pl_20261026/stream_wide.json --output project/_tmp/realtime_budget_new
+F:\PLD\.venv-r3\Scripts\python.exe project/scripts/keypoints/build_hand_student.py --output project/_tmp/hand_student_new
+```
+
+`hand_student_v1.json` 仅定义候选；导出文件带 `UNTRAINED` 标记。形状验证不是精度、量化或 HLS 验收。
 
 整层版本：主机验证加 `--layer`；`build_layer_hls.py --export-ip` 导出层核后，
 `run_system_build.py prepare --layer-ip <导出 impl/ip>` 选择该核，`make_register_map.py --layer-ip <同一路径>`

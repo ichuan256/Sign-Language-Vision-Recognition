@@ -1,0 +1,26 @@
+{
+  "status": "architecture_proposal_untrained",
+  "name": "hand_student_v1",
+  "input_sizes": [96, 128],
+  "input_channels": 3,
+  "stem": {"channels": 16, "kernel": 3, "stride": 2},
+  "separable_blocks": [
+    {"channels": 24, "kernel": 3, "stride": 1},
+    {"channels": 32, "kernel": 3, "stride": 2},
+    {"channels": 48, "kernel": 3, "stride": 2},
+    {"channels": 64, "kernel": 3, "stride": 2},
+    {"channels": 64, "kernel": 3, "stride": 2}
+  ],
+  "head": "flatten_dense",
+  "output_abi": "hand_student_65_v1_not_legacy_64",
+  "outputs": {"roi_relative_xyz": 63, "presence_logit": 1, "handedness_logit": 1},
+  "coordinate_convention": "normalized ROI xy and teacher-relative z; inverse ROI transform on board; not metric depth",
+  "quantization_target": {"weights": 8, "activations": 8, "coordinate_outputs": 16},
+  "accumulator": "32_or_40_bits_after_per_layer_range_proof",
+  "normalization": "batch_normalization_folded_before_integer_export",
+  "activation": "ReLU_or_clipped_ReLU_chosen_by_calibration",
+  "weights_trained": false,
+  "accuracy_validated": false,
+  "HLS_validated": false,
+  "board_validated": false
+}
