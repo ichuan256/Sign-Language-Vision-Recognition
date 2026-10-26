@@ -28,6 +28,7 @@
 | `audit_hand_reviews.py` | 校验返回的人工JSONL、原片SHA及裁剪像素；保留原件，挂起指定疑点，生成原裁剪不变的预填复核页 |
 | `train_hand_student.py` | r3环境；固定来源划分、掩码损失、浮点蒸馏，人工精度和教师一致性分别报告 |
 | `evaluate_hand_student.py` | r3环境；独立评测已保存模型，输出点位对照图与掩码指标 |
+| `overfit_hand_student.py` | r3环境；只用人工训练ROI做固定XY拟合诊断，含输入打乱、BN模式对照及独立重载；不评测泛化 |
 | `prepare_raw_video.py` | vision环境；从已核验片段生成有界720p raw短循环包，不修改原视频 |
 | `run_raw_video.py` | 校验并暂存raw包，接管既有HDMI缓冲做板端吞吐测试；不加载bitstream |
 
@@ -92,6 +93,9 @@ F:\PLD\.venv-r3\Scripts\python.exe project/scripts/keypoints/build_hand_student.
 避免零损失图片影响BN。新教师导出默认写画外点掩码；复现旧报告时不要隐式加新策略。
 评测同样加`--mask-outside-source`，指尖误差沿用完整可见手包围框对角线归一化。
 BLAS线程默认1；本机并行评测曾分配内存失败，当前批次串行运行，不更改系统环境。
+
+6条人工训练ROI的拟合诊断已通过，复跑命令和证据见[诊断记录](../../analysis/keypoints_student_20261027/overfit6.md)。
+固定输入与模型带`OVERFIT_DIAGNOSTIC`标记，不覆盖正式试训模型，也不读取留出集指标作选择。
 
 ```powershell
 # 以下为工程闭环示例；输出目录均须是新的。正式标注前先完成清晰度与来源配额重筛。

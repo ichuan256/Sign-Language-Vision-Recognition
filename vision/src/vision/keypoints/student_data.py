@@ -187,6 +187,18 @@ def training_partitions(targets,masks,records,disable_presence=False):
         negative_train_used=len(negatives) if presence_enabled else 0)
 
 
+def human_xy_training_subset(targets,masks,records,count=6):
+    """Freeze only named human training coordinates; diagnostic data never borrows holdout rows."""
+    if count<2:raise ValueError('At least two human training ROIs required for an input-dependent diagnostic')
+    eligible=[i for i,r in enumerate(records) if r['split']=='train' and r.get('pose_source')=='human'
+        and masks[i,:63].reshape(21,3)[:,:2].all(1).sum()>=2]
+    indices=np.array(sorted(eligible,key=lambda i:records[i]['sample_id'])[:count],dtype=int)
+    if len(indices)!=count:raise ValueError(f'Need {count} human training ROIs; found {len(eligible)}')
+    selected_masks=np.zeros((count,65),np.float32)
+    selected_masks[:,:63].reshape(count,21,3)[:,:,:2]=masks[indices,:63].reshape(count,21,3)[:,:,:2]
+    return indices,targets[indices].copy(),selected_masks
+
+
 def coordinate_metrics(predictions,targets,masks,point_indices=None):
     pred=np.asarray(predictions)[:,:63].reshape(-1,21,3)[:,:,:2]
     truth=np.asarray(targets)[:,:63].reshape(-1,21,3)[:,:,:2]

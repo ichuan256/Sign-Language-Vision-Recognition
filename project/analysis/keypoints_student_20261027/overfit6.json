@@ -1,0 +1,470 @@
+{
+  "scope": "Six human training ROI memorization diagnostic; no generalization or deployment acceptance",
+  "fit": {
+    "scope": "Training-subset memorization diagnostic only; no validation/test metrics or deployment acceptance",
+    "input_size": 96,
+    "seed": 20261026,
+    "steps_run": 150,
+    "best_step": 150,
+    "elapsed_s": 2.2936921999789774,
+    "learning_rate": 0.001,
+    "bn_momentum": 0.9,
+    "loss": "masked XY Huber delta .03; no z/presence/handedness",
+    "augmentation": false,
+    "full_batch": true,
+    "goal_PCK_at_005": 0.95,
+    "stable_checks_required": 3,
+    "stable_goal_met": true,
+    "goal_met": true,
+    "before": {
+      "all_points": {
+        "ROIs": 6,
+        "visible_points": 126,
+        "mean_normalized_error": 0.1452561453842218,
+        "PCK_at_005": 0.11904761904761904
+      },
+      "fingertips": {
+        "ROIs": 6,
+        "visible_points": 30,
+        "mean_normalized_error": 0.19706787591179212,
+        "PCK_at_005": 0.03333333333333333
+      }
+    },
+    "mean_shape": {
+      "all_points": {
+        "ROIs": 6,
+        "visible_points": 126,
+        "mean_normalized_error": 0.14525614444181204,
+        "PCK_at_005": 0.11904761904761904
+      },
+      "fingertips": {
+        "ROIs": 6,
+        "visible_points": 30,
+        "mean_normalized_error": 0.1970678778986136,
+        "PCK_at_005": 0.03333333333333333
+      }
+    },
+    "after": {
+      "all_points": {
+        "ROIs": 6,
+        "visible_points": 126,
+        "mean_normalized_error": 0.005121341023209785,
+        "PCK_at_005": 1.0
+      },
+      "fingertips": {
+        "ROIs": 6,
+        "visible_points": 30,
+        "mean_normalized_error": 0.00596570788960283,
+        "PCK_at_005": 1.0
+      }
+    },
+    "training_mode_probe": {
+      "all_points": {
+        "ROIs": 6,
+        "visible_points": 126,
+        "mean_normalized_error": 0.0030827744266143926,
+        "PCK_at_005": 1.0
+      },
+      "fingertips": {
+        "ROIs": 6,
+        "visible_points": 30,
+        "mean_normalized_error": 0.0030963390367105604,
+        "PCK_at_005": 1.0
+      }
+    },
+    "cyclic_input_shuffle": [
+      {
+        "ROIs": 6,
+        "visible_points": 126,
+        "mean_normalized_error": 0.1687966048835762,
+        "PCK_at_005": 0.3412698412698413
+      },
+      {
+        "ROIs": 6,
+        "visible_points": 126,
+        "mean_normalized_error": 0.2352702052347244,
+        "PCK_at_005": 0.047619047619047616
+      },
+      {
+        "ROIs": 6,
+        "visible_points": 126,
+        "mean_normalized_error": 0.23746537689917854,
+        "PCK_at_005": 0.06349206349206349
+      },
+      {
+        "ROIs": 6,
+        "visible_points": 126,
+        "mean_normalized_error": 0.23634121425834204,
+        "PCK_at_005": 0.047619047619047616
+      },
+      {
+        "ROIs": 6,
+        "visible_points": 126,
+        "mean_normalized_error": 0.16850957823991183,
+        "PCK_at_005": 0.31746031746031744
+      }
+    ],
+    "shuffle_mean_PCK": 0.1634920634920635,
+    "constant_input": {
+      "all_points": {
+        "ROIs": 6,
+        "visible_points": 126,
+        "mean_normalized_error": 0.18631226884659438,
+        "PCK_at_005": 0.3333333333333333
+      },
+      "fingertips": {
+        "ROIs": 6,
+        "visible_points": 30,
+        "mean_normalized_error": 0.23995657602014642,
+        "PCK_at_005": 0.3
+      }
+    },
+    "unsupervised_head_parameter_max_change": 0.0,
+    "per_ROI": [
+      {
+        "sample_id": "368e3e7f6e3e6ec9_15_1",
+        "metrics": {
+          "all_points": {
+            "ROIs": 1,
+            "visible_points": 21,
+            "mean_normalized_error": 0.006676770524964446,
+            "PCK_at_005": 1.0
+          },
+          "fingertips": {
+            "ROIs": 1,
+            "visible_points": 5,
+            "mean_normalized_error": 0.007161608058959245,
+            "PCK_at_005": 1.0
+          }
+        }
+      },
+      {
+        "sample_id": "368e3e7f6e3e6ec9_25_1",
+        "metrics": {
+          "all_points": {
+            "ROIs": 1,
+            "visible_points": 21,
+            "mean_normalized_error": 0.0028512625029266233,
+            "PCK_at_005": 1.0
+          },
+          "fingertips": {
+            "ROIs": 1,
+            "visible_points": 5,
+            "mean_normalized_error": 0.003028777171857655,
+            "PCK_at_005": 1.0
+          }
+        }
+      },
+      {
+        "sample_id": "370e2395a6642256_24_1",
+        "metrics": {
+          "all_points": {
+            "ROIs": 1,
+            "visible_points": 21,
+            "mean_normalized_error": 0.005629715401612755,
+            "PCK_at_005": 1.0
+          },
+          "fingertips": {
+            "ROIs": 1,
+            "visible_points": 5,
+            "mean_normalized_error": 0.006132490281015634,
+            "PCK_at_005": 1.0
+          }
+        }
+      },
+      {
+        "sample_id": "370e2395a6642256_34_1",
+        "metrics": {
+          "all_points": {
+            "ROIs": 1,
+            "visible_points": 21,
+            "mean_normalized_error": 0.004805853640261505,
+            "PCK_at_005": 1.0
+          },
+          "fingertips": {
+            "ROIs": 1,
+            "visible_points": 5,
+            "mean_normalized_error": 0.00608380283229053,
+            "PCK_at_005": 1.0
+          }
+        }
+      },
+      {
+        "sample_id": "9ec1852c8c07abd4_75_1",
+        "metrics": {
+          "all_points": {
+            "ROIs": 1,
+            "visible_points": 21,
+            "mean_normalized_error": 0.004799201280721242,
+            "PCK_at_005": 1.0
+          },
+          "fingertips": {
+            "ROIs": 1,
+            "visible_points": 5,
+            "mean_normalized_error": 0.005853161448612809,
+            "PCK_at_005": 1.0
+          }
+        }
+      },
+      {
+        "sample_id": "d336080e77dc33bb_34_0",
+        "metrics": {
+          "all_points": {
+            "ROIs": 1,
+            "visible_points": 21,
+            "mean_normalized_error": 0.005965242788772143,
+            "PCK_at_005": 1.0
+          },
+          "fingertips": {
+            "ROIs": 1,
+            "visible_points": 5,
+            "mean_normalized_error": 0.007534407544881105,
+            "PCK_at_005": 1.0
+          }
+        }
+      }
+    ],
+    "selected": [
+      {
+        "sample_id": "368e3e7f6e3e6ec9_15_1",
+        "source_sha256": "368e3e7f6e3e6ec9261c2cfdb3efa15a37c5105ed15637ea6f4514590dc67fd4",
+        "source_frame": 15,
+        "split": "train",
+        "split_group": "NL_lesson_01",
+        "pose_source": "human"
+      },
+      {
+        "sample_id": "368e3e7f6e3e6ec9_25_1",
+        "source_sha256": "368e3e7f6e3e6ec9261c2cfdb3efa15a37c5105ed15637ea6f4514590dc67fd4",
+        "source_frame": 25,
+        "split": "train",
+        "split_group": "NL_lesson_01",
+        "pose_source": "human"
+      },
+      {
+        "sample_id": "370e2395a6642256_24_1",
+        "source_sha256": "370e2395a664225646099dc570154cd23ea8c80a101df359368f188b50e9dad4",
+        "source_frame": 24,
+        "split": "train",
+        "split_group": "NL_lesson_08",
+        "pose_source": "human"
+      },
+      {
+        "sample_id": "370e2395a6642256_34_1",
+        "source_sha256": "370e2395a664225646099dc570154cd23ea8c80a101df359368f188b50e9dad4",
+        "source_frame": 34,
+        "split": "train",
+        "split_group": "NL_lesson_08",
+        "pose_source": "human"
+      },
+      {
+        "sample_id": "9ec1852c8c07abd4_75_1",
+        "source_sha256": "9ec1852c8c07abd4c1791d7607b7119d974af1b0a96ddfbc549c8093f2fe214d",
+        "source_frame": 75,
+        "split": "train",
+        "split_group": "NL_lesson_01",
+        "pose_source": "human"
+      },
+      {
+        "sample_id": "d336080e77dc33bb_34_0",
+        "source_sha256": "d336080e77dc33bbf985966f3f113a6484e9b139f1eeef7cdf67fd86c3840077",
+        "source_frame": 34,
+        "split": "train",
+        "split_group": "NL_lesson_08",
+        "pose_source": "human"
+      }
+    ],
+    "unique_source_clips": 4,
+    "history": [
+      {
+        "step": 1,
+        "loss": 0.04876585677266121,
+        "gradient_norm": 0.8982802033424377,
+        "inference": {
+          "all_points": {
+            "ROIs": 6,
+            "visible_points": 126,
+            "mean_normalized_error": 0.14433349340060164,
+            "PCK_at_005": 0.10317460317460317
+          },
+          "fingertips": {
+            "ROIs": 6,
+            "visible_points": 30,
+            "mean_normalized_error": 0.19591499231755732,
+            "PCK_at_005": 0.03333333333333333
+          }
+        }
+      },
+      {
+        "step": 25,
+        "loss": 0.0024428691249340773,
+        "gradient_norm": 0.6091269850730896,
+        "inference": {
+          "all_points": {
+            "ROIs": 6,
+            "visible_points": 126,
+            "mean_normalized_error": 0.1499882290908505,
+            "PCK_at_005": 0.10317460317460317
+          },
+          "fingertips": {
+            "ROIs": 6,
+            "visible_points": 30,
+            "mean_normalized_error": 0.19599791665871938,
+            "PCK_at_005": 0.03333333333333333
+          }
+        }
+      },
+      {
+        "step": 50,
+        "loss": 0.00015484057075809687,
+        "gradient_norm": 0.15455220639705658,
+        "inference": {
+          "all_points": {
+            "ROIs": 6,
+            "visible_points": 126,
+            "mean_normalized_error": 0.10689088586525666,
+            "PCK_at_005": 0.19047619047619047
+          },
+          "fingertips": {
+            "ROIs": 6,
+            "visible_points": 30,
+            "mean_normalized_error": 0.13862834212680658,
+            "PCK_at_005": 0.13333333333333333
+          }
+        }
+      },
+      {
+        "step": 75,
+        "loss": 0.00019549163698684424,
+        "gradient_norm": 0.20479539036750793,
+        "inference": {
+          "all_points": {
+            "ROIs": 6,
+            "visible_points": 126,
+            "mean_normalized_error": 0.02035042011578168,
+            "PCK_at_005": 0.9444444444444444
+          },
+          "fingertips": {
+            "ROIs": 6,
+            "visible_points": 30,
+            "mean_normalized_error": 0.0245983455174913,
+            "PCK_at_005": 0.8666666666666667
+          }
+        }
+      },
+      {
+        "step": 100,
+        "loss": 0.00011585068568820134,
+        "gradient_norm": 0.15515905618667603,
+        "inference": {
+          "all_points": {
+            "ROIs": 6,
+            "visible_points": 126,
+            "mean_normalized_error": 0.006493517059771832,
+            "PCK_at_005": 1.0
+          },
+          "fingertips": {
+            "ROIs": 6,
+            "visible_points": 30,
+            "mean_normalized_error": 0.006664212789231291,
+            "PCK_at_005": 1.0
+          }
+        }
+      },
+      {
+        "step": 125,
+        "loss": 0.00020104531722608954,
+        "gradient_norm": 0.19796869158744812,
+        "inference": {
+          "all_points": {
+            "ROIs": 6,
+            "visible_points": 126,
+            "mean_normalized_error": 0.007425176128948344,
+            "PCK_at_005": 1.0
+          },
+          "fingertips": {
+            "ROIs": 6,
+            "visible_points": 30,
+            "mean_normalized_error": 0.00755091633182019,
+            "PCK_at_005": 1.0
+          }
+        }
+      },
+      {
+        "step": 150,
+        "loss": 7.881766214268282e-05,
+        "gradient_norm": 0.11990689486265182,
+        "inference": {
+          "all_points": {
+            "ROIs": 6,
+            "visible_points": 126,
+            "mean_normalized_error": 0.005121341023209785,
+            "PCK_at_005": 1.0
+          },
+          "fingertips": {
+            "ROIs": 6,
+            "visible_points": 30,
+            "mean_normalized_error": 0.00596570788960283,
+            "PCK_at_005": 1.0
+          }
+        }
+      }
+    ],
+    "dataset_sha256": "c8dfd60a21703094a5fea947835dccbe9234624ff324590dc441d8ebaf75b3ba",
+    "records_sha256": "555a5891f9dbd441f1aab3b479c90f1d921091ee56a1e84ca929ac8fa8e79d51",
+    "reviews_sha256": "fddf71e8dca28c740767907e200db35734b1ba14c97c71e0d35342d8dabe2d79",
+    "student_spec_sha256": "c2e122208558e7638e77f59644a4e4cdc1e5ce1ebc1a2f5c029a8fda78785c17",
+    "batch_sha256": "5b2b6fffe5e4ff5547a15fc4ed31809a320bd0c3fa095d264f73c80cfd7953ab",
+    "model_file": "hand_student_96_OVERFIT_DIAGNOSTIC.keras",
+    "model_sha256": "a1a9b276b82ea8aaaf5f3131cc2c55b5e91d2b01a87f2120fc76539d5a610fda",
+    "holdout_used_for_training": false,
+    "holdout_metrics_computed": false,
+    "quantized": false,
+    "board_deployed": false
+  },
+  "independent_reload": {
+    "all_points": {
+      "ROIs": 6,
+      "visible_points": 126,
+      "mean_normalized_error": 0.005121341023209785,
+      "PCK_at_005": 1.0
+    },
+    "fingertips": {
+      "ROIs": 6,
+      "visible_points": 30,
+      "mean_normalized_error": 0.00596570788960283,
+      "PCK_at_005": 1.0
+    },
+    "model_sha256": "a1a9b276b82ea8aaaf5f3131cc2c55b5e91d2b01a87f2120fc76539d5a610fda",
+    "batch_sha256": "5b2b6fffe5e4ff5547a15fc4ed31809a320bd0c3fa095d264f73c80cfd7953ab",
+    "NME_difference": 0.0,
+    "holdout_metrics_computed": false,
+    "diagnostic_only": true
+  },
+  "fit_report_sha256": "79797f57b7527c2bd33f03f6be138572aedaabc50b53b7eb69706f586be5d79a",
+  "verify_report_sha256": "402603d93849701b0885911fbc7cd8b225d4dfea523d8e81478520c841c1576f",
+  "local_run": "project/_tmp/hand_overfit6_20261027_v1",
+  "local_verification": "project/_tmp/hand_overfit6_verify_20261027_v1",
+  "after_image_local_path": "project/_tmp/hand_overfit6_20261027_v1/after.jpg",
+  "image_sha256": {
+    "before": "781abe01d03d018d66fc92a2bc1435bf642165bdb9d2fbd5d094e4a2f8496b59",
+    "after": "3117c03bc637cf285993489b78d8e20310bbec76e7b964f6115cd1033b6902a3",
+    "verified": "3117c03bc637cf285993489b78d8e20310bbec76e7b964f6115cd1033b6902a3"
+  },
+  "code_sha256": {
+    "project/scripts/keypoints/overfit_hand_student.py": "8afbcb90254c54d1b1029c4eccc3aba816c6b4780bd253b0865d6fa55376d6d1",
+    "vision/src/vision/keypoints/student_data.py": "db5e38014eedb5f299144e2d23a950eaa7c1a66fe6bbd1ef6bf09f31c51cc05a"
+  },
+  "validation": {
+    "tests_passed": 206,
+    "subtests_passed": 32,
+    "all_selected_rows_are_human_train": true,
+    "xy_only_head_parameter_guard_passed": true,
+    "independent_reload_NME_difference": 0.0
+  },
+  "conclusions": [
+    "The current 96 architecture can fit the six fixed human training ROIs with this XY-only setup",
+    "Cyclic image-order controls reduce PCK and support image-dependent predictions rather than a single mean output",
+    "Success does not validate generalization, the original augmented multi-output training setup, quantization or PL latency"
+  ]
+}
