@@ -7,6 +7,6 @@ python -m pip install -r vision/tests/requirements.txt
 python -B -m pytest vision/tests project/tests -q -p no:cacheprovider
 ```
 
-剪辑路径与模板CLI的stdlib测试不需要MediaPipe。真实媒体来源路径及SHA另用 `python -B project/scripts/check_layout.py` 验收；隔离checkout无忽略媒体时可显式 `--code-only`，不能据此声称媒体通过。
+剪辑路径与模板CLI的stdlib测试不需要MediaPipe。真实媒体来源路径及SHA另用 `python -B project/scripts/check_layout.py --available-media` 验证全部现存媒体并报告声明缺失；不带参数的完整归档检查仍因36个缺失失败。隔离checkout可显式 `--code-only`，不能据此声称媒体通过。
 
 本套件不打开USB摄像头、不上板，不证明实拍准确率或HDMI实时性能；回放与HDMI测试使用可控时钟、本地协议服务和模拟SSH。
