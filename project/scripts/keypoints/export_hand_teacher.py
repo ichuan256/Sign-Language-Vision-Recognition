@@ -11,6 +11,7 @@ import cv2
 import numpy as np
 from vision.keypoints.student_data import digest,hand_crop
 from vision.keypoints.review_sampling import hand_focus_score
+from vision.keypoints.review_geometry import review_context
 
 
 def main():
@@ -64,13 +65,11 @@ def main():
                     rgb=cv2.cvtColor(cv2.warpAffine(frame,affine,(128,128)),cv2.COLOR_BGR2RGB)
                     items.append(('unknown',rgb,np.zeros(65,np.float32),np.zeros(65,np.float32),affine,side,'unknown_candidate'))
                     context_id=clip['sha256'][:16]+'_'+str(index)
-                    preview=frame.copy();scale=min(1,960/w)
                     for suffix,rgb,target,mask,affine,roi_side,kind in items:
                         sid=context_id+'_'+suffix
                         images.append(rgb);targets.append(target);masks.append(mask);ids.append(sid)
-                        inverse=cv2.invertAffineTransform(affine)
-                        polygon=np.array([[0,0],[127,0],[127,127],[0,127]],np.float32)@inverse[:,:2].T+inverse[:,2]
-                        cv2.polylines(preview,[polygon.astype(np.int32)],True,(0,220,220) if suffix=='unknown' else (0,220,0),2)
+                        initial=target[:63].reshape(21,3)[:,:2].tolist() if suffix!='unknown' else None
+                        cv2.imwrite(str(out/'review/context'/(sid+'.jpg')),review_context(frame,affine,initial))
                         review_affine=affine*(511/127)
                         native_size=min(256,max(32,round(roi_side)))
                         native=cv2.warpAffine(frame,affine*((native_size-1)/127),(native_size,native_size))
@@ -82,12 +81,11 @@ def main():
                             performer_id=None,source_frame=index,source_timestamp_s=timestamp,kind=kind,
                             pose_source='teacher' if suffix!='unknown' else 'none',presence_source='teacher' if suffix!='unknown' else 'none',
                             handedness_source='teacher' if suffix!='unknown' else 'none',teacher_confidence=None,
-                            source_size=[w,h],affine_source_to_roi=affine.tolist(),ROI_side_source_pixels=float(roi_side),
+                            source_size=[w,h],affine_source_to_roi=affine.tolist(),affine_dtype=str(affine.dtype),ROI_side_source_pixels=float(roi_side),
                             focus_score=focus,focus_method='eroded_hand_hull_clipped_Laplacian_energy_v1',review_image_size=512,
-                            context='context/'+context_id+'.jpg',image='images/'+sid+'.jpg',
-                            initial_xy=target[:63].reshape(21,3)[:,:2].tolist() if suffix!='unknown' else None,
+                            context='context/'+sid+'.jpg',image='images/'+sid+'.jpg',
+                            initial_xy=initial,
                             review_status='pending'))
-                    cv2.imwrite(str(out/'review/context'/(context_id+'.jpg')),cv2.resize(preview,None,fx=scale,fy=scale))
         finally:cap.release()
         if not sampled:raise ValueError('No frames from source')
         file='shards/'+clip['sha256'][:20]+'.npz'

@@ -187,5 +187,5 @@ git push origin main
 - 数据：清单审计已完成，语义清洗/人物标注/补采未完成；当前样本与补采只在 `vision/analysis/dataset/README.md` 汇总，审计工具放 `vision/scripts/dataset/`。提交者署名不能当人物 ID。
 
 - 本机素材（2026-10-26）：活动池仍为551条，CSV/SHA不变；第二三课现存85条匹配原审计SHA，位于`done/wsy/第2 第3课`，仍单列待审，不自动纳入551池。新待审表由`current_available_fullframe.json`绑定。`protected_media_current.json`登记780个在场媒体与36个缺失（31原片、5旧演示）；32行来源索引仅1个原片在场，旧BV sources.json也缺失。逐项证据见`docs/协作/媒体清单修复_20261026.md`。新素材先放inbox，新输出绑定审核清单/SHA；禁止盲扫覆盖旧清单。旧裁剪测试样例1条、ASR词库142条必须保留。
-- 轻量关键点R1：旧浮点试训仅为教师一致性，人工精度未通过；新40条1080p候选已重筛20个不同帧（13视频、4来源组），复核页`project/_tmp/hand_teacher_clear_v3/review_clear20_final/index.html`，说明`project/analysis/keypoints_student_20261026/清晰复核说明.md`。不需全录像逐帧标注，先人工3～5帧校准流程；未知区域不自动当负例，无法判断清零掩码，人工标签尚未导入，未重训/QAT/部署新学生。
+- 轻量关键点R1：旧浮点试训仅为教师一致性，人工精度未通过；新40条1080p候选筛出20个不同帧。2026-10-27收到15项真实人工复核，含10项坐标；第10项背景ROI却记录有手，暂挂且不自动改标签，剩14条通过格式/绑定导入校验（含1条无法判断的零掩码记录），未训练。20个复核JPEG与训练裁剪均按原片精确重现；错误在选区/教师点及界面含糊，未发现统一缩放错误。新预填页`project/_tmp/hand_review_recheck_20261027_v2/index.html`，证据`project/analysis/keypoints_student_20261027/README.md`。有无手只判左侧ROI；错ROI退回并清零掩码，未知候选不自动当负例。未重训/QAT/部署新学生。
 - 板内视频V1：720p raw短循环120秒2880次写入，约24次/秒、0错过时隙，复制P95 5.55ms；这是帧缓冲吞吐，不含网络推理。用户暂时无法目视，VSync、无撕裂、物理帧率、端到端帧龄、断网及推理并发均未验收。证据`project/analysis/keypoints_pl_20261026/raw_video.md/.json`；有界测试已结束，HDMI保留最后一帧。

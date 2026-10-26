@@ -95,10 +95,15 @@ def apply_reviews(targets,masks,records,path=None):
         item=json.loads(line);sid=item['sample_id']
         if sid not in by_id or sid in seen:raise ValueError('Unknown or duplicate review ID: '+sid)
         seen.add(sid)
-        if item.get('status') not in ('accepted','ungradable') or not str(item.get('reviewer','')).strip():
+        if item.get('status') not in ('accepted','ungradable','roi_rejected') or not str(item.get('reviewer','')).strip():
             raise ValueError('Accepted named reviewer required')
         if item.get('annotation_origin')!='human' or item.get('human_verified') is not True:
             raise ValueError('Explicit human verification required')
+        roi_status=item.get('roi_status')
+        if roi_status not in (None,'usable','partial','wrong'):raise ValueError('Invalid ROI review status')
+        if item['status']=='roi_rejected' or roi_status=='wrong':
+            i=by_id[sid];masks[i,:]=0;records[i].update(pose_source='none',presence_source='none',handedness_source='none',quality_status='human_roi_rejected')
+            continue
         if item['status']=='ungradable':
             i=by_id[sid];masks[i,:]=0;records[i].update(pose_source='none',presence_source='none',handedness_source='none',quality_status='human_ungradable')
             continue
