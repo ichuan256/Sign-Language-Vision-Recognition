@@ -1,0 +1,3 @@
+Time resolution is 1 ps
+TEST_PASS: independent OV1/OV2 PCLK domains capture separately
+$finish called at time : 385 ns : File "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/ov5640_stereo/tb_ov5640_stereo_capture_pair.v" Line 137

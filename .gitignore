@@ -73,3 +73,11 @@ xsim.dir/
 # Local runtime, build and test logs
 *.log
 *.log.*
+
+# Camera validation intermediates; board release pairs remain versioned
+/project/analysis/ov5640_snapshot_20261027/build/*.bit
+/project/analysis/ov5640_snapshot_20261027/build/*.hwh
+/project/analysis/ov5640_snapshot_20261027/build/*.dcp
+/project/analysis/ov5640_stereo_20261026/**/*.dcp
+/project/analysis/ov5640_stereo_20261026/**/synth*_netlist.v
+/project/analysis/ov5640_stereo_20261026/pin_map_sources_20261027/*.pdf

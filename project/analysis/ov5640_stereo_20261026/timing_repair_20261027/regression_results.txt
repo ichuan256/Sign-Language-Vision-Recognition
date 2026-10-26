@@ -1,0 +1,3 @@
+PASS tb_ov5640_startup_capture
+PASS tb_ov5640_720p_frame
+STARTUP_REGRESSION_ALL_PASS 2

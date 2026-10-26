@@ -1,0 +1,449 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+| Date         : Tue Oct 27 02:06:58 2026
+| Host         : DESKTOP-4VOJJB1 running 64-bit major release  (build 9200)
+| Command      : report_timing -from [get_clocks harness_sys_clk] -to [get_clocks harness_sys_clk] -max_paths 3 -file C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/system_clock_timing.rpt
+| Design       : pin_validation_top
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -20.913ns  (required time - arrival time)
+  Source:                 u_camera/u_startup/u_control/table_index_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            u_camera/u_startup/u_control/delay_cycles_reg[32]/D
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             harness_sys_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (harness_sys_clk rise@8.000ns - harness_sys_clk rise@0.000ns)
+  Data Path Delay:        28.899ns  (logic 14.825ns (51.300%)  route 14.074ns (48.700%))
+  Logic Levels:           35  (CARRY4=18 DSP48E1=1 LUT2=1 LUT3=5 LUT4=5 LUT5=1 LUT6=4)
+  Clock Path Skew:        -0.011ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.361ns = ( 13.361 - 8.000 ) 
+    Source Clock Delay      (SCD):    5.796ns
+    Clock Pessimism Removal (CPR):    0.423ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock harness_sys_clk rise edge)
+                                                      0.000     0.000 r  
+    H16                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.451     1.451 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           2.522     3.973    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     4.074 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         1.722     5.796    u_camera/u_startup/u_control/sys_clk
+    SLICE_X89Y54         FDCE                                         r  u_camera/u_startup/u_control/table_index_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X89Y54         FDCE (Prop_fdce_C_Q)         0.456     6.252 r  u_camera/u_startup/u_control/table_index_reg[1]/Q
+                         net (fo=133, routed)         0.939     7.191    u_camera/u_startup/u_control/Q[1]
+    SLICE_X88Y54         LUT6 (Prop_lut6_I3_O)        0.124     7.315 f  u_camera/u_startup/u_control/ms_cycles_return1_i_6/O
+                         net (fo=1, routed)           0.527     7.842    u_camera/u_startup/u_control/ms_cycles_return1_i_6_n_0
+    SLICE_X93Y54         LUT6 (Prop_lut6_I5_O)        0.124     7.966 r  u_camera/u_startup/u_control/ms_cycles_return1_i_3/O
+                         net (fo=12, routed)          0.538     8.504    u_camera/u_startup/u_control/table_delay[2]
+    SLICE_X93Y54         LUT6 (Prop_lut6_I5_O)        0.124     8.628 r  u_camera/u_startup/u_control/ms_cycles_return1_i_1/O
+                         net (fo=5, routed)           0.713     9.341    u_camera/u_startup/u_control/table_delay[3]
+    DSP48_X3Y22          DSP48E1 (Prop_dsp48e1_B[8]_P[27])
+                                                      3.656    12.997 r  u_camera/u_startup/u_control/ms_cycles_return1/P[27]
+                         net (fo=2, routed)           0.781    13.778    u_camera/u_startup/u_control/ms_cycles_return1_n_78
+    SLICE_X92Y58         LUT2 (Prop_lut2_I0_O)        0.124    13.902 r  u_camera/u_startup/u_control/delay_cycles[33]_i_165/O
+                         net (fo=1, routed)           0.000    13.902    u_camera/u_startup/u_control/delay_cycles[33]_i_165_n_0
+    SLICE_X92Y58         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    14.435 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_126/CO[3]
+                         net (fo=1, routed)           0.000    14.435    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_126_n_0
+    SLICE_X92Y59         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    14.758 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_79/O[1]
+                         net (fo=1, routed)           0.678    15.436    u_camera/u_startup/u_control/ms_cycles_return10_out[7]
+    SLICE_X89Y58         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.704    16.140 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_78/CO[3]
+                         net (fo=1, routed)           0.000    16.140    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_78_n_0
+    SLICE_X89Y59         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    16.379 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_39/O[2]
+                         net (fo=30, routed)          1.185    17.565    u_camera/u_startup/u_control/ms_cycles_return0[35]
+    SLICE_X90Y55         LUT3 (Prop_lut3_I1_O)        0.331    17.896 r  u_camera/u_startup/u_control/delay_cycles[4]_i_54/O
+                         net (fo=2, routed)           0.708    18.603    u_camera/u_startup/u_control/delay_cycles[4]_i_54_n_0
+    SLICE_X90Y55         LUT4 (Prop_lut4_I3_O)        0.331    18.934 r  u_camera/u_startup/u_control/delay_cycles[4]_i_58/O
+                         net (fo=1, routed)           0.000    18.934    u_camera/u_startup/u_control/delay_cycles[4]_i_58_n_0
+    SLICE_X90Y55         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    19.310 r  u_camera/u_startup/u_control/delay_cycles_reg[4]_i_48/CO[3]
+                         net (fo=1, routed)           0.000    19.310    u_camera/u_startup/u_control/delay_cycles_reg[4]_i_48_n_0
+    SLICE_X90Y56         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315    19.625 r  u_camera/u_startup/u_control/delay_cycles_reg[8]_i_48/O[3]
+                         net (fo=2, routed)           0.948    20.573    u_camera/u_startup/u_control/delay_cycles_reg[8]_i_48_n_4
+    SLICE_X91Y59         LUT3 (Prop_lut3_I0_O)        0.333    20.906 r  u_camera/u_startup/u_control/delay_cycles[8]_i_33/O
+                         net (fo=2, routed)           0.469    21.375    u_camera/u_startup/u_control/delay_cycles[8]_i_33_n_0
+    SLICE_X91Y59         LUT4 (Prop_lut4_I3_O)        0.326    21.701 r  u_camera/u_startup/u_control/delay_cycles[8]_i_37/O
+                         net (fo=1, routed)           0.000    21.701    u_camera/u_startup/u_control/delay_cycles[8]_i_37_n_0
+    SLICE_X91Y59         CARRY4 (Prop_carry4_S[1]_O[3])
+                                                      0.640    22.341 r  u_camera/u_startup/u_control/delay_cycles_reg[8]_i_15/O[3]
+                         net (fo=3, routed)           0.538    22.879    u_camera/u_startup/u_control/delay_cycles_reg[8]_i_15_n_4
+    SLICE_X88Y59         LUT3 (Prop_lut3_I2_O)        0.306    23.185 r  u_camera/u_startup/u_control/delay_cycles[8]_i_18/O
+                         net (fo=2, routed)           0.317    23.501    u_camera/u_startup/u_control/delay_cycles[8]_i_18_n_0
+    SLICE_X88Y60         LUT5 (Prop_lut5_I4_O)        0.124    23.625 r  u_camera/u_startup/u_control/delay_cycles[8]_i_6/O
+                         net (fo=2, routed)           0.965    24.590    u_camera/u_startup/u_control/delay_cycles[8]_i_6_n_0
+    SLICE_X94Y61         CARRY4 (Prop_carry4_DI[0]_CO[3])
+                                                      0.550    25.140 r  u_camera/u_startup/u_control/delay_cycles_reg[8]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    25.140    u_camera/u_startup/u_control/delay_cycles_reg[8]_i_2_n_0
+    SLICE_X94Y62         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    25.463 f  u_camera/u_startup/u_control/delay_cycles_reg[12]_i_2/O[1]
+                         net (fo=12, routed)          1.069    26.533    u_camera/u_startup/u_control/delay_cycles_reg[12]_i_2_n_6
+    SLICE_X90Y64         LUT3 (Prop_lut3_I1_O)        0.335    26.868 r  u_camera/u_startup/u_control/delay_cycles[33]_i_274/O
+                         net (fo=2, routed)           0.706    27.574    u_camera/u_startup/u_control/delay_cycles[33]_i_274_n_0
+    SLICE_X90Y64         LUT4 (Prop_lut4_I3_O)        0.331    27.905 r  u_camera/u_startup/u_control/delay_cycles[33]_i_278/O
+                         net (fo=1, routed)           0.000    27.905    u_camera/u_startup/u_control/delay_cycles[33]_i_278_n_0
+    SLICE_X90Y64         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    28.281 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_248/CO[3]
+                         net (fo=1, routed)           0.000    28.281    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_248_n_0
+    SLICE_X90Y65         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    28.604 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_221/O[1]
+                         net (fo=2, routed)           0.802    29.406    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_221_n_6
+    SLICE_X93Y62         LUT3 (Prop_lut3_I1_O)        0.331    29.737 r  u_camera/u_startup/u_control/delay_cycles[33]_i_184/O
+                         net (fo=2, routed)           0.645    30.383    u_camera/u_startup/u_control/delay_cycles[33]_i_184_n_0
+    SLICE_X93Y63         LUT4 (Prop_lut4_I3_O)        0.332    30.715 r  u_camera/u_startup/u_control/delay_cycles[33]_i_188/O
+                         net (fo=1, routed)           0.000    30.715    u_camera/u_startup/u_control/delay_cycles[33]_i_188_n_0
+    SLICE_X93Y63         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    31.247 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_145/CO[3]
+                         net (fo=1, routed)           0.000    31.247    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_145_n_0
+    SLICE_X93Y64         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    31.361 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_108/CO[3]
+                         net (fo=1, routed)           0.000    31.361    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_108_n_0
+    SLICE_X93Y65         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.313    31.674 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_60/O[3]
+                         net (fo=3, routed)           0.796    32.470    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_60_n_4
+    SLICE_X95Y65         LUT4 (Prop_lut4_I1_O)        0.306    32.776 r  u_camera/u_startup/u_control/delay_cycles[33]_i_140/O
+                         net (fo=1, routed)           0.000    32.776    u_camera/u_startup/u_control/delay_cycles[33]_i_140_n_0
+    SLICE_X95Y65         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    33.177 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_86/CO[3]
+                         net (fo=1, routed)           0.000    33.177    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_86_n_0
+    SLICE_X95Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    33.291 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_46/CO[3]
+                         net (fo=1, routed)           0.000    33.291    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_46_n_0
+    SLICE_X95Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    33.405 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_20/CO[3]
+                         net (fo=1, routed)           0.000    33.405    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_20_n_0
+    SLICE_X95Y68         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.228    33.633 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_7/CO[2]
+                         net (fo=34, routed)          0.748    34.381    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_7_n_1
+    SLICE_X95Y70         LUT6 (Prop_lut6_I4_O)        0.313    34.694 r  u_camera/u_startup/u_control/delay_cycles[32]_i_1/O
+                         net (fo=1, routed)           0.000    34.694    u_camera/u_startup/u_control/delay_cycles[32]
+    SLICE_X95Y70         FDCE                                         r  u_camera/u_startup/u_control/delay_cycles_reg[32]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock harness_sys_clk rise edge)
+                                                      8.000     8.000 r  
+    H16                                               0.000     8.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     8.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.380     9.380 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           2.293    11.673    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.764 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         1.597    13.361    u_camera/u_startup/u_control/sys_clk
+    SLICE_X95Y70         FDCE                                         r  u_camera/u_startup/u_control/delay_cycles_reg[32]/C
+                         clock pessimism              0.423    13.785    
+                         clock uncertainty           -0.035    13.749    
+    SLICE_X95Y70         FDCE (Setup_fdce_C_D)        0.032    13.781    u_camera/u_startup/u_control/delay_cycles_reg[32]
+  -------------------------------------------------------------------
+                         required time                         13.781    
+                         arrival time                         -34.694    
+  -------------------------------------------------------------------
+                         slack                                -20.913    
+
+Slack (VIOLATED) :        -20.848ns  (required time - arrival time)
+  Source:                 u_camera/u_startup/u_control/table_index_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            u_camera/u_startup/u_control/delay_cycles_reg[5]/D
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             harness_sys_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (harness_sys_clk rise@8.000ns - harness_sys_clk rise@0.000ns)
+  Data Path Delay:        28.834ns  (logic 14.825ns (51.415%)  route 14.009ns (48.585%))
+  Logic Levels:           35  (CARRY4=18 DSP48E1=1 LUT2=1 LUT3=5 LUT4=5 LUT5=1 LUT6=4)
+  Clock Path Skew:        -0.011ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.361ns = ( 13.361 - 8.000 ) 
+    Source Clock Delay      (SCD):    5.796ns
+    Clock Pessimism Removal (CPR):    0.423ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock harness_sys_clk rise edge)
+                                                      0.000     0.000 r  
+    H16                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.451     1.451 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           2.522     3.973    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     4.074 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         1.722     5.796    u_camera/u_startup/u_control/sys_clk
+    SLICE_X89Y54         FDCE                                         r  u_camera/u_startup/u_control/table_index_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X89Y54         FDCE (Prop_fdce_C_Q)         0.456     6.252 r  u_camera/u_startup/u_control/table_index_reg[1]/Q
+                         net (fo=133, routed)         0.939     7.191    u_camera/u_startup/u_control/Q[1]
+    SLICE_X88Y54         LUT6 (Prop_lut6_I3_O)        0.124     7.315 f  u_camera/u_startup/u_control/ms_cycles_return1_i_6/O
+                         net (fo=1, routed)           0.527     7.842    u_camera/u_startup/u_control/ms_cycles_return1_i_6_n_0
+    SLICE_X93Y54         LUT6 (Prop_lut6_I5_O)        0.124     7.966 r  u_camera/u_startup/u_control/ms_cycles_return1_i_3/O
+                         net (fo=12, routed)          0.538     8.504    u_camera/u_startup/u_control/table_delay[2]
+    SLICE_X93Y54         LUT6 (Prop_lut6_I5_O)        0.124     8.628 r  u_camera/u_startup/u_control/ms_cycles_return1_i_1/O
+                         net (fo=5, routed)           0.713     9.341    u_camera/u_startup/u_control/table_delay[3]
+    DSP48_X3Y22          DSP48E1 (Prop_dsp48e1_B[8]_P[27])
+                                                      3.656    12.997 r  u_camera/u_startup/u_control/ms_cycles_return1/P[27]
+                         net (fo=2, routed)           0.781    13.778    u_camera/u_startup/u_control/ms_cycles_return1_n_78
+    SLICE_X92Y58         LUT2 (Prop_lut2_I0_O)        0.124    13.902 r  u_camera/u_startup/u_control/delay_cycles[33]_i_165/O
+                         net (fo=1, routed)           0.000    13.902    u_camera/u_startup/u_control/delay_cycles[33]_i_165_n_0
+    SLICE_X92Y58         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    14.435 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_126/CO[3]
+                         net (fo=1, routed)           0.000    14.435    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_126_n_0
+    SLICE_X92Y59         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    14.758 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_79/O[1]
+                         net (fo=1, routed)           0.678    15.436    u_camera/u_startup/u_control/ms_cycles_return10_out[7]
+    SLICE_X89Y58         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.704    16.140 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_78/CO[3]
+                         net (fo=1, routed)           0.000    16.140    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_78_n_0
+    SLICE_X89Y59         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    16.379 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_39/O[2]
+                         net (fo=30, routed)          1.185    17.565    u_camera/u_startup/u_control/ms_cycles_return0[35]
+    SLICE_X90Y55         LUT3 (Prop_lut3_I1_O)        0.331    17.896 r  u_camera/u_startup/u_control/delay_cycles[4]_i_54/O
+                         net (fo=2, routed)           0.708    18.603    u_camera/u_startup/u_control/delay_cycles[4]_i_54_n_0
+    SLICE_X90Y55         LUT4 (Prop_lut4_I3_O)        0.331    18.934 r  u_camera/u_startup/u_control/delay_cycles[4]_i_58/O
+                         net (fo=1, routed)           0.000    18.934    u_camera/u_startup/u_control/delay_cycles[4]_i_58_n_0
+    SLICE_X90Y55         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    19.310 r  u_camera/u_startup/u_control/delay_cycles_reg[4]_i_48/CO[3]
+                         net (fo=1, routed)           0.000    19.310    u_camera/u_startup/u_control/delay_cycles_reg[4]_i_48_n_0
+    SLICE_X90Y56         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315    19.625 r  u_camera/u_startup/u_control/delay_cycles_reg[8]_i_48/O[3]
+                         net (fo=2, routed)           0.948    20.573    u_camera/u_startup/u_control/delay_cycles_reg[8]_i_48_n_4
+    SLICE_X91Y59         LUT3 (Prop_lut3_I0_O)        0.333    20.906 r  u_camera/u_startup/u_control/delay_cycles[8]_i_33/O
+                         net (fo=2, routed)           0.469    21.375    u_camera/u_startup/u_control/delay_cycles[8]_i_33_n_0
+    SLICE_X91Y59         LUT4 (Prop_lut4_I3_O)        0.326    21.701 r  u_camera/u_startup/u_control/delay_cycles[8]_i_37/O
+                         net (fo=1, routed)           0.000    21.701    u_camera/u_startup/u_control/delay_cycles[8]_i_37_n_0
+    SLICE_X91Y59         CARRY4 (Prop_carry4_S[1]_O[3])
+                                                      0.640    22.341 r  u_camera/u_startup/u_control/delay_cycles_reg[8]_i_15/O[3]
+                         net (fo=3, routed)           0.538    22.879    u_camera/u_startup/u_control/delay_cycles_reg[8]_i_15_n_4
+    SLICE_X88Y59         LUT3 (Prop_lut3_I2_O)        0.306    23.185 r  u_camera/u_startup/u_control/delay_cycles[8]_i_18/O
+                         net (fo=2, routed)           0.317    23.501    u_camera/u_startup/u_control/delay_cycles[8]_i_18_n_0
+    SLICE_X88Y60         LUT5 (Prop_lut5_I4_O)        0.124    23.625 r  u_camera/u_startup/u_control/delay_cycles[8]_i_6/O
+                         net (fo=2, routed)           0.965    24.590    u_camera/u_startup/u_control/delay_cycles[8]_i_6_n_0
+    SLICE_X94Y61         CARRY4 (Prop_carry4_DI[0]_CO[3])
+                                                      0.550    25.140 r  u_camera/u_startup/u_control/delay_cycles_reg[8]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    25.140    u_camera/u_startup/u_control/delay_cycles_reg[8]_i_2_n_0
+    SLICE_X94Y62         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    25.463 f  u_camera/u_startup/u_control/delay_cycles_reg[12]_i_2/O[1]
+                         net (fo=12, routed)          1.069    26.533    u_camera/u_startup/u_control/delay_cycles_reg[12]_i_2_n_6
+    SLICE_X90Y64         LUT3 (Prop_lut3_I1_O)        0.335    26.868 r  u_camera/u_startup/u_control/delay_cycles[33]_i_274/O
+                         net (fo=2, routed)           0.706    27.574    u_camera/u_startup/u_control/delay_cycles[33]_i_274_n_0
+    SLICE_X90Y64         LUT4 (Prop_lut4_I3_O)        0.331    27.905 r  u_camera/u_startup/u_control/delay_cycles[33]_i_278/O
+                         net (fo=1, routed)           0.000    27.905    u_camera/u_startup/u_control/delay_cycles[33]_i_278_n_0
+    SLICE_X90Y64         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    28.281 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_248/CO[3]
+                         net (fo=1, routed)           0.000    28.281    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_248_n_0
+    SLICE_X90Y65         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    28.604 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_221/O[1]
+                         net (fo=2, routed)           0.802    29.406    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_221_n_6
+    SLICE_X93Y62         LUT3 (Prop_lut3_I1_O)        0.331    29.737 r  u_camera/u_startup/u_control/delay_cycles[33]_i_184/O
+                         net (fo=2, routed)           0.645    30.383    u_camera/u_startup/u_control/delay_cycles[33]_i_184_n_0
+    SLICE_X93Y63         LUT4 (Prop_lut4_I3_O)        0.332    30.715 r  u_camera/u_startup/u_control/delay_cycles[33]_i_188/O
+                         net (fo=1, routed)           0.000    30.715    u_camera/u_startup/u_control/delay_cycles[33]_i_188_n_0
+    SLICE_X93Y63         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    31.247 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_145/CO[3]
+                         net (fo=1, routed)           0.000    31.247    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_145_n_0
+    SLICE_X93Y64         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    31.361 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_108/CO[3]
+                         net (fo=1, routed)           0.000    31.361    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_108_n_0
+    SLICE_X93Y65         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.313    31.674 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_60/O[3]
+                         net (fo=3, routed)           0.796    32.470    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_60_n_4
+    SLICE_X95Y65         LUT4 (Prop_lut4_I1_O)        0.306    32.776 r  u_camera/u_startup/u_control/delay_cycles[33]_i_140/O
+                         net (fo=1, routed)           0.000    32.776    u_camera/u_startup/u_control/delay_cycles[33]_i_140_n_0
+    SLICE_X95Y65         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    33.177 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_86/CO[3]
+                         net (fo=1, routed)           0.000    33.177    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_86_n_0
+    SLICE_X95Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    33.291 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_46/CO[3]
+                         net (fo=1, routed)           0.000    33.291    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_46_n_0
+    SLICE_X95Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    33.405 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_20/CO[3]
+                         net (fo=1, routed)           0.000    33.405    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_20_n_0
+    SLICE_X95Y68         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.228    33.633 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_7/CO[2]
+                         net (fo=34, routed)          0.684    34.317    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_7_n_1
+    SLICE_X95Y69         LUT6 (Prop_lut6_I4_O)        0.313    34.630 r  u_camera/u_startup/u_control/delay_cycles[5]_i_1/O
+                         net (fo=1, routed)           0.000    34.630    u_camera/u_startup/u_control/delay_cycles[5]
+    SLICE_X95Y69         FDCE                                         r  u_camera/u_startup/u_control/delay_cycles_reg[5]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock harness_sys_clk rise edge)
+                                                      8.000     8.000 r  
+    H16                                               0.000     8.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     8.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.380     9.380 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           2.293    11.673    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.764 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         1.597    13.361    u_camera/u_startup/u_control/sys_clk
+    SLICE_X95Y69         FDCE                                         r  u_camera/u_startup/u_control/delay_cycles_reg[5]/C
+                         clock pessimism              0.423    13.785    
+                         clock uncertainty           -0.035    13.749    
+    SLICE_X95Y69         FDCE (Setup_fdce_C_D)        0.032    13.781    u_camera/u_startup/u_control/delay_cycles_reg[5]
+  -------------------------------------------------------------------
+                         required time                         13.781    
+                         arrival time                         -34.630    
+  -------------------------------------------------------------------
+                         slack                                -20.848    
+
+Slack (VIOLATED) :        -20.842ns  (required time - arrival time)
+  Source:                 u_camera/u_startup/u_control/table_index_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            u_camera/u_startup/u_control/delay_cycles_reg[9]/D
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             harness_sys_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (harness_sys_clk rise@8.000ns - harness_sys_clk rise@0.000ns)
+  Data Path Delay:        28.876ns  (logic 14.825ns (51.341%)  route 14.051ns (48.659%))
+  Logic Levels:           35  (CARRY4=18 DSP48E1=1 LUT2=1 LUT3=5 LUT4=5 LUT5=1 LUT6=4)
+  Clock Path Skew:        -0.012ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.360ns = ( 13.360 - 8.000 ) 
+    Source Clock Delay      (SCD):    5.796ns
+    Clock Pessimism Removal (CPR):    0.423ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock harness_sys_clk rise edge)
+                                                      0.000     0.000 r  
+    H16                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.451     1.451 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           2.522     3.973    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     4.074 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         1.722     5.796    u_camera/u_startup/u_control/sys_clk
+    SLICE_X89Y54         FDCE                                         r  u_camera/u_startup/u_control/table_index_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X89Y54         FDCE (Prop_fdce_C_Q)         0.456     6.252 r  u_camera/u_startup/u_control/table_index_reg[1]/Q
+                         net (fo=133, routed)         0.939     7.191    u_camera/u_startup/u_control/Q[1]
+    SLICE_X88Y54         LUT6 (Prop_lut6_I3_O)        0.124     7.315 f  u_camera/u_startup/u_control/ms_cycles_return1_i_6/O
+                         net (fo=1, routed)           0.527     7.842    u_camera/u_startup/u_control/ms_cycles_return1_i_6_n_0
+    SLICE_X93Y54         LUT6 (Prop_lut6_I5_O)        0.124     7.966 r  u_camera/u_startup/u_control/ms_cycles_return1_i_3/O
+                         net (fo=12, routed)          0.538     8.504    u_camera/u_startup/u_control/table_delay[2]
+    SLICE_X93Y54         LUT6 (Prop_lut6_I5_O)        0.124     8.628 r  u_camera/u_startup/u_control/ms_cycles_return1_i_1/O
+                         net (fo=5, routed)           0.713     9.341    u_camera/u_startup/u_control/table_delay[3]
+    DSP48_X3Y22          DSP48E1 (Prop_dsp48e1_B[8]_P[27])
+                                                      3.656    12.997 r  u_camera/u_startup/u_control/ms_cycles_return1/P[27]
+                         net (fo=2, routed)           0.781    13.778    u_camera/u_startup/u_control/ms_cycles_return1_n_78
+    SLICE_X92Y58         LUT2 (Prop_lut2_I0_O)        0.124    13.902 r  u_camera/u_startup/u_control/delay_cycles[33]_i_165/O
+                         net (fo=1, routed)           0.000    13.902    u_camera/u_startup/u_control/delay_cycles[33]_i_165_n_0
+    SLICE_X92Y58         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    14.435 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_126/CO[3]
+                         net (fo=1, routed)           0.000    14.435    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_126_n_0
+    SLICE_X92Y59         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    14.758 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_79/O[1]
+                         net (fo=1, routed)           0.678    15.436    u_camera/u_startup/u_control/ms_cycles_return10_out[7]
+    SLICE_X89Y58         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.704    16.140 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_78/CO[3]
+                         net (fo=1, routed)           0.000    16.140    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_78_n_0
+    SLICE_X89Y59         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    16.379 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_39/O[2]
+                         net (fo=30, routed)          1.185    17.565    u_camera/u_startup/u_control/ms_cycles_return0[35]
+    SLICE_X90Y55         LUT3 (Prop_lut3_I1_O)        0.331    17.896 r  u_camera/u_startup/u_control/delay_cycles[4]_i_54/O
+                         net (fo=2, routed)           0.708    18.603    u_camera/u_startup/u_control/delay_cycles[4]_i_54_n_0
+    SLICE_X90Y55         LUT4 (Prop_lut4_I3_O)        0.331    18.934 r  u_camera/u_startup/u_control/delay_cycles[4]_i_58/O
+                         net (fo=1, routed)           0.000    18.934    u_camera/u_startup/u_control/delay_cycles[4]_i_58_n_0
+    SLICE_X90Y55         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    19.310 r  u_camera/u_startup/u_control/delay_cycles_reg[4]_i_48/CO[3]
+                         net (fo=1, routed)           0.000    19.310    u_camera/u_startup/u_control/delay_cycles_reg[4]_i_48_n_0
+    SLICE_X90Y56         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315    19.625 r  u_camera/u_startup/u_control/delay_cycles_reg[8]_i_48/O[3]
+                         net (fo=2, routed)           0.948    20.573    u_camera/u_startup/u_control/delay_cycles_reg[8]_i_48_n_4
+    SLICE_X91Y59         LUT3 (Prop_lut3_I0_O)        0.333    20.906 r  u_camera/u_startup/u_control/delay_cycles[8]_i_33/O
+                         net (fo=2, routed)           0.469    21.375    u_camera/u_startup/u_control/delay_cycles[8]_i_33_n_0
+    SLICE_X91Y59         LUT4 (Prop_lut4_I3_O)        0.326    21.701 r  u_camera/u_startup/u_control/delay_cycles[8]_i_37/O
+                         net (fo=1, routed)           0.000    21.701    u_camera/u_startup/u_control/delay_cycles[8]_i_37_n_0
+    SLICE_X91Y59         CARRY4 (Prop_carry4_S[1]_O[3])
+                                                      0.640    22.341 r  u_camera/u_startup/u_control/delay_cycles_reg[8]_i_15/O[3]
+                         net (fo=3, routed)           0.538    22.879    u_camera/u_startup/u_control/delay_cycles_reg[8]_i_15_n_4
+    SLICE_X88Y59         LUT3 (Prop_lut3_I2_O)        0.306    23.185 r  u_camera/u_startup/u_control/delay_cycles[8]_i_18/O
+                         net (fo=2, routed)           0.317    23.501    u_camera/u_startup/u_control/delay_cycles[8]_i_18_n_0
+    SLICE_X88Y60         LUT5 (Prop_lut5_I4_O)        0.124    23.625 r  u_camera/u_startup/u_control/delay_cycles[8]_i_6/O
+                         net (fo=2, routed)           0.965    24.590    u_camera/u_startup/u_control/delay_cycles[8]_i_6_n_0
+    SLICE_X94Y61         CARRY4 (Prop_carry4_DI[0]_CO[3])
+                                                      0.550    25.140 r  u_camera/u_startup/u_control/delay_cycles_reg[8]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    25.140    u_camera/u_startup/u_control/delay_cycles_reg[8]_i_2_n_0
+    SLICE_X94Y62         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    25.463 f  u_camera/u_startup/u_control/delay_cycles_reg[12]_i_2/O[1]
+                         net (fo=12, routed)          1.069    26.533    u_camera/u_startup/u_control/delay_cycles_reg[12]_i_2_n_6
+    SLICE_X90Y64         LUT3 (Prop_lut3_I1_O)        0.335    26.868 r  u_camera/u_startup/u_control/delay_cycles[33]_i_274/O
+                         net (fo=2, routed)           0.706    27.574    u_camera/u_startup/u_control/delay_cycles[33]_i_274_n_0
+    SLICE_X90Y64         LUT4 (Prop_lut4_I3_O)        0.331    27.905 r  u_camera/u_startup/u_control/delay_cycles[33]_i_278/O
+                         net (fo=1, routed)           0.000    27.905    u_camera/u_startup/u_control/delay_cycles[33]_i_278_n_0
+    SLICE_X90Y64         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    28.281 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_248/CO[3]
+                         net (fo=1, routed)           0.000    28.281    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_248_n_0
+    SLICE_X90Y65         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    28.604 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_221/O[1]
+                         net (fo=2, routed)           0.802    29.406    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_221_n_6
+    SLICE_X93Y62         LUT3 (Prop_lut3_I1_O)        0.331    29.737 r  u_camera/u_startup/u_control/delay_cycles[33]_i_184/O
+                         net (fo=2, routed)           0.645    30.383    u_camera/u_startup/u_control/delay_cycles[33]_i_184_n_0
+    SLICE_X93Y63         LUT4 (Prop_lut4_I3_O)        0.332    30.715 r  u_camera/u_startup/u_control/delay_cycles[33]_i_188/O
+                         net (fo=1, routed)           0.000    30.715    u_camera/u_startup/u_control/delay_cycles[33]_i_188_n_0
+    SLICE_X93Y63         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    31.247 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_145/CO[3]
+                         net (fo=1, routed)           0.000    31.247    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_145_n_0
+    SLICE_X93Y64         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    31.361 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_108/CO[3]
+                         net (fo=1, routed)           0.000    31.361    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_108_n_0
+    SLICE_X93Y65         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.313    31.674 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_60/O[3]
+                         net (fo=3, routed)           0.796    32.470    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_60_n_4
+    SLICE_X95Y65         LUT4 (Prop_lut4_I1_O)        0.306    32.776 r  u_camera/u_startup/u_control/delay_cycles[33]_i_140/O
+                         net (fo=1, routed)           0.000    32.776    u_camera/u_startup/u_control/delay_cycles[33]_i_140_n_0
+    SLICE_X95Y65         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    33.177 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_86/CO[3]
+                         net (fo=1, routed)           0.000    33.177    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_86_n_0
+    SLICE_X95Y66         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    33.291 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_46/CO[3]
+                         net (fo=1, routed)           0.000    33.291    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_46_n_0
+    SLICE_X95Y67         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    33.405 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_20/CO[3]
+                         net (fo=1, routed)           0.000    33.405    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_20_n_0
+    SLICE_X95Y68         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.228    33.633 r  u_camera/u_startup/u_control/delay_cycles_reg[33]_i_7/CO[2]
+                         net (fo=34, routed)          0.725    34.358    u_camera/u_startup/u_control/delay_cycles_reg[33]_i_7_n_1
+    SLICE_X92Y68         LUT6 (Prop_lut6_I4_O)        0.313    34.671 r  u_camera/u_startup/u_control/delay_cycles[9]_i_1/O
+                         net (fo=1, routed)           0.000    34.671    u_camera/u_startup/u_control/delay_cycles[9]
+    SLICE_X92Y68         FDCE                                         r  u_camera/u_startup/u_control/delay_cycles_reg[9]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock harness_sys_clk rise edge)
+                                                      8.000     8.000 r  
+    H16                                               0.000     8.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     8.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.380     9.380 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           2.293    11.673    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.764 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         1.596    13.360    u_camera/u_startup/u_control/sys_clk
+    SLICE_X92Y68         FDCE                                         r  u_camera/u_startup/u_control/delay_cycles_reg[9]/C
+                         clock pessimism              0.423    13.784    
+                         clock uncertainty           -0.035    13.748    
+    SLICE_X92Y68         FDCE (Setup_fdce_C_D)        0.081    13.829    u_camera/u_startup/u_control/delay_cycles_reg[9]
+  -------------------------------------------------------------------
+                         required time                         13.829    
+                         arrival time                         -34.671    
+  -------------------------------------------------------------------
+                         slack                                -20.842    
+
+
+
+

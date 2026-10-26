@@ -1,0 +1,4 @@
+Time resolution is 1 ps
+TEST_PASS: 1280x720 RGB565 LE at 84MHz, 921600 pixels/720 EOL/one SOF, short-line error and clean next-frame recovery
+$finish called at time : 65953409664 ps : File "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/ov5640_stereo/tb_ov5640_720p_frame.v" Line 67
+INFO: xsimkernel Simulation Memory Usage: 19192 KB (Peak: 19192 KB), Simulation CPU Usage: 14453 ms

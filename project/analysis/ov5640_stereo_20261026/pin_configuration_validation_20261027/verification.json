@@ -1,0 +1,158 @@
+{
+  "date": "2026-10-27",
+  "verdict": "physical_pin_configuration_pass_timing_not_closed",
+  "camera_signal_count": 30,
+  "unique_pads": 30,
+  "tool": "Vivado 2024.1",
+  "part": "xc7z020clg400-1",
+  "harness_sys_clk_mhz": 125,
+  "pclk_nominal_mhz": 84,
+  "synth_design": "completed",
+  "place_design": "completed",
+  "route_design": "completed",
+  "native_read_xdc": "passed_after_separating_guard_tcl",
+  "fully_routed_nets": 2473,
+  "routing_error_nets": 0,
+  "overall_wns_ns": -20.913,
+  "overall_tns_ns": -723.368,
+  "timing_signoff_pass": false,
+  "pclk_internal_wns_ns": {
+    "OV1": 6.097,
+    "OV2": 6.599
+  },
+  "drc_error_count": 0,
+  "drc_warning_count": 6,
+  "firmware_rebuilt": false,
+  "firmware_deployed": false,
+  "preserved_baseline": [
+    {
+      "path": "project/fpga/project/glove/glove.xpr",
+      "sha256": "3D2A954F4CFCADA0451B07474C012586F8C6244A6BBC5EB6ECEE3291CBB2603F"
+    },
+    {
+      "path": "project/fpga/project/glove/glove.srcs/sources_1/bd/system/system.bd",
+      "sha256": "B1D8135F560F9C3F1B5ABAB62384D226D66274153C9D431ED52580662116CF14"
+    },
+    {
+      "path": "project/board/w6/kws_hdmi.bit",
+      "sha256": "8ECB4EB10B1F11C22BD8E8A3505E4FB1C42B9FE23E8BA4BFDB4A1EBE6E878A00"
+    },
+    {
+      "path": "project/board/w6/kws_hdmi.hwh",
+      "sha256": "D84E1DFDCD35EA6A29FFAB658E8E086CE8FD9455A49D0D8C44D6FE42D5B4D3E5"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/apply_constraints.tcl",
+      "sha256": "4e051e656a963d7ae1ab6b031c7fcef410254c885756bab25d31f5bcbdc7efdf"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/baseline_preserved_hashes.json",
+      "sha256": "207da3285542ad7837a60df236a9710900740d05c09c3035604a9c36c2384a94"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/clock_utilization.rpt",
+      "sha256": "2dd4a443ec2d46daef7f6e14380739d9f00c70c8f16d5cebb45294c7ce8008aa"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/collect_reports.tcl",
+      "sha256": "6c8f87f41415746fd75e9b9b4bdcc2b5de781549180f68e37be94fb6e769677d"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/drc.rpt",
+      "sha256": "0b35a87ff297b0937503e315b6e9a15354f8dbece479be5aef90cf8e007c5ebb"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/native_load_verification.json",
+      "sha256": "5396f7402224218ba0f20a3b2db8e4a0440a2e40faea01a4782ae79d6e408f76"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/package_pin_properties.txt",
+      "sha256": "27ec2373a2d3353359aa8913f7280626d2383cd43f2ae34247bbe03607d775e7"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/pad_and_clock_checks.txt",
+      "sha256": "bf61241bed64e951647595ccdbb8827c75bf1a5449e87f6e16c06763e2e9f51a"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/pin_validation_top.v",
+      "sha256": "8d24646bda1671b37760b6db2f33437554366325c95afc72d672adb8c883f7cf"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/post_route_io.rpt",
+      "sha256": "32ec24fc2459cbf67510bfd8fb55d971d53c7392c23cda9e7df8f9c3d896d498"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/post_synth_io.rpt",
+      "sha256": "d61b51b34326ffdf8204b237d7cbec67b7f8261fed0da1c7a157e58e4103d3cc"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/prepare.tcl",
+      "sha256": "95c8d9faa79c59d98b4df05d5d8660ff72a349f338e58c565bcfb545387b6a7f"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/python_tests.log",
+      "sha256": "e25c85408a9392a230223cb5dfd79ab11b5e7c93f78ce148eb7af2922b9d22a9"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/README.md",
+      "sha256": "4aebff0e0cb40f64c72ac0c2e04048c21503832e500ae86004f597318e919c8c"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/route_status.rpt",
+      "sha256": "bcad417cc3a5822931036ca71924f0fae74c46c0b64fa17530ce500e25e765e2"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/system_clock_timing.rpt",
+      "sha256": "9fd292f612778ad10d4c249fdaa97c8ffada9e306baf22fe4efd1e8d22787ed7"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/timing_summary.rpt",
+      "sha256": "c6afe39f4e5bb55c22fbd7abe2bf1d4e350964101c5e103e1e66a6a288e07dd2"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/update_mapping.py",
+      "sha256": "7fbff0ffb8e3691353918057703f7cad7409321137122bc169d56d20499fbdb7"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/utilization.rpt",
+      "sha256": "6ac71c46d7cac867dfe18773d249dae08a0e0baa2db69b7bce79dffb007b4e6f"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/pin_configuration_validation_20261027/verify_acceptance.py",
+      "sha256": "a854d55d0b782cd9e0d8db4d1848e4345e4c7535fa0e83b66c886b09048171d5"
+    },
+    {
+      "path": "project/analysis/ov5640_stereo_20261026/physical_pin_map_20261027.json",
+      "sha256": "2e19d03d7e026ada77962132d2d3bd0e597aa580ecb444012f6d743210a2e7ce"
+    },
+    {
+      "path": "project/fpga/xdc/ov5640_stereo_pins.xdc",
+      "sha256": "72aa37d097c608127b91e4d3710f72a816b703a473c0b79f4bcef604b0a26992"
+    },
+    {
+      "path": "project/fpga/scripts/load_ov5640_pins.tcl",
+      "sha256": "fde835ef990ad4325c3776fc03310616b015262f850e68d153f6e189103258fb"
+    },
+    {
+      "path": "project/scripts/ov5640/generate_pin_constraints.py",
+      "sha256": "aab4b693f60f6454cc9135c47bcabcafd6c2bb4e540c8ed143c706584e4e0d62"
+    },
+    {
+      "path": "project/scripts/ov5640/test_pin_constraints.py",
+      "sha256": "e0b605f2b97246d1d7392a49b12c43affbbff29c87a4141eb302e6c8f67782f1"
+    }
+  ],
+  "cost": {
+    "usage": "unknown",
+    "price": "unknown",
+    "savings": "not claimed"
+  },
+  "limits": [
+    "no measured sensor input/output timing",
+    "not the integrated W6 design",
+    "no physical camera capture or power validation",
+    "startup delay calculation timing violation"
+  ]
+}

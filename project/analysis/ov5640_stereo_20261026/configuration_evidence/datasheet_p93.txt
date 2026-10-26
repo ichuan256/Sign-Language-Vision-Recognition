@@ -1,0 +1,47 @@
+01.20.2011 PRODUCT SPECIFICATION proprie tary to OmniVision Technologies
+6-17
+0x4735 CCIR656 LE 0x00 RW CCIR656 Sync Code line End
+0x4736 CCIR656 CTRL6 0x00 RW Bit[3:2]: Toggle data0[9:8]
+Bit[1:0]: Toggle data1[9:8]
+0x4737 CCIR656 CTRL7 0x00 RW Bit[7:0]: Toggle data0[7:0]
+0x4738 CCIR656 CTRL8 0x00 RW Bit[7:0]: Toggle data1[7:0]
+0x4740 POLARITY CTRL00 0x20 RW
+Bit[5]: PCLK polarity
+0: Active low
+1: Active high
+Bit[3]: Gate PCLK under VSYNC
+Bit[2]: Gate PCLK under HREF
+Bit[1]: HREF polarity
+0: Active low
+1: Active high
+Bit[0]: VSYNC polarity
+0: Active low
+1: Active high
+0x4741 TEST PATTERN 0x00 RW
+Bit[2]: Test pattern enable
+Bit[1]: Test pattern select
+0: Output test pattern 0
+1: Output test pattern 1
+Bit[0]: Test pattern 8-bit/10-bit
+0: 10-bit test pattern
+1: 8-bit test pattern
+0x4745 DATA ORDER 0x00 RW
+Bit[2:1]: DVP order option for debug
+00: D[9:0]
+10: {D[7:0], D[9:8]} 
+x1: {D[1:0], D[9:2]}
+Bit[0]: Output data order
+0: Normal output
+1: Reverse output data bit 
+order
+table 6-6 DVP control registers (sheet 3 of 3)
+ 
+address
+ 
+register name
+default 
+value
+ 
+R/W
+ 
+description

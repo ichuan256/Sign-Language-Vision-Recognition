@@ -1,0 +1,12 @@
+Time resolution is 1 ps
+BUS_CASE_PASS case=2 fault=2 camera=2 rows=0 reads=2/2
+BUS_CASE_PASS case=3 fault=3 camera=1 rows=308 reads=16/16
+BUS_CASE_PASS case=4 fault=3 camera=2 rows=308 reads=16/16
+BUS_CASE_PASS case=0 fault=0 camera=0 rows=308 reads=30/30
+BUS_CASE_PASS case=5 fault=4 camera=1 rows=308 reads=30/30
+BUS_CASE_PASS case=6 fault=4 camera=2 rows=308 reads=30/30
+BUS_CASE_PASS case=7 fault=0 camera=0 rows=308 reads=30/30
+BUS_RESET_RECOVERY_PASS case=1
+BUS_CASE_PASS case=1 fault=1 camera=1 rows=308 reads=31/31
+TEST_PASS: physical dual SCCB startup, ID/readback faults, mask preservation, stream order and reset
+$finish called at time : 554356 ns : File "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/ov5640_stereo/tb_ov5640_stereo_startup.v" Line 132

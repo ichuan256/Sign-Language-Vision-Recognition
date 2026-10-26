@@ -1,0 +1,176 @@
+{
+  "date": "2026-10-26",
+  "scope": "partial known settings; no stream-on or global analog/ISP table",
+  "order": "compare by address; actual sequence belongs to RTL table",
+  "derived": {
+    "camera_sclk_hz": 84000000,
+    "band_step50": 336,
+    "band_step60": 280,
+    "max_band50": 3,
+    "max_band60": 3
+  },
+  "items": [
+    {
+      "address": "3034",
+      "value": "18",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3035",
+      "value": "10",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3036",
+      "value": "54",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3037",
+      "value": "13",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3108",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3808",
+      "value": "07",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3809",
+      "value": "80",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "380a",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "380b",
+      "value": "38",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "380c",
+      "value": "09",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "380d",
+      "value": "c4",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "380e",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "380f",
+      "value": "60",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3a08",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3a09",
+      "value": "50",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3a0a",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3a0b",
+      "value": "18",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "4300",
+      "value": "6f",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "501f",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3a0d",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3a0e",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "4740",
+      "value": "20",
+      "mask": "20",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3503",
+      "value": "00",
+      "mask": "03",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3406",
+      "value": "00",
+      "mask": "01",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3c01",
+      "value": "80",
+      "mask": "80",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3c00",
+      "value": "04",
+      "mask": "04",
+      "post_delay_ms": 300
+    },
+    {
+      "address": "3a00",
+      "value": "20",
+      "mask": "24",
+      "post_delay_ms": 0
+    }
+  ]
+}

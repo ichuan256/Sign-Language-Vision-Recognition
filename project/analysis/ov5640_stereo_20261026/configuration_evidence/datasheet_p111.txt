@@ -1,0 +1,59 @@
+01.20.2011 PRODUCT SPECIFICATION proprie tary to OmniVision Technologies
+7-13
+7.8 AEC/AGC power down domain control [0x3A00 ~ 0x3A25]
+table 7-8 AEC/AGC power down domain control registers (sheet 1 of 3)
+ 
+address
+ 
+register name
+default 
+value
+ 
+R/W
+ 
+description
+0x3A00 AEC CTRL00 0x78 RW
+AEC System Control (0: disable; 1: enable)
+Bit[7]: Debug mode
+Bit[6]: Less one line enable
+Bit[5]: Band function enable
+Bit[4]: Less 1 band enable
+Bit[3]: Start selection
+Bit[2]: Night mode
+Bit[1]: New balance function
+Bit[0]: Freeze
+0x3A01 AEC MIN EXPOSURE 0x01 RW Minimum Exposure Output Limit
+Bit[7:0]: Minimum exposure
+0x3A02 AEC MAX EXPO 
+(60HZ) 0x3D RW 60Hz Maximum Exposure Output Limit
+Bit[7:0]: Maximum exposure[15:8]
+0x3A03 AEC MAX EXPO 
+(60HZ) 0x80 RW 60Hz Maximum Exposure Output Limit
+Bit[7:0]: Maximum exposure[7:0]
+0x3A04 DEBUG MODE – – Debug Mode
+0x3A05 AEC CTRL05 0x30 RW
+AEC System Control 2
+Bit[7]: Debug mode
+Bit[6]: frame insert
+0: In night mode, insert frame 
+disable
+1: In night mode, insert frame 
+enable
+Bit[5]: Step auto enable
+0: Step manual mode
+1: Step auto mode
+Bit[4:0]: Step auto ratio
+In step auto mode, step ratio setting to 
+adjust speed
+0x3A06 AEC CTRL06 0x10 RW
+AEC System Control 3
+Bit[7:5]: Debug mode
+Bit[4:0]: Step manual setting 1
+Step manual
+Increase mode fast step
+0x3A07 AEC CTRL07 0x18 RW
+AEC Manual Step Register
+Bit[7:4]: Step manual setting 2
+Step manual, slow step
+Bit[3:0]: Step manual setting 3
+Step manual, decrease mode fast step

@@ -1,0 +1,272 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+| Date         : Tue Oct 27 02:37:36 2026
+| Host         : DESKTOP-4VOJJB1 running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type min -max_paths 5 -file C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/analysis/ov5640_stereo_20261026/timing_repair_20261027/hold_timing.rpt
+| Design       : pin_validation_top
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.104ns  (arrival time - required time)
+  Source:                 u_camera/u_startup/u_ov1/value_latched_reg[0]/C
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            u_camera/u_startup/u_ov1/write_data_reg[0]/D
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             harness_sys_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (harness_sys_clk rise@0.000ns - harness_sys_clk rise@0.000ns)
+  Data Path Delay:        0.238ns  (logic 0.186ns (78.117%)  route 0.052ns (21.883%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.208ns
+    Source Clock Delay      (SCD):    1.684ns
+    Clock Pessimism Removal (CPR):    0.511ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock harness_sys_clk rise edge)
+                                                      0.000     0.000 r  
+    H16                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         0.219     0.219 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           0.842     1.060    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     1.086 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         0.598     1.684    u_camera/u_startup/u_ov1/sys_clk
+    SLICE_X97Y70         FDCE                                         r  u_camera/u_startup/u_ov1/value_latched_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X97Y70         FDCE (Prop_fdce_C_Q)         0.141     1.825 r  u_camera/u_startup/u_ov1/value_latched_reg[0]/Q
+                         net (fo=1, routed)           0.052     1.877    u_camera/u_startup/u_ov1/u_read/write_data_reg[7]_1[0]
+    SLICE_X96Y70         LUT5 (Prop_lut5_I4_O)        0.045     1.922 r  u_camera/u_startup/u_ov1/u_read/write_data[0]_i_1/O
+                         net (fo=1, routed)           0.000     1.922    u_camera/u_startup/u_ov1/write_data0_in[0]
+    SLICE_X96Y70         FDCE                                         r  u_camera/u_startup/u_ov1/write_data_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock harness_sys_clk rise edge)
+                                                      0.000     0.000 r  
+    H16                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         0.406     0.406 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           0.907     1.313    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.342 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         0.866     2.208    u_camera/u_startup/u_ov1/sys_clk
+    SLICE_X96Y70         FDCE                                         r  u_camera/u_startup/u_ov1/write_data_reg[0]/C
+                         clock pessimism             -0.511     1.697    
+    SLICE_X96Y70         FDCE (Hold_fdce_C_D)         0.121     1.818    u_camera/u_startup/u_ov1/write_data_reg[0]
+  -------------------------------------------------------------------
+                         required time                         -1.818    
+                         arrival time                           1.922    
+  -------------------------------------------------------------------
+                         slack                                  0.104    
+
+Slack (MET) :             0.106ns  (arrival time - required time)
+  Source:                 u_camera/u_capture1/pixel_data_reg[14]/C
+                            (rising edge-triggered cell FDCE clocked by ov1_pclk  {rise@0.000ns fall@5.952ns period=11.905ns})
+  Destination:            sink1_reg[14]/D
+                            (rising edge-triggered cell FDCE clocked by ov1_pclk  {rise@0.000ns fall@5.952ns period=11.905ns})
+  Path Group:             ov1_pclk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (ov1_pclk rise@0.000ns - ov1_pclk rise@0.000ns)
+  Data Path Delay:        0.240ns  (logic 0.186ns (77.466%)  route 0.054ns (22.534%))
+  Logic Levels:           1  (LUT3=1)
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.143ns
+    Source Clock Delay      (SCD):    1.626ns
+    Clock Pessimism Removal (CPR):    0.504ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ov1_pclk rise edge)
+                                                      0.000     0.000 r  
+    Y9                                                0.000     0.000 r  ov1_pclk (IN)
+                         net (fo=0)                   0.000     0.000    ov1_pclk
+    Y9                   IBUF (Prop_ibuf_I_O)         0.313     0.313 r  ov1_pclk_IBUF_inst/O
+                         net (fo=1, routed)           0.663     0.976    ov1_pclk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     1.002 r  ov1_pclk_IBUF_BUFG_inst/O
+                         net (fo=125, routed)         0.625     1.626    u_camera/u_capture1/ov1_pclk
+    SLICE_X113Y74        FDCE                                         r  u_camera/u_capture1/pixel_data_reg[14]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X113Y74        FDCE (Prop_fdce_C_Q)         0.141     1.767 r  u_camera/u_capture1/pixel_data_reg[14]/Q
+                         net (fo=1, routed)           0.054     1.822    ov1_pixel_data[14]
+    SLICE_X112Y74        LUT3 (Prop_lut3_I1_O)        0.045     1.867 r  sink1[14]_i_1/O
+                         net (fo=1, routed)           0.000     1.867    sink1_reg0[14]
+    SLICE_X112Y74        FDCE                                         r  sink1_reg[14]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ov1_pclk rise edge)
+                                                      0.000     0.000 r  
+    Y9                                                0.000     0.000 r  ov1_pclk (IN)
+                         net (fo=0)                   0.000     0.000    ov1_pclk
+    Y9                   IBUF (Prop_ibuf_I_O)         0.501     0.501 r  ov1_pclk_IBUF_inst/O
+                         net (fo=1, routed)           0.719     1.220    ov1_pclk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.249 r  ov1_pclk_IBUF_BUFG_inst/O
+                         net (fo=125, routed)         0.894     2.143    ov1_pclk_IBUF_BUFG
+    SLICE_X112Y74        FDCE                                         r  sink1_reg[14]/C
+                         clock pessimism             -0.504     1.639    
+    SLICE_X112Y74        FDCE (Hold_fdce_C_D)         0.121     1.760    sink1_reg[14]
+  -------------------------------------------------------------------
+                         required time                         -1.760    
+                         arrival time                           1.867    
+  -------------------------------------------------------------------
+                         slack                                  0.106    
+
+Slack (MET) :             0.106ns  (arrival time - required time)
+  Source:                 u_camera/u_startup/u_ov2/value_latched_reg[2]/C
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            u_camera/u_startup/u_ov2/write_data_reg[2]/D
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             harness_sys_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (harness_sys_clk rise@0.000ns - harness_sys_clk rise@0.000ns)
+  Data Path Delay:        0.240ns  (logic 0.186ns (77.466%)  route 0.054ns (22.534%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.212ns
+    Source Clock Delay      (SCD):    1.688ns
+    Clock Pessimism Removal (CPR):    0.511ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock harness_sys_clk rise edge)
+                                                      0.000     0.000 r  
+    H16                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         0.219     0.219 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           0.842     1.060    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     1.086 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         0.602     1.688    u_camera/u_startup/u_ov2/sys_clk
+    SLICE_X99Y67         FDCE                                         r  u_camera/u_startup/u_ov2/value_latched_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X99Y67         FDCE (Prop_fdce_C_Q)         0.141     1.829 r  u_camera/u_startup/u_ov2/value_latched_reg[2]/Q
+                         net (fo=1, routed)           0.054     1.883    u_camera/u_startup/u_ov2/u_read/write_data_reg[7]_1[2]
+    SLICE_X98Y67         LUT5 (Prop_lut5_I4_O)        0.045     1.928 r  u_camera/u_startup/u_ov2/u_read/write_data[2]_i_1__0/O
+                         net (fo=1, routed)           0.000     1.928    u_camera/u_startup/u_ov2/u_read_n_12
+    SLICE_X98Y67         FDCE                                         r  u_camera/u_startup/u_ov2/write_data_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock harness_sys_clk rise edge)
+                                                      0.000     0.000 r  
+    H16                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         0.406     0.406 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           0.907     1.313    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.342 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         0.870     2.212    u_camera/u_startup/u_ov2/sys_clk
+    SLICE_X98Y67         FDCE                                         r  u_camera/u_startup/u_ov2/write_data_reg[2]/C
+                         clock pessimism             -0.511     1.701    
+    SLICE_X98Y67         FDCE (Hold_fdce_C_D)         0.121     1.822    u_camera/u_startup/u_ov2/write_data_reg[2]
+  -------------------------------------------------------------------
+                         required time                         -1.822    
+                         arrival time                           1.928    
+  -------------------------------------------------------------------
+                         slack                                  0.106    
+
+Slack (MET) :             0.109ns  (arrival time - required time)
+  Source:                 u_camera/u_startup/u_ov1/value_latched_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            u_camera/u_startup/u_ov1/write_data_reg[1]/D
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             harness_sys_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (harness_sys_clk rise@0.000ns - harness_sys_clk rise@0.000ns)
+  Data Path Delay:        0.242ns  (logic 0.186ns (76.827%)  route 0.056ns (23.174%))
+  Logic Levels:           1  (LUT5=1)
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.208ns
+    Source Clock Delay      (SCD):    1.684ns
+    Clock Pessimism Removal (CPR):    0.511ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock harness_sys_clk rise edge)
+                                                      0.000     0.000 r  
+    H16                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         0.219     0.219 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           0.842     1.060    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     1.086 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         0.598     1.684    u_camera/u_startup/u_ov1/sys_clk
+    SLICE_X97Y70         FDCE                                         r  u_camera/u_startup/u_ov1/value_latched_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X97Y70         FDCE (Prop_fdce_C_Q)         0.141     1.825 r  u_camera/u_startup/u_ov1/value_latched_reg[1]/Q
+                         net (fo=1, routed)           0.056     1.881    u_camera/u_startup/u_ov1/u_read/write_data_reg[7]_1[1]
+    SLICE_X96Y70         LUT5 (Prop_lut5_I4_O)        0.045     1.926 r  u_camera/u_startup/u_ov1/u_read/write_data[1]_i_1/O
+                         net (fo=1, routed)           0.000     1.926    u_camera/u_startup/u_ov1/write_data0_in[1]
+    SLICE_X96Y70         FDCE                                         r  u_camera/u_startup/u_ov1/write_data_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock harness_sys_clk rise edge)
+                                                      0.000     0.000 r  
+    H16                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         0.406     0.406 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           0.907     1.313    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.342 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         0.866     2.208    u_camera/u_startup/u_ov1/sys_clk
+    SLICE_X96Y70         FDCE                                         r  u_camera/u_startup/u_ov1/write_data_reg[1]/C
+                         clock pessimism             -0.511     1.697    
+    SLICE_X96Y70         FDCE (Hold_fdce_C_D)         0.120     1.817    u_camera/u_startup/u_ov1/write_data_reg[1]
+  -------------------------------------------------------------------
+                         required time                         -1.817    
+                         arrival time                           1.926    
+  -------------------------------------------------------------------
+                         slack                                  0.109    
+
+Slack (MET) :             0.109ns  (arrival time - required time)
+  Source:                 u_camera/u_capture2/pixel_data_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by ov2_pclk  {rise@0.000ns fall@5.952ns period=11.905ns})
+  Destination:            sink2_reg[5]/D
+                            (rising edge-triggered cell FDCE clocked by ov2_pclk  {rise@0.000ns fall@5.952ns period=11.905ns})
+  Path Group:             ov2_pclk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (ov2_pclk rise@0.000ns - ov2_pclk rise@0.000ns)
+  Data Path Delay:        0.242ns  (logic 0.186ns (76.827%)  route 0.056ns (23.174%))
+  Logic Levels:           1  (LUT3=1)
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.182ns
+    Source Clock Delay      (SCD):    1.664ns
+    Clock Pessimism Removal (CPR):    0.505ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ov2_pclk rise edge)
+                                                      0.000     0.000 r  
+    U7                                                0.000     0.000 r  ov2_pclk (IN)
+                         net (fo=0)                   0.000     0.000    ov2_pclk
+    U7                   IBUF (Prop_ibuf_I_O)         0.340     0.340 r  ov2_pclk_IBUF_inst/O
+                         net (fo=1, routed)           0.663     1.003    ov2_pclk_IBUF
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.026     1.029 r  ov2_pclk_IBUF_BUFG_inst/O
+                         net (fo=125, routed)         0.635     1.664    u_camera/u_capture2/ov2_pclk
+    SLICE_X109Y60        FDCE                                         r  u_camera/u_capture2/pixel_data_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X109Y60        FDCE (Prop_fdce_C_Q)         0.141     1.805 r  u_camera/u_capture2/pixel_data_reg[5]/Q
+                         net (fo=1, routed)           0.056     1.861    ov2_pixel_data[5]
+    SLICE_X108Y60        LUT3 (Prop_lut3_I1_O)        0.045     1.906 r  sink2[5]_i_1/O
+                         net (fo=1, routed)           0.000     1.906    sink2_reg0[5]
+    SLICE_X108Y60        FDCE                                         r  sink2_reg[5]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ov2_pclk rise edge)
+                                                      0.000     0.000 r  
+    U7                                                0.000     0.000 r  ov2_pclk (IN)
+                         net (fo=0)                   0.000     0.000    ov2_pclk
+    U7                   IBUF (Prop_ibuf_I_O)         0.529     0.529 r  ov2_pclk_IBUF_inst/O
+                         net (fo=1, routed)           0.719     1.248    ov2_pclk_IBUF
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.029     1.277 r  ov2_pclk_IBUF_BUFG_inst/O
+                         net (fo=125, routed)         0.905     2.182    ov2_pclk_IBUF_BUFG
+    SLICE_X108Y60        FDCE                                         r  sink2_reg[5]/C
+                         clock pessimism             -0.505     1.677    
+    SLICE_X108Y60        FDCE (Hold_fdce_C_D)         0.120     1.797    sink2_reg[5]
+  -------------------------------------------------------------------
+                         required time                         -1.797    
+                         arrival time                           1.906    
+  -------------------------------------------------------------------
+                         slack                                  0.109    
+
+
+
+

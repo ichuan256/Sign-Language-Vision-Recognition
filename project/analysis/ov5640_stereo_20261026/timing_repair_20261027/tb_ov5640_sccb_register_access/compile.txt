@@ -1,0 +1,12 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/rtl/ov5640_stereo/ov5640_sccb_read.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ov5640_sccb_read
+INFO: [VRFC 10-311] analyzing module ov5640_sccb_read_core
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/rtl/ov5640_stereo/ov5640_sccb_register_access.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ov5640_sccb_register_access
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/ov5640_stereo/ov5640_sccb_sensor_model.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ov5640_sccb_sensor_model
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/rtl/ov5640_stereo/ov5640_sccb_write.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ov5640_sccb_write
+INFO: [VRFC 10-311] analyzing module ov5640_sccb_write_core
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/ov5640_stereo/tb_ov5640_sccb_register_access.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_ov5640_sccb_register_access

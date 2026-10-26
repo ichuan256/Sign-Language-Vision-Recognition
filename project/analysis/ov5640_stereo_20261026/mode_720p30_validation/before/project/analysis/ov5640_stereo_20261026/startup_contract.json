@@ -1,0 +1,3345 @@
+{
+  "schema_version": 1,
+  "reference": {
+    "source_url": "https://raw.githubusercontent.com/torvalds/linux/v6.12/drivers/media/i2c/ov5640.c",
+    "tag": "v6.12",
+    "source_sha256": "a991af015db5ce528c3d29d27c21a9071d5f9db9bf0ad861d8280a76268fb605"
+  },
+  "scope": "cold hard-reset startup candidate; no hot mode/exposure migration",
+  "mode": {
+    "xclk_hz": 24000000,
+    "width": 1920,
+    "height": 1080,
+    "fps_target": 30,
+    "hts": 2500,
+    "vts": 1120,
+    "analog_crop": [
+      336,
+      434,
+      1952,
+      1088
+    ],
+    "output_offset": [
+      16,
+      4
+    ],
+    "format": "RGB565_LE_8bit_DVP",
+    "pclk_hz_candidate": 168000000,
+    "sysclk_hz_candidate": 84000000,
+    "polarity_register_candidate": "22",
+    "polarity_mask": "2f",
+    "polarity_status": "Linux-derived candidate; physical waveform unverified",
+    "exposure_seed_lines": 336,
+    "exposure_limit_lines": 1116,
+    "gain_seed_x16": 16,
+    "gain_ceiling_x16": 248
+  },
+  "stream_on": {
+    "address": "3008",
+    "value": "02",
+    "owner": "startup controller, only after ID and readback success"
+  },
+  "table_count": 330,
+  "items": [
+    {
+      "stage": "standby",
+      "address": "3103",
+      "value": "11",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference initial clock source",
+      "index": 0,
+      "last": false
+    },
+    {
+      "stage": "standby",
+      "address": "3008",
+      "value": "82",
+      "mask": "ff",
+      "post_delay_ms": 20,
+      "basis": "software reset; conservative 20ms reset settling",
+      "index": 1,
+      "last": false
+    },
+    {
+      "stage": "standby",
+      "address": "3008",
+      "value": "42",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "DVP register programming in standby",
+      "index": 2,
+      "last": false
+    },
+    {
+      "stage": "standby",
+      "address": "3503",
+      "value": "03",
+      "mask": "03",
+      "post_delay_ms": 0,
+      "basis": "manual AEC/AGC during cold mode programming",
+      "index": 3,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3103",
+      "value": "11",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 4,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3103",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 5,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3630",
+      "value": "36",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 6,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3631",
+      "value": "0e",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 7,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3632",
+      "value": "e2",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 8,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3633",
+      "value": "12",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 9,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3621",
+      "value": "e0",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 10,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3704",
+      "value": "a0",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 11,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3703",
+      "value": "5a",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 12,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3715",
+      "value": "78",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 13,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3717",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 14,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "370b",
+      "value": "60",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 15,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3705",
+      "value": "1a",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 16,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3905",
+      "value": "02",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 17,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3906",
+      "value": "10",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 18,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3901",
+      "value": "0a",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 19,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3731",
+      "value": "12",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 20,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3600",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 21,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3601",
+      "value": "33",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 22,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "302d",
+      "value": "60",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 23,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3620",
+      "value": "52",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 24,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "371b",
+      "value": "20",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 25,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "471c",
+      "value": "50",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 26,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a13",
+      "value": "43",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 27,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a18",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 28,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a19",
+      "value": "f8",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 29,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3635",
+      "value": "13",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 30,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3636",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 31,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3634",
+      "value": "40",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 32,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3622",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 33,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3c01",
+      "value": "a4",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 34,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3c04",
+      "value": "28",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 35,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3c05",
+      "value": "98",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 36,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3c06",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 37,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3c07",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 38,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3c08",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 39,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3c09",
+      "value": "1c",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 40,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3c0a",
+      "value": "9c",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 41,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3c0b",
+      "value": "40",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 42,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3820",
+      "value": "41",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 43,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3821",
+      "value": "07",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 44,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3814",
+      "value": "31",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 45,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3815",
+      "value": "31",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 46,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3618",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 47,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3612",
+      "value": "29",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 48,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3708",
+      "value": "64",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 49,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3709",
+      "value": "52",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 50,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "370c",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 51,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a02",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 52,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a03",
+      "value": "d8",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 53,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a08",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 54,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a09",
+      "value": "27",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 55,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a0a",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 56,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a0b",
+      "value": "f6",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 57,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a0e",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 58,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a0d",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 59,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a14",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 60,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a15",
+      "value": "d8",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 61,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "4001",
+      "value": "02",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 62,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "4004",
+      "value": "02",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 63,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3000",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 64,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3002",
+      "value": "1c",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 65,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3004",
+      "value": "ff",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 66,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3006",
+      "value": "c3",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 67,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "302e",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 68,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "4300",
+      "value": "3f",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 69,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "501f",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 70,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "440e",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 71,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "4837",
+      "value": "0a",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 72,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5000",
+      "value": "a7",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 73,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5001",
+      "value": "a3",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 74,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5180",
+      "value": "ff",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 75,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5181",
+      "value": "f2",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 76,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5182",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 77,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5183",
+      "value": "14",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 78,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5184",
+      "value": "25",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 79,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5185",
+      "value": "24",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 80,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5186",
+      "value": "09",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 81,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5187",
+      "value": "09",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 82,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5188",
+      "value": "09",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 83,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5189",
+      "value": "88",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 84,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "518a",
+      "value": "54",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 85,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "518b",
+      "value": "ee",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 86,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "518c",
+      "value": "b2",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 87,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "518d",
+      "value": "50",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 88,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "518e",
+      "value": "34",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 89,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "518f",
+      "value": "6b",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 90,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5190",
+      "value": "46",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 91,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5191",
+      "value": "f8",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 92,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5192",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 93,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5193",
+      "value": "70",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 94,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5194",
+      "value": "f0",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 95,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5195",
+      "value": "f0",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 96,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5196",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 97,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5197",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 98,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5198",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 99,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5199",
+      "value": "6c",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 100,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "519a",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 101,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "519b",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 102,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "519c",
+      "value": "09",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 103,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "519d",
+      "value": "2b",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 104,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "519e",
+      "value": "38",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 105,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5381",
+      "value": "1e",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 106,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5382",
+      "value": "5b",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 107,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5383",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 108,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5384",
+      "value": "0a",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 109,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5385",
+      "value": "7e",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 110,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5386",
+      "value": "88",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 111,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5387",
+      "value": "7c",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 112,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5388",
+      "value": "6c",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 113,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5389",
+      "value": "10",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 114,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "538a",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 115,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "538b",
+      "value": "98",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 116,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5300",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 117,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5301",
+      "value": "30",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 118,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5302",
+      "value": "10",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 119,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5303",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 120,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5304",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 121,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5305",
+      "value": "30",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 122,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5306",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 123,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5307",
+      "value": "16",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 124,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5309",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 125,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "530a",
+      "value": "30",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 126,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "530b",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 127,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "530c",
+      "value": "06",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 128,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5480",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 129,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5481",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 130,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5482",
+      "value": "14",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 131,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5483",
+      "value": "28",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 132,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5484",
+      "value": "51",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 133,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5485",
+      "value": "65",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 134,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5486",
+      "value": "71",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 135,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5487",
+      "value": "7d",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 136,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5488",
+      "value": "87",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 137,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5489",
+      "value": "91",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 138,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "548a",
+      "value": "9a",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 139,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "548b",
+      "value": "aa",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 140,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "548c",
+      "value": "b8",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 141,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "548d",
+      "value": "cd",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 142,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "548e",
+      "value": "dd",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 143,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "548f",
+      "value": "ea",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 144,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5490",
+      "value": "1d",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 145,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5580",
+      "value": "02",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 146,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5583",
+      "value": "40",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 147,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5584",
+      "value": "10",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 148,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5589",
+      "value": "10",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 149,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "558a",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 150,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "558b",
+      "value": "f8",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 151,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5800",
+      "value": "23",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 152,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5801",
+      "value": "14",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 153,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5802",
+      "value": "0f",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 154,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5803",
+      "value": "0f",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 155,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5804",
+      "value": "12",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 156,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5805",
+      "value": "26",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 157,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5806",
+      "value": "0c",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 158,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5807",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 159,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5808",
+      "value": "05",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 160,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5809",
+      "value": "05",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 161,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "580a",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 162,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "580b",
+      "value": "0d",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 163,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "580c",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 164,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "580d",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 165,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "580e",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 166,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "580f",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 167,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5810",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 168,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5811",
+      "value": "09",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 169,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5812",
+      "value": "07",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 170,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5813",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 171,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5814",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 172,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5815",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 173,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5816",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 174,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5817",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 175,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5818",
+      "value": "0d",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 176,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5819",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 177,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "581a",
+      "value": "05",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 178,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "581b",
+      "value": "06",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 179,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "581c",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 180,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "581d",
+      "value": "0e",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 181,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "581e",
+      "value": "29",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 182,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "581f",
+      "value": "17",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 183,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5820",
+      "value": "11",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 184,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5821",
+      "value": "11",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 185,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5822",
+      "value": "15",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 186,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5823",
+      "value": "28",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 187,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5824",
+      "value": "46",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 188,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5825",
+      "value": "26",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 189,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5826",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 190,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5827",
+      "value": "26",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 191,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5828",
+      "value": "64",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 192,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5829",
+      "value": "26",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 193,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "582a",
+      "value": "24",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 194,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "582b",
+      "value": "22",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 195,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "582c",
+      "value": "24",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 196,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "582d",
+      "value": "24",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 197,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "582e",
+      "value": "06",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 198,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "582f",
+      "value": "22",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 199,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5830",
+      "value": "40",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 200,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5831",
+      "value": "42",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 201,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5832",
+      "value": "24",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 202,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5833",
+      "value": "26",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 203,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5834",
+      "value": "24",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 204,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5835",
+      "value": "22",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 205,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5836",
+      "value": "22",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 206,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5837",
+      "value": "26",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 207,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5838",
+      "value": "44",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 208,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5839",
+      "value": "24",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 209,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "583a",
+      "value": "26",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 210,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "583b",
+      "value": "28",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 211,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "583c",
+      "value": "42",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 212,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "583d",
+      "value": "ce",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 213,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "5025",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 214,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a0f",
+      "value": "30",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 215,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a10",
+      "value": "28",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 216,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a1b",
+      "value": "30",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 217,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a1e",
+      "value": "26",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 218,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a11",
+      "value": "60",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 219,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3a1f",
+      "value": "14",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference global init",
+      "index": 220,
+      "last": false
+    },
+    {
+      "stage": "analog_isp",
+      "address": "3c00",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 300,
+      "basis": "reference global init",
+      "index": 221,
+      "last": false
+    },
+    {
+      "stage": "pll",
+      "address": "3034",
+      "value": "18",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "existing calculated PLL contract",
+      "index": 222,
+      "last": false
+    },
+    {
+      "stage": "pll",
+      "address": "3035",
+      "value": "10",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "existing calculated PLL contract",
+      "index": 223,
+      "last": false
+    },
+    {
+      "stage": "pll",
+      "address": "3036",
+      "value": "54",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "existing calculated PLL contract",
+      "index": 224,
+      "last": false
+    },
+    {
+      "stage": "pll",
+      "address": "3037",
+      "value": "13",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "existing calculated PLL contract",
+      "index": 225,
+      "last": false
+    },
+    {
+      "stage": "pll",
+      "address": "3108",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "existing calculated PLL contract",
+      "index": 226,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3c07",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 227,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3c09",
+      "value": "1c",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 228,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3c0a",
+      "value": "9c",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 229,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3c0b",
+      "value": "40",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 230,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3814",
+      "value": "11",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 231,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3815",
+      "value": "11",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 232,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3618",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 233,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3612",
+      "value": "29",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 234,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3708",
+      "value": "21",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 235,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3709",
+      "value": "12",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 236,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "370c",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 237,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a02",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 238,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a03",
+      "value": "d8",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 239,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a08",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 240,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a09",
+      "value": "27",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 241,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a0a",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 242,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a0b",
+      "value": "f6",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 243,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a0e",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 244,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a0d",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 245,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a14",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 246,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a15",
+      "value": "d8",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 247,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "4001",
+      "value": "02",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 248,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "4004",
+      "value": "06",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 249,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "4407",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 250,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "460b",
+      "value": "35",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 251,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "460c",
+      "value": "22",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 252,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3824",
+      "value": "02",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 253,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "5001",
+      "value": "83",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 254,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3c07",
+      "value": "07",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 255,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3c08",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 256,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3c09",
+      "value": "1c",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 257,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3c0a",
+      "value": "9c",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 258,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3c0b",
+      "value": "40",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 259,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3612",
+      "value": "2b",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 260,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3708",
+      "value": "64",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 261,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a02",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 262,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a03",
+      "value": "60",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 263,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a08",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 264,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a09",
+      "value": "50",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 265,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a0a",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 266,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a0b",
+      "value": "18",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 267,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a0e",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 268,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a0d",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 269,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a14",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 270,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3a15",
+      "value": "60",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 271,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "4407",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 272,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "460b",
+      "value": "37",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 273,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "460c",
+      "value": "20",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 274,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "3824",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 275,
+      "last": false
+    },
+    {
+      "stage": "1080p_mode",
+      "address": "4005",
+      "value": "1a",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference 1080p mode",
+      "index": 276,
+      "last": false
+    },
+    {
+      "stage": "window",
+      "address": "3800",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference DVP analog_crop/crop geometry",
+      "index": 277,
+      "last": false
+    },
+    {
+      "stage": "window",
+      "address": "3801",
+      "value": "50",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference DVP analog_crop/crop geometry",
+      "index": 278,
+      "last": false
+    },
+    {
+      "stage": "window",
+      "address": "3802",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference DVP analog_crop/crop geometry",
+      "index": 279,
+      "last": false
+    },
+    {
+      "stage": "window",
+      "address": "3803",
+      "value": "b2",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference DVP analog_crop/crop geometry",
+      "index": 280,
+      "last": false
+    },
+    {
+      "stage": "window",
+      "address": "3804",
+      "value": "08",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference DVP analog_crop/crop geometry",
+      "index": 281,
+      "last": false
+    },
+    {
+      "stage": "window",
+      "address": "3805",
+      "value": "ef",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference DVP analog_crop/crop geometry",
+      "index": 282,
+      "last": false
+    },
+    {
+      "stage": "window",
+      "address": "3806",
+      "value": "05",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference DVP analog_crop/crop geometry",
+      "index": 283,
+      "last": false
+    },
+    {
+      "stage": "window",
+      "address": "3807",
+      "value": "f1",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference DVP analog_crop/crop geometry",
+      "index": 284,
+      "last": false
+    },
+    {
+      "stage": "window",
+      "address": "3810",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference DVP analog_crop/crop geometry",
+      "index": 285,
+      "last": false
+    },
+    {
+      "stage": "window",
+      "address": "3811",
+      "value": "10",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference DVP analog_crop/crop geometry",
+      "index": 286,
+      "last": false
+    },
+    {
+      "stage": "window",
+      "address": "3812",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference DVP analog_crop/crop geometry",
+      "index": 287,
+      "last": false
+    },
+    {
+      "stage": "window",
+      "address": "3813",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "reference DVP analog_crop/crop geometry",
+      "index": 288,
+      "last": false
+    },
+    {
+      "stage": "format_dvp",
+      "address": "3820",
+      "value": "00",
+      "mask": "01",
+      "post_delay_ms": 0,
+      "basis": "SCALING: disable binning",
+      "index": 289,
+      "last": false
+    },
+    {
+      "stage": "format_dvp",
+      "address": "3821",
+      "value": "00",
+      "mask": "21",
+      "post_delay_ms": 0,
+      "basis": "SCALING and non-JPEG: disable binning/JPEG; preserve orientation",
+      "index": 290,
+      "last": false
+    },
+    {
+      "stage": "format_dvp",
+      "address": "3002",
+      "value": "1c",
+      "mask": "1c",
+      "post_delay_ms": 0,
+      "basis": "non-JPEG reset of JPEG/SFIFO/JFIFO",
+      "index": 291,
+      "last": false
+    },
+    {
+      "stage": "format_dvp",
+      "address": "3006",
+      "value": "00",
+      "mask": "28",
+      "post_delay_ms": 0,
+      "basis": "non-JPEG disable JPEG clocks",
+      "index": 292,
+      "last": false
+    },
+    {
+      "stage": "format_dvp",
+      "address": "4730",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "separate VSYNC/HREF, not BT656",
+      "index": 293,
+      "last": false
+    },
+    {
+      "stage": "format_dvp",
+      "address": "300e",
+      "value": "18",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "disable MIPI PHY and select DVP",
+      "index": 294,
+      "last": false
+    },
+    {
+      "stage": "format_dvp",
+      "address": "3017",
+      "value": "7f",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "enable VSYNC/HREF/PCLK and D9..D6",
+      "index": 295,
+      "last": false
+    },
+    {
+      "stage": "format_dvp",
+      "address": "3018",
+      "value": "fc",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "enable D5..D0; module exports D9..D2",
+      "index": 296,
+      "last": false
+    },
+    {
+      "stage": "exposure_seed",
+      "address": "3a02",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "VTS-4 limit / reference gain ceiling",
+      "index": 297,
+      "last": false
+    },
+    {
+      "stage": "exposure_seed",
+      "address": "3a03",
+      "value": "5c",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "VTS-4 limit / reference gain ceiling",
+      "index": 298,
+      "last": false
+    },
+    {
+      "stage": "exposure_seed",
+      "address": "3a14",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "VTS-4 limit / reference gain ceiling",
+      "index": 299,
+      "last": false
+    },
+    {
+      "stage": "exposure_seed",
+      "address": "3a15",
+      "value": "5c",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "VTS-4 limit / reference gain ceiling",
+      "index": 300,
+      "last": false
+    },
+    {
+      "stage": "exposure_seed",
+      "address": "3a18",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "VTS-4 limit / reference gain ceiling",
+      "index": 301,
+      "last": false
+    },
+    {
+      "stage": "exposure_seed",
+      "address": "3a19",
+      "value": "f8",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "VTS-4 limit / reference gain ceiling",
+      "index": 302,
+      "last": false
+    },
+    {
+      "stage": "exposure_seed",
+      "address": "3500",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "336-line (10ms) / 1x cold-start seed",
+      "index": 303,
+      "last": false
+    },
+    {
+      "stage": "exposure_seed",
+      "address": "3501",
+      "value": "15",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "336-line (10ms) / 1x cold-start seed",
+      "index": 304,
+      "last": false
+    },
+    {
+      "stage": "exposure_seed",
+      "address": "3502",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "336-line (10ms) / 1x cold-start seed",
+      "index": 305,
+      "last": false
+    },
+    {
+      "stage": "exposure_seed",
+      "address": "350a",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "336-line (10ms) / 1x cold-start seed",
+      "index": 306,
+      "last": false
+    },
+    {
+      "stage": "exposure_seed",
+      "address": "350b",
+      "value": "10",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "336-line (10ms) / 1x cold-start seed",
+      "index": 307,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "3808",
+      "value": "07",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 308,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "3809",
+      "value": "80",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 309,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "380a",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 310,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "380b",
+      "value": "38",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 311,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "380c",
+      "value": "09",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 312,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "380d",
+      "value": "c4",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 313,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "380e",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 314,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "380f",
+      "value": "60",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 315,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "3a08",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 316,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "3a09",
+      "value": "50",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 317,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "3a0a",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 318,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "3a0b",
+      "value": "18",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 319,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "4300",
+      "value": "6f",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 320,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "501f",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 321,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "3a0d",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 322,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "3a0e",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 323,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "4740",
+      "value": "22",
+      "mask": "2f",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 324,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "3503",
+      "value": "00",
+      "mask": "03",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 325,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "3406",
+      "value": "00",
+      "mask": "01",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 326,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "3c01",
+      "value": "80",
+      "mask": "80",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 327,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "3c00",
+      "value": "04",
+      "mask": "04",
+      "post_delay_ms": 300,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 328,
+      "last": false
+    },
+    {
+      "stage": "target_controls",
+      "address": "3a00",
+      "value": "20",
+      "mask": "24",
+      "post_delay_ms": 0,
+      "basis": "known contract; 4740 candidate also clears PCLK gates",
+      "index": 329,
+      "last": true
+    }
+  ]
+}

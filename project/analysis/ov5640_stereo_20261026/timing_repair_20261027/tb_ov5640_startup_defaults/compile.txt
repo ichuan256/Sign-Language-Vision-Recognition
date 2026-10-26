@@ -1,0 +1,5 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/rtl/ov5640_stereo/ov5640_startup_table.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ov5640_startup_table
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/ov5640_stereo/tb_ov5640_startup_defaults.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module startup_defaults_case
+INFO: [VRFC 10-311] analyzing module tb_ov5640_startup_defaults

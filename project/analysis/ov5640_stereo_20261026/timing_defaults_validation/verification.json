@@ -1,0 +1,277 @@
+{
+  "date": "2026-10-26",
+  "backend": "Vivado 2024.1 XSim",
+  "mode": "behavioral",
+  "part": "xc7z020clg400-1",
+  "result": "PASS",
+  "tests_passed": 9,
+  "tests": [
+    {
+      "top": "tb_ov5640_timing_defaults",
+      "result": "PASS",
+      "coverage": "新默认值在100MHz、50MHz、125000003Hz参数下的等待/超时周期数和实际SCL高低半周期；向上取整、低频钳位、大频率计算和旧位置参数覆盖",
+      "markers": [
+        "SCCB_TIMING_PASS HZ=50000000 half_cycles=250",
+        "SCCB_TIMING_PASS HZ=100000000 half_cycles=500",
+        "SCCB_TIMING_PASS HZ=125000003 half_cycles=626",
+        "TIMING_PASS HZ=50000000 waits=1000000 timeout=500000",
+        "TIMING_PASS HZ=100000000 waits=2000000 timeout=1000000",
+        "TIMING_PASS HZ=125000003 waits=2500001 timeout=1250001",
+        "TEST_PASS: frequency-derived waits/timeouts, SCCB edges, override compatibility"
+      ],
+      "logs": {
+        "compile_console.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_timing_defaults/compile_console.log",
+          "sha256": "f4b58400f16d147a29c237d1f2eccc0c121155d42e8ccd85c0ff1369b272891c",
+          "bytes": 412
+        },
+        "elaborate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_timing_defaults/elaborate.log",
+          "sha256": "756d198e4cdda2e9961294e3535b0350819f1328d4710a06a945e730d2c29bd9",
+          "bytes": 1461
+        },
+        "simulate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_timing_defaults/simulate.log",
+          "sha256": "d4313e71472a4a8fcc32bb953f1699c4e7de5cb53375d9c0334068a1e9e9a115",
+          "bytes": 694
+        }
+      }
+    },
+    {
+      "top": "tb_ov5640_stereo_camera_init",
+      "result": "PASS",
+      "coverage": "PWDN/RESET顺序、两路写事务同时启动、等待两路独立完成、配置顺序与缺失done超时",
+      "markers": [
+        "TEST_PASS: power sequencing, ordered dual writes, completion and timeout"
+      ],
+      "logs": {
+        "compile_console.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_stereo_camera_init/compile_console.log",
+          "sha256": "6c0fc8d7d36ae763b22496ce2c2fcb38cd5c4fb9e478e66408e4a36ab62b3968",
+          "bytes": 415
+        },
+        "elaborate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_stereo_camera_init/elaborate.log",
+          "sha256": "fef0da09c87eb4da8fbd97a840c58e5aa8f4c329a73e4f8c0d8f175541331c09",
+          "bytes": 659
+        },
+        "simulate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_stereo_camera_init/simulate.log",
+          "sha256": "f03cb7ef597538351947c394bc556238561d1a5b29d7138e8c1bfbf06120a177",
+          "bytes": 278
+        }
+      }
+    },
+    {
+      "top": "tb_ov5640_dvp_capture",
+      "result": "PASS",
+      "coverage": "RGB565低字节先行拼接、SOF/EOL、奇数字节坏帧、超宽抑制和下一帧恢复",
+      "markers": [
+        "TEST_PASS: RGB565 order, SOF/EOL, odd/over-width error, suppression, recovery"
+      ],
+      "logs": {
+        "compile_console.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_dvp_capture/compile_console.log",
+          "sha256": "276bc3a402095f689906cc7b6122be35dc688974cd176c8f2d0a9bc01c512469",
+          "bytes": 664
+        },
+        "elaborate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_dvp_capture/elaborate.log",
+          "sha256": "2fca8daf755bc3f39c895de13de525a619b5cabbf5985afe06d4250dcf050147",
+          "bytes": 880
+        },
+        "simulate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_dvp_capture/simulate.log",
+          "sha256": "00a51988f9e6c98c568017b37648e6bc96efd5622b87dfcee155acfdfa0a09a7",
+          "bytes": 276
+        }
+      }
+    },
+    {
+      "top": "tb_ov5640_stereo_capture_pair",
+      "result": "PASS",
+      "coverage": "不同PCLK的两路分别采集像素和帧状态/帧号",
+      "markers": [
+        "TEST_PASS: independent OV1/OV2 PCLK domains capture separately"
+      ],
+      "logs": {
+        "compile_console.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_stereo_capture_pair/compile_console.log",
+          "sha256": "3db2814a7f43da54f195c7a1668d142ed7f12e420a2c99f58e0d0c5b4c0bba3c",
+          "bytes": 688
+        },
+        "elaborate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_stereo_capture_pair/elaborate.log",
+          "sha256": "04161ddcc523fb4e766c98ac7dd80c58403d45fb0ce4e675a473e9e5930cbce1",
+          "bytes": 980
+        },
+        "simulate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_stereo_capture_pair/simulate.log",
+          "sha256": "54af260d67bb183f558378b8397428ea22e35d8a43b052758f97f932a65534a2",
+          "bytes": 269
+        }
+      }
+    },
+    {
+      "top": "tb_ov5640_sccb_write",
+      "result": "PASS",
+      "coverage": "开漏START/STOP、器件地址及16位寄存器地址/数据字节顺序",
+      "markers": [
+        "TEST_PASS: SCCB open-drain start/stop and device/register bytes"
+      ],
+      "logs": {
+        "compile_console.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_sccb_write/compile_console.log",
+          "sha256": "1c9fc73c24f82c7d469e8ae808078cfaa26042ecd4bc3651370c510761fb8612",
+          "bytes": 661
+        },
+        "elaborate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_sccb_write/elaborate.log",
+          "sha256": "8b02bfbdae2ce6f31f3d59184863cc16aca70c5be13571c75cf81b70126bc204",
+          "bytes": 876
+        },
+        "simulate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_sccb_write/simulate.log",
+          "sha256": "fbe9a1ecc4cd29c78ae78968078bb1c391546bb7502d64158ce39410c008b6a7",
+          "bytes": 261
+        }
+      }
+    },
+    {
+      "top": "tb_ov5640_stereo_sccb_pair",
+      "result": "PASS",
+      "coverage": "同时与独立单路写入，未选中的另一路不受影响",
+      "markers": [
+        "TEST_PASS: simultaneous and independent OV1/OV2 SCCB writes"
+      ],
+      "logs": {
+        "compile_console.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_stereo_sccb_pair/compile_console.log",
+          "sha256": "bcd4ddb8193b7f4fe96e4d35cc65e07203210a503f2e6489cf039771ba06f922",
+          "bytes": 679
+        },
+        "elaborate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_stereo_sccb_pair/elaborate.log",
+          "sha256": "91176287eb00ee60964c49f867a62b0461858be5ec043ef1271570964549889f",
+          "bytes": 968
+        },
+        "simulate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_stereo_sccb_pair/simulate.log",
+          "sha256": "8cd5919565f6c07ae09dcc46e26947fe7892eabe0499ba8ebffb4478a8fbcc0e",
+          "bytes": 264
+        }
+      }
+    },
+    {
+      "top": "tb_ov5640_stereo_top",
+      "result": "PASS",
+      "coverage": "基础顶层独立双PCLK像素采集和双路SCCB写联调",
+      "markers": [
+        "TEST_PASS: top integrates independent DVP PCLKs and dual SCCB writes"
+      ],
+      "logs": {
+        "compile_console.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_stereo_top/compile_console.log",
+          "sha256": "7ac4d4748e21546b4810234e5d5fb8bd94fd26fcff0bd9619bc96b441df7b58c",
+          "bytes": 910
+        },
+        "elaborate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_stereo_top/elaborate.log",
+          "sha256": "fed496193e7fc46a5cef935ba83bfca3acf9e3ce6052936cdd3b34befa6cfc53",
+          "bytes": 1148
+        },
+        "simulate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_stereo_top/simulate.log",
+          "sha256": "cd78645555c58753335336bc6964edb910035c91803b05bb9aead804de730e59",
+          "bytes": 267
+        }
+      }
+    },
+    {
+      "top": "tb_ov5640_sccb_read",
+      "result": "PASS",
+      "coverage": "重复START、模拟从设备返回0x56及STOP后的busy释放",
+      "markers": [
+        "PASS: SCCB read returned 56 after repeated START"
+      ],
+      "logs": {
+        "compile_console.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_sccb_read/compile_console.log",
+          "sha256": "701001f1b34c91b6d20ce2be6145385c91997af3ee69a8f3f4a4ae97a1dcd1c2",
+          "bytes": 905
+        },
+        "elaborate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_sccb_read/elaborate.log",
+          "sha256": "a6e7f93ff4a84d1b37b2e65253b200873bc2ed87cd7438395048377adf95777c",
+          "bytes": 872
+        },
+        "simulate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_sccb_read/simulate.log",
+          "sha256": "d0c1be636ee6bc2df98021cde12ee55a97a111edc7a6eefec54d22f7a9f8f321",
+          "bytes": 245
+        }
+      }
+    },
+    {
+      "top": "tb_ov5640_pll_config",
+      "result": "PASS",
+      "coverage": "五项PLL配置值、顺序、末项标志及接受/完成握手",
+      "markers": [
+        "PASS: 5 PLL writes accepted in order"
+      ],
+      "logs": {
+        "compile_console.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_pll_config/compile_console.log",
+          "sha256": "3d102ac84aeb41c8033daeb295814c68762edc8fe180256a5fe8c3ba432b00f2",
+          "bytes": 910
+        },
+        "elaborate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_pll_config/elaborate.log",
+          "sha256": "c55d8a617e3851f29f10c642b3c6ad23cf522930da05616c7a90293cbbbbc8ce",
+          "bytes": 873
+        },
+        "simulate.log": {
+          "path": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/tb_ov5640_pll_config/simulate.log",
+          "sha256": "05c5d8e159808f1a34c66fddd5a54a2be6e41f33eb25c42edc33aca50abd417f",
+          "bytes": 233
+        }
+      }
+    }
+  ],
+  "defaults": {
+    "sys_clk_hz": 100000000,
+    "pwdn_settle_ms": 20,
+    "reset_release_wait_ms": 20,
+    "sccb_scl_target_hz": 100000,
+    "sccb_timeout_ms": 10
+  },
+  "source_sha256": {
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_camera_init.v": "cb8657d3f66b5d34f02a086bdd01690799063bc92b3f125c47d967089818b1f6",
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_camera_top.v": "71bd94ca03b020dcd88bc653340b76bb471a676b45cd6a88b9445e27b97096be",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_timing_defaults.v": "33a78b27aa1a76e65f57d93b3991c14878de69ce1c71f0f5e9e80cd5813a41f2",
+    "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/run_regression.tcl": "ba16fcdaa1eb6d72d7bccd3bbb6c03258154c222554846de9d4be9abc98e64fe"
+  },
+  "notes": [
+    "参数频率用例验证换算后的周期数，不代表板上实际生成或测量了各频率。",
+    "原*_CYCLES参数顺序保留，SYS_CLK_HZ追加在末尾。",
+    "首次编译的声明前引用警告已记录；参数换算行为在XSim验证正确。",
+    "静态参数检查实例有未接时钟警告；Vivado有未自动找到GCC的环境警告，实际编译、展开、运行成功。",
+    "首次日志采集在close_sim前读取缓冲日志导致验证脚本失败，修复采集顺序后完整重跑9项通过。",
+    "Vivado原生compile.log为空，compile_console.log逐项提取自本次Vivado完整主日志的编译阶段；保留空的原生文件以供核对。"
+  ],
+  "full_vivado_log": "project/analysis/ov5640_stereo_20261026/timing_defaults_validation/.vivado-ai/vivado_22520119_c13da92d.log",
+  "not_verified": [
+    "完整相机初始化表及表内特殊延时",
+    "板级输入延迟/建立保持时间",
+    "综合实现与位流",
+    "实际相机寄存器读回、采图及曝光效果",
+    "BD接入和DDR写入通路"
+  ],
+  "agent_usage": {
+    "selected_model": "gpt-6.1-sol",
+    "selected_reasoning_effort": "high",
+    "completion": "子代理完成RTL与新自检后遇到模型容量限制，由主代理接手回归、文档和验收",
+    "token_usage": "unknown",
+    "actual_cost": "unknown"
+  }
+}

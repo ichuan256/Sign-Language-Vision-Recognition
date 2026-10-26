@@ -1,0 +1,6 @@
+PASS tb_ov5640_masked_write
+PASS tb_ov5640_known_config
+PASS tb_ov5640_known_config_timeout
+PASS tb_ov5640_sccb_read
+PASS tb_ov5640_pll_config
+REGRESSION_ALL_PASS 5

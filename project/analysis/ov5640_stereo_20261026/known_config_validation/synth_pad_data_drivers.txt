@@ -1,0 +1,16 @@
+ov1_scl_OBUFT_inst/I NET=ov1_scl_OBUF
+DRIVER=u_ov1/u_read/ov1_scl_OBUFT_inst_i_1/O REF=LUT6
+ov1_scl_OBUFT_inst/T NET=ov1_scl_TRI
+DRIVER=u_ov1/u_read/ov1_scl_OBUFT_inst_i_2/O REF=LUT2
+ov1_sda_IOBUF_inst/I NET=ov1_sda_OBUF
+DRIVER=u_ov1/u_write/ov1_sda_IOBUF_inst_i_1/O REF=LUT6
+ov1_sda_IOBUF_inst/T NET=ov1_sda_TRI
+DRIVER=u_ov1/u_write/ov1_sda_IOBUF_inst_i_2/O REF=LUT2
+ov2_scl_OBUFT_inst/I NET=ov2_scl_OBUF
+DRIVER=u_ov2/u_read/ov2_scl_OBUFT_inst_i_1/O REF=LUT6
+ov2_scl_OBUFT_inst/T NET=ov2_scl_TRI
+DRIVER=u_ov2/u_read/ov2_scl_OBUFT_inst_i_2/O REF=LUT2
+ov2_sda_IOBUF_inst/I NET=ov2_sda_OBUF
+DRIVER=u_ov2/u_write/ov2_sda_IOBUF_inst_i_1/O REF=LUT6
+ov2_sda_IOBUF_inst/T NET=ov2_sda_TRI
+DRIVER=u_ov2/u_write/ov2_sda_IOBUF_inst_i_2/O REF=LUT2

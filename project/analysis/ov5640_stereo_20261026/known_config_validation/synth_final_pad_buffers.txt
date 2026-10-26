@@ -1,0 +1,26 @@
+PAD=ov1_scl
+PIN=ov1_scl_OBUFT_inst/O CELL=ov1_scl_OBUFT_inst REF=OBUFT
+PAD=ov1_sda
+PIN=ov1_sda_IOBUF_inst/IBUF/I CELL=ov1_sda_IOBUF_inst/IBUF REF=IBUF
+PIN=ov1_sda_IOBUF_inst/OBUFT/O CELL=ov1_sda_IOBUF_inst/OBUFT REF=OBUFT
+PAD=ov2_scl
+PIN=ov2_scl_OBUFT_inst/O CELL=ov2_scl_OBUFT_inst REF=OBUFT
+PAD=ov2_sda
+PIN=ov2_sda_IOBUF_inst/IBUF/I CELL=ov2_sda_IOBUF_inst/IBUF REF=IBUF
+PIN=ov2_sda_IOBUF_inst/OBUFT/O CELL=ov2_sda_IOBUF_inst/OBUFT REF=OBUFT
+ov1_scl_OBUFT_inst/I NET=<const0>
+DRIVER=GND/G REF=GND
+ov1_scl_OBUFT_inst/T NET=ov1_scl_TRI
+DRIVER=u_ov1/u_read/ov1_scl_OBUFT_inst_i_1/O REF=LUT2
+ov1_sda_IOBUF_inst/I NET=<const0>
+DRIVER=GND/G REF=GND
+ov1_sda_IOBUF_inst/T NET=ov1_sda_TRI
+DRIVER=u_ov1/u_read/ov1_sda_IOBUF_inst_i_1/O REF=LUT2
+ov2_scl_OBUFT_inst/I NET=<const0>
+DRIVER=GND/G REF=GND
+ov2_scl_OBUFT_inst/T NET=ov2_scl_TRI
+DRIVER=u_ov2/u_read/ov2_scl_OBUFT_inst_i_1/O REF=LUT2
+ov2_sda_IOBUF_inst/I NET=<const0>
+DRIVER=GND/G REF=GND
+ov2_sda_IOBUF_inst/T NET=ov2_sda_TRI
+DRIVER=u_ov2/u_read/ov2_sda_IOBUF_inst_i_1/O REF=LUT2

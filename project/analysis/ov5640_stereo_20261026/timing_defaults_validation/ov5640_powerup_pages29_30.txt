@@ -1,0 +1,119 @@
+                                                                                                                             2-11
+
+
+
+
+ figure 2-3           power up timing with internal DVDD
+
+                                                          power on                           power off
+                                      t0
+
+
+          DOVDD                                                                            t5
+                                                                                                    >=0ms
+                                           t2
+             AVDD                                                                   t6
+             PWDN                                t3                                                t
+                                                                                                    1
+
+
+
+
+          RESETB                                      t
+                                                       4
+
+
+           XVCLK
+             SCCB
+
+
+
+          note t ≥ 0ms, delay from DOVDD stable to AVDD stable, it is recommended to power up AVDD shortly
+                0
+               after DOVDD has been powered up
+                 t1 ≥ 0ms, delay from XVCLK off to AVDD off
+                 t2 ≥ 5ms, delay from AVDD stable to sensor power up stable, PWDN can be pulled low after this point,
+                 XVCLK can be turned on after power on
+                 t ≥ 1ms, delay from sensor power up stable to RESETB pull up
+                  3
+                 t4 ≥ 20ms, delay from RESETB pull high to SCCB initialization
+                 t ≥ 0ms, delay from AVDD off to DOVDD off
+                  5
+                 t6 ≥ 0ms, delay from RESETB pull low to AVDD off                                          5640_DS_2_2
+
+
+
+
+ 2.7.2 power up with external DVDD source
+ For powering up with an external DVDD source and I2C access during the power ON period, the following conditions
+ must occur:
+
+     1.      when DOVDD and AVDD are turned ON, make sure DOVDD becomes stable before AVDD becomes stable
+     2.      when AVDD and DVDD are turned ON, make sure AVDD becomes stable before DVDD becomes stable
+     3.      PWDN is active high with an asynchronized design (does not need clock), PWDN pin tied to digital ground if it
+             is not controlled
+     4.      if PWDN pin is controlled as below, for PWDN to go low, power must first become stable
+             (DVDD to PWDN ≥ 5 ms)
+     5.      all powers are cut off when the camera is not in use (power down mode is not recommended)
+     6.      RESETB is active low with an asynchronized design
+     7.      master clock XVCLK should provide at least 1 ms before host accesses the sensor’s registers
+     8.      host can access I2C bus (if shared) during entire period. 20ms after RESETB goes high, host can access the
+             sensor's registers to initialize sensor
+
+
+
+
+01.20.2011                      PRODUCT SPECIFICATION                             proprietary to OmniVision Technologies
+OV5640   color CMOS QSXGA (5 megapixel) image sensor with OmniBSI™ technology
+
+
+
+
+         figure 2-4         power up timing with external DVDD source
+
+                     DOVDD first, then AVDD, followed by DVDD, and rising time is less than 5 ms
+                                     t0
+                                                                                                             cut off power
+
+            DOVDD                                                                                    t6
+                                          t
+                                            1
+
+              AVDD                                                                                    t
+                                                                                                       7
+                                                t
+                                                 2
+
+              DVDD                                      t3
+                          power on period                                                                   t5
+
+              PWDN
+
+
+            RESETB                                           t4
+
+
+             XVCLK
+              SCCB
+
+
+
+
+           note t ≥ 0 ms: delay from DOVDD stable to AVDD stable, it is recommended to power up AVDD shortly after DOVDD
+                 0
+                has been powered up
+                t1 ≥ 0 ms: delay from AVDD stable to DVDD stable
+                t2 ≥ 5 ms: delay from DVDD stable to sensor power up stable
+                t ≥ 1ms, delay from sensor power up stable to RESETB pull up
+                 3
+                t4 ≥ 20ms, delay from RESETB pull high to SCCB initialization
+                t ≥ 0ms, delay from AVDD off to DOVDD off
+                 5
+                t6 ≥ 0ms, delay from RESETB pull low to DVDD off
+                t7 ≥ 0ms, delay from XVCLK off to DVDD off                                                        5640_DS_2_3
+
+
+
+
+         proprietary to OmniVision Technologies                    PRODUCT SPECIFICATION                         version 2.01
+

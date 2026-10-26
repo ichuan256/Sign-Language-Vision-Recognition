@@ -1,0 +1,16 @@
+PAD=ov1_scl
+PIN=ov1_scl_OBUFT_inst/O CELL=ov1_scl_OBUFT_inst REF=OBUFT
+PAD=ov1_sda
+PIN=ov1_sda_IOBUF_inst/IBUF/I CELL=ov1_sda_IOBUF_inst/IBUF REF=IBUF
+PIN=ov1_sda_IOBUF_inst/OBUFT/O CELL=ov1_sda_IOBUF_inst/OBUFT REF=OBUFT
+PAD=ov2_scl
+PIN=ov2_scl_OBUFT_inst/O CELL=ov2_scl_OBUFT_inst REF=OBUFT
+PAD=ov2_sda
+PIN=ov2_sda_IOBUF_inst/IBUF/I CELL=ov2_sda_IOBUF_inst/IBUF REF=IBUF
+PIN=ov2_sda_IOBUF_inst/OBUFT/O CELL=ov2_sda_IOBUF_inst/OBUFT REF=OBUFT
+BUFFER=ov1_scl_OBUFT_inst REF=OBUFT I_NET=ov1_scl_OBUF T_NET=ov1_scl_TRI
+BUFFER=ov1_sda_IOBUF_inst REF=IOBUF I_NET=ov1_sda_OBUF T_NET=ov1_sda_TRI
+BUFFER=ov2_scl_OBUFT_inst REF=OBUFT I_NET=ov2_scl_OBUF T_NET=ov2_scl_TRI
+BUFFER=ov2_sda_IOBUF_inst REF=IOBUF I_NET=ov2_sda_OBUF T_NET=ov2_sda_TRI
+BUFFER=ov1_sda_IOBUF_inst/OBUFT REF=OBUFT I_NET=ov1_sda_IOBUF_inst/I T_NET=ov1_sda_IOBUF_inst/T
+BUFFER=ov2_sda_IOBUF_inst/OBUFT REF=OBUFT I_NET=ov2_sda_IOBUF_inst/I T_NET=ov2_sda_IOBUF_inst/T
