@@ -1,0 +1,681 @@
+{
+  "scope": "Clear annotation seed; no manual labels or new training",
+  "dataset": {
+    "schema": "hand_teacher_dataset_v1",
+    "completed": true,
+    "plan_sha256": "629ff3e1156f92266fceeb3d7e3f04c7098d0544723f867523b0207d1239091f",
+    "teacher": {
+      "name": "MediaPipe Holistic",
+      "version": "0.10.21",
+      "options": {
+        "static_image_mode": false,
+        "model_complexity": 1,
+        "smooth_landmarks": false,
+        "enable_segmentation": false,
+        "refine_face_landmarks": false,
+        "min_detection_confidence": 0.5,
+        "min_tracking_confidence": 0.5
+      },
+      "model_sha256": {
+        "hand_landmark/hand_landmark_full.tflite": "11c272b891e1a99ab034208e23937a8008388cf11ed2a9d776ed3d01d0ba00e3",
+        "pose_landmark/pose_landmark_full.tflite": "e9a5c5cb17f736fafd4c2ec1da3b3d331d6edbe8a0d32395855aeb2cdfd64b9f",
+        "holistic_landmark/hand_recrop.tflite": "67d996ce96f9d36fe17d2693022c6da93168026ab2f028f9e2365398d8ac7d5d"
+      },
+      "handedness": "unmirrored anatomical association from Holistic, weak labels, left=0 right=1",
+      "confidence_available": false
+    },
+    "frames_sampled": 586,
+    "frames_without_teacher_hand": 154,
+    "records": 1200,
+    "counts": {
+      "unknown_candidate": 586,
+      "teacher_positive": 614
+    },
+    "split_counts": {
+      "train": 629,
+      "test": 341,
+      "validation": 230
+    },
+    "records_sha256": "555a5891f9dbd441f1aab3b479c90f1d921091ee56a1e84ca929ac8fa8e79d51",
+    "shards": [
+      {
+        "file": "shards/9ec1852c8c07abd4c179.npz",
+        "sha256": "280b2b2bab56cf741ebdeb94606497f9c605cae2bf4e18831d0b228264cbd225",
+        "rows": 37,
+        "split": "train"
+      },
+      {
+        "file": "shards/589bf3b2f86436fd83fd.npz",
+        "sha256": "5af15fd82a328fc6960587e413bac45141d72d48f3a04c1e59917f7b86bcc5d3",
+        "rows": 19,
+        "split": "train"
+      },
+      {
+        "file": "shards/75f5a16fb745fc425625.npz",
+        "sha256": "d54f338c4df6fb9dc6041f2bdcea485adbdf251a6c12e10eb46066531ed96631",
+        "rows": 26,
+        "split": "test"
+      },
+      {
+        "file": "shards/5b155bf78e4a727649a7.npz",
+        "sha256": "0a1b132db7e240dc91a72e060e38a2cd8d50d723a2f752861b731ec9b0f07e8f",
+        "rows": 17,
+        "split": "validation"
+      },
+      {
+        "file": "shards/763b49514ae5231722c2.npz",
+        "sha256": "8a25460ac1e168c1f3f7b6f56d5a0637b06526939ac8d2d38d006823aac11b30",
+        "rows": 29,
+        "split": "train"
+      },
+      {
+        "file": "shards/7d4b3fa7e9e0013746b1.npz",
+        "sha256": "6392de26a91f1144a851057126c60152b3d5ded6c539b37f3f5969dcda77089e",
+        "rows": 19,
+        "split": "train"
+      },
+      {
+        "file": "shards/2603b0d5f7b5131b19dd.npz",
+        "sha256": "ddc59db94068819324a97ffad853e0304fe8ec53cf439b3b5db15a6444eb8c09",
+        "rows": 8,
+        "split": "test"
+      },
+      {
+        "file": "shards/ecab8e3fb42944f31249.npz",
+        "sha256": "f9d20100d028b762ae2f48fb7603aa203cb6f8acd7c8e097424de22b1ff4fafd",
+        "rows": 19,
+        "split": "validation"
+      },
+      {
+        "file": "shards/21dca97152997668afe2.npz",
+        "sha256": "bcb42b0bc3382aad5507824487868350f8c4700cc0f4b468b34ee626ed3f46de",
+        "rows": 18,
+        "split": "train"
+      },
+      {
+        "file": "shards/0ed854db7a1eb7361db8.npz",
+        "sha256": "c85a6d8ca3171a1935750117dbe8b02eef3bdcf4a3a074b44ce3b90285c79faf",
+        "rows": 41,
+        "split": "train"
+      },
+      {
+        "file": "shards/5ccbf1045719f25f3825.npz",
+        "sha256": "925f94d17ccd3a59e25f90e4e3b1045458c952b41a089e295fe0d5a295e9f406",
+        "rows": 33,
+        "split": "test"
+      },
+      {
+        "file": "shards/c1f50b39e99fd6ff6eeb.npz",
+        "sha256": "651fc7fdca343bf5a5ee3e292b39d11ebed2a0bcd7f9b2f603bbdf98fc1170c5",
+        "rows": 7,
+        "split": "validation"
+      },
+      {
+        "file": "shards/cb13f3f17c02920bfef0.npz",
+        "sha256": "8dd67a6b254becca36803c5fbc3ad656ebe2cdae281d631b98b18c3710aa0789",
+        "rows": 39,
+        "split": "train"
+      },
+      {
+        "file": "shards/21ba08b1bed3f54efcf2.npz",
+        "sha256": "6a03481bfd8c3be2946ca7035bea3f35795cf0cd81ffc397b42153c86f83bc15",
+        "rows": 56,
+        "split": "train"
+      },
+      {
+        "file": "shards/64e0c26738cb01130078.npz",
+        "sha256": "8cece7e87e83b8b724c4e548ed108e3cf95e03b15d27c987e4bf050497aecd18",
+        "rows": 40,
+        "split": "test"
+      },
+      {
+        "file": "shards/603f6f2df712a80d94a1.npz",
+        "sha256": "8f96047121923a5152bd92189d66a4c454b76287ba62a6e4a7c5b9f047496805",
+        "rows": 26,
+        "split": "validation"
+      },
+      {
+        "file": "shards/9605d9c7ad9e33ed814c.npz",
+        "sha256": "540dcf3822b3f5147a47eb3460c28d04753245421bb5a2199f848bcb0e7d250a",
+        "rows": 50,
+        "split": "train"
+      },
+      {
+        "file": "shards/cc3ec26531b268364b5c.npz",
+        "sha256": "4477b4eaae6432e1e32ab1a99633db480ae9f9e28c3c0aff994efd30aec00060",
+        "rows": 31,
+        "split": "train"
+      },
+      {
+        "file": "shards/eba1cf8060e42041cba3.npz",
+        "sha256": "e5aadb92937e969100567a65403b5d785a363e403a3761f2462c885b434a001a",
+        "rows": 19,
+        "split": "test"
+      },
+      {
+        "file": "shards/4e42bdcbabd5dbf973e9.npz",
+        "sha256": "afcbefe52b26b407b88016cda619ce6eb5119cdf447eb9a64612082c4df78f86",
+        "rows": 30,
+        "split": "validation"
+      },
+      {
+        "file": "shards/368e3e7f6e3e6ec9261c.npz",
+        "sha256": "c228cf0da49dfcac8148810859a7fe04b4392c932c0a515779a4c22de6ec5f02",
+        "rows": 43,
+        "split": "train"
+      },
+      {
+        "file": "shards/28ecd97ed71cc8b9d62d.npz",
+        "sha256": "c9de6525a24509a541e01f39519cc5abf6e94b044980a33b891d4b02f5a03b7a",
+        "rows": 50,
+        "split": "train"
+      },
+      {
+        "file": "shards/1a01d6bd2cc8afe6d105.npz",
+        "sha256": "7acd466e4fa85d2e090c324945700387bafc14fc7f6b97f51eabc9947c19784e",
+        "rows": 35,
+        "split": "test"
+      },
+      {
+        "file": "shards/ef81ac99ba5add22d0e1.npz",
+        "sha256": "e7699bd24979439a512831adf1af8c5a42b64ed020f12b56faf8d472166537d4",
+        "rows": 21,
+        "split": "validation"
+      },
+      {
+        "file": "shards/c674abddb8bb07bf0dc4.npz",
+        "sha256": "f0045cbd5edb2a667b4f96312d412253911b91bb4c0c6de0f564a5bad16c1ee0",
+        "rows": 34,
+        "split": "train"
+      },
+      {
+        "file": "shards/d336080e77dc33bbf985.npz",
+        "sha256": "15c09437fd57c67f07ed11896c12a699ac65446f1e71eaa12459e5088e6d2e17",
+        "rows": 26,
+        "split": "train"
+      },
+      {
+        "file": "shards/828642d6ae1273a1322e.npz",
+        "sha256": "948fbcb5d17cc8666822b1a2cbb640088794b58c824b548b71296f8c865cd2fd",
+        "rows": 45,
+        "split": "test"
+      },
+      {
+        "file": "shards/c127f97c5ee8f87874f9.npz",
+        "sha256": "ba061bdb2f60f266c09276e5f332d33f33d585d7e3531844a2b9b3d2cd95b001",
+        "rows": 28,
+        "split": "validation"
+      },
+      {
+        "file": "shards/325f7fa72b91e7da7d34.npz",
+        "sha256": "df5087050db08a18b7128d885030f9b575c912517343e5c73170d4fe0ca8b26d",
+        "rows": 22,
+        "split": "train"
+      },
+      {
+        "file": "shards/370e2395a66422564609.npz",
+        "sha256": "f7a8b09dbeae77568ec55f03e0ad5a6808ad4775d738cd037311f51fd9a0b53a",
+        "rows": 22,
+        "split": "train"
+      },
+      {
+        "file": "shards/a92d1393fa45d7797363.npz",
+        "sha256": "49e13638f9fdfcb411049490caf92804b166b76c85495e12fdf2288ff9c85d09",
+        "rows": 33,
+        "split": "test"
+      },
+      {
+        "file": "shards/38c7688f3cd41029a8a1.npz",
+        "sha256": "95b1ac09c224a7f1238a0a155da6250f2642f0519f9b7431e42d67e98baef802",
+        "rows": 21,
+        "split": "validation"
+      },
+      {
+        "file": "shards/a87990e92fa639ee47bc.npz",
+        "sha256": "dd593d3e6dd1f3c546bc74ae752bae40704cddf8f4199393ac16e943925dfed2",
+        "rows": 36,
+        "split": "train"
+      },
+      {
+        "file": "shards/6a1ce5716dee80072cf1.npz",
+        "sha256": "4baeea86639ad6d89405425a1f1987fa637bbcc9ac6e0cf47a6df3cabdba8082",
+        "rows": 23,
+        "split": "train"
+      },
+      {
+        "file": "shards/9cadad47231146885524.npz",
+        "sha256": "9c52a7d92cff48583a7c2cc826f9829e1ff7a06e7a5f4eadde5e9a82db714b28",
+        "rows": 47,
+        "split": "test"
+      },
+      {
+        "file": "shards/bee4f65b7c00d759131b.npz",
+        "sha256": "b77e9aaa7b5493d30b0d3f4d58ff0f6117eb477ee41ebfc92bee8662575be724",
+        "rows": 43,
+        "split": "validation"
+      },
+      {
+        "file": "shards/0b44459bb50a215f88d9.npz",
+        "sha256": "cde540eafcccda13775f0e5897408e0f718aa93a21416f58df2df55e6b1457ce",
+        "rows": 13,
+        "split": "train"
+      },
+      {
+        "file": "shards/bf80712f98ff73f5be2d.npz",
+        "sha256": "cb24383b1b87b4ee72b1b2e4eb49862ba0f1e1d235e056da3f37dc10ef92ddae",
+        "rows": 21,
+        "split": "train"
+      },
+      {
+        "file": "shards/ba92a062c9fbabac29da.npz",
+        "sha256": "b77a5b1d46003ddbd6131096905ddcb5e9acde14b94a11ccdbe4dc17ac7b3f50",
+        "rows": 55,
+        "split": "test"
+      },
+      {
+        "file": "shards/ef98d7437408ac1cb4b3.npz",
+        "sha256": "16560d607ad5a26ca42c9f1e4f687c33c432ae068a779e47d6f653fcd56aa843",
+        "rows": 18,
+        "split": "validation"
+      }
+    ],
+    "review_candidates": 20,
+    "review_selection_policy": {
+      "min_source_width": 1280,
+      "min_source_height": 720,
+      "min_native_side": 96,
+      "min_hand_focus": 15,
+      "max_per_clip": 2,
+      "min_time_gap_s": 0.4
+    },
+    "skipped_geometry": {},
+    "output_ABI": "hand_student_65_v1",
+    "targets": "63 normalized ROI xyz; presence; right-hand label",
+    "limitations": [
+      "All teacher landmarks are pseudo-labels; visibility and confidence are not supplied by Holistic",
+      "Unknown candidate masks are zero; undetected hand is never a no-hand training label",
+      "Teacher-guided crops do not validate autonomous detection; no manual GT until named review imported"
+    ]
+  },
+  "selection": {
+    "policy": {
+      "min_source_width": 1280,
+      "min_source_height": 720,
+      "min_native_side": 96,
+      "min_hand_focus": 15,
+      "max_per_clip": 2,
+      "min_time_gap_s": 0.4,
+      "excluded_source_sha256": [
+        "9605d9c7ad9e33ed814c6ab12ca1f6dae32e90a6fd174c318ff7a3249452e0cf"
+      ]
+    },
+    "requested": 20,
+    "selected": 20,
+    "unique_frames": 20,
+    "source_clips": 13,
+    "source_groups": {
+      "NL_lesson_01": 5,
+      "NL_lesson_08": 5,
+      "NL_lesson_09": 5,
+      "NL_lesson_10": 5
+    },
+    "rejected": {
+      "hand_focus": 109,
+      "visual_quality_screen": 50,
+      "same_source_frame": 2,
+      "temporal_neighbor": 2,
+      "clip_quota": 23
+    },
+    "note": "Automatic pre-screen only. Human may mark any item ungradable; no quality or absence label is invented."
+  },
+  "dataset_local_path": "project/_tmp/hand_teacher_clear_v3",
+  "review_local_path": "project/_tmp/hand_teacher_clear_v3/review_clear20_final",
+  "dataset_sha256": "c8dfd60a21703094a5fea947835dccbe9234624ff324590dc441d8ebaf75b3ba",
+  "queue_sha256": "7a0b3ba5559f1b22853e97338c71d72e8f9500f931989f848e3cb92224808483",
+  "html_sha256": "44dfa423c80250eda2c89839f428dba87f594568c1c374b3336d197a8ac854cc",
+  "selection_sha256": "89eb98dd377eabbb670ed44236260680124f1e93ec28e1f6c494063b4d65beae",
+  "review_kind_counts": {
+    "teacher_positive": 12,
+    "unknown_candidate": 8
+  },
+  "human_reviews_imported": 0,
+  "new_student_trained": false,
+  "formal_accuracy": null,
+  "samples": [
+    {
+      "sample_id": "368e3e7f6e3e6ec9_25_1",
+      "source_sha256": "368e3e7f6e3e6ec9261c2cfdb3efa15a37c5105ed15637ea6f4514590dc67fd4",
+      "source_frame": 25,
+      "source_timestamp_s": 1.0,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "teacher_positive",
+      "split": "train",
+      "split_group": "NL_lesson_01",
+      "native_ROI_side": 411.3614158527859,
+      "image_sha256": "822d951ee80144f1376a4cfc55ee1793dcfd3b8168fcece4831bee57f5b27306",
+      "context_sha256": "54c8e0dfc826f0089d5df537a442d037455680a655c9859b583bd62d1b69260b"
+    },
+    {
+      "sample_id": "0b44459bb50a215f_0_unknown",
+      "source_sha256": "0b44459bb50a215f88d90ac555bfc6b80e8bb1280ce4d27c7a80ba09835a3aa1",
+      "source_frame": 0,
+      "source_timestamp_s": 0.0,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "unknown_candidate",
+      "split": "train",
+      "split_group": "NL_lesson_01",
+      "native_ROI_side": 486.0,
+      "image_sha256": "e372919d4792948c4356edd01c075e19f7b64eac378bf83272cdd8197e3f06e0",
+      "context_sha256": "d5fce597de9e0788afe30625816c6dfccb0ef06b5bb1ba80ec4eac116358dc13"
+    },
+    {
+      "sample_id": "370e2395a6642256_34_1",
+      "source_sha256": "370e2395a664225646099dc570154cd23ea8c80a101df359368f188b50e9dad4",
+      "source_frame": 34,
+      "source_timestamp_s": 1.4166666666666667,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "teacher_positive",
+      "split": "train",
+      "split_group": "NL_lesson_08",
+      "native_ROI_side": 367.4468473766051,
+      "image_sha256": "7f8673dc63a4f3e44f9fa9b02d4626dcec7d177928d3a5b3e0e3a8c13e2b3d5a",
+      "context_sha256": "c09265ddbb5253d16c8d3850ec332ecbae3b03248641405041868fa2a17716ca"
+    },
+    {
+      "sample_id": "0ed854db7a1eb736_0_unknown",
+      "source_sha256": "0ed854db7a1eb7361db86557bdeab4c79081ffd8d96688517333d3ea670e91fb",
+      "source_frame": 0,
+      "source_timestamp_s": 0.0,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "unknown_candidate",
+      "split": "train",
+      "split_group": "NL_lesson_08",
+      "native_ROI_side": 486.0,
+      "image_sha256": "73c81f9595586de0eca4571d0727ddb2a2f68d3a8290dab52484df38ecbfd3ef",
+      "context_sha256": "89a8a9979580d20a2a647eefae83c95499dbfaedaef80a4f55a88873330296a3"
+    },
+    {
+      "sample_id": "1a01d6bd2cc8afe6_29_1",
+      "source_sha256": "1a01d6bd2cc8afe6d10543df7c261c776bc07b26264ae8b3ca8277e16a9e2dca",
+      "source_frame": 29,
+      "source_timestamp_s": 1.2083333333333333,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "teacher_positive",
+      "split": "test",
+      "split_group": "NL_lesson_09",
+      "native_ROI_side": 355.7600962298259,
+      "image_sha256": "ebc5dbbe2313a7f7ecc732641b3e2fe9dadce16cd1bc39a02c883a364679d8da",
+      "context_sha256": "fe264496a1830d8baef97672a83135d4e0b05887b45fe637b941db62a8cce556"
+    },
+    {
+      "sample_id": "1a01d6bd2cc8afe6_0_unknown",
+      "source_sha256": "1a01d6bd2cc8afe6d10543df7c261c776bc07b26264ae8b3ca8277e16a9e2dca",
+      "source_frame": 0,
+      "source_timestamp_s": 0.0,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "unknown_candidate",
+      "split": "test",
+      "split_group": "NL_lesson_09",
+      "native_ROI_side": 486.0,
+      "image_sha256": "9e9e3b87349c7f86830b70b49b97e7c69081ea70e3bbcbf6b7b4e8244402e2ef",
+      "context_sha256": "77b22c90e7af142276f21800b447812cb09c5224c443f756440e4a53f3395f18"
+    },
+    {
+      "sample_id": "c127f97c5ee8f878_29_1",
+      "source_sha256": "c127f97c5ee8f87874f91d36fb1f02437110ded40bfe8661e13f16cf88c0e628",
+      "source_frame": 29,
+      "source_timestamp_s": 1.2083333333333333,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "teacher_positive",
+      "split": "validation",
+      "split_group": "NL_lesson_10",
+      "native_ROI_side": 344.94775739390394,
+      "image_sha256": "6539e2ec6caf5d009667e5f8628ef690c602bdcea4614997a6a7b1ae9f2d666e",
+      "context_sha256": "028b2574c1e9c87893097701abef584c7f7478ca602dc37f992e5d80d1ab7d49"
+    },
+    {
+      "sample_id": "38c7688f3cd41029_0_unknown",
+      "source_sha256": "38c7688f3cd41029a8a1ca7fb0b00d86532e43e500b7ed972bec47f822f231aa",
+      "source_frame": 0,
+      "source_timestamp_s": 0.0,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "unknown_candidate",
+      "split": "validation",
+      "split_group": "NL_lesson_10",
+      "native_ROI_side": 486.0,
+      "image_sha256": "39410b55f949003b5958bc4ce946700783437c834577929da543be035a401e18",
+      "context_sha256": "4ee36e7c6bdb8e20f93eb557caa48f4be6e76a44d8c57abf11e1b0ded848ef9d"
+    },
+    {
+      "sample_id": "368e3e7f6e3e6ec9_15_1",
+      "source_sha256": "368e3e7f6e3e6ec9261c2cfdb3efa15a37c5105ed15637ea6f4514590dc67fd4",
+      "source_frame": 15,
+      "source_timestamp_s": 0.6,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "teacher_positive",
+      "split": "train",
+      "split_group": "NL_lesson_01",
+      "native_ROI_side": 427.64071815073055,
+      "image_sha256": "c9b68ff0e9e730d36547e7ebcf096a2318f192b9d733057aa8c52bb5edb0e7e3",
+      "context_sha256": "f659a7885aae40f60f621d271f8ce64ed1cc0bcdf663d344ec678f655bdfccd2"
+    },
+    {
+      "sample_id": "0b44459bb50a215f_10_unknown",
+      "source_sha256": "0b44459bb50a215f88d90ac555bfc6b80e8bb1280ce4d27c7a80ba09835a3aa1",
+      "source_frame": 10,
+      "source_timestamp_s": 0.4,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "unknown_candidate",
+      "split": "train",
+      "split_group": "NL_lesson_01",
+      "native_ROI_side": 486.0,
+      "image_sha256": "bc26ad49cc874fe17d1a79144a7233573873f8433c341b714a81846bbd78f45b",
+      "context_sha256": "0e807e294e36e9f1b291532ec9a0376cf6205c94807dd1dc72a4f21ebbc48798"
+    },
+    {
+      "sample_id": "370e2395a6642256_24_1",
+      "source_sha256": "370e2395a664225646099dc570154cd23ea8c80a101df359368f188b50e9dad4",
+      "source_frame": 24,
+      "source_timestamp_s": 1.0,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "teacher_positive",
+      "split": "train",
+      "split_group": "NL_lesson_08",
+      "native_ROI_side": 372.9834727337239,
+      "image_sha256": "e4fbe12120820fd3c5c0b35c919bbf6da5fd5c32a74d6065a93f133bb7d05b8d",
+      "context_sha256": "d4d61be9a29bc99de07f081e941864732fcba3123e34e84a7229812a5def3f64"
+    },
+    {
+      "sample_id": "0ed854db7a1eb736_10_unknown",
+      "source_sha256": "0ed854db7a1eb7361db86557bdeab4c79081ffd8d96688517333d3ea670e91fb",
+      "source_frame": 10,
+      "source_timestamp_s": 0.4166666666666667,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "unknown_candidate",
+      "split": "train",
+      "split_group": "NL_lesson_08",
+      "native_ROI_side": 486.0,
+      "image_sha256": "dc9dc5d3c38e4d49cbf6cfcaae0877317cbb36e115967f4e8e6bedd40d6aebdb",
+      "context_sha256": "ea8c926788a5d9af15efa6faf73404bb6e05b32aec2fa37010077eeb51dfbcfe"
+    },
+    {
+      "sample_id": "5ccbf1045719f25f_48_1",
+      "source_sha256": "5ccbf1045719f25f38251928f1d6bf5eefa596cb2e4f9fda5001d6fc3e070ac1",
+      "source_frame": 48,
+      "source_timestamp_s": 2.0,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "teacher_positive",
+      "split": "test",
+      "split_group": "NL_lesson_09",
+      "native_ROI_side": 305.3799647691272,
+      "image_sha256": "e8bcb13af084c884d161325f237fd4e576c4ed38ca9cd6ef047f7b96e4d862d0",
+      "context_sha256": "ebe554deb4b85457d2db52002be9d542b1ee385aa2d499aefd46e1e556a24ae2"
+    },
+    {
+      "sample_id": "2603b0d5f7b5131b_0_unknown",
+      "source_sha256": "2603b0d5f7b5131b19dd44a3d3fc9db0b9b449a1969d70ec15a719efc100f03b",
+      "source_frame": 0,
+      "source_timestamp_s": 0.0,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "unknown_candidate",
+      "split": "test",
+      "split_group": "NL_lesson_09",
+      "native_ROI_side": 486.0,
+      "image_sha256": "92561d58a8e478cb664f4dfbca1f5ec66085b651a1622735db2a1d0897486d4b",
+      "context_sha256": "91480d2cf53350671f4b0e63f04f6c81bf1b55845d4e765efb83c7b254a764e6"
+    },
+    {
+      "sample_id": "c127f97c5ee8f878_15_1",
+      "source_sha256": "c127f97c5ee8f87874f91d36fb1f02437110ded40bfe8661e13f16cf88c0e628",
+      "source_frame": 15,
+      "source_timestamp_s": 0.625,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "teacher_positive",
+      "split": "validation",
+      "split_group": "NL_lesson_10",
+      "native_ROI_side": 337.7376421915236,
+      "image_sha256": "9f84de22ca1888c864676f498a3683a58a9f09c3b25d4e59aee964a43f12e76a",
+      "context_sha256": "77eb1aec4274374daf1839cbef36ef32f50f08e14b2ba775ed7784a383fc5dda"
+    },
+    {
+      "sample_id": "38c7688f3cd41029_10_unknown",
+      "source_sha256": "38c7688f3cd41029a8a1ca7fb0b00d86532e43e500b7ed972bec47f822f231aa",
+      "source_frame": 10,
+      "source_timestamp_s": 0.4166666666666667,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "unknown_candidate",
+      "split": "validation",
+      "split_group": "NL_lesson_10",
+      "native_ROI_side": 486.0,
+      "image_sha256": "9a7d72f36abec4b00d2b16872c0f0baa8e65456593dd8116fbad6786dbcd8557",
+      "context_sha256": "db54c02460f62ded098118ce0b88ab9dcd8f580a7b4d93c6b5d9d42335a5cba8"
+    },
+    {
+      "sample_id": "9ec1852c8c07abd4_75_1",
+      "source_sha256": "9ec1852c8c07abd4c1791d7607b7119d974af1b0a96ddfbc549c8093f2fe214d",
+      "source_frame": 75,
+      "source_timestamp_s": 3.0,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "teacher_positive",
+      "split": "train",
+      "split_group": "NL_lesson_01",
+      "native_ROI_side": 414.8881421473303,
+      "image_sha256": "16526b8cac7b5f3451b37827e4040d749efe556dbbc25c3f62c6e5ddaea3f79e",
+      "context_sha256": "475ddf7d6feabc0f476612b229e69fa0596b3ef685d78e3344a817e4778988de"
+    },
+    {
+      "sample_id": "d336080e77dc33bb_34_0",
+      "source_sha256": "d336080e77dc33bbf985966f3f113a6484e9b139f1eeef7cdf67fd86c3840077",
+      "source_frame": 34,
+      "source_timestamp_s": 1.4166666666666667,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "teacher_positive",
+      "split": "train",
+      "split_group": "NL_lesson_08",
+      "native_ROI_side": 403.67837653773984,
+      "image_sha256": "87ae6a487956dbbd1b77d6deb4b764535903d9ceb23df29a0c5a7447994306c5",
+      "context_sha256": "d6fe5023e5615794610e840bc25a77e7a2371caa507d7d03dcbae513d5497e9b"
+    },
+    {
+      "sample_id": "75f5a16fb745fc42_29_1",
+      "source_sha256": "75f5a16fb745fc425625a1894080be06199feb6540aad03fe8d597b442b782c0",
+      "source_frame": 29,
+      "source_timestamp_s": 1.2083333333333333,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "teacher_positive",
+      "split": "test",
+      "split_group": "NL_lesson_09",
+      "native_ROI_side": 314.8233885154653,
+      "image_sha256": "fe4504c02868f5976765415611899b8c9f76c6979ccf30f72c3e7e0d4434cbfd",
+      "context_sha256": "8d7bfa174b45118d302faf35be505a0daefbedc04b189e824b8e683941ea7a89"
+    },
+    {
+      "sample_id": "ef81ac99ba5add22_34_1",
+      "source_sha256": "ef81ac99ba5add22d0e18d158062cb62bed4dbffbbcc3add36c2e26c4efa13cd",
+      "source_frame": 34,
+      "source_timestamp_s": 1.4166666666666667,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "kind": "teacher_positive",
+      "split": "validation",
+      "split_group": "NL_lesson_10",
+      "native_ROI_side": 324.3946663617817,
+      "image_sha256": "a561d6ce08554c8e7730996b1f9d2b0091830ce27bfd979a5c4b6aff9fcdc80e",
+      "context_sha256": "d38367536f664339f279291c5ef9dd369cfd1bf04981e0ce9b7f087356431b1c"
+    }
+  ],
+  "validation": {
+    "pytest_scope": [
+      "vision/tests",
+      "project/tests"
+    ],
+    "passed": 193,
+    "subtests_passed": 32,
+    "warnings": 2,
+    "warning_scope": "Existing protobuf deprecation warnings",
+    "node_syntax_check_passed": true,
+    "available_media_check_passed": true,
+    "strict_archive_check_passed": false,
+    "strict_archive_failure": "36 declared missing media",
+    "media_reconcile_reentry_test_passed": true
+  }
+}

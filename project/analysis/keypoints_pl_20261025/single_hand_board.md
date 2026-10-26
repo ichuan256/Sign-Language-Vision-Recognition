@@ -1,9 +1,10 @@
 # 单手关键点整网与上板记录
 
 **单手关键点完整网络已在 PYNQ-Z2 的 PL 上运行，64 个输出对整数参考逐值一致，HDMI 叠加已由用户目视确认。**
-当前是 PC 提供 ROI 的功能原型，单 ROI 前向 12.28 秒，尚未达到实时。
+本页保存首版实测：PC 提供 ROI，单 ROI 前向 12.28 秒；后续加速版本请看下方链接。
 结构化实测与发布哈希见 [single_hand_board.json](single_hand_board.json)。
 本记录接续 [模型与 MAC 核阶段](single_hand_stage1.md)，不替代原始探针精度边界。
+后续 [第二阶段加速记录](single_hand_acceleration.md) 单独记录改造和验收，不改写本版实测。
 
 ## 实现范围
 

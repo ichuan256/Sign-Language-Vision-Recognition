@@ -15,7 +15,7 @@ from ._vendor.opencv_zoo.mp_persondet import MPPersonDet
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_MODEL_PATH = (
     _REPO_ROOT
-    / "models"
+    / "data" / "models"
     / "person_detection_mediapipe"
     / "person_detection_mediapipe_2023mar.onnx"
 )

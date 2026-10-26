@@ -43,7 +43,37 @@ def bound_csv(root, pointer, field):
     return info, data
 
 
-def check_media(root):
+def verify_protected(root, info, protected, available_only=False):
+    """Available mode permits only explicitly declared absences, never changed or unlisted files."""
+    present = {}; missing = {}
+    for row in protected:
+        name = row['path']; path = confined(root, name)
+        require(name not in present and name not in missing, f'Duplicate protected path: {name}')
+        if row['availability'] == 'missing':
+            require(not path.exists(), f'Declared missing media reappeared; reconcile first: {name}')
+            missing[name] = row
+        else:
+            require(row['availability'] == 'present', f'Unresolved protected media: {name}')
+            require(path.is_file(), f'Undeclared missing media: {name}')
+            require(path.stat().st_size == int(row['bytes']) and sha256(path) == row['sha256'], f'Protected media changed: {name}')
+            present[name] = row
+    require(len(missing) == info['declared_missing'], 'Declared missing count mismatch')
+    actual = {p.relative_to(root).as_posix() for folder in ('vision/video', 'ASR/.sd_cache', 'vision/data/legacy/material')
+              for p in (root / folder).rglob('*') if p.is_file() and p.suffix.lower() in VIDEO_EXTENSIONS}
+    require(actual == set(present), 'Actual media path set differs from available protected inventory')
+    require(available_only or not missing,
+            f'Archive incomplete: {len(missing)} declared missing files; --available-media verifies present files only')
+    return present, missing
+
+
+def check_media(root, available_only=False):
+    protected_info, protected = bound_csv(root, 'vision/data/manifests/protected_media_current.json', 'protected_manifest')
+    require(len(protected) == 816, 'Protected media history count changed')
+    extras = confined(root, protected_info['unregistered_manifest'])
+    require(sha256(extras) == protected_info['unregistered_sha256'], 'Unregistered manifest SHA mismatch')
+    extra_rows = [r for r in rows(extras) if r.get('availability') != 'none']
+    require(len(extra_rows) == protected_info['unregistered_rows'] == 0, 'Unregistered media requires classification')
+    present, missing = verify_protected(root, protected_info, protected, available_only)
     historical = rows(root / "vision/data/manifests/manifest_fullframe_20261024.csv")
     require(len(historical) == 636, "Historical full-frame row count changed")
     require(len(rows(root / "vision/data/legacy/material/dataset_manifest_20261020.csv")) == 225, "Historical cropped row count changed")
@@ -61,35 +91,43 @@ def check_media(root):
         require((r["类别"], r["样本编号"], r["part"]) == (a["label"], a["sample_id"], a["contributor"]), f"Sample identity mismatch: {p}")
         require(sha256(confined(root, p)) == a["sha256"], f"Current media SHA mismatch: {p}")
     pending = rows(confined(root, info["pending_manifest"]))
+    require(sha256(confined(root, info['pending_manifest'])) == info['pending_sha256'], 'Pending pointer SHA mismatch')
+    require(len(pending) == info['pending_rows'], 'Pending pointer row mismatch')
     require(len(pending) == 85, "Expected 85 pending versions")
     for r in pending:
         require(r["path"] not in accepted and r["included_in_current_verified_manifest"].lower() == "false", "Pending version entered available subset")
         require(sha256(confined(root, r["path"])) == r["sha256"], f"Pending media changed: {r['path']}")
-        require(r["sha256"] != r["old_expected_sha256"], "Pending version no longer differs from historical SHA")
-    _, sources = bound_csv(root, "vision/data/manifests/source_registry_current.json", "registry")
+        if r['status'] == 'original_audit_SHA_restored_not_in_approved_subset':
+            require(r['sha256'] == r['old_expected_sha256'] and r['prior_pending_sha256'] != r['sha256'], 'Restored audit version lineage mismatch')
+            require(r['sha256'] in {a['sha256'] for a in audit['records']}, 'Restored version missing audit SHA')
+        else:
+            require(r["sha256"] != r["old_expected_sha256"], "Pending version no longer differs from historical SHA")
+    source_info, sources = bound_csv(root, "vision/data/manifests/source_registry_current.json", "registry")
     require(len(sources) == 32, "Expected 32 current source videos")
     for r in sources:
-        require(sha256(confined(root, r["path"])) == r["sha256"], f"Source media changed: {r['path']}")
-    protected = rows(root / "vision/analysis/materials/20261025_merge/protected_media_layout.csv")
-    require(len(protected) == 816, "Protected media count changed")
-    for r in protected:
-        p = confined(root, r["path"])
-        require(p.stat().st_size == int(r["bytes"]) and sha256(p) == r["sha256"], f"Protected media changed: {r['path']}")
-    actual = {p.relative_to(root).as_posix() for folder in ("vision/video", "ASR/.sd_cache", "vision/data/legacy/material")
-              for p in (root / folder).rglob("*") if p.is_file() and p.suffix.lower() in VIDEO_EXTENSIONS}
-    require(actual == {r["path"] for r in protected}, "Actual media path set differs from protected inventory")
+        inventory = missing if r['availability'] == 'missing' else present
+        require(r['path'] in inventory and inventory[r['path']]['sha256'] == r['sha256'], f"Source inventory mismatch: {r['path']}")
+    require(sum(r['availability'] == 'missing' for r in sources) == source_info['declared_missing'], 'Source missing count mismatch')
     require(len(list((root / "ASR/.sd_cache").glob("*.mp4"))) == 142, "ASR vocabulary count changed")
     require(len(list((root / "vision/data/legacy/material").rglob("*.mp4"))) == 1, "Legacy deleted media was restored")
     index = root / "vision/video/sources.json"
-    source_rows = json.loads(index.read_text(encoding="utf-8-sig"))
-    require(len(source_rows) == 22, "BV runtime source index count changed")
-    for r in source_rows:
-        p = (index.parent / r["file"]).resolve()
-        require(p.is_relative_to(root) and sha256(p) == r["sha256"], "BV runtime source index mismatch")
-    for manifest in (root / "vision/m1/manifests").glob("*.json"):
+    if index.exists():
+        source_rows = json.loads(index.read_text(encoding="utf-8-sig"))
+        require(len(source_rows) == 22, "BV runtime source index count changed")
+        for r in source_rows:
+            p = (index.parent / r["file"]).resolve()
+            require(p.is_relative_to(root), 'BV runtime path outside repository')
+            inventory = present if p.is_file() else missing
+            name = p.relative_to(root).as_posix()
+            require(name in inventory and inventory[name]['sha256'] == r['sha256'], 'BV runtime source index mismatch')
+    else:
+        print('UNAVAILABLE legacy BV runtime sources.json; authoritative source registry checked; BV replay not validated')
+    for manifest in (root / "vision/data/manifests/m1_8class").glob("*.json"):
         for sample in json.loads(manifest.read_text(encoding="utf-8")).get("samples", []):
             require((manifest.parent / sample["file"]).is_file(), f"M1 sample missing: {sample['file']}")
-    print("PASS current551 SHA/identity; pending85 isolated; sources32; protected816; ASR142; legacy1; BV22")
+    print(f"PASS current551 SHA/identity; pending85 isolated; protected present={len(present)} missing={len(missing)}; ASR142; legacy1; source registry32")
+    if available_only:
+        print('AVAILABLE MEDIA ONLY: declared absent originals/demos remain unavailable; archive completeness NOT passed')
 
 
 def check_root_dirs(root):
@@ -116,6 +154,7 @@ def check_root_dirs(root):
 
 def check_code(root):
     residue = check_root_dirs(root)
+    check_vision_dirs(root)
     if residue:
         print("LOCAL RESIDUE SHA verified; Windows refused rename, originals retained: " + ", ".join(residue))
     count = 0
@@ -152,15 +191,25 @@ def check_code(root):
     print(f"PASS root layout; {count} Python sources; release hashes; {len(source_refs)} FPGA sources; current Markdown links")
 
 
+def check_vision_dirs(root):
+    expected={'src','scripts','tests','data','analysis','tools','video'}
+    actual={p.name for p in (root/'vision').iterdir() if p.is_dir() and p.name!='__pycache__' and not p.name.startswith('.')}
+    require(actual==expected,f'Vision directory layout differs: {sorted(actual)}')
+    for package in ('framesource','keypoints','m1','classify','sign_video','webapp'):
+        require((root/'vision/src/vision'/package).is_dir(),'Missing canonical vision package: '+package)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--code-only", action="store_true", help="Check isolated checkout code; explicitly omit local ignored media")
+    modes = parser.add_mutually_exclusive_group()
+    modes.add_argument("--code-only", action="store_true", help="Check isolated checkout code; explicitly omit local ignored media")
+    modes.add_argument('--available-media', action='store_true', help='Verify all present media and explicit missing declarations; do not claim archive completeness')
     args = parser.parse_args()
     check_code(ROOT)
     if args.code_only:
         print("SKIP local media: isolated checkout code-only mode")
     else:
-        check_media(ROOT)
+        check_media(ROOT, args.available_media)
 
 
 if __name__ == "__main__":

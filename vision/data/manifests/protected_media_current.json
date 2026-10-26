@@ -1,0 +1,10 @@
+{
+  "protected_manifest": "vision/data/manifests/media_reconciled_20261026/protected.csv",
+  "sha256": "885167adb95b5c267e23ae2691f9fd1053881ac6fef0689ba2d839cd2934e94d",
+  "rows": 816,
+  "unregistered_manifest": "vision/data/manifests/media_reconciled_20261026/unregistered.csv",
+  "unregistered_sha256": "05d2c6700df379bbcadf6770de0e4aaf8f764ac4aac14f5d6b59508f84d1e3a1",
+  "unregistered_rows": 0,
+  "historical_manifest": "vision/analysis/materials/20261025_merge/protected_media_layout.csv",
+  "declared_missing": 36
+}

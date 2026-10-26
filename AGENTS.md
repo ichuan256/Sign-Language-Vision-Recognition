@@ -41,7 +41,7 @@
 | GitHub 远程 | `git@github.com:ichuan256/Sign-Language-Vision-Recognition.git`（SSH 协议，勿用 HTTPS） |
 | 目标器件 | Zynq-7020 `xc7z020clg400-1`，Vivado 2024.1 工程 `project/fpga/project/glove/glove.xpr` |
 | 板卡固件 | `project/board/w6/kws_hdmi.bit/.hwh`（旧 W6 合一固件：含传感器 SPI+DMA、旧 HLS KWS、音频 codec、HDMI 输出、BTN0-3 GPIO。**传感器与 KWS 在新系统闲置不用**，M0b 重建时剥离，见方案 §5 D3） |
-| 视觉特征契约 | 392 维 `sign_xy_v1`（`vision/sign_video/features.py`）；帧源统一接口 `vision/framesource/` |
+| 视觉特征契约 | 392 维 `sign_xy_v1`（`vision/src/vision/sign_video/features.py`）；帧源统一接口 `vision/src/vision/framesource/` |
 | 依赖版本 | mediapipe 0.10.21、opencv 4.11、numpy 1.26、sherpa-onnx（流式 zipformer-zh-14M） |
 
 ## 2. 全局铁律【通用】（违者会烧板子/丢数据，已各有血泪史）
@@ -91,15 +91,15 @@ sudo env XILINX_XRT=/usr /usr/local/share/pynq-venv/bin/python script.py
 
 ```powershell
 # 仓库根目录，视觉环境
-F:\PLD\.venv-vision\Scripts\python.exe -X utf8 -m vision.m1.build_manifest --output vision/m1/manifests
-F:\PLD\.venv-vision\Scripts\python.exe -X utf8 -m vision.sign_video.extract --manifest vision/m1/manifests/m1_part1.json --output <新目录> --fps 15
+F:\PLD\.venv-vision\Scripts\python.exe -X utf8 -m vision.m1.build_manifest --output vision/data/manifests/m1_8class
+F:\PLD\.venv-vision\Scripts\python.exe -X utf8 -m vision.sign_video.extract --manifest vision/data/manifests/m1_8class/m1_part1.json --output <新目录> --fps 15
 F:\PLD\.venv-vision\Scripts\python.exe -X utf8 -m vision.m1.evaluate --features <提取目录>... --output <新目录>
 F:\PLD\.venv-vision\Scripts\python.exe -X utf8 -m vision.m1.live_demo --source file:<片段> --templates <提取目录>...
 ```
 
-- 帧源抽象 `vision/framesource/`：file:/usb: 可用；hdmi:/ov5640: 为 M2/M3 占位，接口已冻结
-- 特征契约 392 维 sign_xy_v1（`vision/sign_video/features.py`），掩码不插值、同源同组
-- 首版基线结果与复现细节：`vision/m1/README.md`
+- 帧源抽象 `vision/src/vision/framesource/`：file:/usb: 可用；hdmi:/ov5640: 为 M2/M3 占位，接口已冻结
+- 特征契约 392 维 sign_xy_v1（`vision/src/vision/sign_video/features.py`），掩码不插值、同源同组
+- 首版基线结果与复现细节：`vision/src/vision/m1/README.md`
 
 ### 3.4 音频线（一键启动）
 
@@ -135,7 +135,7 @@ git push origin main
 | 板上 systemd 服务里 pynq 报 `No Devices Found` | 缺 XRT 环境变量 | service 里加 `Environment=XILINX_XRT=/usr`（button-watch.service 2026-10-23 已踩） |
 | 板上 `import pynq` 失败 | pynq 在 pynq-venv，不在系统 python | `sudo env XILINX_XRT=/usr /usr/local/share/pynq-venv/bin/python` |
 | ping 不通板子 | JP1 不在 SD 侧 / eth0 别名未生效 | 跳线 SD 侧；上电后等 1~3 分钟 |
-| 并行会话改仓库互相覆盖 | 两 agent 同写 `vision/` | 铁律 §2.7；合并记录见 `vision/m1/README.md` |
+| 并行会话改仓库互相覆盖 | 两 agent 同写 `vision/` | 铁律 §2.7；合并记录见 `vision/src/vision/m1/README.md` |
 | 板端 ASR 旧脚本 | 会加载 base.bit | 已标记过期，禁止运行 |
 
 ## 4b. BTN0 一键启动音频演示（2026-10-23 起）【设计通用；部署实例本机专用】
@@ -161,7 +161,7 @@ git push origin main
 | `docs/方案/01_PYNQ-Z2移植与视频手势识别总体方案.md` | 系统级唯一当前方案（移植范围、三阶段路线、决策点） |
 | `project/M0_移植清单.md` | 移植资产清单与点亮步骤 |
 | `project/board/w6/README.md` + `release_manifest.json` | HDMI 合一固件验收、黑屏根因、发布哈希 |
-| `vision/m1/README.md` | 视频识别线现状、首版基线结果、并行合并说明 |
+| `vision/src/vision/m1/README.md` | 视频识别线现状、首版基线结果、并行合并说明 |
 | `ASR/README.md` | 音频线现状、启动、验收顺序 |
 | `vision/analysis/README.md` | 分析目录索引；区分当前资料和历史实验证据 |
 | `vision/analysis/dataset/README.md` | 当前样本总量、有效评测限制、标签复核与补采计划 |
@@ -172,14 +172,21 @@ git push origin main
 
 ## 6. 当前未结待办【通用】（接手时核对）
 
-- 当前优先级（2026-10-25）：先做无语义的通用身体/双手实时关键点，再做动作/词义分类；纯关键点入口 `vision/keypoints/live_demo.py`，用法 `vision/keypoints/README.md`，文件源基准 `vision/analysis/keypoints_20261025/README.md`。USB 实时、交叉/遮挡和快速运动尚未验收，文件 FPS 不能当摄像头实时 FPS。
-- 通用关键点 PL：单手 21 点完整网络已上板，PC 提供规范化 ROI，PL 执行神经网络、PS 调度搬运；1 ROI 的 64 输出与整数参考完全一致，前向 12.276 秒，尚不实时。新固件冷启动加载、HDMI 静态 ROI 叠加已目视通过；当前状态及哈希只在 `project/analysis/keypoints_pl_20261025/single_hand_board.md/.json`。本机板上正在运行该候选，旧 W6 本地发布文件未覆盖；HDMI 接管需显式 `--release-manifest`，旧 ASR 固件核验可能拒绝，未验收新固件音频。禁止为迁就旧哈希运行中重载 bit。原固件备份记录在 `project/_tmp/kp_board_deploy_v2/deployment.json`。该路线不是 R3 词语分类 CNN。
+- 当前优先级（2026-10-25）：先做无语义的通用身体/双手实时关键点，再做动作/词义分类；纯关键点入口 `vision/src/vision/keypoints/live_demo.py`，用法 `vision/src/vision/keypoints/README.md`，文件源基准 `vision/analysis/keypoints_20261025/README.md`。USB 实时、交叉/遮挡和快速运动尚未验收，文件 FPS 不能当摄像头实时 FPS。
+- 通用关键点 PL：单手 21 点完整网络已上板，PC 提供规范化 ROI，PL 执行网络、PS 调度。当前流式/宽访存版为 62 次调用/ROI、36 层直接复用输入地址；同一 ROI 三次 64 输出均对整数参考完全一致，前向 0.505/0.490/0.490 秒，约 2Hz，仍未达到 5Hz。当前时延及哈希见 `project/analysis/keypoints_pl_20261026/stream_wide.md/.json`；0.56 秒、1.86 秒与 12.28 秒记录保留为历史。整板 WNS 0.307ns、WHS 0.010ns，DSP 165/220、LUT 37742/53200、BRAM Tile 119.5/140。不能把 HDMI 刷新率当关键点帧率，该路线不是 R3 词语分类 CNN。
+- 独立实时方向（2026-10-26 用户选定）：`docs/方案/03_Zynq7020独立实时关键点方案.md`。目标双手各20Hz、板内视频叠加；单目到货前用板端raw帧回放。教师指 MediaPipe Holistic 软件模型，不是视频授课人。40视频/674帧已导出997个有手伪标ROI，坐标试训670/136/191，96/128浮点学生已试训但人工精度、QAT/HLS/上板未验收。旧200项复核队列164项来自352×288，暂不用于正式精度标注；先重做清晰度/来源平衡。报告 `project/analysis/keypoints_student_20261026/README.md`，理论预算仍在 `project/analysis/keypoints_pl_20261026/realtime_budget/`。新学生65输出禁止混用旧64项驱动，身体网络及离线找手器需另验。
+- 视觉目录物理归并（2026-10-26）：`vision/`只保留src、scripts、tests、data、analysis、tools、video七个主目录。运行源码在`vision/src/vision/`，旧嵌入库在`vision/src/signrec/`；模型`vision/data/models/`，M1清单`vision/data/manifests/m1_8class/`，旧特征`vision/data/cache/m1/`。根`vision/__init__.py`维持原`python -m vision.*`入口。不要在顶层重新创建keypoints/m1/models目录；媒体路径不变。
+- 【本机专用】板上当前为整层加速候选，旧 W6 本地发布文件未覆盖；HDMI 接管显式指定当前 `--release-manifest`。旧 ASR 固件核验可能拒绝，未验收本候选音频；禁止为迁就旧哈希运行中重载 bit。上一版 12.276 秒固件备份记录在 `project/_tmp/kp_layer_deploy_v1/deployment.json`，更早 W6 备份在 `project/_tmp/kp_board_deploy_v2/deployment.json`。
+- PL 动态演示入口：`python -m vision.keypoints.dynamic_pl`，板端常驻 `stream_hand_board.py`；使用已知视频及缓存 PC ROI 定位，没有 CPU 网络回退。当前左侧仅黄色 PC ROI 框，右侧实际 PL 输入与骨架，不重锚旧姿态。PC 发布目标 15fps 不等于 HDMI 或 PL 帧率，流式版并发前向约 0.51～0.57 秒/ROI。新版动态 HDMI 已由用户确认视频正常、PL 持续更新；证据见 `project/analysis/keypoints_pl_20261026/stream_wide.md/.json`。600 秒有界运行结束后保留最后一帧，长期稳定性未据此验收。`show_hand_result.py` 只用于静态验收。
 - M0 已完成：新工程全量重建出 bit、板端点亮 + 音频回路复验通过（2026-10-23，见移植清单）
 - M0b：从空目录重建脚本化（源工程此路径未验收过）；剥离传感器 SPI/DMA 与旧 HLS KWS，释放 PL 资源
 - 视觉线：`再见` 缺一条片段待核对；短词类（很/服务/待会儿见）DTW 混淆待排查；USB 摄像头实测未做
 - 音频线：长期稳定性与断电自动启动未验收；BTN0 停止语义（当前幂等开始，停止走网页）
-- 当前输入路线（2026-10-25 用户更新）：单目 OV5640 未到货，只留 `OV5640MonoSource` 接口；原双目路线改为历史兼容。先用 `replay:` 录制视频按实时节拍模拟摄像头，PC 叠加关键点后传到板卡 HDMI；操作卡 `vision/keypoints/HDMI_REPLAY.md`。连续运动已目视确认；接收有时限，到时保留最后一帧，不能误当作仍在播放。
+- 当前输入路线（2026-10-25 用户更新）：单目 OV5640 未到货，只留 `OV5640MonoSource` 接口；原双目路线改为历史兼容。先用 `replay:` 录制视频按实时节拍模拟摄像头，PC 叠加关键点后传到板卡 HDMI；操作卡 `vision/src/vision/keypoints/HDMI_REPLAY.md`。连续运动已目视确认；接收有时限，到时保留最后一帧，不能误当作仍在播放。
 - 路线 3：HLS C 综合已跑通，资源/时序门禁未通过，未导出 IP；阶段状态与证据只在 `project/analysis/r3/README.md` 汇总，复跑脚本放 `project/scripts/r3/`。
 - 数据：清单审计已完成，语义清洗/人物标注/补采未完成；当前样本与补采只在 `vision/analysis/dataset/README.md` 汇总，审计工具放 `vision/scripts/dataset/`。提交者署名不能当人物 ID。
 
-- 本机素材整理：正式551条SHA一致素材（wsy264＋P08/P09/P10共287）；原片在`vision/video/raw/<来源族>`。历史归档已不在工作区，第二三课85条不同SHA版本现保留于done/wsy并由`pending_lesson02_03_current.csv`列为待审，inbox重复副本已清理。旧636清单和模型保持不变；新素材先放inbox，清单生成必须显式指定新输出并绑定审核清单/SHA，禁止盲扫后覆盖旧清单。旧裁剪媒体仅留1个真实测试样例，ASR142条词库不可当废弃缓存删除。当前清理记录见`vision/analysis/materials/20261025_cleanup/清理记录.md`。
+- 本机素材（2026-10-26）：活动池仍为551条，CSV/SHA不变；第二三课现存85条匹配原审计SHA，位于`done/wsy/第2 第3课`，仍单列待审，不自动纳入551池。新待审表由`current_available_fullframe.json`绑定。`protected_media_current.json`登记780个在场媒体与36个缺失（31原片、5旧演示）；32行来源索引仅1个原片在场，旧BV sources.json也缺失。逐项证据见`docs/协作/媒体清单修复_20261026.md`。新素材先放inbox，新输出绑定审核清单/SHA；禁止盲扫覆盖旧清单。旧裁剪测试样例1条、ASR词库142条必须保留。
+- 轻量关键点R1（2026-10-27）：用户覆盖后的17项人工结果已冻结导入（11坐标、1部分手有手判断、2无手、2ROI退回、1无法判断），无需再导回网页。40条1080p视频的614个手ROI按320/106/188分组，人工坐标6/3/2。训练仅1个负例，本轮显式禁用presence损失及辅助零损失图片；presence出口不可用。训练集中发现8ROI/99个教师点投影到画外，新增几何掩码（全划分312点），原值及人工标签保留。96/128已重新浮点训练并独立复评，教师留出NME 0.1856/0.1890、PCK@0.05 8.88%/7.05%，未过定位门禁；人工留出仅2帧，开发留出已多次查看，不能报告通用/跨人物精度。训练在`project/_tmp/hand_student_reviewed_20261027_v2`，当前证据`project/analysis/keypoints_student_20261027/README.md`及`reviewed_training.json`；旧试跑保留历史。未QAT/HLS/部署新学生，板上仍为0.49秒旧图。204测试＋32子测试通过。
+- 板内视频V1：720p raw短循环120秒2880次写入，约24次/秒、0错过时隙，复制P95 5.55ms；这是帧缓冲吞吐，不含网络推理。用户暂时无法目视，VSync、无撕裂、物理帧率、端到端帧龄、断网及推理并发均未验收。证据`project/analysis/keypoints_pl_20261026/raw_video.md/.json`；有界测试已结束，HDMI保留最后一帧。
+- R1拟合诊断（2026-10-27）：仅用冻结17项复核中的6条人工训练ROI（4视频、2来源组），96网络固定输入、无增强、只监督XY，150步后全点126/126及指尖30/30的PCK@0.05均100%，连续3次检查达标；平均手形仅11.90%，5种输入错位对照平均16.35%，独立重载NME差0，未监督head列参数变化0。模型/输入在`project/_tmp/hand_overfit6_20261027_v1`，证据`project/analysis/keypoints_student_20261027/overfit6.md/.json`，脚本`overfit_hand_student.py fit/verify`。这只是记忆诊断，不是识别率或泛化通过；验证/开发留出未参与，正式模型及板卡未变。下一步固定训练/验证数据与预算做增强/监督消融并补数据，不能将诊断模型用于QAT或板端。206测试＋32子测试通过。

@@ -10,7 +10,7 @@ int main() {
     for (int test=0;test<tests;++test) {
         int n,op,shift,alpha,beta,limit,kernel,length;
         input>>n>>op>>shift>>alpha>>beta>>limit>>kernel>>length;
-        std::vector<short> a(262144),b(4096),out(4096);
+        std::vector<short> a(262144),b(65536),out(65536);
         int value;
         for (int i=0;i<length;++i) {input>>value;a[i]=value;}
         for (int i=0;i<n;++i) {input>>value;b[i]=value;}

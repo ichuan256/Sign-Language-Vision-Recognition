@@ -14,7 +14,7 @@ from .person_detector import PersonDetection
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_POSE_MODEL_PATH = (
     _REPO_ROOT
-    / "models"
+    / "data" / "models"
     / "pose_estimation_mediapipe"
     / "pose_estimation_mediapipe_2023mar_int8bq.onnx"
 )

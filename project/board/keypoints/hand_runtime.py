@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 import time
+from collections import Counter
 
 import numpy as np
 
@@ -126,18 +127,18 @@ class HardwareBackend:
 
     def vector(self,a,b,count,op,shift,alpha=0,beta=0,limit=-1,kernel=1):
         a = np.asarray(a,dtype=np.int16).reshape(-1)
-        if count>4096 or a.size>262144:
+        if count>getattr(self,'vector_capacity',4096) or a.size>262144:
             raise ValueError('Vector tile exceeds hardware bounds')
         self.va[:a.size] = a
-        self.va.flush()
+        self.va[:a.size].flush()
         if b is not None:
             b = np.asarray(b,dtype=np.int16).reshape(-1)
             self.vb[:b.size] = b
-            self.vb.flush()
+            self.vb[:b.size].flush()
         self._call(self.vec,self.regs['vector']['registers'],dict(
             a=self.va.physical_address,b=self.vb.physical_address,out_r=self.vo.physical_address,
             count=count,operation=op,shift=shift,alpha=alpha,beta=beta,limit=limit,kernel=kernel))
-        self.vo.invalidate()
+        self.vo[:count].invalidate()
         self.vector_calls += 1
         return np.array(self.vo[:count])
 
@@ -153,6 +154,17 @@ class HandGraph:
         with np.load(directory/'weights.npz',allow_pickle=False) as data:
             self.weights = {k:data[k] for k in data.files}
         self.backend = backend
+        self.fusions = {}
+        if hasattr(backend,'layer'):
+            consumers=Counter(k for spec in self.graph for k in spec['inputs'])
+            for first,second in zip(self.graph,self.graph[1:]):
+                if (first['kind'] in ('Conv2D','DepthwiseConv2D','Dense') and
+                    second['kind']=='ReLU' and second['inputs']==[first['output']] and
+                    consumers[first['output']]==1):
+                    self.fusions[first['name']]=second
+        self.fused_names={s['name'] for s in self.fusions.values()}
+        if hasattr(backend,'prepare'):
+            backend.prepare(self.graph,self.weights)
 
     def _gemm(self,a,kernel,bias,shifts):
         rows,depth = a.shape
@@ -172,8 +184,9 @@ class HandGraph:
         a = np.asarray(a,dtype=np.int16).reshape(-1,kernel)
         b = None if b is None else np.asarray(b,dtype=np.int16).reshape(-1)
         output = np.empty(len(a),np.int16)
-        for start in range(0,len(a),4096):
-            n = min(4096,len(a)-start)
+        capacity=getattr(self.backend,'vector_capacity',4096)
+        for start in range(0,len(a),capacity):
+            n = min(capacity,len(a)-start)
             output[start:start+n] = self.backend.vector(a[start:start+n],
                 None if b is None else b[start:start+n],n,op,shift,alpha,beta,limit,kernel)
         return output
@@ -188,15 +201,22 @@ class HandGraph:
             if kind=='InputLayer':
                 y = np.asarray(roi_codes,dtype=np.int16).reshape(s['output_shape'])
             elif kind=='Concatenate':
+                if hasattr(self.backend,'sync_for_cpu'):
+                    for key in s['inputs']:self.backend.sync_for_cpu(values[key])
                 result = np.concatenate([np.ldexp(values[k].astype(np.float64),-fractions[k]) for k in s['inputs']],axis=-1)[0]
                 return result,dict(elapsed_s=time.perf_counter()-start,backend=self.backend.name,
                     mac_calls=self.backend.mac_calls,vector_calls=self.backend.vector_calls,trace=trace)
             else:
                 xs = [values[k] for k in s['inputs']]
                 x = xs[0]
+                if (hasattr(self.backend,'sync_for_cpu') and
+                    kind not in ('Conv2D','DepthwiseConv2D','Dense') and name not in self.fused_names):
+                    for array in xs:self.backend.sync_for_cpu(array)
                 if kind in ('Conv2D','DepthwiseConv2D','Dense'):
                     w,bias,shift = (self.weights[name+suffix] for suffix in ('_kernel','_bias','_shift'))
-                    if kind=='Dense':
+                    if hasattr(self.backend,'layer'):
+                        y=self.backend.layer(x,w,bias,shift,s,self.fusions.get(name)).reshape(s['output_shape'])
+                    elif kind=='Dense':
                         y = self._gemm(x.reshape(1,-1),w,bias,shift)
                     else:
                         if s['dilation']!=[1,1]:
@@ -221,7 +241,7 @@ class HandGraph:
                 elif kind=='Add':
                     y = self._vector(x,xs[1],ADD,s['rescale_shift'],s['align_a'],s['align_b']).reshape(s['output_shape'])
                 elif kind=='ReLU':
-                    y = self._vector(x,None,RELU,s['rescale_shift'],limit=s['relu_limit']).reshape(s['output_shape'])
+                    y = x if name in self.fused_names else self._vector(x,None,RELU,s['rescale_shift'],limit=s['relu_limit']).reshape(s['output_shape'])
                 elif kind=='MaxPooling2D':
                     kh,kw = s['pool_size']
                     p = _patches(x,kh,kw,s['strides'],s['padding'],s['output_shape'][1:3],fill=-32768)

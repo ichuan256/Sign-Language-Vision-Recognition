@@ -1,6 +1,7 @@
 {
-  "registry": "vision/data/manifests/source_registry_20261025_layout.csv",
+  "registry": "vision/data/manifests/media_reconciled_20261026/sources.csv",
   "rows": 32,
-  "sha256": "fd93cce51fce566cb079257804803b354fb4d38887ed38ec403a2693e4feb8e7",
-  "historical_registry": "vision/data/manifests/source_registry_20261025_clean.csv"
+  "sha256": "8b7f700afd903fb6b63ba5861184c47104f48bb48911628ec8b436b1e2b31b83",
+  "historical_registry": "vision/data/manifests/source_registry_20261025_clean.csv",
+  "declared_missing": 31
 }

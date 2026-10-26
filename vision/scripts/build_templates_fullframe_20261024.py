@@ -38,7 +38,7 @@ def main() -> int:
     ap.add_argument("--repo-root", type=Path, default=ROOT)
     ap.add_argument("--model", type=Path, default=DEFAULT_BACKBONE_PATH)
     ap.add_argument("--output", type=Path,
-                    default=ROOT / "vision/models" / "sign_templates_fullframe_20261024.npz")
+                    default=ROOT / "vision/data/models" / "sign_templates_fullframe_20261024.npz")
     ap.add_argument("--frames", type=int, default=8)
     ap.add_argument("--limit", type=int, default=None)
     args = ap.parse_args()

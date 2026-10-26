@@ -1,0 +1,34 @@
+{
+  "scope": "board_local_raw_loop_framebuffer_write_throughput",
+  "completed": true,
+  "source_fps": 24.0,
+  "requested_fps": 24.0,
+  "frames_written": 2880,
+  "elapsed_s": 120.00015491699992,
+  "measured_framebuffer_writes_per_s": 23.999969016640016,
+  "missed_slots": 0,
+  "unique_source_frames": 24,
+  "copy_ms_P50": 5.2867814999899565,
+  "copy_ms_P95": 5.549665600051412,
+  "raw_sha256": "7b35ba9a6c1330aca86a9f62649a222bbfe66fe56caf77c09a6540bf83b41cfc",
+  "source_sha256": "1a9fd6424d79daccaff263ebf92edfd34bf01aa56df5897d1767edaf3d30ab0e",
+  "prefault_s": 0.5593071739999687,
+  "input_read_checksum": 48904653846045130,
+  "bitstream_downloaded": false,
+  "owner_left_alive": true,
+  "screen_visually_confirmed": false,
+  "limitations": [
+    "Single retained framebuffer written in place: tearing/vsync and physical display latency not measured",
+    "Predecoded short loop in board page cache; no PC frame transport, no landmark inference, no sustained SD decode"
+  ],
+  "firmware_pair": {
+    "owner_pid": 3120,
+    "started_owner": true,
+    "bit_sha256": "a30b84b2efbe769ac75ae233dd36be488ce9780b7a75c18b0ede8bdc7dad4a15",
+    "hwh_sha256": "18ccd014d78c67c22de833c0dc11202d722e39cf548f9485260b06bfa5070fe0",
+    "bitstream_downloaded": false
+  },
+  "framebuffer_write_gate_20fps_passed": true,
+  "screen_review_response": "User unable to inspect screen during this run; visual confirmation remains pending",
+  "console_sha256": "dcbe5bc0aab1303ae401af384b3d1825be7a4581c138ec7b04fe26ccb5c7b5fe"
+}

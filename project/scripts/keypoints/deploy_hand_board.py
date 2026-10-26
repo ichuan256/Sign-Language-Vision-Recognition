@@ -60,8 +60,11 @@ def main():
         shutil.copy2(a.model/name,payload/name)
     for name in ('hand_runtime.py','run_hand_board.py'):
         shutil.copy2(ROOT/'project/board/keypoints'/name,payload/name)
+    architecture=json.loads((a.model/'registers.json').read_text()).get('architecture','tile_v1')
+    if architecture=='whole_layer_v2':
+        shutil.copy2(ROOT/'project/board/keypoints/hand_layer_runtime.py',payload/'hand_layer_runtime.py')
     manifest=dict(scope='single_hand_PC_ROI_PL_neural_graph',
-        board_boot_id_before_deployment=boot,previous_pair_sha256=current,
+        architecture=architecture,board_boot_id_before_deployment=boot,previous_pair_sha256=current,
         board_workdir=work,board_backup=backup,
         artifacts={s:dict(sha256=digest(payload/('hand_hdmi.'+s))) for s in ('bit','hwh')})
     (payload/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')

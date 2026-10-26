@@ -1,0 +1,84 @@
+{
+  "status": "physical_layout_consolidated",
+  "moves": [
+    {
+      "source": "vision/m1/manifests",
+      "destination": "vision/data/manifests/m1_8class"
+    },
+    {
+      "source": "vision/m1/runs",
+      "destination": "vision/data/cache/m1"
+    },
+    {
+      "source": "vision/manifests/m1_vocabulary_20261023.json",
+      "destination": "vision/data/manifests/m1_26class_20261023.json"
+    },
+    {
+      "source": "vision/manifests/build_m1_manifest.py",
+      "destination": "vision/scripts/legacy/build_m1_manifest.py"
+    },
+    {
+      "source": "vision/sign_video/smoke_manifest.json",
+      "destination": "vision/data/manifests/sign_video_smoke_20261023.json"
+    },
+    {
+      "source": "vision/models",
+      "destination": "vision/data/models"
+    },
+    {
+      "source": "vision/framesource",
+      "destination": "vision/src/vision/framesource"
+    },
+    {
+      "source": "vision/keypoints",
+      "destination": "vision/src/vision/keypoints"
+    },
+    {
+      "source": "vision/m1",
+      "destination": "vision/src/vision/m1"
+    },
+    {
+      "source": "vision/classify",
+      "destination": "vision/src/vision/classify"
+    },
+    {
+      "source": "vision/sign_video",
+      "destination": "vision/src/vision/sign_video"
+    },
+    {
+      "source": "vision/webapp",
+      "destination": "vision/src/vision/webapp"
+    }
+  ],
+  "files_moved": 159,
+  "canonical_vision_directories": [
+    "analysis",
+    "data",
+    "scripts",
+    "src",
+    "tests",
+    "tools",
+    "video"
+  ],
+  "binary_assets": {
+    "files": 62,
+    "all_bytes_unchanged": true,
+    "by_extension": {
+      ".jpg": 28,
+      ".npz": 30,
+      ".svg": 1,
+      ".onnx": 3
+    }
+  },
+  "video_paths_moved": false,
+  "tests": {
+    "passed": 180,
+    "subtests_passed": 32
+  },
+  "student_prediction_max_difference_before_after": 0.0,
+  "module_CLI_kept": "python -m vision.keypoints / vision.m1 / vision.webapp",
+  "code_layout_check_passed": true,
+  "full_media_check_passed": false,
+  "full_media_blocker": "Pre-existing pending manifest points to missing vision/video/done/wsy/第二课学习/上课/上课.mp4",
+  "evidence_dir": "project/_tmp/vision_layout_apply_v1"
+}

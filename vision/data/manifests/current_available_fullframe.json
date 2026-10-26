@@ -12,6 +12,8 @@
   "old_model_templates_unchanged": true,
   "supersedes_available_subset": "vision/data/manifests/manifest_available_sha_verified_20261025_r2.csv",
   "historical_subset": "vision/data/manifests/manifest_available_sha_verified_20261025_r2.csv",
-  "pending_manifest": "vision/data/manifests/pending_lesson02_03_layout.csv",
-  "layout_version": "four_modules_20261025"
+  "pending_manifest": "vision/data/manifests/media_reconciled_20261026/pending.csv",
+  "layout_version": "four_modules_20261025",
+  "pending_sha256": "457b68c397dd93aa567cadf8188eb1e1d945f38759fd2d33f5945573f04c0448",
+  "pending_rows": 85
 }

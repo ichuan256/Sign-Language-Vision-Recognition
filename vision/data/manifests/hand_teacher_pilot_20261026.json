@@ -1,0 +1,579 @@
+{
+  "schema": "hand_teacher_plan_v1",
+  "seed": 20261026,
+  "approved_pointer": "vision/data/manifests/current_available_fullframe.json",
+  "approved_pointer_sha256": "123ff62076829f4e5d43dcd1b1b28eb47b2f4c5eb99d952328bf4bfb9660b577",
+  "approved_manifest": "vision/data/manifests/manifest_available_sha_verified_20261025_layout.csv",
+  "approved_manifest_sha256": "8ee0305afd431fb1720122c69232b3306008f60a502e78c2b4d94a504b4158ae",
+  "audit_sha256": "fd23b884918bec24e2d2e1041256afe3146dad7be49599b27ad8dba15c6c387c",
+  "approved_rows": 551,
+  "eligible_unique_files": 551,
+  "excluded": [],
+  "group_assignment": {
+    "BV1Hs411E7aP_p10": "test",
+    "BV1Hs411E7aP_p03": "test",
+    "BV1Hs411E7aP_p14": "test",
+    "BV1Hs411E7aP_p07": "validation",
+    "BV1Hs411E7aP_p15": "validation",
+    "BV1Hs411E7aP_p20": "validation",
+    "BV1Hs411E7aP_p19": "train",
+    "BV1Hs411E7aP_p17": "train",
+    "BV1Hs411E7aP_p12": "train",
+    "BV1Hs411E7aP_p13": "train",
+    "BV1Hs411E7aP_p05": "train",
+    "BV1Hs411E7aP_p08": "train",
+    "BV1Hs411E7aP_p21": "train",
+    "BV1Hs411E7aP_p11": "train",
+    "BV1Hs411E7aP_p06": "train",
+    "BV1Hs411E7aP_p04": "train",
+    "BV1Hs411E7aP_p18": "train",
+    "BV1Hs411E7aP_p02": "train",
+    "BV1Hs411E7aP_p16": "train",
+    "BV1Hs411E7aP_p22": "train",
+    "BV1Hs411E7aP_p01": "train",
+    "BV1Hs411E7aP_p09": "train",
+    "NL_lesson_09": "test",
+    "NL_lesson_10": "validation",
+    "NL_lesson_08": "train",
+    "NL_lesson_01": "train"
+  },
+  "selected": [
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/你/2_你.mp4",
+      "sha256": "61073c5c209287eed907b13e92ff4e27ffabfd4c84f6907c55074e964bb16831",
+      "source_groups": [
+        "BV1Hs411E7aP_p01"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "2_你",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p01",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/你第一次来上海吗/p02_cqa_004_你第一次来上海吗.mp4",
+      "sha256": "27844901bc0b22cb553d7c882758863aac674efd535d51a0b3568d6494b3d78e",
+      "source_groups": [
+        "BV1Hs411E7aP_p02"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p02_cqa_004_你第一次来上海吗",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p02",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/欢迎你到我家来玩/p03_cqa_003_欢迎你到我家来玩.mp4",
+      "sha256": "13adaea2ce55b686ad901e9236ae327facd910da6ce27475963b326b3b323c71",
+      "source_groups": [
+        "BV1Hs411E7aP_p03"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p03_cqa_003_欢迎你到我家来玩",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p03",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/谢谢/p04_cqa_006_谢谢.mp4",
+      "sha256": "3fe699f27700a87407871d16fef0491526fc33954a49656cdef4411918947134",
+      "source_groups": [
+        "BV1Hs411E7aP_p04"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p04_cqa_006_谢谢",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p04",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/工作顺利/p05_cqa_009_工作顺利.mp4",
+      "sha256": "12deb47fb2648c49774dc3a3646fae1abf8251f5cebbcc277ca468f21282b00c",
+      "source_groups": [
+        "BV1Hs411E7aP_p05"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p05_cqa_009_工作顺利",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p05",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/抱歉我有事/p06_phrase_002_抱歉我有事.mp4",
+      "sha256": "6480a0acd12e8493d5df79c819b17690e6896d5c65bc040ed0bd24d81ec469bc",
+      "source_groups": [
+        "BV1Hs411E7aP_p06"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p06_phrase_002_抱歉我有事",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p06",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/十分感谢你对我的帮助/p07_cqa_001_十分感谢你对我的帮助.mp4",
+      "sha256": "70ac5de9eb5acef81f4f258f39636df6ced382f4cee0e26fc89ba2e777502c75",
+      "source_groups": [
+        "BV1Hs411E7aP_p07"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p07_cqa_001_十分感谢你对我的帮助",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p07",
+      "split": "validation"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/没关系/p08_cqa_007_没关系.mp4",
+      "sha256": "e1772a8c95b04fd779a0fac77070d4933680aff7944fe22ce5a256e8c8ce370b",
+      "source_groups": [
+        "BV1Hs411E7aP_p08"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p08_cqa_007_没关系",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p08",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/待会儿见/p09_cqa_001_待会儿见.mp4",
+      "sha256": "58171bfbdf49e9da8c88653a17636b1af9c877038566eda5cc80138bf845620a",
+      "source_groups": [
+        "BV1Hs411E7aP_p09"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p09_cqa_001_待会儿见",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p09",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/先生附近有银行吗/p10_cqa_001_先生附近有银行吗.mp4",
+      "sha256": "a174ecf63a5540d53d846ecd55003b6bb3fdc24cf992c06e9144695eb932d682",
+      "source_groups": [
+        "BV1Hs411E7aP_p10"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p10_cqa_001_先生附近有银行吗",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p10",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/你想买什么/p11_cqa_001_你想买什么.mp4",
+      "sha256": "0b7cde44ecdbdcd4691dcc0de124ce473a2505a8b424135c9382585e4069a01b",
+      "source_groups": [
+        "BV1Hs411E7aP_p11"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p11_cqa_001_你想买什么",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p11",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/你哪儿不舒服/2_你哪儿不舒服.mp4",
+      "sha256": "f66ba92c6a98c645257e961a0459d4870891a87e3e5cc9f159f6fd2ae7c5586f",
+      "source_groups": [
+        "BV1Hs411E7aP_p12"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "2_你哪儿不舒服",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p12",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/请假/p13_phrase_003_请假.mp4",
+      "sha256": "387381fcac3c180bfff3c89d99373bb154049b890d15657c44f1eb11afaa5fe4",
+      "source_groups": [
+        "BV1Hs411E7aP_p13"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p13_phrase_003_请假",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p13",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/地图/p14_001_地图.mp4",
+      "sha256": "f6391e3cd069867f7c6bc68f919c4ecd1ef3bd6697ed4747460bc29d86566881",
+      "source_groups": [
+        "BV1Hs411E7aP_p14"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p14_001_地图",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p14",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/陪/p15_003_陪.mp4",
+      "sha256": "c0f4577cc21b0c300d6f08d1aa3e0211b44795dbf77f459a3554cb5a9811989a",
+      "source_groups": [
+        "BV1Hs411E7aP_p15"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p15_003_陪",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p15",
+      "split": "validation"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/电影/p16_011_电影.mp4",
+      "sha256": "3b15d3e8e9e9be9e770465669fc41abca91c677e602d3a1a44a85b65b4d871a8",
+      "source_groups": [
+        "BV1Hs411E7aP_p16"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p16_011_电影",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p16",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/不喜欢，我喜欢踢足球/p17_phrase_004_不喜欢，我喜欢踢足球.mp4",
+      "sha256": "94acb89362b607211ab6e916266255a2b35da03eb8111639f477edee85867b04",
+      "source_groups": [
+        "BV1Hs411E7aP_p17"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p17_phrase_004_不喜欢，我喜欢踢足球",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p17",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/走/p18_005_走.mp4",
+      "sha256": "54c3040164eeb003eee83e145413767a349fe6c0e7c62942acdb58b35e1b6aa9",
+      "source_groups": [
+        "BV1Hs411E7aP_p18"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p18_005_走",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p18",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/今天星期几/p19_phrase_003_今天星期几.mp4",
+      "sha256": "407369234d833fe31255c3172afcd03443676d50cd6a4ffd10c4d93edba93341",
+      "source_groups": [
+        "BV1Hs411E7aP_p19"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p19_phrase_003_今天星期几",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p19",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/今天天气怎么样/p20_phrase_001_今天天气怎么样.mp4",
+      "sha256": "afe0b6818ea68bb24ef54be0120196025c602998623257120af406a08910b7c2",
+      "source_groups": [
+        "BV1Hs411E7aP_p20"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p20_phrase_001_今天天气怎么样",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p20",
+      "split": "validation"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/海南/p21_002_海南.mp4",
+      "sha256": "1756a40a13f8d03e3a5a7a1a704e92d5619fb5b7854fb5586b6731253627b2bd",
+      "source_groups": [
+        "BV1Hs411E7aP_p21"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p21_002_海南",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p21",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/你做什么工作/p22_phrase_002_你做什么工作.mp4",
+      "sha256": "43f2f3f854cdeb93ce1d9dd4fa76c64e6c29d28fbca2e2b7e69019619744151b",
+      "source_groups": [
+        "BV1Hs411E7aP_p22"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p22_phrase_002_你做什么工作",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p22",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/工作忙吗？/NL01_066_C1_工作忙吗.mp4",
+      "sha256": "9ec1852c8c07abd4c1791d7607b7119d974af1b0a96ddfbc549c8093f2fe214d",
+      "source_groups": [
+        "NL_lesson_01"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "sample_id": "NL01_066_C1_工作忙吗",
+      "contributor": "wsy",
+      "split_group": "NL_lesson_01",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第八课购物_NL08_85条_20261022/支付/NL08_018_C1_支付.mp4",
+      "sha256": "589bf3b2f86436fd83fde5e23a1f6ca919593d6252512c3f8e71c49b038daf45",
+      "source_groups": [
+        "NL_lesson_08"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "sample_id": "NL08_018_C1_支付",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_08",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第九课聚会_NL09_102条_20261022/蚊子/NL09_078_C1_蚊子.mp4",
+      "sha256": "75f5a16fb745fc425625a1894080be06199feb6540aad03fe8d597b442b782c0",
+      "source_groups": [
+        "NL_lesson_09"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "sample_id": "NL09_078_C1_蚊子",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_09",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/Tomcat/第十课旅游_NL10_100条_20261022/谢谢！/NL10_070_C1_谢谢！.mp4",
+      "sha256": "5b155bf78e4a727649a7dcf391b9a557ff2b9b3fbbeeec4c1d1a1bb001c639f5",
+      "source_groups": [
+        "NL_lesson_10"
+      ],
+      "source_family": "NL_tutorial",
+      "performer_id": null,
+      "sample_id": "NL10_070_C1_谢谢！",
+      "contributor": "Tomcat",
+      "split_group": "NL_lesson_10",
+      "split": "validation"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/早上好/1_早上好.mp4",
+      "sha256": "ad403f282e6abaa18c75182db03fe09bee4a8bad5fd32c1e0e9c416c4cb1f8f0",
+      "source_groups": [
+        "BV1Hs411E7aP_p01"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "1_早上好",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p01",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/你多大啦/p02_cqa_009_你多大啦.mp4",
+      "sha256": "7939a64f22d404c3c2b4c47efeca8606ad790511846dca6ee2bd9dbf3159ee10",
+      "source_groups": [
+        "BV1Hs411E7aP_p02"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p02_cqa_009_你多大啦",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p02",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/欢迎你到我家来玩/p03_cqa_001_欢迎你到我家来玩.mp4",
+      "sha256": "b0bb337a77c2d6c748a194de718e2a7e569e2766ddefdd1930d5e1345e675f52",
+      "source_groups": [
+        "BV1Hs411E7aP_p03"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p03_cqa_001_欢迎你到我家来玩",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p03",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/你们的房子真漂亮/p04_cqa_002_你们的房子真漂亮.mp4",
+      "sha256": "35d31e332a9ffb7dad0ccf69e5f9a00ab92785c522fbc039a0861bae57b441c8",
+      "source_groups": [
+        "BV1Hs411E7aP_p04"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p04_cqa_002_你们的房子真漂亮",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p04",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/祝你身体健康/p05_cqa_005_祝你身体健康.mp4",
+      "sha256": "2195933a46e3593ac09820d3217f17ffa10edeeab251803dd6449b8c22e34c01",
+      "source_groups": [
+        "BV1Hs411E7aP_p05"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p05_cqa_005_祝你身体健康",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p05",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/你愿意参加我们的聚会吗/p06_cqa_007_你愿意参加我们的聚会吗.mp4",
+      "sha256": "6b7dc9d161eab0a32d8c06ad9f0de4004a62b36f5d40fe8502a74ed0a2bf3217",
+      "source_groups": [
+        "BV1Hs411E7aP_p06"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p06_cqa_007_你愿意参加我们的聚会吗",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p06",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/别客气/p07_cqa_003_别客气.mp4",
+      "sha256": "223833bf35012f33e8b166dff3d1859e90b2e08d673650fe06b175612bcdba60",
+      "source_groups": [
+        "BV1Hs411E7aP_p07"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p07_cqa_003_别客气",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p07",
+      "split": "validation"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/很抱歉我迟到了/p08_cqa_004_很抱歉我迟到了.mp4",
+      "sha256": "b18a67a6c2e35d210ecd2e11fecc5b0af085b85f3b4c203cdf5cd7137559256b",
+      "source_groups": [
+        "BV1Hs411E7aP_p08"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p08_cqa_004_很抱歉我迟到了",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p08",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/待会儿见/p09_cqa_004_待会儿见.mp4",
+      "sha256": "1c492570748eb7513a2f5faf5cd9a096b598a87fc3ac699b2546332963878d9c",
+      "source_groups": [
+        "BV1Hs411E7aP_p09"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p09_cqa_004_待会儿见",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p09",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/对不起我不知道/p10_cqa_004_对不起我不知道.mp4",
+      "sha256": "a56473761a1edfd7d39cdae36c958b62ad8596f8bfd96de05c1ede4d9f4d1da0",
+      "source_groups": [
+        "BV1Hs411E7aP_p10"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p10_cqa_004_对不起我不知道",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p10",
+      "split": "test"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/我想看看那件衣服/p11_cqa_005_我想看看那件衣服.mp4",
+      "sha256": "e4e456f6caebc33c6631a46b2ad5c881bc16c0ea24c547069b160414469f6262",
+      "source_groups": [
+        "BV1Hs411E7aP_p11"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p11_cqa_005_我想看看那件衣服",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p11",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/不要太劳累/1_不要太劳累.mp4",
+      "sha256": "ee814c6adb86085bd52b966fb73f5f52acf64a2fe7d9f578972caa696f88e93b",
+      "source_groups": [
+        "BV1Hs411E7aP_p12"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "1_不要太劳累",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p12",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/可以/p13_001_可以.mp4",
+      "sha256": "4d133727ee860512ca22ea6bee6e83f9e07d2789d8099953a785dc644d0a2b5e",
+      "source_groups": [
+        "BV1Hs411E7aP_p13"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p13_001_可以",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p13",
+      "split": "train"
+    },
+    {
+      "path": "vision/video/done/wsy/全22课全画幅样本_fullframe_264条_20261021/为/p14_002_为.mp4",
+      "sha256": "f4f0c390813609ee8b0a62279f57674e0c3151f28efb0117c6beb325779f49af",
+      "source_groups": [
+        "BV1Hs411E7aP_p14"
+      ],
+      "source_family": "BV1Hs411E7aP",
+      "performer_id": null,
+      "sample_id": "p14_002_为",
+      "contributor": "wsy",
+      "split_group": "BV1Hs411E7aP_p14",
+      "split": "test"
+    }
+  ],
+  "counts": {
+    "clips": 40,
+    "splits": {
+      "train": 28,
+      "test": 7,
+      "validation": 5
+    },
+    "source_components": {
+      "test": 4,
+      "validation": 4,
+      "train": 18
+    }
+  },
+  "limitations": [
+    "Contributor is not performer ID; this is source-video holdout, not cross-person evaluation",
+    "Word labels are not used as landmark truth; no review-negative labels exist yet"
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "scope": "Human review intake and unchanged-crop audit; not training or independent accuracy acceptance",
+  "source_reviews": "vision/video/review/hand_review_annotations.jsonl",
+  "source_review_sha256": "ae621e35e06543b9a913a3b65613f1e2b3f0d868fd49499ee596b3e0a3f7e560",
+  "dataset_sha256": "c8dfd60a21703094a5fea947835dccbe9234624ff324590dc441d8ebaf75b3ba",
+  "records_sha256": "555a5891f9dbd441f1aab3b479c90f1d921091ee56a1e84ca929ac8fa8e79d51",
+  "source_queue_sha256": "7a0b3ba5559f1b22853e97338c71d72e8f9500f931989f848e3cb92224808483",
+  "original_counts": {
+    "rows": 15,
+    "status": {
+      "accepted": 14,
+      "ungradable": 1
+    },
+    "accepted_presence_positive": 12,
+    "accepted_presence_negative": 2,
+    "coordinate_annotations": 10
+  },
+  "usable_counts": {
+    "rows": 14,
+    "status": {
+      "accepted": 13,
+      "ungradable": 1
+    },
+    "accepted_presence_positive": 11,
+    "accepted_presence_negative": 2,
+    "coordinate_annotations": 10
+  },
+  "unreviewed_queue_items": 5,
+  "held_for_human_recheck": [
+    {
+      "sample_id": "0b44459bb50a215f_10_unknown",
+      "reason": "ROI与有手记录存在疑点，请只根据左侧裁剪重新判断。原标注保留，暂不用于训练。",
+      "origin": "agent_visual_audit_not_new_label"
+    }
+  ],
+  "checked_sources": 13,
+  "mapping_checks": [
+    {
+      "sample_id": "368e3e7f6e3e6ec9_25_1",
+      "source_SHA_passed": true,
+      "affine_dtype": "float64",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "0b44459bb50a215f_0_unknown",
+      "source_SHA_passed": true,
+      "affine_dtype": "float32",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "370e2395a6642256_34_1",
+      "source_SHA_passed": true,
+      "affine_dtype": "float64",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "0ed854db7a1eb736_0_unknown",
+      "source_SHA_passed": true,
+      "affine_dtype": "float32",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "1a01d6bd2cc8afe6_29_1",
+      "source_SHA_passed": true,
+      "affine_dtype": "float64",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "1a01d6bd2cc8afe6_0_unknown",
+      "source_SHA_passed": true,
+      "affine_dtype": "float32",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "c127f97c5ee8f878_29_1",
+      "source_SHA_passed": true,
+      "affine_dtype": "float64",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "38c7688f3cd41029_0_unknown",
+      "source_SHA_passed": true,
+      "affine_dtype": "float32",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "368e3e7f6e3e6ec9_15_1",
+      "source_SHA_passed": true,
+      "affine_dtype": "float64",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "0b44459bb50a215f_10_unknown",
+      "source_SHA_passed": true,
+      "affine_dtype": "float32",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "370e2395a6642256_24_1",
+      "source_SHA_passed": true,
+      "affine_dtype": "float64",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "0ed854db7a1eb736_10_unknown",
+      "source_SHA_passed": true,
+      "affine_dtype": "float32",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "5ccbf1045719f25f_48_1",
+      "source_SHA_passed": true,
+      "affine_dtype": "float64",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "2603b0d5f7b5131b_0_unknown",
+      "source_SHA_passed": true,
+      "affine_dtype": "float32",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "c127f97c5ee8f878_15_1",
+      "source_SHA_passed": true,
+      "affine_dtype": "float64",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "38c7688f3cd41029_10_unknown",
+      "source_SHA_passed": true,
+      "affine_dtype": "float32",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "9ec1852c8c07abd4_75_1",
+      "source_SHA_passed": true,
+      "affine_dtype": "float64",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "d336080e77dc33bb_34_0",
+      "source_SHA_passed": true,
+      "affine_dtype": "float64",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "75f5a16fb745fc42_29_1",
+      "source_SHA_passed": true,
+      "affine_dtype": "float64",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    },
+    {
+      "sample_id": "ef81ac99ba5add22_34_1",
+      "source_SHA_passed": true,
+      "affine_dtype": "float64",
+      "review_JPEG_exact_match": true,
+      "training_tensor_exact_match": true
+    }
+  ],
+  "original_annotations_modified": false,
+  "crop_coordinates_modified": false,
+  "usable_reviews_sha256": "d17adf28d61b029514e4abb0fd7539be8959e73c3476170337376fefc6742174",
+  "review_page_sha256": "1fae885027956c569701482f3613310c04e566eefc3c6bb8dacbbab5012cd5cb",
+  "new_student_trained": false,
+  "validation": {
+    "tests_passed": 199,
+    "subtests_passed": 32,
+    "original_review_SHA_unchanged": true,
+    "usable_derivative_import_passed": true,
+    "held_sample_masks_zero": true,
+    "trained": false,
+    "available_media_check_passed": true,
+    "teacher_export_smoke_passed": true,
+    "teacher_smoke_dataset_sha256": "0cc7fe6fdd459293c90e01505b2240eb67cbdd5f6dc0b94000281560ab1e1d9b",
+    "teacher_smoke_ROIs": 1,
+    "context_regeneration_smoke_passed": true,
+    "html_JS_syntax_passed": true
+  },
+  "review_page_local_path": "project/_tmp/hand_review_recheck_20261027_v2/index.html"
+}

@@ -4,15 +4,23 @@
 
 | 位置 | 用途 |
 |---|---|
-| `manifest_fullframe_20261024.csv` | 当前全画幅 636 条/440 原标签清单；输出路径指向根目录 `vision/video/` |
+| `manifest_fullframe_20261024.csv` | 历史全画幅 636 条/440 原标签清单；不能当作当前全部可用素材 |
 | `manifest_available_sha_verified_20261025_layout.csv` | 当前551条可用子集；新增共享包的P09/P10已恢复，全部严格匹配旧审计SHA |
 | `manifest_available_sha_verified_20261025_layout.csv.validation.json` | 从636行筛选551行、显式跳过85行的最终逐条记录 |
 | `current_available_fullframe.json` | 当前可用子集指针、哈希及统计；不改变模型或实验默认输入 |
+| `hand_teacher_pilot_20261026.json` | 40条教师工程试跑抽样及固定来源分组，尚不是已验收训练集 |
+| `hand_teacher_clear_pilot_20261026.json` | 保持原来源划分，仅抽40条1080p素材生成新复核候选；不代表完整分布 |
+| `hand_review_clear20_policy_20261026.json` | 与候选元数据SHA绑定的清晰度/配额策略；字幕遮手视频的agent预筛记录，不是人工标签 |
+| `protected_media_current.json`、`media_reconciled_20261026/` | 活动保护清单、待审85条和来源32条；780个媒体在场、36个明确缺失，旧SHA沿革保留 |
+| `m1_8class/` | 从旧 `vision/m1/manifests/` 移入的8类基线清单，相对媒体路径已换算 |
+| `m1_26class_20261023.json` | 另一版26类历史词表；不能与8类口径合并 |
+| `sign_video_smoke_20261023.json` | 批量提取的历史冒烟清单 |
 | `manifest_available_sha_verified_20261025.csv` | 首阶段349条子集，保留作迁移过程证据 |
 | `manifest_available_sha_verified_20261025.csv.validation.json` | 从636行筛选349行、显式跳过287行的逐条记录 |
-| `source_registry_current.json`、`source_registry_20261025_layout.csv` | 当前32个原片的路径、来源族和哈希；旧问候单轨已清理 |
+| `source_registry_current.json` | 活动原片索引指针：32行历史来源中当前1个在场、31个缺失 |
+| `source_registry_20261025_layout.csv` | 旧迁移快照，不能据此声称32个原片在场 |
 | `source_registry_20261025.csv` | 迁移时33个来源/旧单轨文件的历史索引，保留作溯源 |
-| `pending_lesson02_03_layout.csv` | 当前done/wsy内85条差异版本的实际位置与待审标记，不纳入551子集 |
+| `pending_lesson02_03_layout.csv` | 旧替代版本快照，已被活动指针所指新待审表取代；不能当当前路径 |
 | `全22课_fullframe/` | 旧全画幅与第一课周期的来源、边界和验收快照 |
 | `P08_购物/`、`P09_聚会/`、`P10_旅游/` | 各课精剪验收清单 |
 | `w2_上位机全画幅模板与演示记录_20261024.md` | 上位机历史演示与评测记录 |

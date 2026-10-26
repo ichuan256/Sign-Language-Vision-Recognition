@@ -21,7 +21,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--rows", type=int, default=6, help="checkerboard inner-corner rows")
     parser.add_argument("--square-size-mm", type=float, required=True, help="physical checkerboard square size in millimeters")
     parser.add_argument("--min-pairs", type=int, default=8)
-    parser.add_argument("--output", type=Path, default=ROOT / "vision/models" / "stereo_calibration.npz")
+    parser.add_argument("--output", type=Path, default=ROOT / "vision/data/models" / "stereo_calibration.npz")
     parser.add_argument("--overwrite", action="store_true")
     return parser
 

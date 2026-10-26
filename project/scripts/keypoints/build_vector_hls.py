@@ -12,7 +12,7 @@ except ImportError:
 
 ROOT=Path(__file__).resolve().parents[3]
 
-def cases():
+def cases(fast=False):
     rng=np.random.default_rng(20261025)
     result=[]
     lut=np.rint(32768/(1+np.exp(-np.arange(-512,513)/64))).astype(int)
@@ -42,24 +42,31 @@ def cases():
             else:y=rounded_shift(value,shift)
             output.append(y)
         result.append((n,op,shift,alpha,beta,limit,kernel,a,b,np.array(output)))
+    if fast:
+        for n in (4097,50003,65536):
+            a=rng.integers(-32768,32768,(n,1),dtype=np.int64)
+            b=rng.integers(-32768,32768,n,dtype=np.int64)
+            output=np.array([rounded_shift(int(x)*16+int(y)*4,12) for x,y in zip(a[:,0],b)])
+            result.append((n,0,12,4,2,-1,1,a,b,output))
     return result
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--export-ip',action='store_true')
+    parser.add_argument('--fast',action='store_true')
     args=parser.parse_args()
     out=args.output.resolve()
     if not out.is_relative_to(ROOT) or out==ROOT or out.exists():raise ValueError('Use a new workspace output')
     out.mkdir(parents=True)
     with (out/'vector_cases.txt').open('w') as f:
-        data=cases();f.write(str(len(data))+'\n')
+        data=cases(args.fast);f.write(str(len(data))+'\n')
         for n,op,shift,alpha,beta,limit,kernel,a,b,y in data:
             f.write(f'{n} {op} {shift} {alpha} {beta} {limit} {kernel} {a.size}\n')
             for x in (a,b,y):f.write(' '.join(map(str,x.reshape(-1)))+'\n')
     src=ROOT/'project/algo/keypoints'
     tcl='\n'.join(['open_project {'+(out/'vector_prj').as_posix()+'}',
-        'set_top kp_vector','add_files {'+(src/'kp_vector.cpp').as_posix()+'} -cflags {-std=c++11}',
+        'set_top kp_vector','add_files {'+(src/('kp_vector_fast.cpp' if args.fast else 'kp_vector.cpp')).as_posix()+'} -cflags {-std=c++11}',
         'add_files -tb {'+(src/'kp_vector_test.cpp').as_posix()+'} -cflags {-std=c++11}',
         'add_files -tb {'+(out/'vector_cases.txt').as_posix()+'}',
         'open_solution -flow_target vivado solution1','set_part {xc7z020clg400-1}','create_clock -period 10',
@@ -70,6 +77,7 @@ def main():
     with (out/'console.log').open('w') as log:
         result=subprocess.run(['cmd.exe','/d','/c',tool,'-f',str(out/'build.tcl')],cwd=out,stdout=log,stderr=subprocess.STDOUT)
     report=dict(scope='non_MAC_neural_ops',return_code=result.returncode,test_cases=len(data),board_programmed=False)
+    report['fast']=args.fast;report['vector_capacity']=65536 if args.fast else 4096
     xml=out/'vector_prj/solution1/syn/report/kp_vector_csynth.xml'
     if xml.exists():
         tree=ET.parse(xml)

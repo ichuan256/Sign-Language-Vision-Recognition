@@ -1,6 +1,8 @@
 # 分析与证据入口
 
 当前优先验证 [通用关键点实时链路](keypoints_20261025/README.md)，不涉及词义分类。
+当前学生数据/教师定义与试训状态见[学生试跑记录](../../project/analysis/keypoints_student_20261026/README.md)，
+代码目录已物理归并，入口见[vision/README](../README.md)。
 文件吞吐与摄像头实时验收分开记录，摄像头尚未实测。
 录制视频实时回放到板卡 HDMI 的连续运动已目视确认，见 [联调记录](keypoints_hdmi_20261025/README.md)；单目 OV5640 未到货。
 
@@ -12,7 +14,7 @@
 | [keypoints_20261025/](keypoints_20261025/README.md) | 无语义的身体/双手关键点：文件源速度、覆盖率和主机计时 | 两条文件冒烟；不是 USB 实时或定位精度验收 |
 | [dataset/](dataset/README.md) | 样本现状、补采计划、标签与来源审计 | 当前数据入口；审计不等于语义清洗完成 |
 | [r3/](../../project/analysis/r3/README.md) | 量化训练、HLS 对齐、综合报告与原始 JSON | 当前 PL 入口；当前网络资源/时序未通过 |
-| [m1_dtw_20261023/](m1_dtw_20261023/README.md) | 首轮关键点 DTW 的 26 类/90 条实验及特征、评测结果 | 历史证据；与 `vision/m1/` 的 8 类/28 条实验不同 |
+| [m1_dtw_20261023/](m1_dtw_20261023/README.md) | 首轮关键点 DTW 的 26 类/90 条实验及特征、评测结果 | 历史证据；与 `vision/src/vision/m1/` 的 8 类/28 条实验不同 |
 | [stereo_review_20261024.md](stereo_review_20261024.md) | 双目 Python 代码评审 | 日期快照；不是当前缺陷清单或硬件验收 |
 
 资料约定：

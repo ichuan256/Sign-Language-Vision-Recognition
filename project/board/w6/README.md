@@ -63,7 +63,7 @@ HLS C++ 读取完整 pixel，修改 data 后写出完整 pixel，并未主动清
 HDMI 出图通过。颜色与预设不同，暂未校正；不能仅凭观察断定具体映射原因。
 新增 `hdmi_display.py` 持续持有帧缓冲，避免短脚本退出后缓冲区被回收。
 时序修复构建现在写入 `timing_candidate/`，不直接覆盖本目录已点亮基线；
-进度和预算边界见 [时序报告目录](../../analysis/timing_20261018/)。
+进度和预算边界见 [时序报告目录](../../analysis/timing_20261018)。
 
 当前路由报告 WNS=0.451 ns、TNS=0、WHS=0.017 ns、THS=0。
 TIMING-4、TIMING-27、TIMING-36 已修复，并已重新实现与上板验证。
