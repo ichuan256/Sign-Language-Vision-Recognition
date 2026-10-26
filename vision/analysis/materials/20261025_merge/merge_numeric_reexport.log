@@ -1,1 +1,0 @@
-{"status": "partial_source_contract", "rtl_numeric_contract_ready": false, "input_mapping": {"count": 256, "differing_from_exact_rational": 254, "max_abs_raw_delta": 8160, "validation": "binary32 software model; no original NumPy or Vitis replay"}}
