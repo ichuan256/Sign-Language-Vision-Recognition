@@ -1,42 +1,5 @@
-# W6 source-synchronous interface budgets. Units: ns.
-# SPI RTL: 100 MHz fabric, Mode 0, 1 MHz SCLK, receive CE on rising SCLK.
-# MCP3008 DS20001295E: tDO<=200ns at 2.7V, tSU/tHD=50ns;
-# reserve a further 50ns for module/wire/clock round-trip on input and output.
-# This is an engineering wiring budget, not a measured cable characterization.
-create_generated_clock -name spia_external -source \
-    [get_pins system_i/sif_l/inst/u_spi/sclk_reg/C] \
-    -divide_by 100 [get_ports spia_sclk]
-set_input_delay -clock spia_external -clock_fall -max 250 [get_ports spia_miso]
-set_input_delay -clock spia_external -clock_fall -min 0 [get_ports spia_miso]
-# CE sample is 50 fabric cycles after the external falling edge, not
-# the immediately following 100 MHz edge. Hold restores that edge pair.
-set_multicycle_path 50 -setup -end -from [get_ports spia_miso]
-set_multicycle_path 49 -hold -end -from [get_ports spia_miso]
-set outputs [get_ports [list spia_mosi spia_cs*]]
-set_output_delay -clock spia_external -max 100 $outputs
-set_output_delay -clock spia_external -min -100 $outputs
-# MOSI changes on SCLK falling; CS has a longer transaction guard time.
-# Setup uses the preceding falling-edge CE; hold uses the FOLLOWING
-# falling-edge CE (500ns after sample), not an arbitrary fast-clock edge.
-set_multicycle_path 50 -setup -start -to $outputs
-set_multicycle_path 99 -hold -start -to $outputs
-create_generated_clock -name spib_external -source \
-    [get_pins system_i/sif_r/inst/u_spi/sclk_reg/C] \
-    -divide_by 100 [get_ports spib_sclk]
-set_input_delay -clock spib_external -clock_fall -max 250 [get_ports spib_miso]
-set_input_delay -clock spib_external -clock_fall -min 0 [get_ports spib_miso]
-# CE sample is 50 fabric cycles after the external falling edge, not
-# the immediately following 100 MHz edge. Hold restores that edge pair.
-set_multicycle_path 50 -setup -end -from [get_ports spib_miso]
-set_multicycle_path 49 -hold -end -from [get_ports spib_miso]
-set outputs [get_ports [list spib_mosi spib_cs*]]
-set_output_delay -clock spib_external -max 100 $outputs
-set_output_delay -clock spib_external -min -100 $outputs
-# MOSI changes on SCLK falling; CS has a longer transaction guard time.
-# Setup uses the preceding falling-edge CE; hold uses the FOLLOWING
-# falling-edge CE (500ns after sample), not an arbitrary fast-clock edge.
-set_multicycle_path 50 -setup -start -to $outputs
-set_multicycle_path 99 -hold -start -to $outputs
+# W6 audio / HDMI interface budgets. Units: ns.
+# Pmod A/B SPI interfaces removed on 2026-10-27.
 # PYNQ audio core: clk_cntr(4)=BCLK, clk_cntr(10)=LRCLK.
 # BCLK rises on count 16 and falls on count 32. Deserializer CE samples
 # one fabric cycle after the BCLK rising edge (17 cycles after falling).

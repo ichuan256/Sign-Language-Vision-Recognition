@@ -2,8 +2,8 @@
 //Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-//Date        : Tue Sep 22 00:52:31 2026
-//Host        : LAPTOP-2K88VM5F running 64-bit major release  (build 9200)
+//Date        : Tue Oct 27 01:42:28 2026
+//Host        : DESKTOP-4VOJJB1 running 64-bit major release  (build 9200)
 //Command     : generate_target system_wrapper.bd
 //Design      : system_wrapper
 //Purpose     : IP block netlist
@@ -32,14 +32,20 @@ module system_wrapper
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
-    spia_cs,
-    spia_miso,
-    spia_mosi,
-    spia_sclk,
-    spib_cs,
-    spib_miso,
-    spib_mosi,
-    spib_sclk);
+    IIC_1_scl_io,
+    IIC_1_sda_io,
+    audio_clk_10MHz,
+    bclk,
+    btn,
+    codec_addr,
+    hdmi_out_clk_n,
+    hdmi_out_clk_p,
+    hdmi_out_data_n,
+    hdmi_out_data_p,
+    hdmi_out_hpd,
+    lrclk,
+    sdata_i,
+    sdata_o);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -61,14 +67,20 @@ module system_wrapper
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
-  output [2:0]spia_cs;
-  input spia_miso;
-  output spia_mosi;
-  output spia_sclk;
-  output [2:0]spib_cs;
-  input spib_miso;
-  output spib_mosi;
-  output spib_sclk;
+  inout IIC_1_scl_io;
+  inout IIC_1_sda_io;
+  output audio_clk_10MHz;
+  output bclk;
+  input [3:0]btn;
+  output [1:0]codec_addr;
+  output hdmi_out_clk_n;
+  output hdmi_out_clk_p;
+  output [2:0]hdmi_out_data_n;
+  output [2:0]hdmi_out_data_p;
+  output [0:0]hdmi_out_hpd;
+  output lrclk;
+  input sdata_i;
+  output sdata_o;
 
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
@@ -91,15 +103,37 @@ module system_wrapper
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
-  wire [2:0]spia_cs;
-  wire spia_miso;
-  wire spia_mosi;
-  wire spia_sclk;
-  wire [2:0]spib_cs;
-  wire spib_miso;
-  wire spib_mosi;
-  wire spib_sclk;
+  wire IIC_1_scl_i;
+  wire IIC_1_scl_io;
+  wire IIC_1_scl_o;
+  wire IIC_1_scl_t;
+  wire IIC_1_sda_i;
+  wire IIC_1_sda_io;
+  wire IIC_1_sda_o;
+  wire IIC_1_sda_t;
+  wire audio_clk_10MHz;
+  wire bclk;
+  wire [3:0]btn;
+  wire [1:0]codec_addr;
+  wire hdmi_out_clk_n;
+  wire hdmi_out_clk_p;
+  wire [2:0]hdmi_out_data_n;
+  wire [2:0]hdmi_out_data_p;
+  wire [0:0]hdmi_out_hpd;
+  wire lrclk;
+  wire sdata_i;
+  wire sdata_o;
 
+  IOBUF IIC_1_scl_iobuf
+       (.I(IIC_1_scl_o),
+        .IO(IIC_1_scl_io),
+        .O(IIC_1_scl_i),
+        .T(IIC_1_scl_t));
+  IOBUF IIC_1_sda_iobuf
+       (.I(IIC_1_sda_o),
+        .IO(IIC_1_sda_io),
+        .O(IIC_1_sda_i),
+        .T(IIC_1_sda_t));
   system system_i
        (.DDR_addr(DDR_addr),
         .DDR_ba(DDR_ba),
@@ -122,12 +156,22 @@ module system_wrapper
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
         .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
-        .spia_cs(spia_cs),
-        .spia_miso(spia_miso),
-        .spia_mosi(spia_mosi),
-        .spia_sclk(spia_sclk),
-        .spib_cs(spib_cs),
-        .spib_miso(spib_miso),
-        .spib_mosi(spib_mosi),
-        .spib_sclk(spib_sclk));
+        .IIC_1_scl_i(IIC_1_scl_i),
+        .IIC_1_scl_o(IIC_1_scl_o),
+        .IIC_1_scl_t(IIC_1_scl_t),
+        .IIC_1_sda_i(IIC_1_sda_i),
+        .IIC_1_sda_o(IIC_1_sda_o),
+        .IIC_1_sda_t(IIC_1_sda_t),
+        .audio_clk_10MHz(audio_clk_10MHz),
+        .bclk(bclk),
+        .btn(btn),
+        .codec_addr(codec_addr),
+        .hdmi_out_clk_n(hdmi_out_clk_n),
+        .hdmi_out_clk_p(hdmi_out_clk_p),
+        .hdmi_out_data_n(hdmi_out_data_n),
+        .hdmi_out_data_p(hdmi_out_data_p),
+        .hdmi_out_hpd(hdmi_out_hpd),
+        .lrclk(lrclk),
+        .sdata_i(sdata_i),
+        .sdata_o(sdata_o));
 endmodule

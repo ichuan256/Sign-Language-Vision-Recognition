@@ -1,5 +1,6 @@
 # Run with glove.xpr open, before generate_target / synthesis.
 open_bd_design [get_files */system.bd]
+source [file join [file dirname [file normalize [info script]]] w6_release_pmod_spi.tcl]
 # Existing fabric BUFG drives clk_in1; local clk_wiz metadata explicitly
 # omits create_clock when PRIM_SOURCE=No_buffer. Preserve the PS master clock.
 set_property CONFIG.PRIM_SOURCE {No_buffer} [get_bd_cells clk_wiz_audio]

@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "removed_bd_port_groups": 8,
+  "removed_pin_assignments": 12,
+  "removed_external_nets": 8,
+  "retained_interfaces": [
+    "HDMI",
+    "audio/IIC_1",
+    "DDR",
+    "FIXED_IO",
+    "buttons"
+  ],
+  "retained_components_and_other_connections": "identical to original",
+  "miso_inputs": "both tied to const_zero",
+  "pmod_signal_pins_unassigned_in_w6_xdc": 16,
+  "audio_and_hdmi_timing": "identical to original",
+  "tracked_wrapper": "identical to new generated wrapper; no SPI ports",
+  "published_firmware_sha256_unchanged": {
+    "kws_hdmi.bit": "8ecb4eb10b1f11c22bd8e8a3505e4fb1c42b9fe23e8ba4bfdb4a1ebe6e878a00",
+    "kws_hdmi.hwh": "d84e1dfdcd35ea6a29ffab658e8e086ce8fd9455a49d0d8c44d6fe42d5b4d3e5"
+  },
+  "vivado_2024_1": {
+    "validate_bd_design_exit_code": 0,
+    "make_wrapper_exit_code": 0,
+    "repeated_release_hook_exit_code": 0
+  },
+  "not_run": [
+    "synthesis",
+    "implementation",
+    "bitstream generation",
+    "deployment",
+    "board test"
+  ]
+}

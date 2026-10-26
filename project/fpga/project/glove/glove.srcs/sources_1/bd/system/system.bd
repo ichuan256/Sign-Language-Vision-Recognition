@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x1746E6A3F3D043E9",
+      "boundary_crc": "0xD6B933159770E296",
       "device": "xc7z020clg400-1",
       "gen_directory": "../../../../glove.gen/sources_1/bd/system",
       "name": "system",
@@ -313,34 +313,6 @@
       }
     },
     "ports": {
-      "spia_sclk": {
-        "direction": "O"
-      },
-      "spia_mosi": {
-        "direction": "O"
-      },
-      "spia_miso": {
-        "direction": "I"
-      },
-      "spia_cs": {
-        "direction": "O",
-        "left": "2",
-        "right": "0"
-      },
-      "spib_sclk": {
-        "direction": "O"
-      },
-      "spib_mosi": {
-        "direction": "O"
-      },
-      "spib_miso": {
-        "direction": "I"
-      },
-      "spib_cs": {
-        "direction": "O",
-        "left": "2",
-        "right": "0"
-      },
       "audio_clk_10MHz": {
         "type": "clk",
         "direction": "O",
@@ -6181,7 +6153,9 @@
       "const_zero_dout": {
         "ports": [
           "const_zero/dout",
-          "proc_sys_reset_142M/aux_reset_in"
+          "proc_sys_reset_142M/aux_reset_in",
+          "sif_l/miso",
+          "sif_r/miso"
         ]
       },
       "gpio_io_i_0_1": {
@@ -6283,54 +6257,6 @@
         "ports": [
           "sdata_i",
           "audio_codec_ctrl_0/sdata_i"
-        ]
-      },
-      "sif_l_cs_n": {
-        "ports": [
-          "sif_l/cs_n",
-          "spia_cs"
-        ]
-      },
-      "sif_l_mosi": {
-        "ports": [
-          "sif_l/mosi",
-          "spia_mosi"
-        ]
-      },
-      "sif_l_sclk": {
-        "ports": [
-          "sif_l/sclk",
-          "spia_sclk"
-        ]
-      },
-      "sif_r_cs_n": {
-        "ports": [
-          "sif_r/cs_n",
-          "spib_cs"
-        ]
-      },
-      "sif_r_mosi": {
-        "ports": [
-          "sif_r/mosi",
-          "spib_mosi"
-        ]
-      },
-      "sif_r_sclk": {
-        "ports": [
-          "sif_r/sclk",
-          "spib_sclk"
-        ]
-      },
-      "spia_miso_1": {
-        "ports": [
-          "spia_miso",
-          "sif_l/miso"
-        ]
-      },
-      "spib_miso_1": {
-        "ports": [
-          "spib_miso",
-          "sif_r/miso"
         ]
       },
       "ts0_tick": {
