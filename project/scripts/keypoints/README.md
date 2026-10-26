@@ -84,8 +84,14 @@ F:\PLD\.venv-r3\Scripts\python.exe project/scripts/keypoints/build_hand_student.
 必须有复核者、`annotation_origin=human`和`human_verified=true`；没有确认的负样本时禁用presence训练。
 旧200项队列低清占比过高，不再作为本轮入口；新20帧队列与步骤见[清晰复核说明](../../analysis/keypoints_student_20261026/清晰复核说明.md)。
 不需要逐帧标注全部录像，先做3～5帧校准流程；无法判断样本清零掩码，不当作无手。
-已收到15项人工结果，ROI/关键点两类错误分别处理，见[人工接收记录](../../analysis/keypoints_student_20261027/README.md)。
+最新17项人工结果已冻结导入，96/128已复训；当前结果见[训练记录](../../analysis/keypoints_student_20261027/README.md)。
 `roi_rejected`或`roi_status=wrong`的记录不会成为无手标签；原裁剪/坐标不自动变换。
+
+本轮旧数据复训使用`--mask-outside-source --disable-presence`：前者屏蔽投影到原画外的教师点，
+不改原标签或人工坐标；后者因训练负例仅1条而关闭presence损失，并排除只提供辅助判断的图片，
+避免零损失图片影响BN。新教师导出默认写画外点掩码；复现旧报告时不要隐式加新策略。
+评测同样加`--mask-outside-source`，指尖误差沿用完整可见手包围框对角线归一化。
+BLAS线程默认1；本机并行评测曾分配内存失败，当前批次串行运行，不更改系统环境。
 
 ```powershell
 # 以下为工程闭环示例；输出目录均须是新的。正式标注前先完成清晰度与来源配额重筛。

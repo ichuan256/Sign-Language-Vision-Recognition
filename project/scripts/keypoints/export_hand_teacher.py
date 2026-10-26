@@ -11,7 +11,7 @@ import cv2
 import numpy as np
 from vision.keypoints.student_data import digest,hand_crop
 from vision.keypoints.review_sampling import hand_focus_score
-from vision.keypoints.review_geometry import review_context
+from vision.keypoints.review_geometry import review_context,source_exterior_flags
 
 
 def main():
@@ -55,7 +55,10 @@ def main():
                         try:rgb,points,affine,roi_side=hand_crop(frame,hand)
                         except ValueError as error:skipped[str(error)]+=1;continue
                         target=np.r_[points.reshape(-1),1.,float(side)].astype(np.float32)
-                        items.append((str(side),rgb,target,np.ones(65,np.float32),affine,roi_side,'teacher_positive'))
+                        mask=np.ones(65,np.float32)
+                        outside=source_exterior_flags(points[:,:2],affine,[frame.shape[1],frame.shape[0]])
+                        mask[:63].reshape(21,3)[outside]=0
+                        items.append((str(side),rgb,target,mask,affine,roi_side,'teacher_positive'))
                     if teacher_hands==0:no_hand_frames+=1
                     # One deterministic candidate region: never assume it is background truth.
                     h,w=frame.shape[:2];side=max(16,int(min(h,w)*.45));spanx=max(1,w-side);spany=max(1,h-side)
@@ -83,8 +86,10 @@ def main():
                             handedness_source='teacher' if suffix!='unknown' else 'none',teacher_confidence=None,
                             source_size=[w,h],affine_source_to_roi=affine.tolist(),affine_dtype=str(affine.dtype),ROI_side_source_pixels=float(roi_side),
                             focus_score=focus,focus_method='eroded_hand_hull_clipped_Laplacian_energy_v1',review_image_size=512,
+                            source_exterior_points_masked=int((mask[:63].reshape(21,3).sum(1)==0).sum()) if kind=='teacher_positive' else 0,
                             context='context/'+sid+'.jpg',image='images/'+sid+'.jpg',
                             initial_xy=initial,
+                            initial_visible=(mask[:63].reshape(21,3)[:,:2].all(1).tolist() if kind=='teacher_positive' else [False]*21),
                             review_status='pending'))
         finally:cap.release()
         if not sampled:raise ValueError('No frames from source')
@@ -108,6 +113,7 @@ def main():
         counts=dict(Counter(r['kind'] for r in records)),split_counts=dict(Counter(r['split'] for r in records)),
         records_sha256=digest(metadata),shards=shards,review_candidates=review,review_selection_policy=policy,skipped_geometry=dict(skipped),
         output_ABI='hand_student_65_v1',targets='63 normalized ROI xyz; presence; right-hand label',
+        geometry_mask_policy='teacher_source_exterior_v1; no occlusion visibility inferred',
         limitations=['All teacher landmarks are pseudo-labels; visibility and confidence are not supplied by Holistic',
             'Unknown candidate masks are zero; undetected hand is never a no-hand training label',
             'Teacher-guided crops do not validate autonomous detection; no manual GT until named review imported'])

@@ -65,7 +65,7 @@ function draw(){const c=$('canvas').getContext('2d');c.clearRect(0,0,512,512);if
  points.forEach((p,i)=>{if(!p||!visible[i])return;c.fillStyle=i===active?'#ffb000':'#22dd88';c.beginPath();c.arc(p[0]*511,p[1]*511,i===active?6:4,0,Math.PI*2);c.fill();c.fillStyle='white';c.fillText(String(i),p[0]*511+5,p[1]*511-5);});}
 function show(){if(!queue.length){$('notice').textContent='复核队列为空';return;}
  const r=queue[index],s=saved.get(r.sample_id);points=structuredClone(s?.landmarks_xy??r.initial_xy??Array(21).fill(null));
- visible=s?.visible?.slice()??points.map(p=>p!==null);active=0;$('point').value='0';$('visible').checked=visible[0];
+ visible=s?.visible?.slice()??r.initial_visible?.slice()??points.map(p=>p!==null);active=0;$('point').value='0';$('visible').checked=visible[0];
  $('presence').value=['ungradable','roi_rejected'].includes(s?.status)?'':(s?String(Number(s.presence)):(r.kind==='teacher_positive'?'1':''));
  $('roi').value=s?.roi_status??'';
  $('handedness').value=s?.handedness===null||s?.handedness===undefined?'':String(s.handedness);

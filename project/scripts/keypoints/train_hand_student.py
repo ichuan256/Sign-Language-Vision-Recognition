@@ -11,11 +11,14 @@ os.environ.setdefault('TF_USE_LEGACY_KERAS','1')
 os.environ.setdefault('TF_CPP_MIN_LOG_LEVEL','2')
 os.environ.setdefault('TF_NUM_INTRAOP_THREADS','4')
 os.environ.setdefault('TF_NUM_INTEROP_THREADS','2')
+os.environ.setdefault('OPENBLAS_NUM_THREADS','1')
+os.environ.setdefault('OMP_NUM_THREADS','1')
+os.environ.setdefault('MKL_NUM_THREADS','1')
 ROOT=Path(__file__).resolve().parents[3]
 sys.path.insert(0,str(ROOT))
 import numpy as np
 from project.scripts.keypoints.build_hand_student import build
-from vision.keypoints.student_data import load_dataset,augment,coordinate_metrics,digest
+from vision.keypoints.student_data import load_dataset,augment,coordinate_metrics,digest,training_partitions
 
 
 def evaluate(predictions,targets,masks,records):
@@ -23,6 +26,7 @@ def evaluate(predictions,targets,masks,records):
     for origin,key in [('teacher','teacher_agreement'),('human','human_accuracy')]:
         indices=[i for i,r in enumerate(records) if r['pose_source']==origin]
         report[key]=coordinate_metrics(predictions[indices],targets[indices],masks[indices]) if indices else None
+        report[origin+'_fingertip_metrics']=coordinate_metrics(predictions[indices],targets[indices],masks[indices],point_indices=(4,8,12,16,20)) if indices else None
     by_group={}
     for group in sorted({r['split_group'] for r in records}):
         ix=[i for i,r in enumerate(records) if r['split_group']==group]
@@ -48,22 +52,16 @@ def main():
     p.add_argument('--epochs',type=int,default=15);p.add_argument('--batch-size',type=int,default=16)
     p.add_argument('--patience',type=int,default=12);p.add_argument('--bn-momentum',type=float,default=.9)
     p.add_argument('--seed',type=int,default=20261026)
+    p.add_argument('--disable-presence',action='store_true',help='Coordinate pilot only; keep presence loss off despite a tiny negative seed')
+    p.add_argument('--mask-outside-source',action='store_true',help='Mask teacher points projecting outside the original source image; retain manual labels')
     a=p.parse_args();out=a.output.resolve()
     if out.exists() or not out.is_relative_to(ROOT/'project/_tmp'):raise ValueError('New project/_tmp training output required')
     if a.epochs<1 or a.batch_size<1 or a.patience<1 or not 0<a.bn_momentum<1 or any(s not in (96,128) for s in a.sizes):raise ValueError('Invalid training config')
-    images,y,m,records,data_report=load_dataset(a.data,a.reviews)
-    train=np.array([i for i,r in enumerate(records) if r['split']=='train' and m[i,:63].any()])
-    validation=np.array([i for i,r in enumerate(records) if r['split']=='validation' and m[i,:63].any()])
-    test=np.array([i for i,r in enumerate(records) if r['split']=='test' and m[i,:63].any()])
+    images,y,m,records,data_report=load_dataset(a.data,a.reviews,mask_outside_source=a.mask_outside_source)
+    partition=training_partitions(y,m,records,a.disable_presence)
+    train=partition['train'];validation=partition['coordinates']['validation'];test=partition['coordinates']['test']
     if min(len(train),len(validation),len(test))<5:raise ValueError('Need at least five labelled ROIs in every source split')
-    # Add human-reviewed negatives to train only. Unknown candidates have no training mask.
-    negatives=np.array([i for i,r in enumerate(records) if r['split']=='train' and m[i,63] and y[i,63]==0],dtype=int)
-    train=np.unique(np.r_[train,negatives])
-    presence_enabled=bool(len(negatives))
-    hand_values=set(y[train,64][m[train,64]>0].tolist());handedness_enabled=len(hand_values)==2
-    active=m.copy()
-    if not presence_enabled:active[:,63]=0
-    if not handedness_enabled:active[:,64]=0
+    presence_enabled=partition['presence_enabled'];handedness_enabled=partition['handedness_enabled'];active=partition['active_masks']
     spec_path=ROOT/'project/algo/keypoints/hand_student_v1.json';spec=json.loads(spec_path.read_text())
     mean_shape=np.divide((y[train,:63]*m[train,:63]).sum(0),m[train,:63].sum(0),out=np.zeros(63,np.float32),where=m[train,:63].sum(0)>0)
     out.mkdir(parents=True);runs=[]
@@ -127,7 +125,10 @@ def main():
         review_sha256=digest(a.reviews) if a.reviews else None,student_spec_sha256=digest(spec_path),
         trained_ROIs=len(train),validation_ROIs=len(validation),test_ROIs=len(test),
         selected_record_counts=dict(Counter(r['split'] for r in records)),
-        reviewed_negative_train_ROIs=len(negatives),presence_loss_enabled=presence_enabled,
+        reviewed_negative_train_ROIs=partition['negative_train_used'],reviewed_negative_train_ROIs_available=partition['negative_train_available'],
+        presence_loss_disabled_explicitly=a.disable_presence,presence_loss_enabled=presence_enabled,
+        source_exterior_masking_enabled=a.mask_outside_source,
+        source_exterior_points_masked=sum(r.get('source_exterior_points_masked',0) for r in records),
         handedness_loss_enabled=handedness_enabled,
         limitations=['Source-video group holdout; performer IDs remain unknown',
             'Pseudo-label agreement is not manually annotated landmark accuracy',

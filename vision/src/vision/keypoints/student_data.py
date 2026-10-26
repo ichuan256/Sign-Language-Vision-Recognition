@@ -136,7 +136,19 @@ def apply_reviews(targets,masks,records,path=None):
     return targets,masks,records
 
 
-def load_dataset(directory,reviews=None):
+def mask_teacher_source_exterior(targets,masks,records):
+    """Mask geometrically impossible teacher coordinates; retain labels and explicit human review."""
+    from .review_geometry import source_exterior_flags
+    masks=masks.copy();records=[dict(r) for r in records]
+    for i,row in enumerate(records):
+        if row.get('pose_source')!='teacher' or not masks[i,:63].any():continue
+        outside=source_exterior_flags(targets[i,:63].reshape(21,3)[:,:2],row['affine_source_to_roi'],row['source_size'])
+        masks[i,:63].reshape(21,3)[outside]=0
+        row['source_exterior_points_masked']=int(outside.sum())
+    return masks,records
+
+
+def load_dataset(directory,reviews=None,mask_outside_source=False):
     directory=Path(directory);report=json.loads((directory/'dataset.json').read_text())
     if not report['completed']:raise ValueError('Completed dataset required')
     if digest(directory/'records.jsonl')!=report['records_sha256']:raise ValueError('Metadata SHA mismatch')
@@ -154,19 +166,42 @@ def load_dataset(directory,reviews=None):
             if key in mapping and mapping[key]!=r['split']:raise ValueError('Source leakage across splits')
             mapping[key]=r['split']
     targets,masks,records=apply_reviews(np.concatenate(targets),np.concatenate(masks),records,reviews)
+    if mask_outside_source:masks,records=mask_teacher_source_exterior(targets,masks,records)
     return np.concatenate(images),targets,masks,records,report
 
 
-def coordinate_metrics(predictions,targets,masks):
+def training_partitions(targets,masks,records,disable_presence=False):
+    """Choose supervised rows explicitly; zero-loss negative crops must not affect coordinate-only BN."""
+    coordinates={s:np.array([i for i,r in enumerate(records) if r['split']==s and masks[i,:63].any()],dtype=int) for s in SPLITS}
+    negatives=np.array([i for i,r in enumerate(records) if r['split']=='train' and r.get('presence_source')=='human'
+        and masks[i,63] and targets[i,63]==0],dtype=int)
+    presence_enabled=bool(len(negatives)) and not disable_presence
+    auxiliary=[i for i,r in enumerate(records) if r['split']=='train' and r.get('presence_source')=='human' and masks[i,63]]
+    train=np.unique(np.r_[coordinates['train'],np.asarray(auxiliary,dtype=int)]) if presence_enabled else coordinates['train']
+    active=masks.copy()
+    if not presence_enabled:active[:,63]=0
+    handedness_enabled=len(set(targets[train,64][masks[train,64]>0].tolist()))==2
+    if not handedness_enabled:active[:,64]=0
+    return dict(coordinates=coordinates,train=train,active_masks=active,presence_enabled=presence_enabled,
+        handedness_enabled=handedness_enabled,negative_train_available=len(negatives),
+        negative_train_used=len(negatives) if presence_enabled else 0)
+
+
+def coordinate_metrics(predictions,targets,masks,point_indices=None):
     pred=np.asarray(predictions)[:,:63].reshape(-1,21,3)[:,:,:2]
     truth=np.asarray(targets)[:,:63].reshape(-1,21,3)[:,:,:2]
     valid=np.asarray(masks)[:,:63].reshape(-1,21,3)[:,:,:2].all(2)
+    selection=np.ones(21,bool)
+    if point_indices is not None:
+        selection[:]=False;selection[list(point_indices)]=True
     errors=[];frames=0
     for p,t,v in zip(pred,truth,valid):
         if v.sum()<2:continue
         diagonal=np.linalg.norm(t[v].max(0)-t[v].min(0))
         if diagonal<1e-6:continue
-        errors.extend((np.linalg.norm(p[v]-t[v],axis=1)/diagonal).tolist());frames+=1
+        chosen=v&selection
+        if not chosen.any():continue
+        errors.extend((np.linalg.norm(p[chosen]-t[chosen],axis=1)/diagonal).tolist());frames+=1
     return None if not errors else dict(ROIs=frames,visible_points=len(errors),
         mean_normalized_error=float(np.mean(errors)),PCK_at_005=float(np.mean(np.asarray(errors)<=.05)))
 

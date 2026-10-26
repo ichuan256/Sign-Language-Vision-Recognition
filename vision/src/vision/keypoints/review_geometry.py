@@ -19,6 +19,13 @@ def roi_polygon(affine):
     return polygon,inverse
 
 
+def source_exterior_flags(normalized_xy,affine,source_size):
+    _,inverse=roi_polygon(affine)
+    xy=np.asarray(normalized_xy)*127
+    source=xy@inverse[:,:2].T+inverse[:,2];w,h=source_size
+    return ((source[:,0]<0)|(source[:,0]>w-1)|(source[:,1]<0)|(source[:,1]>h-1))
+
+
 def review_context(frame,affine,initial_xy=None,width=960):
     polygon,inverse=roi_polygon(affine)
     image=frame.copy()

@@ -1,0 +1,1828 @@
+{
+  "status": "reviewed_float_coordinate_pilot_not_accepted_for_deployment",
+  "intake": {
+    "scope": "Human review intake and unchanged-crop audit; not training or independent accuracy acceptance",
+    "source_reviews": "vision/video/review/hand_review_annotations.jsonl",
+    "source_review_sha256": "fddf71e8dca28c740767907e200db35734b1ba14c97c71e0d35342d8dabe2d79",
+    "dataset_sha256": "c8dfd60a21703094a5fea947835dccbe9234624ff324590dc441d8ebaf75b3ba",
+    "records_sha256": "555a5891f9dbd441f1aab3b479c90f1d921091ee56a1e84ca929ac8fa8e79d51",
+    "source_queue_sha256": "7a0b3ba5559f1b22853e97338c71d72e8f9500f931989f848e3cb92224808483",
+    "original_counts": {
+      "rows": 17,
+      "status": {
+        "accepted": 14,
+        "roi_rejected": 2,
+        "ungradable": 1
+      },
+      "accepted_presence_positive": 12,
+      "accepted_presence_negative": 2,
+      "coordinate_annotations": 11
+    },
+    "usable_counts": {
+      "rows": 17,
+      "status": {
+        "accepted": 14,
+        "roi_rejected": 2,
+        "ungradable": 1
+      },
+      "accepted_presence_positive": 12,
+      "accepted_presence_negative": 2,
+      "coordinate_annotations": 11
+    },
+    "unreviewed_queue_items": 3,
+    "held_for_human_recheck": [],
+    "checked_sources": 13,
+    "mapping_checks": [
+      {
+        "sample_id": "368e3e7f6e3e6ec9_25_1",
+        "source_SHA_passed": true,
+        "affine_dtype": "float64",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "0b44459bb50a215f_0_unknown",
+        "source_SHA_passed": true,
+        "affine_dtype": "float32",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "370e2395a6642256_34_1",
+        "source_SHA_passed": true,
+        "affine_dtype": "float64",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "0ed854db7a1eb736_0_unknown",
+        "source_SHA_passed": true,
+        "affine_dtype": "float32",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "1a01d6bd2cc8afe6_29_1",
+        "source_SHA_passed": true,
+        "affine_dtype": "float64",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "1a01d6bd2cc8afe6_0_unknown",
+        "source_SHA_passed": true,
+        "affine_dtype": "float32",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "c127f97c5ee8f878_29_1",
+        "source_SHA_passed": true,
+        "affine_dtype": "float64",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "38c7688f3cd41029_0_unknown",
+        "source_SHA_passed": true,
+        "affine_dtype": "float32",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "368e3e7f6e3e6ec9_15_1",
+        "source_SHA_passed": true,
+        "affine_dtype": "float64",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "0b44459bb50a215f_10_unknown",
+        "source_SHA_passed": true,
+        "affine_dtype": "float32",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "370e2395a6642256_24_1",
+        "source_SHA_passed": true,
+        "affine_dtype": "float64",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "0ed854db7a1eb736_10_unknown",
+        "source_SHA_passed": true,
+        "affine_dtype": "float32",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "5ccbf1045719f25f_48_1",
+        "source_SHA_passed": true,
+        "affine_dtype": "float64",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "2603b0d5f7b5131b_0_unknown",
+        "source_SHA_passed": true,
+        "affine_dtype": "float32",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "c127f97c5ee8f878_15_1",
+        "source_SHA_passed": true,
+        "affine_dtype": "float64",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "38c7688f3cd41029_10_unknown",
+        "source_SHA_passed": true,
+        "affine_dtype": "float32",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "9ec1852c8c07abd4_75_1",
+        "source_SHA_passed": true,
+        "affine_dtype": "float64",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "d336080e77dc33bb_34_0",
+        "source_SHA_passed": true,
+        "affine_dtype": "float64",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "75f5a16fb745fc42_29_1",
+        "source_SHA_passed": true,
+        "affine_dtype": "float64",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      },
+      {
+        "sample_id": "ef81ac99ba5add22_34_1",
+        "source_SHA_passed": true,
+        "affine_dtype": "float64",
+        "review_JPEG_exact_match": true,
+        "training_tensor_exact_match": true
+      }
+    ],
+    "original_annotations_modified": false,
+    "crop_coordinates_modified": false,
+    "usable_reviews_sha256": "b07650e503aaf3661fe47fdcbc71f271a67070417168660839c335c3de81a665",
+    "review_page_sha256": "d72fd9196fb809fa8811be81a8bd7406be106a0d8bd992f27d2e50608508eebd",
+    "new_student_trained": false
+  },
+  "training_preflight": {
+    "train": {
+      "total": 629,
+      "coordinate_ROIs": 320,
+      "human_coordinate_ROIs": 6,
+      "human_positive_presence": 7,
+      "human_negative_presence": 1,
+      "rejected_or_ungradable": 1
+    },
+    "validation": {
+      "total": 230,
+      "coordinate_ROIs": 106,
+      "human_coordinate_ROIs": 3,
+      "human_positive_presence": 3,
+      "human_negative_presence": 1,
+      "rejected_or_ungradable": 1
+    },
+    "test": {
+      "total": 341,
+      "coordinate_ROIs": 188,
+      "human_coordinate_ROIs": 2,
+      "human_positive_presence": 2,
+      "human_negative_presence": 0,
+      "rejected_or_ungradable": 1
+    },
+    "training_decision": {
+      "presence_enabled": false,
+      "reason": "Only one human-reviewed training negative; coordinate pilot excludes auxiliary-only crops",
+      "train_ROIs": 320
+    }
+  },
+  "training": {
+    "status": "float_pseudo_label_pilot_trained_not_deployable",
+    "runs": [
+      {
+        "input_size": 96,
+        "epochs": 57,
+        "best_epoch": 45,
+        "elapsed_s": 21.984495399985462,
+        "history": [
+          {
+            "epoch": 1,
+            "loss": 0.10512247644364833,
+            "validation_jitter_macro_source_NME": 0.22830614718042794
+          },
+          {
+            "epoch": 2,
+            "loss": 0.09647295624017715,
+            "validation_jitter_macro_source_NME": 0.22159474373193408
+          },
+          {
+            "epoch": 3,
+            "loss": 0.09259159117937088,
+            "validation_jitter_macro_source_NME": 0.24138542332158125
+          },
+          {
+            "epoch": 4,
+            "loss": 0.08891774825751782,
+            "validation_jitter_macro_source_NME": 0.2518939882821741
+          },
+          {
+            "epoch": 5,
+            "loss": 0.09047578945755959,
+            "validation_jitter_macro_source_NME": 0.24152371790073046
+          },
+          {
+            "epoch": 6,
+            "loss": 0.08464018292725087,
+            "validation_jitter_macro_source_NME": 0.23124925362962986
+          },
+          {
+            "epoch": 7,
+            "loss": 0.08274494148790837,
+            "validation_jitter_macro_source_NME": 0.22868763160624464
+          },
+          {
+            "epoch": 8,
+            "loss": 0.08279251791536808,
+            "validation_jitter_macro_source_NME": 0.23624651283786613
+          },
+          {
+            "epoch": 9,
+            "loss": 0.07932942025363446,
+            "validation_jitter_macro_source_NME": 0.22778081252643034
+          },
+          {
+            "epoch": 10,
+            "loss": 0.07801300063729286,
+            "validation_jitter_macro_source_NME": 0.23199879504691992
+          },
+          {
+            "epoch": 11,
+            "loss": 0.07521414682269097,
+            "validation_jitter_macro_source_NME": 0.22598012561991893
+          },
+          {
+            "epoch": 12,
+            "loss": 0.07491966970264911,
+            "validation_jitter_macro_source_NME": 0.22203570912168746
+          },
+          {
+            "epoch": 13,
+            "loss": 0.07457387968897819,
+            "validation_jitter_macro_source_NME": 0.2206917808551404
+          },
+          {
+            "epoch": 14,
+            "loss": 0.07340964116156101,
+            "validation_jitter_macro_source_NME": 0.22005327846276834
+          },
+          {
+            "epoch": 15,
+            "loss": 0.07179467733949423,
+            "validation_jitter_macro_source_NME": 0.2168395109423651
+          },
+          {
+            "epoch": 16,
+            "loss": 0.07027576398104429,
+            "validation_jitter_macro_source_NME": 0.21418000706664908
+          },
+          {
+            "epoch": 17,
+            "loss": 0.06942043267190456,
+            "validation_jitter_macro_source_NME": 0.21496540507227727
+          },
+          {
+            "epoch": 18,
+            "loss": 0.06851696260273457,
+            "validation_jitter_macro_source_NME": 0.21882690006309363
+          },
+          {
+            "epoch": 19,
+            "loss": 0.06887064129114151,
+            "validation_jitter_macro_source_NME": 0.21781413236729433
+          },
+          {
+            "epoch": 20,
+            "loss": 0.06808018684387207,
+            "validation_jitter_macro_source_NME": 0.21945819012724654
+          },
+          {
+            "epoch": 21,
+            "loss": 0.06508706603199244,
+            "validation_jitter_macro_source_NME": 0.20882993272073408
+          },
+          {
+            "epoch": 22,
+            "loss": 0.06644951216876507,
+            "validation_jitter_macro_source_NME": 0.20567705956024565
+          },
+          {
+            "epoch": 23,
+            "loss": 0.06399048250168562,
+            "validation_jitter_macro_source_NME": 0.20752689858306828
+          },
+          {
+            "epoch": 24,
+            "loss": 0.06524346061050892,
+            "validation_jitter_macro_source_NME": 0.20788086302700018
+          },
+          {
+            "epoch": 25,
+            "loss": 0.06262138113379478,
+            "validation_jitter_macro_source_NME": 0.21050522133894178
+          },
+          {
+            "epoch": 26,
+            "loss": 0.062476742826402185,
+            "validation_jitter_macro_source_NME": 0.20081575880178248
+          },
+          {
+            "epoch": 27,
+            "loss": 0.06553277876228095,
+            "validation_jitter_macro_source_NME": 0.20941286937725556
+          },
+          {
+            "epoch": 28,
+            "loss": 0.06269302945584058,
+            "validation_jitter_macro_source_NME": 0.2052550267007396
+          },
+          {
+            "epoch": 29,
+            "loss": 0.06332627572119236,
+            "validation_jitter_macro_source_NME": 0.20830489456715653
+          },
+          {
+            "epoch": 30,
+            "loss": 0.061902893148362635,
+            "validation_jitter_macro_source_NME": 0.20758326374851285
+          },
+          {
+            "epoch": 31,
+            "loss": 0.06192504875361919,
+            "validation_jitter_macro_source_NME": 0.20547366957275842
+          },
+          {
+            "epoch": 32,
+            "loss": 0.0612317094579339,
+            "validation_jitter_macro_source_NME": 0.20479602969155083
+          },
+          {
+            "epoch": 33,
+            "loss": 0.06218736935406923,
+            "validation_jitter_macro_source_NME": 0.2000235507799468
+          },
+          {
+            "epoch": 34,
+            "loss": 0.05917959902435541,
+            "validation_jitter_macro_source_NME": 0.20177922913756194
+          },
+          {
+            "epoch": 35,
+            "loss": 0.061209375783801076,
+            "validation_jitter_macro_source_NME": 0.2062309227794764
+          },
+          {
+            "epoch": 36,
+            "loss": 0.0609926588833332,
+            "validation_jitter_macro_source_NME": 0.20044926792151108
+          },
+          {
+            "epoch": 37,
+            "loss": 0.05908422488719225,
+            "validation_jitter_macro_source_NME": 0.2052438139194127
+          },
+          {
+            "epoch": 38,
+            "loss": 0.05757825896143913,
+            "validation_jitter_macro_source_NME": 0.2054305040683055
+          },
+          {
+            "epoch": 39,
+            "loss": 0.058765537850558755,
+            "validation_jitter_macro_source_NME": 0.2065833703568439
+          },
+          {
+            "epoch": 40,
+            "loss": 0.059063742868602276,
+            "validation_jitter_macro_source_NME": 0.20228892667724874
+          },
+          {
+            "epoch": 41,
+            "loss": 0.058673320524394515,
+            "validation_jitter_macro_source_NME": 0.20505519082050538
+          },
+          {
+            "epoch": 42,
+            "loss": 0.05735204219818115,
+            "validation_jitter_macro_source_NME": 0.2046413615529584
+          },
+          {
+            "epoch": 43,
+            "loss": 0.05719950683414936,
+            "validation_jitter_macro_source_NME": 0.2040552346040939
+          },
+          {
+            "epoch": 44,
+            "loss": 0.05677599478513003,
+            "validation_jitter_macro_source_NME": 0.20259507195629278
+          },
+          {
+            "epoch": 45,
+            "loss": 0.05708216615021229,
+            "validation_jitter_macro_source_NME": 0.1998033588951932
+          },
+          {
+            "epoch": 46,
+            "loss": 0.057085863687098025,
+            "validation_jitter_macro_source_NME": 0.2024500868575446
+          },
+          {
+            "epoch": 47,
+            "loss": 0.05631796475499869,
+            "validation_jitter_macro_source_NME": 0.20312012620565675
+          },
+          {
+            "epoch": 48,
+            "loss": 0.05684041790664196,
+            "validation_jitter_macro_source_NME": 0.2063587337477487
+          },
+          {
+            "epoch": 49,
+            "loss": 0.05467136539518833,
+            "validation_jitter_macro_source_NME": 0.20120350577033688
+          },
+          {
+            "epoch": 50,
+            "loss": 0.0557694785296917,
+            "validation_jitter_macro_source_NME": 0.20225414738019937
+          },
+          {
+            "epoch": 51,
+            "loss": 0.05431877635419369,
+            "validation_jitter_macro_source_NME": 0.20971936872048327
+          },
+          {
+            "epoch": 52,
+            "loss": 0.057337905280292034,
+            "validation_jitter_macro_source_NME": 0.21555647664817773
+          },
+          {
+            "epoch": 53,
+            "loss": 0.05586837995797396,
+            "validation_jitter_macro_source_NME": 0.20064396916192395
+          },
+          {
+            "epoch": 54,
+            "loss": 0.05447279922664165,
+            "validation_jitter_macro_source_NME": 0.20505238299664844
+          },
+          {
+            "epoch": 55,
+            "loss": 0.05181685481220484,
+            "validation_jitter_macro_source_NME": 0.20850843660569984
+          },
+          {
+            "epoch": 56,
+            "loss": 0.052768060751259324,
+            "validation_jitter_macro_source_NME": 0.20532795784817282
+          },
+          {
+            "epoch": 57,
+            "loss": 0.05245574079453945,
+            "validation_jitter_macro_source_NME": 0.2039617508362268
+          }
+        ],
+        "evaluation": {
+          "validation": {
+            "canonical_ROI": {
+              "teacher_agreement": {
+                "ROIs": 103,
+                "visible_points": 2128,
+                "mean_normalized_error": 0.20470736339424397,
+                "PCK_at_005": 0.05545112781954887
+              },
+              "teacher_fingertip_metrics": {
+                "ROIs": 103,
+                "visible_points": 504,
+                "mean_normalized_error": 0.2538331674235422,
+                "PCK_at_005": 0.037698412698412696
+              },
+              "human_accuracy": {
+                "ROIs": 3,
+                "visible_points": 63,
+                "mean_normalized_error": 0.20295944761869217,
+                "PCK_at_005": 0.06349206349206349
+              },
+              "human_fingertip_metrics": {
+                "ROIs": 3,
+                "visible_points": 15,
+                "mean_normalized_error": 0.2832903302895526,
+                "PCK_at_005": 0.13333333333333333
+              },
+              "per_source_group_supervision_agreement": {
+                "NL_lesson_10": {
+                  "ROIs": 106,
+                  "visible_points": 2191,
+                  "mean_normalized_error": 0.20465710383520255,
+                  "PCK_at_005": 0.05568233683249658
+                }
+              },
+              "macro_source_group_NME": 0.20465710383520255,
+              "human_fast_motion_accuracy": null,
+              "human_test_unique_frames": 3,
+              "train_mean_shape_baseline": {
+                "teacher_agreement": {
+                  "ROIs": 103,
+                  "visible_points": 2128,
+                  "mean_normalized_error": 0.21004696745408832,
+                  "PCK_at_005": 0.03712406015037594
+                },
+                "teacher_fingertip_metrics": {
+                  "ROIs": 103,
+                  "visible_points": 504,
+                  "mean_normalized_error": 0.24676011787683128,
+                  "PCK_at_005": 0.01984126984126984
+                },
+                "human_accuracy": {
+                  "ROIs": 3,
+                  "visible_points": 63,
+                  "mean_normalized_error": 0.21305285751937875,
+                  "PCK_at_005": 0.047619047619047616
+                },
+                "human_fingertip_metrics": {
+                  "ROIs": 3,
+                  "visible_points": 15,
+                  "mean_normalized_error": 0.30938389897346497,
+                  "PCK_at_005": 0.0
+                },
+                "per_source_group_supervision_agreement": {
+                  "NL_lesson_10": {
+                    "ROIs": 106,
+                    "visible_points": 2191,
+                    "mean_normalized_error": 0.21013339879781873,
+                    "PCK_at_005": 0.037425832952989506
+                  }
+                },
+                "macro_source_group_NME": 0.21013339879781873,
+                "human_fast_motion_accuracy": null,
+                "human_test_unique_frames": 3
+              }
+            },
+            "fixed_jitter_ROI": {
+              "teacher_agreement": {
+                "ROIs": 103,
+                "visible_points": 2128,
+                "mean_normalized_error": 0.1995149670384082,
+                "PCK_at_005": 0.06766917293233082
+              },
+              "teacher_fingertip_metrics": {
+                "ROIs": 103,
+                "visible_points": 504,
+                "mean_normalized_error": 0.24530538034048818,
+                "PCK_at_005": 0.041666666666666664
+              },
+              "human_accuracy": {
+                "ROIs": 3,
+                "visible_points": 63,
+                "mean_normalized_error": 0.20954459494659824,
+                "PCK_at_005": 0.12698412698412698
+              },
+              "human_fingertip_metrics": {
+                "ROIs": 3,
+                "visible_points": 15,
+                "mean_normalized_error": 0.32125451738635696,
+                "PCK_at_005": 0.06666666666666667
+              },
+              "per_source_group_supervision_agreement": {
+                "NL_lesson_10": {
+                  "ROIs": 106,
+                  "visible_points": 2191,
+                  "mean_normalized_error": 0.1998033588951932,
+                  "PCK_at_005": 0.06937471474212688
+                }
+              },
+              "macro_source_group_NME": 0.1998033588951932,
+              "human_fast_motion_accuracy": null,
+              "human_test_unique_frames": 3,
+              "train_mean_shape_baseline": {
+                "teacher_agreement": {
+                  "ROIs": 103,
+                  "visible_points": 2128,
+                  "mean_normalized_error": 0.22216114618783095,
+                  "PCK_at_005": 0.03430451127819549
+                },
+                "teacher_fingertip_metrics": {
+                  "ROIs": 103,
+                  "visible_points": 504,
+                  "mean_normalized_error": 0.256578434787188,
+                  "PCK_at_005": 0.023809523809523808
+                },
+                "human_accuracy": {
+                  "ROIs": 3,
+                  "visible_points": 63,
+                  "mean_normalized_error": 0.2424032384647973,
+                  "PCK_at_005": 0.09523809523809523
+                },
+                "human_fingertip_metrics": {
+                  "ROIs": 3,
+                  "visible_points": 15,
+                  "mean_normalized_error": 0.34840157330036164,
+                  "PCK_at_005": 0.0
+                },
+                "per_source_group_supervision_agreement": {
+                  "NL_lesson_10": {
+                    "ROIs": 106,
+                    "visible_points": 2191,
+                    "mean_normalized_error": 0.2227431871798204,
+                    "PCK_at_005": 0.03605659516202647
+                  }
+                },
+                "macro_source_group_NME": 0.2227431871798204,
+                "human_fast_motion_accuracy": null,
+                "human_test_unique_frames": 3
+              }
+            }
+          },
+          "test": {
+            "canonical_ROI": {
+              "teacher_agreement": {
+                "ROIs": 186,
+                "visible_points": 3728,
+                "mean_normalized_error": 0.18562687115152687,
+                "PCK_at_005": 0.08878755364806867
+              },
+              "teacher_fingertip_metrics": {
+                "ROIs": 177,
+                "visible_points": 873,
+                "mean_normalized_error": 0.22775466627849933,
+                "PCK_at_005": 0.045819014891179836
+              },
+              "human_accuracy": {
+                "ROIs": 2,
+                "visible_points": 42,
+                "mean_normalized_error": 0.1972347308127653,
+                "PCK_at_005": 0.023809523809523808
+              },
+              "human_fingertip_metrics": {
+                "ROIs": 2,
+                "visible_points": 10,
+                "mean_normalized_error": 0.26914659291505816,
+                "PCK_at_005": 0.0
+              },
+              "per_source_group_supervision_agreement": {
+                "NL_lesson_09": {
+                  "ROIs": 188,
+                  "visible_points": 3770,
+                  "mean_normalized_error": 0.18575618948197037,
+                  "PCK_at_005": 0.08806366047745358
+                }
+              },
+              "macro_source_group_NME": 0.18575618948197037,
+              "human_fast_motion_accuracy": null,
+              "human_test_unique_frames": 2,
+              "train_mean_shape_baseline": {
+                "teacher_agreement": {
+                  "ROIs": 186,
+                  "visible_points": 3728,
+                  "mean_normalized_error": 0.1998666853581749,
+                  "PCK_at_005": 0.053111587982832616
+                },
+                "teacher_fingertip_metrics": {
+                  "ROIs": 177,
+                  "visible_points": 873,
+                  "mean_normalized_error": 0.24048681209479403,
+                  "PCK_at_005": 0.026345933562428408
+                },
+                "human_accuracy": {
+                  "ROIs": 2,
+                  "visible_points": 42,
+                  "mean_normalized_error": 0.17639991046772116,
+                  "PCK_at_005": 0.11904761904761904
+                },
+                "human_fingertip_metrics": {
+                  "ROIs": 2,
+                  "visible_points": 10,
+                  "mean_normalized_error": 0.2733037270605564,
+                  "PCK_at_005": 0.0
+                },
+                "per_source_group_supervision_agreement": {
+                  "NL_lesson_09": {
+                    "ROIs": 188,
+                    "visible_points": 3770,
+                    "mean_normalized_error": 0.19960525179175606,
+                    "PCK_at_005": 0.05384615384615385
+                  }
+                },
+                "macro_source_group_NME": 0.19960525179175606,
+                "human_fast_motion_accuracy": null,
+                "human_test_unique_frames": 2
+              }
+            },
+            "fixed_jitter_ROI": {
+              "teacher_agreement": {
+                "ROIs": 186,
+                "visible_points": 3728,
+                "mean_normalized_error": 0.20075334522336305,
+                "PCK_at_005": 0.06062231759656652
+              },
+              "teacher_fingertip_metrics": {
+                "ROIs": 177,
+                "visible_points": 873,
+                "mean_normalized_error": 0.24261644001909344,
+                "PCK_at_005": 0.041237113402061855
+              },
+              "human_accuracy": {
+                "ROIs": 2,
+                "visible_points": 42,
+                "mean_normalized_error": 0.20906698827942213,
+                "PCK_at_005": 0.09523809523809523
+              },
+              "human_fingertip_metrics": {
+                "ROIs": 2,
+                "visible_points": 10,
+                "mean_normalized_error": 0.2837421768344939,
+                "PCK_at_005": 0.1
+              },
+              "per_source_group_supervision_agreement": {
+                "NL_lesson_09": {
+                  "ROIs": 188,
+                  "visible_points": 3770,
+                  "mean_normalized_error": 0.20084596405847033,
+                  "PCK_at_005": 0.0610079575596817
+                }
+              },
+              "macro_source_group_NME": 0.20084596405847033,
+              "human_fast_motion_accuracy": null,
+              "human_test_unique_frames": 2,
+              "train_mean_shape_baseline": {
+                "teacher_agreement": {
+                  "ROIs": 186,
+                  "visible_points": 3728,
+                  "mean_normalized_error": 0.22326196778027038,
+                  "PCK_at_005": 0.03648068669527897
+                },
+                "teacher_fingertip_metrics": {
+                  "ROIs": 177,
+                  "visible_points": 873,
+                  "mean_normalized_error": 0.2575023673476922,
+                  "PCK_at_005": 0.021764032073310423
+                },
+                "human_accuracy": {
+                  "ROIs": 2,
+                  "visible_points": 42,
+                  "mean_normalized_error": 0.18159768752576338,
+                  "PCK_at_005": 0.09523809523809523
+                },
+                "human_fingertip_metrics": {
+                  "ROIs": 2,
+                  "visible_points": 10,
+                  "mean_normalized_error": 0.254730649292469,
+                  "PCK_at_005": 0.0
+                },
+                "per_source_group_supervision_agreement": {
+                  "NL_lesson_09": {
+                    "ROIs": 188,
+                    "visible_points": 3770,
+                    "mean_normalized_error": 0.22279780338486208,
+                    "PCK_at_005": 0.03713527851458886
+                  }
+                },
+                "macro_source_group_NME": 0.22279780338486208,
+                "human_fast_motion_accuracy": null,
+                "human_test_unique_frames": 2
+              }
+            }
+          }
+        },
+        "model_sha256": "77f9dee94d484ebdf3a44f9c4ac62c9f471d234a45fd20eab02c54cc1967c9fb",
+        "model_file": "hand_student_96_FLOAT_PILOT.keras",
+        "trained": true,
+        "quantized": false,
+        "HLS_validated": false,
+        "board_deployed": false,
+        "human_accuracy_gate_passed": false,
+        "promotion_blockers": [
+          "Independent human test set and reviewed negative coverage have not been accepted",
+          "No QAT, integer/HLS parity, detector or board latency validation"
+        ],
+        "human_test_metrics_present": true
+      },
+      {
+        "input_size": 128,
+        "epochs": 51,
+        "best_epoch": 39,
+        "elapsed_s": 25.369236099999398,
+        "history": [
+          {
+            "epoch": 1,
+            "loss": 0.12361519448459149,
+            "validation_jitter_macro_source_NME": 0.23915036650912666
+          },
+          {
+            "epoch": 2,
+            "loss": 0.10656111426651478,
+            "validation_jitter_macro_source_NME": 0.22384700975442473
+          },
+          {
+            "epoch": 3,
+            "loss": 0.10277928076684476,
+            "validation_jitter_macro_source_NME": 0.2377666102204555
+          },
+          {
+            "epoch": 4,
+            "loss": 0.09882263019680977,
+            "validation_jitter_macro_source_NME": 0.24438338982447597
+          },
+          {
+            "epoch": 5,
+            "loss": 0.0961900543421507,
+            "validation_jitter_macro_source_NME": 0.24836515013973554
+          },
+          {
+            "epoch": 6,
+            "loss": 0.09612606763839722,
+            "validation_jitter_macro_source_NME": 0.2432797449597998
+          },
+          {
+            "epoch": 7,
+            "loss": 0.09067924693226814,
+            "validation_jitter_macro_source_NME": 0.2608665711494458
+          },
+          {
+            "epoch": 8,
+            "loss": 0.08631853275001049,
+            "validation_jitter_macro_source_NME": 0.25187832411864897
+          },
+          {
+            "epoch": 9,
+            "loss": 0.0858259804546833,
+            "validation_jitter_macro_source_NME": 0.22893201591736467
+          },
+          {
+            "epoch": 10,
+            "loss": 0.08156933300197125,
+            "validation_jitter_macro_source_NME": 0.22706835756015878
+          },
+          {
+            "epoch": 11,
+            "loss": 0.07935954295098782,
+            "validation_jitter_macro_source_NME": 0.2301480537733137
+          },
+          {
+            "epoch": 12,
+            "loss": 0.07696346119046212,
+            "validation_jitter_macro_source_NME": 0.22580933659137678
+          },
+          {
+            "epoch": 13,
+            "loss": 0.07587768286466598,
+            "validation_jitter_macro_source_NME": 0.2178169096277458
+          },
+          {
+            "epoch": 14,
+            "loss": 0.07533555775880814,
+            "validation_jitter_macro_source_NME": 0.21308917700496235
+          },
+          {
+            "epoch": 15,
+            "loss": 0.07513131126761437,
+            "validation_jitter_macro_source_NME": 0.2134856163696881
+          },
+          {
+            "epoch": 16,
+            "loss": 0.07140556294471026,
+            "validation_jitter_macro_source_NME": 0.20898339302831218
+          },
+          {
+            "epoch": 17,
+            "loss": 0.0705692669376731,
+            "validation_jitter_macro_source_NME": 0.2186708033770503
+          },
+          {
+            "epoch": 18,
+            "loss": 0.06942312885075808,
+            "validation_jitter_macro_source_NME": 0.2110864096784489
+          },
+          {
+            "epoch": 19,
+            "loss": 0.06934484969824553,
+            "validation_jitter_macro_source_NME": 0.21550361670429138
+          },
+          {
+            "epoch": 20,
+            "loss": 0.06832845825701953,
+            "validation_jitter_macro_source_NME": 0.20875393560165578
+          },
+          {
+            "epoch": 21,
+            "loss": 0.06827800758183003,
+            "validation_jitter_macro_source_NME": 0.2095291099897048
+          },
+          {
+            "epoch": 22,
+            "loss": 0.06691251546144486,
+            "validation_jitter_macro_source_NME": 0.2140572610718637
+          },
+          {
+            "epoch": 23,
+            "loss": 0.06605710405856371,
+            "validation_jitter_macro_source_NME": 0.21149012294548192
+          },
+          {
+            "epoch": 24,
+            "loss": 0.06621539276093244,
+            "validation_jitter_macro_source_NME": 0.21037447540746643
+          },
+          {
+            "epoch": 25,
+            "loss": 0.06537814401090145,
+            "validation_jitter_macro_source_NME": 0.2038904263166454
+          },
+          {
+            "epoch": 26,
+            "loss": 0.06287595741450787,
+            "validation_jitter_macro_source_NME": 0.20623728692532012
+          },
+          {
+            "epoch": 27,
+            "loss": 0.06383508425205946,
+            "validation_jitter_macro_source_NME": 0.20826432889844715
+          },
+          {
+            "epoch": 28,
+            "loss": 0.06411348208785057,
+            "validation_jitter_macro_source_NME": 0.20665666660283735
+          },
+          {
+            "epoch": 29,
+            "loss": 0.06247249897569418,
+            "validation_jitter_macro_source_NME": 0.20960418616130563
+          },
+          {
+            "epoch": 30,
+            "loss": 0.06241051647812128,
+            "validation_jitter_macro_source_NME": 0.20501053944274286
+          },
+          {
+            "epoch": 31,
+            "loss": 0.0646435672417283,
+            "validation_jitter_macro_source_NME": 0.2021228372758456
+          },
+          {
+            "epoch": 32,
+            "loss": 0.06487310342490674,
+            "validation_jitter_macro_source_NME": 0.20007141413454466
+          },
+          {
+            "epoch": 33,
+            "loss": 0.06124953851103783,
+            "validation_jitter_macro_source_NME": 0.20206274530526874
+          },
+          {
+            "epoch": 34,
+            "loss": 0.06307760681957006,
+            "validation_jitter_macro_source_NME": 0.20455144193756258
+          },
+          {
+            "epoch": 35,
+            "loss": 0.060493902303278446,
+            "validation_jitter_macro_source_NME": 0.20409328963515946
+          },
+          {
+            "epoch": 36,
+            "loss": 0.06054494194686413,
+            "validation_jitter_macro_source_NME": 0.20509557764499442
+          },
+          {
+            "epoch": 37,
+            "loss": 0.05834127254784107,
+            "validation_jitter_macro_source_NME": 0.20214309009231562
+          },
+          {
+            "epoch": 38,
+            "loss": 0.05961191691458225,
+            "validation_jitter_macro_source_NME": 0.2018741116972618
+          },
+          {
+            "epoch": 39,
+            "loss": 0.05921888947486877,
+            "validation_jitter_macro_source_NME": 0.19840145969741294
+          },
+          {
+            "epoch": 40,
+            "loss": 0.0605234993621707,
+            "validation_jitter_macro_source_NME": 0.201820480234501
+          },
+          {
+            "epoch": 41,
+            "loss": 0.05969090014696121,
+            "validation_jitter_macro_source_NME": 0.20508398428420732
+          },
+          {
+            "epoch": 42,
+            "loss": 0.05903797298669815,
+            "validation_jitter_macro_source_NME": 0.20519309969300542
+          },
+          {
+            "epoch": 43,
+            "loss": 0.057108390145003796,
+            "validation_jitter_macro_source_NME": 0.20550729682622712
+          },
+          {
+            "epoch": 44,
+            "loss": 0.05769654475152493,
+            "validation_jitter_macro_source_NME": 0.2152079989689873
+          },
+          {
+            "epoch": 45,
+            "loss": 0.0582153731957078,
+            "validation_jitter_macro_source_NME": 0.20724810318067494
+          },
+          {
+            "epoch": 46,
+            "loss": 0.05527454297989607,
+            "validation_jitter_macro_source_NME": 0.2088410818213125
+          },
+          {
+            "epoch": 47,
+            "loss": 0.05665248241275549,
+            "validation_jitter_macro_source_NME": 0.2069152511780829
+          },
+          {
+            "epoch": 48,
+            "loss": 0.05488091576844454,
+            "validation_jitter_macro_source_NME": 0.2112780352084188
+          },
+          {
+            "epoch": 49,
+            "loss": 0.05543067362159491,
+            "validation_jitter_macro_source_NME": 0.20187262921551152
+          },
+          {
+            "epoch": 50,
+            "loss": 0.055765234492719175,
+            "validation_jitter_macro_source_NME": 0.20423787602064905
+          },
+          {
+            "epoch": 51,
+            "loss": 0.057138809189200404,
+            "validation_jitter_macro_source_NME": 0.20563031120280195
+          }
+        ],
+        "evaluation": {
+          "validation": {
+            "canonical_ROI": {
+              "teacher_agreement": {
+                "ROIs": 103,
+                "visible_points": 2128,
+                "mean_normalized_error": 0.2003091433481521,
+                "PCK_at_005": 0.06719924812030076
+              },
+              "teacher_fingertip_metrics": {
+                "ROIs": 103,
+                "visible_points": 504,
+                "mean_normalized_error": 0.24154849167271528,
+                "PCK_at_005": 0.061507936507936505
+              },
+              "human_accuracy": {
+                "ROIs": 3,
+                "visible_points": 63,
+                "mean_normalized_error": 0.25386264272743747,
+                "PCK_at_005": 0.031746031746031744
+              },
+              "human_fingertip_metrics": {
+                "ROIs": 3,
+                "visible_points": 15,
+                "mean_normalized_error": 0.37083330551783245,
+                "PCK_at_005": 0.0
+              },
+              "per_source_group_supervision_agreement": {
+                "NL_lesson_10": {
+                  "ROIs": 106,
+                  "visible_points": 2191,
+                  "mean_normalized_error": 0.2018490203271092,
+                  "PCK_at_005": 0.06617982656321314
+                }
+              },
+              "macro_source_group_NME": 0.2018490203271092,
+              "human_fast_motion_accuracy": null,
+              "human_test_unique_frames": 3,
+              "train_mean_shape_baseline": {
+                "teacher_agreement": {
+                  "ROIs": 103,
+                  "visible_points": 2128,
+                  "mean_normalized_error": 0.21004696745408832,
+                  "PCK_at_005": 0.03712406015037594
+                },
+                "teacher_fingertip_metrics": {
+                  "ROIs": 103,
+                  "visible_points": 504,
+                  "mean_normalized_error": 0.24676011787683128,
+                  "PCK_at_005": 0.01984126984126984
+                },
+                "human_accuracy": {
+                  "ROIs": 3,
+                  "visible_points": 63,
+                  "mean_normalized_error": 0.21305285751937875,
+                  "PCK_at_005": 0.047619047619047616
+                },
+                "human_fingertip_metrics": {
+                  "ROIs": 3,
+                  "visible_points": 15,
+                  "mean_normalized_error": 0.30938389897346497,
+                  "PCK_at_005": 0.0
+                },
+                "per_source_group_supervision_agreement": {
+                  "NL_lesson_10": {
+                    "ROIs": 106,
+                    "visible_points": 2191,
+                    "mean_normalized_error": 0.21013339879781873,
+                    "PCK_at_005": 0.037425832952989506
+                  }
+                },
+                "macro_source_group_NME": 0.21013339879781873,
+                "human_fast_motion_accuracy": null,
+                "human_test_unique_frames": 3
+              }
+            },
+            "fixed_jitter_ROI": {
+              "teacher_agreement": {
+                "ROIs": 103,
+                "visible_points": 2128,
+                "mean_normalized_error": 0.1971747779580187,
+                "PCK_at_005": 0.05921052631578947
+              },
+              "teacher_fingertip_metrics": {
+                "ROIs": 103,
+                "visible_points": 504,
+                "mean_normalized_error": 0.2426742045084081,
+                "PCK_at_005": 0.04365079365079365
+              },
+              "human_accuracy": {
+                "ROIs": 3,
+                "visible_points": 63,
+                "mean_normalized_error": 0.23983604289473048,
+                "PCK_at_005": 0.0
+              },
+              "human_fingertip_metrics": {
+                "ROIs": 3,
+                "visible_points": 15,
+                "mean_normalized_error": 0.35218344728151957,
+                "PCK_at_005": 0.0
+              },
+              "per_source_group_supervision_agreement": {
+                "NL_lesson_10": {
+                  "ROIs": 106,
+                  "visible_points": 2191,
+                  "mean_normalized_error": 0.19840145969741294,
+                  "PCK_at_005": 0.05750798722044728
+                }
+              },
+              "macro_source_group_NME": 0.19840145969741294,
+              "human_fast_motion_accuracy": null,
+              "human_test_unique_frames": 3,
+              "train_mean_shape_baseline": {
+                "teacher_agreement": {
+                  "ROIs": 103,
+                  "visible_points": 2128,
+                  "mean_normalized_error": 0.22216115024901884,
+                  "PCK_at_005": 0.03430451127819549
+                },
+                "teacher_fingertip_metrics": {
+                  "ROIs": 103,
+                  "visible_points": 504,
+                  "mean_normalized_error": 0.256578439227601,
+                  "PCK_at_005": 0.023809523809523808
+                },
+                "human_accuracy": {
+                  "ROIs": 3,
+                  "visible_points": 63,
+                  "mean_normalized_error": 0.24240323558952365,
+                  "PCK_at_005": 0.09523809523809523
+                },
+                "human_fingertip_metrics": {
+                  "ROIs": 3,
+                  "visible_points": 15,
+                  "mean_normalized_error": 0.34840157330036164,
+                  "PCK_at_005": 0.0
+                },
+                "per_source_group_supervision_agreement": {
+                  "NL_lesson_10": {
+                    "ROIs": 106,
+                    "visible_points": 2191,
+                    "mean_normalized_error": 0.22274319104155732,
+                    "PCK_at_005": 0.03605659516202647
+                  }
+                },
+                "macro_source_group_NME": 0.22274319104155732,
+                "human_fast_motion_accuracy": null,
+                "human_test_unique_frames": 3
+              }
+            }
+          },
+          "test": {
+            "canonical_ROI": {
+              "teacher_agreement": {
+                "ROIs": 186,
+                "visible_points": 3728,
+                "mean_normalized_error": 0.18902757378121315,
+                "PCK_at_005": 0.07054721030042918
+              },
+              "teacher_fingertip_metrics": {
+                "ROIs": 177,
+                "visible_points": 873,
+                "mean_normalized_error": 0.22476781127355108,
+                "PCK_at_005": 0.05154639175257732
+              },
+              "human_accuracy": {
+                "ROIs": 2,
+                "visible_points": 42,
+                "mean_normalized_error": 0.17518768259989365,
+                "PCK_at_005": 0.07142857142857142
+              },
+              "human_fingertip_metrics": {
+                "ROIs": 2,
+                "visible_points": 10,
+                "mean_normalized_error": 0.2164298605173826,
+                "PCK_at_005": 0.0
+              },
+              "per_source_group_supervision_agreement": {
+                "NL_lesson_09": {
+                  "ROIs": 188,
+                  "visible_points": 3770,
+                  "mean_normalized_error": 0.1888733893171242,
+                  "PCK_at_005": 0.07055702917771883
+                }
+              },
+              "macro_source_group_NME": 0.1888733893171242,
+              "human_fast_motion_accuracy": null,
+              "human_test_unique_frames": 2,
+              "train_mean_shape_baseline": {
+                "teacher_agreement": {
+                  "ROIs": 186,
+                  "visible_points": 3728,
+                  "mean_normalized_error": 0.1998666853581749,
+                  "PCK_at_005": 0.053111587982832616
+                },
+                "teacher_fingertip_metrics": {
+                  "ROIs": 177,
+                  "visible_points": 873,
+                  "mean_normalized_error": 0.24048681209479403,
+                  "PCK_at_005": 0.026345933562428408
+                },
+                "human_accuracy": {
+                  "ROIs": 2,
+                  "visible_points": 42,
+                  "mean_normalized_error": 0.17639991046772116,
+                  "PCK_at_005": 0.11904761904761904
+                },
+                "human_fingertip_metrics": {
+                  "ROIs": 2,
+                  "visible_points": 10,
+                  "mean_normalized_error": 0.2733037270605564,
+                  "PCK_at_005": 0.0
+                },
+                "per_source_group_supervision_agreement": {
+                  "NL_lesson_09": {
+                    "ROIs": 188,
+                    "visible_points": 3770,
+                    "mean_normalized_error": 0.19960525179175606,
+                    "PCK_at_005": 0.05384615384615385
+                  }
+                },
+                "macro_source_group_NME": 0.19960525179175606,
+                "human_fast_motion_accuracy": null,
+                "human_test_unique_frames": 2
+              }
+            },
+            "fixed_jitter_ROI": {
+              "teacher_agreement": {
+                "ROIs": 186,
+                "visible_points": 3728,
+                "mean_normalized_error": 0.1981923039949498,
+                "PCK_at_005": 0.0625
+              },
+              "teacher_fingertip_metrics": {
+                "ROIs": 177,
+                "visible_points": 873,
+                "mean_normalized_error": 0.23816207192735778,
+                "PCK_at_005": 0.04009163802978236
+              },
+              "human_accuracy": {
+                "ROIs": 2,
+                "visible_points": 42,
+                "mean_normalized_error": 0.23131725573468775,
+                "PCK_at_005": 0.07142857142857142
+              },
+              "human_fingertip_metrics": {
+                "ROIs": 2,
+                "visible_points": 10,
+                "mean_normalized_error": 0.2901773598045111,
+                "PCK_at_005": 0.1
+              },
+              "per_source_group_supervision_agreement": {
+                "NL_lesson_09": {
+                  "ROIs": 188,
+                  "visible_points": 3770,
+                  "mean_normalized_error": 0.19856133528754105,
+                  "PCK_at_005": 0.06259946949602122
+                }
+              },
+              "macro_source_group_NME": 0.19856133528754105,
+              "human_fast_motion_accuracy": null,
+              "human_test_unique_frames": 2,
+              "train_mean_shape_baseline": {
+                "teacher_agreement": {
+                  "ROIs": 186,
+                  "visible_points": 3728,
+                  "mean_normalized_error": 0.22326197313512536,
+                  "PCK_at_005": 0.03648068669527897
+                },
+                "teacher_fingertip_metrics": {
+                  "ROIs": 177,
+                  "visible_points": 873,
+                  "mean_normalized_error": 0.2575023723382157,
+                  "PCK_at_005": 0.021764032073310423
+                },
+                "human_accuracy": {
+                  "ROIs": 2,
+                  "visible_points": 42,
+                  "mean_normalized_error": 0.1815976851309339,
+                  "PCK_at_005": 0.09523809523809523
+                },
+                "human_fingertip_metrics": {
+                  "ROIs": 2,
+                  "visible_points": 10,
+                  "mean_normalized_error": 0.2547306537628174,
+                  "PCK_at_005": 0.0
+                },
+                "per_source_group_supervision_agreement": {
+                  "NL_lesson_09": {
+                    "ROIs": 188,
+                    "visible_points": 3770,
+                    "mean_normalized_error": 0.22279780865338106,
+                    "PCK_at_005": 0.03713527851458886
+                  }
+                },
+                "macro_source_group_NME": 0.22279780865338106,
+                "human_fast_motion_accuracy": null,
+                "human_test_unique_frames": 2
+              }
+            }
+          }
+        },
+        "model_sha256": "8127bf3387c1deab30a528dbdf5ec4ee99b2b4de3a72ec15e75520cde03d449e",
+        "model_file": "hand_student_128_FLOAT_PILOT.keras",
+        "trained": true,
+        "quantized": false,
+        "HLS_validated": false,
+        "board_deployed": false,
+        "human_accuracy_gate_passed": false,
+        "promotion_blockers": [
+          "Independent human test set and reviewed negative coverage have not been accepted",
+          "No QAT, integer/HLS parity, detector or board latency validation"
+        ],
+        "human_test_metrics_present": true
+      }
+    ],
+    "seed": 20261026,
+    "BN_momentum": 0.9,
+    "patience": 12,
+    "epochs_requested": 60,
+    "dataset_sha256": "c8dfd60a21703094a5fea947835dccbe9234624ff324590dc441d8ebaf75b3ba",
+    "records_sha256": "555a5891f9dbd441f1aab3b479c90f1d921091ee56a1e84ca929ac8fa8e79d51",
+    "review_sha256": "fddf71e8dca28c740767907e200db35734b1ba14c97c71e0d35342d8dabe2d79",
+    "student_spec_sha256": "c2e122208558e7638e77f59644a4e4cdc1e5ce1ebc1a2f5c029a8fda78785c17",
+    "trained_ROIs": 320,
+    "validation_ROIs": 106,
+    "test_ROIs": 188,
+    "selected_record_counts": {
+      "train": 629,
+      "test": 341,
+      "validation": 230
+    },
+    "reviewed_negative_train_ROIs": 0,
+    "reviewed_negative_train_ROIs_available": 1,
+    "presence_loss_disabled_explicitly": true,
+    "presence_loss_enabled": false,
+    "source_exterior_masking_enabled": true,
+    "source_exterior_points_masked": 312,
+    "handedness_loss_enabled": true,
+    "limitations": [
+      "Source-video group holdout; performer IDs remain unknown",
+      "Pseudo-label agreement is not manually annotated landmark accuracy",
+      "Presence head loss is disabled until human-reviewed negative training examples exist",
+      "Fixed-jitter holdout is an augmentation diagnostic, not additional independent samples",
+      "Best epoch selected only on validation; test evaluated once after training"
+    ]
+  },
+  "training_report_sha256": "45b02cad8a8ecf7a3a5593924a41d6eb3ebedce137d19ab183da9933d6998533",
+  "first_attempt_report_local_path": "project/_tmp/hand_student_reviewed_20261027_v1/report.json",
+  "first_attempt_report_sha256": "7fab657fd5cb906fe1ff7ddd5bf806185e42ab8272e461a02cd8fcda520fac86",
+  "training_source_support_diagnostic": {
+    "scope": "Training split only; diagnostic, no labels changed",
+    "counts": {
+      "teacher_train_ROIs": 314,
+      "teacher_points_outside_source": 99,
+      "ROIs_with_points_outside_source": 8
+    },
+    "affected": [
+      {
+        "sample_id": "589bf3b2f86436fd_10_1",
+        "outside_points": 10
+      },
+      {
+        "sample_id": "763b49514ae52317_60_1",
+        "outside_points": 16
+      },
+      {
+        "sample_id": "21dca97152997668_5_1",
+        "outside_points": 16
+      },
+      {
+        "sample_id": "21ba08b1bed3f54e_5_1",
+        "outside_points": 16
+      },
+      {
+        "sample_id": "21ba08b1bed3f54e_92_0",
+        "outside_points": 15
+      },
+      {
+        "sample_id": "9605d9c7ad9e33ed_5_1",
+        "outside_points": 8
+      },
+      {
+        "sample_id": "cc3ec26531b26836_48_0",
+        "outside_points": 16
+      },
+      {
+        "sample_id": "28ecd97ed71cc8b9_72_0",
+        "outside_points": 2
+      }
+    ]
+  },
+  "comparison_preflight": {
+    "old_train_new_test_SHA_overlap": 0,
+    "old_train_new_test_group_overlap": [],
+    "new_test_groups": [
+      "NL_lesson_09"
+    ],
+    "group_assignment_unchanged": true
+  },
+  "comparisons": {
+    "old96": {
+      "report": {
+        "teacher_agreement": {
+          "ROIs": 186,
+          "visible_points": 3728,
+          "mean_normalized_error": 0.21082255465703365,
+          "PCK_at_005": 0.04935622317596566
+        },
+        "teacher_fingertip_metrics": {
+          "ROIs": 177,
+          "visible_points": 873,
+          "mean_normalized_error": 0.24117474600977828,
+          "PCK_at_005": 0.045819014891179836
+        },
+        "human_accuracy": {
+          "ROIs": 2,
+          "visible_points": 42,
+          "mean_normalized_error": 0.17140138149261475,
+          "PCK_at_005": 0.0
+        },
+        "human_fingertip_metrics": {
+          "ROIs": 2,
+          "visible_points": 10,
+          "mean_normalized_error": 0.2083125703036785,
+          "PCK_at_005": 0.0
+        },
+        "per_source_group_supervision_agreement": {
+          "NL_lesson_09": {
+            "ROIs": 188,
+            "visible_points": 3770,
+            "mean_normalized_error": 0.21038337978358387,
+            "PCK_at_005": 0.04880636604774536
+          }
+        },
+        "macro_source_group_NME": 0.21038337978358387,
+        "human_fast_motion_accuracy": null,
+        "human_test_unique_frames": 2,
+        "model_sha256": "95dd10d77be3c2b74a857753a472be43029f8e30ab48b7f25d43c6071b4d38cf",
+        "dataset_sha256": "c8dfd60a21703094a5fea947835dccbe9234624ff324590dc441d8ebaf75b3ba",
+        "reviews_sha256": "fddf71e8dca28c740767907e200db35734b1ba14c97c71e0d35342d8dabe2d79",
+        "split": "test",
+        "quantized": false,
+        "board_measured": false,
+        "source_exterior_masking_enabled": true
+      },
+      "report_sha256": "7075941a3e31146724f5a862a68f12c5da0d124622c34549831740c4c8945355",
+      "predictions_sha256": "c8d011661e45b28aca2abb45770d53e4763a157ffc3f1b132a0c909dc1cd3c5e",
+      "image_local_path": "project/_tmp/hand_student_old96_final_20261027_v1/teacher_vs_student.jpg"
+    },
+    "old128": {
+      "report": {
+        "teacher_agreement": {
+          "ROIs": 186,
+          "visible_points": 3728,
+          "mean_normalized_error": 0.21444183759322108,
+          "PCK_at_005": 0.05337982832618026
+        },
+        "teacher_fingertip_metrics": {
+          "ROIs": 177,
+          "visible_points": 873,
+          "mean_normalized_error": 0.24763034446162832,
+          "PCK_at_005": 0.044673539518900345
+        },
+        "human_accuracy": {
+          "ROIs": 2,
+          "visible_points": 42,
+          "mean_normalized_error": 0.2783024850345793,
+          "PCK_at_005": 0.023809523809523808
+        },
+        "human_fingertip_metrics": {
+          "ROIs": 2,
+          "visible_points": 10,
+          "mean_normalized_error": 0.35312999337911605,
+          "PCK_at_005": 0.0
+        },
+        "per_source_group_supervision_agreement": {
+          "NL_lesson_09": {
+            "ROIs": 188,
+            "visible_points": 3770,
+            "mean_normalized_error": 0.21515328247187812,
+            "PCK_at_005": 0.05305039787798409
+          }
+        },
+        "macro_source_group_NME": 0.21515328247187812,
+        "human_fast_motion_accuracy": null,
+        "human_test_unique_frames": 2,
+        "model_sha256": "f6dcf69a1a45c5c9cdbddfebf1b64bfc756a45ee5bbb2558446141781c00fb61",
+        "dataset_sha256": "c8dfd60a21703094a5fea947835dccbe9234624ff324590dc441d8ebaf75b3ba",
+        "reviews_sha256": "fddf71e8dca28c740767907e200db35734b1ba14c97c71e0d35342d8dabe2d79",
+        "split": "test",
+        "quantized": false,
+        "board_measured": false,
+        "source_exterior_masking_enabled": true
+      },
+      "report_sha256": "f5e6df662d2f97326d007dcc74e920bc310bc64e70f166f69187f9139c2df5e4",
+      "predictions_sha256": "f0f5e187f2e2192bad95a8b79a3a5f9130be449f0accd67ac92a0401f49e171d",
+      "image_local_path": "project/_tmp/hand_student_old128_final_20261027_v1/teacher_vs_student.jpg"
+    },
+    "new96": {
+      "report": {
+        "teacher_agreement": {
+          "ROIs": 186,
+          "visible_points": 3728,
+          "mean_normalized_error": 0.18562687115152687,
+          "PCK_at_005": 0.08878755364806867
+        },
+        "teacher_fingertip_metrics": {
+          "ROIs": 177,
+          "visible_points": 873,
+          "mean_normalized_error": 0.22775466627849933,
+          "PCK_at_005": 0.045819014891179836
+        },
+        "human_accuracy": {
+          "ROIs": 2,
+          "visible_points": 42,
+          "mean_normalized_error": 0.1972347308127653,
+          "PCK_at_005": 0.023809523809523808
+        },
+        "human_fingertip_metrics": {
+          "ROIs": 2,
+          "visible_points": 10,
+          "mean_normalized_error": 0.26914659291505816,
+          "PCK_at_005": 0.0
+        },
+        "per_source_group_supervision_agreement": {
+          "NL_lesson_09": {
+            "ROIs": 188,
+            "visible_points": 3770,
+            "mean_normalized_error": 0.18575618948197037,
+            "PCK_at_005": 0.08806366047745358
+          }
+        },
+        "macro_source_group_NME": 0.18575618948197037,
+        "human_fast_motion_accuracy": null,
+        "human_test_unique_frames": 2,
+        "model_sha256": "77f9dee94d484ebdf3a44f9c4ac62c9f471d234a45fd20eab02c54cc1967c9fb",
+        "dataset_sha256": "c8dfd60a21703094a5fea947835dccbe9234624ff324590dc441d8ebaf75b3ba",
+        "reviews_sha256": "fddf71e8dca28c740767907e200db35734b1ba14c97c71e0d35342d8dabe2d79",
+        "split": "test",
+        "quantized": false,
+        "board_measured": false,
+        "source_exterior_masking_enabled": true
+      },
+      "report_sha256": "b2eb69202eba83ab3fdcba19d534fb1b3c568bda7943dae858a19aa619891872",
+      "predictions_sha256": "7c019c7e19396b9d523aae89c46a59f2570ad5967ce9204035e4e9d38c3d26f3",
+      "image_local_path": "project/_tmp/hand_student_new96_final_20261027_v1/teacher_vs_student.jpg"
+    },
+    "new128": {
+      "report": {
+        "teacher_agreement": {
+          "ROIs": 186,
+          "visible_points": 3728,
+          "mean_normalized_error": 0.18902757378121315,
+          "PCK_at_005": 0.07054721030042918
+        },
+        "teacher_fingertip_metrics": {
+          "ROIs": 177,
+          "visible_points": 873,
+          "mean_normalized_error": 0.22476781127355108,
+          "PCK_at_005": 0.05154639175257732
+        },
+        "human_accuracy": {
+          "ROIs": 2,
+          "visible_points": 42,
+          "mean_normalized_error": 0.17518768259989365,
+          "PCK_at_005": 0.07142857142857142
+        },
+        "human_fingertip_metrics": {
+          "ROIs": 2,
+          "visible_points": 10,
+          "mean_normalized_error": 0.2164298605173826,
+          "PCK_at_005": 0.0
+        },
+        "per_source_group_supervision_agreement": {
+          "NL_lesson_09": {
+            "ROIs": 188,
+            "visible_points": 3770,
+            "mean_normalized_error": 0.1888733893171242,
+            "PCK_at_005": 0.07055702917771883
+          }
+        },
+        "macro_source_group_NME": 0.1888733893171242,
+        "human_fast_motion_accuracy": null,
+        "human_test_unique_frames": 2,
+        "model_sha256": "8127bf3387c1deab30a528dbdf5ec4ee99b2b4de3a72ec15e75520cde03d449e",
+        "dataset_sha256": "c8dfd60a21703094a5fea947835dccbe9234624ff324590dc441d8ebaf75b3ba",
+        "reviews_sha256": "fddf71e8dca28c740767907e200db35734b1ba14c97c71e0d35342d8dabe2d79",
+        "split": "test",
+        "quantized": false,
+        "board_measured": false,
+        "source_exterior_masking_enabled": true
+      },
+      "report_sha256": "77789d8383e446bcfaa9639f5903093e55f3a05cbd5f08094913e672f13876bf",
+      "predictions_sha256": "87944c0968e7ca85f101458d45bd40e71f818dc990d6f3e7bdd3a17517545fce",
+      "image_local_path": "project/_tmp/hand_student_new128_final_20261027_v1/teacher_vs_student.jpg"
+    },
+    "new96_train": {
+      "report": {
+        "teacher_agreement": {
+          "ROIs": 314,
+          "visible_points": 6495,
+          "mean_normalized_error": 0.1292393783659454,
+          "PCK_at_005": 0.17090069284064666
+        },
+        "teacher_fingertip_metrics": {
+          "ROIs": 314,
+          "visible_points": 1545,
+          "mean_normalized_error": 0.1620276763741361,
+          "PCK_at_005": 0.10161812297734628
+        },
+        "human_accuracy": {
+          "ROIs": 6,
+          "visible_points": 126,
+          "mean_normalized_error": 0.0882888163942548,
+          "PCK_at_005": 0.31746031746031744
+        },
+        "human_fingertip_metrics": {
+          "ROIs": 6,
+          "visible_points": 30,
+          "mean_normalized_error": 0.10826577035089334,
+          "PCK_at_005": 0.26666666666666666
+        },
+        "per_source_group_supervision_agreement": {
+          "NL_lesson_01": {
+            "ROIs": 166,
+            "visible_points": 3446,
+            "mean_normalized_error": 0.128412120813059,
+            "PCK_at_005": 0.17701683110853164
+          },
+          "NL_lesson_08": {
+            "ROIs": 154,
+            "visible_points": 3175,
+            "mean_normalized_error": 0.12851212126950873,
+            "PCK_at_005": 0.1700787401574803
+          }
+        },
+        "macro_source_group_NME": 0.12846212104128385,
+        "human_fast_motion_accuracy": null,
+        "human_test_unique_frames": 6,
+        "model_sha256": "77f9dee94d484ebdf3a44f9c4ac62c9f471d234a45fd20eab02c54cc1967c9fb",
+        "dataset_sha256": "c8dfd60a21703094a5fea947835dccbe9234624ff324590dc441d8ebaf75b3ba",
+        "reviews_sha256": "fddf71e8dca28c740767907e200db35734b1ba14c97c71e0d35342d8dabe2d79",
+        "split": "train",
+        "quantized": false,
+        "board_measured": false,
+        "source_exterior_masking_enabled": true
+      },
+      "report_sha256": "46610913f3e68e721db3cfb38f9bcafba7fe74013b4e3d48cf1aeae0ac945d2c",
+      "predictions_sha256": "e53ff37627039884088f44ecf955f93483d1cbefda751b69381afe5dd7481f19",
+      "image_local_path": "project/_tmp/hand_student_new96_train_final_20261027_v1/teacher_vs_student.jpg"
+    },
+    "new128_train": {
+      "report": {
+        "teacher_agreement": {
+          "ROIs": 314,
+          "visible_points": 6495,
+          "mean_normalized_error": 0.13458740514953313,
+          "PCK_at_005": 0.15073133179368745
+        },
+        "teacher_fingertip_metrics": {
+          "ROIs": 314,
+          "visible_points": 1545,
+          "mean_normalized_error": 0.1620721848969405,
+          "PCK_at_005": 0.10097087378640776
+        },
+        "human_accuracy": {
+          "ROIs": 6,
+          "visible_points": 126,
+          "mean_normalized_error": 0.09174865324582372,
+          "PCK_at_005": 0.3253968253968254
+        },
+        "human_fingertip_metrics": {
+          "ROIs": 6,
+          "visible_points": 30,
+          "mean_normalized_error": 0.12470637088020643,
+          "PCK_at_005": 0.26666666666666666
+        },
+        "per_source_group_supervision_agreement": {
+          "NL_lesson_01": {
+            "ROIs": 166,
+            "visible_points": 3446,
+            "mean_normalized_error": 0.1337285330581916,
+            "PCK_at_005": 0.1526407428903076
+          },
+          "NL_lesson_08": {
+            "ROIs": 154,
+            "visible_points": 3175,
+            "mean_normalized_error": 0.1338195281375317,
+            "PCK_at_005": 0.15559055118110235
+          }
+        },
+        "macro_source_group_NME": 0.13377403059786164,
+        "human_fast_motion_accuracy": null,
+        "human_test_unique_frames": 6,
+        "model_sha256": "8127bf3387c1deab30a528dbdf5ec4ee99b2b4de3a72ec15e75520cde03d449e",
+        "dataset_sha256": "c8dfd60a21703094a5fea947835dccbe9234624ff324590dc441d8ebaf75b3ba",
+        "reviews_sha256": "fddf71e8dca28c740767907e200db35734b1ba14c97c71e0d35342d8dabe2d79",
+        "split": "train",
+        "quantized": false,
+        "board_measured": false,
+        "source_exterior_masking_enabled": true
+      },
+      "report_sha256": "8e58087a2046d03eddffaad495af539f13a8b94fa1a3930327cb59ec6df1c18e",
+      "predictions_sha256": "e5d85c0633a0d1ba1378e74659c4bac30fc00d299bda4cd0f0b5be97e5ed375e",
+      "image_local_path": "project/_tmp/hand_student_new128_train_final_20261027_v1/teacher_vs_student.jpg"
+    }
+  },
+  "source_exterior_masking_policy": "teacher_source_exterior_v1; explicit manual labels retained; original targets unchanged",
+  "promotion": {
+    "manual_accuracy_accepted": false,
+    "quantized": false,
+    "HLS_validated": false,
+    "board_deployed": false,
+    "presence_loss_enabled": false
+  },
+  "caveats": [
+    "Only 2 manually checked test ROIs / 42 points / 10 fingertips, all from one source group; no cross-person acceptance",
+    "This development holdout was inspected in prior runs; it is not a new blind final test",
+    "The review correction and source-resolution filter alter training data; comparison cannot isolate the effect of human review alone",
+    "Unknown ROI failures remain zero-mask records, never automatically reclassified as negatives",
+    "Only one training negative is available; presence loss disabled and auxiliary-only images excluded from BN training"
+  ],
+  "validation": {
+    "tests_passed": 204,
+    "subtests_passed": 32,
+    "independent_saved_model_NME_differences": {
+      "new96": {
+        "teacher_agreement": 0.0,
+        "human_accuracy": 0.0
+      },
+      "new128": {
+        "teacher_agreement": 0.0,
+        "human_accuracy": 0.0
+      }
+    },
+    "geometry_export_smoke_passed": true,
+    "geometry_mask_idempotent": true,
+    "original_user_review_unchanged": true,
+    "serial_eval_after_memory_failure": true,
+    "model_hash_matches_independent_eval": true
+  }
+}

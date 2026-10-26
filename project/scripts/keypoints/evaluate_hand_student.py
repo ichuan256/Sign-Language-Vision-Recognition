@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import sys
 os.environ.setdefault('TF_USE_LEGACY_KERAS','1');os.environ.setdefault('TF_CPP_MIN_LOG_LEVEL','2')
+os.environ.setdefault('OPENBLAS_NUM_THREADS','1');os.environ.setdefault('OMP_NUM_THREADS','1');os.environ.setdefault('MKL_NUM_THREADS','1')
 ROOT=Path(__file__).resolve().parents[3];sys.path.insert(0,str(ROOT))
 import cv2
 import numpy as np
@@ -17,17 +18,19 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--model',type=Path,required=True);p.add_argument('--data',type=Path,required=True)
     p.add_argument('--reviews',type=Path);p.add_argument('--split',choices=('train','validation','test'),default='test')
+    p.add_argument('--mask-outside-source',action='store_true')
     p.add_argument('--output',type=Path,required=True)
     a=p.parse_args();out=a.output.resolve()
     if out.exists() or not out.is_relative_to(ROOT/'project/_tmp'):raise ValueError('New project/_tmp evaluation output required')
-    images,y,m,records,report=load_dataset(a.data,a.reviews);indices=[i for i,r in enumerate(records) if r['split']==a.split and m[i,:63].any()]
+    images,y,m,records,report=load_dataset(a.data,a.reviews,mask_outside_source=a.mask_outside_source);indices=[i for i,r in enumerate(records) if r['split']==a.split and m[i,:63].any()]
     if not indices:raise ValueError('No coordinate-labelled ROIs in split')
     model=keras.models.load_model(a.model,compile=False);size=model.input_shape[1]
     x=np.stack([augment(images[i],y[i],m[i],size)[0] for i in indices]);labels=y[indices];mask=m[indices]
     prediction=predict(model,x,16);rr=[records[i] for i in indices]
     result=evaluate(prediction,labels,mask,rr)
     result.update(model_sha256=digest(a.model),dataset_sha256=digest(a.data/'dataset.json'),
-        reviews_sha256=digest(a.reviews) if a.reviews else None,split=a.split,quantized=False,board_measured=False)
+        reviews_sha256=digest(a.reviews) if a.reviews else None,split=a.split,quantized=False,board_measured=False,
+        source_exterior_masking_enabled=a.mask_outside_source)
     out.mkdir(parents=True);(out/'report.json').write_text(json.dumps(result,indent=2)+'\n')
     np.savez_compressed(out/'predictions.npz',predictions=prediction,targets=labels,masks=mask,sample_ids=np.array([r['sample_id'] for r in rr]))
     cards=[]

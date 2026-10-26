@@ -25,7 +25,7 @@
 
 迁后活动清单以 current_available_fullframe.json / source_registry_current.json 为准；旧r2、clean及旧validation文件原样保留作历史证据。新布局核验见 `vision/analysis/materials/20261025_merge/`。
 
-当前学生试训只抽取了551条素材池中的40条，不是把全部素材都用于训练；
-训练670、验证136、测试191个教师手部ROI。教师指 MediaPipe Holistic 软件模型。
-新1080p候选已生成，并筛出20个不同帧供人工校准；人工复核尚未完成，
-见[试跑记录](../../project/analysis/keypoints_student_20261026/README.md)。
+当前学生从551条池抽取40条1080p视频，614个手部ROI按训练320/验证106/开发留出188分组。
+用户17项复核已导入，人工坐标在三组分别6/3/2项；已完成画外点掩码后的浮点复训。
+教师指MediaPipe Holistic软件模型，未知区域不自动当负例。定位尚未过门禁，
+见[当前结果](../../project/analysis/keypoints_student_20261027/README.md)；旧670/136/191划分保留于历史试跑。
