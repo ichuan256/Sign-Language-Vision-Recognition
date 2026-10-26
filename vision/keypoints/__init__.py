@@ -1,4 +1,8 @@
 """Keypoint extraction over FrameSource streams."""
-from .holistic import HolisticTracker
+def __getattr__(name):
+    if name=='HolisticTracker':
+        from .holistic import HolisticTracker
+        return HolisticTracker
+    raise AttributeError(name)
 
 __all__ = ["HolisticTracker"]

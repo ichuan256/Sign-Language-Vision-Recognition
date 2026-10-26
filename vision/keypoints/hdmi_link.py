@@ -11,7 +11,7 @@ import subprocess
 import time
 from urllib.request import build_opener, ProxyHandler
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file())
 BOARD_PYTHON = '/usr/local/share/pynq-venv/bin/python'
 BOARD_DIR = ROOT/'project/board/w6'
 
@@ -47,7 +47,9 @@ class HDMILink:
         return result.stdout.strip()
 
     def pids(self, script):
-        pattern = '^'+re.escape(BOARD_PYTHON)+r'( -u)? /home/xilinx/'+re.escape(script)+r'( |$)'
+        name=re.escape(script)
+        if script=='raw_frame_replay.py':name=r'raw_frame_replay(?:_[0-9a-f]{12})?\.py'
+        pattern = '^'+re.escape(BOARD_PYTHON)+r'( -u)? /home/xilinx/'+name+r'( |$)'
         output = self.ssh('pgrep -f '+shlex.quote(pattern)+' || true')
         return [int(s) for s in output.split()]
 
@@ -71,7 +73,7 @@ class HDMILink:
             expected = hashlib.sha256((BOARD_DIR/script).read_bytes()).hexdigest()
             if self.ssh('sha256sum /home/xilinx/'+script).split()[0] != expected:
                 raise RuntimeError(f'{script} differs; inspect/deploy explicitly, never overwrite automatically')
-        if self.pids('hdmi_audio_receiver.py') or self.pids('hdmi_renderer.py'):
+        if self.pids('hdmi_audio_receiver.py') or self.pids('hdmi_renderer.py') or self.pids('raw_frame_replay.py'):
             raise RuntimeError('Another known HDMI writer is active. Stop it only with user approval; keep the display owner alive.')
         owners = self.pids('hdmi_display.py')
         started_owner = False
