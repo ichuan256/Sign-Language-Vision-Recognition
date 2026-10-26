@@ -1,1 +1,1 @@
-"""M1 视频手势识别包：输入抽象、特征提取复用、DTW 基线。"""
+"""Vision runtime and retained recognition baselines; current entry map: vision/README.md."""

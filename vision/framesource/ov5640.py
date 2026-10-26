@@ -1,13 +1,8 @@
-"""OV5640 帧源占位：当前目标为单目，双目类仅为历史接口兼容。
+"""Single OV5640 placeholder; hardware, voltage and pin mapping remain unverified.
 
-硬件规划（docs/方案 §3，移植传感器后接口已释放）：
-- Pmod JA = 左目 8bit 数据，Pmod JB = 右目 8bit 数据；
-- SCCB（双目共总线分地址）、复位、电源使能走 Arduino D0–D5；
-- PL 采集控制器 + VDMA 写 DDR，双目帧打同步时间戳；
-- 首选 640×480 起步降 PCLK，Pmod 排线信号完整性是主要风险。
-
-识别接入策略：左目为主识别帧（read() 产出左目 BGR），右目帧经
-read_stereo() 供后续立体评估；下游特征/分类代码不变。
+The stereo class is retained only for historical API compatibility. Previous
+dual-camera JA/JB wiring assumptions are obsolete and must not guide connection.
+Current standalone-video design: docs/方案/03_Zynq7020独立实时关键点方案.md.
 """
 from .base import FrameSource
 
