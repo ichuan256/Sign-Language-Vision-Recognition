@@ -16,15 +16,15 @@ PYNQ-Z2 手语识别系统·新主线：**视频输入 → 高动态手势识别
 根目录仅保留这四个主目录，以及 `README.md`、`AGENTS.md` 和 Git 必需文件。
 
 共享素材交接见 [共享包说明](docs/协作/共享包说明.md)，网页依赖在
-`vision/webapp/requirements.txt`。新增清单、导出数据、便携工具均放入对应目录，避免根目录平铺。
+`vision/src/vision/webapp/requirements.txt`。新增清单、导出数据、便携工具均放入对应目录，避免根目录平铺。
 
 ## 当前阅读入口（2026-10-26）
 
 - [素材工作区约定](docs/协作/素材工作区约定.md)：当前551条SHA一致子集、85条待审版本与原片位置；[清理记录](vision/analysis/materials/20261025_cleanup/清理记录.md)。
 
-- **当前先做无语义的通用实时关键点**：[启动与指标](vision/keypoints/README.md)、[文件源基准](vision/analysis/keypoints_20261025/README.md)。摄像头实测待验收，暂不推进词表语义和 PL 分类器。
+- **当前先做无语义的通用实时关键点**：[启动与指标](vision/src/vision/keypoints/README.md)、[文件源基准](vision/analysis/keypoints_20261025/README.md)。摄像头实测待验收，暂不推进词表语义和 PL 分类器。
 - **单手关键点子网已上 PL**：[加速实测与延迟](project/analysis/keypoints_pl_20261026/stream_wide.md)。PC 提供 ROI，同一 ROI 三次 64 输出均对整数参考完全一致；12.28→1.86→0.56→0.49 秒/ROI，约 2Hz，仍未达到 5Hz。新版动态 HDMI 已目视确认持续更新。
-- **下一步独立实时上板**：[轻量网络与板内视频流水线方案](docs/方案/03_Zynq7020独立实时关键点方案.md)。96/128 学生结构已构建，训练与硬件效果待验证；双手各 20Hz 为目标。
+- **独立实时上板方向**：[轻量网络与板内视频流水线方案](docs/方案/03_Zynq7020独立实时关键点方案.md)。96/128 浮点学生已试训，人工精度和硬件效果待验证；[数据/教师定义](project/analysis/keypoints_student_20261026/README.md)。双手各20Hz仍是目标。
 - [样本现状与补采](vision/analysis/dataset/README.md)：数据总量、标签问题与下一轮采样设计。
 - [PL 路线状态](project/analysis/r3/README.md)：量化基线、CSim 对齐、资源门禁；当前模型未部署。
 - [系统总体方案](docs/方案/01_PYNQ-Z2移植与视频手势识别总体方案.md) 与
@@ -39,7 +39,7 @@ PYNQ-Z2 手语识别系统·新主线：**视频输入 → 高动态手势识别
   板端 button-watch.service 监听按键）。链路与用法见 `AGENTS.md` §4b。
 - **历史 M1 识别基线**：8 类 28 条已审定精剪片段，DTW 留出法基线已跑通；
   滑窗实时识别演示（文件源流式输入）端到端命中。结果与口径说明见
-  `vision/m1/README.md`。
+  `vision/src/vision/m1/README.md`。
 - **待验收**：跨人物识别、数据语义清洗和补采、PL 分类器资源达标与板端部署；
   单目 OV5640 采集仍待硬件到货后验收，接口复用不代表硬件已实现。
 

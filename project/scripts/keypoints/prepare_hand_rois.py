@@ -48,7 +48,7 @@ def main():
     audit = json.loads((ROOT/'vision/analysis/dataset/label_source_audit_20261025.json').read_text(encoding='utf-8'))
     by_hash = {r['sha256']:r for r in audit['records']}
     rois, inverses, records = [],[],[]
-    for report in sorted((ROOT/'vision/m1/runs').glob('extract_part*/report.json')):
+    for report in sorted((ROOT/'vision/data/cache/m1').glob('extract_part*/report.json')):
         for sample in json.loads(report.read_text(encoding='utf-8'))['samples']:
             source = by_hash[sample['source_sha256']]
             path = ROOT/source['path']

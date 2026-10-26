@@ -1,7 +1,7 @@
 # M1 识别线首轮：FrameSource + DTW 基线（2026-10-23）
 
 > 历史实验快照：26 类/90 条。当前数据看 [数据入口](../dataset/README.md)，
-> 此记录不同于 `vision/m1/README.md` 的 8 类/28 条实验。
+> 此记录不同于 `vision/src/vision/m1/README.md` 的 8 类/28 条实验。
 
 电脑侧闭环第一版已跑通：视频文件 → MediaPipe Holistic → sign_xy_v1
 392 维时序特征 → 掩码感知 DTW 模板分类。识别逻辑全程只依赖
@@ -12,12 +12,12 @@ FrameSource 实现，特征与分类器零改动（对应总体方案 §4）。
 
 | 模块 | 内容 |
 |---|---|
-| `vision/framesource/` | FrameSource 抽象契约 + VideoFileSource + USBCamSource；`read() → (BGR帧, 帧号, 时间戳)`；降采样/限帧率下沉到源层 |
-| `vision/keypoints/holistic.py` | HolisticTracker：任意 FrameSource → sign_xy_v1（与 extract.py 同契约） |
-| `vision/classify/dtw.py` | 掩码感知帧代价（xy/速度/手形三块，无效维双端剔除）+ 归一化时间窗 DTW + TemplateClassifier |
-| `vision/classify/segment.py` | 动态分割：手腕速度能量 + 起止迟滞 + 时长过滤（连续流输入用，本轮仅合成数据验证） |
-| `vision/classify/evaluate.py` + `run_m1_baseline.py` | LOO 与 source_group 留出两套评估协议，分别出数、永不混报 |
-| `vision/manifests/build_m1_manifest.py` | 从 wsy 全画幅清单按"≥3 段"规则生成 26 类/90 段词表 manifest（含 sha256） |
+| `vision/src/vision/framesource/` | FrameSource 抽象契约 + VideoFileSource + USBCamSource；`read() → (BGR帧, 帧号, 时间戳)`；降采样/限帧率下沉到源层 |
+| `vision/src/vision/keypoints/holistic.py` | HolisticTracker：任意 FrameSource → sign_xy_v1（与 extract.py 同契约） |
+| `vision/src/vision/classify/dtw.py` | 掩码感知帧代价（xy/速度/手形三块，无效维双端剔除）+ 归一化时间窗 DTW + TemplateClassifier |
+| `vision/src/vision/classify/segment.py` | 动态分割：手腕速度能量 + 起止迟滞 + 时长过滤（连续流输入用，本轮仅合成数据验证） |
+| `vision/src/vision/classify/evaluate.py` + `run_m1_baseline.py` | LOO 与 source_group 留出两套评估协议，分别出数、永不混报 |
+| `vision/scripts/legacy/build_m1_manifest.py` | 从 wsy 全画幅清单按"≥3 段"规则生成 26 类/90 段词表 manifest（含 sha256） |
 
 单元测试 19 项全绿（含修正一处随仓库迁移的旧导入 `algo.` → `vision.`）。
 
@@ -56,12 +56,12 @@ FrameSource 实现，特征与分类器零改动（对应总体方案 §4）。
 ## 复现
 
 ```powershell
-F:/PLD/.venv-vision/Scripts/python.exe vision/manifests/build_m1_manifest.py
+F:/PLD/.venv-vision/Scripts/python.exe vision/scripts/legacy/build_m1_manifest.py
 F:/PLD/.venv-vision/Scripts/python.exe -X utf8 -m vision.sign_video.extract `
-  --manifest vision/manifests/m1_vocabulary_20261023.json `
+  --manifest vision/data/manifests/m1_26class_20261023.json `
   --output vision/analysis/m1_dtw_20261023/features --fps 15
 F:/PLD/.venv-vision/Scripts/python.exe -X utf8 -m vision.classify.run_m1_baseline `
-  --manifest vision/manifests/m1_vocabulary_20261023.json `
+  --manifest vision/data/manifests/m1_26class_20261023.json `
   --npz-dir vision/analysis/m1_dtw_20261023/features `
   --output vision/analysis/m1_dtw_20261023/eval   # 目录必须不存在
 F:/PLD/.venv-vision/Scripts/python.exe -m pytest vision/tests -q

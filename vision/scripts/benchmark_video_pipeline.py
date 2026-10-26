@@ -25,7 +25,7 @@ from signrec.person_detector import DEFAULT_MODEL_PATH  # noqa: E402
 from signrec.pose_estimator import DEFAULT_POSE_MODEL_PATH  # noqa: E402
 from vision.webapp.pipeline import SignRecognitionPipeline  # noqa: E402
 
-DEFAULT_TEMPLATES = ROOT / "vision/models" / "sign_templates_cropped.npz"
+DEFAULT_TEMPLATES = ROOT / "vision/data/models" / "sign_templates_cropped.npz"
 
 
 def inspect_video(path: Path) -> dict[str, Any]:

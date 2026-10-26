@@ -28,7 +28,7 @@
 
 ## 下一步
 
-使用 [纯关键点演示](../../keypoints/README.md) 做同一 USB 摄像头的 static / fast_motion /
+使用 [纯关键点演示](../../src/vision/keypoints/README.md) 做同一 USB 摄像头的 static / fast_motion /
 crossing / occlusion 四场各约 60 秒。记录实际帧率、主机 P50/P95、连续未检出；
 人工核对手指贴合、身份交换、遮挡重新可见时刻。之后再决定是否优化输入尺寸、检测器或跟踪策略。
 

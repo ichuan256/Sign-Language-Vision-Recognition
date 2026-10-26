@@ -86,7 +86,7 @@ def check_media(root):
     for r in source_rows:
         p = (index.parent / r["file"]).resolve()
         require(p.is_relative_to(root) and sha256(p) == r["sha256"], "BV runtime source index mismatch")
-    for manifest in (root / "vision/m1/manifests").glob("*.json"):
+    for manifest in (root / "vision/data/manifests/m1_8class").glob("*.json"):
         for sample in json.loads(manifest.read_text(encoding="utf-8")).get("samples", []):
             require((manifest.parent / sample["file"]).is_file(), f"M1 sample missing: {sample['file']}")
     print("PASS current551 SHA/identity; pending85 isolated; sources32; protected816; ASR142; legacy1; BV22")
@@ -116,6 +116,7 @@ def check_root_dirs(root):
 
 def check_code(root):
     residue = check_root_dirs(root)
+    check_vision_dirs(root)
     if residue:
         print("LOCAL RESIDUE SHA verified; Windows refused rename, originals retained: " + ", ".join(residue))
     count = 0
@@ -150,6 +151,14 @@ def check_code(root):
                 broken.append(item)
     require(not broken, f"Broken current Markdown links: {broken}")
     print(f"PASS root layout; {count} Python sources; release hashes; {len(source_refs)} FPGA sources; current Markdown links")
+
+
+def check_vision_dirs(root):
+    expected={'src','scripts','tests','data','analysis','tools','video'}
+    actual={p.name for p in (root/'vision').iterdir() if p.is_dir() and p.name!='__pycache__' and not p.name.startswith('.')}
+    require(actual==expected,f'Vision directory layout differs: {sorted(actual)}')
+    for package in ('framesource','keypoints','m1','classify','sign_video','webapp'):
+        require((root/'vision/src/vision'/package).is_dir(),'Missing canonical vision package: '+package)
 
 
 def main():

@@ -10,7 +10,7 @@ import numpy as np
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_BACKBONE_PATH = (
     _REPO_ROOT
-    / "models"
+    / "data" / "models"
     / "image_classification_mobilenet"
     / "image_classification_mobilenetv2_2022apr_int8bq.onnx"
 )

@@ -137,7 +137,7 @@ def test_calibrate_synthetic_stereo_pairs_recovers_baseline(tmp_path: Path) -> N
 
 
 def test_printable_stereo_checkerboard_matches_calibration_defaults() -> None:
-    svg_path = ROOT / "vision/models" / "stereo_checkerboard_9x6_20mm.svg"
+    svg_path = ROOT / "vision/data/models" / "stereo_checkerboard_9x6_20mm.svg"
     root = ET.parse(svg_path).getroot()
     assert root.attrib["width"] == "230mm"
     assert root.attrib["height"] == "180mm"

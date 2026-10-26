@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
-from project.scripts.check_layout import bound_csv, confined, require, check_root_dirs
+from project.scripts.check_layout import bound_csv, confined, require, check_root_dirs, check_vision_dirs
 
 class LayoutContractTests(unittest.TestCase):
     def test_outside_paths_are_rejected(self):
@@ -44,6 +44,16 @@ class LayoutContractTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder);self.roots(root)
             self.assertEqual(check_root_dirs(root),[])
+    def test_vision_rejects_return_of_scattered_runtime_folders(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            for name in ('src','scripts','tests','data','analysis','tools','video'):(root/'vision'/name).mkdir(parents=True)
+            for name in ('framesource','keypoints','m1','classify','sign_video','webapp'):
+                (root/'vision/src/vision'/name).mkdir(parents=True)
+            check_vision_dirs(root)
+            (root/'vision/keypoints').mkdir()
+            with self.assertRaisesRegex(ValueError,'Vision directory layout'):
+                check_vision_dirs(root)
     def test_unrecorded_extra_root_is_rejected(self):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder);self.roots(root);(root/"unexpected").mkdir()

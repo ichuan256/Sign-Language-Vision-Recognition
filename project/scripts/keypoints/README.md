@@ -22,6 +22,12 @@
 | `publish_hand_board.py` | 从板端输出、实现报告和 HDMI 验收生成紧凑证据 JSON |
 | `plan_realtime_hand.py` | 只读分析旧图，生成 96/128 学生模型的 MAC/容量与双手预算，不预测板端 FPS |
 | `build_hand_student.py` | r3 环境构建未训练学生网络，逐层核对形状和 kernel 数；不训练、不部署 |
+| `prepare_student_manifest.py` | vision环境；校验551素材池SHA，固定原片分组并抽取教师工程试跑清单 |
+| `export_hand_teacher.py` | vision环境；重新运行Holistic，导出手部ROI/伪标签与未知区域、离线人工复核工具 |
+| `train_hand_student.py` | r3环境；固定来源划分、掩码损失、浮点蒸馏，人工精度和教师一致性分别报告 |
+| `evaluate_hand_student.py` | r3环境；独立评测已保存模型，输出点位对照图与掩码指标 |
+| `prepare_raw_video.py` | vision环境；从已核验片段生成有界720p raw短循环包，不修改原视频 |
+| `run_raw_video.py` | 校验并暂存raw包，接管既有HDMI缓冲做板端吞吐测试；不加载bitstream |
 
 当前已通过的实际部署状态见 [流式加速记录](../../analysis/keypoints_pl_20261026/stream_wide.md)，
 驱动和板端入口见 [board/keypoints](../../board/keypoints/README.md)。
@@ -70,6 +76,19 @@ F:\PLD\.venv-r3\Scripts\python.exe project/scripts/keypoints/build_hand_student.
 ```
 
 `hand_student_v1.json` 仅定义候选；导出文件带 `UNTRAINED` 标记。形状验证不是精度、量化或 HLS 验收。
+
+教师试训已实际执行，当前数据边界及结果见[试跑记录](../../analysis/keypoints_student_20261026/README.md)。
+教师是MediaPipe模型，教师未检出区域保持未知，不能自动当无手负例。人工复核以`--reviews <JSONL>`显式覆盖，
+必须有复核者、`annotation_origin=human`和`human_verified=true`；没有确认的负样本时禁用presence训练。
+旧200项队列低清占比过高，重筛前不作为正式人工定位集。
+
+```powershell
+# 以下为工程闭环示例；输出目录均须是新的。正式标注前先完成清晰度与来源配额重筛。
+F:\PLD\.venv-vision\Scripts\python.exe -X utf8 project/scripts/keypoints/prepare_student_manifest.py --output vision/data/manifests/teacher_plan_new.json --max-clips 40
+F:\PLD\.venv-vision\Scripts\python.exe -X utf8 project/scripts/keypoints/export_hand_teacher.py --plan vision/data/manifests/teacher_plan_new.json --output project/_tmp/teacher_new --fps 5
+F:\PLD\.venv-r3\Scripts\python.exe -X utf8 project/scripts/keypoints/train_hand_student.py --data project/_tmp/teacher_new --output project/_tmp/student_train_new --epochs 60 --sizes 96 128
+F:\PLD\.venv-r3\Scripts\python.exe -X utf8 project/scripts/keypoints/evaluate_hand_student.py --model project/_tmp/student_train_new/hand_student_96_FLOAT_PILOT.keras --data project/_tmp/teacher_new --output project/_tmp/student_eval_new
+```
 
 整层版本：主机验证加 `--layer`；`build_layer_hls.py --export-ip` 导出层核后，
 `run_system_build.py prepare --layer-ip <导出 impl/ip>` 选择该核，`make_register_map.py --layer-ip <同一路径>`

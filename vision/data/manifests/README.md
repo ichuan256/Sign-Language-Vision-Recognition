@@ -4,10 +4,14 @@
 
 | 位置 | 用途 |
 |---|---|
-| `manifest_fullframe_20261024.csv` | 当前全画幅 636 条/440 原标签清单；输出路径指向根目录 `vision/video/` |
+| `manifest_fullframe_20261024.csv` | 历史全画幅 636 条/440 原标签清单；不能当作当前全部可用素材 |
 | `manifest_available_sha_verified_20261025_layout.csv` | 当前551条可用子集；新增共享包的P09/P10已恢复，全部严格匹配旧审计SHA |
 | `manifest_available_sha_verified_20261025_layout.csv.validation.json` | 从636行筛选551行、显式跳过85行的最终逐条记录 |
 | `current_available_fullframe.json` | 当前可用子集指针、哈希及统计；不改变模型或实验默认输入 |
+| `hand_teacher_pilot_20261026.json` | 40条教师工程试跑抽样及固定来源分组，尚不是已验收训练集 |
+| `m1_8class/` | 从旧 `vision/m1/manifests/` 移入的8类基线清单，相对媒体路径已换算 |
+| `m1_26class_20261023.json` | 另一版26类历史词表；不能与8类口径合并 |
+| `sign_video_smoke_20261023.json` | 批量提取的历史冒烟清单 |
 | `manifest_available_sha_verified_20261025.csv` | 首阶段349条子集，保留作迁移过程证据 |
 | `manifest_available_sha_verified_20261025.csv.validation.json` | 从636行筛选349行、显式跳过287行的逐条记录 |
 | `source_registry_current.json`、`source_registry_20261025_layout.csv` | 当前32个原片的路径、来源族和哈希；旧问候单轨已清理 |

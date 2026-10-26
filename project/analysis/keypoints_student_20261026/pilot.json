@@ -1,0 +1,96 @@
+{
+  "status": "pseudo_label_pilot_not_accepted_for_deployment",
+  "teacher": {
+    "name": "MediaPipe Holistic",
+    "version": "0.10.21",
+    "options": {
+      "static_image_mode": false,
+      "model_complexity": 1,
+      "smooth_landmarks": false,
+      "enable_segmentation": false,
+      "refine_face_landmarks": false,
+      "min_detection_confidence": 0.5,
+      "min_tracking_confidence": 0.5
+    },
+    "model_sha256": {
+      "hand_landmark/hand_landmark_full.tflite": "11c272b891e1a99ab034208e23937a8008388cf11ed2a9d776ed3d01d0ba00e3",
+      "pose_landmark/pose_landmark_full.tflite": "e9a5c5cb17f736fafd4c2ec1da3b3d331d6edbe8a0d32395855aeb2cdfd64b9f",
+      "holistic_landmark/hand_recrop.tflite": "67d996ce96f9d36fe17d2693022c6da93168026ab2f028f9e2365398d8ac7d5d"
+    },
+    "handedness": "unmirrored anatomical association from Holistic, weak labels, left=0 right=1",
+    "confidence_available": false
+  },
+  "counts": {
+    "trained_ROIs": 670,
+    "validation_ROIs": 136,
+    "test_ROIs": 191,
+    "reviewed_negative_train_ROIs": 0,
+    "presence_loss_enabled": false
+  },
+  "sampled_frames": 674,
+  "teacher_positive_ROIs": 997,
+  "unknown_regions": 674,
+  "human_ground_truth_loaded": false,
+  "old_review_queue": {
+    "ROIs": 200,
+    "low_resolution_ROIs": 164,
+    "unique_frames": 100,
+    "approved_for_formal_landmark_annotation": false
+  },
+  "models": [
+    {
+      "size": 96,
+      "best_epoch": 36,
+      "epochs_run": 48,
+      "model_sha256": "95dd10d77be3c2b74a857753a472be43029f8e30ab48b7f25d43c6071b4d38cf",
+      "teacher_agreement": {
+        "ROIs": 191,
+        "visible_points": 4011,
+        "mean_normalized_error": 0.11763881109313,
+        "PCK_at_005": 0.19895287958115182
+      },
+      "jitter_teacher_agreement": {
+        "ROIs": 191,
+        "visible_points": 4011,
+        "mean_normalized_error": 0.12765731238169126,
+        "PCK_at_005": 0.16205435053602593
+      },
+      "human_accuracy": null,
+      "quantized": false,
+      "board_deployed": false
+    },
+    {
+      "size": 128,
+      "best_epoch": 40,
+      "epochs_run": 52,
+      "model_sha256": "f6dcf69a1a45c5c9cdbddfebf1b64bfc756a45ee5bbb2558446141781c00fb61",
+      "teacher_agreement": {
+        "ROIs": 191,
+        "visible_points": 4011,
+        "mean_normalized_error": 0.12192807908603429,
+        "PCK_at_005": 0.17601595612066817
+      },
+      "jitter_teacher_agreement": {
+        "ROIs": 191,
+        "visible_points": 4011,
+        "mean_normalized_error": 0.1265496120228458,
+        "PCK_at_005": 0.1824981301421092
+      },
+      "human_accuracy": null,
+      "quantized": false,
+      "board_deployed": false
+    }
+  ],
+  "evidence_sha256": {
+    "project/_tmp/hand_teacher_pilot_v1/dataset.json": "a1d9ef0f3a3fe62680e1d666df42109dcc7633c499db062ba9908dce73fa870f",
+    "project/_tmp/hand_teacher_pilot_v1/records.jsonl": "d61b376ccef75bd48c6b13f29e32e05687325d1a6ed8d9f7819df001a3b1cd4a",
+    "project/_tmp/hand_student_train_pilot_v2/report.json": "a36e18200b9029cc5396c8d90b26d42e076258b3cd09be97a68cabd9f4da4d3a"
+  },
+  "limitations": [
+    "Source-video group holdout; performer IDs remain unknown",
+    "Pseudo-label agreement is not manually annotated landmark accuracy",
+    "Presence head loss is disabled until human-reviewed negative training examples exist",
+    "Fixed-jitter holdout is an augmentation diagnostic, not additional independent samples",
+    "Best epoch selected only on validation; test evaluated once after training"
+  ]
+}
