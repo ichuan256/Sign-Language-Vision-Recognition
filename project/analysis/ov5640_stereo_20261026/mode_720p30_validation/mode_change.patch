@@ -1,0 +1,2547 @@
+--- before/project\fpga\rtl\ov5640_stereo\ov5640_dvp_capture.v
++++ after/project\fpga\rtl\ov5640_stereo\ov5640_dvp_capture.v
+@@ -6,8 +6,8 @@
+ // cross into another clock domain through an asynchronous FIFO; this module
+ // intentionally has no backpressure because the camera cannot be stalled.
+ module ov5640_dvp_capture #(
+-    parameter integer FRAME_WIDTH = 640,
+-    parameter integer FRAME_HEIGHT = 480,
++    parameter integer FRAME_WIDTH = 1280,
++    parameter integer FRAME_HEIGHT = 720,
+     parameter         VSYNC_ACTIVE_LEVEL = 1'b1
+ ) (
+     input  wire        rst_n,
+--- before/project\fpga\rtl\ov5640_stereo\ov5640_known_config_table.v
++++ after/project\fpga\rtl\ov5640_stereo\ov5640_known_config_table.v
+@@ -3,8 +3,8 @@
+ // Confirmed configuration SUBSET for 24 MHz XCLK / 8-bit DVP RGB565.
+ // A complete startup must insert compatible global analog/ISP setup AFTER
+ // hardware reset and BEFORE this subset (the subset wrapper alone omits it).
+-// 1920x1080, HTS=2500, VTS=1120 remain a candidate mode contract, not a
+-// validated complete 1080p30 startup sequence. No crop or stream-on is implied.
++// 1280x720, HTS=1892, VTS=740 remain a candidate mode contract, not a
++// validated complete 720p30 startup sequence. No crop or stream-on is implied.
+ // Sources and unresolved polarity differences: configuration_choices.md.
+ module ov5640_known_config_table (
+     input wire [5:0] index,
+@@ -24,30 +24,30 @@
+         last = 1'b0;
+         case (index)
+             0: begin reg_addr=16'h3034; reg_value=8'h18; end
+-            1: begin reg_addr=16'h3035; reg_value=8'h10; end
++            1: begin reg_addr=16'h3035; reg_value=8'h20; end
+             2: begin reg_addr=16'h3036; reg_value=8'h54; end
+             3: begin reg_addr=16'h3037; reg_value=8'h13; end
+             4: begin reg_addr=16'h3108; reg_value=8'h01; end
+-            5: begin reg_addr=16'h3808; reg_value=8'h07; end
+-            6: begin reg_addr=16'h3809; reg_value=8'h80; end
+-            7: begin reg_addr=16'h380a; reg_value=8'h04; end
+-            8: begin reg_addr=16'h380b; reg_value=8'h38; end
+-            9: begin reg_addr=16'h380c; reg_value=8'h09; end
+-            10: begin reg_addr=16'h380d; reg_value=8'hc4; end
+-            11: begin reg_addr=16'h380e; reg_value=8'h04; end
+-            12: begin reg_addr=16'h380f; reg_value=8'h60; end
++            5: begin reg_addr=16'h3808; reg_value=8'h05; end
++            6: begin reg_addr=16'h3809; reg_value=8'h00; end
++            7: begin reg_addr=16'h380a; reg_value=8'h02; end
++            8: begin reg_addr=16'h380b; reg_value=8'hd0; end
++            9: begin reg_addr=16'h380c; reg_value=8'h07; end
++            10: begin reg_addr=16'h380d; reg_value=8'h64; end
++            11: begin reg_addr=16'h380e; reg_value=8'h02; end
++            12: begin reg_addr=16'h380f; reg_value=8'he4; end
+             13: begin reg_addr=16'h4300; reg_value=8'h6f; end
+             14: begin reg_addr=16'h501f; reg_value=8'h01; end
+             // Falling-edge camera data update; preserve VSYNC/HREF and all
+             // other bits independently on each physical camera.
+             15: begin reg_addr=16'h4740; reg_value=8'h20; write_mask=8'h20; end
+-            // Camera sysclk=84MHz, HTS=2500, VTS=1120: 50Hz step=336,
+-            // 60Hz step=280, floor((VTS-4)/step)=3 for both frequencies.
+-            16: begin reg_addr=16'h3a08; reg_value=8'h01; end
+-            17: begin reg_addr=16'h3a09; reg_value=8'h50; end
+-            18: begin reg_addr=16'h3a0a; reg_value=8'h01; end
+-            19: begin reg_addr=16'h3a0b; reg_value=8'h18; end
+-            20: begin reg_addr=16'h3a0d; reg_value=8'h03; end
++            // Camera sysclk=42MHz, HTS=1892, VTS=740: 50Hz step=221,
++            // 60Hz step=184; max bands 50/60Hz = 3/4.
++            16: begin reg_addr=16'h3a08; reg_value=8'h00; end
++            17: begin reg_addr=16'h3a09; reg_value=8'hdd; end
++            18: begin reg_addr=16'h3a0a; reg_value=8'h00; end
++            19: begin reg_addr=16'h3a0b; reg_value=8'hb8; end
++            20: begin reg_addr=16'h3a0d; reg_value=8'h04; end
+             21: begin reg_addr=16'h3a0e; reg_value=8'h03; end
+             22: begin reg_addr=16'h3c01; reg_value=8'h80; write_mask=8'h80; end
+             23: begin reg_addr=16'h3a00; reg_value=8'h20; write_mask=8'h24; end
+--- before/project\fpga\rtl\ov5640_stereo\ov5640_pll_config.v
++++ after/project\fpga\rtl\ov5640_stereo\ov5640_pll_config.v
+@@ -1,7 +1,7 @@
+ `timescale 1ns/1ps
+ 
+ // Emits the OV5640 clock-tree register writes for the frozen camera target:
+-// 24 MHz XCLK, 1920x1080@30, RGB565 over 8-bit DVP.
++// 24 MHz XCLK, 1280x720@30 nominal, RGB565 over 8-bit DVP.
+ //
+ // This is a register-stream source, not an FPGA fabric PLL and not a complete
+ // sensor mode table. Connect cfg_* to the camera initialization stream (or
+@@ -34,7 +34,7 @@
+     always @* begin
+         case (index)
+             3'd0: begin cfg_reg_addr = 16'h3034; cfg_reg_data = 8'h18; end
+-            3'd1: begin cfg_reg_addr = 16'h3035; cfg_reg_data = 8'h10; end
++            3'd1: begin cfg_reg_addr = 16'h3035; cfg_reg_data = 8'h20; end
+             3'd2: begin cfg_reg_addr = 16'h3036; cfg_reg_data = 8'h54; end
+             3'd3: begin cfg_reg_addr = 16'h3037; cfg_reg_data = 8'h13; end
+             3'd4: begin cfg_reg_addr = 16'h3108; cfg_reg_data = 8'h01; end
+--- before/project\fpga\rtl\ov5640_stereo\ov5640_startup_table.v
++++ after/project\fpga\rtl\ov5640_stereo\ov5640_startup_table.v
+@@ -14,7 +14,7 @@
+     output reg [15:0] post_delay_ms,
+     output reg last
+ );
+-    localparam integer ENTRY_COUNT = 330;
++    localparam integer ENTRY_COUNT = 308;
+     always @* begin
+         valid = 1'b1;
+         reg_addr = 16'h0000;
+@@ -249,118 +249,96 @@
+             10'd221: begin reg_addr=16'h3c00; reg_value=8'h04; post_delay_ms=16'd300; end
+             // pll
+             10'd222: begin reg_addr=16'h3034; reg_value=8'h18; end
+-            10'd223: begin reg_addr=16'h3035; reg_value=8'h10; end
++            10'd223: begin reg_addr=16'h3035; reg_value=8'h20; end
+             10'd224: begin reg_addr=16'h3036; reg_value=8'h54; end
+             10'd225: begin reg_addr=16'h3037; reg_value=8'h13; end
+             10'd226: begin reg_addr=16'h3108; reg_value=8'h01; end
+-            // 1080p_mode
+-            10'd227: begin reg_addr=16'h3c07; reg_value=8'h08; end
++            // 720p_mode
++            10'd227: begin reg_addr=16'h3c07; reg_value=8'h07; end
+             10'd228: begin reg_addr=16'h3c09; reg_value=8'h1c; end
+             10'd229: begin reg_addr=16'h3c0a; reg_value=8'h9c; end
+             10'd230: begin reg_addr=16'h3c0b; reg_value=8'h40; end
+-            10'd231: begin reg_addr=16'h3814; reg_value=8'h11; end
+-            10'd232: begin reg_addr=16'h3815; reg_value=8'h11; end
+-            10'd233: begin reg_addr=16'h3618; reg_value=8'h04; end
++            10'd231: begin reg_addr=16'h3814; reg_value=8'h31; end
++            10'd232: begin reg_addr=16'h3815; reg_value=8'h31; end
++            10'd233: begin reg_addr=16'h3618; reg_value=8'h00; end
+             10'd234: begin reg_addr=16'h3612; reg_value=8'h29; end
+-            10'd235: begin reg_addr=16'h3708; reg_value=8'h21; end
+-            10'd236: begin reg_addr=16'h3709; reg_value=8'h12; end
+-            10'd237: begin reg_addr=16'h370c; reg_value=8'h00; end
+-            10'd238: begin reg_addr=16'h3a02; reg_value=8'h03; end
+-            10'd239: begin reg_addr=16'h3a03; reg_value=8'hd8; end
++            10'd235: begin reg_addr=16'h3708; reg_value=8'h64; end
++            10'd236: begin reg_addr=16'h3709; reg_value=8'h52; end
++            10'd237: begin reg_addr=16'h370c; reg_value=8'h03; end
++            10'd238: begin reg_addr=16'h3a02; reg_value=8'h02; end
++            10'd239: begin reg_addr=16'h3a03; reg_value=8'he4; end
+             10'd240: begin reg_addr=16'h3a08; reg_value=8'h01; end
+-            10'd241: begin reg_addr=16'h3a09; reg_value=8'h27; end
+-            10'd242: begin reg_addr=16'h3a0a; reg_value=8'h00; end
+-            10'd243: begin reg_addr=16'h3a0b; reg_value=8'hf6; end
+-            10'd244: begin reg_addr=16'h3a0e; reg_value=8'h03; end
+-            10'd245: begin reg_addr=16'h3a0d; reg_value=8'h04; end
+-            10'd246: begin reg_addr=16'h3a14; reg_value=8'h03; end
+-            10'd247: begin reg_addr=16'h3a15; reg_value=8'hd8; end
++            10'd241: begin reg_addr=16'h3a09; reg_value=8'hbc; end
++            10'd242: begin reg_addr=16'h3a0a; reg_value=8'h01; end
++            10'd243: begin reg_addr=16'h3a0b; reg_value=8'h72; end
++            10'd244: begin reg_addr=16'h3a0e; reg_value=8'h01; end
++            10'd245: begin reg_addr=16'h3a0d; reg_value=8'h02; end
++            10'd246: begin reg_addr=16'h3a14; reg_value=8'h02; end
++            10'd247: begin reg_addr=16'h3a15; reg_value=8'he4; end
+             10'd248: begin reg_addr=16'h4001; reg_value=8'h02; end
+-            10'd249: begin reg_addr=16'h4004; reg_value=8'h06; end
++            10'd249: begin reg_addr=16'h4004; reg_value=8'h02; end
+             10'd250: begin reg_addr=16'h4407; reg_value=8'h04; end
+-            10'd251: begin reg_addr=16'h460b; reg_value=8'h35; end
+-            10'd252: begin reg_addr=16'h460c; reg_value=8'h22; end
+-            10'd253: begin reg_addr=16'h3824; reg_value=8'h02; end
++            10'd251: begin reg_addr=16'h460b; reg_value=8'h37; end
++            10'd252: begin reg_addr=16'h460c; reg_value=8'h20; end
++            10'd253: begin reg_addr=16'h3824; reg_value=8'h04; end
+             10'd254: begin reg_addr=16'h5001; reg_value=8'h83; end
+-            10'd255: begin reg_addr=16'h3c07; reg_value=8'h07; end
+-            10'd256: begin reg_addr=16'h3c08; reg_value=8'h00; end
+-            10'd257: begin reg_addr=16'h3c09; reg_value=8'h1c; end
+-            10'd258: begin reg_addr=16'h3c0a; reg_value=8'h9c; end
+-            10'd259: begin reg_addr=16'h3c0b; reg_value=8'h40; end
+-            10'd260: begin reg_addr=16'h3612; reg_value=8'h2b; end
+-            10'd261: begin reg_addr=16'h3708; reg_value=8'h64; end
+-            10'd262: begin reg_addr=16'h3a02; reg_value=8'h04; end
+-            10'd263: begin reg_addr=16'h3a03; reg_value=8'h60; end
+-            10'd264: begin reg_addr=16'h3a08; reg_value=8'h01; end
+-            10'd265: begin reg_addr=16'h3a09; reg_value=8'h50; end
+-            10'd266: begin reg_addr=16'h3a0a; reg_value=8'h01; end
+-            10'd267: begin reg_addr=16'h3a0b; reg_value=8'h18; end
+-            10'd268: begin reg_addr=16'h3a0e; reg_value=8'h03; end
+-            10'd269: begin reg_addr=16'h3a0d; reg_value=8'h04; end
+-            10'd270: begin reg_addr=16'h3a14; reg_value=8'h04; end
+-            10'd271: begin reg_addr=16'h3a15; reg_value=8'h60; end
+-            10'd272: begin reg_addr=16'h4407; reg_value=8'h04; end
+-            10'd273: begin reg_addr=16'h460b; reg_value=8'h37; end
+-            10'd274: begin reg_addr=16'h460c; reg_value=8'h20; end
+-            10'd275: begin reg_addr=16'h3824; reg_value=8'h04; end
+-            10'd276: begin reg_addr=16'h4005; reg_value=8'h1a; end
+             // window
+-            10'd277: begin reg_addr=16'h3800; reg_value=8'h01; end
+-            10'd278: begin reg_addr=16'h3801; reg_value=8'h50; end
+-            10'd279: begin reg_addr=16'h3802; reg_value=8'h01; end
+-            10'd280: begin reg_addr=16'h3803; reg_value=8'hb2; end
+-            10'd281: begin reg_addr=16'h3804; reg_value=8'h08; end
+-            10'd282: begin reg_addr=16'h3805; reg_value=8'hef; end
+-            10'd283: begin reg_addr=16'h3806; reg_value=8'h05; end
+-            10'd284: begin reg_addr=16'h3807; reg_value=8'hf1; end
+-            10'd285: begin reg_addr=16'h3810; reg_value=8'h00; end
+-            10'd286: begin reg_addr=16'h3811; reg_value=8'h10; end
+-            10'd287: begin reg_addr=16'h3812; reg_value=8'h00; end
+-            10'd288: begin reg_addr=16'h3813; reg_value=8'h04; end
++            10'd255: begin reg_addr=16'h3800; reg_value=8'h00; end
++            10'd256: begin reg_addr=16'h3801; reg_value=8'h00; end
++            10'd257: begin reg_addr=16'h3802; reg_value=8'h00; end
++            10'd258: begin reg_addr=16'h3803; reg_value=8'hfa; end
++            10'd259: begin reg_addr=16'h3804; reg_value=8'h0a; end
++            10'd260: begin reg_addr=16'h3805; reg_value=8'h3f; end
++            10'd261: begin reg_addr=16'h3806; reg_value=8'h06; end
++            10'd262: begin reg_addr=16'h3807; reg_value=8'ha9; end
++            10'd263: begin reg_addr=16'h3810; reg_value=8'h00; end
++            10'd264: begin reg_addr=16'h3811; reg_value=8'h10; end
++            10'd265: begin reg_addr=16'h3812; reg_value=8'h00; end
++            10'd266: begin reg_addr=16'h3813; reg_value=8'h04; end
+             // format_dvp
+-            10'd289: begin reg_addr=16'h3820; reg_value=8'h00; write_mask=8'h01; end
+-            10'd290: begin reg_addr=16'h3821; reg_value=8'h00; write_mask=8'h21; end
+-            10'd291: begin reg_addr=16'h3002; reg_value=8'h1c; write_mask=8'h1c; end
+-            10'd292: begin reg_addr=16'h3006; reg_value=8'h00; write_mask=8'h28; end
+-            10'd293: begin reg_addr=16'h4730; reg_value=8'h00; end
+-            10'd294: begin reg_addr=16'h300e; reg_value=8'h18; end
+-            10'd295: begin reg_addr=16'h3017; reg_value=8'h7f; end
+-            10'd296: begin reg_addr=16'h3018; reg_value=8'hfc; end
++            10'd267: begin reg_addr=16'h3820; reg_value=8'h01; write_mask=8'h01; end
++            10'd268: begin reg_addr=16'h3821; reg_value=8'h01; write_mask=8'h21; end
++            10'd269: begin reg_addr=16'h3002; reg_value=8'h1c; write_mask=8'h1c; end
++            10'd270: begin reg_addr=16'h3006; reg_value=8'h00; write_mask=8'h28; end
++            10'd271: begin reg_addr=16'h4730; reg_value=8'h00; end
++            10'd272: begin reg_addr=16'h300e; reg_value=8'h18; end
++            10'd273: begin reg_addr=16'h3017; reg_value=8'h7f; end
++            10'd274: begin reg_addr=16'h3018; reg_value=8'hfc; end
+             // exposure_seed
+-            10'd297: begin reg_addr=16'h3a02; reg_value=8'h04; end
+-            10'd298: begin reg_addr=16'h3a03; reg_value=8'h5c; end
+-            10'd299: begin reg_addr=16'h3a14; reg_value=8'h04; end
+-            10'd300: begin reg_addr=16'h3a15; reg_value=8'h5c; end
+-            10'd301: begin reg_addr=16'h3a18; reg_value=8'h00; end
+-            10'd302: begin reg_addr=16'h3a19; reg_value=8'hf8; end
+-            10'd303: begin reg_addr=16'h3500; reg_value=8'h00; end
+-            10'd304: begin reg_addr=16'h3501; reg_value=8'h15; end
+-            10'd305: begin reg_addr=16'h3502; reg_value=8'h00; end
+-            10'd306: begin reg_addr=16'h350a; reg_value=8'h00; end
+-            10'd307: begin reg_addr=16'h350b; reg_value=8'h10; end
++            10'd275: begin reg_addr=16'h3a02; reg_value=8'h02; end
++            10'd276: begin reg_addr=16'h3a03; reg_value=8'he0; end
++            10'd277: begin reg_addr=16'h3a14; reg_value=8'h02; end
++            10'd278: begin reg_addr=16'h3a15; reg_value=8'he0; end
++            10'd279: begin reg_addr=16'h3a18; reg_value=8'h00; end
++            10'd280: begin reg_addr=16'h3a19; reg_value=8'hf8; end
++            10'd281: begin reg_addr=16'h3500; reg_value=8'h00; end
++            10'd282: begin reg_addr=16'h3501; reg_value=8'h0d; end
++            10'd283: begin reg_addr=16'h3502; reg_value=8'hd0; end
++            10'd284: begin reg_addr=16'h350a; reg_value=8'h00; end
++            10'd285: begin reg_addr=16'h350b; reg_value=8'h10; end
+             // target_controls
+-            10'd308: begin reg_addr=16'h3808; reg_value=8'h07; end
+-            10'd309: begin reg_addr=16'h3809; reg_value=8'h80; end
+-            10'd310: begin reg_addr=16'h380a; reg_value=8'h04; end
+-            10'd311: begin reg_addr=16'h380b; reg_value=8'h38; end
+-            10'd312: begin reg_addr=16'h380c; reg_value=8'h09; end
+-            10'd313: begin reg_addr=16'h380d; reg_value=8'hc4; end
+-            10'd314: begin reg_addr=16'h380e; reg_value=8'h04; end
+-            10'd315: begin reg_addr=16'h380f; reg_value=8'h60; end
+-            10'd316: begin reg_addr=16'h3a08; reg_value=8'h01; end
+-            10'd317: begin reg_addr=16'h3a09; reg_value=8'h50; end
+-            10'd318: begin reg_addr=16'h3a0a; reg_value=8'h01; end
+-            10'd319: begin reg_addr=16'h3a0b; reg_value=8'h18; end
+-            10'd320: begin reg_addr=16'h4300; reg_value=8'h6f; end
+-            10'd321: begin reg_addr=16'h501f; reg_value=8'h01; end
+-            10'd322: begin reg_addr=16'h3a0d; reg_value=8'h03; end
+-            10'd323: begin reg_addr=16'h3a0e; reg_value=8'h03; end
+-            10'd324: begin reg_addr=16'h4740; reg_value=(DVP_POLARITY_VALUE & 8'h23); write_mask=8'h2f; end
+-            10'd325: begin reg_addr=16'h3503; reg_value=8'h00; write_mask=8'h03; end
+-            10'd326: begin reg_addr=16'h3406; reg_value=8'h00; write_mask=8'h01; end
+-            10'd327: begin reg_addr=16'h3c01; reg_value=8'h80; write_mask=8'h80; end
+-            10'd328: begin reg_addr=16'h3c00; reg_value=8'h04; write_mask=8'h04; post_delay_ms=16'd300; end
+-            10'd329: begin reg_addr=16'h3a00; reg_value=8'h20; write_mask=8'h24; last=1'b1; end
++            10'd286: begin reg_addr=16'h3808; reg_value=8'h05; end
++            10'd287: begin reg_addr=16'h3809; reg_value=8'h00; end
++            10'd288: begin reg_addr=16'h380a; reg_value=8'h02; end
++            10'd289: begin reg_addr=16'h380b; reg_value=8'hd0; end
++            10'd290: begin reg_addr=16'h380c; reg_value=8'h07; end
++            10'd291: begin reg_addr=16'h380d; reg_value=8'h64; end
++            10'd292: begin reg_addr=16'h380e; reg_value=8'h02; end
++            10'd293: begin reg_addr=16'h380f; reg_value=8'he4; end
++            10'd294: begin reg_addr=16'h3a08; reg_value=8'h00; end
++            10'd295: begin reg_addr=16'h3a09; reg_value=8'hdd; end
++            10'd296: begin reg_addr=16'h3a0a; reg_value=8'h00; end
++            10'd297: begin reg_addr=16'h3a0b; reg_value=8'hb8; end
++            10'd298: begin reg_addr=16'h4300; reg_value=8'h6f; end
++            10'd299: begin reg_addr=16'h501f; reg_value=8'h01; end
++            10'd300: begin reg_addr=16'h3a0d; reg_value=8'h04; end
++            10'd301: begin reg_addr=16'h3a0e; reg_value=8'h03; end
++            10'd302: begin reg_addr=16'h4740; reg_value=(DVP_POLARITY_VALUE & 8'h23); write_mask=8'h2f; end
++            10'd303: begin reg_addr=16'h3503; reg_value=8'h00; write_mask=8'h03; end
++            10'd304: begin reg_addr=16'h3406; reg_value=8'h00; write_mask=8'h01; end
++            10'd305: begin reg_addr=16'h3c01; reg_value=8'h80; write_mask=8'h80; end
++            10'd306: begin reg_addr=16'h3c00; reg_value=8'h04; write_mask=8'h04; post_delay_ms=16'd300; end
++            10'd307: begin reg_addr=16'h3a00; reg_value=8'h20; write_mask=8'h24; last=1'b1; end
+             default: begin valid=1'b0; write_mask=8'h00; end
+         endcase
+     end
+--- before/project\fpga\rtl\ov5640_stereo\ov5640_stereo_camera_top.v
++++ after/project\fpga\rtl\ov5640_stereo\ov5640_stereo_camera_top.v
+@@ -2,10 +2,10 @@
+ 
+ // Higher-level dual-camera shell. The frame dimensions describe the intended
+ // capture contract; a verified register stream must still be supplied through
+-// cfg_* before config_done can assert. No 1080p30 mode table is built in.
++// cfg_* before config_done can assert. No 720p30 mode table is built in.
+ module ov5640_stereo_camera_top #(
+-    parameter integer FRAME_WIDTH = 1920,
+-    parameter integer FRAME_HEIGHT = 1080,
++    parameter integer FRAME_WIDTH = 1280,
++    parameter integer FRAME_HEIGHT = 720,
+     parameter         OV1_VSYNC_ACTIVE_LEVEL = 1'b1,
+     parameter         OV2_VSYNC_ACTIVE_LEVEL = 1'b1,
+     parameter [6:0]   SCCB_DEVICE_ADDR = 7'h3c,
+--- before/project\fpga\rtl\ov5640_stereo\ov5640_stereo_capture_pair.v
++++ after/project\fpga\rtl\ov5640_stereo\ov5640_stereo_capture_pair.v
+@@ -4,8 +4,8 @@
+ // own camera PCLK domain; use one asynchronous FIFO per eye before combining
+ // either stream with a system-clocked AXI/V DMA path.
+ module ov5640_stereo_capture_pair #(
+-    parameter integer FRAME_WIDTH = 640,
+-    parameter integer FRAME_HEIGHT = 480,
++    parameter integer FRAME_WIDTH = 1280,
++    parameter integer FRAME_HEIGHT = 720,
+     parameter         OV1_VSYNC_ACTIVE_LEVEL = 1'b1,
+     parameter         OV2_VSYNC_ACTIVE_LEVEL = 1'b1
+ ) (
+--- before/project\fpga\rtl\ov5640_stereo\ov5640_stereo_startup_capture.v
++++ after/project\fpga\rtl\ov5640_stereo\ov5640_stereo_startup_capture.v
+@@ -4,7 +4,7 @@
+ // domain. This adds no asynchronous pixel FIFO, DDR writer or frame pairing.
+ module ov5640_stereo_startup_capture #(
+     parameter integer SYS_CLK_HZ=100000000,
+-    parameter integer FRAME_WIDTH=1920, FRAME_HEIGHT=1080,
++    parameter integer FRAME_WIDTH=1280, FRAME_HEIGHT=720,
+     parameter OV1_VSYNC_ACTIVE_LEVEL=1'b1, OV2_VSYNC_ACTIVE_LEVEL=1'b1,
+     parameter integer PWDN_SETTLE_CYCLES=((SYS_CLK_HZ/1000)*20+((SYS_CLK_HZ%1000)*20+999)/1000 < 1) ? 1 : ((SYS_CLK_HZ/1000)*20+((SYS_CLK_HZ%1000)*20+999)/1000),
+     parameter integer RESET_RELEASE_WAIT_CYCLES=((SYS_CLK_HZ/1000)*20+((SYS_CLK_HZ%1000)*20+999)/1000 < 1) ? 1 : ((SYS_CLK_HZ/1000)*20+((SYS_CLK_HZ%1000)*20+999)/1000),
+--- before/project\fpga\rtl\ov5640_stereo\ov5640_stereo_startup.v
++++ after/project\fpga\rtl\ov5640_stereo\ov5640_stereo_startup.v
+@@ -123,18 +123,18 @@
+         verify_addr=16'h3034; verify_value=8'h18; verify_mask=8'hff;
+         case (verify_index)
+             0: begin verify_addr=16'h3034; verify_value=8'h18; end
+-            1: begin verify_addr=16'h3035; verify_value=8'h10; end
++            1: begin verify_addr=16'h3035; verify_value=8'h20; end
+             2: begin verify_addr=16'h3036; verify_value=8'h54; end
+             3: begin verify_addr=16'h3037; verify_value=8'h13; end
+             4: begin verify_addr=16'h3108; verify_value=8'h01; end
+-            5: begin verify_addr=16'h3808; verify_value=8'h07; end
+-            6: begin verify_addr=16'h3809; verify_value=8'h80; end
+-            7: begin verify_addr=16'h380a; verify_value=8'h04; end
+-            8: begin verify_addr=16'h380b; verify_value=8'h38; end
+-            9: begin verify_addr=16'h380c; verify_value=8'h09; end
+-            10: begin verify_addr=16'h380d; verify_value=8'hc4; end
+-            11: begin verify_addr=16'h380e; verify_value=8'h04; end
+-            12: begin verify_addr=16'h380f; verify_value=8'h60; end
++            5: begin verify_addr=16'h3808; verify_value=8'h05; end
++            6: begin verify_addr=16'h3809; verify_value=8'h00; end
++            7: begin verify_addr=16'h380a; verify_value=8'h02; end
++            8: begin verify_addr=16'h380b; verify_value=8'hd0; end
++            9: begin verify_addr=16'h380c; verify_value=8'h07; end
++            10: begin verify_addr=16'h380d; verify_value=8'h64; end
++            11: begin verify_addr=16'h380e; verify_value=8'h02; end
++            12: begin verify_addr=16'h380f; verify_value=8'he4; end
+             13: begin verify_addr=16'h4300; verify_value=8'h6f; end
+             14: begin verify_addr=16'h501f; verify_value=8'h01; end
+             15: begin verify_addr=16'h4740; verify_value=DVP_POLARITY_VALUE & 8'h23; verify_mask=8'h2f; end
+--- before/project\fpga\rtl\ov5640_stereo\ov5640_stereo_top.v
++++ after/project\fpga\rtl\ov5640_stereo\ov5640_stereo_top.v
+@@ -4,8 +4,8 @@
+ // Pixel outputs remain in their own camera PCLK domains. SCCB commands use
+ // sys_clk and are supplied by an external initialization/control sequencer.
+ module ov5640_stereo_top #(
+-    parameter integer FRAME_WIDTH = 640,
+-    parameter integer FRAME_HEIGHT = 480,
++    parameter integer FRAME_WIDTH = 1280,
++    parameter integer FRAME_HEIGHT = 720,
+     parameter         OV1_VSYNC_ACTIVE_LEVEL = 1'b1,
+     parameter         OV2_VSYNC_ACTIVE_LEVEL = 1'b1,
+     parameter [6:0]   SCCB_DEVICE_ADDR = 7'h3c,
+--- before/project\fpga\rtl\ov5640_stereo\README.md
++++ after/project\fpga\rtl\ov5640_stereo\README.md
+@@ -2,9 +2,9 @@
+ 
+ ## 当前实现范围
+ 
+-当前目录实现两路独立的 OV5640 DVP 采集、SCCB 读写与按位读改写、RESET/PWDN 上电时序、27 项已确定配置子表，以及新增的完整冷启动候选入口。新入口包含基础模拟/ISP、1080p 模式与窗口、自动成像初值、双路 ID/关键寄存器校验和检查通过后的 stream-on；未完成真实相机验证、物理引脚约束、异步 FIFO、DDR/VDMA 或 HDMI 接入。
++当前目录实现两路独立的 OV5640 DVP 采集、SCCB 读写与按位读改写、RESET/PWDN 上电时序、27 项已确定配置子表，以及新增的完整冷启动候选入口。新入口包含基础模拟/ISP、720p模式与窗口、自动成像初值、双路 ID/关键寄存器校验和检查通过后的 stream-on；未完成真实相机验证、物理引脚约束、异步 FIFO、DDR/VDMA 或 HDMI 接入。
+ 
+-新增完整入口为 `ov5640_stereo_startup`，与 DVP 组合的壳为 `ov5640_stereo_startup_capture`；330 项 ROM 为 `ov5640_startup_table`，每路事务适配器为 `ov5640_sccb_register_access`。来源、参数、冷启动与完成语义见 [完整冷启动记录](../../../analysis/ov5640_stereo_20261026/startup_sequence.md)。下述旧顶层及 27 项子表保持原接口，不自动变成完整启动入口。
++新增完整入口为 `ov5640_stereo_startup`，与 DVP 组合的壳为 `ov5640_stereo_startup_capture`；308项ROM 为 `ov5640_startup_table`，每路事务适配器为 `ov5640_sccb_register_access`。来源、参数、冷启动与完成语义见 [完整冷启动记录](../../../analysis/ov5640_stereo_20261026/startup_sequence.md)。下述旧顶层及 27 项子表保持原接口，不自动变成完整启动入口。
+ 
+ - `ov5640_dvp_capture.v`：单路 PCLK 域采集器。
+ - `ov5640_stereo_capture_pair.v`：实例化 OV1、OV2 两路采集器；两路仍处于各自相机 PCLK 域。
+@@ -14,18 +14,18 @@
+ - `ov5640_stereo_sccb_pair.v`：两组独立 SCCB 写引擎，可分别启动或同时写同一条寄存器命令。
+ - `ov5640_stereo_top.v`：将双路 DVP 和 SCCB 写引擎连成一个可仿真的基础顶层；SCCB 命令由外部上层控制器提供。
+ - `ov5640_stereo_camera_init.v`：双路共同 PWDN/RESET 上电时序、外部寄存器流握手、双路 SCCB 完成等待和事务超时。
+-- `ov5640_stereo_camera_top.v`：带双路 DVP、双路 SCCB 和相机控制脚的高层壳；帧尺寸默认 1920×1080，但不会内置或宣称已完成 1080p30 配置。
++- `ov5640_stereo_camera_top.v`：带双路 DVP、双路 SCCB 和相机控制脚的高层壳；帧尺寸默认1280×720，但不会内置或宣称已完成720p30配置。
+ - `ov5640_known_config_table.v`：27 项索引式 ROM，包含地址、值、写掩码、逐项毫秒延时和末项标志。
+ - `ov5640_sccb_masked_write.v`：每路独立的 SCCB 读改写适配器；全掩码直接写，部分掩码先读再写。
+ - `ov5640_known_config_sequencer.v`：将表连接到原有 `cfg_*` 握手，保持当前项直到发送和延时全部完成。
+ - `ov5640_stereo_known_config.v`：组合原上电控制器、表序列器和两路读改写器的可实例化入口；仅执行已确定子表，不包含 DVP/全局模拟 ISP 初始化或 stream-on。
+ - `../../tb/ov5640_stereo/`：自检 testbench。
+ 
+-低层 `ov5640_stereo_top` 的 `sys_clk` 只驱动 SCCB 写引擎，保留外部单次命令接口以供总线测试；高层 `ov5640_stereo_camera_top` 增加初始化控制器和相机 RESET/PWDN 输出。两路像素输出仍分别同步于 `ov1_pclk`/`ov2_pclk`。高层的默认 1920×1080 是采集尺寸契约，只有外部配置流内容经过核验且成功发送后控制器才报告完成；它不代表寄存器已读回或相机输出已经验证。低层 640×480、VSYNC 高有效和 SCCB 半周期 500 个 `sys_clk` 周期仍是可覆盖的接口参数，需与实际传感器配置及输入时钟匹配。
++低层 `ov5640_stereo_top` 的 `sys_clk` 只驱动 SCCB 写引擎，保留外部单次命令接口以供总线测试；高层 `ov5640_stereo_camera_top` 增加初始化控制器和相机 RESET/PWDN 输出。两路像素输出仍分别同步于 `ov1_pclk`/`ov2_pclk`。高层的默认1280×720 是采集尺寸契约，只有外部配置流内容经过核验且成功发送后控制器才报告完成；它不代表寄存器已读回或相机输出已经验证。低层1280×720、VSYNC 高有效和 SCCB 半周期 500 个 `sys_clk` 周期仍是可覆盖的接口参数，需与实际传感器配置及输入时钟匹配。
+ 
+ ## 单路接口契约
+ 
+-- `FRAME_WIDTH`/`FRAME_HEIGHT` 是正数，代表输出图像的 RGB565 像素宽高，必须与 OV5640 SCCB 初始化后实际输出尺寸一致。默认值 640×480 只是可覆盖的 VGA 起始值，尚未由寄存器配置或实物测量验证。
++- `FRAME_WIDTH`/`FRAME_HEIGHT` 是正数，代表输出图像的 RGB565 像素宽高，必须与 OV5640 SCCB 初始化后实际输出尺寸一致。默认值1280×720与当前候选目标一致，仍可覆盖，尚未由寄存器配置或实物测量验证。
+ - `VSYNC_ACTIVE_LEVEL` 可设置帧同步脉冲有效电平。当前逻辑把 VSYNC 有效脉冲的结束边沿视为新图像区间开始，把下一次有效边沿视为帧结束。
+ - `pixel_data` 在 `pixel_valid` 周期有效。模组手册规定 RGB565 每像素低字节先输出，因此输出为 `{第二字节, 第一字节}`。
+ - `pixel_sof` 与首像素同周期；`pixel_eol` 与每行预期最后一个像素同周期。
+@@ -55,30 +55,19 @@
+ 
+ 上层应在 `cfg_valid && cfg_ready` 时提供一个寄存器项，最后一项将 `cfg_last` 置高。控制器锁存地址和值，同时启动两条独立 SCCB；只有两路 `done` 都出现后才接受下一项。末项双路 `done` 后 `config_done` 保持为高；等待任一路 `done` 超过 `SCCB_TIMEOUT_CYCLES` 后 `config_error` 保持为高。两路 SCCB 写原语不读取响应，因此这里的 `done` 仅表示本机完成了发送状态机，超时只能发现发送状态机未完成，不能发现传感器缺席、未 ACK、寄存器未生效或错误图像。
+ 
+-**当前目标是双路独立 8-bit DVP、24 MHz XCLK、1920×1080@30 fps、RGB565；FPGA 接收端 VSYNC 契约为高有效。** 完整冷启动候选表现已实现，实际相机模式尚未验收。用户已确认 **FPGA 使用 PCLK 上升沿采样**，与现有 `posedge cam_pclk` 一致。新入口使用可覆盖的 `DVP_POLARITY_VALUE=8'h22`，按 Linux 解释设置 VSYNC/HREF 高有效与相应 PCLK 位，并关闭 PCLK 门控。指南、数据手册和上游驱动对部分极性位存在差异，因此该值仍是待波形确认的候选；旧 27 项子表只更新 bit 5 的合同保持不变。来源与边界见 [完整冷启动记录](../../../analysis/ov5640_stereo_20261026/startup_sequence.md)。
++**当前目标是双路独立 8-bit DVP、24 MHz XCLK、1280×720@30fps（标称）、RGB565；FPGA 接收端 VSYNC 契约为高有效。** 完整冷启动候选表现已实现，实际相机模式尚未验收。用户已确认 **FPGA 使用 PCLK 上升沿采样**，与现有 `posedge cam_pclk` 一致。新入口使用可覆盖的 `DVP_POLARITY_VALUE=8'h22`，按 Linux 解释设置 VSYNC/HREF 高有效与相应 PCLK 位，并关闭 PCLK 门控。指南、数据手册和上游驱动对部分极性位存在差异，因此该值仍是待波形确认的候选；旧 27 项子表只更新 bit 5 的合同保持不变。来源与边界见 [完整冷启动记录](../../../analysis/ov5640_stereo_20261026/startup_sequence.md)。
+ 
+-指定参考目录里的 OmniVision DVP 指南含有可追溯的配置示例，但其 `0x4300=0x30`、`0x501f=0x00` 是 YUV422，不是目标 RGB565；所列视频模式示例到 720p30，没有 1080p30 RGB565 完整寄存器表。正点原子手册将 1080p30 和 RGB565 列为模块能力，不提供对应寄存器初始化序列。因此不能将该 YUV 表改几个尺寸寄存器后当作完整目标配置。本工程新增的 ROM 只包含已经确定的配置子集。
++720p30使用固定Linux v6.12的28项模式事实、DVP窗口(0,250,2624,1456)、偏移(16,4)、HTS1892/VTS740；3814/3815=31并开启双向binning。RGB565 LE为4300=6f、501f=01，关闭JPEG与MIPI。
+ 
+-Linux upstream 另提供 1080p DVP mode metadata、RGB565 格式映射和模式表；本工程独立实现 PLL 参数计算结果和寄存器流，不复制 Linux 源码。来源：[Linux `drivers/media/i2c/ov5640.c`](https://github.com/torvalds/linux/blob/master/drivers/media/i2c/ov5640.c)，原始源码：[raw source](https://raw.githubusercontent.com/torvalds/linux/master/drivers/media/i2c/ov5640.c)，其代码 SPDX 为 GPL-2.0-or-later。
++PLL：3034=18、3035=20、3036=54、3037=13、3108=01。24MHz XCLK→VCO672MHz→SCLK42MHz/PCLK84MHz，计算29.998286fps。生成器检查最终寄存器推导时钟≤96MHz、VCO范围、窗口、曝光及防闪烁。
+ 
+-追踪得到的关键路径和阻塞点：
+-
+-- Linux `ov5640_probe()` 初始设为 VGA/30fps，`last_mode=current_mode`；`ov5640_restore_mode()` 的顺序是全局 `ov5640_init_setting`、root divider、`ov5640_set_mode()`、`ov5640_set_framefmt()`（源码约 545、2310、2411、3860 行）。
+-- DVP RGB565 LE 格式项选择 `0x4300=0x6f` 和 RGB mux `0x501f=1`；另有 RGB565 BE `0x4300=0x61`（约 189-235、3036 行）。DVP pin polarity 则由 endpoint flags 决定，默认 VSYNC 高、HREF 低、PCLK 低，并在 `ov5640_set_power_dvp()` 中配置（约 2577-2695 行）；我们的 DVP 捕获器目前默认 VSYNC 高，但板上采样边沿/极性仍须与具体接线和驱动参数一致。
+-- 时钟树约束为 PLL root /2、bit divider /2、PCLK root /1、PLL predivider /3。1080p RGB565 8-bit DVP 目标 PCLK 为 `2500 × (1080 + 40) × 30 × 16 / 8 = 168 MHz`；PLL 搜索目标为 672 MHz，24 MHz XCLK 经 `/3 × 84` 精确得到 672 MHz。候选寄存器流为 `3034=18, 3035=10, 3036=54, 3037=13, 3108=01`。其中 3034 的高 nibble 沿用初始化值 1；3108 写入 low nibble 1 并将 PCLK root divider 字段置为 /1。
+-- 1080p DVP metadata 选择 SCALING、1920×1080、analog crop `(336,434,1952,1088)`、输出 crop `(16,4,1920,1080)`、HTOT 2500、VBLANK 40、148 MHz pixel-rate control value、30fps max/default（约 1017-1060 行）。`set_timings()` 还要动态写 crop 起止、offset、DVP output size、HTS=2500、VTS=1120（约 1647-1710 行）。格式、尺寸、HTS/VTS 可由这些数据确定，但不等于完整配置序列。
+-- `ov5640_set_dvp_pclk()` 根据当前帧率、`HTOT*(height+vblank)`、每像素 bpp 和 endpoint parallel bus width 算目标速率，再运行 PLL 搜索器并写 0x3034-0x3037、0x3108 相关位（约 1327-1470、1549-1620 行）。所以 PLL 写值依赖实际 XCLK/格式/8-bit bus 参数和所选帧率，不能只从 mode table 照抄；当前模块的 24 MHz XCLK 已知，但还需在 ROM 生成时固定 Linux 所用的参数和算法结果。
+-- 更关键的是 probe 默认 VGA 属于 SUBSAMPLING，1080p 属于 SCALING。第一次切换时 `ov5640_set_mode()` 会走 `ov5640_set_mode_exposure_calc()`，读当前曝光、增益、平均亮度、HTS/VTS、sysclk、光源频率，再计算并写 capture gain/shutter/VTS；这些值随当前场景变化（约 2074-2207、2321-2395 行）。仅把全局表、1080p mode table 和窗口值串起来会跳过 Linux 必做的运行时曝光迁移。
+-- `ov5640_set_framefmt()` 对非 JPEG 格式还读改 `0x3821`、`0x3002`、`0x3006` 的局部位（约 3036-3085 行）；当前写原语不读寄存器，新读原语与读改写适配器提供相应基础，但均不检查 I2C ACK。Linux 的 DVP stream start 则将 `0x3008` 写 `0x02`（约 1751-1755 行），本次子表没有加入该项。
+-- Linux `reg_value` 项还带 `delay_ms` 字段；公共 init 尾项 `0x3c00=0x04` 后等待 300 ms（约 369-374、618-621 行）。当前 `cfg_*` 项没有延时/hold 字段，照搬表项也会漏掉这段时序。
+-
+-上述旧 wrapper 的 `config_done` 仍只表示外部写事务流发送结束。新增 `ov5640_stereo_startup` 在硬复位后直接配置目标模式，加入双路 ID/所选寄存器校验和受检查结果控制的 stream-on；不提供已有 VGA 视频流的曝光迁移。新入口的 `init_done` 也不代表图像或实际 FPS 已验证。DVP 时钟与极性实测仍待完成。
++旧1080p候选168MHz已停用。来源、308项ROM与硬件边界见 [startup_sequence.md](../../../analysis/ov5640_stereo_20261026/startup_sequence.md)。本次XSim与配置审计证据见 [mode_720p30_validation/](../../../analysis/ov5640_stereo_20261026/mode_720p30_validation/)，未重新综合、布局布线或部署。旧日志按原版本保留。
+ 
+ ### 已确定配置子表的执行入口
+ 
+ `ov5640_stereo_known_config` 使用 `sys_clk`、`rst_n`、单周期 `start`，输出两路 RESET/PWDN、两组开漏 SCCB，以及 `busy`、`known_config_done`、`known_config_error`。时钟、等待、SCCB 半周期和超时参数与上面的默认值一致；本次保留原外部 `cfg_*` 顶层，新增入口单独实例化，不改变旧端口。
+ 
+-表内固定 PLL 五项、1920×1080 输出尺寸、候选 HTS=2500/VTS=1120、RGB565 低字节先出、PCLK 下降沿更新、50/60 Hz band-step、自动曝光/增益/白平衡、指定 50 Hz 及开启 banding/关闭夜景。相机内部 SCLK=84 MHz 时，band-step 分别为 336/280，最大 band 数均为 3。滤波参数先于自动曝光/增益开启写入。逐项合同和来源见 [`known_config_contract.json`](../../../analysis/ov5640_stereo_20261026/known_config_contract.json) 和 [`known_config_register_evidence.md`](../../../analysis/ov5640_stereo_20261026/known_config_register_evidence.md)；改变 XCLK/PLL/HTS/VTS 后必须同步重算。
++表内固定 PLL五项、1280×720输出尺寸、HTS1892/VTS740、RGB565 低字节先出、PCLK 下降沿更新、50/60 Hz band-step、自动曝光/增益/白平衡、指定 50 Hz 及开启 banding/关闭夜景。内部SCLK42MHz，band-step221/184，max 50/60Hz bands=3/4。滤波参数先于自动曝光/增益开启写入。逐项合同和来源见 [`known_config_contract.json`](../../../analysis/ov5640_stereo_20261026/known_config_contract.json) 和 [`known_config_register_evidence.md`](../../../analysis/ov5640_stereo_20261026/known_config_register_evidence.md)；改变 XCLK/PLL/HTS/VTS 后必须同步重算。
+ 
+ 全掩码 `ff` 直接写入；六处部分掩码由每路适配器各自读旧值，再计算 `(old & ~mask) | (value & mask)`。尤其 `0x4740` 只更新 bit 5，保留该相机原有 VSYNC/HREF 位。读写引擎互斥启动，事务输入在 `start` 时锁存，忙时新请求不排队。现有无 ACK、无总线卡低检测的限制仍然适用；上层 10 ms 超时覆盖一次完整读改写，不含表内延时。
+ 
+@@ -86,9 +75,13 @@
+ 
+ 序列器在 `cfg_valid && cfg_ready` 后保持当前行，先等 ready 下降，再等非末项 ready 回升或末项原控制器的 `transport_done`。随后完成该行 `post_delay_ms` 才前进；最后 `0x3c00` 的 300 ms 也包含在 `known_config_done` 之前。毫秒换算采用 64 位中间值、向上取整；100 MHz 下 300 ms 为 30000000 周期。完成与错误保持到 `rst_n` 复位，不支持无复位重启。
+ 
+-**此入口会执行物理 RESET/PWDN，只在复位后发送该配置子集。** 完整启动将来必须在同一次硬复位之后、应用子表之前插入匹配的全局模拟/ISP 初始化；不能先运行全局初始化，再调用这个会复位的入口。当前没有裁剪起止、完整 ISP、曝光/gain ceiling 或 stream-on，`known_config_done` 仅表示子表两路发送及等待结束，不表示相机或 1080p30 图像就绪。
++**此入口会执行物理 RESET/PWDN，只在复位后发送该配置子集。** 完整启动将来必须在同一次硬复位之后、应用子表之前插入匹配的全局模拟/ISP 初始化；不能先运行全局初始化，再调用这个会复位的入口。当前没有裁剪起止、完整 ISP、曝光/gain ceiling 或 stream-on，`known_config_done` 仅表示子表两路发送及等待结束，不表示相机或720p30图像就绪。
+ 
+-## 验证
++## 当前720p验证
++
++配置审计与19项Vivado2024.1 XSim回归均通过；包括完整1280×720帧、RGB565字节序、短行/坏帧恢复、独立PCLK、双路SCCB及启动故障门禁。主要新增测试为../../tb/ov5640_stereo/tb_ov5640_720p_frame.v。详细证据和硬件限制见 [本次验收记录](../../../analysis/ov5640_stereo_20261026/mode_720p30_validation/README.md)。
++
++## 历史验证（切换前，适用版本见各日志）
+ 
+ 本次子表实现完成 Vivado 2024.1 XSim 行为仿真：新增四项自检与既有九项均有 PASS 记录，最终相关源哈希及分批执行说明见 [`known_config_validation/verification.json`](../../../analysis/ov5640_stereo_20261026/known_config_validation/verification.json)。隔离工程和可复跑脚本在同目录，不操作 W6 工程。
+ 
+--- before/project\fpga\tb\ov5640_stereo\tb_ov5640_known_config_sequence.v
++++ after/project\fpga\tb\ov5640_stereo\tb_ov5640_known_config_sequence.v
+@@ -36,17 +36,17 @@
+         #1;
+         if(full_scale_delay.delay_cycles !== 64'd30000000)
+             $fatal(1,"100MHz 300ms delay arithmetic overflow");
+-        expected[0]=32'h303418ff; expected[1]=32'h303510ff;
++        expected[0]=32'h303418ff; expected[1]=32'h303520ff;
+         expected[2]=32'h303654ff; expected[3]=32'h303713ff;
+-        expected[4]=32'h310801ff; expected[5]=32'h380807ff;
+-        expected[6]=32'h380980ff; expected[7]=32'h380a04ff;
+-        expected[8]=32'h380b38ff; expected[9]=32'h380c09ff;
+-        expected[10]=32'h380dc4ff; expected[11]=32'h380e04ff;
+-        expected[12]=32'h380f60ff; expected[13]=32'h43006fff;
++        expected[4]=32'h310801ff; expected[5]=32'h380805ff;
++        expected[6]=32'h380900ff; expected[7]=32'h380a02ff;
++        expected[8]=32'h380bd0ff; expected[9]=32'h380c07ff;
++        expected[10]=32'h380d64ff; expected[11]=32'h380e02ff;
++        expected[12]=32'h380fe4ff; expected[13]=32'h43006fff;
+         expected[14]=32'h501f01ff; expected[15]=32'h47402020;
+-        expected[16]=32'h3a0801ff; expected[17]=32'h3a0950ff;
+-        expected[18]=32'h3a0a01ff; expected[19]=32'h3a0b18ff;
+-        expected[20]=32'h3a0d03ff; expected[21]=32'h3a0e03ff;
++        expected[16]=32'h3a0800ff; expected[17]=32'h3a09ddff;
++        expected[18]=32'h3a0a00ff; expected[19]=32'h3a0bb8ff;
++        expected[20]=32'h3a0d04ff; expected[21]=32'h3a0e03ff;
+         expected[22]=32'h3c018080; expected[23]=32'h3a002024;
+         expected[24]=32'h35030003; expected[25]=32'h34060001;
+         expected[26]=32'h3c000404;
+--- before/project\fpga\tb\ov5640_stereo\tb_ov5640_pll_config.v
++++ after/project\fpga\tb\ov5640_stereo\tb_ov5640_pll_config.v
+@@ -32,7 +32,7 @@
+         end else if (cfg_valid && cfg_ready) begin
+             case (accepted)
+                 0: if (cfg_reg_addr !== 16'h3034 || cfg_reg_data !== 8'h18 || cfg_last !== 1'b0) $fatal(1, "bad PLL entry 0");
+-                1: if (cfg_reg_addr !== 16'h3035 || cfg_reg_data !== 8'h10 || cfg_last !== 1'b0) $fatal(1, "bad PLL entry 1");
++                1: if (cfg_reg_addr !== 16'h3035 || cfg_reg_data !== 8'h20 || cfg_last !== 1'b0) $fatal(1, "bad PLL entry 1");
+                 2: if (cfg_reg_addr !== 16'h3036 || cfg_reg_data !== 8'h54 || cfg_last !== 1'b0) $fatal(1, "bad PLL entry 2");
+                 3: if (cfg_reg_addr !== 16'h3037 || cfg_reg_data !== 8'h13 || cfg_last !== 1'b0) $fatal(1, "bad PLL entry 3");
+                 4: if (cfg_reg_addr !== 16'h3108 || cfg_reg_data !== 8'h01 || cfg_last !== 1'b1) $fatal(1, "bad PLL entry 4");
+--- before/project\fpga\tb\ov5640_stereo\tb_ov5640_startup_controller.v
++++ after/project\fpga\tb\ov5640_stereo\tb_ov5640_startup_controller.v
+@@ -36,13 +36,13 @@
+         begin
+             case(a)
+                 16'h300a: response=8'h56; 16'h300b: response=8'h40;
+-                16'h3034: response=8'h18; 16'h3035: response=8'h10;
++                16'h3034: response=8'h18; 16'h3035: response=8'h20;
+                 16'h3036: response=8'h54; 16'h3037: response=8'h13;
+                 16'h3108: response=8'h01;
+-                16'h3808: response=8'h07; 16'h3809: response=8'h80;
+-                16'h380a: response=8'h04; 16'h380b: response=8'h38;
+-                16'h380c: response=8'h09; 16'h380d: response=8'hc4;
+-                16'h380e: response=8'h04; 16'h380f: response=8'h60;
++                16'h3808: response=8'h05; 16'h3809: response=8'h00;
++                16'h380a: response=8'h02; 16'h380b: response=8'hd0;
++                16'h380c: response=8'h07; 16'h380d: response=8'h64;
++                16'h380e: response=8'h02; 16'h380f: response=8'he4;
+                 16'h4300: response=8'h6f; 16'h501f: response=8'h01;
+                 16'h4740: response=8'ha2; 16'h3008: response=8'h12;
+                 default: response=8'h00;
+--- before/project\fpga\tb\ov5640_stereo\tb_ov5640_stereo_startup.v
++++ after/project\fpga\tb\ov5640_stereo\tb_ov5640_stereo_startup.v
+@@ -80,8 +80,8 @@
+         launch(); // A busy start must not restart power sequencing or writes.
+         wait(done || error_flag); #1;
+         if(FAULT==0) begin
+-            if(!done || error_flag || busy || streams1!=1 || streams2!=1 || table_rows!=330 ||
+-                writes1!=331 || writes2!=331 || reads1!=30 || reads2!=30)
++            if(!done || error_flag || busy || streams1!=1 || streams2!=1 || table_rows!=308 ||
++                writes1!=309 || writes2!=309 || reads1!=30 || reads2!=30)
+                 $fatal(1,"normal startup did not complete table/stream %0d",table_rows);
+             if((sensor1.memory[16'h4740] & 8'h2f)!==(DVP_VALUE & 8'h23) ||
+                 (sensor2.memory[16'h4740] & 8'h2f)!==(DVP_VALUE & 8'h23))
+@@ -109,7 +109,7 @@
+             fault1=0;fault2=0;
+             repeat(3) @(negedge clk);rst_n=1;launch();
+             wait(done || error_flag);#1;
+-            if(!done || error_flag || streams1!=1 || streams2!=1 || writes1!=331 || writes2!=331)
++            if(!done || error_flag || streams1!=1 || streams2!=1 || writes1!=309 || writes2!=309)
+                 $fatal(1,"complete restart after ID failure did not recover");
+             $display("BUS_RESET_RECOVERY_PASS case=1");
+         end
+--- before/project\scripts\ov5640\generate_startup_table.py
++++ after/project\scripts\ov5640\generate_startup_table.py
+@@ -31,7 +31,7 @@
+     text = code.decode("utf-8")
+     tables = {}
+     for name, count in (("ov5640_init_setting", 219),
+-                        ("ov5640_setting_1080P_1920_1080", 50)):
++                        ("ov5640_setting_720P_1280_720", 28)):
+         match = re.search(r"static const struct reg_value " + name
+                           + r"\[\] = \{(.*?)\n\};", text, re.S)
+         if match is None:
+@@ -87,20 +87,20 @@
+                 int(row["mask"], 16), row["post_delay_ms"], "existing calculated PLL contract")
+ 
+     # Preserve every reference mode-table write, including later overrides.
+-    for row in reference["tables"]["ov5640_setting_1080P_1920_1080"]:
+-        add("1080p_mode", int(row["address"], 16), int(row["value"], 16),
+-            int(row["mask"], 16), row["post_delay_ms"], "reference 1080p mode")
+-
+-    left, top, width, height = 336, 434, 1952, 1088
++    for row in reference["tables"]["ov5640_setting_720P_1280_720"]:
++        add("720p_mode", int(row["address"], 16), int(row["value"], 16),
++            int(row["mask"], 16), row["post_delay_ms"], "reference 720p mode")
++
++    left, top, width, height = 0, 250, 2624, 1456
+     for address, value in ((0x3800, left), (0x3802, top),
+                            (0x3804, left + width - 1),
+                            (0x3806, top + height - 1),
+                            (0x3810, 16), (0x3812, 4)):
+         add("window", address, value >> 8, basis="reference DVP analog_crop/crop geometry")
+         add("window", address + 1, value & 255, basis="reference DVP analog_crop/crop geometry")
+-    add("format_dvp", 0x3820, 0, mask=0x01, basis="SCALING: disable binning")
+-    add("format_dvp", 0x3821, 0, mask=0x21,
+-        basis="SCALING and non-JPEG: disable binning/JPEG; preserve orientation")
++    add("format_dvp", 0x3820, 1, mask=0x01, basis="SUBSAMPLING: enable binning")
++    add("format_dvp", 0x3821, 1, mask=0x21,
++        basis="SUBSAMPLING and non-JPEG: enable binning; disable JPEG; preserve orientation")
+     add("format_dvp", 0x3002, 0x1c, mask=0x1c, basis="non-JPEG reset of JPEG/SFIFO/JFIFO")
+     add("format_dvp", 0x3006, 0, mask=0x28, basis="non-JPEG disable JPEG clocks")
+     add("format_dvp", 0x4730, 0, basis="separate VSYNC/HREF, not BT656")
+@@ -110,12 +110,12 @@
+ 
+     # Fixed frame budget and a deterministic cold-start seed. AEC/AGC will
+     # adapt after stream-on; these are not scene-optimal exposure guarantees.
+-    for address, value in ((0x3a02, 1116), (0x3a14, 1116), (0x3a18, 0x00f8)):
++    for address, value in ((0x3a02, 736), (0x3a14, 736), (0x3a18, 0x00f8)):
+         add("exposure_seed", address, value >> 8, basis="VTS-4 limit / reference gain ceiling")
+         add("exposure_seed", address + 1, value & 255, basis="VTS-4 limit / reference gain ceiling")
+-    for address, value in ((0x3500, 0x00), (0x3501, 0x15), (0x3502, 0x00),
++    for address, value in ((0x3500, 0x00), (0x3501, 0x0d), (0x3502, 0xd0),
+                            (0x350a, 0x00), (0x350b, 0x10)):
+-        add("exposure_seed", address, value, basis="336-line (10ms) / 1x cold-start seed")
++        add("exposure_seed", address, value, basis="221-line (~10ms) / 1x cold-start seed")
+ 
+     for row in known["items"]:
+         if row["address"] in clock_addresses:
+@@ -131,14 +131,14 @@
+     return {"schema_version": 1, "reference": {k: reference[k] for k in
+             ("source_url", "tag", "source_sha256")},
+             "scope": "cold hard-reset startup candidate; no hot mode/exposure migration",
+-            "mode": {"xclk_hz": 24000000, "width": 1920, "height": 1080,
+-                     "fps_target": 30, "hts": 2500, "vts": 1120,
++            "mode": {"xclk_hz": 24000000, "width": 1280, "height": 720,
++                     "fps_target": 30, "hts": 1892, "vts": 740,
+                      "analog_crop": [left, top, width, height],
+                      "output_offset": [16, 4], "format": "RGB565_LE_8bit_DVP",
+-                     "pclk_hz_candidate": 168000000, "sysclk_hz_candidate": 84000000,
++                     "pclk_hz_candidate": 84000000, "sysclk_hz_candidate": 42000000,
+                      "polarity_register_candidate": "22", "polarity_mask": "2f",
+                      "polarity_status": "Linux-derived candidate; physical waveform unverified",
+-                     "exposure_seed_lines": 336, "exposure_limit_lines": 1116,
++                     "exposure_seed_lines": 221, "exposure_limit_lines": 736,
+                      "gain_seed_x16": 16, "gain_ceiling_x16": 248},
+             "stream_on": {"address": "3008", "value": "02",
+                           "owner": "startup controller, only after ID and readback success"},
+@@ -186,36 +186,49 @@
+         if address == 0x3008 and value == 2: raise ValueError("Unguarded stream-on in ROM")
+         values[address] = (values.get(address, 0) & ~mask) | (value & mask)
+     def word(address): return (values[address] << 8) | values[address + 1]
+-    expected_words = {0x3800: 336, 0x3802: 434, 0x3804: 2287, 0x3806: 1521,
+-        0x3808: 1920, 0x380a: 1080, 0x380c: 2500, 0x380e: 1120,
+-        0x3810: 16, 0x3812: 4, 0x3a02: 1116, 0x3a14: 1116,
+-        0x3a08: 336, 0x3a0a: 280, 0x3a18: 248, 0x350a: 16}
++    expected_words = {0x3800: 0, 0x3802: 250, 0x3804: 2623, 0x3806: 1705,
++        0x3808: 1280, 0x380a: 720, 0x380c: 1892, 0x380e: 740,
++        0x3810: 16, 0x3812: 4, 0x3a02: 736, 0x3a14: 736,
++        0x3a08: 221, 0x3a0a: 184, 0x3a18: 248, 0x350a: 16}
+     for address, expected in expected_words.items():
+         if word(address) != expected: raise ValueError(f"Bad final word {address:04x}")
+-    expected_bytes = {0x3034: 0x18, 0x3035: 0x10, 0x3036: 84, 0x3037: 0x13,
+-        0x3108: 1, 0x3814: 0x11, 0x3815: 0x11, 0x4300: 0x6f, 0x501f: 1,
+-        0x3a0d: 3, 0x3a0e: 3, 0x3008: 0x42, 0x300e: 0x18,
++    expected_bytes = {0x3034: 0x18, 0x3035: 0x20, 0x3036: 84, 0x3037: 0x13,
++        0x3108: 1, 0x3814: 0x31, 0x3815: 0x31, 0x4300: 0x6f, 0x501f: 1,
++        0x3a0d: 4, 0x3a0e: 3, 0x3008: 0x42, 0x300e: 0x18,
+         0x3017: 0x7f, 0x3018: 0xfc, 0x4730: 0}
+     for address, expected in expected_bytes.items():
+         if values[address] != expected: raise ValueError(f"Bad final byte {address:04x}")
+-    for address, mask, expected in ((0x3820, 1, 0), (0x3821, 0x21, 0),
++    for address, mask, expected in ((0x3820, 1, 1), (0x3821, 0x21, 1),
+             (0x3503, 3, 0), (0x3406, 1, 0), (0x4740, 0x2f, 0x22),
+             (0x3a00, 0x24, 0x20), (0x3002, 0x1c, 0x1c), (0x3006, 0x28, 0)):
+         if values[address] & mask != expected: raise ValueError(f"Bad final bits {address:04x}")
+     exposure = ((values[0x3500] << 16) | word(0x3501)) >> 4
+-    if exposure != 336: raise ValueError("Bad cold exposure seed")
++    if exposure != 221: raise ValueError("Bad cold exposure seed")
+     # Independent mode arithmetic, not values read back from generated HDL.
+-    pclk = 24000000 // 3 * 84 // 2 // 2
+-    sysclk = pclk // 2
+-    if pclk // (2500 * 1120 * 2) != 30: raise ValueError("Frame timing mismatch")
+-    if (sysclk // 2500 // 100, sysclk // 2500 // 120) != (336, 280):
++    prediv = values[0x3037] & 15
++    sysdiv = (values[0x3035] >> 4) or 16
++    rootdiv = ((values[0x3037] >> 4) & 1) + 1
++    bitdiv2x = (values[0x3034] & 15) // 2
++    vco = contract["mode"]["xclk_hz"] // prediv * values[0x3036]
++    if not 500000000 <= vco <= 1000000000: raise ValueError("PLL VCO range")
++    baseclk = vco // sysdiv // rootdiv * 2 // bitdiv2x
++    pclk = baseclk // (1 << ((values[0x3108] >> 4) & 3))
++    sysclk = baseclk // (1 << (values[0x3108] & 3))
++    if values[0x460c] & 2: raise ValueError("Unexpected manual PCLK divider")
++    mode = contract["mode"]
++    if (mode["width"],mode["height"],mode["hts"],mode["vts"],mode["pclk_hz_candidate"],mode["sysclk_hz_candidate"]) != (word(0x3808),word(0x380a),word(0x380c),word(0x380e),pclk,sysclk):
++        raise ValueError("Mode metadata differs from register-derived timing")
++    if not 29.99 <= pclk / (1892 * 740 * 2) <= 30.01: raise ValueError("Frame timing mismatch")
++    if pclk > 96000000: raise ValueError("DVP PCLK exceeds 96 MHz specification")
++    if (sysclk // 1892 // 100, sysclk // 1892 // 120) != (221, 184):
+         raise ValueError("Banding calculation mismatch")
+     return {"verdict": "PASS", "table_count": len(rows),
+             "delays_ms": sum(r["post_delay_ms"] for r in rows),
+             "pclk_hz_candidate": pclk, "sysclk_hz_candidate": sysclk,
+-            "arithmetic_fps": pclk / (2500 * 1120 * 2),
++            "pclk_limit_hz": 96000000, "pclk_spec_margin_hz": 96000000-pclk,
++            "arithmetic_fps": pclk / (1892 * 740 * 2),
+             "checked": ["reference tables with ordered overrides", "crop/output/HTS/VTS",
+-                        "PLL/banding/exposure arithmetic", "RGB565 and non-JPEG/binning bits",
++                        "register-derived PLL/banding/exposure arithmetic", "PCLK <= 96 MHz", "RGB565 and non-JPEG/binning bits",
+                         "DVP pad/control selection", "no ID writes or early stream-on"],
+             "not_verified": ["physical polarity, clocks or FPS", "lens/ISP image quality"]}
+ 
+--- before/project\analysis\ov5640_stereo_20261026\configuration_choices.md
++++ after/project\analysis\ov5640_stereo_20261026\configuration_choices.md
+@@ -1,6 +1,8 @@
+ # OV5640 起步参数及本次实现范围
+ 
+ 日期：2026-10-26。针对现有 `ov5640_stereo` 采集壳和候选相机模式；已落实初始化时序默认值及可执行的 27 项已确定配置子表，包含双路独立读改写和逐项延时。物理管脚按用户要求稍后处理。
++
++当前模式已按用户要求切换为 **1280×720、标称30fps、RGB565 LE、8-bit DVP**，PCLK84MHz/SCLK42MHz；参数见 [startup_sequence.md](startup_sequence.md)。本次证据位于mode_720p30_validation/，既有验证段落保留历史语境。
+ 
+ ## 1. W6 系统时钟与已修改的默认值
+ 
+@@ -52,7 +54,7 @@
+ input_delay_min = sensor_Tco_min + min(data_trace_delay - pclk_trace_delay)
+ ```
+ 
+-相机下降沿更新时，约束也要引用对应发射边沿。使用 PLL/MMCM 相移后仍需保留真实外部输入延迟模型。候选 PCLK 168 MHz 的周期约 5.95 ns，半周期约 2.98 ns；这只是理想半周期，尚未扣除器件输出延迟、占空比偏差、抖动和板级偏差，不能当作可用建立时间或直接填入约束。
++相机下降沿更新时，约束也要引用对应发射边沿。使用 PLL/MMCM 相移后仍需保留真实外部输入延迟模型。候选PCLK84MHz周期约11.90ns，半周期约5.95ns；这只是理想半周期，尚未扣除器件输出延迟、占空比偏差、抖动和板级偏差，不能当作可用建立时间或直接填入约束。
+ 
+ 已实际检索 AMD 本地文档库：UG949 “Defining Input Delays” 说明 min/max 应由外部 Tco 和时钟、数据走线延迟计算。当前管脚/走线尚未确定，本次不生成假定数值的 XDC。
+ 
+--- before/project\analysis\ov5640_stereo_20261026\interface_and_pin_map.md
++++ after/project\analysis\ov5640_stereo_20261026\interface_and_pin_map.md
+@@ -75,16 +75,16 @@
+ |---|---|---|
+ | 相机数量与接口 | 两路独立 8-bit DVP；每路独立 SCCB、PCLK、VSYNC、HREF、D[7:0] | 模块手册 p.2、p.4；两路相机不能共用 PCLK |
+ | 外部输入时钟 | 两路各 24 MHz XCLK，由模块板载晶振提供 | 模块手册 p.4、双目板原理图；传感器内部仍需配置 PLL/分频以得到目标时序 |
+-| 目标尺寸与帧率 | 1920×1080、30 fps | 模块手册 p.2 将 1080p30 列为模块能力；并非当前 RTL/实物已达成的证明 |
++| 目标尺寸与帧率 | **1280×720、标称30fps** | 2026-10-26用户决定；HTS1892/VTS740、SCLK42MHz计算约29.998286fps，尚未实测 |
+ | 目标像素格式 | RGB565，8-bit DVP；每像素两字节，低字节先出 | 模块手册 p.6-7；FPGA 合并字节顺序按此目标实现 |
+ | VSYNC 有效极性 | **冻结 FPGA 接收契约为高有效**，匹配现有 RTL 默认值；相机位值仍须板上核验 | DVP 指南 p.27 和芯片数据手册将 `0x4740[0]=1` 解释为高有效；Linux 上游 `ov5640_set_power_dvp()` 却明确注明实物该位为 0 时高有效、1 时低有效。不能据资料中的一个位值断言实际极性；HREF 位说明也有差异，详见 `configuration_choices.md` |
+ | PCLK 采样边沿 | **用户已确认 FPGA 上升沿采样**，相机配套下降沿更新；输入时序与实物验证待完成 | DVP 指南 p.27 给出 `0x4740[5]=1` 时下降沿输出；现有采集器为 `posedge cam_pclk`。该位已写入 `ov5640_known_config_table.v`，掩码仅为 `0x20`，双路各自读改写保留其他位；尚未做实际相机读回或输入时序测量 |
+-| 1080p30 RGB565 初始化表 | **已确定的 27 项配置子表已实现，完整模式表仍未冻结** | `ov5640_known_config_table.v` 包含 PLL、输出宽高、候选 HTS/VTS、RGB565、PCLK 边沿和自动成像/防闪烁设置；`ov5640_stereo_known_config.v` 提供带双路独立读改写和逐项延时的执行入口。它不包含完整模拟/ISP 基表、裁剪或 stream-on，不代表 1080p30 已在实物达成；来源与范围见 `known_config_register_evidence.md` |
++| 720p30 RGB565初始化表 | **27项子表与308项完整候选已同步** | 含基础ISP、subsampling/binning、窗口、曝光、ID/所选寄存器读回及受控stream-on；PCLK84MHz，尚未板上验收，见startup_sequence.md |
+ | 双目帧同步 | 未冻结 | 两路同设分辨率和帧率不等同于帧起点同步；需读回/波形测量帧相位，或另行实现传感器同步方案 |
+ 
+ 参考资料核验记录：`2，OV5640参考资料/OV5640_自动对焦照相模组应用指南(DVP_接口)__R2.13C.pdf` p.14-15 的初始化示例将 `0x4300=0x30`、`0x501f=0x00` 配成 YUV422，不是 RGB565；p.19-24 的模式示例包含 VGA30、854x48030、720p15/30，未给出 1080p30 完整表。p.27 定义 `0x4740` 的 VSYNC、HREF 与 PCLK 极性位。`OV5640_CSP3_DS_2.01_Ruisipusheng.pdf` p.25、p.35-36 描述格式/VSYNC/极性寄存器，但没有给出可直接用于本双目模块的完整目标配置。正点原子模块手册 p.2 的 1080p30、RGB565 是规格能力，不是寄存器初始化序列。
+ 
+-因此，在新表经过逐项来源核验并完成两路 SCCB 读回、帧尺寸/FPS、VSYNC/HREF/PCLK 波形与 RGB565 字节序实测前，不把当前目标表述为“相机已配置为 1080p30 RGB565”，也不生成正式寄存器 ROM。
++因此，在新表经过逐项来源核验并完成两路 SCCB 读回、帧尺寸/FPS、VSYNC/HREF/PCLK 波形与 RGB565 字节序实测前，不把当前候选表述为“实测已达到720p30 RGB565”；候选ROM用于仿真，不作为正式发布验收。
+ 
+ ## 接线时可直接采用的安全边界
+ 
+--- before/project\analysis\ov5640_stereo_20261026\known_config_contract.json
++++ after/project\analysis\ov5640_stereo_20261026\known_config_contract.json
+@@ -3,11 +3,11 @@
+   "scope": "partial known settings; no stream-on or global analog/ISP table",
+   "order": "compare by address; actual sequence belongs to RTL table",
+   "derived": {
+-    "camera_sclk_hz": 84000000,
+-    "band_step50": 336,
+-    "band_step60": 280,
++    "camera_sclk_hz": 42000000,
++    "band_step50": 221,
++    "band_step60": 184,
+     "max_band50": 3,
+-    "max_band60": 3
++    "max_band60": 4
+   },
+   "items": [
+     {
+@@ -18,7 +18,7 @@
+     },
+     {
+       "address": "3035",
+-      "value": "10",
++      "value": "20",
+       "mask": "ff",
+       "post_delay_ms": 0
+     },
+@@ -42,73 +42,73 @@
+     },
+     {
+       "address": "3808",
++      "value": "05",
++      "mask": "ff",
++      "post_delay_ms": 0
++    },
++    {
++      "address": "3809",
++      "value": "00",
++      "mask": "ff",
++      "post_delay_ms": 0
++    },
++    {
++      "address": "380a",
++      "value": "02",
++      "mask": "ff",
++      "post_delay_ms": 0
++    },
++    {
++      "address": "380b",
++      "value": "d0",
++      "mask": "ff",
++      "post_delay_ms": 0
++    },
++    {
++      "address": "380c",
+       "value": "07",
+       "mask": "ff",
+       "post_delay_ms": 0
+     },
+     {
+-      "address": "3809",
+-      "value": "80",
+-      "mask": "ff",
+-      "post_delay_ms": 0
+-    },
+-    {
+-      "address": "380a",
+-      "value": "04",
+-      "mask": "ff",
+-      "post_delay_ms": 0
+-    },
+-    {
+-      "address": "380b",
+-      "value": "38",
+-      "mask": "ff",
+-      "post_delay_ms": 0
+-    },
+-    {
+-      "address": "380c",
+-      "value": "09",
+-      "mask": "ff",
+-      "post_delay_ms": 0
+-    },
+-    {
+       "address": "380d",
+-      "value": "c4",
++      "value": "64",
+       "mask": "ff",
+       "post_delay_ms": 0
+     },
+     {
+       "address": "380e",
+-      "value": "04",
++      "value": "02",
+       "mask": "ff",
+       "post_delay_ms": 0
+     },
+     {
+       "address": "380f",
+-      "value": "60",
++      "value": "e4",
+       "mask": "ff",
+       "post_delay_ms": 0
+     },
+     {
+       "address": "3a08",
+-      "value": "01",
++      "value": "00",
+       "mask": "ff",
+       "post_delay_ms": 0
+     },
+     {
+       "address": "3a09",
+-      "value": "50",
++      "value": "dd",
+       "mask": "ff",
+       "post_delay_ms": 0
+     },
+     {
+       "address": "3a0a",
+-      "value": "01",
++      "value": "00",
+       "mask": "ff",
+       "post_delay_ms": 0
+     },
+     {
+       "address": "3a0b",
+-      "value": "18",
++      "value": "b8",
+       "mask": "ff",
+       "post_delay_ms": 0
+     },
+@@ -126,7 +126,7 @@
+     },
+     {
+       "address": "3a0d",
+-      "value": "03",
++      "value": "04",
+       "mask": "ff",
+       "post_delay_ms": 0
+     },
+@@ -172,5 +172,15 @@
+       "mask": "24",
+       "post_delay_ms": 0
+     }
+-  ]
++  ],
++  "mode": {
++    "width": 1280,
++    "height": 720,
++    "fps_target": 30,
++    "arithmetic_fps": 29.9982858122393,
++    "hts": 1892,
++    "vts": 740,
++    "pclk_hz_candidate": 84000000,
++    "pclk_limit_hz": 96000000
++  }
+ }
+--- before/project\analysis\ov5640_stereo_20261026\known_config_register_evidence.md
++++ after/project\analysis\ov5640_stereo_20261026\known_config_register_evidence.md
+@@ -1,74 +1,49 @@
+-# 已确定初始化子表的寄存器依据
++# 720p30子表寄存器依据
+ 
+-日期：2026-10-26。用户要求将已确定值写入初始化表；本文记录本次表项的范围及独立数值核对。实现入口和最终检查结果由 RTL 目录 README 与 `known_config_validation/` 汇总。
++日期：2026-10-26。当前目标1280×720、标称30fps、24MHz XCLK、RGB565低字节先出、8-bit DVP。旧1080p/168MHz候选已停用，历史日志保留。
+ 
+-## 范围
++27项子表不含完整模拟/ISP基表、窗口、binning或stream-on。308项完整启动表见 [startup_sequence.md](startup_sequence.md)。左右相机分别读改写，保留未选择位。
+ 
+-本次子表固定 24 MHz 相机 XCLK、候选 1920×1080/30 fps、RGB565 低字节先出，以及 FPGA 上升沿采样所配套的相机下降沿输出。系统控制逻辑继续使用 W6 的 100 MHz 时钟，不能将它与相机内部时钟混用。
++| 地址 | value | mask | 等待ms |
++|---|---|---|---|
++| 0x3034 | 0x18 | 0xff | 0 |
++| 0x3035 | 0x20 | 0xff | 0 |
++| 0x3036 | 0x54 | 0xff | 0 |
++| 0x3037 | 0x13 | 0xff | 0 |
++| 0x3108 | 0x01 | 0xff | 0 |
++| 0x3808 | 0x05 | 0xff | 0 |
++| 0x3809 | 0x00 | 0xff | 0 |
++| 0x380a | 0x02 | 0xff | 0 |
++| 0x380b | 0xd0 | 0xff | 0 |
++| 0x380c | 0x07 | 0xff | 0 |
++| 0x380d | 0x64 | 0xff | 0 |
++| 0x380e | 0x02 | 0xff | 0 |
++| 0x380f | 0xe4 | 0xff | 0 |
++| 0x3a08 | 0x00 | 0xff | 0 |
++| 0x3a09 | 0xdd | 0xff | 0 |
++| 0x3a0a | 0x00 | 0xff | 0 |
++| 0x3a0b | 0xb8 | 0xff | 0 |
++| 0x4300 | 0x6f | 0xff | 0 |
++| 0x501f | 0x01 | 0xff | 0 |
++| 0x3a0d | 0x04 | 0xff | 0 |
++| 0x3a0e | 0x03 | 0xff | 0 |
++| 0x4740 | 0x20 | 0x20 | 0 |
++| 0x3503 | 0x00 | 0x03 | 0 |
++| 0x3406 | 0x00 | 0x01 | 0 |
++| 0x3c01 | 0x80 | 0x80 | 0 |
++| 0x3c00 | 0x04 | 0x04 | 300 |
++| 0x3a00 | 0x20 | 0x24 | 0 |
+ 
+-尚未确定的全局模拟/ISP 序列、裁剪窗口、VSYNC/HREF 位值、曝光及增益上限不在本次子表中。该子表不包含 stream-on。若执行入口对相机进行硬复位，完整启动流程须在同一次复位之后加入基础初始化，随后再应用本子表；不能依赖复位之前写入的基础配置。
++## 时钟与曝光
+ 
+-## 表项合同
++- VCO=24MHz/3×84=672MHz；3035系统分频/2、3037 root/2、3034 bit divider/2、3108 PCLK root/1，PCLK=84MHz。
++- SCLK root/2，内部SCLK=42MHz；FPGA控制器仍100MHz。
++- HTS1892/VTS740，42,000,000/(1892×740)=29.998285812fps，标称30fps。
++- 50/60Hz band step=221/184，曝光预算VTS-4=736行，max bands=3/4。完整表曝光种子221行约9.9555ms、增益1×。
++- 460c bit1=0选择自动PCLK，不能将3824手动分频值再直接除到当前PCLK上。
+ 
+-掩码语义：`new = (old & ~mask) | (value & mask)`；`mask=0xff` 表示完整字节写入。部分掩码需要分别读回左右相机的旧值，不能用同一只相机的旧值覆盖两路。表项共 27 个，顺序以实现文件为准；下表按功能分组。
++固定来源：[Linux v6.12 OV5640驱动](https://github.com/torvalds/linux/blob/v6.12/drivers/media/i2c/ov5640.c)，SHA-256见startup_sequence.md。720p表28项，DVP窗口(0,250,2624,1456)、偏移(16,4)、HTS1892/VBLANK20；模式事实与时钟按本目标同步。
+ 
+-| 地址 | value | mask | 含义/依据 |
+-|---|---|---|---|
+-| 0x3034 | 0x18 | 0xff | 沿用已确定的 PLL 子表 |
+-| 0x3035 | 0x10 | 0xff | 同上 |
+-| 0x3036 | 0x54 | 0xff | 同上，乘数 84 |
+-| 0x3037 | 0x13 | 0xff | 同上，前分频 3、PLL root /2 |
+-| 0x3108 | 0x01 | 0xff | 同上，SCLK root /2、PCLK root /1 |
+-| 0x3808 / 0x3809 | 0x07 / 0x80 | 各 0xff | 输出宽度 1920 = 0x0780 |
+-| 0x380a / 0x380b | 0x04 / 0x38 | 各 0xff | 输出高度 1080 = 0x0438 |
+-| 0x380c / 0x380d | 0x09 / 0xc4 | 各 0xff | 候选 HTS 2500 = 0x09c4 |
+-| 0x380e / 0x380f | 0x04 / 0x60 | 各 0xff | 候选 VTS 1120 = 0x0460 |
+-| 0x4300 | 0x6f | 0xff | RGB565 低字节先出格式映射 |
+-| 0x501f | 0x01 | 0xff | ISP RGB 输出 mux |
+-| 0x4740 | 0x20 | 0x20 | 相机下降沿输出；保留其他极性和门控位 |
+-| 0x3503 | 0x00 | 0x03 | 开启自动曝光与自动增益 |
+-| 0x3406 | 0x00 | 0x01 | 开启自动白平衡 |
+-| 0x3c01 | 0x80 | 0x80 | 手动指定灯光频率 |
+-| 0x3c00 | 0x04 | 0x04 | 选择 50 Hz；此项后保留 300 ms 等待 |
+-| 0x3a00 | 0x20 | 0x24 | 开启 banding、关闭夜景延长帧周期 |
+-| 0x3a08 / 0x3a09 | 0x01 / 0x50 | 各 0xff | 50 Hz band step，336 行 |
+-| 0x3a0a / 0x3a0b | 0x01 / 0x18 | 各 0xff | 60 Hz band step，280 行 |
+-| 0x3a0d / 0x3a0e | 0x03 / 0x03 | 各 0xff | 最大 60 Hz / 50 Hz band 数，各为 3 |
++生成器检查最终寄存器计算PCLK≤96MHz、VCO范围、模式元数据、曝光及尺寸一致性。SCCB原语不提供完整I2C ACK、时钟延展或卡低恢复；完整启动使用ID及所选寄存器检查阻止部分错误后的stream-on。
+ 
+-RGB565、尺寸/HTS/VTS 及 AEC/AWB/灯光位操作按 [Linux 上游 OV5640 驱动](https://github.com/torvalds/linux/blob/master/drivers/media/i2c/ov5640.c) 的格式定义、`ov5640_set_timings()`、控制函数核对。PCLK bit 5 和防闪烁操作另核对本地 OmniVision DVP 指南 §4.2、§4.7.8，相关页的提取与渲染证据在 `configuration_evidence/`。0x4740 低两位在资料和驱动之间存在差异，故掩码只选 bit 5。
+-
+-0x3c00 的 300 ms 来自 Linux 公共初始化表的该项延时；在本次子表中显式保留这个等待。它不是所有写寄存器事务的通用等待，也不意味着仅此一项就完成了公共初始化。
+-
+-## 防闪烁数值的独立计算
+-
+-本次联网核对 Linux 上游的 `ov5640_get_sysclk()` 与 `ov5640_set_bandingfilter()`，以它们使用的单位和整数截断规则进行计算。这里只记录数值和接口事实，不复制驱动实现。
+-
+-```text
+-XCLK                  = 24 MHz
+-PLL VCO               = 24 MHz / 3 × 84 = 672 MHz
+-camera internal SCLK  = 672 MHz / 1 / 2 × 2 / 4 / 2 = 84 MHz
+-HTS                   = 2500
+-VTS                   = 1120
+-exposure budget       = VTS - 4 = 1116 lines
+-50 Hz band step       = 84,000,000 / 2500 / 100 = 336 = 0x0150
+-60 Hz band step       = 84,000,000 / 2500 / 120 = 280 = 0x0118
+-max 50 Hz bands       = floor(1116 / 336) = 3
+-max 60 Hz bands       = floor(1116 / 280) = 3
+-```
+-
+-对应 Linux 的整数单位为 SCLK / 10000 = 8400；50 Hz 计算 `floor(8400×100/2500)`，60 Hz 计算 `floor(floor(8400×100/2500)×100/120)`，本组参数得到同样结果。相机内部 SCLK=84 MHz 与候选 DVP 字节 PCLK=168 MHz 是不同层级的时钟，也都不是 FPGA 控制器的 100 MHz。
+-
+-以上均依赖所列 XCLK/PLL/HTS/VTS。以后改变这些值时，band step 和 max band 必须一起重算。当前没有把这些计算当成传感器寄存器已生效、图像质量已达标或板上已达到 30 fps 的证据。
+-
+-## 验收关注点
+-
+-- 全字节表项与按位表项分开验证，27 项均需符合本合同。
+-- 左右相机返回不同旧值时，未选中的位各自保留。
+-- 初始化控制器的末项完成不会再次拉高 `cfg_ready`，序列器须使用末项发送完成事件，避免死等 ready。
+-- 表项等待从该项两路发送完成之后开始，最终完成信号应包含末项等待。
+-- SCCB 原语没有 ACK/器件存在性检测，发送状态机完成不能证明传感器接受写入。
+-
+-原始资料链接：
+-
+-- [Linux 原始驱动](https://raw.githubusercontent.com/torvalds/linux/master/drivers/media/i2c/ov5640.c)，本次核对函数包括 `ov5640_get_sysclk()`、`ov5640_set_bandingfilter()`、`ov5640_set_timings()` 与自动曝光/增益/白平衡/灯光控制函数。
+-- [OmniVision DVP 应用指南 R2.13C](../../../backup/【正点原子】OV5640双目摄像头模块/【正点原子】OV5640双目摄像头模块资料/2，OV5640参考资料/OV5640_自动对焦照相模组应用指南(DVP_接口)__R2.13C.pdf)。
++本次证据见 [mode_720p30_validation/](mode_720p30_validation/)。实际图像、帧率、输入时序、双目同步、DDR与HDMI仍未验收。旧known_config_validation/、startup_validation/等日志不视为新版综合或板上验收。
+--- before/project\analysis\ov5640_stereo_20261026\startup_contract.json
++++ after/project\analysis\ov5640_stereo_20261026\startup_contract.json
+@@ -8,29 +8,29 @@
+   "scope": "cold hard-reset startup candidate; no hot mode/exposure migration",
+   "mode": {
+     "xclk_hz": 24000000,
+-    "width": 1920,
+-    "height": 1080,
++    "width": 1280,
++    "height": 720,
+     "fps_target": 30,
+-    "hts": 2500,
+-    "vts": 1120,
++    "hts": 1892,
++    "vts": 740,
+     "analog_crop": [
+-      336,
+-      434,
+-      1952,
+-      1088
++      0,
++      250,
++      2624,
++      1456
+     ],
+     "output_offset": [
+       16,
+       4
+     ],
+     "format": "RGB565_LE_8bit_DVP",
+-    "pclk_hz_candidate": 168000000,
+-    "sysclk_hz_candidate": 84000000,
++    "pclk_hz_candidate": 84000000,
++    "sysclk_hz_candidate": 42000000,
+     "polarity_register_candidate": "22",
+     "polarity_mask": "2f",
+     "polarity_status": "Linux-derived candidate; physical waveform unverified",
+-    "exposure_seed_lines": 336,
+-    "exposure_limit_lines": 1116,
++    "exposure_seed_lines": 221,
++    "exposure_limit_lines": 736,
+     "gain_seed_x16": 16,
+     "gain_ceiling_x16": 248
+   },
+@@ -39,7 +39,7 @@
+     "value": "02",
+     "owner": "startup controller, only after ID and readback success"
+   },
+-  "table_count": 330,
++  "table_count": 308,
+   "items": [
+     {
+       "stage": "standby",
+@@ -2274,7 +2274,7 @@
+     {
+       "stage": "pll",
+       "address": "3035",
+-      "value": "10",
++      "value": "20",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "existing calculated PLL contract",
+@@ -2312,583 +2312,363 @@
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3c07",
+-      "value": "08",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "07",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 227,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3c09",
+       "value": "1c",
+       "mask": "ff",
+       "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "basis": "reference 720p mode",
+       "index": 228,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3c0a",
+       "value": "9c",
+       "mask": "ff",
+       "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "basis": "reference 720p mode",
+       "index": 229,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3c0b",
+       "value": "40",
+       "mask": "ff",
+       "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "basis": "reference 720p mode",
+       "index": 230,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3814",
+-      "value": "11",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "31",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 231,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3815",
+-      "value": "11",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "31",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 232,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3618",
+-      "value": "04",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "00",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 233,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3612",
+       "value": "29",
+       "mask": "ff",
+       "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "basis": "reference 720p mode",
+       "index": 234,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3708",
+-      "value": "21",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "64",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 235,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3709",
+-      "value": "12",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "52",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 236,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "370c",
+-      "value": "00",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "03",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 237,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3a02",
+-      "value": "03",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "02",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 238,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3a03",
+-      "value": "d8",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "e4",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 239,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3a08",
+       "value": "01",
+       "mask": "ff",
+       "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "basis": "reference 720p mode",
+       "index": 240,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3a09",
+-      "value": "27",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "bc",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 241,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3a0a",
+-      "value": "00",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "01",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 242,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3a0b",
+-      "value": "f6",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "72",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 243,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3a0e",
+-      "value": "03",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "01",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 244,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3a0d",
+-      "value": "04",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "02",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 245,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3a14",
+-      "value": "03",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "02",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 246,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3a15",
+-      "value": "d8",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "e4",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 247,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "4001",
+       "value": "02",
+       "mask": "ff",
+       "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "basis": "reference 720p mode",
+       "index": 248,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "4004",
+-      "value": "06",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "02",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 249,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "4407",
+       "value": "04",
+       "mask": "ff",
+       "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "basis": "reference 720p mode",
+       "index": 250,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "460b",
+-      "value": "35",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "37",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 251,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "460c",
+-      "value": "22",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "20",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 252,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "3824",
+-      "value": "02",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "value": "04",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "reference 720p mode",
+       "index": 253,
+       "last": false
+     },
+     {
+-      "stage": "1080p_mode",
++      "stage": "720p_mode",
+       "address": "5001",
+       "value": "83",
+       "mask": "ff",
+       "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
++      "basis": "reference 720p mode",
+       "index": 254,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3c07",
+-      "value": "07",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 255,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3c08",
+-      "value": "00",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 256,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3c09",
+-      "value": "1c",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 257,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3c0a",
+-      "value": "9c",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 258,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3c0b",
+-      "value": "40",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 259,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3612",
+-      "value": "2b",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 260,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3708",
+-      "value": "64",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 261,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3a02",
+-      "value": "04",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 262,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3a03",
+-      "value": "60",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 263,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3a08",
+-      "value": "01",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 264,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3a09",
+-      "value": "50",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 265,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3a0a",
+-      "value": "01",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 266,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3a0b",
+-      "value": "18",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 267,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3a0e",
+-      "value": "03",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 268,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3a0d",
+-      "value": "04",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 269,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3a14",
+-      "value": "04",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 270,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3a15",
+-      "value": "60",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 271,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "4407",
+-      "value": "04",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 272,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "460b",
+-      "value": "37",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 273,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "460c",
+-      "value": "20",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 274,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "3824",
+-      "value": "04",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 275,
+-      "last": false
+-    },
+-    {
+-      "stage": "1080p_mode",
+-      "address": "4005",
+-      "value": "1a",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "reference 1080p mode",
+-      "index": 276,
+       "last": false
+     },
+     {
+       "stage": "window",
+       "address": "3800",
+-      "value": "01",
++      "value": "00",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "reference DVP analog_crop/crop geometry",
+-      "index": 277,
++      "index": 255,
+       "last": false
+     },
+     {
+       "stage": "window",
+       "address": "3801",
+-      "value": "50",
++      "value": "00",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "reference DVP analog_crop/crop geometry",
+-      "index": 278,
++      "index": 256,
+       "last": false
+     },
+     {
+       "stage": "window",
+       "address": "3802",
+-      "value": "01",
++      "value": "00",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "reference DVP analog_crop/crop geometry",
+-      "index": 279,
++      "index": 257,
+       "last": false
+     },
+     {
+       "stage": "window",
+       "address": "3803",
+-      "value": "b2",
++      "value": "fa",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "reference DVP analog_crop/crop geometry",
+-      "index": 280,
++      "index": 258,
+       "last": false
+     },
+     {
+       "stage": "window",
+       "address": "3804",
+-      "value": "08",
++      "value": "0a",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "reference DVP analog_crop/crop geometry",
+-      "index": 281,
++      "index": 259,
+       "last": false
+     },
+     {
+       "stage": "window",
+       "address": "3805",
+-      "value": "ef",
++      "value": "3f",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "reference DVP analog_crop/crop geometry",
+-      "index": 282,
++      "index": 260,
+       "last": false
+     },
+     {
+       "stage": "window",
+       "address": "3806",
+-      "value": "05",
++      "value": "06",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "reference DVP analog_crop/crop geometry",
+-      "index": 283,
++      "index": 261,
+       "last": false
+     },
+     {
+       "stage": "window",
+       "address": "3807",
+-      "value": "f1",
++      "value": "a9",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "reference DVP analog_crop/crop geometry",
+-      "index": 284,
++      "index": 262,
+       "last": false
+     },
+     {
+@@ -2898,7 +2678,7 @@
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "reference DVP analog_crop/crop geometry",
+-      "index": 285,
++      "index": 263,
+       "last": false
+     },
+     {
+@@ -2908,7 +2688,7 @@
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "reference DVP analog_crop/crop geometry",
+-      "index": 286,
++      "index": 264,
+       "last": false
+     },
+     {
+@@ -2918,7 +2698,7 @@
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "reference DVP analog_crop/crop geometry",
+-      "index": 287,
++      "index": 265,
+       "last": false
+     },
+     {
+@@ -2928,27 +2708,27 @@
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "reference DVP analog_crop/crop geometry",
+-      "index": 288,
++      "index": 266,
+       "last": false
+     },
+     {
+       "stage": "format_dvp",
+       "address": "3820",
+-      "value": "00",
++      "value": "01",
+       "mask": "01",
+       "post_delay_ms": 0,
+-      "basis": "SCALING: disable binning",
+-      "index": 289,
++      "basis": "SUBSAMPLING: enable binning",
++      "index": 267,
+       "last": false
+     },
+     {
+       "stage": "format_dvp",
+       "address": "3821",
+-      "value": "00",
++      "value": "01",
+       "mask": "21",
+       "post_delay_ms": 0,
+-      "basis": "SCALING and non-JPEG: disable binning/JPEG; preserve orientation",
+-      "index": 290,
++      "basis": "SUBSAMPLING and non-JPEG: enable binning; disable JPEG; preserve orientation",
++      "index": 268,
+       "last": false
+     },
+     {
+@@ -2958,7 +2738,7 @@
+       "mask": "1c",
+       "post_delay_ms": 0,
+       "basis": "non-JPEG reset of JPEG/SFIFO/JFIFO",
+-      "index": 291,
++      "index": 269,
+       "last": false
+     },
+     {
+@@ -2968,7 +2748,7 @@
+       "mask": "28",
+       "post_delay_ms": 0,
+       "basis": "non-JPEG disable JPEG clocks",
+-      "index": 292,
++      "index": 270,
+       "last": false
+     },
+     {
+@@ -2978,7 +2758,7 @@
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "separate VSYNC/HREF, not BT656",
+-      "index": 293,
++      "index": 271,
+       "last": false
+     },
+     {
+@@ -2988,7 +2768,7 @@
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "disable MIPI PHY and select DVP",
+-      "index": 294,
++      "index": 272,
+       "last": false
+     },
+     {
+@@ -2998,7 +2778,7 @@
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "enable VSYNC/HREF/PCLK and D9..D6",
+-      "index": 295,
++      "index": 273,
+       "last": false
+     },
+     {
+@@ -3008,47 +2788,47 @@
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "enable D5..D0; module exports D9..D2",
+-      "index": 296,
++      "index": 274,
+       "last": false
+     },
+     {
+       "stage": "exposure_seed",
+       "address": "3a02",
+-      "value": "04",
++      "value": "02",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "VTS-4 limit / reference gain ceiling",
+-      "index": 297,
++      "index": 275,
+       "last": false
+     },
+     {
+       "stage": "exposure_seed",
+       "address": "3a03",
+-      "value": "5c",
++      "value": "e0",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "VTS-4 limit / reference gain ceiling",
+-      "index": 298,
++      "index": 276,
+       "last": false
+     },
+     {
+       "stage": "exposure_seed",
+       "address": "3a14",
+-      "value": "04",
++      "value": "02",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "VTS-4 limit / reference gain ceiling",
+-      "index": 299,
++      "index": 277,
+       "last": false
+     },
+     {
+       "stage": "exposure_seed",
+       "address": "3a15",
+-      "value": "5c",
++      "value": "e0",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "VTS-4 limit / reference gain ceiling",
+-      "index": 300,
++      "index": 278,
+       "last": false
+     },
+     {
+@@ -3058,7 +2838,7 @@
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "VTS-4 limit / reference gain ceiling",
+-      "index": 301,
++      "index": 279,
+       "last": false
+     },
+     {
+@@ -3068,7 +2848,7 @@
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "VTS-4 limit / reference gain ceiling",
+-      "index": 302,
++      "index": 280,
+       "last": false
+     },
+     {
+@@ -3077,28 +2857,28 @@
+       "value": "00",
+       "mask": "ff",
+       "post_delay_ms": 0,
+-      "basis": "336-line (10ms) / 1x cold-start seed",
+-      "index": 303,
++      "basis": "221-line (~10ms) / 1x cold-start seed",
++      "index": 281,
+       "last": false
+     },
+     {
+       "stage": "exposure_seed",
+       "address": "3501",
+-      "value": "15",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "336-line (10ms) / 1x cold-start seed",
+-      "index": 304,
++      "value": "0d",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "221-line (~10ms) / 1x cold-start seed",
++      "index": 282,
+       "last": false
+     },
+     {
+       "stage": "exposure_seed",
+       "address": "3502",
+-      "value": "00",
+-      "mask": "ff",
+-      "post_delay_ms": 0,
+-      "basis": "336-line (10ms) / 1x cold-start seed",
+-      "index": 305,
++      "value": "d0",
++      "mask": "ff",
++      "post_delay_ms": 0,
++      "basis": "221-line (~10ms) / 1x cold-start seed",
++      "index": 283,
+       "last": false
+     },
+     {
+@@ -3107,8 +2887,8 @@
+       "value": "00",
+       "mask": "ff",
+       "post_delay_ms": 0,
+-      "basis": "336-line (10ms) / 1x cold-start seed",
+-      "index": 306,
++      "basis": "221-line (~10ms) / 1x cold-start seed",
++      "index": 284,
+       "last": false
+     },
+     {
+@@ -3117,128 +2897,128 @@
+       "value": "10",
+       "mask": "ff",
+       "post_delay_ms": 0,
+-      "basis": "336-line (10ms) / 1x cold-start seed",
+-      "index": 307,
++      "basis": "221-line (~10ms) / 1x cold-start seed",
++      "index": 285,
+       "last": false
+     },
+     {
+       "stage": "target_controls",
+       "address": "3808",
+-      "value": "07",
++      "value": "05",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 308,
++      "index": 286,
+       "last": false
+     },
+     {
+       "stage": "target_controls",
+       "address": "3809",
+-      "value": "80",
++      "value": "00",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 309,
++      "index": 287,
+       "last": false
+     },
+     {
+       "stage": "target_controls",
+       "address": "380a",
+-      "value": "04",
++      "value": "02",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 310,
++      "index": 288,
+       "last": false
+     },
+     {
+       "stage": "target_controls",
+       "address": "380b",
+-      "value": "38",
++      "value": "d0",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 311,
++      "index": 289,
+       "last": false
+     },
+     {
+       "stage": "target_controls",
+       "address": "380c",
+-      "value": "09",
++      "value": "07",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 312,
++      "index": 290,
+       "last": false
+     },
+     {
+       "stage": "target_controls",
+       "address": "380d",
+-      "value": "c4",
++      "value": "64",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 313,
++      "index": 291,
+       "last": false
+     },
+     {
+       "stage": "target_controls",
+       "address": "380e",
+-      "value": "04",
++      "value": "02",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 314,
++      "index": 292,
+       "last": false
+     },
+     {
+       "stage": "target_controls",
+       "address": "380f",
+-      "value": "60",
++      "value": "e4",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 315,
++      "index": 293,
+       "last": false
+     },
+     {
+       "stage": "target_controls",
+       "address": "3a08",
+-      "value": "01",
++      "value": "00",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 316,
++      "index": 294,
+       "last": false
+     },
+     {
+       "stage": "target_controls",
+       "address": "3a09",
+-      "value": "50",
++      "value": "dd",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 317,
++      "index": 295,
+       "last": false
+     },
+     {
+       "stage": "target_controls",
+       "address": "3a0a",
+-      "value": "01",
++      "value": "00",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 318,
++      "index": 296,
+       "last": false
+     },
+     {
+       "stage": "target_controls",
+       "address": "3a0b",
+-      "value": "18",
++      "value": "b8",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 319,
++      "index": 297,
+       "last": false
+     },
+     {
+@@ -3248,7 +3028,7 @@
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 320,
++      "index": 298,
+       "last": false
+     },
+     {
+@@ -3258,17 +3038,17 @@
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 321,
++      "index": 299,
+       "last": false
+     },
+     {
+       "stage": "target_controls",
+       "address": "3a0d",
+-      "value": "03",
++      "value": "04",
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 322,
++      "index": 300,
+       "last": false
+     },
+     {
+@@ -3278,7 +3058,7 @@
+       "mask": "ff",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 323,
++      "index": 301,
+       "last": false
+     },
+     {
+@@ -3288,7 +3068,7 @@
+       "mask": "2f",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 324,
++      "index": 302,
+       "last": false
+     },
+     {
+@@ -3298,7 +3078,7 @@
+       "mask": "03",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 325,
++      "index": 303,
+       "last": false
+     },
+     {
+@@ -3308,7 +3088,7 @@
+       "mask": "01",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 326,
++      "index": 304,
+       "last": false
+     },
+     {
+@@ -3318,7 +3098,7 @@
+       "mask": "80",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 327,
++      "index": 305,
+       "last": false
+     },
+     {
+@@ -3328,7 +3108,7 @@
+       "mask": "04",
+       "post_delay_ms": 300,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 328,
++      "index": 306,
+       "last": false
+     },
+     {
+@@ -3338,7 +3118,7 @@
+       "mask": "24",
+       "post_delay_ms": 0,
+       "basis": "known contract; 4740 candidate also clears PCLK gates",
+-      "index": 329,
++      "index": 307,
+       "last": true
+     }
+   ]
+--- before/project\analysis\ov5640_stereo_20261026\startup_reference_values.json
++++ after/project\analysis\ov5640_stereo_20261026\startup_reference_values.json
+@@ -1622,6 +1622,176 @@
+         "mask": "ff",
+         "post_delay_ms": 0
+       }
++    ],
++    "ov5640_setting_720P_1280_720": [
++      {
++        "address": "3c07",
++        "value": "07",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3c09",
++        "value": "1c",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3c0a",
++        "value": "9c",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3c0b",
++        "value": "40",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3814",
++        "value": "31",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3815",
++        "value": "31",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3618",
++        "value": "00",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3612",
++        "value": "29",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3708",
++        "value": "64",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3709",
++        "value": "52",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "370c",
++        "value": "03",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3a02",
++        "value": "02",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3a03",
++        "value": "e4",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3a08",
++        "value": "01",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3a09",
++        "value": "bc",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3a0a",
++        "value": "01",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3a0b",
++        "value": "72",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3a0e",
++        "value": "01",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3a0d",
++        "value": "02",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3a14",
++        "value": "02",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3a15",
++        "value": "e4",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "4001",
++        "value": "02",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "4004",
++        "value": "02",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "4407",
++        "value": "04",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "460b",
++        "value": "37",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "460c",
++        "value": "20",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "3824",
++        "value": "04",
++        "mask": "ff",
++        "post_delay_ms": 0
++      },
++      {
++        "address": "5001",
++        "value": "83",
++        "mask": "ff",
++        "post_delay_ms": 0
++      }
+     ]
+   }
+ }
+--- before/project\analysis\ov5640_stereo_20261026\startup_sequence.md
++++ after/project\analysis\ov5640_stereo_20261026\startup_sequence.md
+@@ -1,11 +1,15 @@
+ # 双路 OV5640 完整冷启动候选
+ 
+-日期：2026-10-26。此入口补齐可执行的冷启动寄存器序列和双路检测/校验；目标为 24 MHz XCLK、1920×1080、RGB565 低字节先出、8-bit DVP、30 fps。尚未对真实相机验证输出极性、帧率、曝光效果或输入时序，未生成或部署板端固件。
++日期：2026-10-26。此入口补齐可执行的冷启动寄存器序列和双路检测/校验；目标为 24 MHz XCLK、1280×720、RGB565 低字节先出、8-bit DVP、30 fps。尚未对真实相机验证输出极性、帧率、曝光效果或输入时序，未生成或部署板端固件。
++
++## 本次720p30切换（2026-10-26）
++
++用户将当前RGB565/8-bit DVP目标改为720p30。旧1080p候选168MHz PCLK超过OV5640 CSP3 v2.01表8-5的96MHz并口规格，不再作为当前候选。原文件快照和旧日志保留，本次证据见 [mode_720p30_validation/](mode_720p30_validation/)。84MHz为寄存器模型计算值，实际帧率与输入时序仍待板上验收。
+ 
+ ## 入口与完成语义
+ 
+ - `project/fpga/rtl/ov5640_stereo/ov5640_stereo_startup.v`：双路 RESET/PWDN、芯片 ID、表执行、关键寄存器读回、受检查结果控制的 stream-on。
+-- `ov5640_startup_table.v`：完整候选表，330 项；不含最终 `0x3008=0x02`，由控制器在检查通过后发送。
++- `ov5640_startup_table.v`：完整候选表，308 项；不含最终 `0x3008=0x02`，由控制器在检查通过后发送。
+ - `ov5640_sccb_register_access.v`：每路独立读、写和掩码读改写；使用单一开漏 pad 驱动。
+ - `ov5640_stereo_startup_capture.v`：启动控制与既有双路 DVP 的组合入口。每路等待完成信号同步到自己的 PCLK 域后才释放采集；像素仍在各自 PCLK 域。
+ 
+@@ -21,36 +25,36 @@
+ a991af015db5ce528c3d29d27c21a9071d5f9db9bf0ad861d8280a76268fb605
+ ```
+ 
+-只提取寄存器地址、数值、掩码和延时，以及模式的几何事实；RTL 控制器与表生成器独立实现，没有搬运 Linux 驱动函数。数值快照在 [startup_reference_values.json](startup_reference_values.json)，完整合同在 [startup_contract.json](startup_contract.json)。基础参考表 219 项，移除提前 stream-on 的一项后使用 218 项；1080p 参考模式表 50 项，保留后半段对先前值的覆盖顺序。
++只提取寄存器地址、数值、掩码和延时，以及模式的几何事实；RTL 控制器与表生成器独立实现，没有搬运 Linux 驱动函数。数值快照在 [startup_reference_values.json](startup_reference_values.json)，完整合同在 [startup_contract.json](startup_contract.json)。基础参考表 219 项，移除提前 stream-on 的一项后使用 218 项；720p参考模式表28项，保留固定版本的顺序。
+ 
+ | 项目 | 候选值与处理 |
+ |---|---|
+ | 外部 XCLK | 24 MHz，来自模块两颗板载晶振 |
+-| PLL/根分频 | 沿用已确定子表：3034=18、3035=10、3036=54、3037=13、3108=01 |
+-| 候选内部 SCLK / DVP PCLK | 84 MHz / 168 MHz；是寄存器模型计算值，尚未测量 |
+-| 输出与帧长 | 1920×1080；HTS=2500、VTS=1120；计算帧率 30 fps |
+-| 模拟窗口 | 起点 (336,434)，尺寸 1952×1088；结束地址 (2287,1521)，使用包含末点的写法 |
++| PLL/根分频 | 与720p子表同步：3034=18、3035=20、3036=54、3037=13、3108=01 |
++| 候选内部 SCLK / DVP PCLK | 42 MHz / 84 MHz；是寄存器模型计算值，尚未测量 |
++| 输出与帧长 | 1280×720；HTS=1892、VTS=740；计算帧率约29.998286 fps（标称30fps） |
++| 模拟窗口 | 起点(0,250)，尺寸2624×1456；结束地址(2623,1705)，使用包含末点的写法 |
+ | 输出偏移 | 水平 16、垂直 4 |
+-| 采样步进 | 3814=11、3815=11，关闭 binning；保留参考基础表的镜像方向位 |
++| 采样步进 | 3814=31、3815=31，开启双向binning（3820/3821 bit0=1）；保留参考基础表的镜像方向位 |
+ | 格式 | 4300=6f、501f=01；清 JPEG 模式及对应时钟位 |
+ | DVP | 关闭 BT656，关闭 MIPI PHY；显式使能 VSYNC/HREF/PCLK 与数据 pad |
+ | 自动成像 | 配置期间暂关 AEC/AGC，完成后开启 AEC/AGC/AWB；关闭夜景降帧，指定 50 Hz |
+-| 曝光初值 | 336 行，按候选行时间为 10 ms；增益 1×。用于冷启动种子，不是最佳曝光保证 |
+-| 曝光上限 | VTS-4=1116 行，50/60 Hz 上限均写入；最大增益沿参考 00f8（以 1/16 为单位） |
+-| 防闪烁 | 50 Hz step=336、60 Hz step=280，最大 band 数均为 3 |
++| 曝光初值 | 221行，按候选行时间约为9.9555ms；增益 1×。用于冷启动种子，不是最佳曝光保证 |
++| 曝光上限 | VTS-4=736 行，50/60 Hz 上限均写入；最大增益沿参考 00f8（以 1/16 为单位） |
++| 防闪烁 | 50Hz step=221、60Hz step=184，最大band数分别为3、4 |
+ 
+-本入口每次先硬复位并直接配置目标模式，不提供“已有 VGA 视频流热切换到 1080p”的曝光迁移。没有采用 Linux 中依赖上一模式曝光、增益与亮度的运行时迁移结果。参考 ISP、AWB、gamma、镜头校正值作为起步值，光照、镜头和双路一致性仍需实际图像调校；输出驱动强度沿用相机复位默认值。
++本入口每次先硬复位并直接配置目标模式，不提供“已有视频流热切换到720p”的曝光迁移。没有采用 Linux 中依赖上一模式曝光、增益与亮度的运行时迁移结果。参考 ISP、AWB、gamma、镜头校正值作为起步值，光照、镜头和双路一致性仍需实际图像调校；输出驱动强度沿用相机复位默认值。
+ 
+ ## 执行顺序与延时
+ 
+ 1. RESET/PWDN 时序结束后，两路分别读取 `0x300a/0x300b`，必须得到 `0x5640`。
+ 2. 表中选择起始时钟源，执行软件复位并等待 20 ms，再写 `0x3008=0x42` 保持软件待机；暂关 AEC/AGC。
+ 3. 发送全局模拟/ISP 基础表；基础表内的提前 stream-on 已去除，尾项 300 ms 等待保留。
+-4. 写入目标 PLL、完整 1080p 模式、窗口、非 JPEG 与 DVP 控制。
++4. 写入目标 PLL、720p模式、窗口、非 JPEG 与 DVP 控制。
+ 5. 写入曝光/增益初值和上限，再应用已确定的尺寸、格式、防闪烁及自动控制设置；末项另保留原子表的 300 ms 等待。
+ 6. 两路独立读回关键配置；通过后才发送 `0x3008=0x02`，并检查其有效控制位。
+ 
+-表内累计等待 620 ms，另有上电状态机 40 ms 和 SCCB 事务耗时。两个 300 ms 来自基础参考表与既有子表，当前保守保留，不用一个未经验证的短延时替换；这也不是 330 个寄存器每项等待 300 ms。
++表内累计等待 620 ms，另有上电状态机 40 ms 和 SCCB 事务耗时。两个 300 ms 来自基础参考表与既有子表，当前保守保留，不用一个未经验证的短延时替换；这也不是 308 个寄存器每项等待 300 ms。
+ 
+ ## 信号极性的候选处理
+ 
+@@ -68,7 +72,7 @@
+ 
+ 正常生成/审计离线读取快照；只有显式传 `--refresh-reference` 才会下载固定 v6.12 原文，且必须通过上述 SHA-256 检查。生成器检查窗口末点、输出尺寸、HTS/VTS、PLL/防闪烁/曝光算术、非 JPEG/binning 位和 DVP 选择，并拒绝 ID 写入及表内提前 stream-on。
+ 
+-总线仿真、故障测试及综合结果由 `startup_validation/` 的最终验证清单记录。仿真只使用寄存器模型，不模拟成像物理过程。
++本次审计与XSim结果见mode_720p30_validation/；startup_validation/等为切换前历史证据，不证明720p版本已通过综合或板上验证。仿真使用寄存器模型与合成像素激励，不模拟成像物理过程。
+ 
+ ## 保留的硬件边界
+ 
+--- before/docs\方案\03_PYNQ-Z2双目OV5640接入工作顺序.md
++++ after/docs\方案\03_PYNQ-Z2双目OV5640接入工作顺序.md
+@@ -1,6 +1,8 @@
+ # PYNQ-Z2 双目 OV5640 接入工作顺序
+ 
+ 日期：2026-10-26  
++当前用户选择（2026-10-26）：**双路1280×720、标称30fps、RGB565 LE、8-bit DVP**。候选PCLK84MHz、计算约29.998286fps；窗口、PLL、曝光、防闪烁和接收默认尺寸已同步。本次验证证据见project/analysis/ov5640_stereo_20261026/mode_720p30_validation/。
++
+ 状态：实施中；已核对模块物理接口，完成双路 DVP/SCCB 基础 RTL，并补入完整相机冷启动候选表、ID/关键寄存器读回和受检查结果控制的 stream-on。尚未完成真实相机初始化验收、硬件接线、PL 到 DDR 的采集通路、双目同步或板端验收；新初始化实现及检查结果见 [完整冷启动记录](../../project/analysis/ov5640_stereo_20261026/startup_sequence.md)。
+ 
+ ## 目标与边界
+@@ -43,7 +45,7 @@
+ 
+ **当前第一批实现：**新建 `project/fpga/rtl/ov5640_stereo/`，完成单目 DVP 采集核、双路采集封装、开漏 SCCB 单次写引擎、双路独立 SCCB 封装及基础集成顶层；自检 testbench 放在 `project/fpga/tb/ov5640_stereo/`。五个自检均通过 Icarus 和 Vivado 2024.1 XSim，覆盖 RGB565/帧错误恢复/独立 PCLK/SCCB 单路与双路事务/顶层联调。此批尚未实现寄存器初始化表、RESET/PWDN 上电控制、异步 FIFO 或 AXI 写 DDR；接口约定及已知限制见新目录 README。初始化表和实际输出尺寸、帧率、采样边沿尚未从目标配置中冻结，因此当前 640×480 是可覆盖的默认参数，不代表传感器已按该模式配置。
+ 
+-**后续初始化更新（2026-10-26）：**RESET/PWDN、SCCB 读改写与 27 项子表已补齐；现又新增 `ov5640_stereo_startup` 和 330 项完整冷启动候选 ROM，包含基础模拟/ISP、1080p 模式和窗口、成像初值、双路芯片 ID/所选寄存器检查及最后 stream-on。与 DVP 组合的入口为 `ov5640_stereo_startup_capture`。完整启动与既有子表分别保留，候选模式的真实帧率、极性和画质仍未上板验收；异步 FIFO/AXI/DDR 仍未实现。第一批记录不再代表当前初始化代码范围。
++**后续初始化更新（2026-10-26）：**RESET/PWDN、SCCB 读改写与 27 项子表已补齐；现又新增 `ov5640_stereo_startup` 和 308项完整冷启动候选ROM，包含基础模拟/ISP、720p模式和窗口、成像初值、双路芯片 ID/所选寄存器检查及最后 stream-on。与 DVP 组合的入口为 `ov5640_stereo_startup_capture`。完整启动与既有子表分别保留，候选模式的真实帧率、极性和画质仍未上板验收；异步 FIFO/AXI/DDR 仍未实现。第一批记录不再代表当前初始化代码范围。
+ 
+ ### 2. 接入 BD、PS DDR 与约束
+ 

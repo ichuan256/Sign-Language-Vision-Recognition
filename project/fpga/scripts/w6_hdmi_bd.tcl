@@ -437,6 +437,7 @@ if {[llength [get_bd_cells -quiet video]]} {
     }
 }
 
+source [file join $w6h_script_dir w6_release_pmod_spi.tcl]
 assign_bd_address
 # DEBUG: 打印 VDMA 时钟频率
 foreach p {s_axi_lite_aclk m_axi_mm2s_aclk m_axis_mm2s_aclk} {

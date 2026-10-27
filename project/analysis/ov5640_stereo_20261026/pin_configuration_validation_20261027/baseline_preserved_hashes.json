@@ -1,0 +1,18 @@
+[
+  {
+    "path": "project/fpga/project/glove/glove.xpr",
+    "sha256": "3D2A954F4CFCADA0451B07474C012586F8C6244A6BBC5EB6ECEE3291CBB2603F"
+  },
+  {
+    "path": "project/fpga/project/glove/glove.srcs/sources_1/bd/system/system.bd",
+    "sha256": "B1D8135F560F9C3F1B5ABAB62384D226D66274153C9D431ED52580662116CF14"
+  },
+  {
+    "path": "project/board/w6/kws_hdmi.bit",
+    "sha256": "8ECB4EB10B1F11C22BD8E8A3505E4FB1C42B9FE23E8BA4BFDB4A1EBE6E878A00"
+  },
+  {
+    "path": "project/board/w6/kws_hdmi.hwh",
+    "sha256": "D84E1DFDCD35EA6A29FFAB658E8E086CE8FD9455A49D0D8C44D6FE42D5B4D3E5"
+  }
+]

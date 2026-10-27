@@ -1,0 +1,7 @@
+max SLACK 1.493 FROM {u_camera/u_startup/u_control/delay_cycles_reg[1]/C} TO {u_camera/u_startup/u_control/FSM_onehot_state_reg[3]/CE}
+min SLACK 0.122 FROM {u_camera/u_capture2/reset_sync_reg[0]/C} TO {u_camera/u_capture2/reset_sync_reg[1]/D}
+RESET_CHAIN 1 SLACK 11.167
+RESET_RECOVERY 1 SLACK 7.477
+RESET_CHAIN 2 SLACK 11.177
+RESET_RECOVERY 2 SLACK 7.465
+TIMING_ACCEPTANCE_PASS

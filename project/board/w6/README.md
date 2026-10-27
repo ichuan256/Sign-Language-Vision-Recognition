@@ -1,5 +1,7 @@
 # W6 HDMI 收尾记录（2026-10-18）
 
+2026-10-27 更新：Pmod A/B 的外部 SPI 端口、12 根管脚约束及两组 SPI 时序约束已从工程源码移除；内部保留的两路 MISO 接 const_zero。Vivado 2024.1 BD 校验和新 wrapper 生成通过。旧传感器/DMA/KWS 内部链路仍保留，完整 M0b 裁剪未完成。已发布及板上 bit/HWH 未重建或替换，实物引脚须在新固件成对构建、部署并冷启动后才按新接口生效。记录：project/analysis/pmod_spi_release_20261027/README.md。
+
 ## 当前基线
 
 目标为 Zynq-7020（xc7z020clg400），现有工程使用 Vivado 2024.1。

@@ -1,0 +1,6 @@
+PASS tb_ov5640_sccb_register_access
+PASS tb_ov5640_startup_defaults
+PASS tb_ov5640_startup_controller
+PASS tb_ov5640_stereo_startup
+PASS tb_ov5640_startup_capture
+STARTUP_REGRESSION_ALL_PASS 5

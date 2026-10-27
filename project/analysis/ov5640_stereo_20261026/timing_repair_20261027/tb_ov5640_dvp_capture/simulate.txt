@@ -1,0 +1,3 @@
+Time resolution is 1 ps
+TEST_PASS: RGB565 order, SOF/EOL, odd/over-width error, suppression, recovery
+$finish called at time : 787 ns : File "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/ov5640_stereo/tb_ov5640_dvp_capture.v" Line 201

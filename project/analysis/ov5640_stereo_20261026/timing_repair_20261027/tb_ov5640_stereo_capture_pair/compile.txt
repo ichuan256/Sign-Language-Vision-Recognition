@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/rtl/ov5640_stereo/ov5640_stereo_capture_pair.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ov5640_stereo_capture_pair
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/ov5640_stereo/tb_ov5640_stereo_capture_pair.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_ov5640_stereo_capture_pair

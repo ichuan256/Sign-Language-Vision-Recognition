@@ -1,0 +1,243 @@
+{
+  "date": "2026-10-26",
+  "verdict": "PASS",
+  "scope": "720p30 candidate configuration and behavioral RTL simulation only",
+  "simulator": "Vivado 2024.1 XSim",
+  "part": "xc7z020clg400-1",
+  "mode": {
+    "xclk_hz": 24000000,
+    "width": 1280,
+    "height": 720,
+    "fps_target": 30,
+    "hts": 1892,
+    "vts": 740,
+    "analog_crop": [
+      0,
+      250,
+      2624,
+      1456
+    ],
+    "output_offset": [
+      16,
+      4
+    ],
+    "format": "RGB565_LE_8bit_DVP",
+    "pclk_hz_candidate": 84000000,
+    "sysclk_hz_candidate": 42000000,
+    "polarity_register_candidate": "22",
+    "polarity_mask": "2f",
+    "polarity_status": "Linux-derived candidate; physical waveform unverified",
+    "exposure_seed_lines": 221,
+    "exposure_limit_lines": 736,
+    "gain_seed_x16": 16,
+    "gain_ceiling_x16": 248
+  },
+  "register_audit": {
+    "verdict": "PASS",
+    "table_count": 308,
+    "delays_ms": 620,
+    "pclk_hz_candidate": 84000000,
+    "sysclk_hz_candidate": 42000000,
+    "pclk_limit_hz": 96000000,
+    "pclk_spec_margin_hz": 12000000,
+    "arithmetic_fps": 29.9982858122393,
+    "checked": [
+      "reference tables with ordered overrides",
+      "crop/output/HTS/VTS",
+      "register-derived PLL/banding/exposure arithmetic",
+      "PCLK <= 96 MHz",
+      "RGB565 and non-JPEG/binning bits",
+      "DVP pad/control selection",
+      "no ID writes or early stream-on"
+    ],
+    "not_verified": [
+      "physical polarity, clocks or FPS",
+      "lens/ISP image quality"
+    ]
+  },
+  "tests": [
+    {
+      "top": "tb_ov5640_720p_frame",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_720p_frame/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_dvp_capture",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_dvp_capture/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_known_config",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_known_config/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_known_config_sequence",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_known_config_sequence/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_known_config_timeout",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_known_config_timeout/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_masked_write",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_masked_write/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_pll_config",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_pll_config/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_sccb_read",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_sccb_read/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_sccb_register_access",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_sccb_register_access/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_sccb_write",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_sccb_write/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_startup_capture",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_startup_capture/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_startup_controller",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_startup_controller/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_startup_defaults",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_startup_defaults/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_stereo_camera_init",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_stereo_camera_init/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_stereo_capture_pair",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_stereo_capture_pair/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_stereo_sccb_pair",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_stereo_sccb_pair/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_stereo_startup",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_stereo_startup/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_stereo_top",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_stereo_top/simulate.log"
+    },
+    {
+      "top": "tb_ov5640_timing_defaults",
+      "verdict": "PASS",
+      "transcript": "project/analysis/ov5640_stereo_20261026/mode_720p30_validation/tb_ov5640_timing_defaults/simulate.log"
+    }
+  ],
+  "test_count": 19,
+  "final_full_frame_rerun": "PASS; all shell inputs explicitly tied off",
+  "changed_files": [
+    "project/fpga/rtl/ov5640_stereo/ov5640_dvp_capture.v",
+    "project/fpga/rtl/ov5640_stereo/ov5640_known_config_table.v",
+    "project/fpga/rtl/ov5640_stereo/ov5640_pll_config.v",
+    "project/fpga/rtl/ov5640_stereo/ov5640_startup_table.v",
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_camera_top.v",
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_capture_pair.v",
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_startup_capture.v",
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_startup.v",
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_top.v",
+    "project/fpga/rtl/ov5640_stereo/README.md",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_known_config_sequence.v",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_pll_config.v",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_startup_controller.v",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_stereo_startup.v",
+    "project/scripts/ov5640/generate_startup_table.py",
+    "project/analysis/ov5640_stereo_20261026/configuration_choices.md",
+    "project/analysis/ov5640_stereo_20261026/interface_and_pin_map.md",
+    "project/analysis/ov5640_stereo_20261026/known_config_contract.json",
+    "project/analysis/ov5640_stereo_20261026/known_config_register_evidence.md",
+    "project/analysis/ov5640_stereo_20261026/startup_contract.json",
+    "project/analysis/ov5640_stereo_20261026/startup_reference_values.json",
+    "project/analysis/ov5640_stereo_20261026/startup_sequence.md",
+    "docs/方案/03_PYNQ-Z2双目OV5640接入工作顺序.md"
+  ],
+  "new_test": "project/fpga/tb/ov5640_stereo/tb_ov5640_720p_frame.v",
+  "source_sha256": {
+    "project/fpga/rtl/ov5640_stereo/ov5640_dvp_capture.v": "4bea7f8e446dc1b5493d711277d7669d1f7cfcf8bec44a7aa9f993497b02a59f",
+    "project/fpga/rtl/ov5640_stereo/ov5640_known_config_sequencer.v": "38451ca43b25185056c2e07fa9561f8810120243d7f920bf6726de49d5bcb6ae",
+    "project/fpga/rtl/ov5640_stereo/ov5640_known_config_table.v": "dd7d024ef473c991dd3cca6175f11af76360594b22cbcf6447e465091445a103",
+    "project/fpga/rtl/ov5640_stereo/ov5640_pll_config.v": "8dfec045309194864c0ad6fc5754c8315dbdc8c294065c9498af275218826430",
+    "project/fpga/rtl/ov5640_stereo/ov5640_sccb_masked_write.v": "b9aab37a90df5fe676b1a0540f21c519eb925ef5406dedd67cd36b28f867eeba",
+    "project/fpga/rtl/ov5640_stereo/ov5640_sccb_read.v": "107531c1e3bb05e09341498e10e778ebabccb031652317cc65ccf67d107586db",
+    "project/fpga/rtl/ov5640_stereo/ov5640_sccb_register_access.v": "29be1d926d90e7211868ab4d8e2b2f6c260278cd1af3a7ba12702cb5ec4ef3f6",
+    "project/fpga/rtl/ov5640_stereo/ov5640_sccb_write.v": "0517a91cfd41556dea6d204f3bcc5dc04d3777444a09770eb6869ac92f623ceb",
+    "project/fpga/rtl/ov5640_stereo/ov5640_startup_table.v": "ebf1ecb1df4334271e460d11ee445f791af25dfd52df8c0320af7fa0c33046f1",
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_camera_init.v": "cb8657d3f66b5d34f02a086bdd01690799063bc92b3f125c47d967089818b1f6",
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_camera_top.v": "7a26db75862f3e9583bb18920ac935b84629881bb3da54776f856b63948366e3",
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_capture_pair.v": "73323e4fa143010e1f6480193ba445bbe4aca6166347c17d8d1943b6f5141b51",
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_known_config.v": "01b170ac475a94c07905c523e2a1e8a2cfe67d3318b172191d243d91a7ce4b64",
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_sccb_pair.v": "b1e90d549853e8fa2af4d0661c36be5f6089652472fd21b7eeac6f58317f3bca",
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_startup.v": "adf64c28896684b204007fa72902ca62783fbace429ec757e798037cad31fd66",
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_startup_capture.v": "af046b86e14a25a7fb0f14b8ebc39e56b69064465c30c55787dc1c9f24c28797",
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_top.v": "17c8569b44545411d53b8f30b93db0633e24724b81119f384878a2189c9dec38",
+    "project/fpga/tb/ov5640_stereo/ov5640_sccb_sensor_model.v": "62254f0c4a62bbe0a7851168346d951a492e6cba8594b50465f99ba42f09e458",
+    "project/fpga/tb/ov5640_stereo/ov5640_startup_sensor_model.v": "03fcbd241fa419327e5c13884c31e285664c8bc334d5e4b5ebdb02808f122fa8",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_720p_frame.v": "e79782ac6ee158b5f780f4037de183e48fa8d8fb75412a4a560e010c71aecd28",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_dvp_capture.v": "4303836f3005722fab9f3d7ca1da626958394439ba259a97052cf4ba79145040",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_known_config.v": "bfbb604b081bbea011c71a2b14b18f156a411e43a4490d93201f98fba84c0753",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_known_config_sequence.v": "2e9dd20d12902053a6aa0569595cbe338cd77b76fbab4565250fd3ef11cb7470",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_known_config_timeout.v": "9eaefa3ba347b118b8a99063df3f5ab2c9340f8e7d7b5d8a554f8c73f2467723",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_masked_write.v": "b7e3e94df1ebba9282a63fa4da87aab34ef7f622f9e6a2a88e40a5fb0e97aae3",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_pll_config.v": "9fd19e1431dc0e28e47449922065180c3cf67bbefdc0f263a7c9651e4f40cd32",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_sccb_read.v": "f1f589cd544e40e5ac2f9e2624f98abfdd6998bbbe01f9863fc195dfb6f01f33",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_sccb_register_access.v": "430d328284f2c62fff3fa22264a87669a0186ff4e1c53d04e6d2ad32dc9be87d",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_sccb_write.v": "8154200290b3c14d9e53b799cbaffd8f0d51abdd2013aa5a5686dd458257bf3b",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_startup_capture.v": "9edd846a571b1ca49a1b582117c26f441f2482e0697d6a7cadf0abcd6c9b8e3c",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_startup_controller.v": "088de9b517de27b9b12269df5adbc5c6b543a349122693571952b99ccb3fd5ee",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_startup_defaults.v": "1aa9a912722189e91605ee8bc54e2fe5de03d1965822b94e19cf8e902fed5b31",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_stereo_camera_init.v": "f50b3833fbb7d3edf660f6a04315cb33e2cf0ed1169e5a2216fa175b8e93fe5e",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_stereo_capture_pair.v": "c9342dea15eaa36499702bca747e4b11d371a5ceafd245a05f65baa977e4b9cc",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_stereo_sccb_pair.v": "e1649a48dcc3ab36c45099d8567c0f83a5f1ee7ddf7af4faa3587218790745ce",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_stereo_startup.v": "f951a3d87e95532cc0c9dcac42ed83b7a86577a27dd152b28a7071b71701df6a",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_stereo_top.v": "37e94426aff13cb7c210359390aaefe5ac5bb094dd1ec37462aa3ee3b40eda8e",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_timing_defaults.v": "33a78b27aa1a76e65f57d93b3991c14878de69ce1c71f0f5e9e80cd5813a41f2",
+    "project/scripts/ov5640/generate_startup_table.py": "9312c219414ca5df1e4bd438508019a5c90859262df9ac504448cff4f18d4563",
+    "project/analysis/ov5640_stereo_20261026/known_config_contract.json": "b0fa446015d56656d6489a5a6865de82cd02d257f9cfd08944180e7082692910",
+    "project/analysis/ov5640_stereo_20261026/startup_contract.json": "af12b3e5c6e5870c570348d17a92c572de43e25ba1e946232dac3cc86319d8f7",
+    "project/analysis/ov5640_stereo_20261026/startup_reference_values.json": "e4c3271e5efac0d105b307aa05eebea7f214cbc7bcceaf92bae882f1a8b001d9"
+  },
+  "warnings": [
+    "Existing forward reference to SYS_CLK_HZ in positional-compatible parameter lists; parameter rounding and override tests pass",
+    "Vivado GCC auto-detection warning; xvlog, xelab and xsim all completed successfully"
+  ],
+  "not_verified": [
+    "real camera image, FPS and clock polarity",
+    "board-level PCLK/data input timing",
+    "synthesis/place-route/timing closure for changed revision",
+    "DDR/VDMA/HDMI integration and stereo synchronization",
+    "bitstream generation or board deployment"
+  ],
+  "cost_accounting": {
+    "actual_model_usage_by_category": "unknown; runtime token billing is not exposed",
+    "actual_subagent_configuration": "requested gpt-6.1-sol/high; returned acknowledgment only, no implementation or validation used",
+    "cost_savings": "unknown; no claimed savings"
+  }
+}

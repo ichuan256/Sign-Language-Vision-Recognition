@@ -1,0 +1,3 @@
+Time resolution is 1 ps
+TEST_PASS: init-gated independent PCLK capture, stopped-clock reset and RGB565 markers
+$finish called at time : 552891 ns : File "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/ov5640_stereo/tb_ov5640_startup_capture.v" Line 110

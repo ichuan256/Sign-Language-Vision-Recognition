@@ -1,0 +1,8 @@
+Time resolution is 1 ps
+CONTROL_CASE_PASS fault=3 requests=2 writes=0
+CONTROL_CASE_PASS fault=1 requests=1 writes=0
+CONTROL_CASE_PASS fault=2 requests=1 writes=0
+CONTROL_CASE_PASS fault=0 requests=21 writes=2
+CONTROL_CASE_PASS fault=4 requests=1026 writes=1024
+TEST_PASS: independent completion, one-camera timeouts, illegal/missing ROM terminator, sticky error and delay rounding
+$finish called at time : 113251 ns : File "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/ov5640_stereo/tb_ov5640_startup_controller.v" Line 108

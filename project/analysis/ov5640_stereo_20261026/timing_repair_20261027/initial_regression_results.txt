@@ -1,0 +1,9 @@
+PASS tb_ov5640_delay_conversion
+PASS tb_ov5640_sccb_register_access
+PASS tb_ov5640_startup_defaults
+PASS tb_ov5640_startup_controller
+PASS tb_ov5640_stereo_startup
+PASS tb_ov5640_startup_capture
+PASS tb_ov5640_dvp_capture
+PASS tb_ov5640_stereo_capture_pair
+FAIL tb_ov5640_720p_frame

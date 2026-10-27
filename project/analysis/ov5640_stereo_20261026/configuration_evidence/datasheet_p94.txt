@@ -1,0 +1,57 @@
+color CMOS QSXGA (5 megapixel) image sensor with OmniBSI™ technologyOV5640
+proprietary to OmniVision Technologies PRODUCT SPECIFICATION version 2.01
+6.6.2 DVP timing
+figure 6-7 DVP timing diagram
+D[9:0]
+HREF
+HSYNC
+VSYNC
+(1)
+(2) (3)
+(7)
+(6)
+(8)
+invalid data
+(4) (5)
+(9)
+5640_DS_6_7
+note  
+The timing values 
+shown in table 6-7 may 
+vary depending upon 
+register settings.
+table 6-7 DVP timing specifications (sheet 1 of 2)
+mode timing
+5 megapixel
+2592x1944
+(1) 5596992 tp
+(2) 5688 tp
+(3) 48276 tp
+(4) 2844 tp
+(5) 14544 tp
+(6) 2592 tp
+(7) 252 tp
+(8) 0 tp
+(9) 252 tp
+1080p
+1920x1080
+(1)  5596992 tp
+(2)  5688 tp
+(3) 2506164 tp
+(4) 2844 tp
+(5)  14544 tp
+(6) 1920 tp
+(7)  924 tp
+(8) 0 tp
+(9)  924 tp
+UXGA
+1600x1200
+(1)  5596992 tp
+(2)  5688 tp
+(3)  2165204 tp
+(4)  2844 tp
+(5)  14544 tp
+(6)  1600 tp
+(7)  1244 tp
+(8) 0 tp
+(9)  1244 tp

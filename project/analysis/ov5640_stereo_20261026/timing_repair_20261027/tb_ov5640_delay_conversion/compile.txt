@@ -1,0 +1,8 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/rtl/ov5640_stereo/ov5640_stereo_startup.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ov5640_stereo_startup
+INFO: [VRFC 10-311] analyzing module ov5640_stereo_startup_controller
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/ov5640_stereo/tb_ov5640_delay_conversion.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module delay_conversion_case
+INFO: [VRFC 10-311] analyzing module tb_ov5640_delay_conversion
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/analysis/ov5640_stereo_20261026/timing_repair_20261027/xsim_project/startup.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

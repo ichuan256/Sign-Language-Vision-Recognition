@@ -1,0 +1,40 @@
+OV5640 自动对焦成像模组应用指南
+temp = read_i2c(0x3a00);
+temp = temp | 0x20; // turn on banding filter
+write_i2c(0x3a00, temp);
+Manual 60Hz 手动设置60Hz 光源
+write_i2c(0x3c00, 00); // set to 60Hz
+write_i2c(0x3c01, 80); // manual banding filter
+temp = read_i2c(0x3a00);
+temp = temp | 0x20; // turn on banding filter
+write_i2c(0x3a00, temp);
+Auto Detection 自动侦测
+write_i2c(0x3c01, 00); // auto banding filter
+temp = read_i2c(0x3a00);
+temp = temp & 0xdf; // turn off banding filter
+write_i2c(0x3a00, temp);
+  自动侦测功能参数与输入时钟相关，如果输入时钟不是 24Mhz，请联络 OmniVision 当地
+的FAE 取得正确的设置参数。
+4.10 Auto Focus 自动对焦
+4.10.1  内置自动对焦
+  OV5640 由内置微型控制器完成自动对焦，并且VCM 驱动器也已集成在传感器内部。微
+型控制器的控制固件（firmware）从主机下载。当固件运行后，内置微型控制器从 OV5640
+传感器读得自动对焦所需的信息，计算并驱动VCM 马达带动镜头到达正确的对焦位置。主
+机可以通过I2C 命令控制微型控制器的各种功能。
+4.10.2  I2C 自动对焦命令
+寄存器名 地址 描述 值
+CMD_MAIN 0x3022 AF 主命令寄存器 0x03 - 触发自动对焦过程
+0x06 - 暂停对焦过程
+0x08 - 释放马达回初始状态
+0x12 - 重设对焦区域
+0x00 – 命令完成
+CMD_ACK 0x3023 ACK of command
+命令确认
+0x00 - 命令完成
+0x01 - 命令运行中
+FW_STATUS 0x3029 Status of focus
+对焦状态
+0x7F - S_FIRWARE  
+固件已下载完毕但未运行 可能由以下
+两个原因
+42   OmniVision 公司机密

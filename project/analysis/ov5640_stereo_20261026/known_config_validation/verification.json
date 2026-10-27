@@ -1,0 +1,311 @@
+{
+  "date": "2026-10-26",
+  "backend": "Vivado 2024.1 XSim",
+  "mode": "behavioral",
+  "project": "xsim_project/known_config.xpr",
+  "verdict": "PASS",
+  "test_count": 13,
+  "table_contract": "27 address/value/mask/delay rows matched ../known_config_contract.json by address",
+  "tests": [
+    {
+      "transcript_sha256": "77f8ac76849acf06e638fb92bc39faa0caa3ff0665e9b9ab4aacc7fba6804965",
+      "batch": "after delay arithmetic boundary addition; no dependency on SCCB cores",
+      "top": "tb_ov5640_known_config_sequence",
+      "pass_marker": [
+        "TEST_PASS: exact 27-row table, invalid indices, backpressure, rounded intermediate/final delays and errors\r"
+      ],
+      "verdict": "PASS",
+      "transcript": "tb_ov5640_known_config_sequence/simulate.log"
+    },
+    {
+      "transcript_sha256": "9a531f8c56388a2d7b3d67f637e8c33507bef785cf93b03ccdfc94cccaafb8da",
+      "batch": "after final pad-independent core / single pad driver refactor",
+      "top": "tb_ov5640_masked_write",
+      "pass_marker": [
+        "TEST_PASS: real SCCB RMW/direct write, latched busy request, mutually exclusive engines, reset recovery\r"
+      ],
+      "verdict": "PASS",
+      "transcript": "tb_ov5640_masked_write/simulate.log"
+    },
+    {
+      "transcript_sha256": "6fda7e19c7f91a97b177a5e4b6d116fea29b0019feb593ba7171a243df1362ad",
+      "batch": "after final pad-independent core / single pad driver refactor",
+      "top": "tb_ov5640_known_config",
+      "pass_marker": [
+        "TEST_PASS: 27 dual bus writes, six independent RMW reads per sensor, startup and final delay\r"
+      ],
+      "verdict": "PASS",
+      "transcript": "tb_ov5640_known_config/simulate.log"
+    },
+    {
+      "transcript_sha256": "65d131257c1bc30f944ff1bb5594c7357f2f43f7907bb8415f71c589ba2875cc",
+      "batch": "after final pad-independent core / single pad driver refactor",
+      "top": "tb_ov5640_known_config_timeout",
+      "pass_marker": [
+        "TEST_PASS: real transport timeout, sticky failure despite late completion, reset safe state\r"
+      ],
+      "verdict": "PASS",
+      "transcript": "tb_ov5640_known_config_timeout/simulate.log"
+    },
+    {
+      "transcript_sha256": "542310a3036b29615d7471600ea2f9e2d82f5cbaa7ac1b2a292c2891723899bd",
+      "batch": "after final pad-independent core / single pad driver refactor",
+      "top": "tb_ov5640_timing_defaults",
+      "pass_marker": [
+        "TEST_PASS: frequency-derived waits/timeouts, SCCB edges, override compatibility\r"
+      ],
+      "verdict": "PASS",
+      "transcript": "tb_ov5640_timing_defaults/simulate.log"
+    },
+    {
+      "transcript_sha256": "f03cb7ef597538351947c394bc556238561d1a5b29d7138e8c1bfbf06120a177",
+      "batch": "earlier PASS reused: source and dependencies unchanged by pad/core refactor",
+      "top": "tb_ov5640_stereo_camera_init",
+      "pass_marker": [
+        "TEST_PASS: power sequencing, ordered dual writes, completion and timeout\r"
+      ],
+      "verdict": "PASS",
+      "transcript": "tb_ov5640_stereo_camera_init/simulate.log"
+    },
+    {
+      "transcript_sha256": "00a51988f9e6c98c568017b37648e6bc96efd5622b87dfcee155acfdfa0a09a7",
+      "batch": "earlier PASS reused: source and dependencies unchanged by pad/core refactor",
+      "top": "tb_ov5640_dvp_capture",
+      "pass_marker": [
+        "TEST_PASS: RGB565 order, SOF/EOL, odd/over-width error, suppression, recovery\r"
+      ],
+      "verdict": "PASS",
+      "transcript": "tb_ov5640_dvp_capture/simulate.log"
+    },
+    {
+      "transcript_sha256": "54af260d67bb183f558378b8397428ea22e35d8a43b052758f97f932a65534a2",
+      "batch": "earlier PASS reused: source and dependencies unchanged by pad/core refactor",
+      "top": "tb_ov5640_stereo_capture_pair",
+      "pass_marker": [
+        "TEST_PASS: independent OV1/OV2 PCLK domains capture separately\r"
+      ],
+      "verdict": "PASS",
+      "transcript": "tb_ov5640_stereo_capture_pair/simulate.log"
+    },
+    {
+      "transcript_sha256": "fbe9a1ecc4cd29c78ae78968078bb1c391546bb7502d64158ce39410c008b6a7",
+      "batch": "after final pad-independent core / single pad driver refactor",
+      "top": "tb_ov5640_sccb_write",
+      "pass_marker": [
+        "TEST_PASS: SCCB open-drain start/stop and device/register bytes\r"
+      ],
+      "verdict": "PASS",
+      "transcript": "tb_ov5640_sccb_write/simulate.log"
+    },
+    {
+      "transcript_sha256": "8cd5919565f6c07ae09dcc46e26947fe7892eabe0499ba8ebffb4478a8fbcc0e",
+      "batch": "after final pad-independent core / single pad driver refactor",
+      "top": "tb_ov5640_stereo_sccb_pair",
+      "pass_marker": [
+        "TEST_PASS: simultaneous and independent OV1/OV2 SCCB writes\r"
+      ],
+      "verdict": "PASS",
+      "transcript": "tb_ov5640_stereo_sccb_pair/simulate.log"
+    },
+    {
+      "transcript_sha256": "cd78645555c58753335336bc6964edb910035c91803b05bb9aead804de730e59",
+      "batch": "after final pad-independent core / single pad driver refactor",
+      "top": "tb_ov5640_stereo_top",
+      "pass_marker": [
+        "TEST_PASS: top integrates independent DVP PCLKs and dual SCCB writes\r"
+      ],
+      "verdict": "PASS",
+      "transcript": "tb_ov5640_stereo_top/simulate.log"
+    },
+    {
+      "transcript_sha256": "37df90ea12b982ce5662eac794c7a6aa54c3607651ff239bac05431b3b85f9ec",
+      "batch": "after final pad-independent core / single pad driver refactor",
+      "top": "tb_ov5640_sccb_read",
+      "pass_marker": [
+        "PASS: SCCB read returned 56 after repeated START\r"
+      ],
+      "verdict": "PASS",
+      "transcript": "tb_ov5640_sccb_read/simulate.log"
+    },
+    {
+      "transcript_sha256": "05c5d8e159808f1a34c66fddd5a54a2be6e41f33eb25c42edc33aca50abd417f",
+      "batch": "earlier PASS reused: source and dependencies unchanged by pad/core refactor",
+      "top": "tb_ov5640_pll_config",
+      "pass_marker": [
+        "PASS: 5 PLL writes accepted in order\r"
+      ],
+      "verdict": "PASS",
+      "transcript": "tb_ov5640_pll_config/simulate.log"
+    }
+  ],
+  "final_source_hashes": [
+    {
+      "sha256": "ec0337f51f946a340d55f116b60d9101becd502a51b3dbc57dad9fd9d728d26b",
+      "path": "project/fpga/rtl/ov5640_stereo/ov5640_dvp_capture.v"
+    },
+    {
+      "sha256": "38451ca43b25185056c2e07fa9561f8810120243d7f920bf6726de49d5bcb6ae",
+      "path": "project/fpga/rtl/ov5640_stereo/ov5640_known_config_sequencer.v"
+    },
+    {
+      "sha256": "c8f7c8566d58874e038dce32fcbbfdb5eb5e0209612d33b52c59d7029cd75046",
+      "path": "project/fpga/rtl/ov5640_stereo/ov5640_known_config_table.v"
+    },
+    {
+      "sha256": "5f291d7f70378d2b84a01df617ef58e0fdebee3107f47be4581ee43555769dbb",
+      "path": "project/fpga/rtl/ov5640_stereo/ov5640_pll_config.v"
+    },
+    {
+      "sha256": "b9aab37a90df5fe676b1a0540f21c519eb925ef5406dedd67cd36b28f867eeba",
+      "path": "project/fpga/rtl/ov5640_stereo/ov5640_sccb_masked_write.v"
+    },
+    {
+      "sha256": "107531c1e3bb05e09341498e10e778ebabccb031652317cc65ccf67d107586db",
+      "path": "project/fpga/rtl/ov5640_stereo/ov5640_sccb_read.v"
+    },
+    {
+      "sha256": "0517a91cfd41556dea6d204f3bcc5dc04d3777444a09770eb6869ac92f623ceb",
+      "path": "project/fpga/rtl/ov5640_stereo/ov5640_sccb_write.v"
+    },
+    {
+      "sha256": "cb8657d3f66b5d34f02a086bdd01690799063bc92b3f125c47d967089818b1f6",
+      "path": "project/fpga/rtl/ov5640_stereo/ov5640_stereo_camera_init.v"
+    },
+    {
+      "sha256": "71bd94ca03b020dcd88bc653340b76bb471a676b45cd6a88b9445e27b97096be",
+      "path": "project/fpga/rtl/ov5640_stereo/ov5640_stereo_camera_top.v"
+    },
+    {
+      "sha256": "92640c0367caee0274be3877f1eaad986bb6fe2c507501f483903b4c7621149b",
+      "path": "project/fpga/rtl/ov5640_stereo/ov5640_stereo_capture_pair.v"
+    },
+    {
+      "sha256": "01b170ac475a94c07905c523e2a1e8a2cfe67d3318b172191d243d91a7ce4b64",
+      "path": "project/fpga/rtl/ov5640_stereo/ov5640_stereo_known_config.v"
+    },
+    {
+      "sha256": "b1e90d549853e8fa2af4d0661c36be5f6089652472fd21b7eeac6f58317f3bca",
+      "path": "project/fpga/rtl/ov5640_stereo/ov5640_stereo_sccb_pair.v"
+    },
+    {
+      "sha256": "7c6bbd0adecdb837108fd7f5967d6deb7d29f61f19a2adf0ec29eb85e6491852",
+      "path": "project/fpga/rtl/ov5640_stereo/ov5640_stereo_top.v"
+    },
+    {
+      "sha256": "62254f0c4a62bbe0a7851168346d951a492e6cba8594b50465f99ba42f09e458",
+      "path": "project/fpga/tb/ov5640_stereo/ov5640_sccb_sensor_model.v"
+    },
+    {
+      "sha256": "4303836f3005722fab9f3d7ca1da626958394439ba259a97052cf4ba79145040",
+      "path": "project/fpga/tb/ov5640_stereo/tb_ov5640_dvp_capture.v"
+    },
+    {
+      "sha256": "4c733a85fcb4298d3fee671dd2ca8cd0cd7de6a50a769fc52dadf85bd3d8b5df",
+      "path": "project/fpga/tb/ov5640_stereo/tb_ov5640_known_config_sequence.v"
+    },
+    {
+      "sha256": "9eaefa3ba347b118b8a99063df3f5ab2c9340f8e7d7b5d8a554f8c73f2467723",
+      "path": "project/fpga/tb/ov5640_stereo/tb_ov5640_known_config_timeout.v"
+    },
+    {
+      "sha256": "bfbb604b081bbea011c71a2b14b18f156a411e43a4490d93201f98fba84c0753",
+      "path": "project/fpga/tb/ov5640_stereo/tb_ov5640_known_config.v"
+    },
+    {
+      "sha256": "b7e3e94df1ebba9282a63fa4da87aab34ef7f622f9e6a2a88e40a5fb0e97aae3",
+      "path": "project/fpga/tb/ov5640_stereo/tb_ov5640_masked_write.v"
+    },
+    {
+      "sha256": "27d92e8900578f6690dd1c85396d5069fd0cd9c42f5dcb9444ba09b66feb08d2",
+      "path": "project/fpga/tb/ov5640_stereo/tb_ov5640_pll_config.v"
+    },
+    {
+      "sha256": "f1f589cd544e40e5ac2f9e2624f98abfdd6998bbbe01f9863fc195dfb6f01f33",
+      "path": "project/fpga/tb/ov5640_stereo/tb_ov5640_sccb_read.v"
+    },
+    {
+      "sha256": "8154200290b3c14d9e53b799cbaffd8f0d51abdd2013aa5a5686dd458257bf3b",
+      "path": "project/fpga/tb/ov5640_stereo/tb_ov5640_sccb_write.v"
+    },
+    {
+      "sha256": "f50b3833fbb7d3edf660f6a04315cb33e2cf0ed1169e5a2216fa175b8e93fe5e",
+      "path": "project/fpga/tb/ov5640_stereo/tb_ov5640_stereo_camera_init.v"
+    },
+    {
+      "sha256": "c9342dea15eaa36499702bca747e4b11d371a5ceafd245a05f65baa977e4b9cc",
+      "path": "project/fpga/tb/ov5640_stereo/tb_ov5640_stereo_capture_pair.v"
+    },
+    {
+      "sha256": "e1649a48dcc3ab36c45099d8567c0f83a5f1ee7ddf7af4faa3587218790745ce",
+      "path": "project/fpga/tb/ov5640_stereo/tb_ov5640_stereo_sccb_pair.v"
+    },
+    {
+      "sha256": "37e94426aff13cb7c210359390aaefe5ac5bb094dd1ec37462aa3ee3b40eda8e",
+      "path": "project/fpga/tb/ov5640_stereo/tb_ov5640_stereo_top.v"
+    },
+    {
+      "sha256": "33a78b27aa1a76e65f57d93b3991c14878de69ce1c71f0f5e9e80cd5813a41f2",
+      "path": "project/fpga/tb/ov5640_stereo/tb_ov5640_timing_defaults.v"
+    }
+  ],
+  "notes": [
+    "All runtime transcripts read after close_sim flush; compile/elaborate/runtime logs retained per test.",
+    "Initial full regression stopped at legacy read-model mismatch; dependent tests re-run after final repair. Unchanged independent PASS tests reused. PLL test first completed in follow-up.",
+    "pre_repair/read_address_failure.log preserves true read-address defect; legacy_read_model_failure.log preserves obsolete 8-edge sensor stimulus failure.",
+    "New integration uses SYS_CLK_HZ=1000 to shorten 300 ms post-delay to 300 cycles; sequence test separately checks 100 MHz x 300 ms = 30000000 cycles with 64-bit arithmetic.",
+    "Existing SYS_CLK_HZ forward-reference warnings, parameter-only unconnected clocks, Windows path-length and unavailable automatic GCC discovery warnings did not prevent compilation/elaboration/PASS.",
+    "Final read/write wrappers preserve all previous port and parameter order; cores export low enables; masked adapter uses one constant-zero tristate per pad.",
+    "Pad/core refactor re-ran all eight tests dependent on read/write primitives; other final tests reused only where source/dependencies unchanged.",
+    "Synthesis completed without MDRV/black-box issues, but unconstrained-I/O/PS7/pipeline warnings remain and no implementation was run."
+  ],
+  "not_verified": [
+    "Complete analog/ISP startup or stream-on",
+    "Physical sensor ACK/existence and stuck-low bus detection",
+    "Input timing/CDC/placement/routing or timing closure",
+    "Bitstream generation or board deployment",
+    "Actual 1080p30 images, exposure quality, VSYNC/HREF polarity"
+  ],
+  "cost_usage": "unknown",
+  "cost_prices": "unknown",
+  "synthesis": {
+    "drc": "synth_final_drc.rpt",
+    "netlist": "synth_final_netlist.v",
+    "top": "ov5640_stereo_known_config",
+    "utilization": "synth_final_utilization.rpt",
+    "initial_ooc": "Synth8-5799 tri-state conversion warnings retained in main console; not used as pad proof",
+    "pad_report": "synth_final_pad_buffers.txt",
+    "blackboxes": 0,
+    "mode": "normal top-level synthesis",
+    "each_sda": "one IOBUF, I=GND",
+    "verdict": "PASS for normal top-level synth and pad/black-box/multiple-driver scope only",
+    "each_scl": "one OBUFT, I=GND; input not used",
+    "structure_report": "synth_final_structure_summary.txt",
+    "multiple_driver_drc": 0,
+    "remaining_drc": [
+      "NSTD-1",
+      "UCIO-1",
+      "DPIP-1",
+      "DPOP-1",
+      "DPOP-2",
+      "RPBF-3 (two SCL output-only pads)",
+      "ZPS7-1"
+    ],
+    "part": "xc7z020clg400-1"
+  },
+  "changed_files": [
+    "project/fpga/rtl/ov5640_stereo/ov5640_known_config_table.v",
+    "project/fpga/rtl/ov5640_stereo/ov5640_known_config_sequencer.v",
+    "project/fpga/rtl/ov5640_stereo/ov5640_sccb_masked_write.v",
+    "project/fpga/rtl/ov5640_stereo/ov5640_stereo_known_config.v",
+    "project/fpga/rtl/ov5640_stereo/ov5640_sccb_read.v",
+    "project/fpga/rtl/ov5640_stereo/ov5640_sccb_write.v",
+    "project/fpga/tb/ov5640_stereo/ov5640_sccb_sensor_model.v",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_known_config.v",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_known_config_sequence.v",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_known_config_timeout.v",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_masked_write.v",
+    "project/fpga/tb/ov5640_stereo/tb_ov5640_sccb_read.v",
+    "project/fpga/rtl/ov5640_stereo/README.md",
+    "project/analysis/ov5640_stereo_20261026/configuration_choices.md"
+  ]
+}

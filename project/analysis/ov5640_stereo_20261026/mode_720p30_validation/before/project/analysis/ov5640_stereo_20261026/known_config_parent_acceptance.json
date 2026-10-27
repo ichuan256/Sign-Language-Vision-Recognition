@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-26",
+  "verdict": "PASS within known-settings subset scope",
+  "table_rows": 27,
+  "source_hashes_checked": 27,
+  "transcripts_checked": 13,
+  "reviewed": [
+    "independent register contract and banding arithmetic",
+    "partial-mask preservation per camera",
+    "ready/busy/done and final post-delay handshake",
+    "SCCB repeated START and STOP corrections",
+    "legacy port/parameter compatibility and single open-drain pad driver",
+    "source/log binding and documentation links"
+  ],
+  "synthesis_scope": "PASS for normal top-level synth and pad/black-box/multiple-driver scope only",
+  "remaining_drc": [
+    "NSTD-1",
+    "UCIO-1",
+    "DPIP-1",
+    "DPOP-1",
+    "DPOP-2",
+    "RPBF-3 (two SCL output-only pads)",
+    "ZPS7-1"
+  ],
+  "not_verified": [
+    "Complete analog/ISP startup or stream-on",
+    "Physical sensor ACK/existence and stuck-low bus detection",
+    "Input timing/CDC/placement/routing or timing closure",
+    "Bitstream generation or board deployment",
+    "Actual 1080p30 images, exposure quality, VSYNC/HREF polarity"
+  ]
+}

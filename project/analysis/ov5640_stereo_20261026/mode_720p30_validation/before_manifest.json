@@ -1,0 +1,198 @@
+[
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_dvp_capture.v",
+    "sha256": "ec0337f51f946a340d55f116b60d9101becd502a51b3dbc57dad9fd9d728d26b"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_known_config_sequencer.v",
+    "sha256": "38451ca43b25185056c2e07fa9561f8810120243d7f920bf6726de49d5bcb6ae"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_known_config_table.v",
+    "sha256": "c8f7c8566d58874e038dce32fcbbfdb5eb5e0209612d33b52c59d7029cd75046"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_pll_config.v",
+    "sha256": "5f291d7f70378d2b84a01df617ef58e0fdebee3107f47be4581ee43555769dbb"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_sccb_masked_write.v",
+    "sha256": "b9aab37a90df5fe676b1a0540f21c519eb925ef5406dedd67cd36b28f867eeba"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_sccb_read.v",
+    "sha256": "107531c1e3bb05e09341498e10e778ebabccb031652317cc65ccf67d107586db"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_sccb_register_access.v",
+    "sha256": "29be1d926d90e7211868ab4d8e2b2f6c260278cd1af3a7ba12702cb5ec4ef3f6"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_sccb_write.v",
+    "sha256": "0517a91cfd41556dea6d204f3bcc5dc04d3777444a09770eb6869ac92f623ceb"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_startup_table.v",
+    "sha256": "d81c5e77c0c7e1b685cf1607f44a18fc3942860ce550375509829c93fc0a0596"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_stereo_camera_init.v",
+    "sha256": "cb8657d3f66b5d34f02a086bdd01690799063bc92b3f125c47d967089818b1f6"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_stereo_camera_top.v",
+    "sha256": "71bd94ca03b020dcd88bc653340b76bb471a676b45cd6a88b9445e27b97096be"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_stereo_capture_pair.v",
+    "sha256": "92640c0367caee0274be3877f1eaad986bb6fe2c507501f483903b4c7621149b"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_stereo_known_config.v",
+    "sha256": "01b170ac475a94c07905c523e2a1e8a2cfe67d3318b172191d243d91a7ce4b64"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_stereo_sccb_pair.v",
+    "sha256": "b1e90d549853e8fa2af4d0661c36be5f6089652472fd21b7eeac6f58317f3bca"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_stereo_startup_capture.v",
+    "sha256": "d44a75508e3e91c3f362485c6f3f27bc35319d81330b151da1ef7669fd84b03c"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_stereo_startup.v",
+    "sha256": "63709914aca10130e9d726bfcea73e1d4eb45b96d3a3efbff4e2e97013dd80c4"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\ov5640_stereo_top.v",
+    "sha256": "7c6bbd0adecdb837108fd7f5967d6deb7d29f61f19a2adf0ec29eb85e6491852"
+  },
+  {
+    "path": "project\\fpga\\rtl\\ov5640_stereo\\README.md",
+    "sha256": "723e7a25ba4963e60e9cd78360e1db034f2f2d0d5b3be37fa18d0e6123b5168e"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\ov5640_sccb_sensor_model.v",
+    "sha256": "62254f0c4a62bbe0a7851168346d951a492e6cba8594b50465f99ba42f09e458"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\ov5640_startup_sensor_model.v",
+    "sha256": "03fcbd241fa419327e5c13884c31e285664c8bc334d5e4b5ebdb02808f122fa8"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_dvp_capture.v",
+    "sha256": "4303836f3005722fab9f3d7ca1da626958394439ba259a97052cf4ba79145040"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_known_config_sequence.v",
+    "sha256": "4c733a85fcb4298d3fee671dd2ca8cd0cd7de6a50a769fc52dadf85bd3d8b5df"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_known_config_timeout.v",
+    "sha256": "9eaefa3ba347b118b8a99063df3f5ab2c9340f8e7d7b5d8a554f8c73f2467723"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_known_config.v",
+    "sha256": "bfbb604b081bbea011c71a2b14b18f156a411e43a4490d93201f98fba84c0753"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_masked_write.v",
+    "sha256": "b7e3e94df1ebba9282a63fa4da87aab34ef7f622f9e6a2a88e40a5fb0e97aae3"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_pll_config.v",
+    "sha256": "27d92e8900578f6690dd1c85396d5069fd0cd9c42f5dcb9444ba09b66feb08d2"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_sccb_read.v",
+    "sha256": "f1f589cd544e40e5ac2f9e2624f98abfdd6998bbbe01f9863fc195dfb6f01f33"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_sccb_register_access.v",
+    "sha256": "430d328284f2c62fff3fa22264a87669a0186ff4e1c53d04e6d2ad32dc9be87d"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_sccb_write.v",
+    "sha256": "8154200290b3c14d9e53b799cbaffd8f0d51abdd2013aa5a5686dd458257bf3b"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_startup_capture.v",
+    "sha256": "9edd846a571b1ca49a1b582117c26f441f2482e0697d6a7cadf0abcd6c9b8e3c"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_startup_controller.v",
+    "sha256": "06c63b49aafd71d49eb2361e21098701f94d21b8deff26bb5b6d3232c6c76dce"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_startup_defaults.v",
+    "sha256": "1aa9a912722189e91605ee8bc54e2fe5de03d1965822b94e19cf8e902fed5b31"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_stereo_camera_init.v",
+    "sha256": "f50b3833fbb7d3edf660f6a04315cb33e2cf0ed1169e5a2216fa175b8e93fe5e"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_stereo_capture_pair.v",
+    "sha256": "c9342dea15eaa36499702bca747e4b11d371a5ceafd245a05f65baa977e4b9cc"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_stereo_sccb_pair.v",
+    "sha256": "e1649a48dcc3ab36c45099d8567c0f83a5f1ee7ddf7af4faa3587218790745ce"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_stereo_startup.v",
+    "sha256": "14302257ae0cacf49405e6b1f71dbca4f213f88273c7270c3a5e09a181d9c32e"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_stereo_top.v",
+    "sha256": "37e94426aff13cb7c210359390aaefe5ac5bb094dd1ec37462aa3ee3b40eda8e"
+  },
+  {
+    "path": "project\\fpga\\tb\\ov5640_stereo\\tb_ov5640_timing_defaults.v",
+    "sha256": "33a78b27aa1a76e65f57d93b3991c14878de69ce1c71f0f5e9e80cd5813a41f2"
+  },
+  {
+    "path": "project\\scripts\\ov5640\\generate_startup_table.py",
+    "sha256": "85e4495af0ac316fb07b57a1241fc7fcb5812f4d11a59394fdfab03f616f67a2"
+  },
+  {
+    "path": "project\\analysis\\ov5640_stereo_20261026\\configuration_choices.md",
+    "sha256": "9887c8fa3b8c9dc8de172064e801b0c8a3157f4687d66ab7d0248a88a0f7aeef"
+  },
+  {
+    "path": "project\\analysis\\ov5640_stereo_20261026\\interface_and_pin_map.md",
+    "sha256": "9c91e1020f5bf76e0302e712610ca1594014eb3a115ebdee7f91e7dddc882e76"
+  },
+  {
+    "path": "project\\analysis\\ov5640_stereo_20261026\\known_config_contract.json",
+    "sha256": "a93523bec33e020ca8219ac943933ea5af9b2f7858342c253263961eb42d6848"
+  },
+  {
+    "path": "project\\analysis\\ov5640_stereo_20261026\\known_config_parent_acceptance.json",
+    "sha256": "86a341a636f2838763570b466c06140fc3a846a77bc219b6ddd8a50fa693b0b4"
+  },
+  {
+    "path": "project\\analysis\\ov5640_stereo_20261026\\known_config_register_audit.json",
+    "sha256": "2bb66d81f59730a3625d723383d81ad7010e74767900881d739673ab7e8bc7bb"
+  },
+  {
+    "path": "project\\analysis\\ov5640_stereo_20261026\\known_config_register_evidence.md",
+    "sha256": "f8227e4a9c4253b0d5b446f068aa6b92d6270713cad90b5a6bf1c1d8f31befaa"
+  },
+  {
+    "path": "project\\analysis\\ov5640_stereo_20261026\\startup_contract.json",
+    "sha256": "00bae77df8b75079e035e5b2ec3d89a5614b8bba60051853c7c5e8cb4034ca1b"
+  },
+  {
+    "path": "project\\analysis\\ov5640_stereo_20261026\\startup_reference_values.json",
+    "sha256": "ff8b67a635206fe77c0e981a8df4597eaf5f72fcc2551c846af15ab3ffe80816"
+  },
+  {
+    "path": "project\\analysis\\ov5640_stereo_20261026\\startup_sequence.md",
+    "sha256": "dd65d5f949606f500614dcce1285a617b921a821673a0775e541a4113952b40a"
+  },
+  {
+    "path": "docs\\方案\\03_PYNQ-Z2双目OV5640接入工作顺序.md",
+    "sha256": "f58db5d770079b9657ff398b86ae74d18f26db9755898eddc256d1e8373e0aae"
+  }
+]

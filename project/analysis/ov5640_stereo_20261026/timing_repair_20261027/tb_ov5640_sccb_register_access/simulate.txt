@@ -1,0 +1,3 @@
+Time resolution is 1 ps
+TEST_PASS: read-only, independent masked/direct/zero-mask accesses, busy latching and mid-engine reset recovery
+$finish called at time : 12206 ns : File "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/ov5640_stereo/tb_ov5640_sccb_register_access.v" Line 50

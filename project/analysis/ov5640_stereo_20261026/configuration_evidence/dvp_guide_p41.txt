@@ -1,0 +1,38 @@
+OV5640 自动对焦成像模组应用指南
+write_i2c(0x5580, 0x1e);
+write_i2c(0x5583, 0xf0);
+write_i2c(0x5584, 0xf0);
+write_i2c(0x5003, 0x08);
+write_i2c(0x3212, 0x13); // end group 3
+write_i2c(0x3212, 0xa3); // launch group 3
+Solarize  正负片叠加
+write_i2c(0x3212, 0x03); // start group 3
+write_i2c(0x5580, 0x06);
+write_i2c(0x5583, 0x40); // sat U
+write_i2c(0x5584, 0x10); // sat V
+write_i2c(0x5003, 0x09);
+write_i2c(0x3212, 0x13); // end group 3
+write_i2c(0x3212, 0xa3); // launch group 3
+4.9.7 夜景模式
+  进入夜景模式时，将自动加入dummy lines（虚拟曝光行）以降低帧率。插入dummy 
+line（虚拟曝光行）的总行数根据光源不同分别由以下寄存器控制：0x3a02, 0x3a03（60hz 光
+源），0x3a14, 0x3a15（50hz 光源）。寄存器0x3a00 bit[2] 用来控制夜景模式的开/关切换。
+开启夜景模式
+temp = read_i2c(0x3a00);
+temp = temp | 0x04;
+write_i2c(0x3a00, temp);
+关闭夜景模式
+temp = read_i2c(0x3a00);
+temp = temp & 0xfb;
+write_i2c(0x3a00, temp);
+4.7.8 去除灯光条纹
+  OV5640 相机驱动支持自动计算灯光条纹过滤参数（banding filter），所以不用再进行手动
+设置。有以下四种设置可供选择：
+Off   关闭
+temp = read_i2c(0x3a00);
+temp = temp & 0xdf; // turn off banding filter
+write_i2c(0x3a00, temp);
+Manual 50Hz   手动设置50Hz 光源
+write_i2c(0x3c00, 04); // set to 50Hz
+write_i2c(0x3c01, 80); // manual banding filter
+41   OmniVision 公司机密

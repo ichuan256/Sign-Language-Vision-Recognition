@@ -1,0 +1,8 @@
+Time resolution is 1 ps
+DEFAULT_CASE_PASS HZ=100000000 wait=2000000 half=500 timeout=1000000
+DEFAULT_CASE_PASS HZ=50000000 wait=1000000 half=250 timeout=500000
+DEFAULT_CASE_PASS HZ=125000003 wait=2500001 half=626 timeout=1250001
+DEFAULT_CASE_PASS HZ=1 wait=1 half=1 timeout=1
+DEFAULT_CASE_PASS HZ=2000000000 wait=40000000 half=10000 timeout=20000000
+TEST_PASS: startup parameter rounding, low-frequency clamp and 64-bit delay arithmetic
+$finish called at time : 2 ns : File "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/ov5640_stereo/tb_ov5640_startup_defaults.v" Line 43

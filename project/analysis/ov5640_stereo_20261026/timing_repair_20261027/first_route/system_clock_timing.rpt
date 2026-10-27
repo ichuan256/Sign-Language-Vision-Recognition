@@ -1,0 +1,251 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+| Date         : Tue Oct 27 02:37:34 2026
+| Host         : DESKTOP-4VOJJB1 running 64-bit major release  (build 9200)
+| Command      : report_timing -from [get_clocks harness_sys_clk] -to [get_clocks harness_sys_clk] -max_paths 3 -file C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/analysis/ov5640_stereo_20261026/timing_repair_20261027/system_clock_timing.rpt
+| Design       : pin_validation_top
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             1.305ns  (required time - arrival time)
+  Source:                 u_camera/u_startup/u_control/delay_cycles_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            u_camera/u_startup/u_control/init_error_reg/D
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             harness_sys_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (harness_sys_clk rise@8.000ns - harness_sys_clk rise@0.000ns)
+  Data Path Delay:        6.244ns  (logic 2.706ns (43.336%)  route 3.538ns (56.664%))
+  Logic Levels:           9  (CARRY4=5 LUT2=1 LUT4=2 LUT6=1)
+  Clock Path Skew:        -0.144ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.357ns = ( 13.357 - 8.000 ) 
+    Source Clock Delay      (SCD):    5.925ns
+    Clock Pessimism Removal (CPR):    0.423ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock harness_sys_clk rise edge)
+                                                      0.000     0.000 r  
+    H16                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.451     1.451 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           2.522     3.973    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     4.074 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         1.851     5.925    u_camera/u_startup/u_control/sys_clk
+    SLICE_X107Y69        FDCE                                         r  u_camera/u_startup/u_control/delay_cycles_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y69        FDCE (Prop_fdce_C_Q)         0.419     6.344 r  u_camera/u_startup/u_control/delay_cycles_reg[1]/Q
+                         net (fo=4, routed)           0.978     7.321    u_camera/u_startup/u_control/in10[2]
+    SLICE_X107Y70        LUT4 (Prop_lut4_I0_O)        0.299     7.620 r  u_camera/u_startup/u_control/i__carry_i_8/O
+                         net (fo=1, routed)           0.000     7.620    u_camera/u_startup/u_control/i__carry_i_8_n_0
+    SLICE_X107Y70        CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     8.152 r  u_camera/u_startup/u_control/state0_inferred__1/i__carry/CO[3]
+                         net (fo=1, routed)           0.000     8.152    u_camera/u_startup/u_control/state0_inferred__1/i__carry_n_0
+    SLICE_X107Y71        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.266 r  u_camera/u_startup/u_control/state0_inferred__1/i__carry__0/CO[3]
+                         net (fo=1, routed)           0.000     8.266    u_camera/u_startup/u_control/state0_inferred__1/i__carry__0_n_0
+    SLICE_X107Y72        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.380 r  u_camera/u_startup/u_control/state0_inferred__1/i__carry__1/CO[3]
+                         net (fo=1, routed)           0.000     8.380    u_camera/u_startup/u_control/state0_inferred__1/i__carry__1_n_0
+    SLICE_X107Y73        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.494 r  u_camera/u_startup/u_control/state0_inferred__1/i__carry__2/CO[3]
+                         net (fo=1, routed)           0.000     8.494    u_camera/u_startup/u_control/state0_inferred__1/i__carry__2_n_0
+    SLICE_X107Y74        CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271     8.765 r  u_camera/u_startup/u_control/state0_inferred__1/i__carry__3/CO[0]
+                         net (fo=6, routed)           0.919     9.684    u_camera/u_startup/u_control/p_0_in3_in
+    SLICE_X100Y71        LUT2 (Prop_lut2_I1_O)        0.365    10.049 r  u_camera/u_startup/u_control/verify_index[4]_i_5/O
+                         net (fo=3, routed)           0.521    10.570    u_camera/u_startup/u_control/verify_index[4]_i_5_n_0
+    SLICE_X100Y72        LUT6 (Prop_lut6_I1_O)        0.328    10.898 r  u_camera/u_startup/u_control/ov1_pwdn_i_3/O
+                         net (fo=2, routed)           0.605    11.503    u_camera/u_startup/u_control/ov1_pwdn_i_3_n_0
+    SLICE_X100Y73        LUT4 (Prop_lut4_I0_O)        0.150    11.653 r  u_camera/u_startup/u_control/init_error_i_1/O
+                         net (fo=1, routed)           0.516    12.169    u_camera/u_startup/u_control/init_error_i_1_n_0
+    SLICE_X99Y73         FDCE                                         r  u_camera/u_startup/u_control/init_error_reg/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock harness_sys_clk rise edge)
+                                                      8.000     8.000 r  
+    H16                                               0.000     8.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     8.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.380     9.380 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           2.293    11.673    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.764 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         1.593    13.357    u_camera/u_startup/u_control/sys_clk
+    SLICE_X99Y73         FDCE                                         r  u_camera/u_startup/u_control/init_error_reg/C
+                         clock pessimism              0.423    13.781    
+                         clock uncertainty           -0.035    13.745    
+    SLICE_X99Y73         FDCE (Setup_fdce_C_D)       -0.271    13.474    u_camera/u_startup/u_control/init_error_reg
+  -------------------------------------------------------------------
+                         required time                         13.474    
+                         arrival time                         -12.169    
+  -------------------------------------------------------------------
+                         slack                                  1.305    
+
+Slack (MET) :             1.327ns  (required time - arrival time)
+  Source:                 u_camera/u_startup/u_control/delay_cycles_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            u_camera/u_startup/u_control/FSM_onehot_state_reg[5]/CE
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             harness_sys_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (harness_sys_clk rise@8.000ns - harness_sys_clk rise@0.000ns)
+  Data Path Delay:        6.288ns  (logic 2.714ns (43.161%)  route 3.574ns (56.839%))
+  Logic Levels:           9  (CARRY4=5 LUT3=1 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.145ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.356ns = ( 13.356 - 8.000 ) 
+    Source Clock Delay      (SCD):    5.925ns
+    Clock Pessimism Removal (CPR):    0.423ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock harness_sys_clk rise edge)
+                                                      0.000     0.000 r  
+    H16                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.451     1.451 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           2.522     3.973    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     4.074 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         1.851     5.925    u_camera/u_startup/u_control/sys_clk
+    SLICE_X107Y69        FDCE                                         r  u_camera/u_startup/u_control/delay_cycles_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y69        FDCE (Prop_fdce_C_Q)         0.419     6.344 r  u_camera/u_startup/u_control/delay_cycles_reg[1]/Q
+                         net (fo=4, routed)           0.978     7.321    u_camera/u_startup/u_control/in10[2]
+    SLICE_X107Y70        LUT4 (Prop_lut4_I0_O)        0.299     7.620 r  u_camera/u_startup/u_control/i__carry_i_8/O
+                         net (fo=1, routed)           0.000     7.620    u_camera/u_startup/u_control/i__carry_i_8_n_0
+    SLICE_X107Y70        CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     8.152 r  u_camera/u_startup/u_control/state0_inferred__1/i__carry/CO[3]
+                         net (fo=1, routed)           0.000     8.152    u_camera/u_startup/u_control/state0_inferred__1/i__carry_n_0
+    SLICE_X107Y71        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.266 r  u_camera/u_startup/u_control/state0_inferred__1/i__carry__0/CO[3]
+                         net (fo=1, routed)           0.000     8.266    u_camera/u_startup/u_control/state0_inferred__1/i__carry__0_n_0
+    SLICE_X107Y72        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.380 r  u_camera/u_startup/u_control/state0_inferred__1/i__carry__1/CO[3]
+                         net (fo=1, routed)           0.000     8.380    u_camera/u_startup/u_control/state0_inferred__1/i__carry__1_n_0
+    SLICE_X107Y73        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.494 r  u_camera/u_startup/u_control/state0_inferred__1/i__carry__2/CO[3]
+                         net (fo=1, routed)           0.000     8.494    u_camera/u_startup/u_control/state0_inferred__1/i__carry__2_n_0
+    SLICE_X107Y74        CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271     8.765 r  u_camera/u_startup/u_control/state0_inferred__1/i__carry__3/CO[0]
+                         net (fo=6, routed)           1.016     9.781    u_camera/u_startup/u_control/p_0_in3_in
+    SLICE_X102Y72        LUT3 (Prop_lut3_I0_O)        0.399    10.180 r  u_camera/u_startup/u_control/failed_cameras[1]_i_4/O
+                         net (fo=3, routed)           0.590    10.770    u_camera/u_startup/u_control/failed_cameras[1]_i_4_n_0
+    SLICE_X101Y73        LUT6 (Prop_lut6_I4_O)        0.328    11.098 r  u_camera/u_startup/u_control/FSM_onehot_state[10]_i_3/O
+                         net (fo=1, routed)           0.292    11.391    u_camera/u_startup/u_control/FSM_onehot_state[10]_i_3_n_0
+    SLICE_X101Y74        LUT6 (Prop_lut6_I3_O)        0.124    11.515 r  u_camera/u_startup/u_control/FSM_onehot_state[10]_i_1/O
+                         net (fo=11, routed)          0.698    12.213    u_camera/u_startup/u_control/FSM_onehot_state[10]_i_1_n_0
+    SLICE_X105Y74        FDCE                                         r  u_camera/u_startup/u_control/FSM_onehot_state_reg[5]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock harness_sys_clk rise edge)
+                                                      8.000     8.000 r  
+    H16                                               0.000     8.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     8.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.380     9.380 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           2.293    11.673    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.764 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         1.592    13.356    u_camera/u_startup/u_control/sys_clk
+    SLICE_X105Y74        FDCE                                         r  u_camera/u_startup/u_control/FSM_onehot_state_reg[5]/C
+                         clock pessimism              0.423    13.780    
+                         clock uncertainty           -0.035    13.744    
+    SLICE_X105Y74        FDCE (Setup_fdce_C_CE)      -0.205    13.539    u_camera/u_startup/u_control/FSM_onehot_state_reg[5]
+  -------------------------------------------------------------------
+                         required time                         13.539    
+                         arrival time                         -12.213    
+  -------------------------------------------------------------------
+                         slack                                  1.327    
+
+Slack (MET) :             1.384ns  (required time - arrival time)
+  Source:                 u_camera/u_startup/u_control/delay_cycles_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Destination:            u_camera/u_startup/u_control/FSM_onehot_state_reg[6]/CE
+                            (rising edge-triggered cell FDCE clocked by harness_sys_clk  {rise@0.000ns fall@4.000ns period=8.000ns})
+  Path Group:             harness_sys_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            8.000ns  (harness_sys_clk rise@8.000ns - harness_sys_clk rise@0.000ns)
+  Data Path Delay:        6.271ns  (logic 2.714ns (43.277%)  route 3.557ns (56.723%))
+  Logic Levels:           9  (CARRY4=5 LUT3=1 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.140ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    5.361ns = ( 13.361 - 8.000 ) 
+    Source Clock Delay      (SCD):    5.925ns
+    Clock Pessimism Removal (CPR):    0.423ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock harness_sys_clk rise edge)
+                                                      0.000     0.000 r  
+    H16                                               0.000     0.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     0.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.451     1.451 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           2.522     3.973    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     4.074 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         1.851     5.925    u_camera/u_startup/u_control/sys_clk
+    SLICE_X107Y69        FDCE                                         r  u_camera/u_startup/u_control/delay_cycles_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X107Y69        FDCE (Prop_fdce_C_Q)         0.419     6.344 r  u_camera/u_startup/u_control/delay_cycles_reg[1]/Q
+                         net (fo=4, routed)           0.978     7.321    u_camera/u_startup/u_control/in10[2]
+    SLICE_X107Y70        LUT4 (Prop_lut4_I0_O)        0.299     7.620 r  u_camera/u_startup/u_control/i__carry_i_8/O
+                         net (fo=1, routed)           0.000     7.620    u_camera/u_startup/u_control/i__carry_i_8_n_0
+    SLICE_X107Y70        CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     8.152 r  u_camera/u_startup/u_control/state0_inferred__1/i__carry/CO[3]
+                         net (fo=1, routed)           0.000     8.152    u_camera/u_startup/u_control/state0_inferred__1/i__carry_n_0
+    SLICE_X107Y71        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.266 r  u_camera/u_startup/u_control/state0_inferred__1/i__carry__0/CO[3]
+                         net (fo=1, routed)           0.000     8.266    u_camera/u_startup/u_control/state0_inferred__1/i__carry__0_n_0
+    SLICE_X107Y72        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.380 r  u_camera/u_startup/u_control/state0_inferred__1/i__carry__1/CO[3]
+                         net (fo=1, routed)           0.000     8.380    u_camera/u_startup/u_control/state0_inferred__1/i__carry__1_n_0
+    SLICE_X107Y73        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.494 r  u_camera/u_startup/u_control/state0_inferred__1/i__carry__2/CO[3]
+                         net (fo=1, routed)           0.000     8.494    u_camera/u_startup/u_control/state0_inferred__1/i__carry__2_n_0
+    SLICE_X107Y74        CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271     8.765 r  u_camera/u_startup/u_control/state0_inferred__1/i__carry__3/CO[0]
+                         net (fo=6, routed)           1.016     9.781    u_camera/u_startup/u_control/p_0_in3_in
+    SLICE_X102Y72        LUT3 (Prop_lut3_I0_O)        0.399    10.180 r  u_camera/u_startup/u_control/failed_cameras[1]_i_4/O
+                         net (fo=3, routed)           0.590    10.770    u_camera/u_startup/u_control/failed_cameras[1]_i_4_n_0
+    SLICE_X101Y73        LUT6 (Prop_lut6_I4_O)        0.328    11.098 r  u_camera/u_startup/u_control/FSM_onehot_state[10]_i_3/O
+                         net (fo=1, routed)           0.292    11.391    u_camera/u_startup/u_control/FSM_onehot_state[10]_i_3_n_0
+    SLICE_X101Y74        LUT6 (Prop_lut6_I3_O)        0.124    11.515 r  u_camera/u_startup/u_control/FSM_onehot_state[10]_i_1/O
+                         net (fo=11, routed)          0.681    12.196    u_camera/u_startup/u_control/FSM_onehot_state[10]_i_1_n_0
+    SLICE_X102Y71        FDCE                                         r  u_camera/u_startup/u_control/FSM_onehot_state_reg[6]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock harness_sys_clk rise edge)
+                                                      8.000     8.000 r  
+    H16                                               0.000     8.000 r  sys_clk (IN)
+                         net (fo=0)                   0.000     8.000    sys_clk
+    H16                  IBUF (Prop_ibuf_I_O)         1.380     9.380 r  sys_clk_IBUF_inst/O
+                         net (fo=1, routed)           2.293    11.673    sys_clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.764 r  sys_clk_IBUF_BUFG_inst/O
+                         net (fo=546, routed)         1.597    13.361    u_camera/u_startup/u_control/sys_clk
+    SLICE_X102Y71        FDCE                                         r  u_camera/u_startup/u_control/FSM_onehot_state_reg[6]/C
+                         clock pessimism              0.423    13.785    
+                         clock uncertainty           -0.035    13.749    
+    SLICE_X102Y71        FDCE (Setup_fdce_C_CE)      -0.169    13.580    u_camera/u_startup/u_control/FSM_onehot_state_reg[6]
+  -------------------------------------------------------------------
+                         required time                         13.580    
+                         arrival time                         -12.196    
+  -------------------------------------------------------------------
+                         slack                                  1.384    
+
+
+
+

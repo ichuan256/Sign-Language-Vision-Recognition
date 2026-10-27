@@ -1,0 +1,2 @@
+PASS tb_ov5640_known_config_sequence
+REGRESSION_ALL_PASS 1

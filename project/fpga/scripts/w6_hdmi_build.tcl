@@ -54,6 +54,9 @@ update_compile_order -fileset sources_1
 set wchan [open $wrapper r]
 set wtext [read $wchan]
 close $wchan
+if {[regexp {spia_|spib_} $wtext]} {
+    error "Pmod SPI ports remain in wrapper: $wrapper"
+}
 foreach pat {hdmi_out hdmi_out_hpd bclk sdata_i} {
     if {![string match "*$pat*" $wtext]} {
         error "wrapper still missing port: $pat ($wrapper)"
@@ -81,7 +84,7 @@ report_clocks -file [file join $auditdir clocks.rpt]
 report_clock_interaction -file [file join $auditdir clock_interaction.rpt]
 report_exceptions -file [file join $auditdir exceptions.rpt]
 report_bus_skew -file [file join $auditdir bus_skew.rpt]
-report_timing -delay_type min_max -from [get_ports {spia_miso spib_miso sdata_i}] \
+report_timing -delay_type min_max -from [get_ports sdata_i] \
     -max_paths 12 -file [file join $auditdir input_timing.rpt]
 set mf [open [file join $auditdir methodology_routed.rpt] r]
 set methodology [read $mf]

@@ -1,0 +1,186 @@
+{
+  "date": "2026-10-26",
+  "scope": "partial known settings; no stream-on or global analog/ISP table",
+  "order": "compare by address; actual sequence belongs to RTL table",
+  "derived": {
+    "camera_sclk_hz": 42000000,
+    "band_step50": 221,
+    "band_step60": 184,
+    "max_band50": 3,
+    "max_band60": 4
+  },
+  "items": [
+    {
+      "address": "3034",
+      "value": "18",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3035",
+      "value": "20",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3036",
+      "value": "54",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3037",
+      "value": "13",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3108",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3808",
+      "value": "05",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3809",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "380a",
+      "value": "02",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "380b",
+      "value": "d0",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "380c",
+      "value": "07",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "380d",
+      "value": "64",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "380e",
+      "value": "02",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "380f",
+      "value": "e4",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3a08",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3a09",
+      "value": "dd",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3a0a",
+      "value": "00",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3a0b",
+      "value": "b8",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "4300",
+      "value": "6f",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "501f",
+      "value": "01",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3a0d",
+      "value": "04",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3a0e",
+      "value": "03",
+      "mask": "ff",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "4740",
+      "value": "20",
+      "mask": "20",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3503",
+      "value": "00",
+      "mask": "03",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3406",
+      "value": "00",
+      "mask": "01",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3c01",
+      "value": "80",
+      "mask": "80",
+      "post_delay_ms": 0
+    },
+    {
+      "address": "3c00",
+      "value": "04",
+      "mask": "04",
+      "post_delay_ms": 300
+    },
+    {
+      "address": "3a00",
+      "value": "20",
+      "mask": "24",
+      "post_delay_ms": 0
+    }
+  ],
+  "mode": {
+    "width": 1280,
+    "height": 720,
+    "fps_target": 30,
+    "arithmetic_fps": 29.9982858122393,
+    "hts": 1892,
+    "vts": 740,
+    "pclk_hz_candidate": 84000000,
+    "pclk_limit_hz": 96000000
+  }
+}

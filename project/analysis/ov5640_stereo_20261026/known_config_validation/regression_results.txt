@@ -1,0 +1,12 @@
+PASS tb_ov5640_known_config_sequence
+PASS tb_ov5640_masked_write
+PASS tb_ov5640_known_config
+PASS tb_ov5640_known_config_timeout
+PASS tb_ov5640_timing_defaults
+PASS tb_ov5640_stereo_camera_init
+PASS tb_ov5640_dvp_capture
+PASS tb_ov5640_stereo_capture_pair
+PASS tb_ov5640_sccb_write
+PASS tb_ov5640_stereo_sccb_pair
+PASS tb_ov5640_stereo_top
+FAIL tb_ov5640_sccb_read

@@ -1,0 +1,9 @@
+Time resolution is 1 ps
+DELAY_CASE_PASS HZ=125000000 vectors=14 reset_restart=1
+DELAY_CASE_PASS HZ=125000003 vectors=14 reset_restart=1
+DELAY_CASE_PASS HZ=2000000000 vectors=14 reset_restart=1
+DELAY_CASE_PASS HZ=1 vectors=14 reset_restart=1
+DELAY_CASE_PASS HZ=999 vectors=14 reset_restart=1
+DELAY_CASE_PASS HZ=1001 vectors=14 reset_restart=1
+TEST_PASS: runtime conversion, full 16-bit delays, rounding, elapsed wait and reset restart
+$finish called at time : 2130317 ns : File "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/ov5640_stereo/tb_ov5640_delay_conversion.v" Line 75

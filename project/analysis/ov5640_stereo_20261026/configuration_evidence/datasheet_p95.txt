@@ -1,0 +1,37 @@
+01.20.2011 PRODUCT SPECIFICATION proprie tary to OmniVision Technologies
+6-19
+720p
+1280x720
+(1)  5596992 tp
+(2)  5688 tp
+(3)  3530644 tp
+(4)  2844 tp
+(5)  14544 tp
+(6)  1280 tp
+(7)  1564 tp
+(8)  0 tp
+(9)  1564 tp
+XGA
+1024x768
+(1)  5596992 tp
+(2)  5688tp
+(3)  2825588 tp
+(4)  2844 tp
+(5)  583344tp
+(6) 1024 tp
+(7)  1820 tp
+(8)  0 tp
+(9)  1820 tp
+VGA
+640x480
+(1)  5596992 tp
+(2)  5688 tp
+(3)  4213844 tp
+(4)  2844 tp
+(5)  14544 tp
+(6)  640 tp
+(7)  2204 tp
+(8) 0 tp
+(9)  2204 tp
+table 6-7 DVP timing specifications (sheet 2 of 2)
+mode timing

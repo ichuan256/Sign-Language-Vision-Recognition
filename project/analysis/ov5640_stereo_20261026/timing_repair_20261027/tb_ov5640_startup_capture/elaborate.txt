@@ -1,0 +1,23 @@
+Vivado Simulator v2024.1
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/AMDDesignTools/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_ov5640_startup_capture_behav xil_defaultlib.tb_ov5640_startup_capture xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.ov5640_startup_table
+Compiling module xil_defaultlib.ov5640_stereo_startup_controller...
+Compiling module xil_defaultlib.ov5640_sccb_read_core(HALF_PERIO...
+Compiling module xil_defaultlib.ov5640_sccb_write_core(HALF_PERI...
+Compiling module xil_defaultlib.ov5640_sccb_register_access(HALF...
+Compiling module xil_defaultlib.ov5640_stereo_startup(SYS_CLK_HZ...
+Compiling module xil_defaultlib.ov5640_dvp_capture(FRAME_WIDTH=1...
+Compiling module xil_defaultlib.ov5640_stereo_startup_capture(SY...
+Compiling module xil_defaultlib.ov5640_startup_sensor_model
+Compiling module xil_defaultlib.tb_ov5640_startup_capture
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_ov5640_startup_capture_behav

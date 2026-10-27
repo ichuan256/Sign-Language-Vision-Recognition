@@ -48,3 +48,36 @@ vision/data/exports/**/*.3gp
 
 # Windows-denied portable directory retained only as a fingerprinted local residue
 /tools/
+
+# Local reference archives and tool sessions (retained on disk)
+/backup/
+.vivado-ai/
+.Xil/
+
+# Temporary downloads and generated simulation executables/waveforms
+/project/_tmp_*
+*.vvp
+*.wdb
+xsim.dir/
+
+# Regenerable validation projects; keep scripts and reports outside them
+/project/analysis/**/xsim_project/
+/project/analysis/**/*.cache/
+/project/analysis/**/*.gen/
+/project/analysis/**/*.runs/
+/project/analysis/**/*.sim/
+/project/analysis/**/*.hw/
+/project/analysis/**/*.ip_user_files/
+/project/analysis/**/NA/
+
+# Local runtime, build and test logs
+*.log
+*.log.*
+
+# Camera validation intermediates; board release pairs remain versioned
+/project/analysis/ov5640_snapshot_20261027/build/*.bit
+/project/analysis/ov5640_snapshot_20261027/build/*.hwh
+/project/analysis/ov5640_snapshot_20261027/build/*.dcp
+/project/analysis/ov5640_stereo_20261026/**/*.dcp
+/project/analysis/ov5640_stereo_20261026/**/synth*_netlist.v
+/project/analysis/ov5640_stereo_20261026/pin_map_sources_20261027/*.pdf

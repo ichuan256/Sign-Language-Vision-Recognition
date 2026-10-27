@@ -1,0 +1,33 @@
+{
+  "verdict": "PASS",
+  "table_count": 308,
+  "delays_ms": 620,
+  "pclk_hz_candidate": 84000000,
+  "sysclk_hz_candidate": 42000000,
+  "pclk_limit_hz": 96000000,
+  "pclk_spec_margin_hz": 12000000,
+  "arithmetic_fps": 29.9982858122393,
+  "checked": [
+    "reference tables with ordered overrides",
+    "crop/output/HTS/VTS",
+    "register-derived PLL/banding/exposure arithmetic",
+    "PCLK <= 96 MHz",
+    "RGB565 and non-JPEG/binning bits",
+    "DVP pad/control selection",
+    "no ID writes or early stream-on"
+  ],
+  "not_verified": [
+    "physical polarity, clocks or FPS",
+    "lens/ISP image quality"
+  ],
+  "negative_and_consistency_checks": [
+    "final mode/clock arithmetic",
+    "27-item known table equals independent contract",
+    "reject PLL revert",
+    "reject output dimension",
+    "reject binning disabled",
+    "reject metadata clock",
+    "reject early stream",
+    "reject chip ID write"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "scope": "independent agreed-register contract vs actual RTL table; not a simulation",
+  "count": 27,
+  "table_sha256": "c8f7c8566d58874e038dce32fcbbfdb5eb5e0209612d33b52c59d7029cd75046",
+  "checked": [
+    "addresses",
+    "values",
+    "masks",
+    "post-delay",
+    "contiguous index",
+    "only-last entry"
+  ],
+  "contract": "known_config_contract.json"
+}

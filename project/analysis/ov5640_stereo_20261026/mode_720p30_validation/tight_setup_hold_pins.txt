@@ -1,0 +1,6 @@
++====================+===================+==============================+
+| Launch Setup Clock | Launch Hold Clock | Pin                          |
++====================+===================+==============================+
+| harness_sys_clk    | harness_sys_clk   | u_camera/init_sync2_reg[0]/D |
+| harness_sys_clk    | harness_sys_clk   | u_camera/init_sync1_reg[0]/D |
++--------------------+-------------------+------------------------------+
