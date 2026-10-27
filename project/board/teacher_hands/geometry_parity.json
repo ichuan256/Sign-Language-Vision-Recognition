@@ -1,0 +1,22 @@
+{
+  "scope": "PC official MediaPipe graph versus board pipeline geometry, identical hello.mp4 frames 0..4",
+  "palm_roi_max_abs": {
+    "x_center": 0.0,
+    "y_center": 5.960464477539063e-08,
+    "width": 1.4901161193847656e-08,
+    "height": 0.0,
+    "rotation": 4.76837158203125e-07
+  },
+  "tracked_roi_max_abs": {
+    "x_center": 2.9802322387695312e-08,
+    "y_center": 1.1920928955078125e-07,
+    "width": 4.470348358154297e-08,
+    "height": 5.960464477539063e-08,
+    "rotation": 1.7285346984863281e-06
+  },
+  "anchor_count": 2016,
+  "limitations": [
+    "Geometry parity does not yet prove ARM model inference parity or end-to-end detection parity",
+    "Association and weighted NMS still require board-versus-PC frame comparisons"
+  ]
+}
