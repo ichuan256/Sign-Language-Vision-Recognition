@@ -124,8 +124,14 @@ class HDMILink:
                 receiver = (f'timeout --signal=TERM {self.args.seconds}s env XILINX_XRT=/usr '+
                     BOARD_PYTHON+' -u /home/xilinx/hdmi_audio_receiver.py '+
                     f'--owner-pid {report["owner_pid"]} --url http://127.0.0.1:{self.args.remote_port}/frame.jpg --fps {self.args.fps}')
-                text = self.ssh(receiver, sudo=True, timeout=self.args.seconds+20, allow_timeout=True)
-                (output/'receiver.log').write_text(text+'\n', encoding='utf-8')
+                command='sudo -S -p '+shlex.quote('')+' sh -c '+shlex.quote(receiver)
+                # Spool progress immediately so a running display can be checked before its bounded end.
+                with (output/'receiver.log').open('w',encoding='utf-8') as log:
+                    result=subprocess.run(['ssh',*self.options,self.args.board,command],input=self.password+'\n',
+                        stdout=log,stderr=subprocess.STDOUT,text=True,encoding='utf-8',env=self.environment,
+                        timeout=self.args.seconds+20)
+                text=(output/'receiver.log').read_text(encoding='utf-8',errors='replace')
+                if result.returncode not in (0,124):raise RuntimeError('HDMI receiver failed; inspect receiver.log')
                 report['receiver_log'] = text
                 report['source_state_after'] = self.state()
                 after = report['source_state_after']

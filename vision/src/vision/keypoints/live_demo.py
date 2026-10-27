@@ -74,6 +74,7 @@ def run(args):
                     save_landmarks=args.save_landmarks, seconds_limit=args.seconds,
                     max_frames=args.max_frames, detector_options=options,
                     replay_loop=args.loop, hdmi_server_port=args.hdmi_port if args.serve_hdmi else None,
+                    neural_backend='PC MediaPipe Holistic',display_layout='hand_rois' if args.hand_rois else 'full_frame',
                     versions=dict(mediapipe=mp.__version__, opencv=cv2.__version__,
                                   numpy=np.__version__, python=platform.python_version()),
                     host=platform.system()+' '+platform.machine(),
@@ -127,10 +128,16 @@ def run(args):
                 result_end = time.perf_counter()
                 key = -1
                 preview_ms = None
+                roi_state = None
                 if not args.headless or frame_server is not None:
-                    preview = draw_result(bgr.copy(), result, metrics.frames+1, result_end-started)
-                    cv2.putText(preview, f'FRAME {frame_id}  SOURCE {timestamp:.2f}s',
-                                (10, 52), cv2.FONT_HERSHEY_SIMPLEX, .6, (0, 255, 255), 2)
+                    if args.hand_rois:
+                        from .hand_dashboard import render_hand_dashboard
+                        preview,roi_state=render_hand_dashboard(bgr,result,frame_id,timestamp,
+                            (metrics.frames+1)/max(result_end-started,1e-6),(result_end-read_end)*1000)
+                    else:
+                        preview = draw_result(bgr.copy(), result, metrics.frames+1, result_end-started)
+                        cv2.putText(preview, f'FRAME {frame_id}  SOURCE {timestamp:.2f}s',
+                                    (10, 52), cv2.FONT_HERSHEY_SIMPLEX, .6, (0, 255, 255), 2)
                 if frame_server is not None:
                     frame_server.publish(preview, frame_id, timestamp)
                 if not args.headless:
@@ -149,6 +156,7 @@ def run(args):
                               host_preview_submit_ms=preview_ms)
                 metrics.update(timestamp, **present, **timing)
                 row = dict(frame_id=frame_id, timestamp_s=timestamp, **present, **timing)
+                if roi_state is not None:row['hand_rois']=roi_state
                 if args.save_landmarks:
                     row['landmarks'] = coordinates(result)
                 stream.write(json.dumps(row, allow_nan=False)+'\n')
@@ -205,6 +213,7 @@ def main(argv=None):
     parser.add_argument('--loop', action='store_true', help='Repeat replay: input while preserving monotonic timestamps')
     parser.add_argument('--serve-hdmi', action='store_true', help='Serve latest overlaid 1280x720 JPEG on loopback, for SSH forwarding')
     parser.add_argument('--hdmi-port', type=int, default=18780)
+    parser.add_argument('--hand-rois',action='store_true',help='720p dashboard with current-frame hand crops and colored finger connections; PC inference')
     args = parser.parse_args(argv)
     if not np.isfinite([args.fps, args.seconds]).all() or min(args.fps, args.seconds) <= 0:
         parser.error('fps and seconds must be finite and positive')
