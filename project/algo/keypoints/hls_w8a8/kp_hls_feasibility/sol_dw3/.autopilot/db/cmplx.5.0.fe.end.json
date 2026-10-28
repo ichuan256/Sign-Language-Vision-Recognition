@@ -1,0 +1,74 @@
+{
+    "0": {
+        "name": "kp_hls_dw3",
+        "file": "kp_hls_kernels.cpp",
+        "fileloc": "136",
+        "instructions": "25",
+        "total_instructions": "728",
+        "calls": "4",
+        "basicblocks": "1"
+    },
+    "1": {
+        "name": "kp_hls_dw_core_Pipeline_VITIS_LOOP_54_1_VITIS_LOOP_55_2_VITIS_LOOP_56_3_VITIS_LO",
+        "file": "kp_hls_kernels.cpp",
+        "fileloc": "54",
+        "instructions": "146",
+        "total_instructions": "146",
+        "calls": "",
+        "basicblocks": "17",
+        "loads": {
+            "L": "7"
+        },
+        "stores": {
+            "L": "26"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "kp_hls_dw_core<2, 12, 12, 48, 2>_Pipeline_1",
+        "file": "kp_hls_kernels.cpp",
+        "fileloc": "0",
+        "instructions": "82",
+        "total_instructions": "82",
+        "calls": "",
+        "basicblocks": "18",
+        "loads": {
+            "L": "2"
+        },
+        "stores": {
+            "L": "17"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "3": {
+        "name": "kp_hls_dw_core_Pipeline_VITIS_LOOP_60_5_VITIS_LOOP_61_6_VITIS_LOOP_62_7_VITIS_LO",
+        "file": "kp_hls_kernels.cpp",
+        "fileloc": "60",
+        "instructions": "444",
+        "total_instructions": "444",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "46"
+        },
+        "stores": {
+            "L": "14"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "4": {
+        "name": "kp_hls_dw_core<2, 12, 12, 48, 2>",
+        "file": "kp_hls_kernels.cpp",
+        "fileloc": "40",
+        "instructions": "31",
+        "total_instructions": "703",
+        "calls": "2 1 3",
+        "basicblocks": "1"
+    }
+}

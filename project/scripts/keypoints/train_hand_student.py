@@ -54,6 +54,7 @@ def main():
     p.add_argument('--seed',type=int,default=20261026)
     p.add_argument('--disable-presence',action='store_true',help='Coordinate pilot only; keep presence loss off despite a tiny negative seed')
     p.add_argument('--mask-outside-source',action='store_true',help='Mask teacher points projecting outside the original source image; retain manual labels')
+    p.add_argument('--no-train-jitter',action='store_true',help='Ablation: train without geometric/photometric jitter (validation protocol unchanged)')
     a=p.parse_args();out=a.output.resolve()
     if out.exists() or not out.is_relative_to(ROOT/'project/_tmp'):raise ValueError('New project/_tmp training output required')
     if a.epochs<1 or a.batch_size<1 or a.patience<1 or not 0<a.bn_momentum<1 or any(s not in (96,128) for s in a.sizes):raise ValueError('Invalid training config')
@@ -92,7 +93,7 @@ def main():
         for epoch in range(a.epochs):
             order=rng.permutation(train);losses=[]
             for offset in range(0,len(order),a.batch_size):
-                batch=[augment(images[i],y[i],active[i],size,rng) for i in order[offset:offset+a.batch_size]]
+                batch=[augment(images[i],y[i],active[i],size,(None if a.no_train_jitter else rng)) for i in order[offset:offset+a.batch_size]]
                 bx,by,bm=[np.stack([r[j] for r in batch]) for j in range(3)]
                 losses.append(float(train_step(bx,by,bm)))
             val=evaluate(predict(model,vx,a.batch_size),vy,vm,vr);score=val['macro_source_group_NME']
@@ -128,6 +129,7 @@ def main():
         reviewed_negative_train_ROIs=partition['negative_train_used'],reviewed_negative_train_ROIs_available=partition['negative_train_available'],
         presence_loss_disabled_explicitly=a.disable_presence,presence_loss_enabled=presence_enabled,
         source_exterior_masking_enabled=a.mask_outside_source,
+        train_jitter_disabled=bool(a.no_train_jitter),
         source_exterior_points_masked=sum(r.get('source_exterior_points_masked',0) for r in records),
         handedness_loss_enabled=handedness_enabled,
         limitations=['Source-video group holdout; performer IDs remain unknown',

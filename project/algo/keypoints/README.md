@@ -1,12 +1,13 @@
 # 单手关键点加速：计算核原型
 
-2026-10-26 当前状态：完整单手网络已上 PL，实测约 0.49 秒/ROI，见
-[当前证据](../../analysis/keypoints_pl_20261026/stream_wide.md)。下一轮独立实时方向见
-[专题方案](../../../docs/方案/03_Zynq7020独立实时关键点方案.md)；`hand_student_v1.json` 是未训练候选。
-以下段落保留首版 `kp_gemm_tile` 的接口与验证边界，不代表当前完整网络的部署状态。
+当前方案见 [PS 教师网络的 PL 局部加速](../../../docs/方案/04_老师模型PS_PL局部迁移.md)。
+本目录的 `kp_layer`、`kp_gemm_tile` 和 `kp_vector` 是历史 W12/A16 整数整网核，
+不能直接接入原版 full 老师的 FP32 张量。学生 W8/A8 路线已停止，新浮点子图核尚未实现。
+历史 lite 整网 PL 数值与时延见 [日期证据](../../analysis/keypoints_pl_20261026/stream_wide.md)，不代表当前板上状态。
 
-当前 `kp_gemm_tile` 是 **16 路整数 MAC 分块核**，不是完整关键点网络，也没有输出完整 21 点的板端驱动。
-目标部件为 xc7z020clg400-1；100MHz 为综合目标，不是板端实测时钟/吞吐验收。
+## 历史分块核契约
+
+以下只描述 `kp_gemm_tile` 接口；不是当前新核设计或后续交付计划。
 
 接口：A 为 rows×depth，B 为 depth×16（输出通道不足 16 时补齐），
 rows≤64、columns≤16、depth≤1024。DDR 中 A/B/out 为有符号 16bit，bias 为 64bit 容器
@@ -20,5 +21,4 @@ shift=F_input+F_weight−F_output，允许 [-31,47]。非法尺寸/shift/bias �
 复跑见 [脚本说明](../../scripts/keypoints/README.md)，最新结果见
 [单手阶段记录](../../analysis/keypoints_pl_20261025/single_hand_stage1.md)。
 
-旧冻结 `fpga/rtl/` 未修改。后续仍需要 depthwise/向量运算、图调度和 AXI 整板集成，
-不能把这个核的 C/RTL PASS 或资源估计称为“关键点已经在 PL 自主识别”。
+冻结 `fpga/rtl/` 不用于新开发。新核必须有独立名称、数值契约、C/RTL 向量及寄存器映射。

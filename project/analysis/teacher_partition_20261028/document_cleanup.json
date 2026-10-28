@@ -1,0 +1,85 @@
+{
+  "scope": "active_guidance_cleanup_no_media_code_or_model_deletion",
+  "changed": [
+    {
+      "file": "AGENTS.md",
+      "before_sha256": "03e7869d9aaf563701ed4aa2ee96e36cea6ffb112ac9e90c6ad2b719fa154c9a",
+      "after_sha256": "ffa7861688582ca95e04bc68e85a46a0bbf194d6f60334f77b2b2d199d1ce8f2"
+    },
+    {
+      "file": "docs/方案/03_Zynq7020独立实时关键点方案.md",
+      "before_sha256": "0e8b0cade29f4e86877dc09fd2d2d1790fca20e53e2bff2af83503c3983c45e3",
+      "after_sha256": "da0dbd6d8b52417837e8cc324987a8ee21d5458fbd409d1f0538c1c6f5fba006"
+    },
+    {
+      "file": "docs/方案/01_PYNQ-Z2移植与视频手势识别总体方案.md",
+      "before_sha256": "38da0d249f1687904585e39c4a187de018479c3fc2b210b76857ae8a9d146213",
+      "after_sha256": "7602c7a59ef9df6de18fd8677043bea3fac7cd895c70e44506cb2a8f99fea580"
+    },
+    {
+      "file": "README.md",
+      "before_sha256": "581aaf4518d453b90a2b7184ee780580d103a2a2dcbc29f17a570abda6fc6aa9",
+      "after_sha256": "e690788e89eccb0dd5a99760e40aaf8f763eb5c344fe5a05bce753441707c3a6"
+    },
+    {
+      "file": "docs/README.md",
+      "before_sha256": "94c04f89e37708e01353d4490dcc909081a252475e1f0317c67b5eedbeeeea97",
+      "after_sha256": "a513b25237de913d719147313acb6ec065d9cfbb560d6f84e2b08f35a4ed3e41"
+    },
+    {
+      "file": "project/README.md",
+      "before_sha256": "9be73eb190230829c0a651949d2c2bd5a47a40f845ee9fe39e83ec76205e97dd",
+      "after_sha256": "3f2c85c72d30f6eea7dd4bfc818e560b31ed8801084bf3e929e229a189cafe6c"
+    },
+    {
+      "file": "vision/README.md",
+      "before_sha256": "cb8c6ccf759fb46e328bc12325a0374f96dc32950fe1831570028a342a4c198e",
+      "after_sha256": "676d0e61eb53bc5f0b999910e072b9b37fab1858f063131062cf92648c35b61f"
+    },
+    {
+      "file": "vision/analysis/README.md",
+      "before_sha256": "bfab4e6247557c5e0da9877911fbbed81ea8cb54313b51274610a75588c5b35d",
+      "after_sha256": "3419dc049ddde99868934df3e922e64a17a070e9ae2c002e92abebb4e780c848"
+    },
+    {
+      "file": "project/scripts/keypoints/README.md",
+      "before_sha256": "b957f4a9f6a695e3f391ce839717e74e5d5c3ee41656efe7846402bc1b31ba68",
+      "after_sha256": "865c1d5e61b3577df5ae186af905781e8c66dadea6800efde75ac7decb6321d1"
+    },
+    {
+      "file": "project/algo/keypoints/README.md",
+      "before_sha256": "3687b34fae6f655288662006820b0faf6de06e1bd154c8df17671f69cb97e8b1",
+      "after_sha256": "8ce3b8b6709a18ed2ff60c2d80d7dfbbb0f9d104a25a32a4ae1334c017e952ca"
+    },
+    {
+      "file": "project/board/keypoints/README.md",
+      "before_sha256": "e6155873afaa74a4e7a692ade05854ccf3d74878908cf14462133e072545d28f",
+      "after_sha256": "aebf2420ccf32e195a68419303b2cce0b13d66851435209c2ae65c3506ce15f7"
+    },
+    {
+      "file": "project/analysis/keypoints_student_20261026/README.md",
+      "before_sha256": "3e21e50c9cd9e1b8b1b79ba115015bae0005b64649f720041bd77eca18022be9",
+      "after_sha256": "2c96bb35b7802faa842af14d1ed11f517ac01e8e137849aa80b43c16c169e77b"
+    },
+    {
+      "file": "project/analysis/keypoints_student_20261027/README.md",
+      "before_sha256": "3c47eac5d05917b25cca6b24e7c28e7bd9346fffe454820f11ffe61bb77b45ee",
+      "after_sha256": "afdf78280638833057ece173877e8c8dc53d1101f885ca4d2e059abb069570a3"
+    },
+    {
+      "file": "project/analysis/keypoints_student_20261028/README.md",
+      "before_sha256": "b58bae646eb044390210011f217c596123c8fd304462fd4400e4d0962352dab5",
+      "after_sha256": "f429a925104ecca9f26e42c4c54ca6acc957efc2b089281e311af59f448c7fa3"
+    },
+    {
+      "file": "project/analysis/keypoints_student_20261027/overfit6.md",
+      "before_sha256": "509048b4c97367ee74c46084bf526931fff1699e8679fce876c548200b846769",
+      "after_sha256": "793c88cff37d8195175d7dab4742404447b01eb9227500dfc6ee4746f6728e34"
+    },
+    {
+      "file": "project/analysis/keypoints_pl_20261026/realtime_budget/README.md",
+      "before_sha256": "e6ed3bdac85953f03c8d3d1a68a0eb8fcdee3c22f2749619c276252345ecf543",
+      "after_sha256": "c3ab916b0909da160cf4c7ae4e2847e5d9ffe3a6c4fabdf4ce18bc114b9dbe15"
+    }
+  ]
+}

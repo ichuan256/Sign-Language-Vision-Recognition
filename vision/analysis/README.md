@@ -1,19 +1,16 @@
 # 分析与证据入口
 
-当前优先验证 [通用关键点实时链路](keypoints_20261025/README.md)，不涉及词义分类。
-当前学生数据/教师定义与试训状态见[学生试跑记录](../../project/analysis/keypoints_student_20261026/README.md)，
-代码目录已物理归并，入口见[vision/README](../README.md)。
-文件吞吐与摄像头实时验收分开记录，摄像头尚未实测。
-录制视频实时回放到板卡 HDMI 的连续运动已目视确认，见 [联调记录](keypoints_hdmi_20261025/README.md)；单目 OV5640 未到货。
-
-当前样本状态见 [dataset/README.md](dataset/README.md)，PL 路线状态见
-[r3/README.md](../../project/analysis/r3/README.md)。先读这两处，再查带日期的实验记录。
+当前任务为 [PS 教师网络的 PL 局部加速](../../docs/方案/04_老师模型PS_PL局部迁移.md)，
+模型图清单见 [候选证据](../../project/analysis/teacher_partition_20261028/README.md)。学生训练路线已停止。
+最新 [P1 实测](../../project/analysis/teacher_partition_20261028/p1.md) 包含 PS 后处理配对、100 ROI 边界/CPU 重放和 CMA 微基准；不是 PL 加速验收。
+PC 关键点工具见 [代码入口](../README.md)；文件吞吐、摄像头与板端推理分别验收。
+素材状态见 [dataset/README.md](dataset/README.md)。R3 为历史词语分类器，不是当前关键点加速路线。
 
 | 位置 | 用途 | 状态 |
 |---|---|---|
 | [keypoints_20261025/](keypoints_20261025/README.md) | 无语义的身体/双手关键点：文件源速度、覆盖率和主机计时 | 两条文件冒烟；不是 USB 实时或定位精度验收 |
 | [dataset/](dataset/README.md) | 样本现状、补采计划、标签与来源审计 | 当前数据入口；审计不等于语义清洗完成 |
-| [r3/](../../project/analysis/r3/README.md) | 量化训练、HLS 对齐、综合报告与原始 JSON | 当前 PL 入口；当前网络资源/时序未通过 |
+| [r3/](../../project/analysis/r3/README.md) | 量化训练、HLS 对齐、综合报告与原始 JSON | 历史词语分类器入口；其资源结论不适用于老师关键点子图 |
 | [m1_dtw_20261023/](m1_dtw_20261023/README.md) | 首轮关键点 DTW 的 26 类/90 条实验及特征、评测结果 | 历史证据；与 `vision/src/vision/m1/` 的 8 类/28 条实验不同 |
 | [stereo_review_20261024.md](stereo_review_20261024.md) | 双目 Python 代码评审 | 日期快照；不是当前缺陷清单或硬件验收 |
 

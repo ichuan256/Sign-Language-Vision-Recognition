@@ -1,0 +1,348 @@
+
+
+================================================================
+== Synthesis Summary Report of 'kp_hls_pw3_v3'
+================================================================
++ General Information: 
+    * Date:           Wed Oct 28 07:26:51 2026
+    * Version:        2024.1 (Build 5069499 on May 21 2024)
+    * Project:        kp_hls_v2
+    * Solution:       sol_pw3_v3 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +----------------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+---------+-----------+------------+-----+
+    |                             Modules                            | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |         |         |           |            |     |
+    |                             & Loops                            | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|  BRAM   |   DSP   |     FF    |     LUT    | URAM|
+    +----------------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+---------+-----------+------------+-----+
+    |+ kp_hls_pw3_v3                                                 |     -|  0.00|    80932|  8.093e+05|         -|    80933|     -|        no|  20 (7%)|  12 (5%)|  3781 (3%)|  6389 (12%)|    -|
+    | + kp_hls_pw_core_v3_6_6_48_64_16_s                             |     -|  0.00|    80931|  8.093e+05|         -|    80931|     -|        no|  16 (5%)|  12 (5%)|  2178 (2%)|   4863 (9%)|    -|
+    |  + kp_hls_pw_core_v3_6_6_48_64_16_Pipeline_1                   |     -|  0.00|     1739|  1.739e+04|         -|     1739|     -|        no|        -|        -|  333 (~0%)|   349 (~0%)|    -|
+    |   o Loop 1                                                     |     -|  7.30|     1737|  1.737e+04|        11|        1|  1728|       yes|        -|        -|          -|           -|    -|
+    |  + kp_hls_pw_core_v3_6_6_48_64_16_Pipeline_2                   |     -|  0.00|     3084|  3.084e+04|         -|     3084|     -|        no|        -|        -|  345 (~0%)|   349 (~0%)|    -|
+    |   o Loop 1                                                     |     -|  7.30|     3082|  3.082e+04|        12|        1|  3072|       yes|        -|        -|          -|           -|    -|
+    |  o VITIS_LOOP_243_1                                            |     -|  7.30|    76104|  7.610e+05|      2114|        -|    36|        no|        -|        -|          -|           -|    -|
+    |   o VITIS_LOOP_244_2                                           |     -|  7.30|     2112|  2.112e+04|        33|        -|    64|        no|        -|        -|          -|           -|    -|
+    |    + kp_hls_pw_core_v3_6_6_48_64_16_Pipeline_VITIS_LOOP_246_3  |     -|  0.54|        9|     90.000|         -|        9|     -|        no|        -|   8 (3%)|  295 (~0%)|    682 (1%)|    -|
+    |     o VITIS_LOOP_246_3                                         |     -|  7.30|        7|     70.000|         6|        1|     3|       yes|        -|        -|          -|           -|    -|
+    +----------------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+---------+-----------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* M_AXI
++------------+------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+| Interface  | Read/Write | Data Width | Address Width | Latency | Offset | Register | Max Widen | Max Read     | Max Write    | Num Read    | Num Write   | Resource Estimate |
+|            |            | (SW->HW)   |               |         |        |          | Bitwidth  | Burst Length | Burst Length | Outstanding | Outstanding |                   |
++------------+------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+| m_axi_gmem | READ_WRITE | 8 -> 32    | 64            | 0       | slave  | 0        | 0         | 16           | 16           | 16          | 16          | BRAM=4            |
++------------+------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+
+* S_AXILITE Interfaces
++------------+------------+---------------+--------+----------+
+| Interface  | Data Width | Address Width | Offset | Register |
++------------+------------+---------------+--------+----------+
+| s_axi_ctrl | 32         | 7             | 16     | 0        |
++------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface  | Register | Offset | Width | Access | Description                      | Bit Fields                                                           |
++------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_ctrl | CTRL     | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_ctrl | GIER     | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_ctrl | IP_IER   | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_ctrl | IP_ISR   | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_ctrl | in_r_1   | 0x10   | 32    | W      | Data signal of in_r              |                                                                      |
+| s_axi_ctrl | in_r_2   | 0x14   | 32    | W      | Data signal of in_r              |                                                                      |
+| s_axi_ctrl | wt_1     | 0x1c   | 32    | W      | Data signal of wt                |                                                                      |
+| s_axi_ctrl | wt_2     | 0x20   | 32    | W      | Data signal of wt                |                                                                      |
+| s_axi_ctrl | bias_1   | 0x28   | 32    | W      | Data signal of bias              |                                                                      |
+| s_axi_ctrl | bias_2   | 0x2c   | 32    | W      | Data signal of bias              |                                                                      |
+| s_axi_ctrl | M_1      | 0x34   | 32    | W      | Data signal of M                 |                                                                      |
+| s_axi_ctrl | M_2      | 0x38   | 32    | W      | Data signal of M                 |                                                                      |
+| s_axi_ctrl | F        | 0x40   | 32    | W      | Data signal of F                 |                                                                      |
+| s_axi_ctrl | out_r_1  | 0x48   | 32    | W      | Data signal of out_r             |                                                                      |
+| s_axi_ctrl | out_r_2  | 0x4c   | 32    | W      | Data signal of out_r             |                                                                      |
++------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+-----------------------+
+| Argument | Direction | Datatype              |
++----------+-----------+-----------------------+
+| in       | inout     | unsigned char const * |
+| wt       | inout     | signed char const *   |
+| bias     | inout     | int const *           |
+| M        | inout     | int const *           |
+| F        | in        | int                   |
+| out      | inout     | unsigned char*        |
++----------+-----------+-----------------------+
+
+* SW-to-HW Mapping
++----------+--------------+-----------+----------+-----------------------------------+
+| Argument | HW Interface | HW Type   | HW Usage | HW Info                           |
++----------+--------------+-----------+----------+-----------------------------------+
+| in       | m_axi_gmem   | interface |          | channel=0                         |
+| in       | s_axi_ctrl   | register  | offset   | name=in_r_1 offset=0x10 range=32  |
+| in       | s_axi_ctrl   | register  | offset   | name=in_r_2 offset=0x14 range=32  |
+| wt       | m_axi_gmem   | interface |          | channel=0                         |
+| wt       | s_axi_ctrl   | register  | offset   | name=wt_1 offset=0x1c range=32    |
+| wt       | s_axi_ctrl   | register  | offset   | name=wt_2 offset=0x20 range=32    |
+| bias     | m_axi_gmem   | interface |          | channel=0                         |
+| bias     | s_axi_ctrl   | register  | offset   | name=bias_1 offset=0x28 range=32  |
+| bias     | s_axi_ctrl   | register  | offset   | name=bias_2 offset=0x2c range=32  |
+| M        | m_axi_gmem   | interface |          | channel=0                         |
+| M        | s_axi_ctrl   | register  | offset   | name=M_1 offset=0x34 range=32     |
+| M        | s_axi_ctrl   | register  | offset   | name=M_2 offset=0x38 range=32     |
+| F        | s_axi_ctrl   | register  |          | name=F offset=0x40 range=32       |
+| out      | m_axi_gmem   | interface |          | channel=0                         |
+| out      | s_axi_ctrl   | register  | offset   | name=out_r_1 offset=0x48 range=32 |
+| out      | s_axi_ctrl   | register  | offset   | name=out_r_2 offset=0x4c range=32 |
++----------+--------------+-----------+----------+-----------------------------------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+* All M_AXI Variable Accesses
++--------------+----------+---------------------------+-----------+--------------+--------+------------------+---------------------------+------------+-------------------------------------------------------------------------------------------------------+
+| HW Interface | Variable | Access Location           | Direction | Burst Status | Length | Loop             | Loop Location             | Resolution | Problem                                                                                               |
++--------------+----------+---------------------------+-----------+--------------+--------+------------------+---------------------------+------------+-------------------------------------------------------------------------------------------------------+
+| m_axi_gmem   | in       | kp_hls_kernels.cpp:240:2  | read      | Widen Fail   |        | anonymous        | kp_hls_kernels.cpp:240:2  | 214-353    | Could not widen since type i8 size is greater than or equal to the max_widen_bitwidth threshold of 0  |
+| m_axi_gmem   | in       | kp_hls_kernels.cpp:240:2  | read      | Inferred     | 1728   | anonymous        | kp_hls_kernels.cpp:240:2  |            |                                                                                                       |
+| m_axi_gmem   | wt       | kp_hls_kernels.cpp:241:5  | read      | Widen Fail   |        | anonymous        | kp_hls_kernels.cpp:241:5  | 214-353    | Could not widen since type i8 size is greater than or equal to the max_widen_bitwidth threshold of 0  |
+| m_axi_gmem   | wt       | kp_hls_kernels.cpp:241:5  | read      | Inferred     | 3072   | anonymous        | kp_hls_kernels.cpp:241:5  |            |                                                                                                       |
+| m_axi_gmem   |          | kp_hls_kernels.cpp:244:27 | read      | Fail         |        |                  |                           | 214-224    | Could not burst due to multiple potential reads to the same bundle in the same region.                |
+| m_axi_gmem   | bias     | kp_hls_kernels.cpp:245:27 | read      | Widen Fail   |        | VITIS_LOOP_244_2 | kp_hls_kernels.cpp:244:27 | 214-353    | Could not widen since type i32 size is greater than or equal to the max_widen_bitwidth threshold of 0 |
+| m_axi_gmem   | bias     | kp_hls_kernels.cpp:245:27 | read      | Fail         |        | VITIS_LOOP_243_1 | kp_hls_kernels.cpp:243:23 | 214-229    | Could not analyze pattern                                                                             |
+| m_axi_gmem   | bias     | kp_hls_kernels.cpp:245:27 | read      | Inferred     | 64     | VITIS_LOOP_244_2 | kp_hls_kernels.cpp:244:27 |            |                                                                                                       |
+| m_axi_gmem   | M        | kp_hls_kernels.cpp:255:43 | read      | Widen Fail   |        | VITIS_LOOP_244_2 | kp_hls_kernels.cpp:244:27 | 214-353    | Could not widen since type i32 size is greater than or equal to the max_widen_bitwidth threshold of 0 |
+| m_axi_gmem   | M        | kp_hls_kernels.cpp:255:43 | read      | Fail         |        | VITIS_LOOP_243_1 | kp_hls_kernels.cpp:243:23 | 214-229    | Could not analyze pattern                                                                             |
+| m_axi_gmem   | M        | kp_hls_kernels.cpp:255:43 | read      | Inferred     | 64     | VITIS_LOOP_244_2 | kp_hls_kernels.cpp:244:27 |            |                                                                                                       |
+| m_axi_gmem   | out      | kp_hls_kernels.cpp:257:32 | write     | Widen Fail   |        | VITIS_LOOP_244_2 | kp_hls_kernels.cpp:244:27 | 214-353    | Could not widen since type i8 size is greater than or equal to the max_widen_bitwidth threshold of 0  |
+| m_axi_gmem   | out      | kp_hls_kernels.cpp:257:32 | write     | Inferred     | 2304   | VITIS_LOOP_243_1 | kp_hls_kernels.cpp:243:23 |            |                                                                                                       |
++--------------+----------+---------------------------+-----------+--------------+--------+------------------+---------------------------+------------+-------------------------------------------------------------------------------------------------------+
+
+    * Resolution URL: docs.xilinx.com/access/sources/dita/topic?Doc_Version=2024.1%20English&url=ug1448-hls-guidance&resourceid=XXX-YYY.html (replace XXX-YYY with column value)
+
+================================================================
+== Bind Op Report
+================================================================
++--------------------------------------------------------------+-----+--------+----------------+--------+-----------+---------+
+| Name                                                         | DSP | Pragma | Variable       | Op     | Impl      | Latency |
++--------------------------------------------------------------+-----+--------+----------------+--------+-----------+---------+
+| + kp_hls_pw3_v3                                              | 12  |        |                |        |           |         |
+|  + kp_hls_pw_core_v3_6_6_48_64_16_s                          | 12  |        |                |        |           |         |
+|    shl_i_fu_462_p2                                           |     |        | shl_i          | shl    | auto_pipe | 0       |
+|    sub2_i_fu_472_p2                                          |     |        | sub2_i         | add    | fabric    | 0       |
+|    sub3_i_fu_477_p2                                          |     |        | sub3_i         | add    | fabric    | 0       |
+|    half_fu_486_p2                                            |     |        | half           | shl    | auto_pipe | 0       |
+|    icmp_ln243_fu_523_p2                                      |     |        | icmp_ln243     | seteq  | auto      | 0       |
+|    add_ln243_fu_529_p2                                       |     |        | add_ln243      | add    | fabric    | 0       |
+|    sub_ln244_fu_563_p2                                       |     |        | sub_ln244      | sub    | fabric    | 0       |
+|    icmp_ln244_fu_569_p2                                      |     |        | icmp_ln244     | seteq  | auto      | 0       |
+|    add_ln244_fu_575_p2                                       |     |        | add_ln244      | add    | fabric    | 0       |
+|    add_ln245_fu_589_p2                                       |     |        | add_ln245      | add    | fabric    | 0       |
+|    sub_ln246_fu_673_p2                                       |     |        | sub_ln246      | sub    | fabric    | 0       |
+|    add_ln255_fu_604_p2                                       |     |        | add_ln255      | add    | fabric    | 0       |
+|    mul_32s_32s_64_2_1_U91                                    | 4   |        | prod           | mul    | auto      | 1       |
+|    sub_ln23_fu_704_p2                                        |     |        | sub_ln23       | sub    | fabric    | 0       |
+|    a_fu_709_p3                                               |     |        | a              | select | auto_sel  | 0       |
+|    base_fu_718_p2                                            |     |        | base           | lshr   | auto_pipe | 0       |
+|    rem_fu_727_p2                                             |     |        | rem            | and    | auto      | 0       |
+|    icmp_ln27_fu_735_p2                                       |     |        | icmp_ln27      | setgt  | auto      | 0       |
+|    icmp_ln27_1_fu_740_p2                                     |     |        | icmp_ln27_1    | seteq  | auto      | 0       |
+|    and_ln27_fu_745_p2                                        |     |        | and_ln27       | and    | auto      | 0       |
+|    empty_43_fu_751_p2                                        |     |        | empty_43       | or     | auto      | 0       |
+|    add_ln29_fu_765_p2                                        |     |        | add_ln29       | add    | fabric    | 0       |
+|    sub_ln29_fu_771_p2                                        |     |        | sub_ln29       | sub    | fabric    | 0       |
+|    q_fu_776_p3                                               |     |        | q              | select | auto_sel  | 0       |
+|    icmp_ln257_fu_803_p2                                      |     |        | icmp_ln257     | setgt  | auto      | 0       |
+|    xor_ln257_fu_809_p2                                       |     |        | xor_ln257      | xor    | auto      | 0       |
+|    select_ln257_1_fu_815_p3                                  |     |        | select_ln257_1 | select | auto_sel  | 0       |
+|    or_ln257_fu_823_p2                                        |     |        | or_ln257       | or     | auto      | 0       |
+|    select_ln257_fu_829_p3                                    |     |        | select_ln257   | select | auto_sel  | 0       |
+|    shl_ln257_fu_844_p2                                       |     |        | shl_ln257      | shl    | auto_pipe | 0       |
+|    shl_ln257_2_fu_861_p2                                     |     |        | shl_ln257_2    | shl    | auto_pipe | 0       |
+|   + kp_hls_pw_core_v3_6_6_48_64_16_Pipeline_1                | 0   |        |                |        |           |         |
+|     exitcond656_fu_362_p2                                    |     |        | exitcond656    | seteq  | auto      | 0       |
+|     empty_fu_368_p2                                          |     |        | empty          | add    | fabric    | 0       |
+|     empty_38_fu_392_p2                                       |     |        | empty_38       | add    | fabric    | 0       |
+|     empty_40_fu_457_p2                                       |     |        | empty_40       | lshr   | auto_pipe | 0       |
+|   + kp_hls_pw_core_v3_6_6_48_64_16_Pipeline_2                | 0   |        |                |        |           |         |
+|     exitcond645_fu_362_p2                                    |     |        | exitcond645    | seteq  | auto      | 0       |
+|     empty_fu_368_p2                                          |     |        | empty          | add    | fabric    | 0       |
+|     empty_32_fu_392_p2                                       |     |        | empty_32       | add    | fabric    | 0       |
+|     empty_34_fu_438_p2                                       |     |        | empty_34       | lshr   | auto_pipe | 0       |
+|   + kp_hls_pw_core_v3_6_6_48_64_16_Pipeline_VITIS_LOOP_246_3 | 8   |        |                |        |           |         |
+|     icmp_ln246_fu_572_p2                                     |     |        | icmp_ln246     | seteq  | auto      | 0       |
+|     empty_fu_596_p2                                          |     |        | empty          | add    | fabric    | 0       |
+|     add_ln245_fu_614_p2                                      |     |        | add_ln245      | add    | fabric    | 0       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U45                         | 1   |        | mul_ln252      | mul    | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U45                         | 1   |        | sext_ln252_1   | sext   | dsp_slice | 3       |
+|     mul_8s_8ns_16_1_1_U37                                    |     |        | mul_ln252_1    | mul    | auto      | 0       |
+|     mul_8s_8ns_16_1_1_U38                                    |     |        | mul_ln252_2    | mul    | auto      | 0       |
+|     mul_8s_8ns_16_1_1_U39                                    |     |        | mul_ln252_3    | mul    | auto      | 0       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U46                         | 1   |        | mul_ln252_4    | mul    | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U46                         | 1   |        | sext_ln252_5   | sext   | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U47                         | 1   |        | mul_ln252_5    | mul    | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U47                         | 1   |        | sext_ln252_6   | sext   | dsp_slice | 3       |
+|     mul_8s_8ns_16_1_1_U40                                    |     |        | mul_ln252_6    | mul    | auto      | 0       |
+|     mul_8s_8ns_16_1_1_U41                                    |     |        | mul_ln252_7    | mul    | auto      | 0       |
+|     mul_8s_8ns_16_1_1_U42                                    |     |        | mul_ln252_8    | mul    | auto      | 0       |
+|     mul_8s_8ns_16_1_1_U43                                    |     |        | mul_ln252_9    | mul    | auto      | 0       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U48                         | 1   |        | mul_ln252_10   | mul    | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U48                         | 1   |        | sext_ln252_11  | sext   | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U49                         | 1   |        | mul_ln252_11   | mul    | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U49                         | 1   |        | sext_ln252_12  | sext   | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U50                         | 1   |        | mul_ln252_12   | mul    | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U50                         | 1   |        | sext_ln252_13  | sext   | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U51                         | 1   |        | mul_ln252_13   | mul    | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U51                         | 1   |        | sext_ln252_14  | sext   | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U52                         | 1   |        | mul_ln252_14   | mul    | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U52                         | 1   |        | sext_ln252_15  | sext   | dsp_slice | 3       |
+|     mul_8s_8ns_16_1_1_U44                                    |     |        | mul_ln252_15   | mul    | auto      | 0       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U52                         | 1   |        | add_ln252      | add    | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U45                         | 1   |        | add_ln252_1    | add    | dsp_slice | 3       |
+|     add_ln252_2_fu_841_p2                                    |     |        | add_ln252_2    | add    | fabric    | 0       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U51                         | 1   |        | add_ln252_3    | add    | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U47                         | 1   |        | add_ln252_4    | add    | dsp_slice | 3       |
+|     add_ln252_5_fu_857_p2                                    |     |        | add_ln252_5    | add    | fabric    | 0       |
+|     add_ln252_6_fu_867_p2                                    |     |        | add_ln252_6    | add    | fabric    | 0       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U49                         | 1   |        | add_ln252_7    | add    | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U50                         | 1   |        | add_ln252_8    | add    | dsp_slice | 3       |
+|     add_ln252_9_fu_879_p2                                    |     |        | add_ln252_9    | add    | fabric    | 0       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U46                         | 1   |        | add_ln252_10   | add    | dsp_slice | 3       |
+|     mac_muladd_8s_8ns_16s_17_4_1_U48                         | 1   |        | add_ln252_11   | add    | dsp_slice | 3       |
+|     add_ln252_12_fu_895_p2                                   |     |        | add_ln252_12   | add    | fabric    | 0       |
+|     add_ln252_13_fu_905_p2                                   |     |        | add_ln252_13   | add    | fabric    | 0       |
+|     add_ln252_14_fu_920_p2                                   |     |        | add_ln252_14   | add    | fabric    | 0       |
+|     acc_2_fu_930_p2                                          |     |        | acc_2          | add    | fabric    | 0       |
+|     add_ln246_fu_632_p2                                      |     |        | add_ln246      | add    | fabric    | 0       |
++--------------------------------------------------------------+-----+--------+----------------+--------+-----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------------------------------+--------------+-----------+------+------+--------+----------+------+---------+------------------+
+| Name                                | Usage        | Type      | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|                                     |              |           |      |      |        |          |      |         | Banks            |
++-------------------------------------+--------------+-----------+------+------+--------+----------+------+---------+------------------+
+| + kp_hls_pw3_v3                     |              |           | 20   | 0    |        |          |      |         |                  |
+|   ctrl_s_axi_U                      | interface    | s_axilite |      |      |        |          |      |         |                  |
+|   gmem_m_axi_U                      | interface    | m_axi     | 4    |      |        |          |      |         |                  |
+|  + kp_hls_pw_core_v3_6_6_48_64_16_s |              |           | 16   | 0    |        |          |      |         |                  |
+|    lin_U                            | ram_1p array |           |      |      |        | lin      | auto | 1       | 8, 108, 1        |
+|    lin_1_U                          | ram_1p array |           |      |      |        | lin_1    | auto | 1       | 8, 108, 1        |
+|    lin_2_U                          | ram_1p array |           |      |      |        | lin_2    | auto | 1       | 8, 108, 1        |
+|    lin_3_U                          | ram_1p array |           |      |      |        | lin_3    | auto | 1       | 8, 108, 1        |
+|    lin_4_U                          | ram_1p array |           |      |      |        | lin_4    | auto | 1       | 8, 108, 1        |
+|    lin_5_U                          | ram_1p array |           |      |      |        | lin_5    | auto | 1       | 8, 108, 1        |
+|    lin_6_U                          | ram_1p array |           |      |      |        | lin_6    | auto | 1       | 8, 108, 1        |
+|    lin_7_U                          | ram_1p array |           |      |      |        | lin_7    | auto | 1       | 8, 108, 1        |
+|    lin_8_U                          | ram_1p array |           |      |      |        | lin_8    | auto | 1       | 8, 108, 1        |
+|    lin_9_U                          | ram_1p array |           |      |      |        | lin_9    | auto | 1       | 8, 108, 1        |
+|    lin_10_U                         | ram_1p array |           |      |      |        | lin_10   | auto | 1       | 8, 108, 1        |
+|    lin_11_U                         | ram_1p array |           |      |      |        | lin_11   | auto | 1       | 8, 108, 1        |
+|    lin_12_U                         | ram_1p array |           |      |      |        | lin_12   | auto | 1       | 8, 108, 1        |
+|    lin_13_U                         | ram_1p array |           |      |      |        | lin_13   | auto | 1       | 8, 108, 1        |
+|    lin_14_U                         | ram_1p array |           |      |      |        | lin_14   | auto | 1       | 8, 108, 1        |
+|    lin_15_U                         | ram_1p array |           |      |      |        | lin_15   | auto | 1       | 8, 108, 1        |
+|    lwt_U                            | ram_1p array |           | 1    |      |        | lwt      | auto | 1       | 8, 192, 1        |
+|    lwt_1_U                          | ram_1p array |           | 1    |      |        | lwt_1    | auto | 1       | 8, 192, 1        |
+|    lwt_2_U                          | ram_1p array |           | 1    |      |        | lwt_2    | auto | 1       | 8, 192, 1        |
+|    lwt_3_U                          | ram_1p array |           | 1    |      |        | lwt_3    | auto | 1       | 8, 192, 1        |
+|    lwt_4_U                          | ram_1p array |           | 1    |      |        | lwt_4    | auto | 1       | 8, 192, 1        |
+|    lwt_5_U                          | ram_1p array |           | 1    |      |        | lwt_5    | auto | 1       | 8, 192, 1        |
+|    lwt_6_U                          | ram_1p array |           | 1    |      |        | lwt_6    | auto | 1       | 8, 192, 1        |
+|    lwt_7_U                          | ram_1p array |           | 1    |      |        | lwt_7    | auto | 1       | 8, 192, 1        |
+|    lwt_8_U                          | ram_1p array |           | 1    |      |        | lwt_8    | auto | 1       | 8, 192, 1        |
+|    lwt_9_U                          | ram_1p array |           | 1    |      |        | lwt_9    | auto | 1       | 8, 192, 1        |
+|    lwt_10_U                         | ram_1p array |           | 1    |      |        | lwt_10   | auto | 1       | 8, 192, 1        |
+|    lwt_11_U                         | ram_1p array |           | 1    |      |        | lwt_11   | auto | 1       | 8, 192, 1        |
+|    lwt_12_U                         | ram_1p array |           | 1    |      |        | lwt_12   | auto | 1       | 8, 192, 1        |
+|    lwt_13_U                         | ram_1p array |           | 1    |      |        | lwt_13   | auto | 1       | 8, 192, 1        |
+|    lwt_14_U                         | ram_1p array |           | 1    |      |        | lwt_14   | auto | 1       | 8, 192, 1        |
+|    lwt_15_U                         | ram_1p array |           | 1    |      |        | lwt_15   | auto | 1       | 8, 192, 1        |
++-------------------------------------+--------------+-----------+------+------+--------+----------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+---------------------------------------------------------+---------------------------------------------+
+| Type            | Options                                                 | Location                                    |
++-----------------+---------------------------------------------------------+---------------------------------------------+
+| inline          |                                                         | kp_hls_kernels.cpp:21 in kp_hls_rne_shift   |
+| array_partition | variable = xp dim = 3 complete                          | kp_hls_kernels.cpp:53 in kp_hls_dw_core     |
+| pipeline        | II = 1                                                  | kp_hls_kernels.cpp:66 in kp_hls_dw_core     |
+| pipeline        | II = 1                                                  | kp_hls_kernels.cpp:87 in kp_hls_pw_core     |
+| array_partition | variable = xp dim = 3 complete                          | kp_hls_kernels.cpp:111 in kp_hls_conv_core  |
+| pipeline        | II = 1                                                  | kp_hls_kernels.cpp:124 in kp_hls_conv_core  |
+| interface       | m_axi port = in bundle = gmem depth = 2 * 12 * 12 * 48  | kp_hls_kernels.cpp:141 in kp_hls_dw3        |
+| interface       | m_axi port = w bundle = gmem depth = 3 * 3 * 48         | kp_hls_kernels.cpp:142 in kp_hls_dw3        |
+| interface       | m_axi port = bias bundle = gmem depth = 48              | kp_hls_kernels.cpp:143 in kp_hls_dw3        |
+| interface       | m_axi port = M bundle = gmem depth = 48                 | kp_hls_kernels.cpp:144 in kp_hls_dw3        |
+| interface       | m_axi port = out bundle = gmem depth = 2 * 6 * 6 * 48   | kp_hls_kernels.cpp:145 in kp_hls_dw3        |
+| interface       | s_axilite port = F bundle = ctrl                        | kp_hls_kernels.cpp:146 in kp_hls_dw3        |
+| interface       | s_axilite port = return bundle = ctrl                   | kp_hls_kernels.cpp:147 in kp_hls_dw3        |
+| interface       | m_axi port = in bundle = gmem depth = 2 * 6 * 6 * 48    | kp_hls_kernels.cpp:154 in kp_hls_pw3        |
+| interface       | m_axi port = w bundle = gmem depth = 48 * 64            | kp_hls_kernels.cpp:155 in kp_hls_pw3        |
+| interface       | m_axi port = bias bundle = gmem depth = 64              | kp_hls_kernels.cpp:156 in kp_hls_pw3        |
+| interface       | m_axi port = M bundle = gmem depth = 64                 | kp_hls_kernels.cpp:157 in kp_hls_pw3        |
+| interface       | m_axi port = out bundle = gmem depth = 2 * 6 * 6 * 64   | kp_hls_kernels.cpp:158 in kp_hls_pw3        |
+| interface       | s_axilite port = F bundle = ctrl                        | kp_hls_kernels.cpp:159 in kp_hls_pw3        |
+| interface       | s_axilite port = return bundle = ctrl                   | kp_hls_kernels.cpp:160 in kp_hls_pw3        |
+| interface       | m_axi port = in bundle = gmem depth = 2 * 96 * 96 * 3   | kp_hls_kernels.cpp:167 in kp_hls_stem       |
+| interface       | m_axi port = w bundle = gmem depth = 3 * 3 * 3 * 16     | kp_hls_kernels.cpp:168 in kp_hls_stem       |
+| interface       | m_axi port = bias bundle = gmem depth = 16              | kp_hls_kernels.cpp:169 in kp_hls_stem       |
+| interface       | m_axi port = M bundle = gmem depth = 16                 | kp_hls_kernels.cpp:170 in kp_hls_stem       |
+| interface       | m_axi port = out bundle = gmem depth = 2 * 48 * 48 * 16 | kp_hls_kernels.cpp:171 in kp_hls_stem       |
+| interface       | s_axilite port = F bundle = ctrl                        | kp_hls_kernels.cpp:172 in kp_hls_stem       |
+| interface       | s_axilite port = return bundle = ctrl                   | kp_hls_kernels.cpp:173 in kp_hls_stem       |
+| pipeline        | II = 1                                                  | kp_hls_kernels.cpp:197 in kp_hls_pw_core_v2 |
+| unroll          |                                                         | kp_hls_kernels.cpp:199 in kp_hls_pw_core_v2 |
+| interface       | m_axi port = in bundle = gmem depth = 6 * 6 * 48        | kp_hls_kernels.cpp:217 in kp_hls_pw3_v2     |
+| interface       | m_axi port = w bundle = gmem depth = 48 * 64            | kp_hls_kernels.cpp:218 in kp_hls_pw3_v2     |
+| interface       | m_axi port = bias bundle = gmem depth = 64              | kp_hls_kernels.cpp:219 in kp_hls_pw3_v2     |
+| interface       | m_axi port = M bundle = gmem depth = 64                 | kp_hls_kernels.cpp:220 in kp_hls_pw3_v2     |
+| interface       | m_axi port = out bundle = gmem depth = 6 * 6 * 64       | kp_hls_kernels.cpp:221 in kp_hls_pw3_v2     |
+| interface       | s_axilite port = F bundle = ctrl                        | kp_hls_kernels.cpp:222 in kp_hls_pw3_v2     |
+| interface       | s_axilite port = return bundle = ctrl                   | kp_hls_kernels.cpp:223 in kp_hls_pw3_v2     |
+| array_partition | variable = lin cyclic factor = P dim = 1                | kp_hls_kernels.cpp:238 in kp_hls_pw_core_v3 |
+| array_partition | variable = lwt cyclic factor = P dim = 1                | kp_hls_kernels.cpp:239 in kp_hls_pw_core_v3 |
+| pipeline        | II = 1                                                  | kp_hls_kernels.cpp:247 in kp_hls_pw_core_v3 |
+| unroll          |                                                         | kp_hls_kernels.cpp:249 in kp_hls_pw_core_v3 |
+| interface       | m_axi port = in bundle = gmem depth = 6 * 6 * 48        | kp_hls_kernels.cpp:265 in kp_hls_pw3_v3     |
+| interface       | m_axi port = wt bundle = gmem depth = 64 * 48           | kp_hls_kernels.cpp:266 in kp_hls_pw3_v3     |
+| interface       | m_axi port = bias bundle = gmem depth = 64              | kp_hls_kernels.cpp:267 in kp_hls_pw3_v3     |
+| interface       | m_axi port = M bundle = gmem depth = 64                 | kp_hls_kernels.cpp:268 in kp_hls_pw3_v3     |
+| interface       | m_axi port = out bundle = gmem depth = 6 * 6 * 64       | kp_hls_kernels.cpp:269 in kp_hls_pw3_v3     |
+| interface       | s_axilite port = F bundle = ctrl                        | kp_hls_kernels.cpp:270 in kp_hls_pw3_v3     |
+| interface       | s_axilite port = return bundle = ctrl                   | kp_hls_kernels.cpp:271 in kp_hls_pw3_v3     |
++-----------------+---------------------------------------------------------+---------------------------------------------+
+
+

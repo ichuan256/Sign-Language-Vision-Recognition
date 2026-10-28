@@ -1,0 +1,64 @@
+{
+  "status": "pass",
+  "cpu_postprocess_unit_tests_local": 5,
+  "cpu_postprocess_unit_tests_ARM": 5,
+  "paired_video_frames": 240,
+  "total_processed_frames": 480,
+  "all_inputs_outputs_tracking_exact": true,
+  "boundary_ROIs": 100,
+  "independent_subgraphs": 2,
+  "subgraph_and_final_outputs_exact": true,
+  "cma_roundtrips_verified": 100,
+  "model_and_original_runtime_unchanged": true,
+  "boot_and_firmware_files_and_service_PIDs_unchanged": true,
+  "new_fpga_build_or_deploy": false,
+  "training": false,
+  "labels": false,
+  "scope": "P1 checks only; no PL compute/AXI/delegate or final hybrid acceptance",
+  "source_hashes": [
+    {
+      "file": "project/board/teacher_hands/teacher_geometry.py",
+      "sha256": "854228adccdf56dec4c04ba3f0330c451d69a751100dbf9b905921119b9ac5ac"
+    },
+    {
+      "file": "project/board/teacher_hands/test_teacher_postprocess.py",
+      "sha256": "b036b9b2341c68a0d13097cac21a521aa638927f4a7876b7149cd2b5948f1680"
+    },
+    {
+      "file": "project/board/teacher_hands/teacher_p1_postprocess.py",
+      "sha256": "ff18e2ed76252e9aaa296deaf5305b3626ee9fe263043b58c9d55beaeac19f34"
+    },
+    {
+      "file": "project/board/teacher_hands/teacher_p1_boundary.py",
+      "sha256": "594efe2f039df5d8456149d2645164c63b897a271dd3f1c73837875bf248839c"
+    },
+    {
+      "file": "project/board/teacher_hands/teacher_p1_transfer.py",
+      "sha256": "39baf581f7475fda5867042eff045411d7b5d61561ffa735b51c35593bdb6a46"
+    },
+    {
+      "file": "project/board/teacher_hands/teacher_probe.cpp",
+      "sha256": "4322b72cac5e13626a7a8f9db9e0ed9627e99783c158309d0f387e16cb32e2b2"
+    },
+    {
+      "file": "project/scripts/keypoints/run_teacher_p1.py",
+      "sha256": "4f464c03fa7653ccde2d0b6761ca91f5f76d877dd7d7dff7b60d81edd46a4d10"
+    },
+    {
+      "file": "project/scripts/keypoints/prepare_teacher_replay.py",
+      "sha256": "765b76793f368cec0a855f3ce7f6f3418337e7809e98a4e07f2d5a2840b8142c"
+    },
+    {
+      "file": "project/scripts/keypoints/analyze_teacher_p1.py",
+      "sha256": "6e945d954b98a15cb39ee5892f36c4693231aa6e6ae636114cec8a1e464b7a0f"
+    },
+    {
+      "file": "project/analysis/teacher_partition_20261028/p1.md",
+      "sha256": "b249493c66c832f48a200a75973be230a53e433f0dd761848218fc1ec71f3588"
+    },
+    {
+      "file": "project/analysis/teacher_partition_20261028/p1.json",
+      "sha256": "60d136db4eaff1007aff673c91467d60f27de96d96a4af7c9c5c34a09cd6c8b9"
+    }
+  ]
+}

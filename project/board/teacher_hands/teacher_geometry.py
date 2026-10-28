@@ -78,13 +78,24 @@ def weighted_nms(detections, threshold=.3):
     return output
 
 
+def _palm_candidate_indices(scores, min_score):
+    valid = scores > -100.
+    if min_score == .5 and scores.dtype in (np.dtype('float32'), np.dtype('float64')):
+        # sigmoid(-1) < 0.269, far below 0.5 even with floating-point rounding.
+        # Keep the original scalar sigmoid for all survivors, especially tiny
+        # negative logits that can round to a score of exactly 0.5. Filtering
+        # at zero or vectorizing exp would change that boundary or its scores.
+        valid &= scores >= -1.
+    return np.flatnonzero(valid)
+
+
 def decode_palms(outputs, padding, min_score=.5):
     arrays = [np.asarray(x).reshape(-1) for x in outputs]
     encoded = next(x for x in arrays if x.size == 2016*18).reshape(2016,18)
     scores = next(x for x in arrays if x.size == 2016)
     left,top,right,bottom = map(float,padding)
     candidates = []
-    for index in np.flatnonzero(scores > -100.):
+    for index in _palm_candidate_indices(scores, min_score):
         score = float(1/(1+np.exp(-np.clip(scores[index],-100,100))))
         if score < min_score:
             continue

@@ -1,18 +1,20 @@
-# 单手关键点 PL 驱动
+# 历史 lite 整网 PL 驱动
+
+本页保留旧驱动与部署复现，不是当前执行流程。当前任务见 [PS 老师局部迁移方案](../../../docs/方案/04_老师模型PS_PL局部迁移.md)及 [PS 老师入口](../teacher_hands/README.md)。以下固件路径与时延均为日期证据，不能代表现场已加载状态。
 
 `hand_runtime.py` 的硬件路径只在 PS 做索引、分块、DDR 复制和输出尺度还原，全部神经网络算子调用
 `kp_mac` / `kp_vector`。`DLLBackend` 是显式命名的主机验证后端，不是板端回退。
 `run_hand_board.py` 先核对候选 bit/hwh、新 boot ID 和 bootpy 已完成，再以 `download=False` 接管。
 核超时直接报错，不切换到 CPU。
 
-当前实际数值与时延见 [流式加速记录](../../analysis/keypoints_pl_20261026/stream_wide.md)：
+历史数值与时延见 [流式加速记录](../../analysis/keypoints_pl_20261026/stream_wide.md)：
 PC ROI→PL 单手 21 点，12.28→1.86→0.56→0.49 秒/ROI；三次重复逐值对齐，仍未达到 5Hz。
 该入口尚不是任意视频实时识别。`hand_layer_runtime.py` 实现整层调度、参数常驻及卷积链输出地址复用，
 旧 `HardwareBackend` 仍用于首版固件，不能混用寄存器映射。
 
 ## 部署与运行
 
-主机工具位于 [scripts/keypoints](../../scripts/keypoints/README.md)。以下路径均为本机当前证据示例，
+主机工具位于 [scripts/keypoints](../../scripts/keypoints/README.md)。以下路径均为本机历史证据示例，
 复跑时须选新输出目录。密码只由临时 `KEYPOINT_BOARD_SUDO_PASSWORD` 环境变量传入，禁止写到文件、命令行参数或日志。
 部署默认只准备候选；只有显式 `--apply` 才会备份、替换并冷重启。
 

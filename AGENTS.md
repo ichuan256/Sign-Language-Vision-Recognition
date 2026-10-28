@@ -4,6 +4,18 @@
 > 原则：**先读状态文档再动手；危险动作先问用户；一切证据落到文件。**
 > 本文档由 `F:\PLD\pld-sign-glove\AGENTS.md`（2026-10-22 版）适配而来，适配日期 2026-10-23。本工程从 pld-sign-glove 移植 HDMI + 音频线，**不含传感器部分**，新增视频输入高动态手势识别线。
 
+## 当前视觉路线覆盖指令（2026-10-28，用户明确要求）【通用】
+
+**保留 PS 已部署的老师模型，只把少量热点算子或连续子图迁到 PL；停止重新训练轻量学生模型。**
+当前视觉加速任务仅以 `docs/方案/04_老师模型PS_PL局部迁移.md` 为执行方案。
+不继续这些工作，不因性能目标自行换模型、换输入尺寸、删输出头或重新训练；现有实验产物保留为历史证据。
+冻结所选老师模型的文件 SHA、结构、权重、输入预处理及输出语义；先按同一视频/ROI、线程数、检测频率和显示设置测 PS 基线，
+再剖析热点，首轮只迁一个有收益的算子或连续子图，其余仍由 PS 执行。迁移需实现实际 PS/PL 接入，
+对齐子图边界张量及最终结果，并将传输、缓存同步、驱动调度计入端到端时延；局部核加速或 HDMI 帧率不能替代整条链路提速。
+默认不量化；若浮点迁移收益不足，先报告证据及限制，不自行转回训练/QAT。
+当前手部老师入口为 `project/board/teacher_hands/run_teacher.py`，并非完整身体/双手 Holistic 验收。
+详细范围与历史事实区分见 `docs/方案/04_老师模型PS_PL局部迁移.md`。
+
 ---
 
 ## 0. 可见性约定（2026-10-23 用户指示）
@@ -48,7 +60,7 @@
 
 1. **运行中的板子绝不二次加载 bitstream**——100% 硬复位。新 bit 一律 scp 覆盖后 `sudo reboot`，由冷启动加载一次；接管已加载的固件一律 `Overlay(path, download=False)`。
 2. **不要运行任何加载 `base.bit` 的旧脚本**（`ASR/recog_live_ncnn.py`、`ASR/recog_ncnn.py` 等）——会覆盖合一固件并硬复位。
-3. **bit 与 hwh 必须成对、同目录、同批次部署**，哈希以 `project/board/w6/release_manifest.json` 为准核对。
+3. **bit 与 hwh 必须成对、同目录、同批次部署**，哈希以所部署候选自身的 release manifest 为准核对；W6 清单只适用于 W6 固件，不能拿旧哈希判断新候选。
 4. **视频媒体本体不入库**（`.gitignore` 已排 `vision/video/` 等）；素材库只留本地。
 5. **Cookie/令牌/密码不落盘、不打印、不提交**；**不要碰 Edge 的 Cookie 数据库**（应用绑定加密，碰了会被清空——2026-10-20 已出过一次事故）。
 6. 删文件、改启动项、动用户浏览器配置前，先向用户确认。
@@ -142,7 +154,7 @@ git push origin main
 
 **用法**：板子通电 → 等 2~3 分钟（固件冷启动 + PC 常驻服务就绪）→ 按一下 **BTN0**
 （LD0 旁的按钮）→ 约 1 秒后开始识别，HDMI 出字幕与手语视频。停止用网页
-`http://127.0.0.1:8765` 的停止钮，或再按 BTN0（当前版本为幂等开始，停止走网页）。
+`http://127.0.0.1:8765` 的停止钮，（重复按 BTN0 仍为幂等开始）。
 
 **链路**：BTN0 → `axi_gpio_btns`（0x43C10000，固件 build_manifest_20261023_btngpio）
 → 板端 `button-watch.service`（`project/board/w6/button_watch.py`）
@@ -165,28 +177,23 @@ git push origin main
 | `ASR/README.md` | 音频线现状、启动、验收顺序 |
 | `vision/analysis/README.md` | 分析目录索引；区分当前资料和历史实验证据 |
 | `vision/analysis/dataset/README.md` | 当前样本总量、有效评测限制、标签复核与补采计划 |
-| `project/analysis/r3/README.md` | 当前 PL 阶段状态及量化训练、HLS 对齐、综合证据 |
+| `docs/方案/04_老师模型PS_PL局部迁移.md` | 当前教师网络局部加速方案、阶段交付及验收 |
+| `project/board/teacher_hands/README.md` | PS 老师模型、运行库与接入边界 |
+| `project/analysis/teacher_partition_20261028/README.md` | 老师模型实际图清单与候选子图证据 |
+| `project/analysis/r3/README.md` | 历史词语分类器的量化/HLS 证据；不属于当前关键点加速任务 |
 | `vision/data/README.md` + `vision/tools/README.md` | 数据/清单与辅助工具目录；原剪辑记录在 `vision/data/manifests/`，原剪裁方法在 `vision/tools/clipping/` |
 | `docs/协作/素材工作区约定.md` | 当前551条可用子集、待审版本及路径映射 |
 | `vision/video/`（不入库） | 素材库；精剪清单在 `vision/video/done/*/manifest_*_reviewed_*.csv` |
 
-## 6. 当前未结待办【通用】（接手时核对）
+## 6. 当前未结待办【通用】（2026-10-28）
 
-- 当前优先级（2026-10-25）：先做无语义的通用身体/双手实时关键点，再做动作/词义分类；纯关键点入口 `vision/src/vision/keypoints/live_demo.py`，用法 `vision/src/vision/keypoints/README.md`，文件源基准 `vision/analysis/keypoints_20261025/README.md`。USB 实时、交叉/遮挡和快速运动尚未验收，文件 FPS 不能当摄像头实时 FPS。
-- 通用关键点 PL：单手 21 点完整网络已上板，PC 提供规范化 ROI，PL 执行网络、PS 调度。当前流式/宽访存版为 62 次调用/ROI、36 层直接复用输入地址；同一 ROI 三次 64 输出均对整数参考完全一致，前向 0.505/0.490/0.490 秒，约 2Hz，仍未达到 5Hz。当前时延及哈希见 `project/analysis/keypoints_pl_20261026/stream_wide.md/.json`；0.56 秒、1.86 秒与 12.28 秒记录保留为历史。整板 WNS 0.307ns、WHS 0.010ns，DSP 165/220、LUT 37742/53200、BRAM Tile 119.5/140。不能把 HDMI 刷新率当关键点帧率，该路线不是 R3 词语分类 CNN。
-- 独立实时方向（2026-10-26 用户选定）：`docs/方案/03_Zynq7020独立实时关键点方案.md`。目标双手各20Hz、板内视频叠加；单目到货前用板端raw帧回放。教师指 MediaPipe Holistic 软件模型，不是视频授课人。40视频/674帧已导出997个有手伪标ROI，坐标试训670/136/191，96/128浮点学生已试训但人工精度、QAT/HLS/上板未验收。旧200项复核队列164项来自352×288，暂不用于正式精度标注；先重做清晰度/来源平衡。报告 `project/analysis/keypoints_student_20261026/README.md`，理论预算仍在 `project/analysis/keypoints_pl_20261026/realtime_budget/`。新学生65输出禁止混用旧64项驱动，身体网络及离线找手器需另验。
-- 视觉目录物理归并（2026-10-26）：`vision/`只保留src、scripts、tests、data、analysis、tools、video七个主目录。运行源码在`vision/src/vision/`，旧嵌入库在`vision/src/signrec/`；模型`vision/data/models/`，M1清单`vision/data/manifests/m1_8class/`，旧特征`vision/data/cache/m1/`。根`vision/__init__.py`维持原`python -m vision.*`入口。不要在顶层重新创建keypoints/m1/models目录；媒体路径不变。
-- 【本机专用】板上当前为整层加速候选，旧 W6 本地发布文件未覆盖；HDMI 接管显式指定当前 `--release-manifest`。旧 ASR 固件核验可能拒绝，未验收本候选音频；禁止为迁就旧哈希运行中重载 bit。上一版 12.276 秒固件备份记录在 `project/_tmp/kp_layer_deploy_v1/deployment.json`，更早 W6 备份在 `project/_tmp/kp_board_deploy_v2/deployment.json`。
-- PL 动态演示入口：`python -m vision.keypoints.dynamic_pl`，板端常驻 `stream_hand_board.py`；使用已知视频及缓存 PC ROI 定位，没有 CPU 网络回退。当前左侧仅黄色 PC ROI 框，右侧实际 PL 输入与骨架，不重锚旧姿态。PC 发布目标 15fps 不等于 HDMI 或 PL 帧率，流式版并发前向约 0.51～0.57 秒/ROI。新版动态 HDMI 已由用户确认视频正常、PL 持续更新；证据见 `project/analysis/keypoints_pl_20261026/stream_wide.md/.json`。600 秒有界运行结束后保留最后一帧，长期稳定性未据此验收。`show_hand_result.py` 只用于静态验收。
-- M0 已完成：新工程全量重建出 bit、板端点亮 + 音频回路复验通过（2026-10-23，见移植清单）
-- M0b：从空目录重建脚本化（源工程此路径未验收过）；剥离传感器 SPI/DMA 与旧 HLS KWS，释放 PL 资源
-- 视觉线：`再见` 缺一条片段待核对；短词类（很/服务/待会儿见）DTW 混淆待排查；USB 摄像头实测未做
-- 音频线：长期稳定性与断电自动启动未验收；BTN0 停止语义（当前幂等开始，停止走网页）
-- 当前输入路线（2026-10-25 用户更新）：单目 OV5640 未到货，只留 `OV5640MonoSource` 接口；原双目路线改为历史兼容。先用 `replay:` 录制视频按实时节拍模拟摄像头，PC 叠加关键点后传到板卡 HDMI；操作卡 `vision/src/vision/keypoints/HDMI_REPLAY.md`。连续运动已目视确认；接收有时限，到时保留最后一帧，不能误当作仍在播放。
-- 路线 3：HLS C 综合已跑通，资源/时序门禁未通过，未导出 IP；阶段状态与证据只在 `project/analysis/r3/README.md` 汇总，复跑脚本放 `project/scripts/r3/`。
-- 数据：清单审计已完成，语义清洗/人物标注/补采未完成；当前样本与补采只在 `vision/analysis/dataset/README.md` 汇总，审计工具放 `vision/scripts/dataset/`。提交者署名不能当人物 ID。
-
-- 本机素材（2026-10-26）：活动池仍为551条，CSV/SHA不变；第二三课现存85条匹配原审计SHA，位于`done/wsy/第2 第3课`，仍单列待审，不自动纳入551池。新待审表由`current_available_fullframe.json`绑定。`protected_media_current.json`登记780个在场媒体与36个缺失（31原片、5旧演示）；32行来源索引仅1个原片在场，旧BV sources.json也缺失。逐项证据见`docs/协作/媒体清单修复_20261026.md`。新素材先放inbox，新输出绑定审核清单/SHA；禁止盲扫覆盖旧清单。旧裁剪测试样例1条、ASR词库142条必须保留。
-- 轻量关键点R1（2026-10-27）：用户覆盖后的17项人工结果已冻结导入（11坐标、1部分手有手判断、2无手、2ROI退回、1无法判断），无需再导回网页。40条1080p视频的614个手ROI按320/106/188分组，人工坐标6/3/2。训练仅1个负例，本轮显式禁用presence损失及辅助零损失图片；presence出口不可用。训练集中发现8ROI/99个教师点投影到画外，新增几何掩码（全划分312点），原值及人工标签保留。96/128已重新浮点训练并独立复评，教师留出NME 0.1856/0.1890、PCK@0.05 8.88%/7.05%，未过定位门禁；人工留出仅2帧，开发留出已多次查看，不能报告通用/跨人物精度。训练在`project/_tmp/hand_student_reviewed_20261027_v2`，当前证据`project/analysis/keypoints_student_20261027/README.md`及`reviewed_training.json`；旧试跑保留历史。未QAT/HLS/部署新学生，板上仍为0.49秒旧图。204测试＋32子测试通过。
-- 板内视频V1：720p raw短循环120秒2880次写入，约24次/秒、0错过时隙，复制P95 5.55ms；这是帧缓冲吞吐，不含网络推理。用户暂时无法目视，VSync、无撕裂、物理帧率、端到端帧龄、断网及推理并发均未验收。证据`project/analysis/keypoints_pl_20261026/raw_video.md/.json`；有界测试已结束，HDMI保留最后一帧。
-- R1拟合诊断（2026-10-27）：仅用冻结17项复核中的6条人工训练ROI（4视频、2来源组），96网络固定输入、无增强、只监督XY，150步后全点126/126及指尖30/30的PCK@0.05均100%，连续3次检查达标；平均手形仅11.90%，5种输入错位对照平均16.35%，独立重载NME差0，未监督head列参数变化0。模型/输入在`project/_tmp/hand_overfit6_20261027_v1`，证据`project/analysis/keypoints_student_20261027/overfit6.md/.json`，脚本`overfit_hand_student.py fit/verify`。这只是记忆诊断，不是识别率或泛化通过；验证/开发留出未参与，正式模型及板卡未变。下一步固定训练/验证数据与预算做增强/监督消融并补数据，不能将诊断模型用于QAT或板端。206测试＋32子测试通过。
+- **视觉首要任务**：冻结 PS 已部署的 `palm_detection_full` 与 `hand_landmark_full`，按 04 方案完成基线、热点剖析、单段 PL 接入和端到端对照。首轮只接入 landmark 的一个候选子图，palm、跟踪和其他计算留在 PS；候选是否采用由实测收益决定。
+- **当前进度**：P1 已完成 PS 后处理等价优化，两轮各 120 帧配对的全部网络输入/输出和跟踪状态一致，平均处理约 1.57→1.01 秒/帧（不写屏，PS 优化）。100 个真实 ROI 的四输出及单块/双块独立重放逐值一致；CMA 复制/缓存维护约 1.386ms。当前接图候选为 87/90/93/94/97/100/103/104 相邻双块组成的一个连续分区；先测 cpu_test 接图及 XNNPACK 拆分损耗，再决定 HLS。证据 `project/analysis/teacher_partition_20261028/p1.md`。原部署模型/库/源码和固件未覆盖，未实现新 PL 加速；不需要人工标注或训练。历史 0.49 秒/ROI 属于旧 lite 整网 PL 路线。
+- **板端状态需现场核对**：先读当前 bit/hwh、运行库 SHA 和进程，再接管或安排冷部署。历史记录不能代表当前已加载固件；不能为迁就旧 ASR 核验哈希在运行中重载 bit。
+- **精度验证**：对齐冻结老师的所有输出和连续跟踪行为，不再用学生 PCK 或人工标注补采驱动训练。保留已有数据与实验原件，停止学生训练、蒸馏、QAT 和学生 HLS 开发。
+- **视频输入与显示**：先用板内有界视频/原始帧回放验证；摄像头采集状态另按硬件证据核对。HDMI 扫描率、raw 写帧吞吐、视频播放率均不能当关键点新结果率；同时记录颜色、帧号和帧龄。
+- **硬件构建**：现有 M0 HDMI/音频移植已验收；新增加速器用隔离工程串行构建。是否剥离闲置传感器/KWS 由实测资源决定，不把旧 lite 整网核一并带入新方案。音频/按键/视频契约与冷启动安全规则继续有效。
+- **音频待验收**：长期稳定性、断电自动启动，以及 BTN0 停止语义；现有实现重复按键为开始，停止走网页。
+- **其余视觉任务暂停推进**：词义分类、R3 分类器优化、学生训练及历史复核队列均非本轮前置条件。现有数据审计不等于语义清洗或跨人物精度验收。
+- **目录约定**：`vision/` 的主目录仍为 src、scripts、tests、data、analysis、tools、video；运行源码在 `vision/src/vision/`，模型在 `vision/data/models/`。不要重建顶层 keypoints/m1/models，媒体路径保持原样。
+- **素材边界**：551 条活动池与 85 条待审版本分开；新素材进 inbox，新输出绑定清单/SHA，不盲扫覆盖旧清单。旧裁剪样例与 ASR 词库保留。完整核验记录见 `docs/协作/媒体清单修复_20261026.md`。

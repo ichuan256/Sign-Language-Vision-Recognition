@@ -1,0 +1,105 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:19:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_rne_shift" ARG_PragmaIsValid="1" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:51:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_dw_core" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable = xp dim = 3 complete" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:64:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_dw_core" ARG_PragmaIsValid="1" ARG_PragmaOptions="II = 1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:85:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_pw_core" ARG_PragmaIsValid="1" ARG_PragmaOptions="II = 1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:109:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_conv_core" ARG_PragmaIsValid="1" ARG_PragmaOptions="variable = xp dim = 3 complete" ARG_PragmaType="array_partition" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:122:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_conv_core" ARG_PragmaIsValid="1" ARG_PragmaOptions="II = 1" ARG_PragmaType="pipeline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="F:/PLD_new/Sign-Language-Vision-Recognition/project/algo/keypoints/hls_w8a8/build_synth.tcl:13:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="kp_hls_dw3" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=kp_hls_dw3" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:139:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_dw3" ARG_PragmaIsValid="1" ARG_PragmaOptions="m_axi port = in bundle = gmem depth = 2 * 12 * 12 * 48" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:140:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_dw3" ARG_PragmaIsValid="1" ARG_PragmaOptions="m_axi port = w bundle = gmem depth = 3 * 3 * 48" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:141:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_dw3" ARG_PragmaIsValid="1" ARG_PragmaOptions="m_axi port = bias bundle = gmem depth = 48" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:142:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_dw3" ARG_PragmaIsValid="1" ARG_PragmaOptions="m_axi port = M bundle = gmem depth = 48" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:143:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_dw3" ARG_PragmaIsValid="1" ARG_PragmaOptions="m_axi port = out bundle = gmem depth = 2 * 6 * 6 * 48" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:144:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_dw3" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = F bundle = ctrl" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:145:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_dw3" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = return bundle = ctrl" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:152:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_pw3" ARG_PragmaIsValid="1" ARG_PragmaOptions="m_axi port = in bundle = gmem depth = 2 * 6 * 6 * 48" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:153:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_pw3" ARG_PragmaIsValid="1" ARG_PragmaOptions="m_axi port = w bundle = gmem depth = 48 * 64" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:154:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_pw3" ARG_PragmaIsValid="1" ARG_PragmaOptions="m_axi port = bias bundle = gmem depth = 64" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:155:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_pw3" ARG_PragmaIsValid="1" ARG_PragmaOptions="m_axi port = M bundle = gmem depth = 64" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:156:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_pw3" ARG_PragmaIsValid="1" ARG_PragmaOptions="m_axi port = out bundle = gmem depth = 2 * 6 * 6 * 64" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:157:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_pw3" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = F bundle = ctrl" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:158:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_pw3" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = return bundle = ctrl" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:165:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_stem" ARG_PragmaIsValid="1" ARG_PragmaOptions="m_axi port = in bundle = gmem depth = 2 * 96 * 96 * 3" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:166:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_stem" ARG_PragmaIsValid="1" ARG_PragmaOptions="m_axi port = w bundle = gmem depth = 3 * 3 * 3 * 16" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:167:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_stem" ARG_PragmaIsValid="1" ARG_PragmaOptions="m_axi port = bias bundle = gmem depth = 16" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:168:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_stem" ARG_PragmaIsValid="1" ARG_PragmaOptions="m_axi port = M bundle = gmem depth = 16" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:169:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_stem" ARG_PragmaIsValid="1" ARG_PragmaOptions="m_axi port = out bundle = gmem depth = 2 * 48 * 48 * 16" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:170:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_stem" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = F bundle = ctrl" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="kp_hls_kernels.cpp:171:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="kp_hls_stem" ARG_PragmaIsValid="1" ARG_PragmaOptions="s_axilite port = return bundle = ctrl" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="CODE_UNSUPPORTED" msg_id="214-131" msg_severity="INFO" msg_loc="kp_hls_kernels.cpp:70:29" msg_body="Inlining function 'kp_hls_rne_shift(long long, int)' into 'void kp_hls_dw_core&lt;2, 12, 12, 48, 2&gt;(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'">
+        <args Callee="kp_hls_rne_shift(long long, int)" Callee-DebugLoc="File kp_hls_kernels.cpp Line 18 Column 0" Caller="void kp_hls_dw_core&lt;2, 12, 12, 48, 2&gt;(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)" Caller-DebugLoc="File kp_hls_kernels.cpp Line 42 Column 0"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="kp_hls_kernels.cpp:66:38" msg_body="Loop 'VITIS_LOOP_66_9' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_66_9"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="kp_hls_kernels.cpp:67:43" msg_body="Loop 'VITIS_LOOP_67_10' is marked as complete unroll implied by the pipeline pragma">
+        <args LoopName="VITIS_LOOP_67_10"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="kp_hls_kernels.cpp:42:0" msg_body="Unrolling loop 'VITIS_LOOP_66_9' (kp_hls_kernels.cpp:66:38) in function 'kp_hls_dw_core&lt;2, 12, 12, 48, 2&gt;' completely with a factor of 3">
+        <args Factor="3" LoopLoc="kp_hls_kernels.cpp:66:38" LoopName="VITIS_LOOP_66_9"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="kp_hls_kernels.cpp:42:0" msg_body="Unrolling loop 'VITIS_LOOP_67_10' (kp_hls_kernels.cpp:67:43) in function 'kp_hls_dw_core&lt;2, 12, 12, 48, 2&gt;' completely with a factor of 3">
+        <args Factor="3" LoopLoc="kp_hls_kernels.cpp:67:43" LoopName="VITIS_LOOP_67_10"/>
+    </msg>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="kp_hls_kernels.cpp:50:13" msg_body="Applying array_partition to 'xp': Complete partitioning on dimension 3.">
+        <args Dim="3" Mode="Complete" UOName="xp"/>
+    </msg>
+</xilinx:hls_fe_msgs>
+

@@ -1,0 +1,67 @@
+{
+  "status": "pass",
+  "scope": "actual_P0_artifact_integrity_and_board_postconditions",
+  "board_boot_id_unchanged": true,
+  "original_runtime_models_and_scripts_unchanged": true,
+  "firmware_file_hashes_unchanged": true,
+  "loaded_firmware_identity_not_independently_proven": true,
+  "preexisting_button_and_hdmi_processes_unchanged": true,
+  "baseline_frames": 120,
+  "real_landmark_inputs_saved": 100,
+  "optimized_output_equivalence": [
+    {
+      "model": "palm",
+      "real_inputs": 12,
+      "all_original_outputs_exact": true,
+      "profiled_outputs_within_frozen_tolerance": true
+    },
+    {
+      "model": "landmark",
+      "real_inputs": 12,
+      "all_original_outputs_exact": true,
+      "profiled_outputs_within_frozen_tolerance": true
+    }
+  ],
+  "exact_original_constants_verified": 6,
+  "wrong_model_and_existing_output_guards_pass": true,
+  "postprocess": {
+    "cached_palm_outputs": 12,
+    "letterbox_mean_ms": 15.714405249885507,
+    "decode_mean_ms": 762.2920609999255,
+    "candidate_counts": [
+      2016,
+      2016,
+      2016,
+      2016,
+      2016,
+      2016,
+      2016,
+      2016,
+      2016,
+      2016,
+      2016,
+      2016
+    ],
+    "detections": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    "source_geometry_sha256": "9e57ea594fd8b3051c76193d888ef44a1b5b01346c6f1cd93572e0c4a71ba2a3",
+    "caveat": "First 12 cached palm inputs contain 10 zero-detection and 2 single-detection cases; no scene-wide performance claim."
+  },
+  "limitations": [
+    "no PL or transfer performance measured",
+    "no HDMI display verification performed",
+    "no full P1 boundary replay or P2 delegate equivalence yet"
+  ]
+}

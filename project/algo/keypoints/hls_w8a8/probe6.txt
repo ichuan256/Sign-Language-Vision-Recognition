@@ -1,0 +1,7 @@
+application-specific initialization failed: Can't find a usable init.tcl in the following directories: 
+    F:/APP/Xilinx/Vitis/2024.1/lib/lib/tcl8.6 F:/APP/Xilinx/Vitis_HLS/2024.1/bin/unwrapped/lib/tcl8.6 F:/APP/Xilinx/Vitis_HLS/2024.1/bin/lib/tcl8.6 F:/APP/Xilinx/Vitis_HLS/2024.1/bin/unwrapped/library F:/APP/Xilinx/Vitis_HLS/2024.1/bin/library F:/APP/Xilinx/Vitis_HLS/2024.1/bin/tcl8.6.13/library F:/APP/Xilinx/Vitis_HLS/2024.1/tcl8.6.13/library
+
+
+
+This probably means that Tcl wasn't installed properly.
+

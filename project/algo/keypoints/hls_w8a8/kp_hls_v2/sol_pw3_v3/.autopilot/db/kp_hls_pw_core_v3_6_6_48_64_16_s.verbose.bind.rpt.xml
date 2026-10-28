@@ -1,0 +1,50 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'kp_hls_pw_core_v3_6_6_48_64_16_s'" level="0">
+<item name = "Date">Wed Oct 28 07:26:50 2026
+</item>
+<item name = "Version">2024.1 (Build 5069499 on May 21 2024)</item>
+<item name = "Project">kp_hls_v2</item>
+<item name = "Solution">sol_pw3_v3 (Vivado IP Flow Target)</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020-clg400-1</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">10.00 ns, 7.300 ns, 2.70 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">80931, 80931, 0.809 ms, 0.809 ms, 80931, 80931, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_kp_hls_pw_core_v3_6_6_48_64_16_Pipeline_1_fu_345">kp_hls_pw_core_v3_6_6_48_64_16_Pipeline_1, 1739, 1739, 17.390 us, 17.390 us, 1729, 1729, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_kp_hls_pw_core_v3_6_6_48_64_16_Pipeline_2_fu_385">kp_hls_pw_core_v3_6_6_48_64_16_Pipeline_2, 3084, 3084, 30.840 us, 30.840 us, 3073, 3073, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+<column name="grp_kp_hls_pw_core_v3_6_6_48_64_16_Pipeline_VITIS_LOOP_246_3_fu_409">kp_hls_pw_core_v3_6_6_48_64_16_Pipeline_VITIS_LOOP_246_3, 9, 9, 90.000 ns, 90.000 ns, 4, 4, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- VITIS_LOOP_243_1">76104, 76104, 2114, -, -, 36, no</column>
+<column name=" + VITIS_LOOP_244_2">2112, 2112, 33, -, -, 64, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

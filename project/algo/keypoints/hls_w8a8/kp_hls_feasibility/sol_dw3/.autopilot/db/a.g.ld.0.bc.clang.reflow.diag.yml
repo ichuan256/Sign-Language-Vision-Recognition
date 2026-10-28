@@ -1,0 +1,1187 @@
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 70, Column: 29 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          'kp_hls_rne_shift(long long, int)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 18, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 66, Column: 38 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Loop '''
+  - LoopName:        VITIS_LOOP_66_9
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 67, Column: 43 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Loop '''
+  - LoopName:        VITIS_LOOP_67_10
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_66_9
+  - String:          ''' ('
+  - LoopLoc:         'kp_hls_kernels.cpp:66:38'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          'kp_hls_dw_core<2, 12, 12, 48, 2>'
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_67_10
+  - String:          ''' ('
+  - LoopLoc:         'kp_hls_kernels.cpp:67:43'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          'kp_hls_dw_core<2, 12, 12, 48, 2>'
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_67_10
+  - String:          ''' ('
+  - LoopLoc:         'kp_hls_kernels.cpp:67:43'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          'kp_hls_dw_core<2, 12, 12, 48, 2>'
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_67_10
+  - String:          ''' ('
+  - LoopLoc:         'kp_hls_kernels.cpp:67:43'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          'kp_hls_dw_core<2, 12, 12, 48, 2>'
+  - String:          ''' completely with a factor of '
+  - Factor:          '3'
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 50, Column: 13 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          xp
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '3'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 54, Column: 22 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of length '
+  - Length:          '13824'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        in109seq
+  - ArrayName:       in
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_54_1
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:54:22'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 58, Column: 48 }
+  - OrigDirection:   read
+  - OrigID:          for.inc.load.19
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of length '
+  - Length:          '48'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        bias110seq
+  - ArrayName:       bias
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 65, Column: 16 }
+  - OrigDirection:   read
+  - OrigID:          VITIS_LOOP_66_9.load.4
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of length '
+  - Length:          '48'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        w111seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 69, Column: 45 }
+  - OrigDirection:   read
+  - OrigID:          VITIS_LOOP_66_9.load.26
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of length '
+  - Length:          '48'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        scevgepseq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 69, Column: 45 }
+  - OrigDirection:   read
+  - OrigID:          VITIS_LOOP_66_9.load.49
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of length '
+  - Length:          '48'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        scevgep112seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 69, Column: 45 }
+  - OrigDirection:   read
+  - OrigID:          VITIS_LOOP_66_9.load.62
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of length '
+  - Length:          '48'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        scevgep113seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 69, Column: 45 }
+  - OrigDirection:   read
+  - OrigID:          VITIS_LOOP_66_9.load.88
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of length '
+  - Length:          '48'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        scevgep114seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 69, Column: 45 }
+  - OrigDirection:   read
+  - OrigID:          VITIS_LOOP_66_9.load.111
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of length '
+  - Length:          '48'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        scevgep115seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 69, Column: 45 }
+  - OrigDirection:   read
+  - OrigID:          VITIS_LOOP_66_9.load.124
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of length '
+  - Length:          '48'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        scevgep116seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 69, Column: 45 }
+  - OrigDirection:   read
+  - OrigID:          VITIS_LOOP_66_9.load.150
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of length '
+  - Length:          '48'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        scevgep117seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 69, Column: 45 }
+  - OrigDirection:   read
+  - OrigID:          VITIS_LOOP_66_9.load.173
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of length '
+  - Length:          '48'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        scevgep118seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 69, Column: 45 }
+  - OrigDirection:   read
+  - OrigID:          VITIS_LOOP_66_9.load.186
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of length '
+  - Length:          '48'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        M119seq
+  - ArrayName:       M
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 70, Column: 52 }
+  - OrigDirection:   read
+  - OrigID:          VITIS_LOOP_66_9.load.194
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 60, Column: 22 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Sequential '
+  - Direction:       write
+  - String:          ' of length '
+  - Length:          '3456'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        out120seq
+  - ArrayName:       out
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_60_5
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:60:22'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      store
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 71, Column: 60 }
+  - OrigDirection:   write
+  - OrigID:          bb44.store.16
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzePattern
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          Could not analyze pattern
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          bias110seq
+  - ArrayName:       bias
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_62_7
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:62:30'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            CouldNotAnalyzePattern
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          Could not analyze pattern
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          M119seq
+  - ArrayName:       M
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_62_7
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:62:30'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 60, Column: 22 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i8
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 60, Column: 22 }
+  - OrigDirection:   write
+  - OrigID:          out120seq
+  - ArrayName:       out
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i64
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          bias110seq
+  - ArrayName:       bias
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i8
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          w111seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i8
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgepseq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i8
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgep112seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i8
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgep113seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i8
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgep114seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i8
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgep115seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i8
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgep116seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i8
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgep117seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i8
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgep118seq
+  - ArrayName:       w
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i32
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          M119seq
+  - ArrayName:       M
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_63_8
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:63:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 54, Column: 22 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i8
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 54, Column: 22 }
+  - OrigDirection:   read
+  - OrigID:          in109seq
+  - ArrayName:       in
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_57_4
+  - String:          ' '
+  - LoopLoc:         'kp_hls_kernels.cpp:57:34'
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        unknown
+  - String:          '> at '
+  - LoopLoc:         ''
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_57_4
+  - String:          '> at '
+  - LoopLoc:         'kp_hls_kernels.cpp:57:34'
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-supported-subset
+Name:            MismatchPortAndBurstAccessWidth
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 54, Column: 22 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          Inferred burst reverted due to burst accesses data width is different from m_axi port width
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 54, Column: 22 }
+  - OrigDirection:   read
+  - OrigID:          in109seq
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      in
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-supported-subset
+Name:            MismatchPortAndBurstAccessWidth
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 60, Column: 22 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          Inferred burst reverted due to burst accesses data width is different from m_axi port width
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 60, Column: 22 }
+  - OrigDirection:   write
+  - OrigID:          out120seq
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      out
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-supported-subset
+Name:            MismatchPortAndBurstAccessWidth
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          Inferred burst reverted due to burst accesses data width is different from m_axi port width
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          w111seq
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      w
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-supported-subset
+Name:            MismatchPortAndBurstAccessWidth
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          Inferred burst reverted due to burst accesses data width is different from m_axi port width
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgepseq
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      w
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-supported-subset
+Name:            MismatchPortAndBurstAccessWidth
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          Inferred burst reverted due to burst accesses data width is different from m_axi port width
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgep112seq
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      w
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-supported-subset
+Name:            MismatchPortAndBurstAccessWidth
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          Inferred burst reverted due to burst accesses data width is different from m_axi port width
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgep113seq
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      w
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-supported-subset
+Name:            MismatchPortAndBurstAccessWidth
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          Inferred burst reverted due to burst accesses data width is different from m_axi port width
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgep114seq
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      w
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-supported-subset
+Name:            MismatchPortAndBurstAccessWidth
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          Inferred burst reverted due to burst accesses data width is different from m_axi port width
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgep115seq
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      w
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-supported-subset
+Name:            MismatchPortAndBurstAccessWidth
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          Inferred burst reverted due to burst accesses data width is different from m_axi port width
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgep116seq
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      w
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-supported-subset
+Name:            MismatchPortAndBurstAccessWidth
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          Inferred burst reverted due to burst accesses data width is different from m_axi port width
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgep117seq
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      w
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-supported-subset
+Name:            MismatchPortAndBurstAccessWidth
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          Inferred burst reverted due to burst accesses data width is different from m_axi port width
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          scevgep118seq
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      w
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-supported-subset
+Name:            MismatchPortAndBurstAccessWidth
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh
+Args:            
+  - String:          Inferred burst reverted due to burst accesses data width is different from m_axi port width
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          M119seq
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      M
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-inference
+Name:            BurstConflict
+DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+Function:        _Z14kp_hls_dw_coreILi2ELi12ELi12ELi48ELi2EEvPKhPKaPKxPKiiPh.1
+Args:            
+  - String:          'Could not burst due to multiple potential '
+  - Direction:       reads
+  - String:          ' to the same bundle in the same region.'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 63, Column: 34 }
+  - OrigDirection:   read
+  - OrigID:          seq
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      gmem
+  - String:          ' '
+  - Function:        'void kp_hls_dw_core<2, 12, 12, 48, 2>(unsigned char const*, signed char const*, long long const*, int const*, int, unsigned char*) (.1)'
+    DebugLoc:        { File: kp_hls_kernels.cpp, Line: 42, Column: 0 }
+  - String:          ' '
+...

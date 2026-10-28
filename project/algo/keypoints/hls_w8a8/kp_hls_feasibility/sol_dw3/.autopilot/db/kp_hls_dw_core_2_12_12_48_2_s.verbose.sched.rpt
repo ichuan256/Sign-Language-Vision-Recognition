@@ -1,0 +1,176 @@
+
+
+================================================================
+== Vitis HLS Report for 'kp_hls_dw_core_2_12_12_48_2_s'
+================================================================
+* Date:           Wed Oct 28 07:12:26 2026
+
+* Version:        2024.1 (Build 5069499 on May 21 2024)
+* Project:        kp_hls_feasibility
+* Solution:       sol_dw3 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  7.300 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    68149|    68149|  0.681 ms|  0.681 ms|  68149|  68149|       no|
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 6
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%xp = alloca i64 1" [kp_hls_kernels.cpp:50]   --->   Operation 7 'alloca' 'xp' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%xp_1 = alloca i64 1" [kp_hls_kernels.cpp:50]   --->   Operation 8 'alloca' 'xp_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%xp_2 = alloca i64 1" [kp_hls_kernels.cpp:50]   --->   Operation 9 'alloca' 'xp_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%xp_3 = alloca i64 1" [kp_hls_kernels.cpp:50]   --->   Operation 10 'alloca' 'xp_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%xp_4 = alloca i64 1" [kp_hls_kernels.cpp:50]   --->   Operation 11 'alloca' 'xp_4' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%xp_5 = alloca i64 1" [kp_hls_kernels.cpp:50]   --->   Operation 12 'alloca' 'xp_5' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%xp_6 = alloca i64 1" [kp_hls_kernels.cpp:50]   --->   Operation 13 'alloca' 'xp_6' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%xp_7 = alloca i64 1" [kp_hls_kernels.cpp:50]   --->   Operation 14 'alloca' 'xp_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%xp_8 = alloca i64 1" [kp_hls_kernels.cpp:50]   --->   Operation 15 'alloca' 'xp_8' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%xp_9 = alloca i64 1" [kp_hls_kernels.cpp:50]   --->   Operation 16 'alloca' 'xp_9' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%xp_10 = alloca i64 1" [kp_hls_kernels.cpp:50]   --->   Operation 17 'alloca' 'xp_10' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%xp_11 = alloca i64 1" [kp_hls_kernels.cpp:50]   --->   Operation 18 'alloca' 'xp_11' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%xp_12 = alloca i64 1" [kp_hls_kernels.cpp:50]   --->   Operation 19 'alloca' 'xp_12' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [2/2] (0.00ns)   --->   "%call_ln0 = call void @kp_hls_dw_core<2, 12, 12, 48, 2>_Pipeline_1, i1 %xp_12, i8 %xp_11, i8 %xp_10, i8 %xp_9, i8 %xp_8, i8 %xp_7, i8 %xp_6, i8 %xp_5, i8 %xp_4, i8 %xp_3, i8 %xp_2, i8 %xp_1, i8 %xp"   --->   Operation 20 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 2 <SV = 1> <Delay = 0.00>
+ST_2 : Operation 21 [1/2] (0.00ns)   --->   "%call_ln0 = call void @kp_hls_dw_core<2, 12, 12, 48, 2>_Pipeline_1, i1 %xp_12, i8 %xp_11, i8 %xp_10, i8 %xp_9, i8 %xp_8, i8 %xp_7, i8 %xp_6, i8 %xp_5, i8 %xp_4, i8 %xp_3, i8 %xp_2, i8 %xp_1, i8 %xp"   --->   Operation 21 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 22 [1/1] (0.00ns)   --->   "%in_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %in_r"   --->   Operation 22 'read' 'in_read' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 23 [2/2] (0.00ns)   --->   "%call_ln0 = call void @kp_hls_dw_core_Pipeline_VITIS_LOOP_54_1_VITIS_LOOP_55_2_VITIS_LOOP_56_3_VITIS_LO, i8 %xp, i8 %xp_1, i8 %xp_2, i8 %xp_3, i8 %xp_4, i8 %xp_5, i8 %xp_6, i8 %xp_7, i8 %xp_8, i8 %xp_9, i8 %xp_10, i8 %xp_11, i64 %in_read, i64 %gmem"   --->   Operation 23 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 6.97>
+ST_4 : Operation 24 [1/1] (0.00ns)   --->   "%F_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %F"   --->   Operation 24 'read' 'F_read' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 25 [1/2] (0.00ns)   --->   "%call_ln0 = call void @kp_hls_dw_core_Pipeline_VITIS_LOOP_54_1_VITIS_LOOP_55_2_VITIS_LOOP_56_3_VITIS_LO, i8 %xp, i8 %xp_1, i8 %xp_2, i8 %xp_3, i8 %xp_4, i8 %xp_5, i8 %xp_6, i8 %xp_7, i8 %xp_8, i8 %xp_9, i8 %xp_10, i8 %xp_11, i64 %in_read, i64 %gmem"   --->   Operation 25 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_4 : Operation 26 [1/1] (0.00ns)   --->   "%sh_prom_i = zext i32 %F_read"   --->   Operation 26 'zext' 'sh_prom_i' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 27 [1/1] (4.42ns)   --->   "%shl_i = shl i64 1, i64 %sh_prom_i"   --->   Operation 27 'shl' 'shl_i' <Predicate = true> <Delay = 4.42> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 4.42> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 28 [1/1] (2.55ns)   --->   "%sub3_i = add i32 %F_read, i32 4294967295"   --->   Operation 28 'add' 'sub3_i' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 29 [1/1] (0.00ns)   --->   "%sh_prom4_i = zext i32 %sub3_i"   --->   Operation 29 'zext' 'sh_prom4_i' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 30 [1/1] (4.42ns)   --->   "%half = shl i64 1, i64 %sh_prom4_i"   --->   Operation 30 'shl' 'half' <Predicate = true> <Delay = 4.42> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 4.42> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 3.52>
+ST_5 : Operation 31 [1/1] (0.00ns)   --->   "%out_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %out_r"   --->   Operation 31 'read' 'out_read' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 32 [1/1] (0.00ns)   --->   "%M_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %M"   --->   Operation 32 'read' 'M_read' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 33 [1/1] (0.00ns)   --->   "%bias_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %bias"   --->   Operation 33 'read' 'bias_read' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 34 [1/1] (0.00ns)   --->   "%w_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %w"   --->   Operation 34 'read' 'w_read' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 35 [1/1] (3.52ns)   --->   "%sub2_i = add i64 %shl_i, i64 18446744073709551615"   --->   Operation 35 'add' 'sub2_i' <Predicate = true> <Delay = 3.52> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 3.52> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 36 [1/1] (0.00ns)   --->   "%p_cast3 = partselect i61 @_ssdm_op_PartSelect.i61.i64.i32.i32, i64 %bias_read, i32 3, i32 63"   --->   Operation 36 'partselect' 'p_cast3' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 37 [2/2] (0.00ns)   --->   "%call_ln0 = call void @kp_hls_dw_core_Pipeline_VITIS_LOOP_60_5_VITIS_LOOP_61_6_VITIS_LOOP_62_7_VITIS_LO, i8 %xp, i8 %xp_1, i8 %xp_2, i8 %xp_3, i8 %xp_4, i8 %xp_5, i8 %xp_6, i8 %xp_7, i8 %xp_8, i8 %xp_9, i8 %xp_10, i8 %xp_11, i1 %xp_12, i61 %p_cast3, i64 %gmem, i64 %w_read, i64 %M_read, i32 %F_read, i64 %sub2_i, i64 %half, i64 %out_read"   --->   Operation 37 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 6 <SV = 5> <Delay = 0.00>
+ST_6 : Operation 38 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %gmem, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 1728, void @empty_1, void @empty_2, void @empty_0, i32 16, i32 16, i32 16, i32 16, void @empty_0, void @empty_0, i32 4294967295, i32 0, i32 0"   --->   Operation 38 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 39 [1/2] (0.00ns)   --->   "%call_ln0 = call void @kp_hls_dw_core_Pipeline_VITIS_LOOP_60_5_VITIS_LOOP_61_6_VITIS_LOOP_62_7_VITIS_LO, i8 %xp, i8 %xp_1, i8 %xp_2, i8 %xp_3, i8 %xp_4, i8 %xp_5, i8 %xp_6, i8 %xp_7, i8 %xp_8, i8 %xp_9, i8 %xp_10, i8 %xp_11, i1 %xp_12, i61 %p_cast3, i64 %gmem, i64 %w_read, i64 %M_read, i32 %F_read, i64 %sub2_i, i64 %half, i64 %out_read"   --->   Operation 39 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_6 : Operation 40 [1/1] (0.00ns)   --->   "%ret_ln74 = ret" [kp_hls_kernels.cpp:74]   --->   Operation 40 'ret' 'ret_ln74' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10.000ns, clock uncertainty: 2.700ns.
+
+ <State 1>: 0.000ns
+The critical path consists of the following:
+
+ <State 2>: 0.000ns
+The critical path consists of the following:
+
+ <State 3>: 0.000ns
+The critical path consists of the following:
+
+ <State 4>: 6.972ns
+The critical path consists of the following:
+	wire read operation ('F_read') on port 'F' [10]  (0.000 ns)
+	'add' operation 32 bit ('sub3_i') [33]  (2.552 ns)
+	'shl' operation 64 bit ('half') [35]  (4.420 ns)
+
+ <State 5>: 3.520ns
+The critical path consists of the following:
+	'add' operation 64 bit ('sub2_i') [32]  (3.520 ns)
+
+ <State 6>: 0.000ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

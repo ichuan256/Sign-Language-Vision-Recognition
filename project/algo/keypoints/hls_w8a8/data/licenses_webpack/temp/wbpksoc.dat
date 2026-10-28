@@ -1,0 +1,4 @@
+# webpack license for ap_sdsoc feature
+INCREMENT ap_sdsoc xilinxd 2018.12 31-dec-2028 uncounted DD2731BA226A \
+	VENDOR_STRING=Xilinx_Internal_ap_sdsoc_software_Trial_1_2_4_3 \
+	HOSTID=ANY ISSUER="Xilinx Inc" START=1-Sep-2018 TS_OK

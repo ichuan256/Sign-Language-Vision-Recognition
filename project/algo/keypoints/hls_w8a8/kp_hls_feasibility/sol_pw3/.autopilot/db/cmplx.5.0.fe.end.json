@@ -1,0 +1,48 @@
+{
+    "1": {
+        "name": "kp_hls_pw_core<2, 6, 6, 48, 64>_Pipeline_VITIS_LOOP_84_4",
+        "file": "kp_hls_kernels.cpp",
+        "fileloc": "84",
+        "instructions": "1052",
+        "total_instructions": "1052",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1"
+        },
+        "stores": {
+            "L": "2"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "kp_hls_pw_core<2, 6, 6, 48, 64>",
+        "file": "kp_hls_kernels.cpp",
+        "fileloc": "78",
+        "instructions": "636",
+        "total_instructions": "1688",
+        "calls": "1",
+        "basicblocks": "10",
+        "loads": {
+            "L": "2"
+        },
+        "stores": {
+            "L": "4"
+        },
+        "loops": {
+            "L": "1",
+            "N": "2"
+        }
+    },
+    "0": {
+        "name": "kp_hls_pw3",
+        "file": "kp_hls_kernels.cpp",
+        "fileloc": "149",
+        "instructions": "25",
+        "total_instructions": "1713",
+        "calls": "2",
+        "basicblocks": "1"
+    }
+}

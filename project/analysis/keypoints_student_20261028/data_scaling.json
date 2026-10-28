@@ -1,0 +1,98 @@
+{
+  "purpose": "data_scaling_20261028",
+  "owner_decision": "teacher labels accepted as ground truth; independent human annotation line closed",
+  "protocol": "identical training/eval protocol throughout; test=NL09 val=NL10 groups untouched; teacher_agreement PCK@0.05 on test 188 ROIs (canonical)",
+  "milestones": [
+    {
+      "pool": "614 ROI (NL01/08 train)",
+      "epochs": 60,
+      "seed": 20261026,
+      "pck": 0.0888,
+      "nme": 0.1856,
+      "note": "original reviewed run"
+    },
+    {
+      "pool": "614 ROI",
+      "epochs": 60,
+      "seed": 7,
+      "pck": 0.0437,
+      "nme": 0.2087,
+      "note": "no learning beyond mean-shape baseline (5.31%)"
+    },
+    {
+      "pool": "1577 ROI (+NL02/03)",
+      "epochs": 60,
+      "seed": 20261026,
+      "pck": 0.1309,
+      "nme": 0.1603,
+      "best_epoch": 58
+    },
+    {
+      "pool": "1577 ROI (+NL02/03)",
+      "epochs": 60,
+      "seed": 7,
+      "pck": 0.11,
+      "nme": 0.1616,
+      "best_epoch": 59
+    },
+    {
+      "pool": "1577 ROI (+NL02/03)",
+      "epochs": 120,
+      "seed": 20261026,
+      "pck": 0.1448,
+      "nme": 0.1512,
+      "best_epoch": 61
+    },
+    {
+      "pool": "2936 ROI (+BV p02-p07, 352x288 domain)",
+      "epochs": 120,
+      "seed": 20261026,
+      "pck": 0.1577,
+      "nme": 0.1396,
+      "best_epoch": 93
+    },
+    {
+      "pool": "7707 ROI (+BV p01/p08-p22, ALL audited sources mined)",
+      "size": 96,
+      "epochs": 120,
+      "seed": 20261026,
+      "pck": 0.1808,
+      "nme": 0.133,
+      "fingertip_pck": 0.1088,
+      "best_epoch": 114
+    },
+    {
+      "pool": "7707 ROI",
+      "size": 96,
+      "epochs": 120,
+      "seed": 7,
+      "pck": 0.1816,
+      "nme": 0.1322,
+      "fingertip_pck": 0.1077,
+      "best_epoch": 99
+    },
+    {
+      "pool": "7707 ROI",
+      "size": 128,
+      "epochs": 120,
+      "seed": 20261026,
+      "pck": 0.1752,
+      "nme": 0.1288,
+      "fingertip_pck": 0.1123,
+      "best_epoch": 98
+    }
+  ],
+  "mean_shape_baseline_pck": 0.0531,
+  "conclusions": [
+    "data scaling is THE lever: 614->1577 made training learn; full pool (7707, 12.5x) reached 18.1% with seeds agreeing within 0.08pp",
+    "diminishing returns per doubling: +157% data -> +4.2pp; +86% -> +1.3pp; +162% -> +2.3pp; all audited sources now mined",
+    "128 vs 96: NME slightly better, PCK a wash; 96 preferred (PL budget)",
+    "best_epoch 98-114 at cap: longer training may add ~1pp; capacity increase is untested",
+    "gap to 90% gate remains large; further gains need new data sources (recording), capacity scaling, or gate recalibration"
+  ],
+  "datasets": {
+    "hand_teacher_clear_v4": "project/_tmp/hand_teacher_clear_v4 (3516 records, 1577 positive)",
+    "hand_teacher_clear_v5": "project/_tmp/hand_teacher_clear_v5 (5833 records, 2936 positive)",
+    "hand_teacher_clear_v6": "project/_tmp/hand_teacher_clear_v6 (13621 records, 7707 positive)"
+  }
+}
