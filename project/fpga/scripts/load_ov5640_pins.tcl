@@ -11,27 +11,27 @@ set ov5640_pin_map {
     {ov1_reset_n B19}
     {ov1_data[0] W8}
     {ov1_data[1] B20}
-    {ov1_data[2] Y7}
+    {ov1_data[2] U18}
     {ov1_data[3] Y17}
-    {ov1_data[4] Y6}
-    {ov1_data[5] F20}
+    {ov1_data[4] Y19}
+    {ov1_data[5] U19}
     {ov1_data[6] Y16}
     {ov1_data[7] F19}
     {ov1_pclk Y9}
     {ov1_pwdn R16}
-    {ov2_vsync U19}
+    {ov2_vsync F20}
     {ov2_scl V10}
-    {ov2_href U18}
+    {ov2_href Y7}
     {ov2_sda V8}
     {ov2_reset_n U8}
     {ov2_data[0] V7}
     {ov2_data[1] W6}
     {ov2_data[2] W18}
     {ov2_data[3] C20}
-    {ov2_data[4] V6}
-    {ov2_data[5] Y19}
+    {ov2_data[4] Y18}
+    {ov2_data[5] Y6}
     {ov2_data[6] W19}
-    {ov2_data[7] Y18}
+    {ov2_data[7] V6}
     {ov2_pclk U7}
     {ov2_pwdn U17}
 }

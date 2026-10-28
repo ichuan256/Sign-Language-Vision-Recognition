@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "module": "ATK-OV5640 dual camera; backup manual V1.0 / schematic V1.8",
+  "interconnect": "User confirmed approximately 20 cm Dupont jumper wires on 2026-10-27",
+  "launch_edge": "falling",
+  "pclk_period_ns": 11.904762,
+  "period_basis": "Existing 84 MHz design target, not measured board frequency",
+  "evidence": null,
+  "input_delays_ns": null,
+  "output_delays_ns": null,
+  "clock_uncertainty_ns": null,
+  "notes": "DVP min/max need sensor Tco and data-minus-clock interconnect skew. XVCLK delay and nominal wire length are insufficient. SCCB and RESET/PWDN require separate timing models."
+}

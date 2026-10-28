@@ -1,5 +1,14 @@
 # 2026-10-27 最新版摄像头引脚修改记录
 
+P1 针序纠正：模块原理图 1～6 为 NC，30 根信号位于 7～36；旧稿全部相机针号提前两针，35/36 实为 OV2_D7/OV2_PCLK。当前接线表、JSON 和生成器已修正，RPi/Arduino 与 FPGA 封装脚分配不变。历史 before/ 快照及此前验证不证明旧相机针号正确。
+
+本次纠正检查：
+
+- 命令：python -X utf8 -m unittest discover -s project/scripts/ov5640 -p test_pin_constraints.py -v；10 项测试通过。
+- 新增检查覆盖完整 40 针定义、30 根信号与两张完整接线表及 PWDN 补充表的一致性；逐根将相机针号退回旧值，确认均被拒绝。
+- 既有检查覆盖 FPGA 端口/封装脚、PCLK 时钟脚、重复或缺失信号、错误方向/电压/连接器针位，以及 XDC 加载时缺端口或管脚冲突须在写入前失败。
+- generate_pin_constraints.py --check 通过；git diff --check 通过。与 HEAD 对比，30 根信号除 camera_pin 各加 2 外其余字段一致，物理 XDC 和加载器内容未变；未重跑 Vivado、重建或部署固件。
+
 状态：已完成统一JSON和物理XDC落地，取代原建议。旧候选只改四项：
 
 | 相机/信号 | 用户候选 | 本次采用 | RPi物理脚 |

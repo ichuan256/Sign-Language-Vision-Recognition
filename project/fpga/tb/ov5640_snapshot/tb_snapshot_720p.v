@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 module tb_snapshot_720p;
-    reg clk=0,pclk=0,rst=0; reg [2:0] control=0;
+    reg clk=0,pclk=0,rst=0; reg [31:0] control=0;
     reg vs=0,href=0;reg [7:0] data=0; reg ready=1;
     tri1 scl,sda,scl2,sda2;wire reset1,pwdn1,reset2,pwdn2;
     wire [31:0] status,axis_data;wire [3:0] keep;wire av,al;

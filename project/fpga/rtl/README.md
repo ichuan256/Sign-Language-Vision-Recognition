@@ -9,3 +9,8 @@ W6 当年靠 OOC 综合缓存掩盖了此差异，干净重建必须用旧版。
 新系统不接传感器，这些模块在固件中闲置。M0b 重建时将随传感器 SPI/DMA
 与旧 HLS KWS 一并从 BD 剥离，届时本目录大部分文件删除。
 **不要在此目录做新开发**；新 RTL 请建独立目录并更新 BD。
+## OV5640 RTL
+
+- `ov5640_snapshot/` contains the single-camera snapshot top and AXI packetizer.
+- `ov5640_stereo/` contains DVP, SCCB, startup, and sensor configuration blocks reused by the snapshot top.
+- Both directories are registered as active sources in `project/fpga/project/glove/glove.xpr`. The project top remains `system_wrapper`; `system.bd` does not instantiate the camera yet.

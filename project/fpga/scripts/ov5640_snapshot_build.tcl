@@ -5,6 +5,8 @@ set evidence [file normalize [lindex $argv 1]]
 file mkdir $evidence
 set_param general.maxThreads 2
 open_project $xpr
+source [file join [file dirname [info script]] ov5640_snapshot_provenance.tcl]
+snapshot_provenance check [get_property DIRECTORY [current_project]]
 if {[get_property PART [current_project]] ne "xc7z020clg400-1"} {error "Wrong part"}
 foreach r [get_runs *_synth_1] {
     if {[get_property PROGRESS $r] ne "100%"} {reset_run $r}

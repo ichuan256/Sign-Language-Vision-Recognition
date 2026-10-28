@@ -62,6 +62,8 @@ module ov5640_sccb_read_core #(
     localparam [4:0] ST_STOP_END   = 5'd14;
     localparam [4:0] ST_REP_ASSERT = 5'd15;
     localparam [4:0] ST_REP_SETUP  = 5'd16;
+    localparam [4:0] ST_BUS_FREE   = 5'd17;
+    localparam [4:0] ST_BUS_FREE2  = 5'd18;
 
     reg [4:0] state;
     reg [DIV_WIDTH-1:0] divider;
@@ -244,6 +246,12 @@ module ov5640_sccb_read_core #(
 
                     ST_STOP_END: begin
                         sda_pull_low <= 1'b0;
+                        state <= ST_BUS_FREE;
+                    end
+                    // Include bus-free time in busy/done, including read-
+                    // modify-write handoff to the separate write engine.
+                    ST_BUS_FREE: state <= ST_BUS_FREE2;
+                    ST_BUS_FREE2: begin
                         busy <= 1'b0;
                         done <= 1'b1;
                         state <= ST_IDLE;

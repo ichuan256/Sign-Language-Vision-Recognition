@@ -32,6 +32,60 @@ class PinMapTests(unittest.TestCase):
         self.assertEqual(len(commands),30)
         self.assertTrue(all(line.startswith('set_property ') for line in commands))
 
+    def test_camera_p1_matches_schematic_and_rejects_old_offset(self):
+        # Read from the module schematic P1, not the FPGA header numbering.
+        nets = [
+            'OV1_VSYNC', 'OV1_SCL', 'OV1_HREF', 'OV1_SDA', 'OV1_RESET',
+            'OV1_D0', 'OV1_D1', 'OV1_D2', 'OV1_D3',
+            'OV1_D4', 'OV1_D5', 'OV1_D6', 'OV1_D7', 'OV1_PCLK',
+            'OV1_PWDN', 'OV2_PWDN',
+            'OV2_VSYNC', 'OV2_SCL', 'OV2_HREF', 'OV2_SDA', 'OV2_RESET',
+            'OV2_D0', 'OV2_D1', 'OV2_D2', 'OV2_D3',
+            'OV2_D4', 'OV2_D5', 'OV2_D6', 'OV2_D7', 'OV2_PCLK',
+        ]
+        expected = dict(zip(nets, range(7, 37)))
+        actual = {r['camera']+'_'+r['signal']: r['camera_pin']
+                  for r in self.mapping['signals']}
+        self.assertEqual(actual, expected)
+        for index, row in enumerate(self.mapping['signals']):
+            with self.subTest(signal=row['rtl_port']):
+                old = copy.deepcopy(self.mapping)
+                old['signals'][index]['camera_pin'] -= 2
+                with self.assertRaisesRegex(ValueError, 'Incorrect camera P1 pin'):
+                    pins.validate(old)
+
+    def test_document_p1_and_wiring_tables_match_current_map(self):
+        doc = (pins.MAP.parent/'interface_and_pin_map.md').read_text(encoding='utf-8')
+        definition = doc.split('## P1 逐针定义', 1)[1].split('## DVP', 1)[0]
+        actual = {}
+        for line in definition.splitlines():
+            cells = [cell.strip() for cell in line.split('|')]
+            if len(cells) >= 4 and cells[1].isdigit():
+                pin = int(cells[1])
+                self.assertNotIn(pin, actual)
+                actual[pin] = cells[2]
+        expected = {pin: 'NC' for pin in range(1, 7)}
+        expected.update({r['camera_pin']: r['camera']+'_'+r['signal']
+                         for r in self.mapping['signals']})
+        expected.update({37: 'GND', 38: 'VCC3.3', 39: 'GND', 40: 'VCC5'})
+        self.assertEqual(actual, expected)
+        by_net = {r['camera']+'_'+r['signal']: r for r in self.mapping['signals']}
+        count = 0
+        for line in doc.splitlines():
+            cells = [cell.strip() for cell in line.split('|')]
+            net = cells[1].split(' / ')[0] if len(cells) >= 7 else ''
+            if net in by_net:
+                row = by_net[net]
+                self.assertEqual(int(cells[2]), row['camera_pin'])
+                self.assertEqual(cells[5], row['package_pin'])
+                if cells[3] in ('Raspberry Pi', 'Arduino J4'):
+                    self.assertEqual(cells[3], row['board_connector'])
+                    expected_header = (str(row['board_pin']) if cells[3] == 'Raspberry Pi'
+                                       else row['board_label'] + ' / J4-' + str(row['board_pin']))
+                    self.assertEqual(cells[4], expected_header, net)
+                count += 1
+        self.assertEqual(count, 32)  # 30 full wiring rows plus two PWDN rows.
+
     def test_duplicate_pad_missing_signal_wrong_header_and_port(self):
         for mutation in ('duplicate','missing','header','port','direction','camera_pin','voltage'):
             with self.subTest(mutation=mutation):

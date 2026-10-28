@@ -40,16 +40,18 @@ module ov5640_sccb_write_core #(
 
     localparam integer DIV_WIDTH =
         (HALF_PERIOD_CYCLES <= 1) ? 1 : $clog2(HALF_PERIOD_CYCLES);
-    localparam [2:0] ST_IDLE       = 3'd0;
-    localparam [2:0] ST_START      = 3'd1;
-    localparam [2:0] ST_BIT_LOW    = 3'd2;
-    localparam [2:0] ST_BIT_HIGH   = 3'd3;
-    localparam [2:0] ST_ACK_LOW    = 3'd4;
-    localparam [2:0] ST_ACK_HIGH   = 3'd5;
-    localparam [2:0] ST_STOP_RAISE = 3'd6;
-    localparam [2:0] ST_STOP_END   = 3'd7;
+    localparam [3:0] ST_IDLE       = 4'd0;
+    localparam [3:0] ST_START      = 4'd1;
+    localparam [3:0] ST_BIT_LOW    = 4'd2;
+    localparam [3:0] ST_BIT_HIGH   = 4'd3;
+    localparam [3:0] ST_ACK_LOW    = 4'd4;
+    localparam [3:0] ST_ACK_HIGH   = 4'd5;
+    localparam [3:0] ST_STOP_RAISE = 4'd6;
+    localparam [3:0] ST_STOP_END   = 4'd7;
+    localparam [3:0] ST_BUS_FREE   = 4'd8;
+    localparam [3:0] ST_BUS_FREE2  = 4'd9;
 
-    reg [2:0] state;
+    reg [3:0] state;
     reg [DIV_WIDTH-1:0] divider;
     reg scl_pull_low;
     reg sda_pull_low;
@@ -164,6 +166,12 @@ module ov5640_sccb_write_core #(
                     ST_STOP_END: begin
                         // SDA rising while SCL is high completes STOP.
                         sda_pull_low <= 1'b0;
+                        state <= ST_BUS_FREE;
+                    end
+                    // Keep ownership until one full SCL period after STOP.
+                    // At the supported <=400kHz this exceeds tBUF >=1.3us.
+                    ST_BUS_FREE: state <= ST_BUS_FREE2;
+                    ST_BUS_FREE2: begin
                         busy <= 1'b0;
                         done <= 1'b1;
                         state <= ST_IDLE;

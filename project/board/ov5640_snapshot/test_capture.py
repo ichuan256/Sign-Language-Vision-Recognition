@@ -20,6 +20,7 @@ class Fake:
         self.mode, self.now, self.events = mode, 0, []
         self.armed, self.polls, self.beat = False, 0, 0
         self.cr, self.sr, self.resets, self.buffer = 0, 1, 0, None
+        self.control_value = 0
     def clock(self): return self.now
     def sleep(self, n): self.now += n
     def allocate(self, **kwargs):
@@ -29,8 +30,11 @@ class Fake:
         return self.buffer
     def control_write(self, address, value):
         self.events.append(('control', address, value))
-        if address == 0 and value == 5: self.armed = True
+        if address == 0:
+            self.control_value = value
+            if value & 7 == 5: self.armed = True
     def control_read(self, address):
+        if address == 0: return self.control_value
         if self.mode == 'init_error': return 4
         if not self.armed:
             if self.mode == 'no_pclk': return 2
@@ -51,19 +55,36 @@ class Fake:
             elif value == 1: self.sr = 0
     def dma_read(self, address):
         if address == c.CR: return self.cr
-        if address == c.LENGTH: return c.FRAME_BYTES - (4 if self.mode == 'short' else 0)
+        if address == c.LENGTH:
+            loss = {'short': 4, 'bad_loss': 5}.get(self.mode, 0)
+            return c.FRAME_BYTES - (c.FRAME_BYTES * loss // 100)
         if address == c.SR:
             if self.armed and self.sr != 1 and self.mode == 'dma_error': return 0x40
             if self.sr == 1: return 1
             return 0x1002 if self.armed and self.polls > 1 else 0
         return 0
-    def run(self):
+    def run(self, input_polarity=0):
         control = SimpleNamespace(write=self.control_write, read=self.control_read)
         dma = SimpleNamespace(write=self.dma_write, read=self.dma_read)
         return c.capture_frame(control, dma, self.allocate, timeout=.02, init_timeout=.02,
-                               cleanup_timeout=.01, clock=self.clock, sleep=self.sleep)
+                               cleanup_timeout=.01, clock=self.clock, sleep=self.sleep,
+                               input_polarity=input_polarity)
 
 class CaptureTests(unittest.TestCase):
+    def test_polarity_preserved_and_reset_clear(self):
+        f = Fake(); raw, result = f.run(0x200)
+        self.assertEqual(result["input_polarity"], "0x200")
+        writes = [e[2] for e in f.events if e[:2] == ("control", 0)]
+        self.assertEqual(writes, [0, 0x201, 0x203, 0x201, 0x205, 0])
+        self.assertEqual(len(raw), c.FRAME_BYTES)
+        self.assertEqual(c.polarity_for_manifest({"design": {}}), 0)
+        self.assertEqual(c.polarity_for_manifest({"design": {"input_polarity_version": 1}}), 0x200)
+        with self.assertRaises(c.CaptureError):
+            c.polarity_for_manifest({"design": {"input_polarity_version": 2}})
+        f = Fake()
+        with self.assertRaises(c.CaptureError): f.run(0x40)
+        self.assertEqual(f.events, [])
+
     def test_success_order_and_cleanup(self):
         f = Fake(); raw, result = f.run()
         self.assertEqual(len(raw), c.FRAME_BYTES)
@@ -72,13 +93,27 @@ class CaptureTests(unittest.TestCase):
         self.assertTrue(f.buffer.flushed and f.buffer.invalidated and f.buffer.freed)
         self.assertEqual(f.resets, 2)
     def test_capture_failures_reset_before_free(self):
-        for mode in ('timeout', 'short', 'camera_error', 'dma_error', 'stale_done'):
+        for mode in ('timeout', 'bad_loss', 'camera_error', 'dma_error', 'stale_done'):
             with self.subTest(mode=mode):
                 f = Fake(mode)
                 with self.assertRaises(c.CaptureError): f.run()
                 self.assertTrue(f.buffer.freed)
                 self.assertFalse(f.buffer.invalidated)
                 self.assertEqual(f.resets, 2)
+
+    def test_under_five_percent_pixel_loss_is_accepted_as_raw_only(self):
+        f = Fake('short')
+        raw, result = f.run()
+        self.assertEqual(len(raw), f.dma_read(c.LENGTH))
+        self.assertEqual(result['loss_percent'], 4.0)
+        self.assertTrue(result['accepted'])
+        self.assertFalse(result['image_safe'])
+
+    def test_five_percent_pixel_loss_is_rejected(self):
+        f = Fake('bad_loss')
+        with self.assertRaisesRegex(c.CaptureError, 'at or above') as error:
+            f.run()
+        self.assertEqual(error.exception.diagnostics['loss_percent'], 5.0)
     def test_init_or_stopped_pclk_never_allocate(self):
         for mode in ('init_error', 'no_pclk'):
             f = Fake(mode)

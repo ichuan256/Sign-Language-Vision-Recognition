@@ -21,14 +21,21 @@ module ov5640_sccb_register_access #(
     wire read_busy, read_done, write_busy, write_done;
     wire [7:0] core_read_data;
     wire read_scl_low, read_sda_low, write_scl_low, write_sda_low;
-    // Exactly one open-drain pad driver per signal, also released by reset.
-    assign sccb_scl = rst_n && (read_scl_low | write_scl_low) ? 1'b0 : 1'bz;
-    assign sccb_sda = rst_n && (read_sda_low | write_sda_low) ? 1'b0 : 1'bz;
+    // Explicit device buffers survive module-reference OOC synthesis. Inferred
+    // internal tristates were converted to logic (Synth 8-5799), leaving the
+    // integrated pins driven by constant-zero OBUFs. Never drive a high level.
+    wire sda_input;
+    IOBUF u_scl_iobuf (.I(1'b0),
+        .T(!(rst_n && (read_scl_low | write_scl_low))),
+        .O(), .IO(sccb_scl));
+    IOBUF u_sda_iobuf (.I(1'b0),
+        .T(!(rst_n && (read_sda_low | write_sda_low))),
+        .O(sda_input), .IO(sccb_sda));
     ov5640_sccb_read_core #(.DEVICE_ADDR(DEVICE_ADDR),
         .HALF_PERIOD_CYCLES(HALF_PERIOD_CYCLES)) u_read (
         .clk(clk), .rst_n(rst_n), .start(read_start), .reg_addr(address_latched),
         .busy(read_busy), .done(read_done), .read_data(core_read_data),
-        .sccb_sda_in(sccb_sda), .scl_drive_low(read_scl_low), .sda_drive_low(read_sda_low));
+        .sccb_sda_in(sda_input), .scl_drive_low(read_scl_low), .sda_drive_low(read_sda_low));
     ov5640_sccb_write_core #(.DEVICE_ADDR(DEVICE_ADDR),
         .HALF_PERIOD_CYCLES(HALF_PERIOD_CYCLES)) u_write (
         .clk(clk), .rst_n(rst_n), .start(write_start), .reg_addr(address_latched),

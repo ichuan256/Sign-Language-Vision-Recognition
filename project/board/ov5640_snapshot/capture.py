@@ -13,12 +13,17 @@ from pathlib import Path
 
 WIDTH, HEIGHT = 1280, 720
 FRAME_BYTES = WIDTH * HEIGHT * 2
+FRAME_PIXELS = WIDTH * HEIGHT
+DEFAULT_PIXEL_LOSS_THRESHOLD_PERCENT = 5.0
 DMA_BASE, CONTROL_BASE = 0x40400000, 0x41200000
 CR, SR, ADDR, ADDR_MSB, LENGTH = 0x30, 0x34, 0x48, 0x4C, 0x58
 RETAINED_BUFFERS = []
 
 class CaptureError(RuntimeError):
-    pass
+    def __init__(self, message, diagnostics=None):
+        super().__init__(message)
+        self.diagnostics = diagnostics
+
 
 def sha256(path):
     h = hashlib.sha256()
@@ -26,6 +31,37 @@ def sha256(path):
         for block in iter(lambda: f.read(1048576), b''):
             h.update(block)
     return h.hexdigest()
+
+
+def pixel_loss_metrics(received_bytes, expected_bytes=None,
+                       threshold_percent=DEFAULT_PIXEL_LOSS_THRESHOLD_PERCENT):
+    """Measure pixel loss from AXI DMA's completed S2MM byte count."""
+    if isinstance(received_bytes, bool) or not isinstance(received_bytes, int):
+        raise ValueError("received_bytes must be an integer")
+    if expected_bytes is None:
+        expected_bytes = FRAME_BYTES
+    if isinstance(expected_bytes, bool) or not isinstance(expected_bytes, int) or expected_bytes <= 0 or expected_bytes % 2:
+        raise ValueError("expected_bytes must be a positive even integer")
+    if not math.isfinite(threshold_percent) or not 0 <= threshold_percent <= 100:
+        raise ValueError("threshold_percent must be finite and between 0 and 100")
+    expected_pixels = expected_bytes // 2
+    byte_count_valid = 0 <= received_bytes <= expected_bytes and received_bytes % 2 == 0
+    received_pixels = max(0, received_bytes // 2)
+    lost_pixels = max(0, expected_pixels - received_pixels)
+    loss_percent = 100.0 * lost_pixels / expected_pixels
+    accepted = byte_count_valid and loss_percent < threshold_percent
+    if received_bytes < 0:
+        invalid_reason = "negative_byte_count"
+    elif received_bytes > expected_bytes:
+        invalid_reason = "received_more_than_frame_capacity"
+    elif received_bytes % 2:
+        invalid_reason = "incomplete_rgb565_pixel"
+    else:
+        invalid_reason = None
+    return dict(expected_pixels=expected_pixels, received_bytes=received_bytes,
+                received_pixels=received_pixels, lost_pixels=lost_pixels,
+                loss_percent=loss_percent, threshold_percent=float(threshold_percent),
+                accepted=accepted, invalid_reason=invalid_reason)
 
 def verify_manifest(path):
     path = Path(path).resolve()
@@ -38,6 +74,11 @@ def verify_manifest(path):
     for key, value in expected.items():
         if manifest.get('design', {}).get(key) != value:
             raise CaptureError(f'Manifest design.{key}: expected {value!r}')
+    design = manifest.get('design', {})
+    if design.get('control_width') != 10:
+        raise CaptureError('Manifest design.control_width: expected 10')
+    if design.get('pixel_loss_threshold_percent') != DEFAULT_PIXEL_LOSS_THRESHOLD_PERCENT:
+        raise CaptureError('Unsupported pixel-loss threshold')
     files = {}
     for kind in ('bit', 'hwh'):
         item = manifest['files'][kind]
@@ -58,7 +99,7 @@ def verify_manifest(path):
               'C_INCLUDE_S2MM_DRE': '0'}),
               'camera': ('ov5640_snapshot', {'CAMERA': '1', 'FRAME_WIDTH': '1280',
                          'FRAME_HEIGHT': '720', 'SYS_CLK_HZ': '100000000'}),
-              'camera_control': ('axi_gpio', {'C_GPIO_WIDTH': '3', 'C_GPIO2_WIDTH': '32'})}
+              'camera_control': ('axi_gpio', {'C_GPIO_WIDTH': '10', 'C_GPIO2_WIDTH': '32'})}
     for name, (kind, required) in checks.items():
         module = modules.get(name)
         if module is None or module.get('MODTYPE') != kind:
@@ -113,9 +154,20 @@ def quiesce_dma(dma, timeout, clock, sleep):
                timeout, 'DMA reset complete and Halted', clock, sleep)
 
 def capture_frame(control, dma, allocate, timeout=5.0, init_timeout=30.0,
-                  cleanup_timeout=2.0, clock=time.monotonic, sleep=time.sleep):
+                  cleanup_timeout=2.0, clock=time.monotonic, sleep=time.sleep,
+                  input_polarity=0):
+    if input_polarity not in (0, 0x100, 0x200, 0x300):
+        raise CaptureError("Invalid input polarity control bits")
+    if input_polarity:
+        underlying = control
+        class PolarityControl:
+            def write(self, offset, value):
+                underlying.write(offset, value | input_polarity if offset == 0 and value else value)
+            def read(self, offset):
+                return underlying.read(offset)
+        control = PolarityControl()
     buffer, owned = None, False
-    values = {}
+    values = dict(input_polarity=hex(input_polarity))
     try:
         control.write(4, 0)
         control.write(12, 0xFFFFFFFF)
@@ -130,7 +182,8 @@ def capture_frame(control, dma, allocate, timeout=5.0, init_timeout=30.0,
         def initialized():
             status = control.read(8)
             if status & 4:
-                raise CaptureError(f'SCCB initialization error: status=0x{status:08x}')
+                raise CaptureError(f'SCCB initialization error: status=0x{status:08x}',
+                                   dict(camera_status=f"0x{status:08x}"))
             return bool(status & 2) and not (status & 1)
         wait_until(initialized, init_timeout, 'camera initialization', clock, sleep)
         initial = control.read(8)
@@ -155,7 +208,8 @@ def capture_frame(control, dma, allocate, timeout=5.0, init_timeout=30.0,
             status, dma_status = control.read(8), dma.read(SR)
             values.update(camera_status=status, dma_status=dma_status)
             if status & 0x64:
-                raise CaptureError(f'Camera capture error/overflow: status=0x{status:08x}')
+                raise CaptureError(f'Camera capture error/overflow: status=0x{status:08x}',
+                                   dict(camera_status=f"0x{status:08x}"))
             if dma_status & 0x770:
                 raise CaptureError(f'DMA error: DMASR=0x{dma_status:08x}')
             saw_busy |= bool(status & 8)
@@ -163,13 +217,17 @@ def capture_frame(control, dma, allocate, timeout=5.0, init_timeout=30.0,
         wait_until(complete, timeout, 'complete frame and DMA IOC/Idle', clock, sleep)
         actual = dma.read(LENGTH)
         values.update(received_bytes=actual, physical_address=address)
-        if actual != FRAME_BYTES:
-            raise CaptureError(f'Wrong received bytes: {actual}; expected {FRAME_BYTES}')
+        metrics = pixel_loss_metrics(actual)
+        metrics['image_safe'] = actual == FRAME_BYTES
+        values.update(metrics)
+        if not metrics['accepted']:
+            raise CaptureError(f"Pixel loss {metrics['loss_percent']:.6f}% is at or above the "
+                               f"{metrics['threshold_percent']:.3f}% acceptance limit", metrics)
         quiesce_dma(dma, cleanup_timeout, clock, sleep)
         owned = False
         buffer.invalidate()
-        raw = memoryview(buffer).tobytes()
-        if len(raw) != FRAME_BYTES:
+        raw = memoryview(buffer)[:actual].tobytes()
+        if len(raw) != actual:
             raise CaptureError('Buffer byte count mismatch')
         return raw, values
     finally:
@@ -185,7 +243,18 @@ def capture_frame(control, dma, allocate, timeout=5.0, init_timeout=30.0,
                 buffer.freebuffer()
         control.write(0, 0)
 
-def board_capture(files, timeout, init_timeout):
+def polarity_for_manifest(manifest):
+    version = manifest.get("design", {}).get("input_polarity_version", 0)
+    if version == 0:
+        return 0
+    if version == 1:
+        # 0x4740=0x22 on the current sensor table: physical HREF is low
+        # during valid bytes. Confirmed by four-way board capture comparison.
+        return 0x200
+    raise CaptureError("Unsupported input polarity interface version")
+
+
+def board_capture(files, timeout, init_timeout, input_polarity=0):
     from pynq import Overlay, MMIO, Clocks, allocate
     overlay = Overlay(str(files['bit']), download=False)
     verify_overlay(overlay)
@@ -193,7 +262,8 @@ def board_capture(files, timeout, init_timeout):
     if not math.isfinite(frequency) or abs(frequency - 100.0) > 1.0:
         raise CaptureError(f'FCLK0 must already be 100 MHz; current {frequency}. Arrange a cold boot.')
     return capture_frame(MMIO(CONTROL_BASE, 0x10000), MMIO(DMA_BASE, 0x10000),
-                         allocate, timeout=timeout, init_timeout=init_timeout)
+                         allocate, timeout=timeout, init_timeout=init_timeout,
+                         input_polarity=input_polarity)
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
@@ -214,16 +284,25 @@ def main(argv=None):
         if not all(math.isfinite(v) and v > 0 for v in (args.timeout, args.init_timeout)):
             raise CaptureError('Timeouts must be finite positive seconds')
         args.output.mkdir(parents=True, exist_ok=False)
-        raw, values = board_capture(files, args.timeout, args.init_timeout)
+        raw, values = board_capture(files, args.timeout, args.init_timeout,
+                                   input_polarity=polarity_for_manifest(manifest))
         (args.output / 'frame.raw').write_bytes(raw)
-        (args.output / 'frame.png').write_bytes(png_bytes(raw))
+        if values.get('image_safe'):
+            (args.output / 'frame.png').write_bytes(png_bytes(raw))
         values.update(schema_version=1, created_utc=datetime.now(timezone.utc).isoformat(),
                       firmware_manifest=manifest, frame_sha256=hashlib.sha256(raw).hexdigest())
         (args.output / 'capture.json').write_text(json.dumps(values, indent=2), encoding='utf-8')
-        print('Captured: ' + str(args.output / 'frame.png'))
+        if values.get('image_safe'):
+            print('Captured: ' + str(args.output / 'frame.png'))
+        else:
+            print('Accepted partial frame as RAW only: ' + str(args.output / 'frame.raw'))
         return 0
     except (CaptureError, OSError, ValueError, KeyError, ET.ParseError) as exc:
         print(f'ERROR: {exc}', file=sys.stderr)
+        diagnostics = getattr(exc, 'diagnostics', None)
+        if diagnostics is not None:
+            print(json.dumps(diagnostics, indent=2), file=sys.stderr)
+            (args.output / 'initialization_error.json').write_text(json.dumps(dict(error=str(exc), diagnostics=diagnostics), indent=2), encoding='utf-8')
         if RETAINED_BUFFERS:
             print('Keeping process and DMA buffer alive. Power OFF the board before terminating.', file=sys.stderr, flush=True)
             while True:

@@ -1,0 +1,46 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+| Date         : Tue Oct 27 20:16:36 2026
+| Host         : DESKTOP-4VOJJB1 running 64-bit major release  (build 9200)
+| Command      : report_cdc -details -file C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/analysis/ov5640_color_20261027/build_v15_dvp/cdc.rpt
+| Design       : system_wrapper
+| Device       : 7z020-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CDC Report
+
+ID     Severity  Count  Description
+-----  --------  -----  -------------------------------------------------------
+CDC-3  Info         12  1-bit synchronized with ASYNC_REG property
+CDC-9  Info          1  Asynchronous reset synchronized with ASYNC_REG property
+
+Source Clock: ov1_pclk
+Destination Clock: clk_fpga_0
+CDC Type: No Common Primary Clock
+
+Row  ID     Severity  Description                                 Depth  Exception   Source (From)                                                                                                       Destination (To)
+---  -----  --------  ------------------------------------------  -----  ----------  ------------------------------------------------------------------------------------------------------------------  ---------------------------------------------------------------------------------------------------------------------------------
+  1  CDC-3  Info      1-bit synchronized with ASYNC_REG property      2  False Path  system_i/camera/inst/u_packet/busy_reg/C                                                                            system_i/camera/inst/flags_meta_reg[0]/D
+  2  CDC-3  Info      1-bit synchronized with ASYNC_REG property      2  False Path  system_i/camera/inst/u_packet/done_reg/C                                                                            system_i/camera/inst/flags_meta_reg[1]/D
+  3  CDC-3  Info      1-bit synchronized with ASYNC_REG property      2  False Path  system_i/camera/inst/u_packet/error_reg/C                                                                           system_i/camera/inst/flags_meta_reg[2]/D
+  4  CDC-3  Info      1-bit synchronized with ASYNC_REG property      2  False Path  system_i/camera/inst/u_packet/overflow_reg/C                                                                        system_i/camera/inst/flags_meta_reg[3]/D
+  5  CDC-3  Info      1-bit synchronized with ASYNC_REG property      2  False Path  system_i/camera/inst/heartbeat_reg[20]/C                                                                            system_i/camera/inst/flags_meta_reg[4]/D
+  6  CDC-3  Info      1-bit synchronized with ASYNC_REG property      2  False Path  system_i/camera/inst/u_dvp_diagnostic/src_sendd_ff_reg/C                                                            system_i/camera/inst/u_dvp_diagnostic/xpm_cdc_single_src2dest_inst/syncstages_ff_reg[0]/D
+  7  CDC-3  Info      1-bit synchronized with ASYNC_REG property      2  False Path  system_i/camera/inst/u_fifo/gnuram_async_fifo.xpm_fifo_base_inst/xpm_fifo_rst_inst/gen_rst_ic.fifo_wr_rst_ic_reg/C  system_i/camera/inst/u_fifo/gnuram_async_fifo.xpm_fifo_base_inst/xpm_fifo_rst_inst/gen_rst_ic.wrst_rd_inst/syncstages_ff_reg[0]/D
+
+Source Clock: clk_fpga_0
+Destination Clock: ov1_pclk
+CDC Type: No Common Primary Clock
+
+Row  ID     Severity  Description                                              Depth  Exception   Source (From)                                                                                                       Destination (To)
+---  -----  --------  -------------------------------------------------------  -----  ----------  ------------------------------------------------------------------------------------------------------------------  ---------------------------------------------------------------------------------------------------------------------------------
+  1  CDC-3  Info      1-bit synchronized with ASYNC_REG property                   2  False Path  system_i/camera_control/U0/gpio_core_1/Dual.gpio_Data_Out_reg[22]/C                                                 system_i/camera/inst/href_inv_sync_reg[0]/D
+  2  CDC-9  Info      Asynchronous reset synchronized with ASYNC_REG property      2  False Path  system_i/camera/inst/capture_reset_n_reg/C                                                                          system_i/camera/inst/p_reset_reg[0]/CLR
+  3  CDC-3  Info      1-bit synchronized with ASYNC_REG property                   2  False Path  system_i/camera/inst/u_dvp_diagnostic/dest_req_ff_reg/C                                                             system_i/camera/inst/u_dvp_diagnostic/xpm_cdc_single_dest2src_inst/syncstages_ff_reg[0]/D
+  4  CDC-3  Info      1-bit synchronized with ASYNC_REG property                   2  False Path  system_i/camera/inst/u_fifo/gnuram_async_fifo.xpm_fifo_base_inst/xpm_fifo_rst_inst/gen_rst_ic.fifo_rd_rst_ic_reg/C  system_i/camera/inst/u_fifo/gnuram_async_fifo.xpm_fifo_base_inst/xpm_fifo_rst_inst/gen_rst_ic.rrst_wr_inst/syncstages_ff_reg[0]/D
+  5  CDC-3  Info      1-bit synchronized with ASYNC_REG property                   2  False Path  system_i/camera_control/U0/gpio_core_1/Dual.gpio_Data_Out_reg[29]/C                                                 system_i/camera/inst/u_packet/arm_sync_reg[0]/D
+  6  CDC-3  Info      1-bit synchronized with ASYNC_REG property                   2  False Path  system_i/camera_control/U0/gpio_core_1/Dual.gpio_Data_Out_reg[23]/C                                                 system_i/camera/inst/vs_inv_sync_reg[0]/D
+
