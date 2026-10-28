@@ -1,8 +1,10 @@
 # ATK-OV5640 双目模块物理接口核对
 
+2026-10-27 P1 针序纠正：原稿将全部 30 根信号提前了两针。按模块原理图复核，1～6 为 NC，信号位于 7～36，35/36 为 OV2_D7/OV2_PCLK。本文相机 P1 针号、统一 JSON 和生成器校验同步更正；RPi/Arduino 物理脚及 FPGA PACKAGE_PIN 分配不变。历史 before/ 快照保留旧错误，不可用作接线依据。
+
 2026-10-27 更新：Pmod A/B 的外部 SPI 端口、12 根管脚约束及两组 SPI 时序约束已从工程源码移除；内部保留的两路 MISO 接 const_zero。Vivado 2024.1 BD 校验和新 wrapper 生成通过。旧传感器/DMA/KWS 内部链路仍保留，完整 M0b 裁剪未完成。已发布及板上 bit/HWH 未重建或替换，实物引脚须在新固件成对构建、部署并冷启动后才按新接口生效。记录：project/analysis/pmod_spi_release_20261027/README.md。
 
-创建日期：2026-10-26；状态更新：2026-10-27。  
+创建日期：2026-10-26；状态更新：2026-10-27。
 状态：720p30 RGB565 配置与完整冷启动 RTL 保持既有版本；本次将用户最新版引脚安排及四处 PCLK 修正写入统一 JSON，并生成 30 根信号的物理 XDC。OV1/OV2 现跨 RPi 两端分区，旧连续分区方案已取代；PWDN 沿用 Arduino D6/D7。剩余为板级电气/输入时序、整板采集链路及真实相机验收。配置与验证证据见 [完整冷启动记录](startup_sequence.md) 和 [720p30 验证记录](mode_720p30_validation/README.md)。
 
 ## 结论
@@ -17,49 +19,50 @@ ATK-OV5640 双目模块不是 USB 或 MIPI 模块，而是两路独立的 8 位 
 
 以下编号按原理图 P1 的 2×20 排列读取：奇数脚在左列，偶数脚在右列。方向是相对于摄像头模块而言。
 实际插接时仍应以模块 PCB 上的 Pin 1 标记和排线方向为准，不要只凭此表的左右列方向判断插头朝向。
+相机 P1 针号、PYNQ-Z2 RPi/Arduino 排针编号与 FPGA 封装脚是三套编号；须按下文逐信号接线表连接，不可将两个 40 针接头按同号直连。
 
-| P1 脚号 | 网络 | 方向 | 说明 |
-|---:|---|---|---|
-| 1 | NC | — | 原理图标记未连接 |
-| 2 | NC | — | 原理图标记未连接 |
-| 3 | NC | — | 原理图标记未连接 |
-| 4 | NC | — | 原理图标记未连接 |
-| 5 | OV1_VSYNC | 模块 → FPGA | OV1 帧同步输出 |
-| 6 | OV1_SCL | FPGA → 模块 | OV1 SCCB 时钟；原理图上拉至 OV1_VCC2.8 |
-| 7 | OV1_HREF | 模块 → FPGA | OV1 行同步/行有效输出 |
-| 8 | OV1_SDA | 双向 | OV1 SCCB 数据；原理图上拉至 OV1_VCC2.8 |
-| 9 | OV1_RESET | FPGA → 模块 | OV1 复位，低有效 |
-| 10 | OV1_D0 | 模块 → FPGA | OV1 DVP 数据 |
-| 11 | OV1_D1 | 模块 → FPGA | OV1 DVP 数据 |
-| 12 | OV1_D2 | 模块 → FPGA | OV1 DVP 数据 |
-| 13 | OV1_D3 | 模块 → FPGA | OV1 DVP 数据 |
-| 14 | OV1_D4 | 模块 → FPGA | OV1 DVP 数据 |
-| 15 | OV1_D5 | 模块 → FPGA | OV1 DVP 数据 |
-| 16 | OV1_D6 | 模块 → FPGA | OV1 DVP 数据 |
-| 17 | OV1_D7 | 模块 → FPGA | OV1 DVP 数据 |
-| 18 | OV1_PCLK | 模块 → FPGA | OV1 像素时钟输出 |
-| 19 | OV1_PWDN | FPGA → 模块 | OV1 掉电控制，高有效；正常工作应保持低 |
-| 20 | OV2_PWDN | FPGA → 模块 | OV2 掉电控制，高有效；正常工作应保持低 |
-| 21 | OV2_VSYNC | 模块 → FPGA | OV2 帧同步输出 |
-| 22 | OV2_SCL | FPGA → 模块 | OV2 SCCB 时钟；原理图上拉至 OV2_VCC2.8 |
-| 23 | OV2_HREF | 模块 → FPGA | OV2 行同步/行有效输出 |
-| 24 | OV2_SDA | 双向 | OV2 SCCB 数据；原理图上拉至 OV2_VCC2.8 |
-| 25 | OV2_RESET | FPGA → 模块 | OV2 复位，低有效 |
-| 26 | OV2_D0 | 模块 → FPGA | OV2 DVP 数据 |
-| 27 | OV2_D1 | 模块 → FPGA | OV2 DVP 数据 |
-| 28 | OV2_D2 | 模块 → FPGA | OV2 DVP 数据 |
-| 29 | OV2_D3 | 模块 → FPGA | OV2 DVP 数据 |
-| 30 | OV2_D4 | 模块 → FPGA | OV2 DVP 数据 |
-| 31 | OV2_D5 | 模块 → FPGA | OV2 DVP 数据 |
-| 32 | OV2_D6 | 模块 → FPGA | OV2 DVP 数据 |
-| 33 | OV2_D7 | 模块 → FPGA | OV2 DVP 数据 |
-| 34 | OV2_PCLK | 模块 → FPGA | OV2 像素时钟输出 |
-| 35 | NC | — | 原理图未标注信号，按未连接处理 |
-| 36 | NC | — | 原理图未标注信号，按未连接处理 |
-| 37 | GND | — | 模块地 |
-| 38 | VCC3.3 | 外部 → 模块 | 模块实际供电脚，接 3.3 V |
-| 39 | GND | — | 模块地 |
-| 40 | VCC5 | 外部 → 模块 | 手册注明模块没有使用；不要把它当作摄像头供电脚 |
+| P1 脚号 | 网络      | 方向         | 说明                                           |
+| ------: | --------- | ------------ | ---------------------------------------------- |
+|       1 | NC        | —           | 原理图标记未连接                               |
+|       2 | NC        | —           | 原理图标记未连接                               |
+|       3 | NC        | —           | 原理图标记未连接                               |
+|       4 | NC        | —           | 原理图标记未连接                               |
+|       5 | NC        | —           | 原理图标记未连接                               |
+|       6 | NC        | —           | 原理图标记未连接                               |
+|       7 | OV1_VSYNC | 模块 → FPGA | OV1 帧同步输出                                 |
+|       8 | OV1_SCL   | FPGA → 模块 | OV1 SCCB 时钟；原理图上拉至 OV1_VCC2.8         |
+|       9 | OV1_HREF  | 模块 → FPGA | OV1 行同步/行有效输出                          |
+|      10 | OV1_SDA   | 双向         | OV1 SCCB 数据；原理图上拉至 OV1_VCC2.8         |
+|      11 | OV1_RESET | FPGA → 模块 | OV1 复位，低有效                               |
+|      12 | OV1_D0    | 模块 → FPGA | OV1 DVP 数据                                   |
+|      13 | OV1_D1    | 模块 → FPGA | OV1 DVP 数据                                   |
+|      14 | OV1_D2    | 模块 → FPGA | OV1 DVP 数据                                   |
+|      15 | OV1_D3    | 模块 → FPGA | OV1 DVP 数据                                   |
+|      16 | OV1_D4    | 模块 → FPGA | OV1 DVP 数据                                   |
+|      17 | OV1_D5    | 模块 → FPGA | OV1 DVP 数据                                   |
+|      18 | OV1_D6    | 模块 → FPGA | OV1 DVP 数据                                   |
+|      19 | OV1_D7    | 模块 → FPGA | OV1 DVP 数据                                   |
+|      20 | OV1_PCLK  | 模块 → FPGA | OV1 像素时钟输出                               |
+|      21 | OV1_PWDN  | FPGA → 模块 | OV1 掉电控制，高有效；正常工作应保持低         |
+|      22 | OV2_PWDN  | FPGA → 模块 | OV2 掉电控制，高有效；正常工作应保持低         |
+|      23 | OV2_VSYNC | 模块 → FPGA | OV2 帧同步输出                                 |
+|      24 | OV2_SCL   | FPGA → 模块 | OV2 SCCB 时钟；原理图上拉至 OV2_VCC2.8         |
+|      25 | OV2_HREF  | 模块 → FPGA | OV2 行同步/行有效输出                          |
+|      26 | OV2_SDA   | 双向         | OV2 SCCB 数据；原理图上拉至 OV2_VCC2.8         |
+|      27 | OV2_RESET | FPGA → 模块 | OV2 复位，低有效                               |
+|      28 | OV2_D0    | 模块 → FPGA | OV2 DVP 数据                                   |
+|      29 | OV2_D1    | 模块 → FPGA | OV2 DVP 数据                                   |
+|      30 | OV2_D2    | 模块 → FPGA | OV2 DVP 数据                                   |
+|      31 | OV2_D3    | 模块 → FPGA | OV2 DVP 数据                                   |
+|      32 | OV2_D4    | 模块 → FPGA | OV2 DVP 数据                                   |
+|      33 | OV2_D5    | 模块 → FPGA | OV2 DVP 数据                                   |
+|      34 | OV2_D6    | 模块 → FPGA | OV2 DVP 数据                                   |
+|      35 | OV2_D7    | 模块 → FPGA | OV2 DVP 数据                                   |
+|      36 | OV2_PCLK  | 模块 → FPGA | OV2 像素时钟输出                               |
+|      37 | GND       | —           | 模块地                                         |
+|      38 | VCC3.3    | 外部 → 模块 | 模块实际供电脚，接 3.3 V                       |
+|      39 | GND       | —           | 模块地                                         |
+|      40 | VCC5      | 外部 → 模块 | 手册注明模块没有使用；不要把它当作摄像头供电脚 |
 
 ## DVP 与 SCCB 的有效信息
 
@@ -73,16 +76,16 @@ ATK-OV5640 双目模块不是 USB 或 MIPI 模块，而是两路独立的 8 位 
 
 720p30 RGB565 的配置实现及软件/RTL 验证已经完成：27 项配置子表、308 项完整冷启动 ROM、RESET/PWDN 时序、双路芯片 ID/关键寄存器检查和受检查结果控制的 stream-on 均已实现。ROM/JSON 一致性、模式合同与 XSim 回归已有通过记录；真实相机输出和板级电气时序尚待接线后实测。各项状态如下：
 
-| 项目 | 冻结值/状态 | 依据与边界 |
-|---|---|---|
-| 相机数量与接口 | 两路独立 8-bit DVP；每路独立 SCCB、PCLK、VSYNC、HREF、D[7:0] | 模块手册 p.2、p.4；两路相机不能共用 PCLK |
-| 外部输入时钟 | 两路各 24 MHz XCLK，由模块板载晶振提供 | 模块手册 p.4、双目板原理图；传感器内部仍需配置 PLL/分频以得到目标时序 |
-| 目标尺寸与帧率 | **1280×720、标称30fps** | 2026-10-26用户决定；HTS1892/VTS740、SCLK42MHz计算约29.998286fps，尚未实测 |
-| 目标像素格式 | RGB565，8-bit DVP；每像素两字节，低字节先出 | 模块手册 p.6-7；FPGA 合并字节顺序按此目标实现 |
-| VSYNC 有效极性 | **冻结 FPGA 接收契约为高有效**，匹配现有 RTL 默认值；相机位值仍须板上核验 | DVP 指南 p.27 和芯片数据手册将 `0x4740[0]=1` 解释为高有效；Linux 上游 `ov5640_set_power_dvp()` 却明确注明实物该位为 0 时高有效、1 时低有效。不能据资料中的一个位值断言实际极性；HREF 位说明也有差异，详见 `configuration_choices.md` |
-| PCLK 采样边沿 | **FPGA 上升沿采样的配置已实现并通过仿真**；物理输入时序待实测 | 采集器使用 `posedge cam_pclk`。27 项子表对 `0x4740` 的掩码为 `0x20`；完整冷启动入口使用 `DVP_POLARITY_VALUE=0x22`、掩码 `0x2f`，均已实现。实际相机读回和波形测量仍待完成，详见 startup_sequence.md |
-| 720p30 RGB565 初始化表 | **27 项子表、308 项完整 ROM 及一致性/模式合同验证已完成** | 已实现基础 ISP、subsampling/binning、窗口、曝光、防闪烁、ID/所选寄存器读回及受控 stream-on，并通过软件检查与 XSim 验证；PCLK 84MHz 为计算值，真实相机验收待完成，见 mode_720p30_validation/README.md |
-| 双目帧同步 | 未冻结 | 两路同设分辨率和帧率不等同于帧起点同步；需读回/波形测量帧相位，或另行实现传感器同步方案 |
+| 项目                   | 冻结值/状态                                                                     | 依据与边界                                                                                                                                                                                                                                 |
+| ---------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 相机数量与接口         | 两路独立 8-bit DVP；每路独立 SCCB、PCLK、VSYNC、HREF、D[7:0]                    | 模块手册 p.2、p.4；两路相机不能共用 PCLK                                                                                                                                                                                                   |
+| 外部输入时钟           | 两路各 24 MHz XCLK，由模块板载晶振提供                                          | 模块手册 p.4、双目板原理图；传感器内部仍需配置 PLL/分频以得到目标时序                                                                                                                                                                      |
+| 目标尺寸与帧率         | **1280×720、标称30fps**                                                  | 2026-10-26用户决定；HTS1892/VTS740、SCLK42MHz计算约29.998286fps，尚未实测                                                                                                                                                                  |
+| 目标像素格式           | RGB565，8-bit DVP；每像素两字节，低字节先出                                     | 模块手册 p.6-7；FPGA 合并字节顺序按此目标实现                                                                                                                                                                                              |
+| VSYNC 有效极性         | **冻结 FPGA 接收契约为高有效**，匹配现有 RTL 默认值；相机位值仍须板上核验 | DVP 指南 p.27 和芯片数据手册将 `0x4740[0]=1` 解释为高有效；Linux 上游 `ov5640_set_power_dvp()` 却明确注明实物该位为 0 时高有效、1 时低有效。不能据资料中的一个位值断言实际极性；HREF 位说明也有差异，详见 `configuration_choices.md` |
+| PCLK 采样边沿          | **FPGA 上升沿采样的配置已实现并通过仿真**；物理输入时序待实测             | 采集器使用 `posedge cam_pclk`。27 项子表对 `0x4740` 的掩码为 `0x20`；完整冷启动入口使用 `DVP_POLARITY_VALUE=0x22`、掩码 `0x2f`，均已实现。实际相机读回和波形测量仍待完成，详见 startup_sequence.md                               |
+| 720p30 RGB565 初始化表 | **27 项子表、308 项完整 ROM 及一致性/模式合同验证已完成**                 | 已实现基础 ISP、subsampling/binning、窗口、曝光、防闪烁、ID/所选寄存器读回及受控 stream-on，并通过软件检查与 XSim 验证；PCLK 84MHz 为计算值，真实相机验收待完成，见 mode_720p30_validation/README.md                                       |
+| 双目帧同步             | 未冻结                                                                          | 两路同设分辨率和帧率不等同于帧起点同步；需读回/波形测量帧相位，或另行实现传感器同步方案                                                                                                                                                    |
 
 参考资料核验记录：`2，OV5640参考资料/OV5640_自动对焦照相模组应用指南(DVP_接口)__R2.13C.pdf` p.14-15 的初始化示例将 `0x4300=0x30`、`0x501f=0x00` 配成 YUV422，不是 RGB565；p.19-24 的模式示例包含 VGA30、854x48030、720p15/30，未给出 1080p30 完整表。p.27 定义 `0x4740` 的 VSYNC、HREF 与 PCLK 极性位。`OV5640_CSP3_DS_2.01_Ruisipusheng.pdf` p.25、p.35-36 描述格式/VSYNC/极性寄存器，但没有给出可直接用于本双目模块的完整目标配置。正点原子模块手册 p.2 的 1080p30、RGB565 是规格能力，不是寄存器初始化序列。
 
@@ -100,10 +103,10 @@ ATK-OV5640 双目模块不是 USB 或 MIPI 模块，而是两路独立的 8 位 
 
 每路相机有 15 根信号，两路共 30 根。两路 PWDN 分到 Arduino D6/D7，其余 28 根已按下节最新版接线逐脚分配；电源另接并与 PYNQ-Z2 共地。分配是待整板集成/实测的接线方案，尚未成为已部署约束。
 
-| 摄像头信号 | 摄像头 P1 脚 | PYNQ-Z2 数字口 | Arduino 排针位置 | FPGA 封装脚 | 候选 IO 标准 |
-|---|---:|---|---|---|---|
-| OV1_PWDN / ov1_pwdn | 19 | D6 / AR6 | J4 第 7 脚 | R16 | LVCMOS33 |
-| OV2_PWDN / ov2_pwdn | 20 | D7 / AR7 | J4 第 8 脚 | U17 | LVCMOS33 |
+| 摄像头信号          | 摄像头 P1 脚 | PYNQ-Z2 数字口 | Arduino 排针位置 | FPGA 封装脚 | 候选 IO 标准 |
+| ------------------- | -----------: | -------------- | ---------------- | ----------- | ------------ |
+| OV1_PWDN / ov1_pwdn |           21 | D6 / AR6       | J4 第 7 脚       | R16         | LVCMOS33     |
+| OV2_PWDN / ov2_pwdn |           22 | D7 / AR7       | J4 第 8 脚       | U17         | LVCMOS33     |
 
 依据：本地 TUL PYNQ-Z2 Reference Manual v1.0 第 17 节表 17（PDF 第 26 页），以及 backup/pynq-z2/PYNQ-Z2 v1.0.xdc 第 100–101 行。两脚为普通 PL 数字 IO，适合慢速 PWDN 控制；PWDN 高有效，正常工作拉低，两路保持独立。
 
@@ -119,45 +122,47 @@ ATK-OV5640 双目模块不是 USB 或 MIPI 模块，而是两路独立的 8 位 
 
 ### 左摄像头 OV1
 
-| 相机信号 | 摄像头 P1 脚 | PYNQ-Z2 接头 | 接头物理脚/丝印 | FPGA 封装脚 |
-|---|---:|---|---|---|
-| OV1_VSYNC | 5 | Raspberry Pi | 23 | W10 |
-| OV1_SCL | 6 | Raspberry Pi | 37 | W9 |
-| OV1_HREF | 7 | Raspberry Pi | 38 | A20 |
-| OV1_SDA | 8 | Raspberry Pi | 35 | Y8 |
-| OV1_RESET | 9 | Raspberry Pi | 36 | B19 |
-| OV1_D0 | 10 | Raspberry Pi | 33 | W8 |
-| OV1_D1 | 11 | Raspberry Pi | 32 | B20 |
-| OV1_D2 | 12 | Raspberry Pi | 18 | Y7 |
-| OV1_D3 | 13 | Raspberry Pi | 28 | Y17 |
-| OV1_D4 | 14 | Raspberry Pi | 10 | Y6 |
-| OV1_D5 | 15 | Raspberry Pi | 22 | F20 |
-| OV1_D6 | 16 | Raspberry Pi | 27 | Y16 |
-| OV1_D7 | 17 | Raspberry Pi | 24 | F19 |
-| OV1_PCLK | 18 | Raspberry Pi | 40 | Y9 |
-| OV1_PWDN | 19 | Arduino J4 | D6 / J4-7 | R16 |
+| 相机信号  | 摄像头 P1 脚 | PYNQ-Z2 接头 | 接头物理脚/丝印 | FPGA 封装脚 |
+| --------- | -----------: | ------------ | --------------- | ----------- |
+| OV1_VSYNC |            7 | Raspberry Pi | 23              | W10         |
+| OV1_SCL   |            8 | Raspberry Pi | 37              | W9          |
+| OV1_HREF  |            9 | Raspberry Pi | 38              | A20         |
+| OV1_SDA   |           10 | Raspberry Pi | 35              | Y8          |
+| OV1_RESET |           11 | Raspberry Pi | 36              | B19         |
+| OV1_D0    |           12 | Raspberry Pi | 33              | W8          |
+| OV1_D1    |           13 | Raspberry Pi | 32              | B20         |
+| OV1_D2    |           14 | Raspberry Pi | 31              | U18         |
+| OV1_D3    |           15 | Raspberry Pi | 28              | Y17         |
+| OV1_D4    |           16 | Raspberry Pi | 29              | Y19         |
+| OV1_D5    |           17 | Raspberry Pi | 26              | U19         |
+| OV1_D6    |           18 | Raspberry Pi | 27              | Y16         |
+| OV1_D7    |           19 | Raspberry Pi | 24              | F19         |
+| OV1_PCLK  |           20 | Raspberry Pi | 40              | Y9          |
+| OV1_PWDN  |           21 | Arduino J4   | D6 / J4-7       | R16         |
 
 ### 右摄像头 OV2
 
-| 相机信号 | 摄像头 P1 脚 | PYNQ-Z2 接头 | 接头物理脚/丝印 | FPGA 封装脚 |
-|---|---:|---|---|---|
-| OV2_VSYNC | 21 | Raspberry Pi | 26 | U19 |
-| OV2_SCL | 22 | Raspberry Pi | 21 | V10 |
-| OV2_HREF | 23 | Raspberry Pi | 31 | U18 |
-| OV2_SDA | 24 | Raspberry Pi | 19 | V8 |
-| OV2_RESET | 25 | Raspberry Pi | 15 | U8 |
-| OV2_D0 | 26 | Raspberry Pi | 13 | V7 |
-| OV2_D1 | 27 | Raspberry Pi | 16 | W6 |
-| OV2_D2 | 28 | Raspberry Pi | 3 | W18 |
-| OV2_D3 | 29 | Raspberry Pi | 12 | C20 |
-| OV2_D4 | 30 | Raspberry Pi | 8 | V6 |
-| OV2_D5 | 31 | Raspberry Pi | 29 | Y19 |
-| OV2_D6 | 32 | Raspberry Pi | 5 | W19 |
-| OV2_D7 | 33 | Raspberry Pi | 7 | Y18 |
-| OV2_PCLK | 34 | Raspberry Pi | 11 | U7 |
-| OV2_PWDN | 20 | Arduino J4 | D7 / J4-8 | U17 |
+| 相机信号  | 摄像头 P1 脚 | PYNQ-Z2 接头 | 接头物理脚/丝印 | FPGA 封装脚 |
+| --------- | -----------: | ------------ | --------------- | ----------- |
+| OV2_VSYNC |           23 | Raspberry Pi | 22              | F20         |
+| OV2_SCL   |           24 | Raspberry Pi | 21              | V10         |
+| OV2_HREF  |           25 | Raspberry Pi | 18              | Y7          |
+| OV2_SDA   |           26 | Raspberry Pi | 19              | V8          |
+| OV2_RESET |           27 | Raspberry Pi | 15              | U8          |
+| OV2_D0    |           28 | Raspberry Pi | 13              | V7          |
+| OV2_D1    |           29 | Raspberry Pi | 16              | W6          |
+| OV2_D2    |           30 | Raspberry Pi | 3               | W18         |
+| OV2_D3    |           31 | Raspberry Pi | 12              | C20         |
+| OV2_D4    |           32 | Raspberry Pi | 7               | Y18         |
+| OV2_D5    |           33 | Raspberry Pi | 10              | Y6          |
+| OV2_D6    |           34 | Raspberry Pi | 5               | W19         |
+| OV2_D7    |           35 | Raspberry Pi | 8               | V6          |
+| OV2_PCLK  |           36 | Raspberry Pi | 11              | U7          |
+| OV2_PWDN  |           22 | Arduino J4   | D7 / J4-8       | U17         |
 
 ### 约束与验证边界
+
+> 2026-10-27 接线更新：本表已按用户确认的物理接线修正 FPGA 封装脚，OV2_VSYNC 使用 RPi 物理 22 脚（F20）。机读 JSON、生成 XDC 及已构建固件尚未同步本次接线变更；下方既有构建验证记录不代表本次新接线已验收。
 
 - [physical_pin_map_20261027.json](physical_pin_map_20261027.json) 为唯一机读映射；[物理XDC](../../fpga/xdc/ov5640_stereo_pins.xdc) 由生成器派生。30 根信号无重复，28 根 RPi IO 加 2 根 Arduino PWDN，均不占电源/地针。
 - 生成器支持 --check 检查JSON/XDC一致。配套load_ov5640_pins.tcl在加载XDC前检查全部端口及管脚冲突，避免误加载进没有相机端口的W6。
@@ -183,4 +188,3 @@ ATK-OV5640 双目模块不是 USB 或 MIPI 模块，而是两路独立的 8 位 
 
 - [ATK-OV5640 双目摄像头模块用户手册](../../../backup/【正点原子】OV5640双目摄像头模块/【正点原子】OV5640双目摄像头模块资料/ATK-OV5640双目摄像头模块用户手册_V1.0.pdf)：第 3-8 页，电气参数、P1 信号表、SCCB/DVP 说明和时序。
 - [ATK_Dual_OV5640_V1.8 原理图](../../../backup/【正点原子】OV5640双目摄像头模块/【正点原子】OV5640双目摄像头模块资料/1，ATK-OV5640双目摄像头模块原理图/ATK_Dual_OV5640_V1.8.pdf)：第 1 页，P1 逐针网络、OV1/OV2 上拉、电源和板载 24 MHz 晶振/LDO。
-

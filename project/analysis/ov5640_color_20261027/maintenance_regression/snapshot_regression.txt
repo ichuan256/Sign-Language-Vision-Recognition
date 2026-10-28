@@ -1,0 +1,4 @@
+PASS tb_ov5640_sccb_register_access
+PASS tb_snapshot_packet
+PASS tb_snapshot_system
+PASS tb_snapshot_720p
