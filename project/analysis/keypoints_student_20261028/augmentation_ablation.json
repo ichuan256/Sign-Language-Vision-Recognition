@@ -1,0 +1,48 @@
+{
+  "purpose": "augmentation_ablation_20261028",
+  "protocol": "identical to reviewed_training 20261027: 614 ROIs, splits 320/106/188, seed/learning/BN/patience matched, 96 input, test split canonical ROI, teacher_agreement PCK@0.05 (point-pooled, bbox-diagonal normalized)",
+  "runs": {
+    "A_jitter_s20261026": {
+      "pck": 0.0888,
+      "nme": 0.1856,
+      "fingertip_pck": 0.0458,
+      "best_epoch": 45,
+      "note": "previous reviewed run, old script revision"
+    },
+    "B_nojitter_s20261026": {
+      "pck": 0.0443,
+      "nme": 0.2074,
+      "fingertip_pck": 0.0252,
+      "best_epoch": 1
+    },
+    "C_jitter_s7": {
+      "pck": 0.0437,
+      "nme": 0.2087,
+      "fingertip_pck": 0.0389,
+      "best_epoch": 2
+    },
+    "D_nojitter_s7": {
+      "pck": 0.0526,
+      "nme": 0.2162,
+      "fingertip_pck": 0.0321,
+      "best_epoch": 1
+    }
+  },
+  "mean_shape_baseline": {
+    "pck": 0.0531,
+    "nme": 0.1999,
+    "note": "predicting the training-set mean shape; ZERO learning"
+  },
+  "conclusions": [
+    "trained models do NOT beat the zero-learning mean-shape baseline (4.4-5.3% vs 5.3%); only seed-specific run A exceeds it slightly",
+    "best_epoch = 1-2 in all new runs: after approximating the mean shape, training only memorizes (consistent with overfit6)",
+    "augmentation on/off makes no significant difference: augmentation is NOT the bottleneck",
+    "seed variance (8.9% vs 4.4% same config) exceeds ablation deltas; single-seed conclusions are unreliable",
+    "problem is repositioned: not a training-strategy issue; next levers are teacher-quality ceiling check, distillation from a stronger teacher, data scale, or gate recalibration"
+  ],
+  "evidence_dirs": [
+    "project/_tmp/hand_student_ablate_nojit_s20261026",
+    "project/_tmp/hand_student_ablate_jit_s7",
+    "project/_tmp/hand_student_ablate_nojit_s7"
+  ]
+}

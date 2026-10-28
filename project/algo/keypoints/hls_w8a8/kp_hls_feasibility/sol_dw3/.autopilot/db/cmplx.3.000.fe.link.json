@@ -1,0 +1,35 @@
+{
+  "0": {
+    "basicblocks": 1,
+    "calls": "1",
+    "file": "kp_hls_kernels.cpp",
+    "fileloc": 136,
+    "instructions": 9,
+    "name": "kp_hls_dw3",
+    "total_instructions": 225
+  },
+  "1": {
+    "basicblocks": 67,
+    "calls": "2",
+    "file": "kp_hls_kernels.cpp",
+    "fileloc": 40,
+    "instructions": 175,
+    "loads": {
+      "L": 5
+    },
+    "name": "kp_hls_dw_core<2, 12, 12, 48, 2>",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 216
+  },
+  "2": {
+    "basicblocks": 11,
+    "calls": "",
+    "file": "kp_hls_kernels.cpp",
+    "fileloc": 17,
+    "instructions": 41,
+    "name": "kp_hls_rne_shift",
+    "total_instructions": 41
+  }
+}

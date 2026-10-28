@@ -1,15 +1,14 @@
 # FPGA 与板端模块
 
-- [OV5640 → HDMI 720p](board/ov5640_snapshot/HDMI_PREVIEW.md)：相机采集与 HDMI 的本地固件/预览软件已构建，内部时序和配对校验通过；2026-10-28 本轮板卡未开机，实际显示待验收。[验证记录](analysis/ov5640_hdmi_20261028/README.md)。
+- [当前方案：PS 老师网络的 PL 局部加速](../docs/方案/04_老师模型PS_PL局部迁移.md)
+- [PS full 老师运行入口](board/teacher_hands/README.md)、[模型图与候选证据](analysis/teacher_partition_20261028/README.md)
+- [OV5640 → HDMI 720p 本地候选](board/ov5640_snapshot/HDMI_PREVIEW.md)：内部时序和配对校验通过；本轮板卡未开机，实际显示待验收。[验证记录](analysis/ov5640_hdmi_20261028/README.md)
+- [开发工具入口](scripts/keypoints/README.md)
+- [历史 lite 整网 PL 实测](analysis/keypoints_pl_20261026/stream_wide.md)：不是 full 老师局部加速结果。
+- [历史 R3 分类器](analysis/r3/README.md)、[移植验收](M0_移植清单.md)、[W6 固件](board/w6/README.md)
 
-- [单手关键点 PL 实施](analysis/keypoints_pl_20261025/single_hand_stage1.md)：用户已确认单手先行；模型转换与 MAC 核 C/RTL 验证已完成，完整关键点网络未上板。
-- [R3 当前状态](analysis/r3/README.md)：量化训练、CSim 和 HLS 综合证据。
-- [R3 复跑脚本](scripts/r3/README.md)
-- [移植清单](M0_移植清单.md)、[已发布固件](board/w6/README.md)
+`fpga/`、`algo/`、`board/` 保留硬件布局；原工程为 `fpga/project/glove/glove.xpr`。
+新候选使用隔离工程、独立寄存器映射及发布清单，不修改冻结 RTL。
+`_tmp/` 放运行日志与生成工程，`_cache/` 放本地工具缓存，二者不入库。
 
-`fpga/`、`algo/`、`board/` 保留原硬件工程的内部布局；工程入口为
-`fpga/project/glove/glove.xpr`。`board_validation/` 保留板端验收证据。
-`_tmp/` 汇总运行日志、训练缓存及生成的 HLS 工程；`_cache/` 放本地工具缓存，二者不入库。
-
-此次目录迁移只做路径与静态检查，没有重新综合、实现、下载固件或操作板卡。
-旧 Vivado/HLS 生成缓存仍可能带有历史绝对路径，不能视作迁移后已验收构建。
+本轮不重新训练学生或推进其 HLS。尚未建立新 delegate/浮点子图核，也未构建或部署新的局部加速固件。

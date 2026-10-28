@@ -1,0 +1,237 @@
+{
+  "status": "static_partition_frozen_not_runtime_or_hardware_validated",
+  "source_model_sha256": "11c272b891e1a99ab034208e23937a8008388cf11ed2a9d776ed3d01d0ba00e3",
+  "source_model": "project/board/teacher_hands/hand_landmark_full.tflite",
+  "selected_nodes": [
+    {
+      "node": 87,
+      "op": "CONV_2D",
+      "inputs": [
+        134,
+        236,
+        189
+      ],
+      "outputs": [
+        135
+      ],
+      "options": {
+        "activation": 3,
+        "padding": 0,
+        "stride_h": 1,
+        "stride_w": 1,
+        "dilation_h": 1,
+        "dilation_w": 1
+      }
+    },
+    {
+      "node": 90,
+      "op": "DEPTHWISE_CONV_2D",
+      "inputs": [
+        135,
+        171,
+        196
+      ],
+      "outputs": [
+        136
+      ],
+      "options": {
+        "activation": 3,
+        "padding": 0,
+        "stride_h": 1,
+        "stride_w": 1,
+        "dilation_h": 1,
+        "dilation_w": 1,
+        "depth_multiplier": 1
+      }
+    },
+    {
+      "node": 93,
+      "op": "CONV_2D",
+      "inputs": [
+        136,
+        261,
+        200
+      ],
+      "outputs": [
+        137
+      ],
+      "options": {
+        "activation": 0,
+        "padding": 0,
+        "stride_h": 1,
+        "stride_w": 1,
+        "dilation_h": 1,
+        "dilation_w": 1
+      }
+    },
+    {
+      "node": 94,
+      "op": "ADD",
+      "inputs": [
+        137,
+        134
+      ],
+      "outputs": [
+        138
+      ],
+      "options": {
+        "activation": 0
+      }
+    }
+  ],
+  "dynamic_input": {
+    "tensor": 134,
+    "shape": [
+      1,
+      14,
+      14,
+      112
+    ],
+    "dtype": "FLOAT32",
+    "bytes": 87808
+  },
+  "dynamic_output": {
+    "tensor": 138,
+    "shape": [
+      1,
+      14,
+      14,
+      112
+    ],
+    "dtype": "FLOAT32",
+    "bytes": 87808
+  },
+  "external_consumers": {
+    "135": [
+      90
+    ],
+    "136": [
+      93
+    ],
+    "137": [
+      94
+    ],
+    "138": [
+      97,
+      104
+    ]
+  },
+  "constants": [
+    {
+      "tensor": 171,
+      "source_tensor": 91,
+      "dequantize_node": 88,
+      "source_buffer": 92,
+      "shape": [
+        1,
+        5,
+        5,
+        672
+      ],
+      "source_dtype": "FLOAT16",
+      "dtype": "FLOAT32",
+      "raw_fp16_sha256": "502f0815304fe5d74780cacd82f8c76568a1997c162e8f91de7255cfdcbc7895",
+      "fp32_bytes": 67200,
+      "fp32_sha256": "68724d31fc61ca5ee3706345c4565705208c63191d9d0796ce6bfa198cd79e7f",
+      "file": "tensor_171.npy",
+      "file_sha256": "24d633480f0e472a4a46c469cb73f9cd6e68c2c7d2259c39627290a67cca5650"
+    },
+    {
+      "tensor": 189,
+      "source_tensor": 19,
+      "dequantize_node": 85,
+      "source_buffer": 20,
+      "shape": [
+        672
+      ],
+      "source_dtype": "FLOAT16",
+      "dtype": "FLOAT32",
+      "raw_fp16_sha256": "b9d5b3b7d5f2501d8741d697e3252982e9947fbd0a0229d82bd7481f97e7e310",
+      "fp32_bytes": 2688,
+      "fp32_sha256": "1e61e9d2f1629ec24bad36d0e10502b9f24faab307c81d1433fff2027e0428ee",
+      "file": "tensor_189.npy",
+      "file_sha256": "3db5a48cd157c8c003482d996375f30351aa4c7fec3aa154536d80cae6a5c4ea"
+    },
+    {
+      "tensor": 196,
+      "source_tensor": 20,
+      "dequantize_node": 89,
+      "source_buffer": 21,
+      "shape": [
+        672
+      ],
+      "source_dtype": "FLOAT16",
+      "dtype": "FLOAT32",
+      "raw_fp16_sha256": "c1f77bb0128f9b6ad1cab65ec5350d040603e12b48bf1b73b0821204d6ce371e",
+      "fp32_bytes": 2688,
+      "fp32_sha256": "4d98046ecd70028a2913c942f0a66c83f7a2fb4ad4797241bfa255dd6e021ab8",
+      "file": "tensor_196.npy",
+      "file_sha256": "47c23794f8af540a84fd0946a6c2c32377a488f6ae2e912f033824f09bcbf8b9"
+    },
+    {
+      "tensor": 200,
+      "source_tensor": 92,
+      "dequantize_node": 91,
+      "source_buffer": 93,
+      "shape": [
+        112
+      ],
+      "source_dtype": "FLOAT16",
+      "dtype": "FLOAT32",
+      "raw_fp16_sha256": "ac640db46abecdf5c25eaea1064782854d4a46647fb43bfabfc15de40eeca806",
+      "fp32_bytes": 448,
+      "fp32_sha256": "0969f7de34cfa4fe65a8a3816ac894abb72b4e650c232b4998975d50f6bd4978",
+      "file": "tensor_200.npy",
+      "file_sha256": "a3f4ec9977ba814e07d24ef3a52faf95163773bfe27a4c362dcce976dd88d394"
+    },
+    {
+      "tensor": 236,
+      "source_tensor": 60,
+      "dequantize_node": 86,
+      "source_buffer": 61,
+      "shape": [
+        672,
+        1,
+        1,
+        112
+      ],
+      "source_dtype": "FLOAT16",
+      "dtype": "FLOAT32",
+      "raw_fp16_sha256": "f9d346fb70db0f61e45284253d2b46c72e1725c1d0f07bd56b8c897e2c8bb5fe",
+      "fp32_bytes": 301056,
+      "fp32_sha256": "ddd30de7c83a469bca142086f60543656a86376f893d6299fab5ed2ee69cfb6c",
+      "file": "tensor_236.npy",
+      "file_sha256": "786275ce25422df5c1424cc719603456ae8a0eedcf5536e8cd14c366898c8e69"
+    },
+    {
+      "tensor": 261,
+      "source_tensor": 61,
+      "dequantize_node": 92,
+      "source_buffer": 62,
+      "shape": [
+        112,
+        1,
+        1,
+        672
+      ],
+      "source_dtype": "FLOAT16",
+      "dtype": "FLOAT32",
+      "raw_fp16_sha256": "28e6837b98483d0893b40b1484347b130c4ecdb0eb90620679cdfb75d74164e4",
+      "fp32_bytes": 301056,
+      "fp32_sha256": "550d10d5eac0a9f388a34eecbfcc89ea78be556d0fd5e9914fecfce24aaf66b4",
+      "file": "tensor_261.npy",
+      "file_sha256": "b165ada67ca20fb1bb18972718eb73f701d99e0ed9685119add1bd2f4fb0a6df"
+    }
+  ],
+  "training_performed": false,
+  "calibration_performed": false,
+  "quantization_performed": false,
+  "labels_required": false,
+  "remaining": [
+    "runtime boundary capture",
+    "CPU subgraph equivalence",
+    "transfer microbenchmark",
+    "net benefit gate"
+  ],
+  "parameter_files_directory": "project/_tmp/teacher_partition_frozen_20261028_v1"
+}

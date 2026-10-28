@@ -1,0 +1,11 @@
+<pragmas>
+<pragma file="kp_hls_kernels.cpp" line="85" pragmaType="pipeline" parentfunction="kp_hls_pw_core" off="0" ii="1" rewind="0" style=""/>
+<pragma file="kp_hls_kernels.cpp" line="19" pragmaType="inline" parentfunction="kp_hls_rne_shift" off="0" region="0" recursive="0"/>
+<pragma file="kp_hls_kernels.cpp" line="152" pragmaType="interface" parentfunction="kp_hls_pw3" mode="m_axi" port="in" bundle="gmem" offset="" name="" depth="3456" num_read_outstanding="-1" num_write_outstanding="-1" max_burst_read_length="-1" max_burst_write_length="-1" latency="-1" max_widen_bitwidth="-1" channel=""/>
+<pragma file="kp_hls_kernels.cpp" line="153" pragmaType="interface" parentfunction="kp_hls_pw3" mode="m_axi" port="w" bundle="gmem" offset="" name="" depth="3072" num_read_outstanding="-1" num_write_outstanding="-1" max_burst_read_length="-1" max_burst_write_length="-1" latency="-1" max_widen_bitwidth="-1" channel=""/>
+<pragma file="kp_hls_kernels.cpp" line="154" pragmaType="interface" parentfunction="kp_hls_pw3" mode="m_axi" port="bias" bundle="gmem" offset="" name="" depth="64" num_read_outstanding="-1" num_write_outstanding="-1" max_burst_read_length="-1" max_burst_write_length="-1" latency="-1" max_widen_bitwidth="-1" channel=""/>
+<pragma file="kp_hls_kernels.cpp" line="155" pragmaType="interface" parentfunction="kp_hls_pw3" mode="m_axi" port="M" bundle="gmem" offset="" name="" depth="64" num_read_outstanding="-1" num_write_outstanding="-1" max_burst_read_length="-1" max_burst_write_length="-1" latency="-1" max_widen_bitwidth="-1" channel=""/>
+<pragma file="kp_hls_kernels.cpp" line="156" pragmaType="interface" parentfunction="kp_hls_pw3" mode="m_axi" port="out" bundle="gmem" offset="" name="" depth="4608" num_read_outstanding="-1" num_write_outstanding="-1" max_burst_read_length="-1" max_burst_write_length="-1" latency="-1" max_widen_bitwidth="-1" channel=""/>
+<pragma file="kp_hls_kernels.cpp" line="157" pragmaType="interface" parentfunction="kp_hls_pw3" mode="s_axilite" port="F" bundle="ctrl" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="kp_hls_kernels.cpp" line="158" pragmaType="interface" parentfunction="kp_hls_pw3" mode="s_axilite" port="" bundle="ctrl" offset="-1" name="" clock="" impl="" register="0"/>
+</pragmas>

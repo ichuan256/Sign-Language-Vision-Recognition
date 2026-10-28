@@ -1,0 +1,74 @@
+{
+    "0": {
+        "name": "kp_hls_stem",
+        "file": "kp_hls_kernels.cpp",
+        "fileloc": "162",
+        "instructions": "25",
+        "total_instructions": "4922",
+        "calls": "2",
+        "basicblocks": "1"
+    },
+    "1": {
+        "name": "kp_hls_conv_core<2, 96, 96, 3, 2, 16>_Pipeline_1",
+        "file": "kp_hls_kernels.cpp",
+        "fileloc": "0",
+        "instructions": "333",
+        "total_instructions": "333",
+        "calls": "",
+        "basicblocks": "102",
+        "loads": {
+            "L": "2"
+        },
+        "stores": {
+            "L": "101"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "2": {
+        "name": "kp_hls_conv_core<2, 96, 96, 3, 2, 16>",
+        "file": "kp_hls_kernels.cpp",
+        "fileloc": "98",
+        "instructions": "115",
+        "total_instructions": "4897",
+        "calls": "1 3 4",
+        "basicblocks": "1"
+    },
+    "3": {
+        "name": "kp_hls_conv_core_Pipeline_VITIS_LOOP_112_1_VITIS_LOOP_113_2_VITIS_LOOP_114_3_VIT",
+        "file": "kp_hls_kernels.cpp",
+        "fileloc": "112",
+        "instructions": "396",
+        "total_instructions": "396",
+        "calls": "",
+        "basicblocks": "101",
+        "loads": {
+            "L": "7"
+        },
+        "stores": {
+            "L": "110"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "4": {
+        "name": "kp_hls_conv_core_Pipeline_VITIS_LOOP_118_5_VITIS_LOOP_119_6_VITIS_LOOP_120_7_VIT",
+        "file": "kp_hls_kernels.cpp",
+        "fileloc": "118",
+        "instructions": "4053",
+        "total_instructions": "4053",
+        "calls": "",
+        "basicblocks": "7",
+        "loads": {
+            "L": "1387"
+        },
+        "stores": {
+            "L": "521"
+        },
+        "loops": {
+            "L": "1"
+        }
+    }
+}

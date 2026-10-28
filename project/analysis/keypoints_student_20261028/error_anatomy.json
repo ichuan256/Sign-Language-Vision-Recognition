@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-28",
+  "model": "hand_student_v6_120ep_s20261026 (96)",
+  "eval": "test split 188 ROIs / 3770 visible points, teacher_agreement, bbox-diagonal normalized",
+  "pck05": 0.182,
+  "nme": 0.1329,
+  "error_mass": {
+    "<=0.05": 0.182,
+    "(0.05,0.1]": 0.286,
+    "(0.1,0.2]": 0.326,
+    "(0.2,0.4]": 0.186,
+    ">0.4": 0.019
+  },
+  "fingertip_mean_err": 0.1664,
+  "palm_joint_mean_err": 0.1227,
+  "worst_landmarks": [
+    "小指尖",
+    "拇指尖",
+    "拇指3",
+    "小指3",
+    "无名尖",
+    "中指尖"
+  ],
+  "systematic_bias": {
+    "dx": -0.0064,
+    "dy": -0.004,
+    "scatter_std": [
+      0.0912,
+      0.0699
+    ]
+  },
+  "focus_effect": {
+    "low_focus_err": 0.1444,
+    "high_focus_err": 0.1151
+  },
+  "reading": [
+    "61% of points are near-misses (0.05-0.2): the model has the hand shape right but lacks precision - a regression-capacity problem, not semantic failure",
+    "only 1.9% catastrophic (>0.4): detection/association is basically working",
+    "fingertips 36% worse than palm; all five tips in worst-8: highest-motion points need capacity/loss weight",
+    "no global systematic offset: bias is negligible, error is scatter/variance - calibration tricks will not help",
+    "worst ROIs concentrate in NL_lesson_09 (test group): residual domain gap on 聚会 scenarios",
+    "implications: precision levers (longer training, capacity, fingertip loss weight, ensembling) target the 61% mass directly"
+  ]
+}

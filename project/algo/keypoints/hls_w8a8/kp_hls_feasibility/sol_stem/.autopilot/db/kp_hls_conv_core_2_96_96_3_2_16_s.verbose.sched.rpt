@@ -1,0 +1,260 @@
+
+
+================================================================
+== Vitis HLS Report for 'kp_hls_conv_core_2_96_96_3_2_16_s'
+================================================================
+* Date:           Wed Oct 28 07:13:13 2026
+
+* Version:        2024.1 (Build 5069499 on May 21 2024)
+* Project:        kp_hls_feasibility
+* Solution:       sol_stem (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  7.300 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+---------+---------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |      Interval     | Pipeline|
+    |   min   |   max   |    min    |    max    |   min   |   max   |   Type  |
+    +---------+---------+-----------+-----------+---------+---------+---------+
+    |  2249949|  2249949|  22.499 ms|  22.499 ms|  2249949|  2249949|       no|
+    +---------+---------+-----------+-----------+---------+---------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 6
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%xp = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 7 'alloca' 'xp' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%xp_1 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 8 'alloca' 'xp_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%xp_2 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 9 'alloca' 'xp_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%xp_3 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 10 'alloca' 'xp_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%xp_4 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 11 'alloca' 'xp_4' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%xp_5 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 12 'alloca' 'xp_5' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%xp_6 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 13 'alloca' 'xp_6' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%xp_7 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 14 'alloca' 'xp_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%xp_8 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 15 'alloca' 'xp_8' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%xp_9 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 16 'alloca' 'xp_9' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%xp_10 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 17 'alloca' 'xp_10' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%xp_11 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 18 'alloca' 'xp_11' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%xp_12 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 19 'alloca' 'xp_12' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%xp_13 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 20 'alloca' 'xp_13' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%xp_14 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 21 'alloca' 'xp_14' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%xp_15 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 22 'alloca' 'xp_15' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%xp_16 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 23 'alloca' 'xp_16' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%xp_17 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 24 'alloca' 'xp_17' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%xp_18 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 25 'alloca' 'xp_18' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%xp_19 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 26 'alloca' 'xp_19' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%xp_20 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 27 'alloca' 'xp_20' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%xp_21 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 28 'alloca' 'xp_21' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%xp_22 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 29 'alloca' 'xp_22' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%xp_23 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 30 'alloca' 'xp_23' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%xp_24 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 31 'alloca' 'xp_24' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%xp_25 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 32 'alloca' 'xp_25' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%xp_26 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 33 'alloca' 'xp_26' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%xp_27 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 34 'alloca' 'xp_27' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 35 [1/1] (0.00ns)   --->   "%xp_28 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 35 'alloca' 'xp_28' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 36 [1/1] (0.00ns)   --->   "%xp_29 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 36 'alloca' 'xp_29' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 37 [1/1] (0.00ns)   --->   "%xp_30 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 37 'alloca' 'xp_30' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 38 [1/1] (0.00ns)   --->   "%xp_31 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 38 'alloca' 'xp_31' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 39 [1/1] (0.00ns)   --->   "%xp_32 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 39 'alloca' 'xp_32' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%xp_33 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 40 'alloca' 'xp_33' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%xp_34 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 41 'alloca' 'xp_34' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%xp_35 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 42 'alloca' 'xp_35' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%xp_36 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 43 'alloca' 'xp_36' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 44 [1/1] (0.00ns)   --->   "%xp_37 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 44 'alloca' 'xp_37' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 45 [1/1] (0.00ns)   --->   "%xp_38 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 45 'alloca' 'xp_38' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 46 [1/1] (0.00ns)   --->   "%xp_39 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 46 'alloca' 'xp_39' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 47 [1/1] (0.00ns)   --->   "%xp_40 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 47 'alloca' 'xp_40' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 48 [1/1] (0.00ns)   --->   "%xp_41 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 48 'alloca' 'xp_41' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 49 [1/1] (0.00ns)   --->   "%xp_42 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 49 'alloca' 'xp_42' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 50 [1/1] (0.00ns)   --->   "%xp_43 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 50 'alloca' 'xp_43' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 51 [1/1] (0.00ns)   --->   "%xp_44 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 51 'alloca' 'xp_44' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 52 [1/1] (0.00ns)   --->   "%xp_45 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 52 'alloca' 'xp_45' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 53 [1/1] (0.00ns)   --->   "%xp_46 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 53 'alloca' 'xp_46' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 54 [1/1] (0.00ns)   --->   "%xp_47 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 54 'alloca' 'xp_47' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 55 [1/1] (0.00ns)   --->   "%xp_48 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 55 'alloca' 'xp_48' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 56 [1/1] (0.00ns)   --->   "%xp_49 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 56 'alloca' 'xp_49' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 57 [1/1] (0.00ns)   --->   "%xp_50 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 57 'alloca' 'xp_50' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 58 [1/1] (0.00ns)   --->   "%xp_51 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 58 'alloca' 'xp_51' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 59 [1/1] (0.00ns)   --->   "%xp_52 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 59 'alloca' 'xp_52' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 60 [1/1] (0.00ns)   --->   "%xp_53 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 60 'alloca' 'xp_53' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 61 [1/1] (0.00ns)   --->   "%xp_54 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 61 'alloca' 'xp_54' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 62 [1/1] (0.00ns)   --->   "%xp_55 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 62 'alloca' 'xp_55' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 63 [1/1] (0.00ns)   --->   "%xp_56 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 63 'alloca' 'xp_56' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 64 [1/1] (0.00ns)   --->   "%xp_57 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 64 'alloca' 'xp_57' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 65 [1/1] (0.00ns)   --->   "%xp_58 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 65 'alloca' 'xp_58' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 66 [1/1] (0.00ns)   --->   "%xp_59 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 66 'alloca' 'xp_59' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 67 [1/1] (0.00ns)   --->   "%xp_60 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 67 'alloca' 'xp_60' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 68 [1/1] (0.00ns)   --->   "%xp_61 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 68 'alloca' 'xp_61' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 69 [1/1] (0.00ns)   --->   "%xp_62 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 69 'alloca' 'xp_62' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 70 [1/1] (0.00ns)   --->   "%xp_63 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 70 'alloca' 'xp_63' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 71 [1/1] (0.00ns)   --->   "%xp_64 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 71 'alloca' 'xp_64' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 72 [1/1] (0.00ns)   --->   "%xp_65 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 72 'alloca' 'xp_65' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 73 [1/1] (0.00ns)   --->   "%xp_66 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 73 'alloca' 'xp_66' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 74 [1/1] (0.00ns)   --->   "%xp_67 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 74 'alloca' 'xp_67' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 75 [1/1] (0.00ns)   --->   "%xp_68 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 75 'alloca' 'xp_68' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 76 [1/1] (0.00ns)   --->   "%xp_69 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 76 'alloca' 'xp_69' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 77 [1/1] (0.00ns)   --->   "%xp_70 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 77 'alloca' 'xp_70' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 78 [1/1] (0.00ns)   --->   "%xp_71 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 78 'alloca' 'xp_71' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 79 [1/1] (0.00ns)   --->   "%xp_72 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 79 'alloca' 'xp_72' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 80 [1/1] (0.00ns)   --->   "%xp_73 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 80 'alloca' 'xp_73' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 81 [1/1] (0.00ns)   --->   "%xp_74 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 81 'alloca' 'xp_74' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 82 [1/1] (0.00ns)   --->   "%xp_75 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 82 'alloca' 'xp_75' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 83 [1/1] (0.00ns)   --->   "%xp_76 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 83 'alloca' 'xp_76' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 84 [1/1] (0.00ns)   --->   "%xp_77 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 84 'alloca' 'xp_77' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 85 [1/1] (0.00ns)   --->   "%xp_78 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 85 'alloca' 'xp_78' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 86 [1/1] (0.00ns)   --->   "%xp_79 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 86 'alloca' 'xp_79' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 87 [1/1] (0.00ns)   --->   "%xp_80 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 87 'alloca' 'xp_80' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 88 [1/1] (0.00ns)   --->   "%xp_81 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 88 'alloca' 'xp_81' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 89 [1/1] (0.00ns)   --->   "%xp_82 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 89 'alloca' 'xp_82' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 90 [1/1] (0.00ns)   --->   "%xp_83 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 90 'alloca' 'xp_83' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 91 [1/1] (0.00ns)   --->   "%xp_84 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 91 'alloca' 'xp_84' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 92 [1/1] (0.00ns)   --->   "%xp_85 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 92 'alloca' 'xp_85' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 93 [1/1] (0.00ns)   --->   "%xp_86 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 93 'alloca' 'xp_86' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 94 [1/1] (0.00ns)   --->   "%xp_87 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 94 'alloca' 'xp_87' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 95 [1/1] (0.00ns)   --->   "%xp_88 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 95 'alloca' 'xp_88' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 96 [1/1] (0.00ns)   --->   "%xp_89 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 96 'alloca' 'xp_89' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 97 [1/1] (0.00ns)   --->   "%xp_90 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 97 'alloca' 'xp_90' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 98 [1/1] (0.00ns)   --->   "%xp_91 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 98 'alloca' 'xp_91' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 99 [1/1] (0.00ns)   --->   "%xp_92 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 99 'alloca' 'xp_92' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 100 [1/1] (0.00ns)   --->   "%xp_93 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 100 'alloca' 'xp_93' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 101 [1/1] (0.00ns)   --->   "%xp_94 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 101 'alloca' 'xp_94' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 102 [1/1] (0.00ns)   --->   "%xp_95 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 102 'alloca' 'xp_95' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 103 [1/1] (0.00ns)   --->   "%xp_96 = alloca i64 1" [kp_hls_kernels.cpp:108]   --->   Operation 103 'alloca' 'xp_96' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 104 [2/2] (0.00ns)   --->   "%call_ln0 = call void @kp_hls_conv_core<2, 96, 96, 3, 2, 16>_Pipeline_1, i1 %xp_96, i8 %xp_95, i8 %xp_94, i8 %xp_93, i8 %xp_92, i8 %xp_91, i8 %xp_90, i8 %xp_89, i8 %xp_88, i8 %xp_87, i8 %xp_86, i8 %xp_85, i8 %xp_84, i8 %xp_83, i8 %xp_82, i8 %xp_81, i8 %xp_80, i8 %xp_79, i8 %xp_78, i8 %xp_77, i8 %xp_76, i8 %xp_75, i8 %xp_74, i8 %xp_73, i8 %xp_72, i8 %xp_71, i8 %xp_70, i8 %xp_69, i8 %xp_68, i8 %xp_67, i8 %xp_66, i8 %xp_65, i8 %xp_64, i8 %xp_63, i8 %xp_62, i8 %xp_61, i8 %xp_60, i8 %xp_59, i8 %xp_58, i8 %xp_57, i8 %xp_56, i8 %xp_55, i8 %xp_54, i8 %xp_53, i8 %xp_52, i8 %xp_51, i8 %xp_50, i8 %xp_49, i8 %xp_48, i8 %xp_47, i8 %xp_46, i8 %xp_45, i8 %xp_44, i8 %xp_43, i8 %xp_42, i8 %xp_41, i8 %xp_40, i8 %xp_39, i8 %xp_38, i8 %xp_37, i8 %xp_36, i8 %xp_35, i8 %xp_34, i8 %xp_33, i8 %xp_32, i8 %xp_31, i8 %xp_30, i8 %xp_29, i8 %xp_28, i8 %xp_27, i8 %xp_26, i8 %xp_25, i8 %xp_24, i8 %xp_23, i8 %xp_22, i8 %xp_21, i8 %xp_20, i8 %xp_19, i8 %xp_18, i8 %xp_17, i8 %xp_16, i8 %xp_15, i8 %xp_14, i8 %xp_13, i8 %xp_12, i8 %xp_11, i8 %xp_10, i8 %xp_9, i8 %xp_8, i8 %xp_7, i8 %xp_6, i8 %xp_5, i8 %xp_4, i8 %xp_3, i8 %xp_2, i8 %xp_1, i8 %xp"   --->   Operation 104 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 2 <SV = 1> <Delay = 0.00>
+ST_2 : Operation 105 [1/2] (0.00ns)   --->   "%call_ln0 = call void @kp_hls_conv_core<2, 96, 96, 3, 2, 16>_Pipeline_1, i1 %xp_96, i8 %xp_95, i8 %xp_94, i8 %xp_93, i8 %xp_92, i8 %xp_91, i8 %xp_90, i8 %xp_89, i8 %xp_88, i8 %xp_87, i8 %xp_86, i8 %xp_85, i8 %xp_84, i8 %xp_83, i8 %xp_82, i8 %xp_81, i8 %xp_80, i8 %xp_79, i8 %xp_78, i8 %xp_77, i8 %xp_76, i8 %xp_75, i8 %xp_74, i8 %xp_73, i8 %xp_72, i8 %xp_71, i8 %xp_70, i8 %xp_69, i8 %xp_68, i8 %xp_67, i8 %xp_66, i8 %xp_65, i8 %xp_64, i8 %xp_63, i8 %xp_62, i8 %xp_61, i8 %xp_60, i8 %xp_59, i8 %xp_58, i8 %xp_57, i8 %xp_56, i8 %xp_55, i8 %xp_54, i8 %xp_53, i8 %xp_52, i8 %xp_51, i8 %xp_50, i8 %xp_49, i8 %xp_48, i8 %xp_47, i8 %xp_46, i8 %xp_45, i8 %xp_44, i8 %xp_43, i8 %xp_42, i8 %xp_41, i8 %xp_40, i8 %xp_39, i8 %xp_38, i8 %xp_37, i8 %xp_36, i8 %xp_35, i8 %xp_34, i8 %xp_33, i8 %xp_32, i8 %xp_31, i8 %xp_30, i8 %xp_29, i8 %xp_28, i8 %xp_27, i8 %xp_26, i8 %xp_25, i8 %xp_24, i8 %xp_23, i8 %xp_22, i8 %xp_21, i8 %xp_20, i8 %xp_19, i8 %xp_18, i8 %xp_17, i8 %xp_16, i8 %xp_15, i8 %xp_14, i8 %xp_13, i8 %xp_12, i8 %xp_11, i8 %xp_10, i8 %xp_9, i8 %xp_8, i8 %xp_7, i8 %xp_6, i8 %xp_5, i8 %xp_4, i8 %xp_3, i8 %xp_2, i8 %xp_1, i8 %xp"   --->   Operation 105 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 106 [1/1] (0.00ns)   --->   "%in_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %in_r"   --->   Operation 106 'read' 'in_read' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 107 [2/2] (0.00ns)   --->   "%call_ln0 = call void @kp_hls_conv_core_Pipeline_VITIS_LOOP_112_1_VITIS_LOOP_113_2_VITIS_LOOP_114_3_VIT, i8 %xp, i8 %xp_1, i8 %xp_2, i8 %xp_3, i8 %xp_4, i8 %xp_5, i8 %xp_6, i8 %xp_7, i8 %xp_8, i8 %xp_9, i8 %xp_10, i8 %xp_11, i8 %xp_12, i8 %xp_13, i8 %xp_14, i8 %xp_15, i8 %xp_16, i8 %xp_17, i8 %xp_18, i8 %xp_19, i8 %xp_20, i8 %xp_21, i8 %xp_22, i8 %xp_23, i8 %xp_24, i8 %xp_25, i8 %xp_26, i8 %xp_27, i8 %xp_28, i8 %xp_29, i8 %xp_30, i8 %xp_31, i8 %xp_32, i8 %xp_33, i8 %xp_34, i8 %xp_35, i8 %xp_36, i8 %xp_37, i8 %xp_38, i8 %xp_39, i8 %xp_40, i8 %xp_41, i8 %xp_42, i8 %xp_43, i8 %xp_44, i8 %xp_45, i8 %xp_46, i8 %xp_47, i8 %xp_48, i8 %xp_49, i8 %xp_50, i8 %xp_51, i8 %xp_52, i8 %xp_53, i8 %xp_54, i8 %xp_55, i8 %xp_56, i8 %xp_57, i8 %xp_58, i8 %xp_59, i8 %xp_60, i8 %xp_61, i8 %xp_62, i8 %xp_63, i8 %xp_64, i8 %xp_65, i8 %xp_66, i8 %xp_67, i8 %xp_68, i8 %xp_69, i8 %xp_70, i8 %xp_71, i8 %xp_72, i8 %xp_73, i8 %xp_74, i8 %xp_75, i8 %xp_76, i8 %xp_77, i8 %xp_78, i8 %xp_79, i8 %xp_80, i8 %xp_81, i8 %xp_82, i8 %xp_83, i8 %xp_84, i8 %xp_85, i8 %xp_86, i8 %xp_87, i8 %xp_88, i8 %xp_89, i8 %xp_90, i8 %xp_91, i8 %xp_92, i8 %xp_93, i8 %xp_94, i8 %xp_95, i64 %in_read, i64 %gmem"   --->   Operation 107 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 6.97>
+ST_4 : Operation 108 [1/1] (0.00ns)   --->   "%F_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %F"   --->   Operation 108 'read' 'F_read' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 109 [1/2] (0.00ns)   --->   "%call_ln0 = call void @kp_hls_conv_core_Pipeline_VITIS_LOOP_112_1_VITIS_LOOP_113_2_VITIS_LOOP_114_3_VIT, i8 %xp, i8 %xp_1, i8 %xp_2, i8 %xp_3, i8 %xp_4, i8 %xp_5, i8 %xp_6, i8 %xp_7, i8 %xp_8, i8 %xp_9, i8 %xp_10, i8 %xp_11, i8 %xp_12, i8 %xp_13, i8 %xp_14, i8 %xp_15, i8 %xp_16, i8 %xp_17, i8 %xp_18, i8 %xp_19, i8 %xp_20, i8 %xp_21, i8 %xp_22, i8 %xp_23, i8 %xp_24, i8 %xp_25, i8 %xp_26, i8 %xp_27, i8 %xp_28, i8 %xp_29, i8 %xp_30, i8 %xp_31, i8 %xp_32, i8 %xp_33, i8 %xp_34, i8 %xp_35, i8 %xp_36, i8 %xp_37, i8 %xp_38, i8 %xp_39, i8 %xp_40, i8 %xp_41, i8 %xp_42, i8 %xp_43, i8 %xp_44, i8 %xp_45, i8 %xp_46, i8 %xp_47, i8 %xp_48, i8 %xp_49, i8 %xp_50, i8 %xp_51, i8 %xp_52, i8 %xp_53, i8 %xp_54, i8 %xp_55, i8 %xp_56, i8 %xp_57, i8 %xp_58, i8 %xp_59, i8 %xp_60, i8 %xp_61, i8 %xp_62, i8 %xp_63, i8 %xp_64, i8 %xp_65, i8 %xp_66, i8 %xp_67, i8 %xp_68, i8 %xp_69, i8 %xp_70, i8 %xp_71, i8 %xp_72, i8 %xp_73, i8 %xp_74, i8 %xp_75, i8 %xp_76, i8 %xp_77, i8 %xp_78, i8 %xp_79, i8 %xp_80, i8 %xp_81, i8 %xp_82, i8 %xp_83, i8 %xp_84, i8 %xp_85, i8 %xp_86, i8 %xp_87, i8 %xp_88, i8 %xp_89, i8 %xp_90, i8 %xp_91, i8 %xp_92, i8 %xp_93, i8 %xp_94, i8 %xp_95, i64 %in_read, i64 %gmem"   --->   Operation 109 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_4 : Operation 110 [1/1] (0.00ns)   --->   "%sh_prom_i = zext i32 %F_read"   --->   Operation 110 'zext' 'sh_prom_i' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 111 [1/1] (4.42ns)   --->   "%shl_i = shl i64 1, i64 %sh_prom_i"   --->   Operation 111 'shl' 'shl_i' <Predicate = true> <Delay = 4.42> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 4.42> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 112 [1/1] (2.55ns)   --->   "%sub3_i = add i32 %F_read, i32 4294967295"   --->   Operation 112 'add' 'sub3_i' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 113 [1/1] (0.00ns)   --->   "%sh_prom4_i = zext i32 %sub3_i"   --->   Operation 113 'zext' 'sh_prom4_i' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 114 [1/1] (4.42ns)   --->   "%half = shl i64 1, i64 %sh_prom4_i"   --->   Operation 114 'shl' 'half' <Predicate = true> <Delay = 4.42> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 4.42> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 3.52>
+ST_5 : Operation 115 [1/1] (0.00ns)   --->   "%out_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %out_r"   --->   Operation 115 'read' 'out_read' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 116 [1/1] (0.00ns)   --->   "%M_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %M"   --->   Operation 116 'read' 'M_read' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 117 [1/1] (0.00ns)   --->   "%bias_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %bias"   --->   Operation 117 'read' 'bias_read' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 118 [1/1] (0.00ns)   --->   "%w_read = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %w"   --->   Operation 118 'read' 'w_read' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 119 [1/1] (3.52ns)   --->   "%sub2_i = add i64 %shl_i, i64 18446744073709551615"   --->   Operation 119 'add' 'sub2_i' <Predicate = true> <Delay = 3.52> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 3.52> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 120 [1/1] (0.00ns)   --->   "%p_cast3 = partselect i61 @_ssdm_op_PartSelect.i61.i64.i32.i32, i64 %bias_read, i32 3, i32 63"   --->   Operation 120 'partselect' 'p_cast3' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 121 [2/2] (0.00ns)   --->   "%call_ln0 = call void @kp_hls_conv_core_Pipeline_VITIS_LOOP_118_5_VITIS_LOOP_119_6_VITIS_LOOP_120_7_VIT, i61 %p_cast3, i64 %gmem, i64 %w_read, i64 %M_read, i32 %F_read, i64 %sub2_i, i64 %half, i64 %out_read, i8 %xp, i8 %xp_1, i8 %xp_2, i8 %xp_3, i8 %xp_4, i8 %xp_5, i8 %xp_6, i8 %xp_7, i8 %xp_8, i8 %xp_9, i8 %xp_10, i8 %xp_11, i8 %xp_12, i8 %xp_13, i8 %xp_14, i8 %xp_15, i8 %xp_16, i8 %xp_17, i8 %xp_18, i8 %xp_19, i8 %xp_20, i8 %xp_21, i8 %xp_22, i8 %xp_23, i8 %xp_24, i8 %xp_25, i8 %xp_26, i8 %xp_27, i8 %xp_28, i8 %xp_29, i8 %xp_30, i8 %xp_31, i8 %xp_32, i8 %xp_33, i8 %xp_34, i8 %xp_35, i8 %xp_36, i8 %xp_37, i8 %xp_38, i8 %xp_39, i8 %xp_40, i8 %xp_41, i8 %xp_42, i8 %xp_43, i8 %xp_44, i8 %xp_45, i8 %xp_46, i8 %xp_47, i8 %xp_48, i8 %xp_49, i8 %xp_50, i8 %xp_51, i8 %xp_52, i8 %xp_53, i8 %xp_54, i8 %xp_55, i8 %xp_56, i8 %xp_57, i8 %xp_58, i8 %xp_59, i8 %xp_60, i8 %xp_61, i8 %xp_62, i8 %xp_63, i8 %xp_64, i8 %xp_65, i8 %xp_66, i8 %xp_67, i8 %xp_68, i8 %xp_69, i8 %xp_70, i8 %xp_71, i8 %xp_72, i8 %xp_73, i8 %xp_74, i8 %xp_75, i8 %xp_76, i8 %xp_77, i8 %xp_78, i8 %xp_79, i8 %xp_80, i8 %xp_81, i8 %xp_82, i8 %xp_83, i8 %xp_84, i8 %xp_85, i8 %xp_86, i8 %xp_87, i8 %xp_88, i8 %xp_89, i8 %xp_90, i8 %xp_91, i8 %xp_92, i8 %xp_93, i8 %xp_94, i8 %xp_95, i1 %xp_96"   --->   Operation 121 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 6 <SV = 5> <Delay = 0.00>
+ST_6 : Operation 122 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %gmem, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 6912, void @empty_1, void @empty_2, void @empty_0, i32 16, i32 16, i32 16, i32 16, void @empty_0, void @empty_0, i32 4294967295, i32 0, i32 0"   --->   Operation 122 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 123 [1/2] (0.00ns)   --->   "%call_ln0 = call void @kp_hls_conv_core_Pipeline_VITIS_LOOP_118_5_VITIS_LOOP_119_6_VITIS_LOOP_120_7_VIT, i61 %p_cast3, i64 %gmem, i64 %w_read, i64 %M_read, i32 %F_read, i64 %sub2_i, i64 %half, i64 %out_read, i8 %xp, i8 %xp_1, i8 %xp_2, i8 %xp_3, i8 %xp_4, i8 %xp_5, i8 %xp_6, i8 %xp_7, i8 %xp_8, i8 %xp_9, i8 %xp_10, i8 %xp_11, i8 %xp_12, i8 %xp_13, i8 %xp_14, i8 %xp_15, i8 %xp_16, i8 %xp_17, i8 %xp_18, i8 %xp_19, i8 %xp_20, i8 %xp_21, i8 %xp_22, i8 %xp_23, i8 %xp_24, i8 %xp_25, i8 %xp_26, i8 %xp_27, i8 %xp_28, i8 %xp_29, i8 %xp_30, i8 %xp_31, i8 %xp_32, i8 %xp_33, i8 %xp_34, i8 %xp_35, i8 %xp_36, i8 %xp_37, i8 %xp_38, i8 %xp_39, i8 %xp_40, i8 %xp_41, i8 %xp_42, i8 %xp_43, i8 %xp_44, i8 %xp_45, i8 %xp_46, i8 %xp_47, i8 %xp_48, i8 %xp_49, i8 %xp_50, i8 %xp_51, i8 %xp_52, i8 %xp_53, i8 %xp_54, i8 %xp_55, i8 %xp_56, i8 %xp_57, i8 %xp_58, i8 %xp_59, i8 %xp_60, i8 %xp_61, i8 %xp_62, i8 %xp_63, i8 %xp_64, i8 %xp_65, i8 %xp_66, i8 %xp_67, i8 %xp_68, i8 %xp_69, i8 %xp_70, i8 %xp_71, i8 %xp_72, i8 %xp_73, i8 %xp_74, i8 %xp_75, i8 %xp_76, i8 %xp_77, i8 %xp_78, i8 %xp_79, i8 %xp_80, i8 %xp_81, i8 %xp_82, i8 %xp_83, i8 %xp_84, i8 %xp_85, i8 %xp_86, i8 %xp_87, i8 %xp_88, i8 %xp_89, i8 %xp_90, i8 %xp_91, i8 %xp_92, i8 %xp_93, i8 %xp_94, i8 %xp_95, i1 %xp_96"   --->   Operation 123 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_6 : Operation 124 [1/1] (0.00ns)   --->   "%ret_ln133 = ret" [kp_hls_kernels.cpp:133]   --->   Operation 124 'ret' 'ret_ln133' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10.000ns, clock uncertainty: 2.700ns.
+
+ <State 1>: 0.000ns
+The critical path consists of the following:
+
+ <State 2>: 0.000ns
+The critical path consists of the following:
+
+ <State 3>: 0.000ns
+The critical path consists of the following:
+
+ <State 4>: 6.972ns
+The critical path consists of the following:
+	wire read operation ('F_read') on port 'F' [10]  (0.000 ns)
+	'add' operation 32 bit ('sub3_i') [117]  (2.552 ns)
+	'shl' operation 64 bit ('half') [119]  (4.420 ns)
+
+ <State 5>: 3.520ns
+The critical path consists of the following:
+	'add' operation 64 bit ('sub2_i') [116]  (3.520 ns)
+
+ <State 6>: 0.000ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

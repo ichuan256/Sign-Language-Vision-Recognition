@@ -1,0 +1,117 @@
+{
+  "status": "pass",
+  "markdown_files_checked": 21,
+  "broken_links": [],
+  "model_hashes_verified": 2,
+  "conv_mac_totals_verified": true,
+  "candidate": {
+    "nodes": [
+      87,
+      90,
+      93,
+      94
+    ],
+    "external_input_tensors": [
+      134,
+      171,
+      189,
+      196,
+      200,
+      236,
+      261
+    ],
+    "external_output_tensors": [
+      138
+    ],
+    "dynamic_boundary_bytes": 175616,
+    "fp32_parameter_bytes": 675136,
+    "conv_mac": 32796288
+  },
+  "scope": "documentation_links_static_model_and_boundary_checks_only_no_training_build_or_board_test",
+  "final_document_hashes": [
+    {
+      "file": "AGENTS.md",
+      "sha256": "5ece6c5c7aacd1a97eddf4cbec68ae4e47ae346a18a238f0a935c8a13e826c1a"
+    },
+    {
+      "file": "docs/方案/03_Zynq7020独立实时关键点方案.md",
+      "sha256": "da0dbd6d8b52417837e8cc324987a8ee21d5458fbd409d1f0538c1c6f5fba006"
+    },
+    {
+      "file": "docs/方案/01_PYNQ-Z2移植与视频手势识别总体方案.md",
+      "sha256": "7602c7a59ef9df6de18fd8677043bea3fac7cd895c70e44506cb2a8f99fea580"
+    },
+    {
+      "file": "README.md",
+      "sha256": "f42c94bbd2df3ac305b4f9e54d02d2c531a247ae24dcccd10a2e6d7afc7b57f3"
+    },
+    {
+      "file": "docs/README.md",
+      "sha256": "a513b25237de913d719147313acb6ec065d9cfbb560d6f84e2b08f35a4ed3e41"
+    },
+    {
+      "file": "project/README.md",
+      "sha256": "3f2c85c72d30f6eea7dd4bfc818e560b31ed8801084bf3e929e229a189cafe6c"
+    },
+    {
+      "file": "vision/README.md",
+      "sha256": "c2c9687ba9f3bf438cb7fc286b3098a1cc1b78e6c8746f1023f69c36e4524850"
+    },
+    {
+      "file": "vision/analysis/README.md",
+      "sha256": "166003c34b1429c1e965f292882f7505c5d9c2b8428ed20f5ff67c90901eff5b"
+    },
+    {
+      "file": "project/scripts/keypoints/README.md",
+      "sha256": "0f78c577747755dc8ed4e0e448c72be2271dd84dcd5cb5f12a02b2150592596b"
+    },
+    {
+      "file": "project/algo/keypoints/README.md",
+      "sha256": "8ce3b8b6709a18ed2ff60c2d80d7dfbbb0f9d104a25a32a4ae1334c017e952ca"
+    },
+    {
+      "file": "project/board/keypoints/README.md",
+      "sha256": "aebf2420ccf32e195a68419303b2cce0b13d66851435209c2ae65c3506ce15f7"
+    },
+    {
+      "file": "project/analysis/keypoints_student_20261026/README.md",
+      "sha256": "2c96bb35b7802faa842af14d1ed11f517ac01e8e137849aa80b43c16c169e77b"
+    },
+    {
+      "file": "project/analysis/keypoints_student_20261027/README.md",
+      "sha256": "afdf78280638833057ece173877e8c8dc53d1101f885ca4d2e059abb069570a3"
+    },
+    {
+      "file": "project/analysis/keypoints_student_20261028/README.md",
+      "sha256": "f429a925104ecca9f26e42c4c54ca6acc957efc2b089281e311af59f448c7fa3"
+    },
+    {
+      "file": "project/analysis/keypoints_student_20261027/overfit6.md",
+      "sha256": "05e97b717268e914c677b66cf2003addec10ecc6923af7f2c6e8463ac9142bd8"
+    },
+    {
+      "file": "project/analysis/keypoints_pl_20261026/realtime_budget/README.md",
+      "sha256": "c3ab916b0909da160cf4c7ae4e2847e5d9ffe3a6c4fabdf4ce18bc114b9dbe15"
+    },
+    {
+      "file": "docs/方案/04_老师模型PS_PL局部迁移.md",
+      "sha256": "deb7c41b8b18a2860dde1065746edb868a8b4678b3c4182293a4cb2f374b1bca"
+    },
+    {
+      "file": "project/board/teacher_hands/README.md",
+      "sha256": "ca38defd4ee915afc68b2c3d374b1f4f9449cbc914fb3d8569b370d51d62163f"
+    },
+    {
+      "file": "project/analysis/teacher_partition_20261028/README.md",
+      "sha256": "5381eaf206b35639e43505233b2c56e6d990cc7feb96f4fe4b3a64897658a4e7"
+    },
+    {
+      "file": "project/analysis/teacher_partition_20261028/p0.md",
+      "sha256": "6110c7fa818b79049903a54ba285c1faa58de440bc9715440da35346f2f94bb2"
+    },
+    {
+      "file": "project/analysis/teacher_partition_20261028/p1.md",
+      "sha256": "b249493c66c832f48a200a75973be230a53e433f0dd761848218fc1ec71f3588"
+    }
+  ]
+}

@@ -1,0 +1,238 @@
+---
+MainSourceFile:  'F:/PLD_new/Sign-Language-Vision-Recognition/project/algo/keypoints/hls_w8a8/kp_hls_feasibility/sol_pw3/.autopilot/db/kp_hls_kernels.pp.0.cpp'
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_54_1:  '
+    FileOffset:      54
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          35262
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_54_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_55_2:  '
+    FileOffset:      55
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          35298
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_55_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_56_3:  '
+    FileOffset:      56
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          35338
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_56_3: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_57_4:  '
+    FileOffset:      57
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          35382
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_57_4: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_60_5:  '
+    FileOffset:      60
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          35499
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_60_5: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_61_6:  '
+    FileOffset:      61
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          35535
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_61_6: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_62_7:  '
+    FileOffset:      62
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          35576
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_62_7: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_63_8:  '
+    FileOffset:      63
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          35621
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_63_8: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_66_9:  '
+    FileOffset:      66
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          35723
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_66_9: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_67_10:  '
+    FileOffset:      67
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          35775
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_67_10: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_81_1:  '
+    FileOffset:      81
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          36352
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_81_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_82_2:  '
+    FileOffset:      82
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          36388
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_82_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_83_3:  '
+    FileOffset:      83
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          36428
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_83_3: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_84_4:  '
+    FileOffset:      84
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          36472
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_84_4: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_87_5:  '
+    FileOffset:      87
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          36581
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_87_5: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_112_1:  '
+    FileOffset:      112
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          37594
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_112_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_113_2:  '
+    FileOffset:      113
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          37630
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_113_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_114_3:  '
+    FileOffset:      114
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          37670
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_114_3: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_115_4:  '
+    FileOffset:      115
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          37714
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_115_4: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_118_5:  '
+    FileOffset:      118
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          37835
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_118_5: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_119_6:  '
+    FileOffset:      119
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          37871
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_119_6: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_120_7:  '
+    FileOffset:      120
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          37912
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_120_7: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_121_8:  '
+    FileOffset:      121
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          37957
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_121_8: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_124_9:  '
+    FileOffset:      124
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          38066
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_124_9: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_125_10:  '
+    FileOffset:      125
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          38118
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_125_10: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_126_11:  '
+    FileOffset:      126
+    FilePath:        kp_hls_kernels.cpp
+    Replacements:    
+      - FilePath:        'F:\PLD_new\Sign-Language-Vision-Recognition\project\algo\keypoints\hls_w8a8\kp_hls_feasibility\sol_pw3\.autopilot\db\kp_hls_kernels.pp.0.cpp'
+        Offset:          38174
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_126_11: '
+...

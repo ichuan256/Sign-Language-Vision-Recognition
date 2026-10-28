@@ -1,0 +1,10 @@
+{
+  "items": 11,
+  "points": 231,
+  "teacher_vs_human_nme": 0.001235377922792104,
+  "teacher_vs_human_pck05": 0.987012987012987,
+  "p50": 0.0,
+  "p95": 0.0,
+  "fingertip_mean": 0.0028102259942359305,
+  "non_fingertip_mean": 0.0007432379004659081
+}

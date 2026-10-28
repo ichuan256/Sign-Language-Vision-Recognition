@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-28",
+  "tool": "Vitis HLS 2024.1 (SW Build 5069499)",
+  "part": "xc7z020clg400-1",
+  "clock_target_ns": 10.0,
+  "clock_estimated_ns": 7.3,
+  "note": "naive first-cut kernels: II=1 fully unrolled int64 MAC, padded-array-in-BRAM, batch N=2 folded in. Feasibility probe, NOT the final architecture.",
+  "device_budget": {
+    "lut": 53200,
+    "ff": 106400,
+    "dsp": 220,
+    "bram18k": 280
+  },
+  "layers": {
+    "dw_3": {
+      "bram18k": 21,
+      "dsp": 16,
+      "ff": 6671,
+      "lut": 10702,
+      "latency_cycles": 68151
+    },
+    "pw_3": {
+      "bram18k": 8,
+      "dsp": 38,
+      "ff": 20346,
+      "lut": 34580,
+      "latency_cycles": 236911
+    },
+    "stem": {
+      "bram18k": 104,
+      "dsp": 26,
+      "ff": 15403,
+      "lut": 33494,
+      "latency_cycles": 2249951
+    }
+  },
+  "sum3": {
+    "bram18k": 133,
+    "dsp": 80,
+    "ff": 42420,
+    "lut": 78776
+  },
+  "finding": "3 of 11 layers already exceed the 53.2K LUT budget (148%); pw_3 alone is 65%. int64 per-multiplier MAC and full unrolling are the cost drivers. Naive HLS cannot fit the student on xc7z020; a dataflow architecture (DSP48 int8 MAC with shared int32/int64 accumulate, line buffers, layer reuse, batch=1) is required, consistent with docs/方案/03 section 4.",
+  "pw3_iterations": {
+    "v1_naive": {
+      "lut": 34580,
+      "dsp": 38,
+      "ff": 20346,
+      "bram": 8,
+      "note": "II=1 on COUT loop, int64 MAC per multiplier, batch=2"
+    },
+    "v2d_chunkpipe": {
+      "lut": 10222,
+      "dsp": 12,
+      "ff": 6477,
+      "bram": 4,
+      "note": "8x8 ap_int MAC, chunk pipeline, but II=32 (single m_axi port)"
+    },
+    "v3_bram_tile": {
+      "lut": 6389,
+      "dsp": 12,
+      "ff": 3781,
+      "bram": 20,
+      "note": "II=1 satisfied, depth 6; transposed weights, BRAM-resident tile, int32 shared acc"
+    }
+  },
+  "v3_conclusion": "Dataflow architecture fits: 12% LUT / 12 DSP / II=1 for the largest PW layer. Whole-net with layer-reused array is feasible on xc7z020 per docs/方案/03 section 4. CSim bit-exact at every iteration (contract intact)."
+}

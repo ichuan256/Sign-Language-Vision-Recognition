@@ -1,0 +1,703 @@
+{
+  "status": "P0_initial_baseline_and_diagnostics_complete_P1_runtime_gate_pending",
+  "source": "project/_tmp/teacher_p0_baseline_20261028_v1",
+  "scope": "PS full teacher; no training, labels or FPGA loading",
+  "baseline": {
+    "frames": 120,
+    "session_wall_s": 191.86112044600122,
+    "processing_ms": {
+      "count": 120,
+      "mean": 1560.6042314832696,
+      "p50": 1403.6597759995857,
+      "p95": 2182.0675978495265,
+      "minimum": 1176.0688159993151,
+      "maximum": 2659.8805869998614
+    },
+    "pipeline_ms": {
+      "count": 120,
+      "mean": 1431.2893871999981,
+      "p50": 1281.2679760008905,
+      "p95": 2050.6997061008396,
+      "minimum": 1049.4770569985121,
+      "maximum": 2523.8820879985724
+    },
+    "decode_ms": {
+      "count": 120,
+      "mean": 91.60772368330375,
+      "p50": 89.43823400022666,
+      "p95": 95.36412904935787,
+      "minimum": 87.63180899950385,
+      "maximum": 211.09906399942702
+    },
+    "draw_ms": {
+      "count": 120,
+      "mean": 4.353619366626542,
+      "p50": 4.274101001101371,
+      "p95": 11.162021049221948,
+      "minimum": 0.0096929998107953,
+      "maximum": 24.049211999226827
+    },
+    "palm_abi_wall_ms": {
+      "count": 90,
+      "mean": 570.4708411444598,
+      "p50": 557.5394204997792,
+      "p95": 656.3374727005793,
+      "minimum": 554.9100179996458,
+      "maximum": 800.5352480013244
+    },
+    "landmark_abi_wall_ms": {
+      "count": 100,
+      "mean": 509.32889750993127,
+      "p50": 500.97183949947066,
+      "p95": 549.8383192505571,
+      "minimum": 496.90659000043524,
+      "maximum": 675.8086390000244
+    },
+    "palm_frames": 90,
+    "frames_with_hands": 62,
+    "hand_count_histogram": {
+      "0": 58,
+      "1": 31,
+      "2": 31
+    }
+  },
+  "display_enabled": false,
+  "video_sha256": "756b7cda9dd1d417bacf1c6cd920fefa4aaa10e5dbe7f04a424ea1129475181d",
+  "models_and_runtime": {
+    "palm_detection_full.tflite": "1b14e9422c6ad006cde6581a46c8b90dd573c07ab7f3934b5589e7cea3f89a54",
+    "hand_landmark_full.tflite": "11c272b891e1a99ab034208e23937a8008388cf11ed2a9d776ed3d01d0ba00e3",
+    "libhands_tflite.so": "18f9b3c16f84b1ea2e09f8cb5b85ffa204a90155639fe3d19940bb47a317107e"
+  },
+  "landmark_probes": 100,
+  "palm_probes": 12,
+  "diagnostics": [
+    {
+      "model": "palm",
+      "mode": "default",
+      "cases": 12,
+      "executed_nodes": 1,
+      "delegated_nodes": 1,
+      "extension_parity_all_outputs": true,
+      "extension_parity_all_exact": true,
+      "profiled_outputs_allclose": true,
+      "unprofiled_api_wall_ms": {
+        "count": 12,
+        "mean": 571.9449480826976,
+        "p50": 562.9547934995571,
+        "p95": 607.3863341492142
+      },
+      "profiler_operator_sum_ms": {
+        "count": 12,
+        "mean": 563.3727499999999,
+        "p50": 559.0625,
+        "p95": 583.1287
+      },
+      "top_operators": [
+        {
+          "node": 0,
+          "tag": "Convolution (NHWC, F32) IGEMM",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 24.7775,
+            "p50": 22.423000000000002,
+            "p95": 35.29894999999998
+          }
+        },
+        {
+          "node": 2,
+          "tag": "Convolution (NHWC, F32) DWConv",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 22.000999999999994,
+            "p50": 21.415,
+            "p95": 24.358999999999995
+          }
+        },
+        {
+          "node": 14,
+          "tag": "Convolution (NHWC, F32) DWConv",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 21.673000000000002,
+            "p50": 21.731,
+            "p95": 21.7978
+          }
+        },
+        {
+          "node": 6,
+          "tag": "Convolution (NHWC, F32) DWConv",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 21.649333333333335,
+            "p50": 21.606,
+            "p95": 21.90775
+          }
+        },
+        {
+          "node": 10,
+          "tag": "Convolution (NHWC, F32) DWConv",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 21.572333333333333,
+            "p50": 21.5825,
+            "p95": 21.80285
+          }
+        },
+        {
+          "node": 122,
+          "tag": "Convolution (NHWC, F32) GEMM",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 18.065416666666664,
+            "p50": 18.1015,
+            "p95": 18.2047
+          }
+        },
+        {
+          "node": 110,
+          "tag": "Convolution (NHWC, F32) GEMM",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 10.71975,
+            "p50": 10.731,
+            "p95": 10.9433
+          }
+        },
+        {
+          "node": 36,
+          "tag": "Convolution (NHWC, F32) DWConv",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 10.546,
+            "p50": 10.5665,
+            "p95": 10.65385
+          }
+        },
+        {
+          "node": 28,
+          "tag": "Convolution (NHWC, F32) DWConv",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 10.530416666666667,
+            "p50": 10.4515,
+            "p95": 10.70555
+          }
+        },
+        {
+          "node": 73,
+          "tag": "Convolution (NHWC, F32) GEMM",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 10.511083333333334,
+            "p50": 10.439,
+            "p95": 10.730749999999999
+          }
+        },
+        {
+          "node": 32,
+          "tag": "Convolution (NHWC, F32) DWConv",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 10.47175,
+            "p50": 10.4565,
+            "p95": 10.59135
+          }
+        },
+        {
+          "node": 24,
+          "tag": "Convolution (NHWC, F32) DWConv",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 10.414499999999999,
+            "p50": 10.4005,
+            "p95": 10.5089
+          }
+        }
+      ]
+    },
+    {
+      "model": "palm",
+      "mode": "builtin_only",
+      "cases": 12,
+      "executed_nodes": 272,
+      "delegated_nodes": 0,
+      "extension_parity_all_outputs": false,
+      "extension_parity_all_exact": false,
+      "profiled_outputs_allclose": false,
+      "unprofiled_api_wall_ms": {
+        "count": 12,
+        "mean": 1079.6718568332533,
+        "p50": 1075.2850784992916,
+        "p95": 1145.0882803006607
+      },
+      "profiler_operator_sum_ms": {
+        "count": 12,
+        "mean": 1071.6485449999998,
+        "p50": 1055.6417405,
+        "p95": 1129.9938919999997
+      },
+      "top_operators": [
+        {
+          "node": 2,
+          "tag": "CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 54.56365833333333,
+            "p50": 54.40004999999999,
+            "p95": 55.287115
+          }
+        },
+        {
+          "node": 15,
+          "tag": "DEPTHWISE_CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 42.89901666666666,
+            "p50": 41.268299999999996,
+            "p95": 50.23752499999999
+          }
+        },
+        {
+          "node": 7,
+          "tag": "DEPTHWISE_CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 42.042633333333335,
+            "p50": 41.2919,
+            "p95": 45.597395
+          }
+        },
+        {
+          "node": 23,
+          "tag": "DEPTHWISE_CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 41.57201666666666,
+            "p50": 41.2781,
+            "p95": 43.131229999999995
+          }
+        },
+        {
+          "node": 31,
+          "tag": "DEPTHWISE_CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 41.296,
+            "p50": 41.242549999999994,
+            "p95": 41.708475
+          }
+        },
+        {
+          "node": 242,
+          "tag": "CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 23.70094166666667,
+            "p50": 23.94845,
+            "p95": 24.422885
+          }
+        },
+        {
+          "node": 18,
+          "tag": "CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 22.911091666666664,
+            "p50": 23.10205,
+            "p95": 24.189004999999998
+          }
+        },
+        {
+          "node": 10,
+          "tag": "CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 22.833241666666666,
+            "p50": 23.01115,
+            "p95": 24.44343
+          }
+        },
+        {
+          "node": 34,
+          "tag": "CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 22.642691666666664,
+            "p50": 23.0456,
+            "p95": 24.00761
+          }
+        },
+        {
+          "node": 26,
+          "tag": "CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 22.516650000000002,
+            "p50": 22.6671,
+            "p95": 23.696559999999998
+          }
+        },
+        {
+          "node": 74,
+          "tag": "DEPTHWISE_CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 21.507800000000003,
+            "p50": 20.286749999999998,
+            "p95": 27.21238999999999
+          }
+        },
+        {
+          "node": 50,
+          "tag": "DEPTHWISE_CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 20.71728333333333,
+            "p50": 20.20715,
+            "p95": 23.128929999999997
+          }
+        }
+      ]
+    },
+    {
+      "model": "landmark",
+      "mode": "default",
+      "cases": 12,
+      "executed_nodes": 1,
+      "delegated_nodes": 1,
+      "extension_parity_all_outputs": true,
+      "extension_parity_all_exact": true,
+      "profiled_outputs_allclose": true,
+      "unprofiled_api_wall_ms": {
+        "count": 12,
+        "mean": 509.3356984170896,
+        "p50": 500.46580850084865,
+        "p95": 549.8169325009256
+      },
+      "profiler_operator_sum_ms": {
+        "count": 12,
+        "mean": 496.89724999999993,
+        "p50": 495.072,
+        "p95": 505.8068
+      },
+      "top_operators": [
+        {
+          "node": 14,
+          "tag": "Convolution (NHWC, F32) DWConv",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 18.011750000000003,
+            "p50": 18.1145,
+            "p95": 18.236150000000002
+          }
+        },
+        {
+          "node": 52,
+          "tag": "Convolution (NHWC, F32) GEMM",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 17.739416666666667,
+            "p50": 17.6025,
+            "p95": 18.25455
+          }
+        },
+        {
+          "node": 48,
+          "tag": "Convolution (NHWC, F32) GEMM",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 17.6835,
+            "p50": 17.630499999999998,
+            "p95": 17.9973
+          }
+        },
+        {
+          "node": 44,
+          "tag": "Convolution (NHWC, F32) GEMM",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 17.42766666666667,
+            "p50": 17.538,
+            "p95": 18.010399999999997
+          }
+        },
+        {
+          "node": 36,
+          "tag": "Convolution (NHWC, F32) DWConv",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 17.097083333333334,
+            "p50": 17.0775,
+            "p95": 17.35855
+          }
+        },
+        {
+          "node": 33,
+          "tag": "Convolution (NHWC, F32) GEMM",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 16.829083333333333,
+            "p50": 16.7775,
+            "p95": 17.1546
+          }
+        },
+        {
+          "node": 54,
+          "tag": "Convolution (NHWC, F32) GEMM",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 16.761833333333332,
+            "p50": 16.154,
+            "p95": 19.729799999999994
+          }
+        },
+        {
+          "node": 31,
+          "tag": "Convolution (NHWC, F32) GEMM",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 16.519750000000002,
+            "p50": 16.442500000000003,
+            "p95": 16.7783
+          }
+        },
+        {
+          "node": 37,
+          "tag": "Convolution (NHWC, F32) GEMM",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 16.18425,
+            "p50": 16.125999999999998,
+            "p95": 16.4991
+          }
+        },
+        {
+          "node": 50,
+          "tag": "Convolution (NHWC, F32) GEMM",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 16.165000000000003,
+            "p50": 16.1315,
+            "p95": 16.876099999999997
+          }
+        },
+        {
+          "node": 46,
+          "tag": "Convolution (NHWC, F32) GEMM",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 16.000333333333334,
+            "p50": 16.17,
+            "p95": 16.542
+          }
+        },
+        {
+          "node": 42,
+          "tag": "Convolution (NHWC, F32) GEMM",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 15.937000000000003,
+            "p50": 16.03,
+            "p95": 16.33165
+          }
+        }
+      ],
+      "xnn_sequence_mapping": {
+        "signature_match": true,
+        "original_nonconstant_ops": 63,
+        "event_counts": [
+          63,
+          63,
+          63,
+          63,
+          63,
+          63,
+          63,
+          63,
+          63,
+          63,
+          63,
+          63
+        ],
+        "caveat": "Inferred from equal-length ordered operator signatures; XNN internal IDs are not original TFLite node IDs. Confirm with partition runtime before using as exact hotspot budget."
+      },
+      "candidate_xnn_inferred_ms": {
+        "count": 12,
+        "mean": 49.55775,
+        "p50": 49.519000000000005,
+        "p95": 49.87195
+      },
+      "candidate_xnn_inferred_fraction": {
+        "count": 12,
+        "mean": 0.09974813765908626,
+        "p50": 0.09999488684846777,
+        "p95": 0.1006490915158896
+      }
+    },
+    {
+      "model": "landmark",
+      "mode": "builtin_only",
+      "cases": 12,
+      "executed_nodes": 165,
+      "delegated_nodes": 0,
+      "extension_parity_all_outputs": true,
+      "extension_parity_all_exact": false,
+      "profiled_outputs_allclose": true,
+      "unprofiled_api_wall_ms": {
+        "count": 12,
+        "mean": 793.4774963334045,
+        "p50": 786.4684540008966,
+        "p95": 844.4384090504172
+      },
+      "profiler_operator_sum_ms": {
+        "count": 12,
+        "mean": 788.0187984166668,
+        "p50": 789.575719,
+        "p95": 812.3870845
+      },
+      "top_operators": [
+        {
+          "node": 11,
+          "tag": "CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 37.104216666666666,
+            "p50": 37.1909,
+            "p95": 38.149294999999995
+          }
+        },
+        {
+          "node": 2,
+          "tag": "CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 33.527233333333335,
+            "p50": 33.4547,
+            "p95": 34.342965
+          }
+        },
+        {
+          "node": 23,
+          "tag": "DEPTHWISE_CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 28.897566666666663,
+            "p50": 28.670849999999998,
+            "p95": 30.400959999999998
+          }
+        },
+        {
+          "node": 42,
+          "tag": "DEPTHWISE_CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 28.36955833333333,
+            "p50": 27.73525,
+            "p95": 31.357249999999993
+          }
+        },
+        {
+          "node": 93,
+          "tag": "CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 24.864524999999997,
+            "p50": 23.1138,
+            "p95": 31.287994999999995
+          }
+        },
+        {
+          "node": 20,
+          "tag": "CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 24.495683333333332,
+            "p50": 24.691449999999996,
+            "p95": 25.547819999999998
+          }
+        },
+        {
+          "node": 103,
+          "tag": "CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 24.317391666666662,
+            "p50": 23.7875,
+            "p95": 27.726290000000002
+          }
+        },
+        {
+          "node": 30,
+          "tag": "CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 23.968,
+            "p50": 24.223699999999997,
+            "p95": 25.38013
+          }
+        },
+        {
+          "node": 90,
+          "tag": "DEPTHWISE_CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 22.381991666666668,
+            "p50": 20.006149999999998,
+            "p95": 31.220904999999995
+          }
+        },
+        {
+          "node": 33,
+          "tag": "DEPTHWISE_CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 22.275741666666665,
+            "p50": 20.2544,
+            "p95": 29.464515
+          }
+        },
+        {
+          "node": 100,
+          "tag": "DEPTHWISE_CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 19.598575,
+            "p50": 19.6678,
+            "p95": 20.23548
+          }
+        },
+        {
+          "node": 97,
+          "tag": "CONV_2D",
+          "elapsed_ms": {
+            "count": 12,
+            "mean": 19.249183333333338,
+            "p50": 18.420650000000002,
+            "p95": 23.268124999999994
+          }
+        }
+      ],
+      "candidate_original_node_ms": {
+        "count": 12,
+        "mean": 66.30377,
+        "p50": 64.2752545,
+        "p95": 75.36661585
+      },
+      "candidate_timing_scope": "builtin_diagnostic_only_not_optimized_baseline"
+    }
+  ],
+  "candidate_ideal_budget": {
+    "estimated_mean_application_fraction": 0.02712870649588303,
+    "ideal_mean_speedup_if_block_free": 1.0278851957879958,
+    "caveat": "Inference from diagnostic operator fraction and recorded ABI time, zero offload overhead and unchanged remaining CPU performance; not a measured PL gain or P50/P95 guarantee."
+  },
+  "limitations": [
+    "one bounded video and one baseline run, not paired hybrid acceptance",
+    "no HDMI output in this baseline",
+    "first captured ROI inputs may be temporally correlated",
+    "builtin profile is diagnostic, not the optimized baseline",
+    "no actual PL or CMA transfer benchmark yet",
+    "no complete P1 runtime boundary or P2 delegate validation yet"
+  ],
+  "partition_manifest_canonical_json_sha256": "f4e7ab85e80a12154a0c8f2b7ca1097929422d55dfd97dc87dddb10c71523db9"
+}

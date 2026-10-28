@@ -1,7 +1,10 @@
 # 视觉模块：代码来源与目录入口
 
-当前主线是 **无语义关键点 → 独立板端实时叠加**。本目录同时保留旧词语识别管线与历史证据，
+当前主线是 **PS 老师关键点网络 → PL 局部加速 → 板端叠加**。本目录同时保留旧词语识别管线与历史证据，
 不能把每个文件夹都当成当前训练或部署入口。
+
+最新 [P1 进展](../project/analysis/teacher_partition_20261028/p1.md)：PS 后处理等价优化和原老师子图边界重放已验证，
+下一步测单个连续分区接图开销；尚无新 PL 固件或加速验收，不需要标注/训练。
 
 2026-10-26 已完成物理归并，主目录收敛为：
 
@@ -30,11 +33,11 @@ HDMI/音频从原 `pld-sign-glove` 工程移植到 `project/`、`ASR/`；视觉 
 | 内容 | 来源及边界 |
 |---|---|
 | `src/vision/framesource/`、`src/vision/keypoints/` | 本项目维护的输入接口、关键点运行、数据/评测和显示连接代码；使用 MediaPipe/OpenCV 库 |
-| `src/signrec/`、`src/vision/{webapp,m1,classify}/` | 本项目维护的旧视觉嵌入/DTW、网页与词语基线；不是当前学生网络 |
+| `src/signrec/`、`src/vision/{webapp,m1,classify}/` | 本项目维护的旧视觉嵌入/DTW、网页与词语基线 |
 | `src/signrec/_vendor/opencv_zoo/` | 明确复制保留的第三方封装；上游固定在 `47534e27c9851bb1128ccc0102f1145e27f23f98`，见 [来源与许可](src/signrec/_vendor/opencv_zoo/README.md) |
 | `data/models/` 中的 ONNX | OpenCV Zoo 的 MobileNetV2、person/pose 预训练模型，各子目录 README 记录模型来源与哈希 |
 | 手部关键点教师 | 本机 MediaPipe 安装中的预训练模型，导出报告记录版本/哈希；不在 `vision/data/models/` 重复存放 |
-| 新学生网络 | 本项目定义，配置在 [project/algo/keypoints](../project/algo/keypoints/README.md)；本地试训权重和原始报告在 `project/_tmp/`，尚未作为通过精度验收的模型发布 |
+| 历史学生网络 | 已停止训练与部署推进；本地实验原件保留，不作为当前运行入口 |
 
 上述是代码/模型来源；视频素材来源另见 [数据入口](data/README.md)。
 
@@ -44,30 +47,19 @@ HDMI/音频从原 `pld-sign-glove` 工程移植到 `project/`、`ASR/`；视觉 
 |---|---|
 | 输入文件、USB 与单目 OV5640 占位 | [framesource/](src/vision/framesource) |
 | PC 关键点与显示连接 | [keypoints/README.md](src/vision/keypoints/README.md) |
-| 独立实时学生网络与板内流水线 | [当前方案](../docs/方案/03_Zynq7020独立实时关键点方案.md) |
-| 教师导出、训练、评测、HLS 和板端脚本 | [project/scripts/keypoints](../project/scripts/keypoints/README.md) |
-| 已部署 0.49 秒 PL 基线 | [实际证据](../project/analysis/keypoints_pl_20261026/stream_wide.md) |
+| PS 老师网络的 PL 局部加速 | [当前方案](../docs/方案/04_老师模型PS_PL局部迁移.md) |
+| PS full 老师与开发工具 | [老师运行入口](../project/board/teacher_hands/README.md)、[工具说明](../project/scripts/keypoints/README.md) |
+| 历史 lite 整网 PL 基线 | [日期证据](../project/analysis/keypoints_pl_20261026/stream_wide.md)，不代表当前板上状态 |
 
-当前目标摄像头为单目 OV5640，尚未实测。`src/vision/keypoints/HDMI_REPLAY.md` 记录现有 PC 回放通路，
-不等于最终独立板端通路。新模型的理论 MAC 缩减也不等于板端已达到 20Hz。
+`src/vision/keypoints/HDMI_REPLAY.md` 记录 PC 回放通路，不等于板端独立推理。
+真实摄像头采集状态单独按硬件记录核对，不把播放率或理论 MAC 当作推理速度。
 
-## 当前试训数据和“教师”是什么
+## 当前老师模型
 
-**教师是软件模型 MediaPipe Holistic 0.10.21**，不是视频里的授课人。
-它先自动估计手部位置和 21 个点，学生网络学习这些参考点；教师也会出错，所以称为伪标签。
-
-| 层级 | 当前内容 | 能否当人工真值 |
-|---|---|---|
-| 可用素材池 | `data/manifests/current_available_fullframe.json` 指向的 551 条视频 | 不能，只有媒体/来源核验 |
-| 试验抽样 | `data/manifests/hand_teacher_pilot_20261026.json` 固定的 40 条 | 不能，仅工程试跑 |
-| 教师输出 | 674 个采样帧、997 个有手 ROI；另有 674 个未知区域 | 自动伪标签，未知区域不当无手负例 |
-| 当前坐标试训划分 | 训练 670、验证 136、测试 191 个 ROI，按原始来源分组 | 仅报告教师一致性 |
-| 人工定位/负样本 | 尚未导入人工复核文件；人工精度与无手误检尚未验收 | 当前没有已验收人工测试集 |
-
-本机张量在 `project/_tmp/hand_teacher_pilot_v1/`，试训权重在 `project/_tmp/hand_student_train_pilot_v2/`，
-均不入库。现有 200 项复核队列中 164 项来自 352×288 低分辨率素材，只有 100 个不同源帧；
-**这批队列暂不用于正式精度标注，需按清晰度、来源和时间去重后重新抽样。**
-试训结果和限制见 [学生试跑记录](../project/analysis/keypoints_student_20261026/README.md)。
+板端手部基线为原版 MediaPipe `palm_detection_full.tflite` 与 `hand_landmark_full.tflite`，
+通过 TFLite ARMv7 运行；模型结构和权重保持不变。它与 PC Holistic 的完整身体/双手管线范围不同。
+当前加速验证对照冻结老师输出，不再导出伪标签训练学生。模型 SHA 与输出契约见
+[板端说明](../project/board/teacher_hands/README.md)。素材数量和来源以 [数据入口](data/README.md) 为准。
 
 ## 其余目录的职责
 

@@ -1,5 +1,7 @@
 # 六条人工训练ROI的拟合诊断（2026-10-27）
 
+> 2026-10-28 已停止此路线。本页仅保留日期实验事实，不再执行训练、蒸馏、QAT 或学生 HLS。当前任务见 [PS 老师局部迁移方案](../../../docs/方案/04_老师模型PS_PL局部迁移.md)。
+
 **96网络通过小样本拟合诊断。** 固定6条人工训练ROI、关闭增强、只监督可见XY，
 150个优化步后，独立重载模型得到全部126个点和30个指尖的PCK@0.05均为100%。
 这是训练样本记忆能力，不能替代泛化或部署精度。结构化证据、模型和输入SHA见[overfit6.json](overfit6.json)。
@@ -36,15 +38,4 @@ NME/PCK沿用完整可见手包围框对角线归一化。打乱的是图像顺�
 
 这组实验支持当前结构、坐标监督及梯度通路具有基本拟合能力。
 它不能证明原先的增强、多输出损失或混合来源BN统计都合适，也不能排除大规模任务需要更强网络。
-前次320/106/188划分的泛化门禁仍未通过，当前板端仍为0.49秒旧图。
-
-下一步固定训练/验证数据、seed和预算，分别比较增强开关与XY-only/原多输出监督，
-只用验证集选方案；同时排查教师难例质量并增加有效手型覆盖。
-选定方案后另建覆盖不同人物/背景的人工测试集，不用本次6个样本的100%对外报告识别率。
-
-复跑（输出目录必须新建）：
-
-```powershell
-F:\PLD\.venv-r3\Scripts\python.exe -X utf8 project/scripts/keypoints/overfit_hand_student.py fit --data project/_tmp/hand_teacher_clear_v3 --reviews project/_tmp/hand_review_intake_final_20261027_v1/reviews_original.jsonl --output project/_tmp/overfit_new --size 96 --steps 1500
-F:\PLD\.venv-r3\Scripts\python.exe -X utf8 project/scripts/keypoints/overfit_hand_student.py verify --run project/_tmp/overfit_new --output project/_tmp/overfit_verify_new
-```
+该次320/106/188划分的泛化门禁未通过；实验记录时的板端基线为0.49秒旧图，不代表现在的在线状态。

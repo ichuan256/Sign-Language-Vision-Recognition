@@ -1,0 +1,26 @@
+{
+  "0": {
+    "basicblocks": 1,
+    "calls": "1",
+    "file": "kp_hls_kernels.cpp",
+    "fileloc": 136,
+    "instructions": 19,
+    "name": "kp_hls_dw3",
+    "total_instructions": 479
+  },
+  "1": {
+    "basicblocks": 49,
+    "calls": "",
+    "file": "kp_hls_kernels.cpp",
+    "fileloc": 40,
+    "instructions": 460,
+    "loads": {
+      "L": 39
+    },
+    "name": "kp_hls_dw_core<2, 12, 12, 48, 2>",
+    "stores": {
+      "L": 25
+    },
+    "total_instructions": 460
+  }
+}
