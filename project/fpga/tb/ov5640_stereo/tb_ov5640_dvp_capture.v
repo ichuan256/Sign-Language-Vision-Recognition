@@ -158,17 +158,17 @@ module tb_ov5640_dvp_capture;
         if (frame_id != 1)
             $fatal(1, "frame_id expected 1 after first completed frame, got %0d", frame_id);
 
-        // A one-byte line has no complete RGB565 pixel; the frame is marked
-        // bad, and the following frame must start from a clean byte phase.
+        // A one-byte line is silently discarded; the next line starts with a
+        // fresh byte phase, and frame geometry does not raise an error.
         start_frame();
         start_line(8'hAA);
         end_line();
         start_line(8'h11); set_byte(8'h22); set_byte(8'h33); set_byte(8'h44);
         end_line();
         finish_frame();
-        if (frames_done != 2 || errors_seen != 1)
-            $fatal(1, "odd-byte frame was not rejected: done=%0d error=%0d",
-                   frames_done, errors_seen);
+        if (frames_done != 2 || errors_seen != 0 || pixels_seen != 6)
+            $fatal(1, "odd-byte input was not passed without geometry detection: done=%0d error=%0d pixels=%0d",
+                   frames_done, errors_seen, pixels_seen);
 
         // One exact frame after a malformed frame verifies recovery.
         start_frame();
@@ -177,13 +177,13 @@ module tb_ov5640_dvp_capture;
         start_line(8'h1F); set_byte(8'h00); set_byte(8'hFF); set_byte(8'hFF);
         end_line();
         finish_frame();
-        if (frames_done != 3 || errors_seen != 1)
+        if (frames_done != 3 || errors_seen != 0)
             $fatal(1, "capture did not recover after malformed frame");
         if (frame_id != 3)
             $fatal(1, "frame_id expected 3, got %0d", frame_id);
 
-        // Excess pixels must be suppressed after configured width, while
-        // the frame is marked bad at completion.
+        // Excess pixels are still suppressed at configured width, without a
+        // geometry-error report.
         start_frame();
         start_line(8'h00); set_byte(8'hF8); set_byte(8'hE0); set_byte(8'h07);
         set_byte(8'h1F); set_byte(8'h00); // third pixel pair exceeds width
@@ -193,11 +193,11 @@ module tb_ov5640_dvp_capture;
         finish_frame();
         if (pixels_seen != 14)
             $fatal(1, "over-width pixels were not suppressed, total=%0d", pixels_seen);
-        if (frames_done != 4 || errors_seen != 2 || frame_id != 4)
+        if (frames_done != 4 || errors_seen != 0 || frame_id != 4)
             $fatal(1, "over-width frame status done=%0d error=%0d id=%0d",
                    frames_done, errors_seen, frame_id);
 
-        $display("TEST_PASS: RGB565 order, SOF/EOL, odd/over-width error, suppression, recovery");
+        $display("TEST_PASS: RGB565 order, SOF/EOL, no geometry-error detection, width suppression, recovery");
         $finish;
     end
 

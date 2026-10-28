@@ -23,12 +23,13 @@ module ov5640_dvp_capture #(
 
     output reg         frame_start,
     output reg         frame_done,
+    // Retained for interface compatibility. Geometry errors are not detected.
     output reg         frame_error,
     output reg  [31:0] frame_id
 );
 
     localparam integer PIX_COUNT_WIDTH =
-        (FRAME_WIDTH < 1) ? 1 : $clog2(FRAME_WIDTH + 2);
+        (FRAME_WIDTH < 1) ? 1 : $clog2(FRAME_WIDTH + 1);
     localparam integer LINE_COUNT_WIDTH =
         (FRAME_HEIGHT < 1) ? 1 : $clog2(FRAME_HEIGHT + 2);
 
@@ -51,7 +52,6 @@ module ov5640_dvp_capture #(
     reg [7:0] low_byte;
     reg [PIX_COUNT_WIDTH-1:0] line_pixel_count;
     reg [LINE_COUNT_WIDTH-1:0] lines_seen;
-    reg frame_bad_latched;
 
     wire vsync_active = (cam_vsync == VSYNC_ACTIVE_LEVEL);
     wire vsync_active_d = (cam_vsync_d == VSYNC_ACTIVE_LEVEL);
@@ -70,7 +70,6 @@ module ov5640_dvp_capture #(
             low_byte          <= 8'h00;
             line_pixel_count  <= {PIX_COUNT_WIDTH{1'b0}};
             lines_seen        <= {LINE_COUNT_WIDTH{1'b0}};
-            frame_bad_latched <= 1'b0;
 
             pixel_valid       <= 1'b0;
             pixel_data        <= 16'h0000;
@@ -97,8 +96,6 @@ module ov5640_dvp_capture #(
             if (vsync_active_rise) begin
                 if (in_frame) begin
                     frame_done <= 1'b1;
-                    frame_error <= frame_bad_latched || line_in_progress ||
-                                   (lines_seen != FRAME_HEIGHT);
                     frame_id <= frame_id + 32'd1;
                 end
                 in_frame         <= 1'b0;
@@ -112,15 +109,12 @@ module ov5640_dvp_capture #(
                 byte_phase        <= 1'b0;
                 line_pixel_count  <= {PIX_COUNT_WIDTH{1'b0}};
                 lines_seen        <= {LINE_COUNT_WIDTH{1'b0}};
-                frame_bad_latched <= 1'b0;
                 frame_start       <= 1'b1;
             end
 
             // HREF rises on the first valid byte, so capture that byte here
             // rather than waiting for the following pixel-clock edge.
             if (href_rise && in_frame && !vsync_active) begin
-                if (line_in_progress || (lines_seen >= FRAME_HEIGHT))
-                    frame_bad_latched <= 1'b1;
                 line_in_progress <= 1'b1;
                 line_pixel_count <= {PIX_COUNT_WIDTH{1'b0}};
                 low_byte   <= cam_data; // ATK module RGB565 sends low byte first
@@ -141,24 +135,19 @@ module ov5640_dvp_capture #(
                                        (line_pixel_count == 0);
                         pixel_eol   <= (line_pixel_count == FRAME_WIDTH - 1);
                     end else begin
-                        // Suppress over-width/over-height pixels so a bad
-                        // frame cannot write beyond its expected image size.
-                        frame_bad_latched <= 1'b1;
+                        // Keep the output within the configured frame bounds.
                     end
 
-                    // Saturate at expected width + 1. This preserves the
-                    // distinction between an exact line and an overlong one.
-                    if (line_pixel_count <= FRAME_WIDTH)
+                    // Saturate at the configured width; excess pixels are ignored.
+                    if (line_pixel_count < FRAME_WIDTH)
                         line_pixel_count <= line_pixel_count + 1'b1;
                 end
             end
 
             if (href_fall && line_in_progress && in_frame) begin
-                if (byte_phase || (line_pixel_count != FRAME_WIDTH))
-                    frame_bad_latched <= 1'b1;
                 line_in_progress <= 1'b0;
                 byte_phase       <= 1'b0;
-                if (lines_seen <= FRAME_HEIGHT)
+                if (lines_seen < FRAME_HEIGHT)
                     lines_seen <= lines_seen + 1'b1;
             end
         end

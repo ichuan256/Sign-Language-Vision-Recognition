@@ -12,6 +12,7 @@ module startup_controller_case #(parameter integer FAULT=0)(output reg completed
     wire tx_start,tx_read;
     wire [15:0] addr;
     wire [7:0] value,mask;
+    wire [31:0] diag_register,diag_data,diag_context;
     reg [1:0] tx_done=0;
     reg [7:0] rd1=0,rd2=0;
     integer elapsed=0,cycles=0,requests=0,writes=0,verify_reads=0,table_done_at=0;
@@ -30,7 +31,8 @@ module startup_controller_case #(parameter integer FAULT=0)(output reg completed
         .table_delay_ms(FAULT==4 ? 16'd0 : 16'd300),
         .tx_start(tx_start),.tx_read_only(tx_read),.tx_addr(addr),.tx_value(value),.tx_mask(mask),
         .tx_busy(2'b00),.tx_done(tx_done),.read_data_ov1(rd1),.read_data_ov2(rd2),
-        .transport_rst_n(transport_rst_n));
+        .transport_rst_n(transport_rst_n),.diagnostic_register(diag_register),
+        .diagnostic_data(diag_data),.diagnostic_context(diag_context));
     function [7:0] response;
         input [15:0] a;
         begin
@@ -85,6 +87,10 @@ module startup_controller_case #(parameter integer FAULT=0)(output reg completed
         end else if(!error_flag || error_code!=4 || cameras!=3 || (FAULT==3 && writes) || (FAULT==4 && index!=1023))
             $fatal(1,"invalid ROM/overflow not rejected");
         if(FAULT!=0 && transport_rst_n) $fatal(1,"failure did not reset transport");
+        if(FAULT==0 && diag_context!=0)$fatal(1,"success fabricated diagnostic");
+        if(FAULT!=0 && !diag_context[31])$fatal(1,"missing failure context");
+        if((FAULT==1||FAULT==2) && (diag_data[17:16]!=0 || diag_register[31:16]!=16'h300a))
+            $fatal(1,"timeout pretended valid current read or wrong address");
         if(FAULT!=0 && (reset1 || reset2 || !pwdn1 || !pwdn2)) $fatal(1,"failure sensor controls unsafe");
         // Late completion and extra starts never turn failure into success.
         repeat(4) @(negedge clk);
@@ -93,6 +99,7 @@ module startup_controller_case #(parameter integer FAULT=0)(output reg completed
         if(FAULT==0 ? !done : (!error_flag || done)) $fatal(1,"terminal result not sticky");
         rst_n=0; #1;
         if(done || error_flag || busy) $fatal(1,"reset failed");
+        if(diag_register||diag_data||diag_context)$fatal(1,"reset retained diagnostic");
         $display("CONTROL_CASE_PASS fault=%0d requests=%0d writes=%0d",FAULT,requests,writes);
         completed=1;
     end

@@ -48,8 +48,9 @@ def validate(mapping: dict) -> list[dict]:
                      else 'camera_to_fpga')
         if row['direction'] != direction:
             raise ValueError('Incorrect signal direction')
-        pin1 = dict(zip(SIGNALS, [5,6,7,8,9,*range(10,18),18,19]))
-        pin2 = dict(zip(SIGNALS, [21,22,23,24,25,*range(26,34),34,20]))
+        # Module schematic P1: pins 1-6 NC; signals 7-36; power/GND 37-40.
+        pin1 = dict(zip(SIGNALS, [7,8,9,10,11,*range(12,20),20,21]))
+        pin2 = dict(zip(SIGNALS, [23,24,25,26,27,*range(28,36),36,22]))
         if row['camera_connector'] != 'P1' or row['camera_pin'] != (pin1 if camera == 'OV1' else pin2)[signal]:
             raise ValueError('Incorrect camera P1 pin')
         if row['camera_pin'] in module_pins:

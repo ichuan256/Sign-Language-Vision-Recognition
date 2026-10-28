@@ -80,7 +80,7 @@ module ov5640_stereo_startup_controller #(
     output reg [7:0] tx_value, tx_mask,
     input wire [1:0] tx_busy, tx_done,
     input wire [7:0] read_data_ov1, read_data_ov2,
-    output wire transport_rst_n
+    output reg transport_rst_n
 );
     localparam [3:0] IDLE=0, PWDN_WAIT=1, RESET_WAIT=2, PREPARE=3,
         ISSUE=4, WAIT_TX=5, POST_DELAY=6, FINISHED=7, FAILED=8,
@@ -122,7 +122,8 @@ module ov5640_stereo_startup_controller #(
     wire [1:0] mismatch = {
         tx_done[1] && tx_read_only && ((read_data_ov2 & compare_mask)!=(expected & compare_mask)),
         tx_done[0] && tx_read_only && ((read_data_ov1 & compare_mask)!=(expected & compare_mask))};
-    assign transport_rst_n = rst_n && !init_error;
+    // Registered transport reset: error decoding must not feed asynchronous
+    // reset pins through a LUT. Assert on the same edge that latches failure.
     // Constant/reference helper; never call this with runtime RTL signals.
     function [63:0] ms_cycles;
         input [15:0] milliseconds;
@@ -138,6 +139,7 @@ module ov5640_stereo_startup_controller #(
         input [1:0] cameras;
         begin
             init_error<=1; error_code<=code; failed_cameras<=cameras;
+            transport_rst_n<=0;
             busy<=0; init_done<=0; tx_start<=0; state<=FAILED;
             ov1_reset_n<=0; ov2_reset_n<=0; ov1_pwdn<=1; ov2_pwdn<=1;
         end
@@ -169,6 +171,7 @@ module ov5640_stereo_startup_controller #(
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             state<=IDLE; phase<=ID_HI; verify_index<=0; table_index<=0;
+            transport_rst_n<=0;
             ov1_reset_n<=0; ov2_reset_n<=0; ov1_pwdn<=1; ov2_pwdn<=1;
             busy<=0; init_done<=0; init_error<=0; error_code<=0; failed_cameras<=0;
             tx_start<=0; tx_read_only<=0; tx_addr<=0; tx_value<=0; tx_mask<=8'hff;
@@ -177,6 +180,7 @@ module ov5640_stereo_startup_controller #(
             delay_bits<=0; delay_steps<=0; delay_remainder<=0;
         end else begin
             tx_start<=0;
+            if (state==IDLE) transport_rst_n<=1;
             case (state)
                 IDLE: if (start) begin
                     busy<=1; ov1_pwdn<=0; ov2_pwdn<=0; wait_count<=0; state<=PWDN_WAIT;

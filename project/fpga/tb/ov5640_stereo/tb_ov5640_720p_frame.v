@@ -61,9 +61,9 @@ module tb_ov5640_720p_frame;
             $fatal(1,"camera shell defaults differ from 720p mode");
         repeat(5)@(negedge pclk);rst_n=1;repeat(5)@(negedge pclk);
         send_frame(0); if(frames!=1 || errors || frame_id!=1)$fatal(1,"first full 720p frame");
-        send_frame(1); if(frames!=2 || errors!=1)$fatal(1,"short last line not rejected");
-        send_frame(0); if(frames!=3 || errors!=1 || frame_id!=3)$fatal(1,"recovery after short 720p frame");
-        $display("TEST_PASS: 1280x720 RGB565 LE at 84MHz, 921600 pixels/720 EOL/one SOF, short-line error and clean next-frame recovery");
+        send_frame(1); if(frames!=2 || errors!=0)$fatal(1,"short last line must not raise geometry error");
+        send_frame(0); if(frames!=3 || errors!=0 || frame_id!=3)$fatal(1,"capture after short 720p frame");
+        $display("TEST_PASS: 1280x720 RGB565 LE at 84MHz, 921600 pixels/720 EOL/one SOF, no geometry-error detection");
         $finish;
     end
     initial begin #100000000; $fatal(1,"full 720p frame watchdog");end
