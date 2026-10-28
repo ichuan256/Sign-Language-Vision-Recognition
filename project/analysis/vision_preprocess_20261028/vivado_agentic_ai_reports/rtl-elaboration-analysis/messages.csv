@@ -1,0 +1,44 @@
+S.No,Severity,Msg_ID,Message,File,Line,Language
+1,INFO,7079,Multithreading enabled for synth_design using a maximum of 2 processes.,,0,VLOG
+2,INFO,7078,Launching helper process for spawning children vivado processes,,0,VLOG
+3,INFO,7075,Helper process launched with PID 33260,,0,VLOG
+4,ERROR,734,Invalid parameter 'linterCsvFile',,0,VLOG
+5,INFO,7079,Multithreading enabled for synth_design using a maximum of 2 processes.,,0,VLOG
+6,INFO,6157,synthesizing module 'vision_preprocess_axi',..\..\..\..\fpga\rtl\vision_preprocess\vision_preprocess_axi.v,4,VLOG
+7,INFO,6157,synthesizing module 'vision_rgb565_affine',..\..\..\..\fpga\rtl\vision_preprocess\vision_rgb565_affine.v,4,VLOG
+8,INFO,6155,done synthesizing module 'vision_rgb565_affine' (1#1),..\..\..\..\fpga\rtl\vision_preprocess\vision_rgb565_affine.v,4,VLOG
+9,INFO,6157,synthesizing module 'rgb888_axis_pack32',..\..\..\..\fpga\rtl\vision_preprocess\rgb888_axis_pack32.v,3,VLOG
+10,INFO,6155,done synthesizing module 'rgb888_axis_pack32' (2#1),..\..\..\..\fpga\rtl\vision_preprocess\rgb888_axis_pack32.v,3,VLOG
+11,INFO,6155,done synthesizing module 'vision_preprocess_axi' (3#1),..\..\..\..\fpga\rtl\vision_preprocess\vision_preprocess_axi.v,4,VLOG
+12,INFO,7079,Multithreading enabled for synth_design using a maximum of 2 processes.,,0,VLOG
+13,INFO,6157,synthesizing module 'vision_preprocess_axi',..\..\..\..\fpga\rtl\vision_preprocess\vision_preprocess_axi.v,4,VLOG
+14,INFO,6157,synthesizing module 'vision_rgb565_affine',..\..\..\..\fpga\rtl\vision_preprocess\vision_rgb565_affine.v,4,VLOG
+15,INFO,6155,done synthesizing module 'vision_rgb565_affine' (0#1),..\..\..\..\fpga\rtl\vision_preprocess\vision_rgb565_affine.v,4,VLOG
+16,INFO,6157,synthesizing module 'rgb888_axis_pack32',..\..\..\..\fpga\rtl\vision_preprocess\rgb888_axis_pack32.v,3,VLOG
+17,INFO,6155,done synthesizing module 'rgb888_axis_pack32' (0#1),..\..\..\..\fpga\rtl\vision_preprocess\rgb888_axis_pack32.v,3,VLOG
+18,INFO,6155,done synthesizing module 'vision_preprocess_axi' (0#1),..\..\..\..\fpga\rtl\vision_preprocess\vision_preprocess_axi.v,4,VLOG
+19,INFO,802,inferred FSM for state register 'read_state_reg' in module 'vision_preprocess_axi',,0,VLOG
+20,INFO,3354,encoded FSM with state register 'read_state_reg' using encoding 'one-hot' in module 'vision_preprocess_axi',,0,VLOG
+21,WARNING,7080,Parallel synthesis criteria is not met,,0,VLOG
+22,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arid[0] driven by constant 0,,0,VLOG
+23,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arlen[7] driven by constant 0,,0,VLOG
+24,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arlen[6] driven by constant 0,,0,VLOG
+25,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arlen[5] driven by constant 0,,0,VLOG
+26,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arlen[4] driven by constant 0,,0,VLOG
+27,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arlen[3] driven by constant 0,,0,VLOG
+28,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arlen[2] driven by constant 0,,0,VLOG
+29,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arlen[1] driven by constant 0,,0,VLOG
+30,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arlen[0] driven by constant 0,,0,VLOG
+31,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arsize[2] driven by constant 0,,0,VLOG
+32,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arsize[1] driven by constant 1,,0,VLOG
+33,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arsize[0] driven by constant 0,,0,VLOG
+34,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arburst[1] driven by constant 0,,0,VLOG
+35,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arburst[0] driven by constant 1,,0,VLOG
+36,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arlock driven by constant 0,,0,VLOG
+37,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arcache[3] driven by constant 0,,0,VLOG
+38,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arcache[2] driven by constant 0,,0,VLOG
+39,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arcache[1] driven by constant 1,,0,VLOG
+40,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arcache[0] driven by constant 1,,0,VLOG
+41,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arprot[2] driven by constant 0,,0,VLOG
+42,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arprot[1] driven by constant 0,,0,VLOG
+43,WARNING,3917,design vision_preprocess_axi has port m_axi_read_arprot[0] driven by constant 0,,0,VLOG

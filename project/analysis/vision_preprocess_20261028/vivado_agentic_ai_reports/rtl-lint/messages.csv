@@ -1,0 +1,7 @@
+ASSIGN-6,Bit(s) not used,core_busy,0,vision_preprocess_axi,vision_preprocess_axi.v,55
+QOR-1,Unmergeable operator,+,N/A,vision_preprocess_axi,vision_preprocess_axi.v,148
+ASSIGN-1,Arithmetic overflow,+,32,vision_rgb565_affine,vision_rgb565_affine.v,64
+ASSIGN-6,Bit(s) not used,rounded_b,0,vision_rgb565_affine,vision_rgb565_affine.v,97
+ASSIGN-6,Bit(s) not used,rounded_g,0,vision_rgb565_affine,vision_rgb565_affine.v,96
+ASSIGN-6,Bit(s) not used,rounded_r,0,vision_rgb565_affine,vision_rgb565_affine.v,95
+ASSIGN-6,Bit(s) not used,sample_addr_wide,0,vision_rgb565_affine,vision_rgb565_affine.v,64

@@ -1,0 +1,28 @@
+{
+  "hdmi": {
+    "hdmi_output": true,
+    "hdmi_width": 1280,
+    "hdmi_height": 720,
+    "hdmi_pixel_format": "RGB888",
+    "hdmi_hierarchy": "video/hdmi_out",
+    "hdmi_vdma": "video/axi_vdma",
+    "hdmi_read_hp": "HP2",
+    "hdmi_axi_clock_hz": 100000000
+  },
+  "camera": {
+    "CAMERA": "1",
+    "FRAME_WIDTH": "1280",
+    "FRAME_HEIGHT": "720",
+    "SYS_CLK_HZ": "100000000"
+  },
+  "addresses": {
+    "video_hdmi_out_color_convert": "0x40010000",
+    "video_hdmi_out_frontend_hdmi_out_hpd_video": "0x40020000",
+    "video_hdmi_out_pixel_unpack": "0x40030000",
+    "capture_dma": "0x40400000",
+    "camera_control": "0x41200000",
+    "video_axi_vdma": "0x44A00000",
+    "video_hdmi_out_frontend_axi_dynclk": "0x44A10000",
+    "video_hdmi_out_frontend_vtc_out": "0x44A20000"
+  }
+}

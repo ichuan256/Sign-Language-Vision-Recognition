@@ -1,0 +1,32 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+| Date         : Wed Oct 28 19:37:42 2026
+| Host         : DESKTOP-4VOJJB1 running 64-bit major release  (build 9200)
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+RTL Linter Report
+
+Table of Contents
+-----------------
+1. Summary
+2. Expanded
+
+1. Summary
+----------
+
++---------+----------+--------------+----------+------------------+
+| Rule ID | Severity | # Violations | # Waived | Message Template |
++---------+----------+--------------+----------+------------------+
+
+
+2. Expanded
+-----------
+
++---------+-------------+----------+------+---------------+----------+-------------+
+| Rule ID | description | rtl_name | info | rtl_hierarchy | rtl_file | Line number |
++---------+-------------+----------+------+---------------+----------+-------------+
+* create_waiver can be used to apply waiver to linter violations.
+** For example, create_waiver -type LINT -id RULE_ID {-rtl_name RTL_NAME} {-rtl_hierarchy RTL_MODULE_NAME} {-rtl_file RTL_FILE_NAME}.
+
+

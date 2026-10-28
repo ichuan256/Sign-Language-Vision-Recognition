@@ -1,0 +1,473 @@
+{
+  "schema_version": 1,
+  "seed_base": 1028,
+  "cases": [
+    {
+      "index": 0,
+      "name": "identity_1x1",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 4,
+        "src_width": 1,
+        "src_height": 1,
+        "dst_width": 1,
+        "dst_height": 1,
+        "a": 65536,
+        "b": 0,
+        "c": 0,
+        "d": 0,
+        "e": 65536,
+        "f": 0
+      },
+      "source_bytes": 4,
+      "output_pixels": 1,
+      "output_bytes": 3,
+      "source_sha256": "709eddfc631541f3ecea46e733bbf3043279bddfb51fdfd7be60efbc2714537e",
+      "expected_sha256": "593458868b6612185a9391ad4c065ab0ed3b16633759e26407632b83a0a2de82",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 0,
+        "differing_pixels": 0,
+        "total_pixels": 1
+      }
+    },
+    {
+      "index": 1,
+      "name": "identity_odd_padded_rows",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 16,
+        "src_width": 5,
+        "src_height": 3,
+        "dst_width": 5,
+        "dst_height": 3,
+        "a": 65536,
+        "b": 0,
+        "c": 0,
+        "d": 0,
+        "e": 65536,
+        "f": 0
+      },
+      "source_bytes": 48,
+      "output_pixels": 15,
+      "output_bytes": 45,
+      "source_sha256": "9e4f6240014b127fcd77a36b27cd85d77d393100526653c06df7e5ed8884bb49",
+      "expected_sha256": "fa22eabcbd612f6acdaedcc22969c557e50da52b636ecc5510d8c0cfa33d6740",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 0,
+        "differing_pixels": 0,
+        "total_pixels": 15
+      }
+    },
+    {
+      "index": 2,
+      "name": "fractional_black_border",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 12,
+        "src_width": 5,
+        "src_height": 4,
+        "dst_width": 7,
+        "dst_height": 6,
+        "a": 49152,
+        "b": 8192,
+        "c": 4294934528,
+        "d": 4294959104,
+        "e": 57344,
+        "f": 16384
+      },
+      "source_bytes": 48,
+      "output_pixels": 42,
+      "output_bytes": 126,
+      "source_sha256": "9b7f718429ef7a457cbc651441843d130c4352bee8ee9c54fe69a1b0a0de0f96",
+      "expected_sha256": "583b2c3c2951037182f8848bf726117cefc2abeafa3597446c827bd93cd7206e",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 0,
+        "differing_pixels": 0,
+        "total_pixels": 42
+      }
+    },
+    {
+      "index": 3,
+      "name": "translation_black_padding",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 8,
+        "src_width": 3,
+        "src_height": 2,
+        "dst_width": 7,
+        "dst_height": 5,
+        "a": 65536,
+        "b": 0,
+        "c": 4294836224,
+        "d": 0,
+        "e": 65536,
+        "f": 4294901760
+      },
+      "source_bytes": 16,
+      "output_pixels": 35,
+      "output_bytes": 105,
+      "source_sha256": "d6c0f98625d7627869034d34f173230edc6c9c334545356860bffd69b45bcc64",
+      "expected_sha256": "0464dbdbf3134989c3c859029a307859e5183d21e3baddf494e217a39f31371c",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 0,
+        "differing_pixels": 0,
+        "total_pixels": 35
+      }
+    },
+    {
+      "index": 4,
+      "name": "negative_phase_half_tie",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 8,
+        "src_width": 3,
+        "src_height": 2,
+        "dst_width": 7,
+        "dst_height": 5,
+        "a": 32768,
+        "b": 0,
+        "c": 4294966272,
+        "d": 0,
+        "e": 32768,
+        "f": 4294966272
+      },
+      "source_bytes": 16,
+      "output_pixels": 35,
+      "output_bytes": 105,
+      "source_sha256": "892b0868cc71df0379f49c755c591650eacdaa777f87988dee6fe6b3099b9551",
+      "expected_sha256": "8cc308d29cb49d09aad2dae95f097750f974294891b702d4455d1adb8729f3da",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 0,
+        "differing_pixels": 0,
+        "total_pixels": 35
+      }
+    },
+    {
+      "index": 5,
+      "name": "negative_phase_below_tie",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 8,
+        "src_width": 3,
+        "src_height": 2,
+        "dst_width": 7,
+        "dst_height": 5,
+        "a": 32768,
+        "b": 0,
+        "c": 4294966271,
+        "d": 0,
+        "e": 32768,
+        "f": 4294966271
+      },
+      "source_bytes": 16,
+      "output_pixels": 35,
+      "output_bytes": 105,
+      "source_sha256": "32761ec6a4190a9bd7b25c5d7d8aef2becdd9efbf96181f208d94692cf2d28d4",
+      "expected_sha256": "752d67d00e9fe8c02ca474203076e8e28ff176f64bee07c79b4de82142316c89",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 4,
+        "differing_pixels": 33,
+        "total_pixels": 35
+      }
+    },
+    {
+      "index": 6,
+      "name": "fully_outside_no_reads",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 8,
+        "src_width": 3,
+        "src_height": 2,
+        "dst_width": 4,
+        "dst_height": 3,
+        "a": 65536,
+        "b": 0,
+        "c": 4294311936,
+        "d": 0,
+        "e": 65536,
+        "f": 4294311936
+      },
+      "source_bytes": 16,
+      "output_pixels": 12,
+      "output_bytes": 36,
+      "source_sha256": "71d7b437006f352d87ecebaaae358606a9120137c0dee5a95fbf2ab916f704f3",
+      "expected_sha256": "6db65fd59fd356f6729140571b5bcd6bb3b83492a16e1bf0a3884442fc3c8a0e",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 0,
+        "differing_pixels": 0,
+        "total_pixels": 12
+      }
+    },
+    {
+      "index": 7,
+      "name": "rotation_90_degrees",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 20,
+        "src_width": 9,
+        "src_height": 7,
+        "dst_width": 7,
+        "dst_height": 9,
+        "a": 0,
+        "b": 65536,
+        "c": 0,
+        "d": 4294901760,
+        "e": 0,
+        "f": 393216
+      },
+      "source_bytes": 140,
+      "output_pixels": 63,
+      "output_bytes": 189,
+      "source_sha256": "9eae47377a5bbe27d89e1dae56287df8502e1c8da6d773d2568690a68a433b9e",
+      "expected_sha256": "9a95f0b2bd8c8430bb47229ffb62cb20553070e9f61bdddfe136b16406c69210",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 0,
+        "differing_pixels": 0,
+        "total_pixels": 63
+      }
+    },
+    {
+      "index": 8,
+      "name": "rotation_30_degrees",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 60,
+        "src_width": 29,
+        "src_height": 19,
+        "dst_width": 13,
+        "dst_height": 13,
+        "a": 101287,
+        "b": 4294933772,
+        "c": 528817,
+        "d": 58478,
+        "e": 58066,
+        "f": 4294794997
+      },
+      "source_bytes": 1140,
+      "output_pixels": 169,
+      "output_bytes": 507,
+      "source_sha256": "00e1e8f2b4b25014768681c35183b0149cea8d2d83a39f4d92f395a4f10a5ea6",
+      "expected_sha256": "bfbf748d8b5c7c191f6fed00154351c26fc41f1a7594dbdcc2bace7d70b0e18b",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 2,
+        "differing_pixels": 6,
+        "total_pixels": 169
+      }
+    },
+    {
+      "index": 9,
+      "name": "upsample_single_pixel_border",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 4,
+        "src_width": 1,
+        "src_height": 1,
+        "dst_width": 3,
+        "dst_height": 3,
+        "a": 32768,
+        "b": 0,
+        "c": 4294934528,
+        "d": 0,
+        "e": 32768,
+        "f": 4294934528
+      },
+      "source_bytes": 4,
+      "output_pixels": 9,
+      "output_bytes": 27,
+      "source_sha256": "c06d19fde66464adb1570689037a6fccad45d8e9d41b1c57e184e00abcc6a486",
+      "expected_sha256": "19eed792818884942ca950d1268e790cb07a133f0fab600fa22342f0dede6dea",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 0,
+        "differing_pixels": 0,
+        "total_pixels": 9
+      }
+    },
+    {
+      "index": 10,
+      "name": "positive_coordinate_no_32bit_wrap",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 8,
+        "src_width": 4,
+        "src_height": 3,
+        "dst_width": 4,
+        "dst_height": 4,
+        "a": 2147483647,
+        "b": 2147483647,
+        "c": 0,
+        "d": 0,
+        "e": 65536,
+        "f": 0
+      },
+      "source_bytes": 24,
+      "output_pixels": 16,
+      "output_bytes": 48,
+      "source_sha256": "0578d6d8aa56909a5824e58cf4f25c433139e0370b79a0a3887544b2c91e66f8",
+      "expected_sha256": "02bc1affffd037b4624a94e37cefe124cbd695fcb8da1b6e89c5268393e2a154",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 0,
+        "differing_pixels": 0,
+        "total_pixels": 16
+      }
+    },
+    {
+      "index": 11,
+      "name": "negative_coordinate_no_32bit_wrap",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 8,
+        "src_width": 4,
+        "src_height": 3,
+        "dst_width": 4,
+        "dst_height": 4,
+        "a": 2147483648,
+        "b": 2147483648,
+        "c": 0,
+        "d": 0,
+        "e": 65536,
+        "f": 0
+      },
+      "source_bytes": 24,
+      "output_pixels": 16,
+      "output_bytes": 48,
+      "source_sha256": "a22cae8a05545b0d7c746287dac37ef1b2a96d1a53f7dcc47cd7cc50ec8d11bb",
+      "expected_sha256": "d8916f2241715c17c1aa6bc319165359d9d9b6335a8b571ffd255569afd71d89",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 0,
+        "differing_pixels": 0,
+        "total_pixels": 16
+      }
+    },
+    {
+      "index": 12,
+      "name": "source_width_4096_edge",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 8192,
+        "src_width": 4096,
+        "src_height": 1,
+        "dst_width": 4,
+        "dst_height": 1,
+        "a": 65536,
+        "b": 0,
+        "c": 268304384,
+        "d": 0,
+        "e": 0,
+        "f": 0
+      },
+      "source_bytes": 8192,
+      "output_pixels": 4,
+      "output_bytes": 12,
+      "source_sha256": "4191ee956a8375ddc2f870331159ee57f7a69d2266f4525eacaf6324ec0d56da",
+      "expected_sha256": "bdd585bd099a4a24d84053b430e64df2dd1e3701ee951b14662167d109d77ef7",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 0,
+        "differing_pixels": 0,
+        "total_pixels": 4
+      }
+    },
+    {
+      "index": 13,
+      "name": "source_height_4096_edge",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 4,
+        "src_width": 1,
+        "src_height": 4096,
+        "dst_width": 1,
+        "dst_height": 4,
+        "a": 0,
+        "b": 0,
+        "c": 0,
+        "d": 0,
+        "e": 65536,
+        "f": 268304384
+      },
+      "source_bytes": 16384,
+      "output_pixels": 4,
+      "output_bytes": 12,
+      "source_sha256": "78b702f4d480a9bb6e3538e59ac2d2491559d9459ca8ed324c4923670dea4eb7",
+      "expected_sha256": "0e8f8398b8229b2ea4ab2426c572aebc963c67c86e6a8edd4766ec8475241a9b",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 0,
+        "differing_pixels": 0,
+        "total_pixels": 4
+      }
+    },
+    {
+      "index": 14,
+      "name": "native_720p_letterbox_192",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 2560,
+        "src_width": 1280,
+        "src_height": 720,
+        "dst_width": 192,
+        "dst_height": 192,
+        "a": 436907,
+        "b": 0,
+        "c": 0,
+        "d": 0,
+        "e": 436907,
+        "f": 4276617216
+      },
+      "source_bytes": 1843200,
+      "output_pixels": 36864,
+      "output_bytes": 110592,
+      "source_sha256": "d297efe40d9a49239699ca69c0124c3d5a24c63a441ddbfc55de046bdadb3a43",
+      "expected_sha256": "95b62166e636d3347ad58b6ba59f568a17423df13c3a81e4f37a3bc1b0ea2714",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 0,
+        "differing_pixels": 0,
+        "total_pixels": 36864
+      }
+    },
+    {
+      "index": 15,
+      "name": "native_720p_rotated_roi_224",
+      "job": {
+        "src_base": 16777216,
+        "src_stride": 2560,
+        "src_width": 1280,
+        "src_height": 720,
+        "dst_width": 224,
+        "dst_height": 224,
+        "a": 160488,
+        "b": 4294922313,
+        "c": 29006411,
+        "d": 51409,
+        "e": 140427,
+        "f": 2107314
+      },
+      "source_bytes": 1843200,
+      "output_pixels": 50176,
+      "output_bytes": 150528,
+      "source_sha256": "d297efe40d9a49239699ca69c0124c3d5a24c63a441ddbfc55de046bdadb3a43",
+      "expected_sha256": "06b299ddeeb98a65c11bce24480bc959ecd3115c913be8e59c4d2fc240685bd4",
+      "opencv_quantized_remap_max_error": 0,
+      "opencv_warp_comparison": {
+        "max_abs_channel_error": 13,
+        "differing_pixels": 1510,
+        "total_pixels": 50176
+      }
+    }
+  ],
+  "numpy_version": "2.3.5",
+  "opencv_version": "4.11.0",
+  "note": "warpAffine comparison measures coordinate-quantization differences, not a promised bit-exact contract"
+}

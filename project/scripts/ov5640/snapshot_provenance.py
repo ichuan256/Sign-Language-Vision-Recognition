@@ -17,9 +17,34 @@ PATTERNS = (
     'project/fpga/xdc/ov5640_stereo_pins.xdc',
     'project/scripts/ov5640/*.py',
     'project/board/ov5640_snapshot/capture.py',
+    'project/board/ov5640_snapshot/continuous_capture.py',
+    'project/board/ov5640_snapshot/hdmi_preview.py',
     'project/scripts/ov5640/run_snapshot_build.bat',
     'project/analysis/ov5640_snapshot_20261027/ps_config.tcl',
     'project/fpga/constraints/ov5640_snapshot*.json',
+    'project/fpga/scripts/w6_hdmi_bd.tcl',
+    'project/fpga/scripts/w6_timing_ip_constraints.tcl',
+    'project/fpga/xdc/hdmi_w6.xdc',
+    'project/fpga/xdc/ov5640_snapshot_hdmi.xdc',
+    # Bind the actual packaged HDL/XML/constraints, not only HLS C++ sources.
+    'project/fpga/ip_repo/rgb2dvi_v1_2/component.xml',
+    'project/fpga/ip_repo/rgb2dvi_v1_2/src/*',
+    'project/fpga/ip_repo/rgb2dvi_v1_2/xgui/*.tcl',
+    'project/fpga/ip_repo/axi_dynclk_v1_0/component.xml',
+    'project/fpga/ip_repo/axi_dynclk_v1_0/src/*',
+    'project/fpga/ip_repo/axi_dynclk_v1_0/xgui/*.tcl',
+    'project/fpga/ip_repo/color_swap_1.1/component.xml',
+    'project/fpga/ip_repo/color_swap_1.1/*.v',
+    'project/fpga/ip_repo/color_swap_1.1/xgui/*.tcl',
+    'project/fpga/ip_repo/if/tmds_v1_0/*.xml',
+    'project/algo/video_hls/pixel_unpack/pixel_unpack/solution1/impl/ip/component.xml',
+    'project/algo/video_hls/pixel_unpack/pixel_unpack/solution1/impl/ip/hdl/**/*',
+    'project/algo/video_hls/pixel_unpack/pixel_unpack/solution1/impl/ip/constraints/*.xdc',
+    'project/algo/video_hls/pixel_unpack/pixel_unpack/solution1/impl/ip/xgui/*.tcl',
+    'project/algo/video_hls/color_convert/color_convert/solution1/impl/ip/component.xml',
+    'project/algo/video_hls/color_convert/color_convert/solution1/impl/ip/hdl/**/*',
+    'project/algo/video_hls/color_convert/color_convert/solution1/impl/ip/constraints/*.xdc',
+    'project/algo/video_hls/color_convert/color_convert/solution1/impl/ip/xgui/*.tcl',
 )
 ARTIFACTS = ('ov5640_snapshot.bit', 'ov5640_snapshot.hwh', 'routed.dcp',
              'build_result.tcl', 'sccb_structure.txt', 'timing_routed.rpt',
@@ -48,7 +73,7 @@ def record(paths, root):
     return result
 
 def inputs(root):
-    return record((p for pattern in PATTERNS for p in Path(root).glob(pattern)), root)
+    return record((p for pattern in PATTERNS for p in Path(root).glob(pattern) if p.is_file()), root)
 
 def save_new(path, value):
     with Path(path).open('x', encoding='utf-8') as stream:

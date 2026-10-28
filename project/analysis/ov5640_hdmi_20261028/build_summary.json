@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "status": "candidate_board_unverified",
+  "board_powered": false,
+  "board_deployed": false,
+  "board_capture": false,
+  "board_hdmi": false,
+  "project": "project/_tmp/ov5640_snapshot_hdmi_20261028_v2/vivado/snapshot.xpr",
+  "evidence": "project/_tmp/ov5640_hdmi_build_20261028",
+  "release": "project/board/ov5640_snapshot/release_hdmi",
+  "files": {
+    "bit": {
+      "path": "ov5640_snapshot.bit",
+      "sha256": "37189d24a396326dd849a55ed135dd3c97287ada3a2a0c562d2718cae7610beb",
+      "size_bytes": 4045674
+    },
+    "hwh": {
+      "path": "ov5640_snapshot.hwh",
+      "sha256": "476283838eca44c73084032292357e0c44bc55a283cf69a5ee594ba4cb7f5942",
+      "size_bytes": 702690
+    }
+  },
+  "timing": {
+    "wns_ns": 1.237,
+    "whs_ns": 0.033,
+    "external_io_timing": false
+  },
+  "resources": {
+    "lut": 6161,
+    "lut_available": 53200,
+    "registers": 9958,
+    "bram_tiles": 7.5,
+    "bram_tiles_available": 140,
+    "dsp": 9,
+    "dsp_available": 220
+  },
+  "gates": {
+    "route_complete": true,
+    "drc_errors": 0,
+    "cdc_critical": 0,
+    "cdc_warnings": 1,
+    "sccb_structure": true,
+    "source_and_artifact_provenance": true,
+    "paired_hash_hwh_and_addresses": true,
+    "hdmi_manifest": true
+  },
+  "warnings": [
+    "Inherited PS DDR negative DQS-to-clock skew warnings PSU-1..4",
+    "DRC: BUFC-1, DPIP-1, DPOP-2, PDCN-1569, REQP-1840, RTSTAT-10; advisory REQP-165/181",
+    "CDC-6: standard VTC read-data bus synchronizer",
+    "Camera DVP external I/O timing incomplete"
+  ],
+  "software": {
+    "capture.py": "c05ad2e550346e2e83760951ba9fe967f6e98203158fe7971acee092f2d64bc0",
+    "continuous_capture.py": "00e8c9723840c0b9323c26afa53fe277805982f9299111d33ca6afb9eed936f1",
+    "hdmi_preview.py": "da2062515f82bae8a55d405c571a526c72b6b99b481d3390542979e1f5b975c0",
+    "continuous_capture.ipynb": "54adcae8cc2dd241bd1a507576811853f1a7555c61ecfdc330ffe79eb9236946"
+  }
+}

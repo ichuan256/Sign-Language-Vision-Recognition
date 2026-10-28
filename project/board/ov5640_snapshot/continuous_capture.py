@@ -100,7 +100,10 @@ def competing_processes(proc=Path("/proc")):
         except (OSError, PermissionError):
             continue
         names = [Path(a.decode(errors="replace")).name for a in args if a]
-        if any(n in ("capture.py", "sensor_probe.py", "continuous_capture.py")
+        if any(n in ("capture.py", "sensor_probe.py", "continuous_capture.py", "hdmi_preview.py",
+                     "hdmi_display.py", "hdmi_go.py", "hdmi_probe.py", "vdma_canary.py",
+                     "stream_hand_board.py", "show_hand_result.py", "raw_video_board.py",
+                     "raw_frame_replay.py", "hdmi_audio_receiver.py", "hdmi_paint_live.py")
                or (n.startswith("ov5640_ps_debug_") and n.endswith(".py")) for n in names):
             found.append(int(item.name))
     return found
@@ -114,7 +117,7 @@ class CaptureSession:
                  settle_seconds=0.5,
                  pixel_loss_threshold_percent=c.DEFAULT_PIXEL_LOSS_THRESHOLD_PERCENT,
                  clock=time.monotonic, sleep=time.sleep,
-                 stop_requested=lambda: False):
+                 stop_requested=lambda: False, on_frame=None):
         validate_limits(seconds, max_attempts, max_errors, max_samples, sample_every,
                         frame_timeout, init_timeout, cleanup_timeout, settle_seconds)
         if flags not in (0, 0x100, 0x200, 0x300):
@@ -129,13 +132,14 @@ class CaptureSession:
         self.cleanup_timeout, self.settle_seconds = cleanup_timeout, settle_seconds
         self.pixel_loss_threshold_percent = float(pixel_loss_threshold_percent)
         self.clock, self.sleep, self.stop_requested = clock, sleep, stop_requested
+        self.on_frame = on_frame
         self.buffer, self.arm, self.deadline = None, 0, None
         self.samples, self.dma_safe, self.hardware_started = [], False, False
         self.result = dict(schema_version=1, attempts=0, valid_frames=0, bad_frames=0,
                            accepted_loss_frames=0,
                            total_missing_pixels=0, max_loss_percent=0.0,
                            pixel_loss_threshold_percent=self.pixel_loss_threshold_percent,
-                           timeouts=0, dma_errors=0, errors=0, other_errors=0,
+                           timeouts=0, dma_errors=0, errors=0, other_errors=0, display_errors=0,
                            consecutive_errors=0, max_consecutive_errors_observed=0,
                            aborted_attempts=0, recovery_attempts=0, recoveries=0,
                            initializations=0, initialization_failures=0,
@@ -333,6 +337,20 @@ class CaptureSession:
                         except Exception as exc:
                             row.update(cleanup_error=repr(exc), dma_shutdown_confirmed=False)
                             reason, fatal = "unsafe_dma", repr(exc)
+                        # A display failure cannot turn an already halted capture DMA unsafe.
+                        # The callback borrows this invalidated buffer only until it returns.
+                        if (self.dma_safe and row.get("dma_shutdown_confirmed")
+                                and row["outcome"] in ("valid", "accepted_loss")
+                                and self.on_frame is not None):
+                            try:
+                                self.on_frame(self.buffer, row)
+                            except (Stopped, KeyboardInterrupt):
+                                reason = "interrupted"
+                            except Exception as exc:
+                                row["display_error"] = repr(exc)
+                                self.result["display_errors"] += 1
+                                self.result["errors"] += 1
+                                reason, fatal = "display_error", repr(exc)
                         row["attempt_seconds"] = self.clock() - started
                         self.result["max_consecutive_errors_observed"] = max(
                             self.result["max_consecutive_errors_observed"], self.result["consecutive_errors"])
