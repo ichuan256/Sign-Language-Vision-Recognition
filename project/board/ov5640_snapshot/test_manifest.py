@@ -13,8 +13,9 @@ HWH=Path(__file__).with_name('release')/'ov5640_snapshot.hwh'
 class ManifestTests(unittest.TestCase):
     def fixture(self,d):
         p=Path(d);(p/'candidate.bit').write_bytes(b'test only')
-        (p/'candidate.hwh').write_bytes(HWH.read_bytes())
-        m=dict(schema_version=1,files={k:dict(path='candidate.'+k,sha256=c.sha256(p/('candidate.'+k))) for k in ('bit','hwh')},design=dict(width=1280,height=720,pixel_format='RGB565_LE',camera=1,dma='capture_dma',control='camera_control',dma_base=c.DMA_BASE,control_base=c.CONTROL_BASE,sys_clk_hz=100000000))
+        hwh=HWH.read_text(encoding='utf-8-sig').replace('NAME="C_GPIO_WIDTH" VALUE="32"','NAME="C_GPIO_WIDTH" VALUE="10"')
+        (p/'candidate.hwh').write_text(hwh,encoding='utf-8')
+        m=dict(schema_version=1,files={k:dict(path='candidate.'+k,sha256=c.sha256(p/('candidate.'+k))) for k in ('bit','hwh')},design=dict(width=1280,height=720,pixel_format='RGB565_LE',camera=1,dma='capture_dma',control='camera_control',dma_base=c.DMA_BASE,control_base=c.CONTROL_BASE,sys_clk_hz=100000000,control_width=10,pixel_loss_threshold_percent=5.0))
         path=p/'release_manifest.json';path.write_text(json.dumps(m));return path,m
     def test_hash_address_contract_rejections(self):
         with tempfile.TemporaryDirectory(dir=ROOT/'project/analysis/ov5640_snapshot_20261027') as d:
