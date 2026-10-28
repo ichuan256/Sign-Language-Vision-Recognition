@@ -63,7 +63,10 @@ class SDCacheTests(unittest.TestCase):
             clips,missing=lex.match('你好！')
             self.assertEqual(missing,'')
             self.assertEqual([Path(x['path']) for x in clips],[target,second_path])
-            self.assertEqual(Session(lex).snapshot()['lexicon_videos'],2)
+            session=Session(lex)
+            self.assertEqual(session.snapshot()['lexicon_videos'],2)
+            session.final('你好！')
+            self.assertEqual([Path(x['path']) for x in session.pop()['clips']],[target,second_path])
 
 
 if __name__=='__main__':unittest.main()

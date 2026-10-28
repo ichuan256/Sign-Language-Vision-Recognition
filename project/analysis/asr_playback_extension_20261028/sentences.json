@@ -1,0 +1,461 @@
+{
+  "videos": 443,
+  "phrase_mappings": 437,
+  "phrases": 455,
+  "manifest_sha256": "095e0a10a1fd2ba60af29489315317a9b55d88498696400a77fd9feec29f5454",
+  "original_142_preserved": true,
+  "new_entries_by_source": {
+    "第十课旅游_NL10_100条_20261022": 67,
+    "第八课购物_NL08_85条_20261022": 64,
+    "全22课全画幅样本_fullframe_264条_20261021": 13,
+    "第2 第3课/第二课学习": 42,
+    "第九课聚会_NL09_102条_20261022": 76,
+    "第2 第3课/第三课家庭": 33
+  },
+  "cases": [
+    {
+      "theme": "问候",
+      "sentence": "你好！很高兴见到你！我也很高兴！",
+      "missing": "",
+      "clips": [
+        {
+          "label": "你好！很高兴见到你！",
+          "sha256": "a7bbcae4ac71f550e376ee83cb978365bf173258a96b9f1a1e24ac6a83d15a4c",
+          "duration_s": 5.833333333333333
+        },
+        {
+          "label": "我也很高兴！",
+          "sha256": "a87990e92fa639ee47bc6e920964066a5e96b6464b837f0b36f50faab98dd397",
+          "duration_s": 3.36
+        }
+      ],
+      "video_duration_s": 9.193333333333333
+    },
+    {
+      "theme": "问候",
+      "sentence": "工作忙吗？很忙，最近经常加班。不要太劳累。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "工作忙吗？",
+          "sha256": "9ec1852c8c07abd4c1791d7607b7119d974af1b0a96ddfbc549c8093f2fe214d",
+          "duration_s": 3.56
+        },
+        {
+          "label": "很忙，最近经常加班。",
+          "sha256": "0b44459bb50a215f88d90ac555bfc6b80e8bb1280ce4d27c7a80ba09835a3aa1",
+          "duration_s": 1.48
+        },
+        {
+          "label": "很忙，最近经常加班。",
+          "sha256": "616ceb2f67f716a058061cc3b3119a811696e09dee2e87a37aff813f785cc53d",
+          "duration_s": 3.44
+        },
+        {
+          "label": "不要太劳累",
+          "sha256": "0648841af5396f6cd79c480f41bd09da6256ea0f52aa466e89358b073f45aa62",
+          "duration_s": 8.2
+        }
+      ],
+      "video_duration_s": 16.68
+    },
+    {
+      "theme": "学习",
+      "sentence": "大家好，上课了。请大家专心。有问题可以问我。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "大家好。",
+          "sha256": "8062626fe9f979471769e6822d118942a55c770f51ca8c7df4fed54003cf67c7",
+          "duration_s": 2.9166666666666665
+        },
+        {
+          "label": "上课了。",
+          "sha256": "a917446527d9e89b9cd487d8db59291a1c1ef62dda3d259132179a7a4121e9e6",
+          "duration_s": 3.0
+        },
+        {
+          "label": "请大家专心。",
+          "sha256": "8de41374cdc8dd5a70d9344102dc452c59a735713850197f978e6c68399c1801",
+          "duration_s": 4.083333333333333
+        },
+        {
+          "label": "有问题可以问我。",
+          "sha256": "a520ff5ff553fb4062e7335c279b5ef90c4a4fb568db3447e5c32b4cd6603259",
+          "duration_s": 5.875
+        }
+      ],
+      "video_duration_s": 15.875
+    },
+    {
+      "theme": "学习",
+      "sentence": "下课了，休息吧。你们回家要复习。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "下课了，休息吧。",
+          "sha256": "ad91ed5194f00d228d32b9d087c48a047c55228723ff954219347ea8fc73269d",
+          "duration_s": 4.708333333333333
+        },
+        {
+          "label": "你们回家要复习。",
+          "sha256": "fb06e6a062b0a8f918ab34c98296773ae1b338a651673dcbdf4dadcbea872139",
+          "duration_s": 5.916666666666667
+        }
+      ],
+      "video_duration_s": 10.625
+    },
+    {
+      "theme": "学习",
+      "sentence": "你们可以互相帮助。什么时候交作业？",
+      "missing": "",
+      "clips": [
+        {
+          "label": "你们可以互相帮助。",
+          "sha256": "0725b49bc6e29826e6a9beb2a374362a9b19f493156dde8c2782b022d81820e7",
+          "duration_s": 5.041666666666667
+        },
+        {
+          "label": "什么时候交作业？",
+          "sha256": "e0fd89744f47f9b4c7c583b559451d0b1d96207d342729f2710092ac721c6854",
+          "duration_s": 5.041666666666667
+        }
+      ],
+      "video_duration_s": 10.083333333333334
+    },
+    {
+      "theme": "家庭",
+      "sentence": "我家有五口人。我姐姐是警察。他不是医生，是学生。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "我家有五口人",
+          "sha256": "651e140d5bd92f9f88b2f01608afe01e1df0c6bc3db51beadd46ccfb94a250d4",
+          "duration_s": 4.75
+        },
+        {
+          "label": "我姐姐是警察",
+          "sha256": "330a3b79fbaee0e696b85b4d227041c798f6a7751c0737474b3143040e036cac",
+          "duration_s": 4.5
+        },
+        {
+          "label": "他不是医生，是学生。",
+          "sha256": "781c1ec504cbfb15877f78e98684c53756b944d9d9b173c0e12a46e069e0f9b9",
+          "duration_s": 6.416666666666667
+        }
+      ],
+      "video_duration_s": 15.666666666666668
+    },
+    {
+      "theme": "家庭",
+      "sentence": "他和我是同事，也是同学。我和他是朋友。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "他和我是同事，也是同学。",
+          "sha256": "4eb02e4253c00fb77a8c5f0b31fd7d7ba024a8aa0f09ed39a82a13a6185ad6c1",
+          "duration_s": 7.458333333333333
+        },
+        {
+          "label": "我和他是朋友。",
+          "sha256": "8b234dace493c35d96b949cbb80ef6e44a4ef51d1e02d22c8a8cba9355d12b83",
+          "duration_s": 3.5416666666666665
+        }
+      ],
+      "video_duration_s": 11.0
+    },
+    {
+      "theme": "购物",
+      "sentence": "我想买台电脑。这台电脑多少钱？太贵了，可以便宜些吗？",
+      "missing": "",
+      "clips": [
+        {
+          "label": "我想买台电脑。",
+          "sha256": "1e771c014e1e121530bac13006ab6325b76b46e98924f74691c513c13324e43f",
+          "duration_s": 6.166666666666667
+        },
+        {
+          "label": "这台电脑多少钱？",
+          "sha256": "6c6c595c35aa066a3a11262409e52c9f250400cb9b8c360ef70baea451da81fd",
+          "duration_s": 4.5
+        },
+        {
+          "label": "太贵了，可以便宜些吗？",
+          "sha256": "386d0d648e39f85991f293f7314ddc4d477d3198bd288bc36c7b3fe28530f092",
+          "duration_s": 4.166666666666667
+        }
+      ],
+      "video_duration_s": 14.833333333333334
+    },
+    {
+      "theme": "购物",
+      "sentence": "我想看下那件衣服，可以试穿吗？这件太紧了，有大一点的吗？",
+      "missing": "",
+      "clips": [
+        {
+          "label": "我想看下那件衣服，可以试穿吗？",
+          "sha256": "0c4fe855ce451de659180fa78367d6768a4c0564fb74ed62802399bc3770281e",
+          "duration_s": 7.0
+        },
+        {
+          "label": "这件太紧了，有大一点的吗？",
+          "sha256": "20ecf21da2e8d14ca1627e82306e081707df4c54aa64f221f007d407132e17f7",
+          "duration_s": 5.583333333333333
+        }
+      ],
+      "video_duration_s": 12.583333333333332
+    },
+    {
+      "theme": "购物",
+      "sentence": "这件衣服可以试穿吗？穿着正合适，这件多少钱？",
+      "missing": "",
+      "clips": [
+        {
+          "label": "这件衣服可以试穿吗？",
+          "sha256": "1f095550324cae7268d949298638321cfc0c83af4171da02fbab14bc1f5fe56b",
+          "duration_s": 5.25
+        },
+        {
+          "label": "穿着正合适，这件多少钱？",
+          "sha256": "e1dbe6021afe371c8da91332395c8f638c1946f0f0849b4e6202fd4e31ab42dd",
+          "duration_s": 6.75
+        }
+      ],
+      "video_duration_s": 12.0
+    },
+    {
+      "theme": "聚会",
+      "sentence": "欢迎！请坐，喝点茶吧。谢谢你请我来！",
+      "missing": "",
+      "clips": [
+        {
+          "label": "欢迎！请坐，喝点茶吧。",
+          "sha256": "c3360ca0bd12a5da61f26fff4e9ad3e2c4d0e95b929a8ad8121b7edff4ed916c",
+          "duration_s": 6.416666666666667
+        },
+        {
+          "label": "谢谢你请我来！",
+          "sha256": "a4f5c1c62f90c4a4d3c11d506dca11cc3e1b30c664be807906d3ebd27b52e306",
+          "duration_s": 2.8333333333333335
+        }
+      ],
+      "video_duration_s": 9.25
+    },
+    {
+      "theme": "聚会",
+      "sentence": "我们办一次生日聚会吧！可以，我通知朋友。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "我们办一次生日聚会吧！",
+          "sha256": "54366a51b8c6256faf29d985a33574f669db464ef6b25126fa8696498cddee62",
+          "duration_s": 7.083333333333333
+        },
+        {
+          "label": "可以，我通知朋友。",
+          "sha256": "a486675e5286982a626a4affe718fa449fd83171a8b7640767129691d97068da",
+          "duration_s": 5.708333333333333
+        }
+      ],
+      "video_duration_s": 12.791666666666666
+    },
+    {
+      "theme": "聚会",
+      "sentence": "没关系，我也刚到。有空儿常来玩。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "没关系，我也刚到。",
+          "sha256": "7400a6f53f2d95333e0bb3c92f1ace43a8b2c3e8bf29ad0b08d071913ace3f27",
+          "duration_s": 4.291666666666667
+        },
+        {
+          "label": "有空儿常来玩。",
+          "sha256": "9cadad472311468855248eac4efcfeb97cf26828b7f7fddfaf9e6776a75ffa9e",
+          "duration_s": 5.375
+        }
+      ],
+      "video_duration_s": 9.666666666666668
+    },
+    {
+      "theme": "旅游",
+      "sentence": "你喜欢旅游吗？我平时喜欢和朋友一起去旅游。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "你喜欢旅游吗？",
+          "sha256": "85fd9ac0a4b22ca867dc59cb35bcec1b0677c6beaba471abc4958506c940429a",
+          "duration_s": 4.333333333333333
+        },
+        {
+          "label": "我平时喜欢和朋友一起去旅游。",
+          "sha256": "f46190b1ab38bf5c3c953d9882ebb68f28070c00d7f1fe46ab873cacfcb0d6a5",
+          "duration_s": 8.333333333333334
+        }
+      ],
+      "video_duration_s": 12.666666666666668
+    },
+    {
+      "theme": "旅游",
+      "sentence": "你自己去的吗？不是，和家人一起去的。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "你自己去的吗？",
+          "sha256": "98eeae5a6f20b94ace7ab9c031c5c91712deb8b09efbddd0084344d72bcda3fe",
+          "duration_s": 3.7083333333333335
+        },
+        {
+          "label": "不是，和家人一起去的。",
+          "sha256": "3b1def801b1ca7c3f9ccc1d3b6a655eb2dfc159b0d0c4bb31dd6a0107e9fa0e2",
+          "duration_s": 4.333333333333333
+        }
+      ],
+      "video_duration_s": 8.041666666666666
+    },
+    {
+      "theme": "旅游",
+      "sentence": "你觉得房间怎么样？昨天休息得很舒服。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "你觉得房间怎么样？",
+          "sha256": "96df01639e1c4f0ccb271b3a15fc233b5065ba10f3fd3dc5c7294f2ffc1929b8",
+          "duration_s": 5.5
+        },
+        {
+          "label": "昨天休息得很舒服。",
+          "sha256": "7c22fb5078b9c0021175ea718057d9af1375f4f1bdf3c148f3d23741d9f539b1",
+          "duration_s": 5.0
+        }
+      ],
+      "video_duration_s": 10.5
+    },
+    {
+      "theme": "旅游",
+      "sentence": "你可以自己出去走走。有事可以和我联系。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "你可以自己出去走走。",
+          "sha256": "49db455a7393ed6a4a73fbf96ea3aca1d4a74a7739965851ac58ac55cb89af4f",
+          "duration_s": 5.625
+        },
+        {
+          "label": "有事可以和我联系。",
+          "sha256": "8a8312528f3432778dcb5a4ad4986c3e5fece46d8befee513cade35bb02c8764",
+          "duration_s": 3.8333333333333335
+        }
+      ],
+      "video_duration_s": 9.458333333333334
+    },
+    {
+      "theme": "原演示",
+      "sentence": "早上好，你好吗？很好，谢谢。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "早上好",
+          "sha256": "3b9696e3bb93079a78607df052742979bc4fedc2934203b06771832d0d04a0d2",
+          "duration_s": 2.3
+        },
+        {
+          "label": "你好吗",
+          "sha256": "a5dbded3671eeb38fa296668c73cdfffa909d1e7c88072375b989f290c2fcee5",
+          "duration_s": 1.7
+        },
+        {
+          "label": "很好，谢谢",
+          "sha256": "96c393a26a4328e6fbfb26158fc82c92b6d1e8bd42c29d927999a84b0658780a",
+          "duration_s": 3.65
+        }
+      ],
+      "video_duration_s": 7.6499999999999995
+    },
+    {
+      "theme": "原演示",
+      "sentence": "你做什么工作？我是教师。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "你做什么工作",
+          "sha256": "43f2f3f854cdeb93ce1d9dd4fa76c64e6c29d28fbca2e2b7e69019619744151b",
+          "duration_s": 5.5
+        },
+        {
+          "label": "我是教师",
+          "sha256": "e0bf7b5a6a3066602c228ec35327f93baba0fe28a20febcaf0c5f056a6b20b8a",
+          "duration_s": 1.25
+        }
+      ],
+      "video_duration_s": 6.75
+    },
+    {
+      "theme": "原演示",
+      "sentence": "你喜欢游泳吗？不喜欢，我喜欢踢足球。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "你喜欢游泳吗",
+          "sha256": "7168410b8a091d2b3e7cf51ae3198b5a17a08ae98dad162c3da5fdd11779b10e",
+          "duration_s": 4.0
+        },
+        {
+          "label": "不喜欢，我喜欢踢足球",
+          "sha256": "cbe0f0723c8d75c849eaf1951e88aad55e319a4cceab858aa64b95906966561c",
+          "duration_s": 4.0
+        }
+      ],
+      "video_duration_s": 8.0
+    },
+    {
+      "theme": "原演示",
+      "sentence": "我们去参观上海博物馆。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "我们去参观上海博物馆",
+          "sha256": "0c8aa245dde43c107cea7fbdf1f996e08b12557fc1cf7a717d112a2ea624af47",
+          "duration_s": 5.25
+        }
+      ],
+      "video_duration_s": 5.25
+    },
+    {
+      "theme": "原演示",
+      "sentence": "今天天气怎么样？晴天。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "今天天气怎么样",
+          "sha256": "4d950804f62c5d60b22921ddab2a00a73696a60b65580a825f2b1d8bbc20cdc1",
+          "duration_s": 4.5
+        },
+        {
+          "label": "晴天",
+          "sha256": "9f6971561c1eb6f7048b0e7bc1bb1857d3d2eebeafb6c433fa5793244d4a6788",
+          "duration_s": 6.0
+        }
+      ],
+      "video_duration_s": 10.5
+    },
+    {
+      "theme": "原演示",
+      "sentence": "十分感谢你对我的帮助，再见。",
+      "missing": "",
+      "clips": [
+        {
+          "label": "十分感谢你对我的帮助",
+          "sha256": "49385ca448de0c9c33b6148c0f92843dbbe7d9f202d3791ad562acb190a133e3",
+          "duration_s": 5.0
+        },
+        {
+          "label": "再见",
+          "sha256": "571bac6373ba4a3ab3cc2aa1ac0accff7893877d51cf6ece879cf7f70ddc9987",
+          "duration_s": 2.7
+        }
+      ],
+      "video_duration_s": 7.7
+    }
+  ]
+}

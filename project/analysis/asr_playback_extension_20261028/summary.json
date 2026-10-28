@@ -1,0 +1,26 @@
+{
+  "original_mappings": 142,
+  "current_mappings": 437,
+  "match_forms": 455,
+  "video_files": 443,
+  "added_mappings": 295,
+  "added_SD_files": 301,
+  "added_SD_bytes": 407132530,
+  "sequenced_mappings": 6,
+  "all_added_videos_fully_decoded": true,
+  "all_transferred_files_SHA_verified": true,
+  "original_142_preserved": true,
+  "training_pool_and_pending_records_unchanged": true,
+  "training": false,
+  "FPGA_reprogrammed": false,
+  "active_manifest_sha256": "095e0a10a1fd2ba60af29489315317a9b55d88498696400a77fd9feec29f5454",
+  "source_groups": {
+    "第十课旅游_NL10_100条_20261022": 67,
+    "第八课购物_NL08_85条_20261022": 64,
+    "全22课全画幅样本_fullframe_264条_20261021": 13,
+    "第2 第3课/第二课学习": 42,
+    "第九课聚会_NL09_102条_20261022": 76,
+    "第2 第3课/第三课家庭": 33
+  },
+  "complete_match_sentences": 23
+}

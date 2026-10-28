@@ -1,0 +1,23 @@
+{
+  "completed": true,
+  "original_142_mappings_unchanged": true,
+  "SD_files_verified": 443,
+  "match_forms": 455,
+  "mappings": 437,
+  "ordered_cycle_mappings": 6,
+  "complete_match_sentences": 23,
+  "active_manifest_sha256": "095e0a10a1fd2ba60af29489315317a9b55d88498696400a77fd9feec29f5454",
+  "training_manifest_and_pending_SHA_unchanged": true,
+  "original_ASR_cache_142_unchanged": true,
+  "boot_firmware_display_audio_and_button_PIDs_unchanged": true,
+  "live_source": "板端 LINE IN 左声道",
+  "scope": "Asset/hash, matching/queue and live-service verification; not an ASR accuracy benchmark",
+  "live_state": {
+    "status": "正在聆听板端麦克风",
+    "source": "板端 LINE IN 左声道",
+    "error": "",
+    "lexicon_phrases": 455,
+    "lexicon_videos": 443,
+    "lexicon_manifest_sha256": "095e0a10a1fd2ba60af29489315317a9b55d88498696400a77fd9feec29f5454"
+  }
+}
