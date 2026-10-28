@@ -8,7 +8,7 @@ import math
 import time
 
 Q = 1 << 16
-VERSION = 0x00010000
+VERSION = 0x00020000
 CTRL, STATUS, ERROR, OUTPUT_BYTES = 0x00, 0x04, 0x08, 0x0C
 BUSY, DONE, FAILED, READ_IDLE = 1, 2, 4, 8
 CONFIG_OFFSETS = tuple(range(0x10, 0x40, 4))
@@ -69,7 +69,7 @@ class AffineJob:
 
     @property
     def output_bytes(self):
-        return self.dst_width * self.dst_height * 3
+        return self.dst_width * self.dst_height * 12
 
     @property
     def inverse_matrix(self):
@@ -176,13 +176,21 @@ def reference_rgb888(raw, job):
     return ((total + 512) >> 10).astype(np.uint8)
 
 
-def rgb888_to_model_tensor(raw, width, height):
-    """Pure conversion; caller must first confirm both DMA and IP completion."""
+def fp32_to_model_tensor(raw, width, height):
+    """Zero-copy V2 PL output view, RGB NHWC with shape (1,H,W,3).
+
+    Caller must first confirm DMA and IP completion, reject any IP error, and
+    invalidate the DMA buffer. This helper neither synchronizes caches nor
+    normalizes again. Retain the DMA buffer while this view is in use.
+    """
     import numpy as np
-    if memoryview(raw).nbytes != width * height * 3:
-        raise ValueError('Expected complete tightly packed RGB888 output')
-    image = np.frombuffer(raw, dtype=np.uint8).reshape(1, height, width, 3)
-    return np.ascontiguousarray(image, dtype=np.float32) / np.float32(255)
+    if (isinstance(width, bool) or isinstance(height, bool)
+            or not isinstance(width, int) or not isinstance(height, int)
+            or not 1 <= width <= 2048 or not 1 <= height <= 2048):
+        raise ValueError('Expected positive V2 output dimensions within 1..2048')
+    if memoryview(raw).nbytes != width * height * 12:
+        raise ValueError('Expected complete tightly packed little-endian FP32 RGB output')
+    return np.frombuffer(raw, dtype='<f4').reshape(1, height, width, 3)
 
 
 class PreprocessError(RuntimeError):

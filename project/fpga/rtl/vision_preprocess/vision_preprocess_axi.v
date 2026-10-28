@@ -83,7 +83,7 @@ module vision_preprocess_axi (
         .rd_rsp_valid(rsp_valid), .rd_rsp_ready(rsp_ready), .rd_rsp_data(rsp_data), .rd_rsp_error(rsp_error),
         .m_axis_tdata(pixel_data), .m_axis_tvalid(pixel_valid), .m_axis_tready(pixel_ready), .m_axis_tuser(pixel_user), .m_axis_tlast(pixel_last)
     );
-    rgb888_axis_pack32 packer (
+    rgb888_axis_fp32_normalize normalizer (
         .clk(clk), .reset_n(reset_n), .s_axis_tdata(pixel_data), .s_axis_tvalid(pixel_valid), .s_axis_tready(pixel_ready), .s_axis_tuser(pixel_user), .s_axis_tlast(pixel_last),
         .m_axis_tdata(m_axis_tdata), .m_axis_tkeep(m_axis_tkeep), .m_axis_tvalid(m_axis_tvalid), .m_axis_tready(m_axis_tready), .m_axis_tuser(m_axis_tuser), .m_axis_tlast(m_axis_tlast)
     );
@@ -123,7 +123,7 @@ module vision_preprocess_axi (
             8'h04: read_value={28'd0,(read_state==RD_IDLE),error_sticky,done_sticky,busy};
             8'h08: read_value={24'd0,error_code};
             8'h0c: read_value=byte_count;
-            8'h40: read_value=32'h00010000;
+            8'h40: read_value=32'h00020000;
             8'h44: read_value=ar_count;
             8'h48: read_value=cycle_count;
             default: begin

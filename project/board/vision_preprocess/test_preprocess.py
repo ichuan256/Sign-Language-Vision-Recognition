@@ -84,19 +84,57 @@ class GeometryTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 p.roi_job(720, 1280, roi)
 
-    def test_model_tensor_is_rgb_nhwc_float32_zero_to_one(self):
-        raw = bytes([255, 0, 128, 0, 255, 64])
-        tensor = p.rgb888_to_model_tensor(raw, 2, 1)
+
+
+class NormalizationTests(unittest.TestCase):
+    def test_exact_integer_generated_rom_matches_numpy_division_for_all_256_values(self):
+        sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts/vision_preprocess'))
+        import generate_normalize_rtl as generator
+        expected = (np.arange(256, dtype=np.float32) / np.float32(255)).view(np.uint32)
+        actual = np.array([generator.normalized_bits(i) for i in range(256)], dtype=np.uint32)
+        np.testing.assert_array_equal(actual, expected)
+        # Check the actual RTL, not only its generator; require deterministic regeneration.
+        self.assertEqual(generator.TARGET.read_text(encoding='ascii'), generator.render())
+        import re
+        entries = re.findall(r"8'd(\d+): normalize=30'h([0-9a-f]{8});", generator.TARGET.read_text())
+        self.assertEqual([int(index) for index, _ in entries], list(range(256)))
+        np.testing.assert_array_equal(np.array([int(bits, 16) for _, bits in entries], dtype=np.uint32), expected)
+        self.assertTrue(np.all(actual < (1 << 30)))
+        self.assertIn("assign m_axis_tdata = {2'b00, normalize(sample)};", generator.render())
+        # Multiplication by a rounded reciprocal is observably different.
+        multiply = np.arange(256, dtype=np.float32) * np.float32(1 / 255)
+        self.assertTrue(np.any(multiply.view(np.uint32) != expected))
+
+    def test_v2_tensor_view_is_zero_copy_exact_rgb_nhwc_without_renormalizing(self):
+        rgb = np.array([255, 0, 128, 0, 255, 64], dtype=np.uint8)
+        # Independent reference for the fixed FP32 interface.
+        expected = (rgb.astype(np.float32) / np.float32(255)).reshape(1, 1, 2, 3)
+        raw = bytearray(expected.astype('<f4').tobytes())
+        tensor = p.fp32_to_model_tensor(raw, 2, 1)
         self.assertEqual(tensor.shape, (1, 1, 2, 3))
-        self.assertEqual(tensor.dtype, np.float32)
+        self.assertEqual(tensor.dtype, np.dtype('<f4'))
         self.assertTrue(tensor.flags.c_contiguous)
-        np.testing.assert_allclose(tensor[0, 0, 0], [1, 0, 128 / 255], atol=1e-7)
-        with self.assertRaises(ValueError):
-            p.rgb888_to_model_tensor(raw[:-1], 2, 1)
+        np.testing.assert_array_equal(tensor.view(np.uint32), expected.view(np.uint32))
+        np.frombuffer(raw, dtype='<f4')[0] = np.float32(.25)
+        self.assertEqual(tensor[0, 0, 0, 0], np.float32(.25))
+        for invalid in (raw[:-1], raw + bytes(4), rgb.tobytes()):
+            with self.assertRaises(ValueError):
+                p.fp32_to_model_tensor(invalid, 2, 1)
+        for width, height in ((0, 1), (True, 1), (1, -1), (2049, 1)):
+            with self.assertRaises(ValueError):
+                p.fp32_to_model_tensor(raw, width, height)
+
+    def test_v2_output_sizes_and_rgb565_input_size_are_independent(self):
+        palm = p.letterbox_job(1280, 720)
+        landmark = p.roi_job(1280, 720, (.5, .5, 1, 1, 0))
+        self.assertEqual(palm.output_bytes, 442368)
+        self.assertEqual(landmark.output_bytes, 602112)
+        self.assertEqual(palm.source_bytes, 1280 * 720 * 2)
+        self.assertEqual(p.VERSION, 0x00020000)
 
 
 class MMIO:
-    def __init__(self, *, error=0, bytes_out=3, stuck=False):
+    def __init__(self, *, error=0, bytes_out=12, stuck=False):
         self.words = {0x40: p.VERSION, p.STATUS: p.READ_IDLE, p.ERROR: error,
                       p.OUTPUT_BYTES: bytes_out, 0x44: 1, 0x48: 100}
         self.writes, self.now, self.started, self.stuck = [], 0.0, False, stuck
@@ -136,7 +174,7 @@ class DriverTests(unittest.TestCase):
         self.assertEqual([x[0] for x in mmio.writes], list(p.CONFIG_OFFSETS) + [p.CTRL])
         self.assertEqual(mmio.writes[8], (0x30, 0xffff8000))
         self.assertEqual(mmio.writes[-1], (p.CTRL, 3))
-        self.assertEqual(driver.wait()['output_bytes'], 3)
+        self.assertEqual(driver.wait()['output_bytes'], 12)
 
     def test_busy_or_outstanding_read_refuses_start_without_writes(self):
         for status in (p.BUSY | p.READ_IDLE, 0):
@@ -147,12 +185,12 @@ class DriverTests(unittest.TestCase):
             self.assertEqual(mmio.writes, [])
 
     def test_error_and_short_byte_count_reject_entire_tensor(self):
-        for options in (dict(error=4), dict(bytes_out=2)):
+        for options in (dict(error=4), dict(bytes_out=11), dict(bytes_out=3), dict(bytes_out=16)):
             mmio, driver = self.driver(**options)
             self.start(driver, p.AffineJob(0, 4, 1, 1, 1, 1))
             with self.assertRaises(p.PreprocessError) as context:
                 driver.wait()
-            self.assertEqual(context.exception.snapshot['output_bytes'], options.get('bytes_out', 3))
+            self.assertEqual(context.exception.snapshot['output_bytes'], options.get('bytes_out', 12))
 
     def test_timeout_exposes_state_and_does_not_write_reset_or_free(self):
         mmio, driver = self.driver(stuck=True)
@@ -166,9 +204,10 @@ class DriverTests(unittest.TestCase):
 
     def test_version_and_wait_arguments_are_guarded(self):
         mmio = MMIO()
-        mmio.words[0x40] = 0
-        with self.assertRaises(RuntimeError):
-            p.Preprocessor(mmio)
+        for version in (0, 0x00010000, 0x00020001):
+            mmio.words[0x40] = version
+            with self.subTest(version=version), self.assertRaises(RuntimeError):
+                p.Preprocessor(mmio)
         _, driver = self.driver()
         with self.assertRaises(RuntimeError):
             driver.wait()

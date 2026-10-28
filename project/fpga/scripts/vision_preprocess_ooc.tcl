@@ -12,7 +12,7 @@ set_param general.maxThreads 2
 set vp_rtl_files [list \
     [file join $vp_root project/fpga/rtl/vision_preprocess/vision_preprocess_axi.v] \
     [file join $vp_root project/fpga/rtl/vision_preprocess/vision_rgb565_affine.v] \
-    [file join $vp_root project/fpga/rtl/vision_preprocess/rgb888_axis_pack32.v]]
+    [file join $vp_root project/fpga/rtl/vision_preprocess/rgb888_axis_fp32_normalize.v]]
 foreach vp_source $vp_rtl_files {
     if {![file isfile $vp_source]} {error "Required OOC source is missing: $vp_source"}
 }

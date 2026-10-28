@@ -1,0 +1,22 @@
+test_busy_or_outstanding_read_refuses_start_without_writes (__main__.DriverTests.test_busy_or_outstanding_read_refuses_start_without_writes) ... ok
+test_error_and_short_byte_count_reject_entire_tensor (__main__.DriverTests.test_error_and_short_byte_count_reject_entire_tensor) ... ok
+test_partial_frame_wrong_pointer_or_short_allocation_is_rejected (__main__.DriverTests.test_partial_frame_wrong_pointer_or_short_allocation_is_rejected) ... ok
+test_register_order_signed_coefficients_and_final_byte_count (__main__.DriverTests.test_register_order_signed_coefficients_and_final_byte_count) ... ok
+test_timeout_exposes_state_and_does_not_write_reset_or_free (__main__.DriverTests.test_timeout_exposes_state_and_does_not_write_reset_or_free) ... ok
+test_version_and_wait_arguments_are_guarded (__main__.DriverTests.test_version_and_wait_arguments_are_guarded) ... ok
+test_bilinear_four_colors_and_individual_black_neighbors (__main__.GeometryTests.test_bilinear_four_colors_and_individual_black_neighbors) ... ok
+test_configuration_validation_and_32bit_end_boundary (__main__.GeometryTests.test_configuration_validation_and_32bit_end_boundary) ... ok
+test_coordinate_accumulation_does_not_wrap_int32 (__main__.GeometryTests.test_coordinate_accumulation_does_not_wrap_int32) ... ok
+test_letterbox_preserves_aspect_center_and_black_padding (__main__.GeometryTests.test_letterbox_preserves_aspect_center_and_black_padding) ... ok
+test_model_tensor_is_rgb_nhwc_float32_zero_to_one (__main__.GeometryTests.test_model_tensor_is_rgb_nhwc_float32_zero_to_one) ... ok
+test_rgb565_expansion_matches_existing_capture_decoder_for_all_values (__main__.GeometryTests.test_rgb565_expansion_matches_existing_capture_decoder_for_all_values) ... ok
+test_rotated_roi_inverse_mapping_and_no_half_pixel_shift (__main__.GeometryTests.test_rotated_roi_inverse_mapping_and_no_half_pixel_shift) ... ok
+test_source_padding_is_not_an_image_neighbor (__main__.GeometryTests.test_source_padding_is_not_an_image_neighbor) ... ok
+test_exact_integer_generated_rom_matches_numpy_division_for_all_256_values (__main__.NormalizationTests.test_exact_integer_generated_rom_matches_numpy_division_for_all_256_values) ... ok
+test_v2_output_sizes_and_rgb565_input_size_are_independent (__main__.NormalizationTests.test_v2_output_sizes_and_rgb565_input_size_are_independent) ... ok
+test_v2_tensor_view_is_zero_copy_exact_rgb_nhwc_without_renormalizing (__main__.NormalizationTests.test_v2_tensor_view_is_zero_copy_exact_rgb_nhwc_without_renormalizing) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.219s
+
+OK

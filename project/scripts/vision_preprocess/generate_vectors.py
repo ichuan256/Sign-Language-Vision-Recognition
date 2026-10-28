@@ -64,6 +64,10 @@ def generate(output, *, require_opencv=False):
             raise RuntimeError('OpenCV oracle required but not available')
         cv2 = None
     entries = []
+    # Independent hardware ROM oracle: NumPy performs actual float32 division.
+    normalize = np.arange(256, dtype=np.float32) / np.float32(255)
+    (output / 'normalize_expected.mem').write_text(
+        ''.join(f'{int(value):08x}\n' for value in normalize.view(np.uint32)), encoding='ascii')
     for index, (name, job) in enumerate(cases()):
         image = pattern(job.src_width, job.src_height, 1028 + index)
         raw, stride = pack_rgb565_le(image, job.src_stride)
@@ -96,13 +100,17 @@ def generate(output, *, require_opencv=False):
         words = pixels[:, 0] | (pixels[:, 1] << 8) | (pixels[:, 2] << 16)
         expected_file = output / f'case_{index}_expected.mem'
         expected_file.write_text(''.join(f'{int(value):06x}\n' for value in words), encoding='ascii')
+        fp32 = expected.astype(np.float32) / np.float32(255)
+        (output / f'case_{index}_fp32_expected.mem').write_text(
+            ''.join(f'{int(value):08x}\n' for value in fp32.reshape(-1).view(np.uint32)), encoding='ascii')
         entries.append(dict(index=index, name=name, job=dict(zip(job.__dataclass_fields__, job.words())),
                             source_bytes=len(raw), output_pixels=len(words), output_bytes=job.output_bytes,
                             source_sha256=hashlib.sha256(raw).hexdigest(),
                             expected_sha256=hashlib.sha256(expected.tobytes()).hexdigest(),
+                            fp32_expected_sha256=hashlib.sha256(fp32.astype('<f4').tobytes()).hexdigest(),
                             opencv_quantized_remap_max_error=cv_remap, opencv_warp_comparison=cv_warp))
     (output / 'case_count.mem').write_text(f'{len(entries):08x}\n', encoding='ascii')
-    report = dict(schema_version=1, seed_base=1028, cases=entries,
+    report = dict(schema_version=2, seed_base=1028, cases=entries,
                   numpy_version=np.__version__, opencv_version=cv2.__version__ if cv2 is not None else None,
                   note='warpAffine comparison measures coordinate-quantization differences, not a promised bit-exact contract')
     (output / 'vectors.json').write_text(json.dumps(report, indent=2), encoding='utf-8')

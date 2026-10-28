@@ -14,11 +14,11 @@ set_param general.maxThreads 2
 set vp_rtl_files [list \
     [file join $vp_root project/fpga/rtl/vision_preprocess/vision_preprocess_axi.v] \
     [file join $vp_root project/fpga/rtl/vision_preprocess/vision_rgb565_affine.v] \
-    [file join $vp_root project/fpga/rtl/vision_preprocess/rgb888_axis_pack32.v]]
+    [file join $vp_root project/fpga/rtl/vision_preprocess/rgb888_axis_fp32_normalize.v]]
 set vp_tb_files [list \
     [file join $vp_root project/fpga/tb/vision_preprocess/tb_vision_preprocess_axi.sv] \
     [file join $vp_root project/fpga/tb/vision_preprocess/tb_vision_rgb565_affine.sv] \
-    [file join $vp_root project/fpga/tb/vision_preprocess/tb_rgb888_axis_pack32.sv]]
+    [file join $vp_root project/fpga/tb/vision_preprocess/tb_rgb888_axis_fp32_normalize.sv]]
 foreach vp_source [concat $vp_rtl_files $vp_tb_files] {
     if {![file isfile $vp_source]} {error "Required verification source is missing: $vp_source"}
 }
@@ -32,6 +32,7 @@ if {![info exists vp_vectors]} {
     set vp_vectors [file join $vp_root project/_tmp/vision_preprocess_vectors_20261028]
 }
 set vp_vectors [file normalize $vp_vectors]
+if {![file exists [file join $vp_vectors normalize_expected.mem]]} {error "Generate V2 normalization vectors first"}
 if {![file exists [file join $vp_vectors case_count.mem]]} {error "Generate the independent vectors first"}
 set_property -dict [list xsim.simulate.xsim.more_options [list -testplusarg VECTORS=$vp_vectors]] [get_filesets sim_1]
 update_compile_order -fileset sources_1

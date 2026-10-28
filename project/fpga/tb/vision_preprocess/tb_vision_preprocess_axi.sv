@@ -106,7 +106,7 @@ module tb_vision_preprocess_axi;
             if (m_axis_tvalid && m_axis_tready) begin
                 if (!check_stream) $fatal(1,"unexpected stream output phase=%0d",phase);
                 if (m_axis_tuser !== (seen_bytes==0)) $fatal(1,"incorrect SOF");
-                if (m_axis_tkeep!==4'b1111 && m_axis_tkeep!==4'b0111 && m_axis_tkeep!==4'b0011 && m_axis_tkeep!==4'b0001) $fatal(1,"noncompact TKEEP");
+                if (m_axis_tkeep!==4'b1111) $fatal(1,"FP32 TKEEP must always be full");
                 for (lane=0;lane<4;lane=lane+1) if (m_axis_tkeep[lane]) begin
                     if (seen_bytes>=expected_bytes) $fatal(1,"too many output bytes");
                     if (m_axis_tdata[8*lane+:8]!==expected[seen_bytes]) $fatal(1,"byte %0d expected %h got %h phase=%0d",seen_bytes,expected[seen_bytes],m_axis_tdata[8*lane+:8],phase);
@@ -170,8 +170,15 @@ module tb_vision_preprocess_axi;
             @(negedge clk); seen_bytes=0; seen_frames=0; expected_bytes=count; check_stream=1;
             for(n=0;n<count;n=n+1) expected[n]=0;
             if (!black) begin
-                expected[0]=255;
-                if(count==12) begin expected[4]=255; expected[8]=255; expected[9]=255; expected[10]=255; expected[11]=255; end
+                // IEEE754 1.0 = little-endian 00 00 80 3f; zeros stay +0.
+                expected[2]=8'h80; expected[3]=8'h3f;
+                if(count==48) begin
+                    expected[18]=8'h80; expected[19]=8'h3f; // green
+                    expected[34]=8'h80; expected[35]=8'h3f; // blue
+                    expected[38]=8'h80; expected[39]=8'h3f;
+                    expected[42]=8'h80; expected[43]=8'h3f;
+                    expected[46]=8'h80; expected[47]=8'h3f;
+                end
             end
         end
     endtask
@@ -194,13 +201,13 @@ module tb_vision_preprocess_axi;
     initial begin
         repeat(5) @(negedge clk); reset_n=1;
         phase=1;
-        checkreg('h40,'h10000); checkreg('h04,8);
+        checkreg('h40,'h20000); checkreg('h04,8);
         wr('h10,'h12345678,15,0,0); wr('h10,'haabbccdd,5,1,0); checkreg('h10,'h12bb56dd);
         wr('h10,0,0,2,0); checkreg('h10,'h12bb56dd);
         wr('h40,0,15,0,2); wr('h7c,0,15,1,2); wr('h11,0,15,2,2);
         rd('h7c,2,value); rd('h11,2,value);
         phase=2;
-        config_identity(2,2); expect_image(12,0); req_before=requests;
+        config_identity(2,2); expect_image(48,0); req_before=requests;
         ar_gate=0; m_axis_tready=0;
         wr(0,1,15,0,0);
         wait(m_axi_read_arvalid); repeat(10) @(negedge clk);
@@ -208,21 +215,22 @@ module tb_vision_preprocess_axi;
         wr('h20,1,15,2,0); wr('h24,1,15,0,0); // next-task shadow only
         checkreg('h20,1); checkreg('h24,1);
         ar_gate=1;
-        // First packed word holds until consumer resumes.
+        // First FP32 word holds until consumer resumes.
         wait(m_axis_tvalid); repeat(12) @(negedge clk); rd('h04,0,value);
         if(!value[0] || value[1]) $fatal(1,"busy cleared while output stalled");
         @(negedge clk); m_axis_tready=1;
         // Stop specifically at final beat, after sampler has completed.
-        wait(seen_bytes==8); @(negedge clk); m_axis_tready=0;
+        wait(seen_bytes==44); @(negedge clk); m_axis_tready=0;
         wait(m_axis_tvalid && m_axis_tlast); repeat(10) @(negedge clk);
-        rd('h04,0,value); if(!value[0] || value[1]) $fatal(1,"completion preceded final packed TLAST handshake");
+        rd('h04,0,value); if(!value[0] || value[1]) $fatal(1,"completion preceded final B-channel TLAST handshake");
+        checkreg('h0c,44); // Last B has not been consumed yet.
         wr(0,1,15,2,2);
-        @(negedge clk); m_axis_tready=1; await_done(0,12);
+        @(negedge clk); m_axis_tready=1; await_done(0,48);
         rd('h44,0,value); if(value!=requests-req_before || value<1 || value>4) $fatal(1,"AR counter unreasonable %d",value);
         wr(0,2,15,0,0); checkreg('h04,8); checkreg('h08,0);
         wr(0,1,2,1,0); checkreg('h04,8); // CTRL requires the low-byte strobe
         phase=3;
-        expect_image(3,0); wr(0,1,15,1,0); await_done(0,3); // shadow applies; final TKEEP=7
+        expect_image(12,0); wr(0,1,15,1,0); await_done(0,12); // shadow applies; three full FP32 beats
         phase=4;
         wr('h20,'h10001,15,0,0); req_before=requests; wr(0,1,15,1,0); await_done(1,0);
         if(requests!=req_before) $fatal(1,"dimension high bits were silently truncated");
@@ -231,23 +239,23 @@ module tb_vision_preprocess_axi;
         wr('h20,1,15,1,0); wr('h10,'h1002,15,0,0); wr(0,1,15,2,0); await_done(2,0);
         wr('h10,'hfffffffc,15,1,0); wr(0,1,15,0,0); await_done(3,0);
         phase=5;
-        config_identity(2,2); expect_image(12,1); error_mode=1; req_before=requests;
-        wr(0,1,15,2,0); await_done(4,12);
+        config_identity(2,2); expect_image(48,1); error_mode=1; req_before=requests;
+        wr(0,1,15,2,0); await_done(4,48);
         if(requests!=req_before+1) $fatal(1,"RRESP failure did not stop later reads");
         checkreg('h44,1);
         phase=6;
-        expect_image(12,1); error_mode=2; req_before=requests;
-        wr(0,1,15,0,0); await_done(4,12);
+        expect_image(48,1); error_mode=2; req_before=requests;
+        wr(0,1,15,0,0); await_done(4,48);
         if(requests!=req_before+1 || drain_beats!=1 || mem_pending) $fatal(1,"missing RLAST transaction was not drained exactly once");
         checkreg('h44,1);
         phase=7;
         // Coordinated system reset during a held AR resets both DUT and model.
-        error_mode=0; expect_image(12,0); ar_gate=0;
+        error_mode=0; expect_image(48,0); ar_gate=0;
         wr(0,1,15,1,0); wait(m_axi_read_arvalid); repeat(3) @(negedge clk);
         reset_n=0; check_stream=0; repeat(5) @(negedge clk); reset_n=1; ar_gate=1;
         checkreg('h04,8); checkreg('h0c,0); checkreg('h44,0);
-        config_identity(1,1); expect_image(3,0); wr(0,1,15,2,0); await_done(0,3);
-        $display("TEST_PASS tb_vision_preprocess_axi: AXI-Lite skew/strobes/backpressure, shadow/start, RGB packing, AXI read stalls/errors/drain, completion, reset");
+        config_identity(1,1); expect_image(12,0); wr(0,1,15,2,0); await_done(0,12);
+        $display("TEST_PASS tb_vision_preprocess_axi: AXI-Lite skew/strobes/backpressure, shadow/start, FP32 RGB order/tail byte count, AXI read stalls/errors/drain, completion, reset");
         $finish;
     end
 endmodule

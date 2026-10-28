@@ -1,0 +1,20 @@
+Time resolution is 1 ps
+SAMPLER deterministic seed=6d2b79f5
+CASE_PASS 0 pixels=1 reads=1 cycles=27
+CASE_PASS 1 pixels=15 reads=9 cycles=319
+CASE_PASS 2 pixels=42 reads=24 cycles=1151
+CASE_PASS 3 pixels=35 reads=4 cycles=368
+CASE_PASS 4 pixels=35 reads=4 cycles=587
+CASE_PASS 5 pixels=35 reads=4 cycles=807
+CASE_PASS 6 pixels=12 reads=0 cycles=103
+CASE_PASS 7 pixels=63 reads=63 cycles=1515
+CASE_PASS 8 pixels=169 reads=363 cycles=9005
+CASE_PASS 9 pixels=9 reads=1 cycles=165
+CASE_PASS 10 pixels=16 reads=1 cycles=150
+CASE_PASS 11 pixels=16 reads=1 cycles=159
+CASE_PASS 12 pixels=4 reads=1 cycles=60
+CASE_PASS 13 pixels=4 reads=2 cycles=75
+CASE_PASS 14 pixels=36864 reads=46080 cycles=1130710
+CASE_PASS 15 pixels=50176 reads=131260 cycles=2943274
+TEST_PASS tb_vision_rgb565_affine frames=19 invalid=15 stalled_cycles=135085
+$finish called at time : 40891970 ns : File "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/vision_preprocess/tb_vision_rgb565_affine.sv" Line 218

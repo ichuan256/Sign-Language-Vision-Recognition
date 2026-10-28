@@ -4,7 +4,7 @@ if {![info exists vp_evidence]} {set vp_evidence [file join $vp_root project/ana
 file mkdir $vp_evidence
 set vp_xsim [file join [get_property DIRECTORY [current_project]] vision_preprocess.sim/sim_1/behav/xsim]
 set vp_summary [open [file join $vp_evidence regression.txt] w]
-foreach vp_top {tb_rgb888_axis_pack32 tb_vision_rgb565_affine tb_vision_preprocess_axi} {
+foreach vp_top {tb_rgb888_axis_fp32_normalize tb_vision_rgb565_affine tb_vision_preprocess_axi} {
     set_property top $vp_top [get_filesets sim_1]
     update_compile_order -fileset sim_1
     launch_simulation -simset sim_1 -mode behavioral

@@ -1,0 +1,4 @@
+Time resolution is 1 ps
+PACKER deterministic seed=13579bdf
+TEST_PASS tb_rgb888_axis_pack32 frames=49 stalled_cycles=2821
+$finish called at time : 84520 ns : File "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/vision_preprocess/tb_rgb888_axis_pack32.sv" Line 92
