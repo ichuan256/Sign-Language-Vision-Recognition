@@ -1,0 +1,1 @@
+SCOPE ideal_synchronous_AXI_consumer_zero_output_delay_not_board_signoff CLOCK_PERIOD_NS 10.000 WNS_NS 1.731 STARTPOINT {normalizer/channel_reg[1]/C} ENDPOINT {m_axis_tdata[5]}

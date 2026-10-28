@@ -1,0 +1,34 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+| Date         : Wed Oct 28 22:52:07 2026
+| Host         : DESKTOP-4VOJJB1 running 64-bit major release  (build 9200)
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+RTL Linter Report
+
+Table of Contents
+-----------------
+1. Summary
+2. Expanded
+
+1. Summary
+----------
+
++----------+----------+--------------+----------+------------------------------------------------------------------------------+
+| Rule ID  | Severity | # Violations | # Waived | Message Template                                                             |
++----------+----------+--------------+----------+------------------------------------------------------------------------------+
+| ASSIGN-9 | WARNING  | 1            | 0        | Some bits in IO '(rtl_name)' are not set. First unset bit index is '(info)'. |
++----------+----------+--------------+----------+------------------------------------------------------------------------------+
+
+
+2. Expanded
+-----------
+
++----------+------------------------+--------------+------+-----------------------+-------------------------+-------------+
+| Rule ID  | description            | rtl_name     | info | rtl_hierarchy         | rtl_file                | Line number |
++----------+------------------------+--------------+------+-----------------------+-------------------------+-------------+
+| ASSIGN-9 | IO bit(s) not assigned | m_axis_tdata | 30   | vision_preprocess_axi | vision_preprocess_axi.v | 42          |
++----------+------------------------+--------------+------+-----------------------+-------------------------+-------------+
+* create_waiver can be used to apply waiver to linter violations.
+** For example, create_waiver -type LINT -id RULE_ID {-rtl_name RTL_NAME} {-rtl_hierarchy RTL_MODULE_NAME} {-rtl_file RTL_FILE_NAME}.

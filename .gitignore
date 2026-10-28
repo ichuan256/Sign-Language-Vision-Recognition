@@ -81,3 +81,6 @@ xsim.dir/
 /project/analysis/ov5640_stereo_20261026/**/*.dcp
 /project/analysis/ov5640_stereo_20261026/**/synth*_netlist.v
 /project/analysis/ov5640_stereo_20261026/pin_map_sources_20261027/*.pdf
+
+# Reproducible FP32 preprocessing checkpoint; keep source and text reports
+/project/analysis/vision_preprocess_fp32_20261028/ooc/*.dcp

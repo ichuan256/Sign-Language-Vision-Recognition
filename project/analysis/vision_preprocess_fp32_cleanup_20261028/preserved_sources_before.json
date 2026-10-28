@@ -1,0 +1,38 @@
+[
+  {
+    "path": "project/fpga/rtl/vision_preprocess/vision_rgb565_affine.v",
+    "sha256": "4ba1acdb9f79bb467f552a2b6c477d0f4dc9c625b4b8cfe8c9ca407a025b675b"
+  },
+  {
+    "path": "project/fpga/rtl/vision_preprocess/rgb888_axis_fp32_normalize.v",
+    "sha256": "908cae4dc97f792a9a9309e595d61427ade29c76b653b5bffb12f30bb052aded"
+  },
+  {
+    "path": "project/fpga/rtl/vision_preprocess/vision_preprocess_axi.v",
+    "sha256": "0a2648a8ef607cee83183a66b62a1ab0c9ff3df784c3a156ca9a8ce526729c52"
+  },
+  {
+    "path": "project/fpga/tb/vision_preprocess/tb_vision_rgb565_affine.sv",
+    "sha256": "58d610ee7ee3aa4e5449817a105d2170b4de3455841c76924acf6ac0db128a12"
+  },
+  {
+    "path": "project/fpga/tb/vision_preprocess/tb_rgb888_axis_fp32_normalize.sv",
+    "sha256": "5a49b6b2f57b534221ceda91ba0fe2fd16f493934830a285dfdeef8ccbdcc82e"
+  },
+  {
+    "path": "project/fpga/tb/vision_preprocess/tb_vision_preprocess_axi.sv",
+    "sha256": "725ac6106de98c6236daa1275d83979771344aa2742369ec02d481d574062a98"
+  },
+  {
+    "path": "project/board/teacher_hands/teacher_geometry.py",
+    "sha256": "1426edddecaf0618b03d61677f0d8644137ef379b0ac606ac6e1c3d1af710186"
+  },
+  {
+    "path": "project/board/ov5640_snapshot/capture.py",
+    "sha256": "c05ad2e550346e2e83760951ba9fe967f6e98203158fe7971acee092f2d64bc0"
+  },
+  {
+    "path": "project/board/ov5640_snapshot/hdmi_preview.py",
+    "sha256": "da2062515f82bae8a55d405c571a526c72b6b99b481d3390542979e1f5b975c0"
+  }
+]

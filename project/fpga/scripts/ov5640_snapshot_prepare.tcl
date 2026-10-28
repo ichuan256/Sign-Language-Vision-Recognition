@@ -1,6 +1,12 @@
 # Independent snapshot test project. No W6 mutation or programming.
 set snapshot_repo [file normalize [file join [file dirname [info script]] ../../..]]
-set snapshot_out [file join $snapshot_repo project/_tmp/ov5640_snapshot_20261027]
+if {![info exists snapshot_out]} {
+    set snapshot_out [file join $snapshot_repo project/_tmp/ov5640_snapshot_20261027]
+}
+set snapshot_out [file normalize $snapshot_out]
+if {![string match "${snapshot_repo}/project/_tmp/*" $snapshot_out]} {
+    error "Snapshot builds must remain in project/_tmp"
+}
 if {[current_project -quiet] ne ""} {error "Close prior project first"}
 set snapshot_base $snapshot_out
 set snapshot_version 1
@@ -65,11 +71,13 @@ foreach name {ov1_pclk ov1_vsync ov1_href ov1_data ov1_scl ov1_sda ov1_reset_n o
 assign_bd_address -offset 0x40400000 -range 64K -target_address_space [get_bd_addr_spaces ps7/Data] [get_bd_addr_segs capture_dma/S_AXI_LITE/Reg]
 assign_bd_address -offset 0x41200000 -range 64K -target_address_space [get_bd_addr_spaces ps7/Data] [get_bd_addr_segs camera_control/S_AXI/Reg]
 assign_bd_address -offset 0 -range 512M -target_address_space [get_bd_addr_spaces capture_dma/Data_S2MM] [get_bd_addr_segs ps7/S_AXI_HP0/HP0_DDR_LOWOCM]
+if {[info exists snapshot_bd_extension]} {source $snapshot_bd_extension}
 validate_bd_design
 save_bd_design
 write_bd_tcl -force [file join $snapshot_out system.tcl]
 set bd [get_files */system.bd]
 generate_target all $bd
+if {[info exists snapshot_post_generate_extension]} {source $snapshot_post_generate_extension}
 set wrapper [make_wrapper -files $bd -top]
 add_files -norecurse $wrapper
 set_property top system_wrapper [get_filesets sources_1]

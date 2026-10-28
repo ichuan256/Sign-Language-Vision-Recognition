@@ -1,0 +1,3 @@
+Time resolution is 1 ps
+TEST_PASS tb_rgb888_axis_fp32_normalize: all 256 values per RGB channel, NumPy oracle, input bubbles, prolonged/random backpressure, consecutive/single-pixel frames, reset at R/G/B; completed=11 stalls=1134
+$finish called at time : 28090 ns : File "C:/Users/Icarie/Documents/ChatGPT/Sign-Language-Vision-Recognition/project/fpga/tb/vision_preprocess/tb_rgb888_axis_fp32_normalize.sv" Line 137

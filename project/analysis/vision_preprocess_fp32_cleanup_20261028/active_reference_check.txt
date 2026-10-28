@@ -1,0 +1,1 @@
+No references to rgb888_axis_pack32 or rgb888_to_model_tensor in active vision_preprocess board/RTL/TB/generator sources or FPGA scripts; rg exit=1 (no matches).

@@ -1,0 +1,44 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+| Date         : Wed Oct 28 17:51:10 2026
+| Host         : DESKTOP-4VOJJB1 running 64-bit major release  (build 9200)
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+RTL Linter Report
+
+Table of Contents
+-----------------
+1. Summary
+2. Expanded
+
+1. Summary
+----------
+
++----------+----------+--------------+----------+-----------------------------------------------------------------------------+
+| Rule ID  | Severity | # Violations | # Waived | Message Template                                                            |
++----------+----------+--------------+----------+-----------------------------------------------------------------------------+
+| ASSIGN-1 | WARNING  | 1            | 0        | Arithmetic result not used with full precision, used bits: '(info)'         |
+| ASSIGN-6 | WARNING  | 5            | 0        | Some bits in '(rtl_name)' are not read. First unread bit index is '(info)'. |
+| QOR-1    | WARNING  | 1            | 0        | Arithmetic operators '(rtl_name)' not mergeable. Negative impact on QoR     |
++----------+----------+--------------+----------+-----------------------------------------------------------------------------+
+
+
+2. Expanded
+-----------
+
++----------+----------------------+------------------+------+-----------------------+-------------------------+-------------+
+| Rule ID  | description          | rtl_name         | info | rtl_hierarchy         | rtl_file                | Line number |
++----------+----------------------+------------------+------+-----------------------+-------------------------+-------------+
+| ASSIGN-6 | Bit(s) not used      | core_busy        | 0    | vision_preprocess_axi | vision_preprocess_axi.v | 55          |
+| QOR-1    | Unmergeable operator | +                | N/A  | vision_preprocess_axi | vision_preprocess_axi.v | 148         |
+| ASSIGN-1 | Arithmetic overflow  | +                | 32   | vision_rgb565_affine  | vision_rgb565_affine.v  | 64          |
+| ASSIGN-6 | Bit(s) not used      | rounded_b        | 0    | vision_rgb565_affine  | vision_rgb565_affine.v  | 97          |
+| ASSIGN-6 | Bit(s) not used      | rounded_g        | 0    | vision_rgb565_affine  | vision_rgb565_affine.v  | 96          |
+| ASSIGN-6 | Bit(s) not used      | rounded_r        | 0    | vision_rgb565_affine  | vision_rgb565_affine.v  | 95          |
+| ASSIGN-6 | Bit(s) not used      | sample_addr_wide | 0    | vision_rgb565_affine  | vision_rgb565_affine.v  | 64          |
++----------+----------------------+------------------+------+-----------------------+-------------------------+-------------+
+* create_waiver can be used to apply waiver to linter violations.
+** For example, create_waiver -type LINT -id RULE_ID {-rtl_name RTL_NAME} {-rtl_hierarchy RTL_MODULE_NAME} {-rtl_file RTL_FILE_NAME}.
+
+

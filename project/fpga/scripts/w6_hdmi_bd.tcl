@@ -173,6 +173,7 @@ proc w6h_create_video {parent name} {
     create_bd_pin -dir I -type clk clk_142M
     create_bd_pin -dir I -from 0 -to 0 -type rst periph_resetn_clk100M
     create_bd_pin -dir I -from 0 -to 0 -type rst ic_resetn_clk100M
+    create_bd_pin -dir I -from 0 -to 0 -type rst periph_resetn_clk142M
     create_bd_pin -dir I -from 0 -to 0 -type rst ic_resetn_clk142M
     create_bd_pin -dir O -from 2 -to 0 -type intr video_irq
     create_bd_pin -dir O -from 0 -to 0 hdmi_out_hpd
@@ -243,6 +244,10 @@ proc w6h_create_video {parent name} {
     current_bd_instance /
     return $hier
 }
+
+# Independent projects reuse only the IP registration and hierarchy procedures.
+# Do not run W6-specific top-level wiring, cleanup, or clock/reset patches there.
+if {[info exists ::w6h_procedures_only] && $::w6h_procedures_only} {return}
 
 # ================= 顶层实例化 =================
 # 上次失败可能留下残缺 video 层级：以 hdmi_out/TMDS_out 是否已连线作为完成度标记
@@ -400,7 +405,10 @@ if {[llength [get_bd_cells -quiet video]]} {
         }
     }
     # move the two 142M resets onto the 100M reset generator
-    set rp [get_bd_pins -quiet video/M01_ARESETN]
+    # New hierarchies expose an explicit reset pin; older BDs retain the
+    # automatically-created M01_ARESETN boundary pin from the original script.
+    set rp [get_bd_pins -quiet video/periph_resetn_clk142M]
+    if {![llength $rp]} {set rp [get_bd_pins -quiet video/M01_ARESETN]}
     set r0 [get_bd_pins -quiet proc_sys_reset_0/peripheral_aresetn]
     set r142 [get_bd_pins -quiet proc_sys_reset_142M/peripheral_aresetn]
     if {[llength $rp] && [llength $r0] && [llength $r142]} {

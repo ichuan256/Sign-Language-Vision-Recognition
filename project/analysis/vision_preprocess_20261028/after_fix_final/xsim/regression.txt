@@ -1,0 +1,3 @@
+PASS tb_rgb888_axis_pack32 frames=49 stalled_cycles=2821
+PASS tb_vision_rgb565_affine frames=19 invalid=15 stalled_cycles=135085
+PASS tb_vision_preprocess_axi: AXI-Lite skew/strobes/backpressure, shadow/start, RGB packing, AXI read stalls/errors/drain, completion, reset

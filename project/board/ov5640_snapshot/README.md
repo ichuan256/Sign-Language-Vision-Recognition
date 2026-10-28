@@ -1,5 +1,7 @@
 # OV5640 OV1 单路抓图候选
 
+> 相机画面接 HDMI 的独立本地版本见 [HDMI 预览](HDMI_PREVIEW.md)。它需要新建的相机＋HDMI 固件，原有纯采集发布包不含 HDMI。2026-10-28 本轮板卡未开机，未部署或进行显示验收。
+
 > 工作区清理后，`release/` 为原 V15 本地候选，bit SHA256 `486a6c68523d18cbbe76d1b8b7edfba74e59194bacbb90a95a9df2cac1a82bbc`。V14及以前的发布包、构建和历史诊断记录已移到 Windows 回收站；当前构建与溯源证据保留在 `project/analysis/ov5640_color_20261027/build_v15_dvp/`。目录整理没有部署或重启板卡，候选状态不变。
 
 > 2026-10-28，移除 DVP 坏帧几何检测的新候选位于 `release_remove_pl_bad_frame_20261028/`，已部署到板端固定启动目录并由冷启动加载一次。bootpy 显示 FCLK0=100 MHz；板端哈希、manifest/HWH 校验通过。外部 DVP I/O 时序和真实相机采图尚未验收；构建与部署证据见 `project/analysis/ov5640_snapshot_20261028/deployment.md`。板端上一版文件保存在 `.backup_remove_pl_bad_frame_20261028/`。

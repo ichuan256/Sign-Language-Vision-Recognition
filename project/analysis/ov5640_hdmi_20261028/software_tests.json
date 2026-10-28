@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "board",
+    "command": [
+      "C:\\Users\\Icarie\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "project/board/ov5640_snapshot",
+      "-v"
+    ],
+    "exit_code": 0
+  },
+  {
+    "suite": "build_tools",
+    "command": [
+      "C:\\Users\\Icarie\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "project/scripts/ov5640",
+      "-v"
+    ],
+    "exit_code": 0
+  }
+]
