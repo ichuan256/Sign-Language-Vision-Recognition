@@ -1,0 +1,14 @@
+{
+  "modes": [
+    "av",
+    "camera",
+    "sd_teacher",
+    "idle"
+  ],
+  "legacy_cold_checkbox": false,
+  "teacher_latency_label": true,
+  "console_profile": "av_current_firmware_v1",
+  "mode": "sd_teacher",
+  "busy": false,
+  "error": null
+}

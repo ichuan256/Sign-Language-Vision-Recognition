@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-01",
+  "python_sources_compiled": 9,
+  "runtime_hashes_verified": 15,
+  "boot_id": "8ce2ebd6-55f1-448b-b83f-b1d019725630",
+  "protected_HWH_contract_verified": true,
+  "service_enabled": {
+    "exit_code": 0,
+    "stdout": "enabled",
+    "stderr": ""
+  },
+  "service_state": {
+    "exit_code": 0,
+    "stdout": "ActiveState=active\nSubState=running",
+    "stderr": ""
+  },
+  "limited_sudo": {
+    "exit_code": 0,
+    "stdout": "/usr/local/sbin/sign-av-ctl preflight",
+    "stderr": ""
+  },
+  "hardware_started": false,
+  "registers_touched": false,
+  "models_loaded": false
+}

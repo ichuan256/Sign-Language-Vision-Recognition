@@ -132,18 +132,21 @@ def main():
     p.add_argument('--no-pl',action='store_true',help='Teacher-only processing, no PL graph')
     p.add_argument('--sign-model',type=Path,help='Optional temporal sign head over the same frozen teacher landmarks')
     p.add_argument('--video',type=Path,help='Single workspace video for explicit replay verification')
+    p.add_argument('--sd-source',action='store_true',help='Read the verified teaching video from the board SD card')
     a=p.parse_args();out=a.output.resolve()
-    if out.exists() or not out.is_relative_to(ROOT/'project/_tmp') or not 30<=a.seconds<=86400:
+    if out.exists() or not out.is_relative_to(ROOT/'project/_tmp') or not (30<=a.seconds<=86400 or (a.seconds==0 and a.no_pl)):
         raise ValueError('New bounded workspace output required')
     if not 1024<=a.control_port<=65535 or (a.camera is not None and not 0<=a.camera<=9):
         raise ValueError('Invalid control port or camera index')
     if a.no_pl and a.mode=='pl':raise ValueError('PL view requires PL execution')
+    if a.sd_source and (not a.no_pl or a.camera is not None or a.ov5640 or a.video):raise ValueError('SD input requires exclusive teacher-only processing')
     if a.ov5640 and (a.camera is not None or not a.no_pl):raise ValueError('OV5640 requires exclusive input and teacher-only processing')
     out.mkdir(parents=True)
     password=os.environ.pop('KEYPOINT_BOARD_SUDO_PASSWORD',None)
     deployment=None if a.no_pl else json.loads((ROOT/'project/_tmp/kp_stream_deploy_v2/deployment.json').read_text())
     live_camera=a.camera is not None or a.ov5640
-    sources=[dict(label='OV5640实时输入' if a.ov5640 else 'USB摄像头实时输入',hand_index=0)] if live_camera else playlist()
+    streaming_source=live_camera or a.sd_source
+    sources=[dict(label='SD教学视频' if a.sd_source else 'OV5640实时输入' if a.ov5640 else 'USB摄像头实时输入',hand_index=0)] if streaming_source else playlist()
     if a.video:
         video=a.video.resolve()
         if live_camera or not video.is_relative_to(ROOT) or not video.is_file():raise ValueError('Exclusive existing workspace video required')
@@ -157,9 +160,9 @@ def main():
         sign=LiveSignHead(a.sign_model)
     token=secrets.token_urlsafe(24);lock=threading.Lock();stop=threading.Event()
     state=dict(mode=a.mode,active=True,video_frames=0,teacher_frames=0,teacher_hand_frames=0,
-        PC_neural_backend='MediaPipe Holistic',PL_neural_backend='W12/A16 lite graph on PL',
+        PC_neural_backend='MediaPipe Holistic',PL_neural_backend='disabled' if a.no_pl else 'W12/A16 lite graph on PL',
         ROI_locator='live PC Holistic; no cached ROI tracks',new_full_teacher_PL_migration=False,
-        input_source='board OV5640' if a.ov5640 else 'USB camera' if a.camera is not None else 'recorded video',camera_index=a.camera)
+        input_source='board SD card' if a.sd_source else 'board OV5640' if a.ov5640 else 'USB camera' if a.camera is not None else 'recorded video',camera_index=a.camera)
     html='''<!doctype html><meta charset="utf-8"><title>关键点录制控制</title>
 <style>body{font:20px sans-serif;background:#101b2c;color:white;margin:24px}button{font-size:22px;margin:10px;padding:16px}img{max-width:100%}</style>
 <h1>关键点演示模式</h1><button onclick="mode('pc')">1 PC教师识别 → HDMI</button>
@@ -204,20 +207,25 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
         with LatestFrameServer(a.frame_port) as server,mp.solutions.holistic.Holistic(
             static_image_mode=False,model_complexity=1,smooth_landmarks=True,
             min_detection_confidence=.5,min_tracking_confidence=.5) as detector:
-            while not stop.is_set() and time.monotonic()-started<a.seconds:
+            while not stop.is_set() and (not a.seconds or time.monotonic()-started<a.seconds):
                 record=sources[clip_index%len(sources)]
-                if a.ov5640:
+                if a.sd_source:
+                    from .sd_teaching_source import SDTeachingSSHSource
+                    source=SDTeachingSSHSource(out)
+                elif a.ov5640:
                     from .ov5640_ssh_source import OV5640SSHSource
                     source=OV5640SSHSource(password,out)
                 elif a.camera is not None:source=USBCamSource(a.camera,width=1280,height=720,max_fps=15)
                 else:source=ReplaySource(ROOT/record['source'],max_fps=15,loop=False)
                 with source as replay:
-                    while not stop.is_set() and time.monotonic()-started<a.seconds:
+                    while not stop.is_set() and (not a.seconds or time.monotonic()-started<a.seconds):
                         item=replay.read()
                         if item is None:
-                            if live_camera:raise RuntimeError('Camera stopped delivering frames; no replay fallback')
+                            if streaming_source:raise RuntimeError('Live input stopped delivering frames; no replay fallback')
                             break
                         bgr,local_frame,timestamp=item;tick=time.monotonic()
+                        source_metadata=dict(getattr(replay,'last_metadata',{}))
+                        if a.sd_source:record=dict(record,label=source_metadata['clip'])
                         result=detector.process(cv2.cvtColor(bgr,cv2.COLOR_BGR2RGB));inference_ms=(time.monotonic()-tick)*1000
                         frames+=1;now=time.monotonic()
                         if sign:sign.observe(result,bgr,timestamp)
@@ -227,6 +235,7 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
                         inverse=None
                         if hand is not None:
                             hand_frames+=1
+                        if hand is not None and not a.no_pl:
                             points=np.array([(p.x,p.y,p.z) for p in hand.landmark])
                             try:
                                 rgb,inverse=canonical_roi(bgr,points)
@@ -241,7 +250,7 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
                             drawing.draw_landmarks(shown,result.pose_landmarks,mp.solutions.holistic.POSE_CONNECTIONS)
                             for h in hands:drawing.draw_landmarks(shown,h,mp.solutions.holistic.HAND_CONNECTIONS)
                             fit(canvas,shown,(10,100,1260,540))
-                            title='视觉测试  USB手语识别' if sign else '视觉测试  摄像头实时关键点' if live_camera else '模式1  教师模型 视频关键点检测'
+                            title='视觉测试  USB手语识别' if sign else '视觉测试  SD教学视频实时处理' if a.sd_source else '视觉测试  摄像头实时关键点' if live_camera else '模式1  教师模型 视频关键点检测'
                             line='身体33点与双手21点  |  视频关键点叠加'
                         else:
                             shown=bgr.copy()
@@ -273,14 +282,18 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
                             if candidate and not sign_state['accepted']:detail+='  候选：'+candidate
                             detail+='  |  演示词：谢谢 / 再见 / 没关系 / 可以 / 早上'
                             draw.text((20,681),detail,font=fonts[1],fill=(255,220,100))
-                        else:draw.text((20,681),'OV5640实时采集，当前固件仅提供电脑预览。' if a.ov5640 else '输入为USB摄像头实时采集。' if a.camera is not None else '输入为录制视频节拍回放；骨架随当前画面更新。',font=fonts[1],fill=(255,220,100))
-                        server.publish(cv2.cvtColor(np.asarray(image),cv2.COLOR_RGB2BGR),frames,timestamp)
+                        elif not a.sd_source:draw.text((20,681),'OV5640实时采集，当前固件仅提供电脑预览。' if a.ov5640 else '输入为USB摄像头实时采集。' if a.camera is not None else '输入为录制视频节拍回放；骨架随当前画面更新。',font=fonts[1],fill=(255,220,100))
+                        server.publish(cv2.cvtColor(np.asarray(image),cv2.COLOR_RGB2BGR),frames,timestamp,
+                            dict(source_frame=int(local_frame),teacher_ms=inference_ms,clip=record['label'],source=state['input_source'],sd=source_metadata))
                         row=dict(frame=frames,clip=record['label'],source_frame=int(local_frame),mode=mode,
                                  teacher_inference_ms=inference_ms,hands=sum(h is not None for h in hands))
+                        if source_metadata:row['source_metadata']=source_metadata
                         if sign_state:row['sign_recognition']=sign_state
                         stream.write(json.dumps(row,ensure_ascii=False)+'\n')
                         with lock:state.update(video_frames=frames,teacher_frames=frames,teacher_hand_frames=hand_frames,
-                            clip=record['label'],teacher_inference_ms=inference_ms,frame_requests=server.state()['frame_requests'])
+                            clip=record['label'],teacher_inference_ms=inference_ms,frame_requests=server.state()['frame_requests'],
+                            results=frames,result_hz=frames/max(now-started,.001),teacher_ms=inference_ms,
+                            video_frame=int(local_frame),source_metadata=source_metadata)
                         if sign_state:
                             with lock:state['sign_recognition']=sign_state
                         if now-last_write>.5:

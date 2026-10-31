@@ -12,19 +12,21 @@ import numpy as np
 
 
 class OV5640SSHSource:
-    def __init__(self,password,output,*,work='/home/xilinx/jupyter_notebooks/ov5640_snapshot',worker='demo_stream.py',worker_args=()):
+    def __init__(self,password,output,*,work='/home/xilinx/jupyter_notebooks/ov5640_snapshot',worker='demo_stream.py',worker_args=(),board_gateway=False):
         self.password=password;self.output=Path(output);self.stop=threading.Event()
         self.condition=threading.Condition();self.latest=None;self.error=None;self.sequence=0
-        self.pid=None;self.started=time.monotonic()
+        self.pid=None;self.started=time.monotonic();self.board_gateway=board_gateway
         self.capture_output=work+'/captures/ui_'+str(time.time_ns())
         command=('sudo -S -p '+shlex.quote('')+' env XILINX_XRT=/usr /usr/local/share/pynq-venv/bin/python -u '+
             shlex.quote(work+'/'+worker)+' --manifest '+shlex.quote(work+'/release/release_manifest.json')+' --output '+
             shlex.quote(self.capture_output)+' --assume-cold-boot'+''.join(' '+shlex.quote(arg) for arg in worker_args))
+        if board_gateway:
+            command='sudo -n /usr/local/sbin/sign-av-ctl stream '+shlex.quote(Path(self.capture_output).name)
         environment=dict(os.environ);environment.pop('KEYPOINT_BOARD_SUDO_PASSWORD',None)
         self.log=(self.output/'ov5640.stderr.log').open('ab')
         self.process=subprocess.Popen(['ssh','-T','-o','BatchMode=yes','-o','ConnectTimeout=8',
             'xilinx@192.168.2.99',command],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=self.log,env=environment)
-        self.process.stdin.write((password+'\n').encode());self.process.stdin.flush()
+        if not board_gateway:self.process.stdin.write((password+'\n').encode());self.process.stdin.flush()
         self.process.stdin.close()
         self.thread=threading.Thread(target=self.receive,daemon=True);self.thread.start()
 
@@ -73,9 +75,10 @@ class OV5640SSHSource:
             raise RuntimeError('OV5640 worker identity unknown; preserve process and inspect board')
         # Do not close the SSH stream or kill its tree while the board may own DMA.
         if self.pid is not None and self.process.poll() is None:
-            command='sudo -S -p '+shlex.quote('')+' kill -INT '+str(self.pid)
+            command=('sudo -n /usr/local/sbin/sign-av-ctl stop' if self.board_gateway else
+                'sudo -S -p '+shlex.quote('')+' kill -INT '+str(self.pid))
             result=subprocess.run(['ssh','-o','BatchMode=yes','-o','ConnectTimeout=8','xilinx@192.168.2.99',command],
-                input=self.password+'\n',text=True,capture_output=True,timeout=15)
+                input=None if self.board_gateway else self.password+'\n',text=True,capture_output=True,timeout=100 if self.board_gateway else 15)
             if result.returncode:raise RuntimeError('OV5640 safe stop request failed; preserve process')
             try:self.process.wait(timeout=45)
             except subprocess.TimeoutExpired:raise RuntimeError('OV5640 DMA stop unconfirmed; preserve process and inspect board')

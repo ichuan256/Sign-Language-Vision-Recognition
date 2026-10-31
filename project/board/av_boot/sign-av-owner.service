@@ -1,0 +1,18 @@
+[Unit]
+Description=Cold-boot HDMI owner for PC-assisted three-panel AV
+Requires=bootpy.service
+After=bootpy.service
+
+[Service]
+Type=simple
+User=root
+Environment=XILINX_XRT=/usr
+ExecStart=/usr/local/sbin/sign-av-ctl owner-foreground
+ExecStop=/usr/local/sbin/sign-av-ctl stop
+KillMode=process
+TimeoutStopSec=120
+SendSIGKILL=no
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

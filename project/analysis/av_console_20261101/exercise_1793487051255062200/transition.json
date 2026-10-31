@@ -1,0 +1,92 @@
+{
+  "elapsed_s": 0.0319999999992433,
+  "state": {
+    "mode": "camera",
+    "title": "视觉 · USB摄像头",
+    "busy": false,
+    "message": "运行中",
+    "error": null,
+    "connected": true,
+    "details": {
+      "mode": "pc",
+      "active": true,
+      "video_frames": 2420,
+      "teacher_frames": 2420,
+      "teacher_hand_frames": 699,
+      "PC_neural_backend": "MediaPipe Holistic",
+      "PL_neural_backend": "disabled",
+      "ROI_locator": "live PC Holistic; no cached ROI tracks",
+      "new_full_teacher_PL_migration": false,
+      "input_source": "USB camera",
+      "camera_index": 0,
+      "clip": "USB摄像头实时输入",
+      "teacher_inference_ms": 31.9999999992433,
+      "frame_requests": 2042,
+      "results": 2420,
+      "result_hz": 10.444360045575484,
+      "teacher_ms": 31.9999999992433,
+      "video_frame": 2419,
+      "source_metadata": {},
+      "sign_recognition": {
+        "label": null,
+        "candidate": null,
+        "accepted": false,
+        "reason": "未检测到手",
+        "ranked": [],
+        "classification_results": 92,
+        "backend": "PC frozen Holistic + temporal DTW head",
+        "vocabulary": [
+          "再见",
+          "可以。",
+          "早上",
+          "没关系",
+          "谢谢"
+        ]
+      },
+      "pl_results": 0,
+      "pl_result_hz": 0,
+      "pl_error": null,
+      "PL_enabled": false,
+      "display": {
+        "active": true,
+        "pid": 17149,
+        "boot_id": "8ce2ebd6-55f1-448b-b83f-b1d019725630",
+        "owner_pid": 931,
+        "frame_address": 364904448,
+        "hdmi_frames": 1985,
+        "raw_updates": 0,
+        "source": "PC teacher",
+        "error": null,
+        "source_frame": 2430,
+        "raw_source_frame": 2430,
+        "metadata": {
+          "source_frame": 2430,
+          "teacher_ms": 31.9999999992433,
+          "clip": "USB摄像头实时输入",
+          "source": "USB camera",
+          "sd": {},
+          "frame_id": 2431,
+          "source_timestamp_s": 231.9714315999954
+        },
+        "hdmi_write_hz": 9.033936037294287
+      }
+    },
+    "camera_index": 0,
+    "preview_time": 1793487048.250138,
+    "service_pid": 18964,
+    "camera_sources": [
+      "USB",
+      "OV5640"
+    ],
+    "console_profile": "av_current_firmware_v1",
+    "device": {
+      "ready": true,
+      "firmware_verified": true,
+      "hdmi_locked": true,
+      "boot_id": "8ce2ebd6-55f1-448b-b83f-b1d019725630"
+    },
+    "manual_start": true,
+    "board_boot_id": "8ce2ebd6-55f1-448b-b83f-b1d019725630",
+    "last_poll": 1793487048.250138
+  }
+}

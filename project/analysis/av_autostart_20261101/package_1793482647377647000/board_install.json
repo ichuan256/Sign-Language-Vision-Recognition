@@ -1,0 +1,16 @@
+{
+  "installed": true,
+  "enabled": true,
+  "started": false,
+  "rebooted": false,
+  "bit_hwh_changed": false,
+  "boot_py_changed": false,
+  "boot_py_sha256": "f96330498c2f488ae043d4d5e3b4a3e3eec313e2c3754481bee111eb190cd625",
+  "backup": "/home/xilinx/av_autostart_20261101/package_1793482647377647000/installed_backup_1746518631099411260",
+  "previous_files": [],
+  "code": "/usr/local/lib/sign-av",
+  "data": "/var/lib/sign-av",
+  "service": "sign-av-owner.service",
+  "password_saved": false,
+  "sudo_scope": "fixed preflight/owner/audio/stop/stream only"
+}

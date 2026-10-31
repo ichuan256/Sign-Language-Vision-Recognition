@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-01",
+  "reported_action": "点击板端OV5640输入",
+  "reported_error": "Failed to fetch",
+  "observed_direct_cause": "电脑127.0.0.1:18790没有监听，HTTP请求连接被拒绝",
+  "process_exit_reason": "未从现有日志确定；stderr日志为空，旧launch.json不能证明进程存活",
+  "recovery": "恢复原手动控制台服务，重新读取API为idle、connected=true",
+  "firmware_changed": false,
+  "mode_started": false,
+  "additional_compatibility_limit": "原ov5640按钮仍检查独立纯采集候选；当前AV固件应使用av入口，恢复控制服务不代表已适配此按钮",
+  "browser_action": "刷新18790页面获取新会话令牌",
+  "frontend_change": "网络请求失败时显示控制服务离线说明；不会假称切换成功"
+}

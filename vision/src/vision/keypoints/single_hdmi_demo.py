@@ -22,6 +22,7 @@ def main():
     parser.add_argument('--seconds',type=int,default=3600)
     parser.add_argument('--sign-model',type=Path)
     parser.add_argument('--av',action='store_true',help='Simultaneous board audio and three-column HDMI')
+    parser.add_argument('--board-gateway',action='store_true',help='Fixed privileged AV gateway, without a saved sudo password')
     args=parser.parse_args();args.output.mkdir(parents=True,exist_ok=False)
     password=os.environ.pop('KEYPOINT_BOARD_SUDO_PASSWORD',None)
     if password is None:password=getpass.getpass('Board sudo password: ')
@@ -53,14 +54,15 @@ def main():
         with ExitStack() as stack:
             server=stack.enter_context(LatestFrameServer(18780))
             source=stack.enter_context(OV5640SSHSource(password,args.output,
-                work='/home/xilinx/ov1_hdmi_20261031',worker='split_hdmi_stream.py',worker_args=('--triple',) if args.av else ()))
+                work='/var/lib/sign-av' if args.board_gateway else '/home/xilinx/ov1_hdmi_20261031',
+                worker='split_hdmi_stream.py',worker_args=('--triple',) if args.av else (),board_gateway=args.board_gateway))
             with lock:state['board_capture_path']=source.capture_output
             teacher=stack.enter_context(mp.solutions.holistic.Holistic(static_image_mode=False,model_complexity=1,
                 smooth_landmarks=True,min_detection_confidence=.5,min_tracking_confidence=.5))
             if args.sign_model:
                 from ..classify.teacher_sign import LiveSignHead
                 head=LiveSignHead(args.sign_model)
-            while not stop.is_set() and time.monotonic()-started<args.seconds:
+            while not stop.is_set() and (not args.seconds or time.monotonic()-started<args.seconds):
                 frame,number,board_time=source.read(timeout=120 if args.av and count==0 else 45);tick=time.monotonic()
                 result=teacher.process(cv2.cvtColor(frame,cv2.COLOR_BGR2RGB));teacher_ms=(time.monotonic()-tick)*1000
                 if head:head.observe(result,frame,board_time)

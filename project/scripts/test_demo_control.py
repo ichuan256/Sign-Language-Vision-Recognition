@@ -1,6 +1,7 @@
 """Control contract tests; no board, camera, or model execution."""
 import importlib.util
 import json
+import subprocess
 from pathlib import Path
 import threading
 import unittest
@@ -54,6 +55,25 @@ class HTTPContract(unittest.TestCase):
 
 
 class SafetyContract(unittest.TestCase):
+    def test_closed_stop_api_requires_confirmed_process_exit(self):
+        c=control.Controller.__new__(control.Controller);worker=Mock()
+        worker.poll.return_value=None;worker.wait.return_value=1
+        c.worker=worker;c.event=Mock()
+        with patch.object(control,'app_action',side_effect=ConnectionResetError(10054,'closed')):
+            c.stop_worker()
+        worker.wait.assert_called_once_with(timeout=100)
+        worker.terminate.assert_not_called();worker.kill.assert_not_called()
+        self.assertIsNone(c.worker)
+
+    def test_closed_stop_api_cannot_hide_a_still_running_worker(self):
+        c=control.Controller.__new__(control.Controller);worker=Mock()
+        worker.poll.return_value=None;worker.wait.side_effect=subprocess.TimeoutExpired('worker',100)
+        c.worker=worker;c.event=Mock()
+        with patch.object(control,'app_action',side_effect=ConnectionResetError(10054,'closed')):
+            with self.assertRaisesRegex(RuntimeError,'未安全退出'):c.stop_worker()
+        self.assertIs(c.worker,worker)
+        worker.terminate.assert_not_called();worker.kill.assert_not_called()
+
     def test_unowned_PL_worker_prevents_writer_handoff(self):
         c=control.Controller.__new__(control.Controller)
         c.update=Mock();c.stop_worker=Mock();c.stop_tunnel=Mock();c.line=Mock()

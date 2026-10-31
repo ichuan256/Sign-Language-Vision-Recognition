@@ -1,0 +1,29 @@
+{
+  "elapsed_s": 9.140999999995984,
+  "state": {
+    "mode": "idle",
+    "title": "启动失败",
+    "busy": false,
+    "message": "请检查设备连接后重试；OV5640须使用配套冷启动固件",
+    "error": "[WinError 10054] 远程主机强迫关闭了一个现有的连接。",
+    "connected": true,
+    "details": {},
+    "camera_index": 0,
+    "preview_time": null,
+    "service_pid": 41152,
+    "camera_sources": [
+      "USB",
+      "OV5640"
+    ],
+    "console_profile": "av_current_firmware_v1",
+    "device": {
+      "ready": true,
+      "firmware_verified": true,
+      "hdmi_locked": true,
+      "boot_id": "8ce2ebd6-55f1-448b-b83f-b1d019725630"
+    },
+    "manual_start": true,
+    "board_boot_id": "8ce2ebd6-55f1-448b-b83f-b1d019725630",
+    "last_poll": 1793486212.8881595
+  }
+}

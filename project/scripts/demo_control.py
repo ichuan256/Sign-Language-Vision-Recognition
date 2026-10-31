@@ -25,7 +25,7 @@ from vision.keypoints.hdmi_link import HDMILink
 MODES={'teacher':'模式一 · 教师视频检测','pl':'模式二 · PL视频检测',
        'independent':'模式三 · 板端独立运行','audio':'听觉测试','camera':'视觉 · USB摄像头',
        'ov5640':'视觉 · 板端OV5640（电脑预览）','stereo':'视觉 · OV双路实时识别',
-       'single_hdmi':'视觉 · OV1 HDMI分屏','av':'视听同步 · HDMI三栏','idle':'已停止'}
+       'single_hdmi':'视觉 · OV1 HDMI分屏','av':'视听同步 · HDMI三栏','sd_teacher':'视觉 · SD教学视频实时处理','idle':'已停止'}
 STAGE='/home/xilinx/independent_video_20261028'
 DEPLOY=ROOT/'project/_tmp/kp_stream_deploy_v2/deployment.json'
 OPENER=build_opener(ProxyHandler({}))
@@ -118,7 +118,12 @@ print(json.dumps({'processes':processes,'independent':state,'preview':preview,'r
 
     def stop_worker(self):
         if alive(self.worker):
-            app_action(18783,'stop')
+            try:app_action(18783,'stop')
+            except OSError as exc:
+                # Stopping the board stream may already have made the host
+                # worker exit and close its HTTP server. Confirm process exit
+                # below; a disconnected API alone never proves a safe stop.
+                self.event('worker_stop_api_closed',error=str(exc))
             try:self.worker.wait(timeout=100)
             except subprocess.TimeoutExpired:
                 raise RuntimeError('当前任务未安全退出；请查看日志，不会强杀在途PL推理')
@@ -347,8 +352,9 @@ print(json.dumps({'ready':True,'boot_id':boot}))
         self.ensure_single_hdmi_owner()
         self.worker_output=self.out/('single_hdmi_'+str(time.time_ns()))
         command=[self.args.vision_python,'-X','utf8','-m','vision.keypoints.single_hdmi_demo',
-                 '--output',str(self.worker_output),'--seconds','3600']
+                 '--output',str(self.worker_output),'--seconds',str(getattr(self.args,'session_seconds',3600))]
         if simultaneous:command+=['--av']
+        if getattr(self.args,'board_gateway',False):command+=['--board-gateway']
         pointer=ROOT/'vision/data/models/usb_sign_current.json'
         if pointer.exists():
             data=json.loads(pointer.read_text(encoding='utf-8'));model=(ROOT/data['model']).resolve()
@@ -389,7 +395,8 @@ print(json.dumps({'ready':True,'boot_id':boot}))
     def camera_preview(self,path):
         from pathlib import PurePosixPath
         value=PurePosixPath(path)
-        if str(value.parent)!='/home/xilinx/ov1_hdmi_20261031/captures' or not re.fullmatch(r'ui_\d+',value.name):
+        expected='/var/lib/sign-av/captures' if getattr(self.args,'board_gateway',False) else '/home/xilinx/ov1_hdmi_20261031/captures'
+        if str(value.parent)!=expected or not re.fullmatch(r'ui_\d+',value.name):
             raise RuntimeError('板端预览路径无效')
         code="""import base64,json
 from pathlib import Path
@@ -439,18 +446,21 @@ print(json.dumps(dict(owner_pid=owner['pid'],frame_address=owner['frame_address'
         if not self.transition.acquire(blocking=False):raise RuntimeError('正在切换，请等待当前操作完成')
         self.update(busy=True,message='准备切换至'+MODES[mode],error=None)
         def work():
-            mutating=False
+            mutating=False;phase='preflight'
             try:
                 self.event('switch_requested',mode=mode,camera_index=camera)
                 if mode=='ov5640':self.ov5640_preflight()
                 elif mode=='stereo':self.stereo_preflight()
                 elif mode=='single_hdmi':self.single_hdmi_preflight()
                 elif mode=='av':self.single_hdmi_preflight(audio=True)
+                elif mode in ('camera','sd_teacher') and getattr(self.args,'board_gateway',False):self.single_hdmi_preflight()
                 elif mode!='idle':self.w6_preflight()
                 mutating=True
+                phase='stop_previous'
                 self.quiesce();self.update(mode='idle',title=MODES['idle'])
+                phase='start'
                 self.update(message='正在启动'+MODES[mode]+'…')
-                if mode in ('teacher','pl','camera','ov5640'):self.start_video(mode,camera)
+                if mode in ('teacher','pl','camera','ov5640','sd_teacher'):self.start_video(mode,camera)
                 elif mode=='independent':self.start_independent()
                 elif mode=='audio':self.start_audio()
                 elif mode=='stereo':self.start_stereo()
@@ -467,7 +477,7 @@ print(json.dumps(dict(owner_pid=owner['pid'],frame_address=owner['frame_address'
                     except Exception as stop_error:cleanup=str(stop_error)
                     self.update(mode='idle',title='启动失败')
                 self.update(error=str(exc),message=cleanup or '请检查设备连接后重试；OV5640须使用配套冷启动固件')
-                self.event('switch_failed',mode=mode,error=str(exc),cleanup_error=cleanup)
+                self.event('switch_failed',mode=mode,phase=phase,error=str(exc),cleanup_error=cleanup)
             finally:self.update(busy=False);self.transition.release()
         threading.Thread(target=work,daemon=True).start()
 
@@ -490,10 +500,13 @@ print(json.dumps(dict(owner_pid=owner['pid'],frame_address=owner['frame_address'
                     elif mode=='audio':
                         details=json.loads(fetch('http://127.0.0.1:8765/state'))
                         jpeg=fetch('http://127.0.0.1:8765/frame.jpg')
-                    elif mode in ('teacher','pl','camera','ov5640','stereo','single_hdmi','av'):
+                    elif mode in ('teacher','pl','camera','ov5640','stereo','single_hdmi','av','sd_teacher'):
                         if not alive(self.worker):raise RuntimeError('视频进程已结束，请重新启动')
                         details=json.loads(fetch('http://127.0.0.1:18783/state'))
                         jpeg=fetch('http://127.0.0.1:18780/frame.jpg')
+                        if mode in ('camera','sd_teacher') and getattr(self.args,'board_gateway',False):
+                            preview=self.display_preview()
+                            details['display']=preview['display'];jpeg=base64.b64decode(preview['jpeg'])
                         if mode=='av':
                             preview=self.camera_preview(details['board_capture_path'])
                             details['display']=preview['display'];details['audio']=json.loads(fetch('http://127.0.0.1:8765/state'))
@@ -506,7 +519,6 @@ print(json.dumps(dict(owner_pid=owner['pid'],frame_address=owner['frame_address'
 
 
 def handler_for(controller,token):
-    html=(Path(__file__).with_name('demo_control.html')).read_text(encoding='utf-8').replace('__SESSION__',token)
     class Handler(BaseHTTPRequestHandler):
         def log_message(self,*args):pass
         def send(self,body,ctype,status=200):
@@ -517,7 +529,9 @@ def handler_for(controller,token):
             except (BrokenPipeError,ConnectionResetError):pass
         def do_GET(self):
             path=self.path.split('?',1)[0]
-            if path=='/':self.send(html.encode(),'text/html; charset=utf-8')
+            if path=='/':
+                html=Path(__file__).with_name('demo_control.html').read_text(encoding='utf-8').replace('__SESSION__',token)
+                self.send(html.encode(),'text/html; charset=utf-8')
             elif path=='/api/state':
                 with controller.lock:value=dict(controller.state)
                 self.send(json.dumps(value,ensure_ascii=False).encode(),'application/json; charset=utf-8')

@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-01",
+  "boot_id": "8ce2ebd6-55f1-448b-b83f-b1d019725630",
+  "owner_pid": 931,
+  "frame_address": 364904448,
+  "feedback": [
+    {"mode": "av", "user_report": "出现三栏", "scope": "本次安全重启后的电脑协同版本；不是已撤回的板端独立版反馈"},
+    {"mode": "sd_teacher", "user_report": "视频和关键点都正常", "scope": "板卡SD视频循环播放，电脑原Holistic实时处理，当前固件HDMI输出"},
+    {"mode": "camera", "camera_index": 0, "user_report": "取景和关键点都正常", "scope": "电脑USB摄像头取景、电脑原Holistic实时处理，当前固件HDMI输出"},
+    {"mode": "console", "user_report": "按钮已恢复可点击", "scope": "更新页面请求超时与解锁逻辑后，用户Ctrl+F5刷新确认；此反馈只确认按钮可点击"}
+  ],
+  "firmware_changed_for_new_modes": false,
+  "rebooted_for_new_modes": false,
+  "new_models_trained": false
+}

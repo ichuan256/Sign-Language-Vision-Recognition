@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-01",
+  "package": "F:\\PLD_new\\Sign-Language-Vision-Recognition\\project\\analysis\\av_autostart_20261101\\package_1793482564570791300\\payload",
+  "board_stage": "/home/xilinx/av_autostart_20261101/package_1793482564570791300",
+  "service": "sign-av-owner.service",
+  "enable_only_no_start": true,
+  "sudo_actions": [
+    "preflight",
+    "owner",
+    "audio",
+    "stop",
+    "stream ui_<digits>"
+  ],
+  "windows_trigger": "user logon, hidden pythonw",
+  "models_changed": false,
+  "bit_hwh_changed": false,
+  "startup_entry": "SignAV三栏自启.lnk",
+  "old_W6_startup": "backup outside Startup before replacement",
+  "running_demo_preserved": true,
+  "password_saved": false
+}

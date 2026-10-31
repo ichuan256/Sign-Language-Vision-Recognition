@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-01",
+  "scope": "PC_Holistic_and_ASR_board_capture_HDMI_only",
+  "source_commit": "bea0f5108d3be9f32dc24255be2cb9ed2883f774",
+  "bit_sha256": "b3d53bb0586818f9f1ae7e1908547d7a99d4707a8ba9b64b1da3618d82d61f27",
+  "hwh_sha256": "8c454fd0e20b68ef0f37212a44cf85345397c4955560117b08fc400649496b6b",
+  "files": {
+    "board_gateway.py": "c3f76621d9b7829cefe798e2b338db19bd71c0c137e3b51cd3b51901d51b2527",
+    "runner.py": "6346200c2ea4c7ab91657f7679fb258b3adb1e3925c4ff12426a9b4beb7c092a",
+    "sign-av-owner.service": "f94ef94bc6f712cfe87ac4737636ee1961f96ca7bbba235c5ac19c8fc5e242f4",
+    "release/build_provenance.json": "602b348e9179723e590c9edd6f3d79723f2df92aa57dfba48a00a3d8eeb62bb9",
+    "release/ov5640_snapshot.bit": "b3d53bb0586818f9f1ae7e1908547d7a99d4707a8ba9b64b1da3618d82d61f27",
+    "release/ov5640_snapshot.hwh": "8c454fd0e20b68ef0f37212a44cf85345397c4955560117b08fc400649496b6b",
+    "release/release_manifest.json": "46d7b2f73a49d31782178b3a12a6ce384b7eaf8940771788afe14a43311775bd",
+    "runtime/av_layout.py": "0303c1d74cb41e614132f66dd70e74fce627dce47a45b7e3eb42a0d733a39315",
+    "runtime/board_audio_stream.py": "7260e922514e89e3ad3f21ca19bea430f6dc39cd95f2eed3d86effbf086c7548",
+    "runtime/capture.py": "b3035de5b3f9e1a47da95b36724b816a4c332c0cb76b3039372e865f72248724",
+    "runtime/continuous_capture.py": "20fb9fffef9926e0cad7e184afd4054d01f524cfcc14e0cef7d3dd97309c44f8",
+    "runtime/hdmi_owner.py": "3b2ccfd6eb4a008351bc8b63f7fa4d5937ffc11f2ea0fad5405c4f3fda4a38bf",
+    "runtime/hdmi_preview.py": "79c2ccbdcaf0a32dca36fb865beb28b27142769be01d74c1696bb984bbdab89c",
+    "runtime/split_hdmi_stream.py": "28df51f807a6771053bc35716a0ddae01d81b2511dc35304c0bdb5c38c6f76aa",
+    "runtime/board_pcm_capture": "c42d2c7ff0137eacea4ed4659ca958af5205b1794d52f445aba946bba6b10b3e"
+  },
+  "no_model_training": true,
+  "firmware_changed": false,
+  "board_offline_inference": false,
+  "PC_sources": {
+    "project/scripts/av_autostart.py": "0d430eb0ff678836f7fd9aab2c44d3f67cd6c82a9adb04eed324169ea432d5fb",
+    "project/scripts/demo_control.py": "2be3684216eec4e719c95c748a5cf23ea107d3ab393a940a33ee5886a51808ac",
+    "vision/src/vision/keypoints/ov5640_ssh_source.py": "7740ddc26f3e260e46dd8b17e4521de2763afa1cf358a3453fb78aedce76109a",
+    "vision/src/vision/keypoints/single_hdmi_demo.py": "3fb0a289d36afc5adbbd08d69c3867a74cc950087241dd3696fd37774b234ef4"
+  }
+}

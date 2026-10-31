@@ -1,0 +1,13 @@
+{
+  "installed": true,
+  "trigger": "Windows user logon",
+  "shortcut": "C:\\Users\\sunjiayi\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\SignAV三栏自启.lnk",
+  "legacy_startup_backups": [
+    {
+      "source": "C:\\Users\\sunjiayi\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\SignAV三栏自启.lnk",
+      "backup": "C:\\Users\\sunjiayi\\AppData\\Roaming\\SignAVAutostartBackup\\1793484066176001700\\SignAV三栏自启.lnk"
+    }
+  ],
+  "password_saved": false,
+  "started_now": false
+}

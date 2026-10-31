@@ -1,0 +1,29 @@
+{
+  "elapsed_s": 29.468999999997322,
+  "state": {
+    "mode": "camera",
+    "title": "视觉 · USB摄像头",
+    "busy": false,
+    "message": "运行中",
+    "error": null,
+    "connected": true,
+    "details": {},
+    "camera_index": 0,
+    "preview_time": null,
+    "service_pid": 41152,
+    "camera_sources": [
+      "USB",
+      "OV5640"
+    ],
+    "console_profile": "av_current_firmware_v1",
+    "device": {
+      "ready": true,
+      "firmware_verified": true,
+      "hdmi_locked": true,
+      "boot_id": "8ce2ebd6-55f1-448b-b83f-b1d019725630"
+    },
+    "manual_start": true,
+    "board_boot_id": "8ce2ebd6-55f1-448b-b83f-b1d019725630",
+    "last_poll": 1793485776.0583978
+  }
+}
