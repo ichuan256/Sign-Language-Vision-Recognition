@@ -1,0 +1,350 @@
+{
+  "known_working_bit_sha256": "37189d24a396326dd849a55ed135dd3c97287ada3a2a0c562d2718cae7610beb",
+  "comparisons": {
+    "release_av_20261031": {
+      "bit_sha256": "355c08eda3329c07fce6936d495f1d52151697b557f9796c3ebfb23ffbd1828e",
+      "video_parameter_changes": {},
+      "video_hdl_changes": [],
+      "video_source_hash_changes": [
+        {
+          "path": "project/algo/video_hls/color_convert/color_convert/solution1/impl/ip/component.xml",
+          "old_sha256": "5bb4b9f0c9bb0ae9fb645b63f5ec506a664d7f7f359625614b3f5411eda82fc6",
+          "new_sha256": "2779ec0641d650bb02609f84f1b81a7e34f0aaab29d99340dfa7ad8be8fc6a49",
+          "line_endings_only": true
+        },
+        {
+          "path": "project/algo/video_hls/pixel_unpack/pixel_unpack/solution1/impl/ip/component.xml",
+          "old_sha256": "5634d55c045adc03db203b20ea1759d618ad9aa3cc122e005f96e82195b1bfde",
+          "new_sha256": "d124131fd3a6db7ebebca2e0289bd952a6207fc897d2707812f22975bd0efd94",
+          "line_endings_only": true
+        }
+      ],
+      "extra_modules": {
+        "/audio_codec_ctrl_0": "audio_codec_ctrl",
+        "/clk_wiz_audio": "clk_wiz"
+      },
+      "extra_external_ports": {
+        "IIC_1_scl_i": {
+          "DIR": "I",
+          "NAME": "IIC_1_scl_i",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SCL_I"
+        },
+        "IIC_1_scl_o": {
+          "DIR": "O",
+          "NAME": "IIC_1_scl_o",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SCL_O"
+        },
+        "IIC_1_scl_t": {
+          "DIR": "O",
+          "NAME": "IIC_1_scl_t",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SCL_T"
+        },
+        "IIC_1_sda_i": {
+          "DIR": "I",
+          "NAME": "IIC_1_sda_i",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SDA_I"
+        },
+        "IIC_1_sda_o": {
+          "DIR": "O",
+          "NAME": "IIC_1_sda_o",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SDA_O"
+        },
+        "IIC_1_sda_t": {
+          "DIR": "O",
+          "NAME": "IIC_1_sda_t",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SDA_T"
+        },
+        "audio_clk_10MHz": {
+          "CLKFREQUENCY": "10000000",
+          "DIR": "O",
+          "NAME": "audio_clk_10MHz",
+          "SIGIS": "clk",
+          "SIGNAME": "clk_wiz_audio_clk_out1"
+        },
+        "bclk": {
+          "DIR": "O",
+          "NAME": "bclk",
+          "SIGIS": "undef",
+          "SIGNAME": "audio_codec_ctrl_0_bclk"
+        },
+        "codec_addr": {
+          "DIR": "O",
+          "LEFT": "1",
+          "NAME": "codec_addr",
+          "RIGHT": "0",
+          "SIGIS": "undef",
+          "SIGNAME": "audio_codec_ctrl_0_codec_address"
+        },
+        "lrclk": {
+          "DIR": "O",
+          "NAME": "lrclk",
+          "SIGIS": "undef",
+          "SIGNAME": "audio_codec_ctrl_0_lrclk"
+        },
+        "sdata_i": {
+          "DIR": "I",
+          "NAME": "sdata_i",
+          "SIGIS": "undef",
+          "SIGNAME": "External_Ports_sdata_i"
+        },
+        "sdata_o": {
+          "DIR": "O",
+          "NAME": "sdata_o",
+          "SIGIS": "undef",
+          "SIGNAME": "audio_codec_ctrl_0_sdata_o"
+        }
+      },
+      "HDMI_external_port_changes": {},
+      "audio_input": true
+    },
+    "release_av_status_20261031": {
+      "bit_sha256": "e1a7c81eeeed41d9f8cb98d960d73cb7db1c012c126b2d1c9ae82edee5ed990e",
+      "video_parameter_changes": {},
+      "video_hdl_changes": [],
+      "video_source_hash_changes": [
+        {
+          "path": "project/algo/video_hls/color_convert/color_convert/solution1/impl/ip/component.xml",
+          "old_sha256": "5bb4b9f0c9bb0ae9fb645b63f5ec506a664d7f7f359625614b3f5411eda82fc6",
+          "new_sha256": "2779ec0641d650bb02609f84f1b81a7e34f0aaab29d99340dfa7ad8be8fc6a49",
+          "line_endings_only": true
+        },
+        {
+          "path": "project/algo/video_hls/pixel_unpack/pixel_unpack/solution1/impl/ip/component.xml",
+          "old_sha256": "5634d55c045adc03db203b20ea1759d618ad9aa3cc122e005f96e82195b1bfde",
+          "new_sha256": "d124131fd3a6db7ebebca2e0289bd952a6207fc897d2707812f22975bd0efd94",
+          "line_endings_only": true
+        }
+      ],
+      "extra_modules": {
+        "/audio_codec_ctrl_0": "audio_codec_ctrl",
+        "/clk_wiz_audio": "clk_wiz",
+        "/video_flags_cdc": "xpm_cdc_gen",
+        "/video_flags_concat": "xlconcat",
+        "/video_locked_cdc": "xpm_cdc_gen",
+        "/video_status_cdc": "xpm_cdc_gen",
+        "/video_status_gpio": "axi_gpio"
+      },
+      "extra_external_ports": {
+        "IIC_1_scl_i": {
+          "DIR": "I",
+          "NAME": "IIC_1_scl_i",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SCL_I"
+        },
+        "IIC_1_scl_o": {
+          "DIR": "O",
+          "NAME": "IIC_1_scl_o",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SCL_O"
+        },
+        "IIC_1_scl_t": {
+          "DIR": "O",
+          "NAME": "IIC_1_scl_t",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SCL_T"
+        },
+        "IIC_1_sda_i": {
+          "DIR": "I",
+          "NAME": "IIC_1_sda_i",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SDA_I"
+        },
+        "IIC_1_sda_o": {
+          "DIR": "O",
+          "NAME": "IIC_1_sda_o",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SDA_O"
+        },
+        "IIC_1_sda_t": {
+          "DIR": "O",
+          "NAME": "IIC_1_sda_t",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SDA_T"
+        },
+        "audio_clk_10MHz": {
+          "CLKFREQUENCY": "10000000",
+          "DIR": "O",
+          "NAME": "audio_clk_10MHz",
+          "SIGIS": "clk",
+          "SIGNAME": "clk_wiz_audio_clk_out1"
+        },
+        "bclk": {
+          "DIR": "O",
+          "NAME": "bclk",
+          "SIGIS": "undef",
+          "SIGNAME": "audio_codec_ctrl_0_bclk"
+        },
+        "codec_addr": {
+          "DIR": "O",
+          "LEFT": "1",
+          "NAME": "codec_addr",
+          "RIGHT": "0",
+          "SIGIS": "undef",
+          "SIGNAME": "audio_codec_ctrl_0_codec_address"
+        },
+        "lrclk": {
+          "DIR": "O",
+          "NAME": "lrclk",
+          "SIGIS": "undef",
+          "SIGNAME": "audio_codec_ctrl_0_lrclk"
+        },
+        "sdata_i": {
+          "DIR": "I",
+          "NAME": "sdata_i",
+          "SIGIS": "undef",
+          "SIGNAME": "External_Ports_sdata_i"
+        },
+        "sdata_o": {
+          "DIR": "O",
+          "NAME": "sdata_o",
+          "SIGIS": "undef",
+          "SIGNAME": "audio_codec_ctrl_0_sdata_o"
+        }
+      },
+      "HDMI_external_port_changes": {},
+      "audio_input": true
+    },
+    "release_av_hpd_20261101": {
+      "bit_sha256": "b3d53bb0586818f9f1ae7e1908547d7a99d4707a8ba9b64b1da3618d82d61f27",
+      "video_parameter_changes": {},
+      "video_hdl_changes": [],
+      "video_source_hash_changes": [
+        {
+          "path": "project/algo/video_hls/color_convert/color_convert/solution1/impl/ip/component.xml",
+          "old_sha256": "5bb4b9f0c9bb0ae9fb645b63f5ec506a664d7f7f359625614b3f5411eda82fc6",
+          "new_sha256": "2779ec0641d650bb02609f84f1b81a7e34f0aaab29d99340dfa7ad8be8fc6a49",
+          "line_endings_only": true
+        },
+        {
+          "path": "project/algo/video_hls/pixel_unpack/pixel_unpack/solution1/impl/ip/component.xml",
+          "old_sha256": "5634d55c045adc03db203b20ea1759d618ad9aa3cc122e005f96e82195b1bfde",
+          "new_sha256": "d124131fd3a6db7ebebca2e0289bd952a6207fc897d2707812f22975bd0efd94",
+          "line_endings_only": true
+        }
+      ],
+      "extra_modules": {
+        "/audio_codec_ctrl_0": "audio_codec_ctrl",
+        "/clk_wiz_audio": "clk_wiz",
+        "/video_flags_cdc": "xpm_cdc_gen",
+        "/video_flags_concat": "xlconcat",
+        "/video_locked_cdc": "xpm_cdc_gen",
+        "/video_status_cdc": "xpm_cdc_gen",
+        "/video_status_gpio": "axi_gpio"
+      },
+      "extra_external_ports": {
+        "IIC_1_scl_i": {
+          "DIR": "I",
+          "NAME": "IIC_1_scl_i",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SCL_I"
+        },
+        "IIC_1_scl_o": {
+          "DIR": "O",
+          "NAME": "IIC_1_scl_o",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SCL_O"
+        },
+        "IIC_1_scl_t": {
+          "DIR": "O",
+          "NAME": "IIC_1_scl_t",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SCL_T"
+        },
+        "IIC_1_sda_i": {
+          "DIR": "I",
+          "NAME": "IIC_1_sda_i",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SDA_I"
+        },
+        "IIC_1_sda_o": {
+          "DIR": "O",
+          "NAME": "IIC_1_sda_o",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SDA_O"
+        },
+        "IIC_1_sda_t": {
+          "DIR": "O",
+          "NAME": "IIC_1_sda_t",
+          "SIGIS": "undef",
+          "SIGNAME": "ps7_I2C1_SDA_T"
+        },
+        "audio_clk_10MHz": {
+          "CLKFREQUENCY": "10000000",
+          "DIR": "O",
+          "NAME": "audio_clk_10MHz",
+          "SIGIS": "clk",
+          "SIGNAME": "clk_wiz_audio_clk_out1"
+        },
+        "bclk": {
+          "DIR": "O",
+          "NAME": "bclk",
+          "SIGIS": "undef",
+          "SIGNAME": "audio_codec_ctrl_0_bclk"
+        },
+        "codec_addr": {
+          "DIR": "O",
+          "LEFT": "1",
+          "NAME": "codec_addr",
+          "RIGHT": "0",
+          "SIGIS": "undef",
+          "SIGNAME": "audio_codec_ctrl_0_codec_address"
+        },
+        "lrclk": {
+          "DIR": "O",
+          "NAME": "lrclk",
+          "SIGIS": "undef",
+          "SIGNAME": "audio_codec_ctrl_0_lrclk"
+        },
+        "sdata_i": {
+          "DIR": "I",
+          "NAME": "sdata_i",
+          "SIGIS": "undef",
+          "SIGNAME": "External_Ports_sdata_i"
+        },
+        "sdata_o": {
+          "DIR": "O",
+          "NAME": "sdata_o",
+          "SIGIS": "undef",
+          "SIGNAME": "audio_codec_ctrl_0_sdata_o"
+        }
+      },
+      "HDMI_external_port_changes": {
+        "hdmi_out_hpd": [
+          {
+            "DIR": "O",
+            "LEFT": "0",
+            "NAME": "hdmi_out_hpd",
+            "RIGHT": "0",
+            "SIGIS": "undef",
+            "SIGNAME": "video_hdmi_out_frontend_hdmi_out_hpd_video_gpio_io_o"
+          },
+          {
+            "DIR": "I",
+            "LEFT": "0",
+            "NAME": "hdmi_out_hpd",
+            "RIGHT": "0",
+            "SIGIS": "undef",
+            "SIGNAME": "External_Ports_hdmi_out_hpd"
+          }
+        ]
+      },
+      "audio_input": true
+    }
+  },
+  "loaded_release_at_comparison": "release_av_status_20261031",
+  "hpd_repair_was_built_not_deployed_at_comparison": true,
+  "original_HPD_port": {
+    "DIR": "O",
+    "LEFT": "0",
+    "NAME": "hdmi_out_hpd",
+    "RIGHT": "0",
+    "SIGIS": "undef",
+    "SIGNAME": "video_hdmi_out_frontend_hdmi_out_hpd_video_gpio_io_o"
+  }
+}

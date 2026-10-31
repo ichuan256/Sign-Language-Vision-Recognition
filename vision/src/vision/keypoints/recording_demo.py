@@ -126,9 +126,12 @@ def main():
     p.add_argument('--seconds',type=int,default=600)
     p.add_argument('--mode',choices=('pc','pl'),default='pc')
     p.add_argument('--control-port',type=int,default=18782)
+    p.add_argument('--frame-port',type=int,default=18780)
     p.add_argument('--camera',type=int,help='Computer USB camera index; no file fallback')
     p.add_argument('--ov5640',action='store_true',help='Board OV5640 over SSH; PC preview only, no HDMI in snapshot firmware')
     p.add_argument('--no-pl',action='store_true',help='Teacher-only processing, no PL graph')
+    p.add_argument('--sign-model',type=Path,help='Optional temporal sign head over the same frozen teacher landmarks')
+    p.add_argument('--video',type=Path,help='Single workspace video for explicit replay verification')
     a=p.parse_args();out=a.output.resolve()
     if out.exists() or not out.is_relative_to(ROOT/'project/_tmp') or not 30<=a.seconds<=86400:
         raise ValueError('New bounded workspace output required')
@@ -138,11 +141,20 @@ def main():
     if a.ov5640 and (a.camera is not None or not a.no_pl):raise ValueError('OV5640 requires exclusive input and teacher-only processing')
     out.mkdir(parents=True)
     password=os.environ.pop('KEYPOINT_BOARD_SUDO_PASSWORD',None)
-    deployment=json.loads((ROOT/'project/_tmp/kp_stream_deploy_v2/deployment.json').read_text())
+    deployment=None if a.no_pl else json.loads((ROOT/'project/_tmp/kp_stream_deploy_v2/deployment.json').read_text())
     live_camera=a.camera is not None or a.ov5640
     sources=[dict(label='OV5640实时输入' if a.ov5640 else 'USB摄像头实时输入',hand_index=0)] if live_camera else playlist()
+    if a.video:
+        video=a.video.resolve()
+        if live_camera or not video.is_relative_to(ROOT) or not video.is_file():raise ValueError('Exclusive existing workspace video required')
+        sources=[dict(source=str(video.relative_to(ROOT)),label=video.stem,hand_index=0)]
     (out/'playlist.json').write_text(json.dumps(sources,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     pl=NoPL() if a.no_pl else PLStream(deployment['board_workdir'],password,out,a.seconds)
+    sign=None
+    if a.sign_model:
+        if not a.no_pl:raise ValueError('First sign-recognition head runs with the PC teacher only')
+        from ..classify.teacher_sign import LiveSignHead
+        sign=LiveSignHead(a.sign_model)
     token=secrets.token_urlsafe(24);lock=threading.Lock();stop=threading.Event()
     state=dict(mode=a.mode,active=True,video_frames=0,teacher_frames=0,teacher_hand_frames=0,
         PC_neural_backend='MediaPipe Holistic',PL_neural_backend='W12/A16 lite graph on PL',
@@ -154,6 +166,13 @@ def main():
 <button onclick="mode('pl')">2 实际PL关键点 → HDMI</button><p>视频来自文件回放。第二模式由PC定位ROI，PL计算单手21点。</p><pre id="s"></pre>
 <img id="f"><script>function mode(m){fetch('/mode/'+m,{method:'POST',headers:{'X-Session':'TOKEN'}})}
 setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElementById('s').textContent=JSON.stringify(s,null,2);document.getElementById('f').src='http://127.0.0.1:18780/frame.jpg?t='+Date.now()},700)</script>'''.replace('TOKEN',token)
+    if sign:
+        html='''<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>USB手语识别实验</title>
+<style>body{font:18px 'Microsoft YaHei',sans-serif;background:#101b2c;color:white;max-width:1150px;margin:24px auto;padding:16px}img{width:100%;border-radius:12px}#word{font-size:38px;color:#6fe1c4}p{line-height:1.7}button{padding:12px 22px;border-radius:10px;cursor:pointer}pre{white-space:pre-wrap;max-height:180px;overflow:auto}</style>
+<h1>USB摄像头 · 手语识别实验</h1><p>教师关键点 + 时序模板模型，在电脑执行。词表：谢谢、再见、没关系、可以、早上。</p>
+<div id="word">等待动作</div><p id="candidate"></p><p>请完整做一个动作，停顿后再做下一个。词表外动作可能混淆；候选分数不是准确率或概率。</p>
+<img id="frame" alt="实时骨架与手语识别"><button onclick="fetch('/stop',{method:'POST',headers:{'X-Session':'TOKEN'}})">停止摄像头</button><details><summary>运行详情</summary><pre id="state"></pre></details>
+<script>async function poll(){try{let s=await(await fetch('/state')).json(),r=s.sign_recognition||{};document.getElementById('word').textContent=r.label||'未确定';document.getElementById('candidate').textContent=(r.candidate?'候选：'+r.candidate+'；':'')+(r.reason||'等待完整动作');document.getElementById('frame').src='http://127.0.0.1:FRAME_PORT/frame.jpg?t='+Date.now();document.getElementById('state').textContent=JSON.stringify(s,null,2)}catch(e){document.getElementById('candidate').textContent='服务已停止或连接中断'}}poll();setInterval(poll,800)</script></html>'''.replace('TOKEN',token).replace('FRAME_PORT',str(a.frame_port))
     class Handler(BaseHTTPRequestHandler):
         def log_message(self,*args):pass
         def send(self,body,ctype,status=200):
@@ -166,7 +185,7 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
             elif self.path=='/state':
                 _,ps=pl.snapshot()
                 with lock:reply=dict(state,**ps)
-                self.send(json.dumps(reply,ensure_ascii=False).encode(),'application/json')
+                self.send(json.dumps(reply,ensure_ascii=False).encode(),'application/json; charset=utf-8')
             else:self.send(b'Not found','text/plain',404)
         def do_POST(self):
             if self.headers.get('X-Session')!=token:self.send(b'Forbidden','text/plain',403);return
@@ -182,7 +201,7 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
     started=time.monotonic();frames=0;hand_frames=0;clip_index=0;last_write=0
     stream=(out/'teacher_frames.jsonl').open('x',encoding='utf-8')
     try:
-        with LatestFrameServer(18780) as server,mp.solutions.holistic.Holistic(
+        with LatestFrameServer(a.frame_port) as server,mp.solutions.holistic.Holistic(
             static_image_mode=False,model_complexity=1,smooth_landmarks=True,
             min_detection_confidence=.5,min_tracking_confidence=.5) as detector:
             while not stop.is_set() and time.monotonic()-started<a.seconds:
@@ -201,6 +220,8 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
                         bgr,local_frame,timestamp=item;tick=time.monotonic()
                         result=detector.process(cv2.cvtColor(bgr,cv2.COLOR_BGR2RGB));inference_ms=(time.monotonic()-tick)*1000
                         frames+=1;now=time.monotonic()
+                        if sign:sign.observe(result,bgr,timestamp)
+                        sign_state=sign.snapshot() if sign else None
                         hands=[result.left_hand_landmarks,result.right_hand_landmarks]
                         hand=hands[record['hand_index']] or next((h for h in hands if h is not None),None)
                         inverse=None
@@ -220,7 +241,7 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
                             drawing.draw_landmarks(shown,result.pose_landmarks,mp.solutions.holistic.POSE_CONNECTIONS)
                             for h in hands:drawing.draw_landmarks(shown,h,mp.solutions.holistic.HAND_CONNECTIONS)
                             fit(canvas,shown,(10,100,1260,540))
-                            title='视觉测试  摄像头实时关键点' if live_camera else '模式1  教师模型 视频关键点检测'
+                            title='视觉测试  USB手语识别' if sign else '视觉测试  摄像头实时关键点' if live_camera else '模式1  教师模型 视频关键点检测'
                             line='身体33点与双手21点  |  视频关键点叠加'
                         else:
                             shown=bgr.copy()
@@ -245,13 +266,23 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
                             if latest:detail+=f'  推理 {ps["pl_forward_ms"]:.0f}ms  来源帧 {latest["frame_id"]}  帧龄 {now-latest["submitted"]:.2f}s'
                             if pl.error:detail+='  硬件错误 '+pl.error
                             draw.text((20,681),detail,font=fonts[1],fill=(255,220,100))
+                        elif sign_state:
+                            label=sign_state['label'] or '未确定'
+                            candidate=sign_state.get('candidate')
+                            detail='手语：'+label
+                            if candidate and not sign_state['accepted']:detail+='  候选：'+candidate
+                            detail+='  |  演示词：谢谢 / 再见 / 没关系 / 可以 / 早上'
+                            draw.text((20,681),detail,font=fonts[1],fill=(255,220,100))
                         else:draw.text((20,681),'OV5640实时采集，当前固件仅提供电脑预览。' if a.ov5640 else '输入为USB摄像头实时采集。' if a.camera is not None else '输入为录制视频节拍回放；骨架随当前画面更新。',font=fonts[1],fill=(255,220,100))
                         server.publish(cv2.cvtColor(np.asarray(image),cv2.COLOR_RGB2BGR),frames,timestamp)
                         row=dict(frame=frames,clip=record['label'],source_frame=int(local_frame),mode=mode,
                                  teacher_inference_ms=inference_ms,hands=sum(h is not None for h in hands))
+                        if sign_state:row['sign_recognition']=sign_state
                         stream.write(json.dumps(row,ensure_ascii=False)+'\n')
                         with lock:state.update(video_frames=frames,teacher_frames=frames,teacher_hand_frames=hand_frames,
                             clip=record['label'],teacher_inference_ms=inference_ms,frame_requests=server.state()['frame_requests'])
+                        if sign_state:
+                            with lock:state['sign_recognition']=sign_state
                         if now-last_write>.5:
                             with lock:live=dict(state,**ps)
                             (out/'live.json').write_text(json.dumps(live,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
@@ -259,6 +290,7 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
                 clip_index+=1
     finally:
         with lock:state['active']=False
+        if sign:sign.close()
         pl.close();stream.close();control.shutdown();control.server_close()
         _,ps=pl.snapshot()
         (out/'report.json').write_text(json.dumps(dict(state,**ps),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

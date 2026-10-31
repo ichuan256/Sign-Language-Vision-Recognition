@@ -1,0 +1,25 @@
+{
+  "input_source": "USB camera",
+  "active": true,
+  "video_frames": 1479,
+  "teacher_frames": 1479,
+  "teacher_hand_frames": 392,
+  "classification_results": 44,
+  "PL_enabled": false,
+  "board_required": false,
+  "PC_inference": true,
+  "frame_server": {
+    "frames_published": 1479,
+    "frame_requests": 0,
+    "frame_id": 1479,
+    "source_timestamp_s": 141.69837770000004,
+    "size": [
+      1280,
+      720
+    ],
+    "published_monotonic_s": 1789.796
+  },
+  "camera_accuracy": null,
+  "word_accuracy_visually_confirmed": false,
+  "note": "Real USB input and asynchronous classification execution; not recognition accuracy"
+}

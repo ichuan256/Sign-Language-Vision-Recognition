@@ -1,0 +1,121 @@
+PATTERN *rgb2dvi*/*Rst* COUNT 8
+system_i/video/hdmi_out/frontend/rgb2dvi_0/aRst_n NETS=system_i/video/hdmi_out/frontend/axi_dynclk_LOCKED_O DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/LOCKED
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/aRst NETS= DRIVER=
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/aRst_n NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/aRst_n DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/LOCKED
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/aRst NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/pRstLck DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/Q
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/aRst NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/pRstLck DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/Q
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_n NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/aRst_n DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/LOCKED
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_int_inferred_i_1/O NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_int DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_int_inferred_i_1/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_int_inferred_i_1/I0 NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_n DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/LOCKED
+PATTERN *rgb2dvi*/*reset* COUNT 0
+PATTERN *rgb2dvi*/*Reset* COUNT 20
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/out[0] NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/pRstLck DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/Q
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/PixelClk NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/PixelClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_n NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/aRst_n DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/LOCKED
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/AS[0] NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_int DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_int_inferred_i_1/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/out[0] NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/out[0] DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/Q
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/PixelClk NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/PixelClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/GND/G NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/<const0> DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/GND/G
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/VCC/P NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/<const1> DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/VCC/P
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[0]/Q NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages[0] DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[0]/Q
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[0]/C NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/PixelClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[0]/CE NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/<const1> DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/VCC/P
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[0]/D NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/<const0> DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/GND/G
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[0]/PRE NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/AS[0] DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_int_inferred_i_1/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/Q NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages[1] DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/Q
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/C NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/PixelClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/CE NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/<const1> DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/VCC/P
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/D NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages[0] DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[0]/Q
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/PRE NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/AS[0] DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_int_inferred_i_1/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_int_inferred_i_1/O NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_int DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_int_inferred_i_1/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_int_inferred_i_1/I0 NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/aRst_n DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/LOCKED
+PATTERN *v_axi4s_vid_out*/*reset* COUNT 21
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/aresetn NETS= DRIVER=
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/vid_io_out_reset NETS=system_i/video/hdmi_out/frontend/<const0> DRIVER=system_i/video/hdmi_out/frontend/GND/G
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/aresetn NETS= DRIVER=
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/vid_io_out_reset NETS=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/vid_io_out_reset DRIVER=system_i/video/hdmi_out/frontend/GND/G
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/aresetn NETS= DRIVER=
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/aresetn_0 NETS=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST_n_44 DRIVER=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/first_sof_i_1/O
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/aresetn NETS= DRIVER=
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/aresetn_0 NETS=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/aresetn_0 DRIVER=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/first_sof_i_1/O
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame NETS=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/fivid_reset_full_frame DRIVER=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_reg/Q
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/vid_io_out_reset NETS= DRIVER=
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_i_1/O NETS=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_i_1_n_0 DRIVER=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_i_1/O
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_i_1/I0 NETS=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame DRIVER=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_reg/Q
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_i_1/I1 NETS=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/vblank_rising DRIVER=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/vblank_rising_reg/Q
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_i_1/I2 NETS=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/src_in DRIVER=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/SYNC_INST/locked_reg/Q
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_reg/Q NETS=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame DRIVER=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_reg/Q
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_reg/C NETS=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/vid_io_out_clk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/O
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_reg/CE NETS=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/<const1> DRIVER=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/VCC/P
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_reg/D NETS=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_i_1_n_0 DRIVER=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_i_1/O
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_reg/R NETS=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/<const0> DRIVER=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/GND/G
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/SYNC_INST/fivid_reset_full_frame NETS=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/fivid_reset_full_frame DRIVER=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/FORMATTER_INST/fivid_reset_full_frame_reg/Q
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/SYNC_INST/vid_io_out_reset NETS=system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/vid_io_out_reset DRIVER=system_i/video/hdmi_out/frontend/GND/G
+PATTERN *v_axi4s_vid_out*/*clken* COUNT 4
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/aclken NETS= DRIVER=
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/aclken NETS= DRIVER=
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/aclken NETS= DRIVER=
+system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/aclken NETS= DRIVER=
+PATTERN *vtc_out*/gen_clken COUNT 4
+system_i/video/hdmi_out/frontend/vtc_out/gen_clken NETS= DRIVER=
+system_i/video/hdmi_out/frontend/vtc_out/U0/gen_clken NETS= DRIVER=
+system_i/video/hdmi_out/frontend/vtc_out/U0/U_TC_TOP/gen_clken NETS= DRIVER=
+system_i/video/hdmi_out/frontend/vtc_out/U0/U_TC_TOP/GEN_GENERATOR.U_TC_GEN/gen_clken NETS= DRIVER=
+PATTERN *axi_dynclk*/*LOCKED* COUNT 4
+system_i/video/hdmi_out/frontend/axi_dynclk/LOCKED_O NETS=system_i/video/hdmi_out/frontend/axi_dynclk_LOCKED_O DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/LOCKED
+system_i/video/hdmi_out/frontend/axi_dynclk/U0/LOCKED_O NETS=system_i/video/hdmi_out/frontend/axi_dynclk/LOCKED_O DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/LOCKED
+system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/LOCKED NETS=system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst_0 DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/LOCKED
+system_i/video/hdmi_out/frontend/axi_dynclk/U0/axi_dynclk_S00_AXI_inst/LOCKED_O NETS=system_i/video/hdmi_out/frontend/axi_dynclk/U0/LOCKED_O DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/Inst_mmcme2_drp/mmcm_adv_inst/LOCKED
+PRIMITIVE system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/OutputBuffer LOC=IOB_X1Y128
+PRIMITIVE system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/SerializerMaster LOC=OLOGIC_X1Y128
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/SerializerMaster/CLK NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/SerialClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFIO_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/SerializerMaster/CLKDIV NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/PixelClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/SerializerMaster/OCE NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/<const1> DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/VCC/P
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/SerializerMaster/RST NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/aRst DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/Q
+PRIMITIVE system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/SerializerSlave LOC=OLOGIC_X1Y127
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/SerializerSlave/CLK NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/SerialClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFIO_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/SerializerSlave/CLKDIV NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/PixelClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/SerializerSlave/OCE NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/<const1> DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/VCC/P
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/SerializerSlave/RST NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/ClockSerializer/aRst DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/Q
+PRIMITIVE system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/OutputBuffer LOC=IOB_X1Y126
+PRIMITIVE system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/SerializerMaster LOC=OLOGIC_X1Y126
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/SerializerMaster/CLK NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/SerialClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFIO_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/SerializerMaster/CLKDIV NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/PixelClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/SerializerMaster/OCE NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/<const1> DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/VCC/P
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/SerializerMaster/RST NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/aRst DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/Q
+PRIMITIVE system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/SerializerSlave LOC=OLOGIC_X1Y125
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/SerializerSlave/CLK NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/SerialClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFIO_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/SerializerSlave/CLKDIV NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/PixelClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/SerializerSlave/OCE NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/<const1> DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/VCC/P
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/SerializerSlave/RST NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[0].DataSerializer/aRst DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/Q
+PRIMITIVE system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/OutputBuffer LOC=IOB_X1Y130
+PRIMITIVE system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/SerializerMaster LOC=OLOGIC_X1Y130
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/SerializerMaster/CLK NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/SerialClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFIO_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/SerializerMaster/CLKDIV NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/PixelClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/SerializerMaster/OCE NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/<const1> DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/VCC/P
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/SerializerMaster/RST NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/out[0] DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/Q
+PRIMITIVE system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/SerializerSlave LOC=OLOGIC_X1Y129
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/SerializerSlave/CLK NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/SerialClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFIO_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/SerializerSlave/CLKDIV NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/PixelClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/SerializerSlave/OCE NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/<const1> DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/VCC/P
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/SerializerSlave/RST NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[1].DataSerializer/out[0] DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/Q
+PRIMITIVE system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/OutputBuffer LOC=IOB_X1Y122
+PRIMITIVE system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/SerializerMaster LOC=OLOGIC_X1Y122
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/SerializerMaster/CLK NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/SerialClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFIO_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/SerializerMaster/CLKDIV NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/PixelClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/SerializerMaster/OCE NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/<const1> DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/VCC/P
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/SerializerMaster/RST NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/out[0] DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/Q
+PRIMITIVE system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/SerializerSlave LOC=OLOGIC_X1Y121
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/SerializerSlave/CLK NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/SerialClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFIO_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/SerializerSlave/CLKDIV NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/PixelClk DRIVER=system_i/video/hdmi_out/frontend/axi_dynclk/U0/BUFR_inst/O
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/SerializerSlave/OCE NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/<const1> DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/VCC/P
+system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/SerializerSlave/RST NETS=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/DataEncoders[2].DataSerializer/out[0] DRIVER=system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/LockLostReset/SyncAsyncx/oSyncStages_reg[1]/Q
+PORT hdmi_out_clk_n PIN=L17 IO=TMDS_33
+PORT hdmi_out_clk_p PIN=L16 IO=TMDS_33
+PORT hdmi_out_data_n[0] PIN=K18 IO=TMDS_33
+PORT hdmi_out_data_n[1] PIN=J19 IO=TMDS_33
+PORT hdmi_out_data_n[2] PIN=H18 IO=TMDS_33
+PORT hdmi_out_data_p[0] PIN=K17 IO=TMDS_33
+PORT hdmi_out_data_p[1] PIN=K19 IO=TMDS_33
+PORT hdmi_out_data_p[2] PIN=J18 IO=TMDS_33
+PORT hdmi_out_hpd[0] PIN=R19 IO=LVCMOS33

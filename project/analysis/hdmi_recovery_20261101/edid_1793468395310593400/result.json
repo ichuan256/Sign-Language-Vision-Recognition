@@ -1,0 +1,1 @@
+{"boot_id": "c53952b2-56cd-4545-b989-2039c708b9d0", "bus": "/dev/i2c-0", "address": "0x50", "mio50": "0x1200", "mio51": "0x1200", "gpio_bank1_read": "0x0", "gpio_bank1_direction": "0x0", "gpio_bank1_output_enable": "0x0", "flags": 179, "bit_downloaded": false, "video_reconfigured": false, "bus_scanned": false, "read_error": "[Errno 110] Connection timed out"}

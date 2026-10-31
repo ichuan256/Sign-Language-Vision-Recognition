@@ -1,0 +1,7 @@
+{
+  "split_helper_sha256": "f0d8b7f8921a80bd89845d1275890d40cfdd7fb23391a775703eebe620cd28ad",
+  "downloaded": false,
+  "startup_changed": false,
+  "preserve_verified_HDMI_owner": true,
+  "reason": "Camera process only paints the live owner buffer; never instantiate or reconfigure video drivers"
+}

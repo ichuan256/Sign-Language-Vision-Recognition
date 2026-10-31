@@ -1,0 +1,23 @@
+xilinx.com:ip:cdcam:1.1
+xilinx.com:ip:lib_cdc:1.0
+xilinx.com:ip:xpm_cdc_gen:1.0
+CONFIG.CDC_TYPE=xpm_cdc_array_single
+CONFIG.Component_Name=cdc_probe_av_status_cdc_probe_0
+CONFIG.DEST_CLK_PERIOD=2500
+CONFIG.DEST_EXT_HSK=true
+CONFIG.DEST_SYNC_FF=4
+CONFIG.INIT=true
+CONFIG.INIT_SYNC_FF=false
+CONFIG.REG_OUTPUT=false
+CONFIG.RST_ACTIVE_HIGH=false
+CONFIG.RST_USED=true
+CONFIG.SIM_ASSERT_CHK=true
+CONFIG.SIM_LOSSLESS_GRAY_CHK=false
+CONFIG.SRC_CLK_PERIOD=5000
+CONFIG.SRC_INPUT_REG=true
+CONFIG.SRC_SYNC_FF=4
+CONFIG.WIDTH=2
+PIN /av_status_cdc_probe/dest_clk DIR=I TYPE=clk
+PIN /av_status_cdc_probe/dest_out DIR=O TYPE=undef
+PIN /av_status_cdc_probe/src_clk DIR=I TYPE=clk
+PIN /av_status_cdc_probe/src_in DIR=I TYPE=undef

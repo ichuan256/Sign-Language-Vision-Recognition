@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-01",
+  "files": [
+    "AGENTS.md",
+    "README.md",
+    "ASR/README.md",
+    "docs/README.md",
+    "docs/当前状态.md",
+    "docs/演示控制台.md",
+    "docs/OV单目HDMI分屏.md",
+    "docs/视听三栏_旧版对比_20261101.md",
+    "project/README.md",
+    "project/board/ov5640_snapshot/README.md",
+    "vision/README.md",
+    "project/analysis/hdmi_recovery_20261101/README.md",
+    "project/analysis/av_three_panel_20261031/README.md",
+    "project/analysis/av_integration_20261101/README.md",
+    "project/analysis/ov1_hdmi_20261031/异常复位与显示恢复.md"
+  ],
+  "local_links_checked": 144,
+  "broken": [],
+  "stale_current_claims": [],
+  "historical_evidence_preserved": true,
+  "files_deleted": false
+}

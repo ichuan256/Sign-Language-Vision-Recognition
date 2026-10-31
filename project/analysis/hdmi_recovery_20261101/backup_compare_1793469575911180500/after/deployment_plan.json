@@ -1,0 +1,38 @@
+{
+  "before": {
+    "boot_id": "98f9b392-6b7c-4aa9-b0fb-677b4d54372c",
+    "boot_py_sha256": "f96330498c2f488ae043d4d5e3b4a3e3eec313e2c3754481bee111eb190cd625",
+    "release_hashes": {
+      "release_manifest.json": "40fb332afd83ea74a182c9c7c265f6d0e2a181ecec54028e9bb8789930e1e125",
+      "ov5640_snapshot.bit": "e1a7c81eeeed41d9f8cb98d960d73cb7db1c012c126b2d1c9ae82edee5ed990e",
+      "ov5640_snapshot.hwh": "054e93ba8bd0031e21413e4910e8bbb16c228b1c186ac2425de435023baac065"
+    },
+    "marker": {
+      "boot_id": "98f9b392-6b7c-4aa9-b0fb-677b4d54372c",
+      "bit_sha256": "e1a7c81eeeed41d9f8cb98d960d73cb7db1c012c126b2d1c9ae82edee5ed990e"
+    }
+  },
+  "candidate": {
+    "bit": {
+      "path": "ov5640_snapshot.bit",
+      "sha256": "b3d53bb0586818f9f1ae7e1908547d7a99d4707a8ba9b64b1da3618d82d61f27",
+      "size_bytes": 4045674
+    },
+    "hwh": {
+      "path": "ov5640_snapshot.hwh",
+      "sha256": "8c454fd0e20b68ef0f37212a44cf85345397c4955560117b08fc400649496b6b",
+      "size_bytes": 791970
+    }
+  },
+  "user_authorized_AV_repair": true,
+  "startup_script_changed": false,
+  "runtime_download": false,
+  "diagnostic_only": false,
+  "hpd_direction_repaired": true,
+  "dma_halted": [
+    1,
+    69633
+  ],
+  "reboot_requested": true,
+  "boot_py_unchanged": true
+}

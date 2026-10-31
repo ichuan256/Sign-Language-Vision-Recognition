@@ -1,0 +1,20 @@
+{
+  "previous_owner": {
+    "pid": 2604,
+    "pid_start_ticks": 31859,
+    "frame_address": 364904448,
+    "frame_bytes": 2764800,
+    "width": 1280,
+    "height": 720,
+    "boot_id": "bf1907da-f7b9-47ea-a7ed-e30c75f834d9",
+    "bit_sha256": "355c08eda3329c07fce6936d495f1d52151697b557f9796c3ebfb23ffbd1828e",
+    "active": true,
+    "closing": false,
+    "pattern": "white/red/green/blue",
+    "downloaded": false
+  },
+  "pid": 7441,
+  "downloaded": false,
+  "mode": "640x480",
+  "boot_id": "bf1907da-f7b9-47ea-a7ed-e30c75f834d9"
+}

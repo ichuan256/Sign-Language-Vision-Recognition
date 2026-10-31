@@ -1,0 +1,57 @@
+{
+  "before": {
+    "boot_id": "114765b1-3d7b-452b-aad0-4260abbcb947",
+    "marker": {
+      "boot_id": "114765b1-3d7b-452b-aad0-4260abbcb947",
+      "bit_sha256": "37189d24a396326dd849a55ed135dd3c97287ada3a2a0c562d2718cae7610beb"
+    },
+    "fclk0_mhz": 100.0,
+    "dma_statuses": [
+      1,
+      65537
+    ],
+    "downloaded": false
+  },
+  "after": {
+    "owner": {
+      "pid": 9911,
+      "pid_start_ticks": 135126,
+      "frame_address": 364904448,
+      "frame_bytes": 2764800,
+      "width": 1280,
+      "height": 720,
+      "boot_id": "114765b1-3d7b-452b-aad0-4260abbcb947",
+      "bit_sha256": "37189d24a396326dd849a55ed135dd3c97287ada3a2a0c562d2718cae7610beb",
+      "active": true,
+      "closing": false,
+      "pattern": "white/red/green/blue",
+      "downloaded": false
+    },
+    "boot_id": "114765b1-3d7b-452b-aad0-4260abbcb947"
+  },
+  "controller": {
+    "mode": "single_hdmi",
+    "title": "视觉 · OV1 HDMI分屏",
+    "busy": false,
+    "message": "运行中",
+    "error": null,
+    "connected": true,
+    "details": {},
+    "camera_index": 0,
+    "preview_time": null,
+    "service_pid": 44368,
+    "camera_sources": [
+      "USB",
+      "OV5640"
+    ],
+    "board_boot_id": "114765b1-3d7b-452b-aad0-4260abbcb947",
+    "last_poll": 1793448426.7999775
+  },
+  "host_service_pid": 10988,
+  "firmware_downloaded": false,
+  "startup_changed": false,
+  "board_reboot_requested": false,
+  "user_confirmed_restored": true,
+  "user_reply": "已恢复，帧号增加",
+  "confirmation_recorded_at": "2026-10-31T20:15:31"
+}

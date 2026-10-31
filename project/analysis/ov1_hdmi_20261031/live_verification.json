@@ -1,0 +1,139 @@
+{
+  "active": true,
+  "first": {
+    "run": "/home/xilinx/ov1_hdmi_20261031/captures/ui_1793445737230990900",
+    "state": {
+      "active": true,
+      "physical_camera": 1,
+      "complete_frames": 1156,
+      "PC_frames_sent": 231,
+      "HDMI_frames": 1009,
+      "elapsed_s": 115.06795255499992,
+      "local_display_hz": 8.768731671989388,
+      "PC_connection_error": null,
+      "raw_unique_updates": 814,
+      "compose_ms": 165.72941499998706,
+      "write_ms": 22.02809200025513,
+      "stable_frame_address": 364904448,
+      "HDMI_owner_pid": 22262,
+      "HDMI_reconfigured": false,
+      "in_place_updates": true,
+      "tearing_possible": true,
+      "raw_source_frame": 1154,
+      "PC_source_frame": 1146,
+      "downloaded": false,
+      "raw_waits_for_PC": false
+    },
+    "applied": {
+      "startup_changed": true,
+      "user_approved": true,
+      "reboot_requested": true,
+      "before_boot_id": "f30dca2d-6ef8-41d8-bddd-bd163ba86289",
+      "previous_startup_sha256": "ff3a4b2931884c5de3dfd4df7107bdd259288b23b5a3ffa934852fbaa51f983b",
+      "startup_sha256": "f96330498c2f488ae043d4d5e3b4a3e3eec313e2c3754481bee111eb190cd625",
+      "dual_dma_status": [
+        1,
+        1
+      ],
+      "downloaded_on_current_boot": false
+    },
+    "board_monotonic_s": 3407.070752401
+  },
+  "last": {
+    "run": "/home/xilinx/ov1_hdmi_20261031/captures/ui_1793445737230990900",
+    "state": {
+      "active": true,
+      "physical_camera": 1,
+      "complete_frames": 1288,
+      "PC_frames_sent": 262,
+      "HDMI_frames": 1136,
+      "elapsed_s": 130.92401677199996,
+      "local_display_hz": 8.67678847631377,
+      "PC_connection_error": null,
+      "raw_unique_updates": 914,
+      "compose_ms": 133.11753800007864,
+      "write_ms": 31.03199399993173,
+      "stable_frame_address": 364904448,
+      "HDMI_owner_pid": 22262,
+      "HDMI_reconfigured": false,
+      "in_place_updates": true,
+      "tearing_possible": true,
+      "raw_source_frame": 1287,
+      "PC_source_frame": 1278,
+      "downloaded": false,
+      "raw_waits_for_PC": false
+    },
+    "applied": {
+      "startup_changed": true,
+      "user_approved": true,
+      "reboot_requested": true,
+      "before_boot_id": "f30dca2d-6ef8-41d8-bddd-bd163ba86289",
+      "previous_startup_sha256": "ff3a4b2931884c5de3dfd4df7107bdd259288b23b5a3ffa934852fbaa51f983b",
+      "startup_sha256": "f96330498c2f488ae043d4d5e3b4a3e3eec313e2c3754481bee111eb190cd625",
+      "dual_dma_status": [
+        1,
+        1
+      ],
+      "downloaded_on_current_boot": false
+    },
+    "board_monotonic_s": 3421.883243363
+  },
+  "interval_s": 14.812490962000084,
+  "observed_rates": {
+    "complete_frames": 8.911397842444757,
+    "PC_frames_sent": 2.092828281180208,
+    "HDMI_frames": 8.573844893867303,
+    "raw_unique_updates": 6.751058971549058,
+    "teacher_results": 2.1772151898734178
+  },
+  "controller": {
+    "mode": "single_hdmi",
+    "title": "视觉 · OV1 HDMI分屏",
+    "busy": false,
+    "message": "运行中",
+    "error": null,
+    "connected": true,
+    "details": {
+      "mode": "single_hdmi",
+      "active": true,
+      "input": "OV1 physical camera",
+      "inference": "PC Holistic",
+      "local_raw_preview_independent": true,
+      "results": 258,
+      "error": null,
+      "video_frame": 1264,
+      "result_hz": 1.7155395970476828,
+      "teacher_ms": 31.000000000858563,
+      "source_board_monotonic_s": 3418.589644537,
+      "sign_recognition": {
+        "label": null,
+        "candidate": null,
+        "accepted": false,
+        "reason": "未检测到手",
+        "ranked": [],
+        "classification_results": 0,
+        "backend": "PC frozen Holistic + temporal DTW head",
+        "vocabulary": [
+          "再见",
+          "可以。",
+          "早上",
+          "没关系",
+          "谢谢"
+        ]
+      }
+    },
+    "camera_index": 0,
+    "preview_time": 1793445887.7007518,
+    "service_pid": 24056,
+    "camera_sources": [
+      "USB",
+      "OV5640"
+    ],
+    "board_boot_id": "e76d7158-8738-4d79-bed8-18bba720d2d4",
+    "last_poll": 1793445887.7007518
+  },
+  "HDMI_user_visual_confirmation_pending": false,
+  "HDMI_user_visual_confirmed": true,
+  "user_reply": "分屏已显示，帧号增加",
+  "confirmation_recorded_at": "2026-10-31T19:29:15"
+}

@@ -1,0 +1,1862 @@
+[
+  {
+    "label": "一个月",
+    "source": "vision/video/done/cfx/567/一个月/一个月.mp4",
+    "sha256": "a5917a5c3599ccd41070acd1b04beeba5b67e2fad8214a72520a94d03cf713a8",
+    "bytes": 3118026,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 101,
+      "duration_s": 3.3666666666666667
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "上午",
+    "source": "vision/video/done/cfx/567/上午/上午.mp4",
+    "sha256": "0447cc295459de19c8299f620fdc75117bb010b90f762456c98b30d5d66066aa",
+    "bytes": 2610519,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 87,
+      "duration_s": 2.9
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "下午",
+    "source": "vision/video/done/cfx/567/下午/下午.mp4",
+    "sha256": "78fa62a714556fbee0b5bdbf518a19043677f1c6c1a35b0bea70031270dd19dd",
+    "bytes": 2497286,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 88,
+      "duration_s": 2.933333333333333
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "下雨",
+    "source": "vision/video/done/cfx/567/下雨/下雨.mp4",
+    "sha256": "15b332bf1eee41c53fb62d000683ebd23271ffb8d7a2143b0fb07ccddb93a78d",
+    "bytes": 2844383,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 72,
+      "duration_s": 2.4
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "不",
+    "source": "vision/video/done/cfx/567/不/不.mp4",
+    "sha256": "300c7fb431cbbec21955048a992ae768bcc5077c3f70f0b9012f623b7e303dc7",
+    "bytes": 3448595,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 107,
+      "duration_s": 3.566666666666667
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "中午",
+    "source": "vision/video/done/cfx/567/中午/中午.mp4",
+    "sha256": "76c8212b3999b308597ef66741f1191b844aafa4baa6b6b59303cae9b9a2796e",
+    "bytes": 2322105,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 81,
+      "duration_s": 2.7
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "中秋节",
+    "source": "vision/video/done/cfx/567/中秋节/中秋节.mp4",
+    "sha256": "8b70427db253c6f0edd5c00794d94aac1fa3aedbda19121590f495997b1820b1",
+    "bytes": 4440985,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "中雪",
+    "source": "vision/video/done/cfx/567/中雪/中雪.mp4",
+    "sha256": "072bccadd05a3d2d325171d98b65bcf1c63595feaf4897677b8c6ccf14783d7d",
+    "bytes": 2524438,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 93,
+      "duration_s": 3.1
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "为什么",
+    "source": "vision/video/done/cfx/567/为什么/为什么.mp4",
+    "sha256": "c62792d4fd8073b0396b52febddfaf7ee24b8d5bc8394d02b14517895435c65a",
+    "bytes": 4060496,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "习惯",
+    "source": "vision/video/done/cfx/567/习惯/习惯.mp4",
+    "sha256": "0878c3a15b3010cb21ccc1314e4195318bdf44413b6b5edf2fe9b2348eb18608",
+    "bytes": 2340491,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "书店",
+    "source": "vision/video/done/cfx/567/书店/书店.mp4",
+    "sha256": "d79f18a568e133c4e93d6481468c440f223070e0e2801c5b6757a4a1d2e92522",
+    "bytes": 3271520,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "人民广场",
+    "source": "vision/video/done/cfx/567/人民广场/人民广场.mp4",
+    "sha256": "f47a75453a698215cbb136cfd7d97f1ce74793bc098a9bde314815b4b00ee525",
+    "bytes": 3702771,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "今年",
+    "source": "vision/video/done/cfx/567/今年/今年.mp4",
+    "sha256": "94f3050f66565ffc70285a991af34a28413bb9f8ceb9e3eb36fdfcf10c72fad0",
+    "bytes": 2998989,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "儿童节",
+    "source": "vision/video/done/cfx/567/儿童节/儿童节.mp4",
+    "sha256": "9b90ad948cf662e3cfd43633467415a3b9c5e32f6529419cad4a9037dc68a0ca",
+    "bytes": 4158510,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "元宵节",
+    "source": "vision/video/done/cfx/567/元宵节/元宵节.mp4",
+    "sha256": "8ec1bb33be1ca4f2db2dd85d8769eba6d70affaf3905e8b56b6882f80ad6ec17",
+    "bytes": 4671835,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "公交车",
+    "source": "vision/video/done/cfx/567/公交车/公交车.mp4",
+    "sha256": "51c65a939fc238c97be1d64b13e998b8a6f49b7c8f5c36690d5cc1a77be09447",
+    "bytes": 2335513,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "公园",
+    "source": "vision/video/done/cfx/567/公园/公园.mp4",
+    "sha256": "bb79bad6aa6d460d772073611be8193f5a2d132bcedcc3f360453348d1b344c8",
+    "bytes": 1474283,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 62,
+      "duration_s": 2.066666666666667
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "冬天",
+    "source": "vision/video/done/cfx/567/冬天/冬天.mp4",
+    "sha256": "4056029cfa0f8156abeb550dc5a099f1f3c61307eef953aca72696e0ed66ab22",
+    "bytes": 2525543,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 87,
+      "duration_s": 2.9
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "冰雹",
+    "source": "vision/video/done/cfx/567/冰雹/冰雹.mp4",
+    "sha256": "426d18f2a2f802bc56ee5797348d85844749d5801a7030e2fda62ec3479e55ba",
+    "bytes": 2563838,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 108,
+      "duration_s": 3.6
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "准备",
+    "source": "vision/video/done/cfx/567/准备/准备.mp4",
+    "sha256": "b41b886ab9b2c9c8e6e44c37611ea1fc33efc9f9b364cc2b06feb179a04831c8",
+    "bytes": 2867046,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 96,
+      "duration_s": 3.2
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "几月几日",
+    "source": "vision/video/done/cfx/567/几月几日/几月几日.mp4",
+    "sha256": "c44bf165eeae265509a585b6b44d6d22fd2b680f16fbaac35fe5df42fcded88e",
+    "bytes": 2637678,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "出租车",
+    "source": "vision/video/done/cfx/567/出租车/出租车.mp4",
+    "sha256": "ba74896a282471b7e7a56c1c175c12e3a2dcff73e35132842d06bd3bbfa6765b",
+    "bytes": 3003032,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "分钟",
+    "source": "vision/video/done/cfx/567/分钟/分钟.mp4",
+    "sha256": "ba3694fe9db3d121dcb66592166459bd64138596366a4f22c4cef4e9fd024182",
+    "bytes": 1990068,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 69,
+      "duration_s": 2.3
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "到",
+    "source": "vision/video/done/cfx/567/到/到.mp4",
+    "sha256": "ba3b14da5f59e30c8cd62e902a60c63f1c8738e727f0d181ca90d3d54f0eb3b7",
+    "bytes": 1192345,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 52,
+      "duration_s": 1.7333333333333334
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "前",
+    "source": "vision/video/done/cfx/567/前/前.mp4",
+    "sha256": "344b228e55ce4f57abb49937d13675599e8cb54f961e4558b02a518d8e178a20",
+    "bytes": 3107007,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "劳动节",
+    "source": "vision/video/done/cfx/567/劳动节/劳动节.mp4",
+    "sha256": "de3ac9f875f0e9ed74603802694164b1552490d7696e8f7b46f88d89a7b9176f",
+    "bytes": 4542122,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "北",
+    "source": "vision/video/done/cfx/567/北/北.mp4",
+    "sha256": "5c97dca87c4558296700a5e50c5f781d133a03a6a6eba04f4662be2bc65d1ddb",
+    "bytes": 1435809,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 48,
+      "duration_s": 2.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "去年",
+    "source": "vision/video/done/cfx/567/去年/去年.mp4",
+    "sha256": "94cd48979a70be076c56fd850dd2a155e585bb88ea0abaefe00472c9c2ad196b",
+    "bytes": 2790365,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "变化",
+    "source": "vision/video/done/cfx/567/变化/变化.mp4",
+    "sha256": "56593312bffbdba95aa593bc14c22ac40aeceb50d723077385c0d2d35d9d4578",
+    "bytes": 2871786,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 99,
+      "duration_s": 3.3
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "后",
+    "source": "vision/video/done/cfx/567/后/后.mp4",
+    "sha256": "498ed54e6948b4d98bfa40880f338a7eaca03199fd6772e972f848ee80932904",
+    "bytes": 1652652,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 79,
+      "duration_s": 2.6333333333333333
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "后天",
+    "source": "vision/video/done/cfx/567/后天/后天.mp4",
+    "sha256": "b3dac64e02e1ec03865a96d772923dd7685baf1e1c59284693e9c41fb54c9e3a",
+    "bytes": 4233279,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "周围",
+    "source": "vision/video/done/cfx/567/周围/周围.mp4",
+    "sha256": "c5f152a79302ce2057a28ceeddda59c03e74533b8bfd1f548e29f54272c3f040",
+    "bytes": 3323482,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "商店",
+    "source": "vision/video/done/cfx/567/商店/商店.mp4",
+    "sha256": "85fdcbcb9d93706bbff5809f347f42b60c051e797ebcb182f079f23e1afcb5bb",
+    "bytes": 2479308,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "preserve_existing"
+  },
+  {
+    "label": "国庆节",
+    "source": "vision/video/done/cfx/567/国庆节/国庆节.mp4",
+    "sha256": "db10a602bc854066468135820ca36b7cd4f9ab3fe02d26b73229e3a3ffed6be5",
+    "bytes": 4522084,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "图书馆",
+    "source": "vision/video/done/cfx/567/图书馆/图书馆.mp4",
+    "sha256": "4c14297aa049775a652d4205eeff44d17d6f73de4a049a52131a099dadc0ce97",
+    "bytes": 3285875,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "圣诞节",
+    "source": "vision/video/done/cfx/567/圣诞节/圣诞节.mp4",
+    "sha256": "245651cf2a9f6f7c7f4b442f737a218519496443e95a063e267de7224b4aac61",
+    "bytes": 4278026,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "地铁",
+    "source": "vision/video/done/cfx/567/地铁/地铁.mp4",
+    "sha256": "19157ff36ebeadece58baa89fb6560a038787a10d2f0c4d28ec27df9009cbc8a",
+    "bytes": 2098828,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 87,
+      "duration_s": 2.9
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "夏天",
+    "source": "vision/video/done/cfx/567/夏天/夏天.mp4",
+    "sha256": "a117b985d6e906d2e23d03af09cd83dff4f0e3687d83f8b33df11ddc11fcca56",
+    "bytes": 2613938,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 81,
+      "duration_s": 2.7
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "外面",
+    "source": "vision/video/done/cfx/567/外面/外面.mp4",
+    "sha256": "657f6c896e190022fe95078922a67cdfafcf51f65ac6053dedd8b616df78c06f",
+    "bytes": 2602025,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "多云",
+    "source": "vision/video/done/cfx/567/多云/多云.mp4",
+    "sha256": "559e5ea4356d87d01ac368eebccb569a43e45a02ecbadff24313029868f4dc85",
+    "bytes": 3982421,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 127,
+      "duration_s": 4.233333333333333
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "大概",
+    "source": "vision/video/done/cfx/567/大概/大概.mp4",
+    "sha256": "17e6f60c800c4f719ed7679d71c1d2bbdff2871d32ba6f3ccce53faea0e88260",
+    "bytes": 1647280,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 48,
+      "duration_s": 2.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "大雨",
+    "source": "vision/video/done/cfx/567/大雨/大雨.mp4",
+    "sha256": "4697b6c10a7eef4c1d3e18fff528cfc116dac098771a0c1240015b5216994765",
+    "bytes": 3228401,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "大风",
+    "source": "vision/video/done/cfx/567/大风/大风.mp4",
+    "sha256": "fcb42b99e6261fdffcdd08c61f9c280f9699539bde75e371fef5da5701647d02",
+    "bytes": 3872412,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 125,
+      "duration_s": 4.166666666666667
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "天气",
+    "source": "vision/video/done/cfx/567/天气/天气.mp4",
+    "sha256": "a89457056561f0c155f7fd4a48693c58d39b827e3a09884a411419a9c478f096",
+    "bytes": 3073323,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 84,
+      "duration_s": 2.8
+    },
+    "fully_decoded": true,
+    "action": "preserve_existing"
+  },
+  {
+    "label": "天空",
+    "source": "vision/video/done/cfx/567/天空/天空.mp4",
+    "sha256": "1c747cbffba79e1ae3f1e9c2adfa23ace562a06d2845beb482e8ddc7663be3aa",
+    "bytes": 2525693,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "太阳",
+    "source": "vision/video/done/cfx/567/太阳/太阳.mp4",
+    "sha256": "6b284cbc60c0f791f1b51f4d054012b7915a875b13838a51175c3e408bde0156",
+    "bytes": 2320485,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 78,
+      "duration_s": 2.6
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "妇女节",
+    "source": "vision/video/done/cfx/567/妇女节/妇女节.mp4",
+    "sha256": "4c837e957807cfb407dad5972533636b095b163151af1565d502d028615d2143",
+    "bytes": 3570100,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "安全",
+    "source": "vision/video/done/cfx/567/安全/安全.mp4",
+    "sha256": "579b2c29987caed293797e6986efc12787b3600d29a48b50cc8134a86ff035dc",
+    "bytes": 3101742,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "对面",
+    "source": "vision/video/done/cfx/567/对面/对面.mp4",
+    "sha256": "78c9239b75dd88b665c3b1de951283380e1046627e3cb09bc340fe7b0d68ec05",
+    "bytes": 2757194,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 84,
+      "duration_s": 3.5
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "小时",
+    "source": "vision/video/done/cfx/567/小时/小时.mp4",
+    "sha256": "040eb11e018d5062f7d08f5719adef9be939bcb94f76ce961b2c4e3d9b7bc0a3",
+    "bytes": 3448514,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "小雨",
+    "source": "vision/video/done/cfx/567/小雨/小雨.mp4",
+    "sha256": "d48913f9f5e68d395785ec03bffcce5d1a2e6701478c314f9814fc50b98cd5db",
+    "bytes": 3914680,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "小雪",
+    "source": "vision/video/done/cfx/567/小雪/小雪.mp4",
+    "sha256": "4a587fba54a2a2bcb5b161f272f1f936e4c31862643196602aab74dfb90e377a",
+    "bytes": 3000594,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "干燥",
+    "source": "vision/video/done/cfx/567/干燥/干燥.mp4",
+    "sha256": "7baef7ae0c55a35ff4ac9d57ade86c0f75464d8615784dfcab04c723b9f44241",
+    "bytes": 1756167,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 48,
+      "duration_s": 2.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "建军节",
+    "source": "vision/video/done/cfx/567/建军节/建军节.mp4",
+    "sha256": "e8f7bdef7f7799adc70513f07492fe9119fe3a2dbef6486bd0b4afd64ddc6d76",
+    "bytes": 3688049,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "情人节",
+    "source": "vision/video/done/cfx/567/情人节/情人节.mp4",
+    "sha256": "f02fc937c106dad43097e3e4c775af943776803bb9464bc4675a81a7d9719dc2",
+    "bytes": 4333068,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "手表",
+    "source": "vision/video/done/cfx/567/手表/手表.mp4",
+    "sha256": "b7c49f4a00f0aa8a32cfa744a91b0f1f6d16f9f328e254aad424db842bf8924d",
+    "bytes": 2561904,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "打雷",
+    "source": "vision/video/done/cfx/567/打雷/打雷.mp4",
+    "sha256": "791944b75e8e4916f43ddc7dbb73a5978e0642f5f2c74abee8790692a69ba353",
+    "bytes": 1663879,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 75,
+      "duration_s": 2.5
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "担心",
+    "source": "vision/video/done/cfx/567/担心/担心.mp4",
+    "sha256": "be1c9790fa1cfdbe4431205725fea6e7a0537660bb0852d7e5dcd2dbe7d20b02",
+    "bytes": 2407890,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 74,
+      "duration_s": 2.466666666666667
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "拿",
+    "source": "vision/video/done/cfx/567/拿/拿.mp4",
+    "sha256": "f9b30673263a35599ad21ec8a5f1e18fd96a4159af1845b43c3b60e51f6e8267",
+    "bytes": 2735758,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "损坏",
+    "source": "vision/video/done/cfx/567/损坏/损坏.mp4",
+    "sha256": "de06f802f3cdac684d8026fb49845c310488504c266ded13f6be2ea279d26ab5",
+    "bytes": 2499576,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "换乘",
+    "source": "vision/video/done/cfx/567/换乘/换乘.mp4",
+    "sha256": "7f76dfda7f1e2447e29f14a034a7407a11faa6186869799daed6f4b2b23bfa68",
+    "bytes": 1797669,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 79,
+      "duration_s": 2.6333333333333333
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "排队",
+    "source": "vision/video/done/cfx/567/排队/排队.mp4",
+    "sha256": "5e696ca22be51cf707cb47f3f859b1f73514c6b440fcbf127f28bafa98caf377",
+    "bytes": 2479765,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 93,
+      "duration_s": 3.1
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "摩托车",
+    "source": "vision/video/done/cfx/567/摩托车/摩托车.mp4",
+    "sha256": "f675c9fae8dd1c90f174afeb69179b9a057d8c4c227286cde00a3d1cbf769872",
+    "bytes": 2331539,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "放假",
+    "source": "vision/video/done/cfx/567/放假/放假.mp4",
+    "sha256": "ed99aa914320dc05ca3deb65997986211e57dedd48a27cf340816d52eaa31081",
+    "bytes": 2754934,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "教师节",
+    "source": "vision/video/done/cfx/567/教师节/教师节.mp4",
+    "sha256": "2066285a85e16efda88129c991d68860f8e4ebf65bf395174f608952c6f18662",
+    "bytes": 4316205,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "方法",
+    "source": "vision/video/done/cfx/567/方法/方法.mp4",
+    "sha256": "4057cf68b88495ea3e7291e4bb4bae0c614cbf8f32910135c0a6fbe8ddf61922",
+    "bytes": 2004370,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 75,
+      "duration_s": 2.5
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "旁边",
+    "source": "vision/video/done/cfx/567/旁边/旁边.mp4",
+    "sha256": "23592c3ec2c01123bba325f69c658de89eb5e127ebf6b12ef1fba22e3916eec7",
+    "bytes": 2463440,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "日",
+    "source": "vision/video/done/cfx/567/日/日.mp4",
+    "sha256": "8ccf68ad4c3088eb5db79fa15fb054bbaac5db15f3ba0ee2f9824e8a961c00f4",
+    "bytes": 2691715,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "明天",
+    "source": "vision/video/done/cfx/567/明天/明天.mp4",
+    "sha256": "482c972241906463e75d1612b64c0467a4c36a13f3565ad7d8877dacdc6e7395",
+    "bytes": 3094909,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 99,
+      "duration_s": 3.3
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "明年",
+    "source": "vision/video/done/cfx/567/明年/明年.mp4",
+    "sha256": "da7aa937a8bec306e7e7acb20e3a48be2401fb7eddc6863b0ed05d3c7994eba2",
+    "bytes": 3734243,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "星星",
+    "source": "vision/video/done/cfx/567/星星/星星.mp4",
+    "sha256": "130f4c96905fdf1c40fd5371088ccf2051d96f1972a411048ae2447a8d634296",
+    "bytes": 2548170,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "星期一",
+    "source": "vision/video/done/cfx/567/星期一/星期一.mp4",
+    "sha256": "b34d3167c4cf2df18b6d441ab376d37000fe257da1994dae745163ace93fcfa1",
+    "bytes": 3401402,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "preserve_existing"
+  },
+  {
+    "label": "春天",
+    "source": "vision/video/done/cfx/567/春天/春天.mp4",
+    "sha256": "ac32b881375ad209101ccf85a56151104fc4e171b024de7c83d3bf2fd68dff2b",
+    "bytes": 2405182,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 69,
+      "duration_s": 2.3
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "春节",
+    "source": "vision/video/done/cfx/567/春节/春节.mp4",
+    "sha256": "9b41de523ec090d51a7f032d7c5b69047dd3bdb0a65af8c7e2c4696f94171d8d",
+    "bytes": 3917814,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "preserve_existing"
+  },
+  {
+    "label": "昨天",
+    "source": "vision/video/done/cfx/567/昨天/昨天.mp4",
+    "sha256": "80db44b3842fa44175a33ed65826aa2dd1a36d4d0a0a989edd10abfd9043c685",
+    "bytes": 2618419,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 93,
+      "duration_s": 3.1
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "晚上",
+    "source": "vision/video/done/cfx/567/晚上/晚上.mp4",
+    "sha256": "f5de4e84a0960286c1c90973a8a286ac35ccc8df85c9f988bddccfd871166124",
+    "bytes": 3551005,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "暴雨",
+    "source": "vision/video/done/cfx/567/暴雨/暴雨.mp4",
+    "sha256": "c691464ee8320ca47afcea14ca9fc131525ea8beeac3aa7e965c2fce10939eb7",
+    "bytes": 2344033,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "月",
+    "source": "vision/video/done/cfx/567/月/月.mp4",
+    "sha256": "afdbc4ce2495d2d6cf14c883ac77c28bcf12fbf94130a1050f46c4bc74ac8bd6",
+    "bytes": 2975496,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "月饼",
+    "source": "vision/video/done/cfx/567/月饼/月饼.mp4",
+    "sha256": "89f26855690d083e69a7dd5c33b83845166506114b9eb6213701816c337f29fe",
+    "bytes": 3931062,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 114,
+      "duration_s": 3.8
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "期待",
+    "source": "vision/video/done/cfx/567/期待/期待.mp4",
+    "sha256": "8a071297f69f6af1db25b3117fdc08887d8c0f3109b4ba763c0b16e0ebcbed5a",
+    "bytes": 2392245,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 81,
+      "duration_s": 2.7
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "机场",
+    "source": "vision/video/done/cfx/567/机场/机场.mp4",
+    "sha256": "eac1ddb5c6434c81640437a406d8286a0896d2d38f712b77bf564a64dc78e02e",
+    "bytes": 3103211,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "每周",
+    "source": "vision/video/done/cfx/567/每周/每周.mp4",
+    "sha256": "0e9194943ac954c369e578c817ff69d27a52bd349b2dd0d89e1cb2919d27de8b",
+    "bytes": 2812185,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "每天",
+    "source": "vision/video/done/cfx/567/每天/每天.mp4",
+    "sha256": "17f89ecdc4bb3a1a48cae5cc121fc173a8c1af2d49d221a4b55afe28a1632b59",
+    "bytes": 3599015,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "每年",
+    "source": "vision/video/done/cfx/567/每年/每年.mp4",
+    "sha256": "c88bae3338e5adafa2ee163f4c79a869012ce172ec9acfd722f178ce9f71d3ac",
+    "bytes": 2692220,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "每月",
+    "source": "vision/video/done/cfx/567/每月/每月.mp4",
+    "sha256": "c6ce1ccb55be9bbc6262a4c4d715a2a82197dd080a78e1cf47230eabf799e8c2",
+    "bytes": 3480901,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "沙尘暴",
+    "source": "vision/video/done/cfx/567/沙尘暴/沙尘暴.mp4",
+    "sha256": "a8b1a1b7be72ec44dda39d2967690a913838045c5d1cfdf9f72b17984c45e37c",
+    "bytes": 3813417,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "清明节",
+    "source": "vision/video/done/cfx/567/清明节/清明节.mp4",
+    "sha256": "7f3483ae5b1693e05cc3b0a3e4717ba92b52f18a2732086b7f04047bec80715b",
+    "bytes": 3681428,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "潮湿",
+    "source": "vision/video/done/cfx/567/潮湿/潮湿.mp4",
+    "sha256": "1a9d9037c59aa4cb535ff52657eb70a6409b2d588b851564e8b17f6662b6052b",
+    "bytes": 2736330,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 81,
+      "duration_s": 2.7
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "火车",
+    "source": "vision/video/done/cfx/567/火车/火车.mp4",
+    "sha256": "e0ee677e872dcddcab1f7b6d6596ebe24bdc1ee773a648c1c4cf6fd9377d1ebe",
+    "bytes": 2691910,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 103,
+      "duration_s": 3.433333333333333
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "生日",
+    "source": "vision/video/done/cfx/567/生日/生日.mp4",
+    "sha256": "f59f4b6b82831a03f0d86e28949d222da3633e77f95b430f789948a27f5d120e",
+    "bytes": 1799140,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 48,
+      "duration_s": 2.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "白天",
+    "source": "vision/video/done/cfx/567/白天/白天.mp4",
+    "sha256": "7f3cc8c5bcc74f41d7c77ca9f2c78a011c2dd43c09f9019aea07e19f5e939f13",
+    "bytes": 2571437,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "直",
+    "source": "vision/video/done/cfx/567/直/直.mp4",
+    "sha256": "5f421791df886c93e17841bb456d0e959ba5e616d548a9638ff192eea0247fbb",
+    "bytes": 1079822,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 51,
+      "duration_s": 1.7
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "看到",
+    "source": "vision/video/done/cfx/567/看到/看到.mp4",
+    "sha256": "ef425dd0596c741834731e305fe9e9fcb195cc629cdb0c3e4085c5a18971b92f",
+    "bytes": 2306463,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "礼物",
+    "source": "vision/video/done/cfx/567/礼物/礼物.mp4",
+    "sha256": "587e5b48e84a94d0497ece5460ba06ec28f84e89a84b340df123cdb75895add7",
+    "bytes": 3496106,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "秋天",
+    "source": "vision/video/done/cfx/567/秋天/秋天.mp4",
+    "sha256": "0ca08c988c197fe6adf77f425a44c03d434e828c5b9e605ce419e8f537a9ebc2",
+    "bytes": 2563457,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "秒",
+    "source": "vision/video/done/cfx/567/秒/秒.mp4",
+    "sha256": "ab6af6d9ed45caea9d697501839345df0d39cc52fa863ae8591d773a02932b76",
+    "bytes": 1685644,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 64,
+      "duration_s": 2.1333333333333333
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "端午节",
+    "source": "vision/video/done/cfx/567/端午节/端午节.mp4",
+    "sha256": "2c09c1a0222a788726809d8de3e6f3c8ac49ab07daf71051638383594dba1793",
+    "bytes": 4706305,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "等",
+    "source": "vision/video/done/cfx/567/等/等.mp4",
+    "sha256": "c6dc51a3efb3b51af88fae1fa577d35407526bf2292cf0578b87c1f28bc7097a",
+    "bytes": 1617412,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 57,
+      "duration_s": 1.9
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "米饭",
+    "source": "vision/video/done/cfx/567/米饭/米饭.mp4",
+    "sha256": "f021942e2c7f429ed895e9e606d108cf18834498f4e6a0d0766b6ad0c0c1e5d6",
+    "bytes": 2508991,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "粽子",
+    "source": "vision/video/done/cfx/567/粽子/粽子.mp4",
+    "sha256": "f6baa48e6994a4660356b85d00f5df1eb366ce98f4f6645c55d47f5ae83af2ad",
+    "bytes": 3350163,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 103,
+      "duration_s": 3.433333333333333
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "自行车",
+    "source": "vision/video/done/cfx/567/自行车/自行车.mp4",
+    "sha256": "29fd77e776d119059ab78b8810269817c907d36625f3ed97f52996876d07e691",
+    "bytes": 3221364,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "船",
+    "source": "vision/video/done/cfx/567/船/船.mp4",
+    "sha256": "19fe3047f19d2c549a334aaff68119cbbfb0b13890e6c5462736a4aa0cc5017c",
+    "bytes": 1754117,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 68,
+      "duration_s": 2.2666666666666666
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "节日",
+    "source": "vision/video/done/cfx/567/节日/节日.mp4",
+    "sha256": "e089625e4e91458780764190282cb4db666ce679498b08b8b06a0715d4b5c7c9",
+    "bytes": 3604348,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "蛋糕",
+    "source": "vision/video/done/cfx/567/蛋糕/蛋糕.mp4",
+    "sha256": "bfb9bb518d0bffb3c0e966a2bf467dd75615a4f8760e133b442f210f3993b571",
+    "bytes": 3710374,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "衣服",
+    "source": "vision/video/done/cfx/567/衣服/衣服.mp4",
+    "sha256": "5b563c3843f6fc93d00ec4eb620681c1e191d72ac908c32bd3e7df361a9bfd7d",
+    "bytes": 2878161,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 97,
+      "duration_s": 3.2333333333333334
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "超市",
+    "source": "vision/video/done/cfx/567/超市/超市.mp4",
+    "sha256": "bfa9e752f9dbfcf04c91b27d4157d56cc432a21cce3de6481713850320ad6d80",
+    "bytes": 3238389,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 110,
+      "duration_s": 3.6666666666666665
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "车站",
+    "source": "vision/video/done/cfx/567/车站/车站.mp4",
+    "sha256": "17c0bd52caaae451e5cdcb0d962d2bf33e5a1e08c67390153b1ca5cfab499247",
+    "bytes": 1804288,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 68,
+      "duration_s": 2.2666666666666666
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "转弯",
+    "source": "vision/video/done/cfx/567/转弯/转弯.mp4",
+    "sha256": "39b670e2ebd34ccea719fb5729669161800f3295f1ff20bac278cea096650924",
+    "bytes": 2317176,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 72,
+      "duration_s": 3.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "邮局",
+    "source": "vision/video/done/cfx/567/邮局/邮局.mp4",
+    "sha256": "b21d6a4081404d9f762c1e3e01369da5679a4cce4142a2b1942c2efa78613f87",
+    "bytes": 3767314,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "里面",
+    "source": "vision/video/done/cfx/567/里面/里面.mp4",
+    "sha256": "f9407727fd98574ccc973f834e0c7b29b04bc9bbe9a658ab7441f4aff1622f42",
+    "bytes": 3041920,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 100,
+      "duration_s": 3.3333333333333335
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "重阳节",
+    "source": "vision/video/done/cfx/567/重阳节/重阳节.mp4",
+    "sha256": "75c5fb4090eb44b123dac76c637934e42b0b512dde556515386d3dd5557ef4bd",
+    "bytes": 4205165,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "银行",
+    "source": "vision/video/done/cfx/567/银行/银行.mp4",
+    "sha256": "0347954c03e3d5bf2c372bda3cb2becaa3203f37d27ab6ca45fed777ccc61427",
+    "bytes": 3644435,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "闪电",
+    "source": "vision/video/done/cfx/567/闪电/闪电.mp4",
+    "sha256": "9986daf751135167c36614093c968f8ddb876945b2e7a6865fc4edc1d9c4af04",
+    "bytes": 1332430,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 60,
+      "duration_s": 2.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "闷热",
+    "source": "vision/video/done/cfx/567/闷热/闷热.mp4",
+    "sha256": "d10c802f6c86a59e67c950079801b20970a85f79e81e59c502eadeb3cdf6b243",
+    "bytes": 2286303,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 84,
+      "duration_s": 2.8
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "阵雨",
+    "source": "vision/video/done/cfx/567/阵雨/阵雨.mp4",
+    "sha256": "e6971670dbb4169f327e3d8a91f9adf3687816955364e8bd77903edf15fbc96c",
+    "bytes": 3908434,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 120,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "除夕",
+    "source": "vision/video/done/cfx/567/除夕/除夕.mp4",
+    "sha256": "89e2c44fa14f0a4241b44eade232933f8e1583bcbb66ab02aefea8b273365f73",
+    "bytes": 3895371,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "雨伞",
+    "source": "vision/video/done/cfx/567/雨伞/雨伞.mp4",
+    "sha256": "c1b47ea90c191c6b481ae5911dbdcca4377f57cd20b250c46a3418ac19b5acc9",
+    "bytes": 2521279,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 88,
+      "duration_s": 2.933333333333333
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "雨夹雪",
+    "source": "vision/video/done/cfx/567/雨夹雪/雨夹雪.mp4",
+    "sha256": "6506c59324f6bada75b2ac330a02009b5040bad511eeb9e452b235f878658c96",
+    "bytes": 4241684,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "雾霾",
+    "source": "vision/video/done/cfx/567/雾霾/雾霾.mp4",
+    "sha256": "fc19842453764099157c46bda3364caacf168e6b5d3635f997c0821df107168a",
+    "bytes": 3436682,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "青年节",
+    "source": "vision/video/done/cfx/567/青年节/青年节.mp4",
+    "sha256": "94fc8a32d3b6835be5502dec7545acd163b6642bc2e0fd39ca101816d595eeaa",
+    "bytes": 4335722,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "面条",
+    "source": "vision/video/done/cfx/567/面条/面条.mp4",
+    "sha256": "854da59dfe659c27aeeaed234d57b134f095e0a1bdc1b9665d31f01eed140896",
+    "bytes": 1752248,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 48,
+      "duration_s": 2.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "飞机",
+    "source": "vision/video/done/cfx/567/飞机/飞机.mp4",
+    "sha256": "de9746704ff6628205bd4fc79b603078e66bf338530395ac5bdcb8e6032a0248",
+    "bytes": 1475861,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "frames": 65,
+      "duration_s": 2.1666666666666665
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "食堂",
+    "source": "vision/video/done/cfx/567/食堂/食堂.mp4",
+    "sha256": "e79e50f5806f5215ad9b55944a7c37baf8015f5ddfe06f935a454a1667affe5b",
+    "bytes": 3882626,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 120,
+      "duration_s": 5.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  },
+  {
+    "label": "龙卷风",
+    "source": "vision/video/done/cfx/567/龙卷风/龙卷风.mp4",
+    "sha256": "ceb29aae2c8af498adebc6a4f51d328393051cf2963992be7fe10b4e6c6bbf82",
+    "bytes": 3497546,
+    "media": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 24.0,
+      "frames": 96,
+      "duration_s": 4.0
+    },
+    "fully_decoded": true,
+    "action": "add"
+  }
+]

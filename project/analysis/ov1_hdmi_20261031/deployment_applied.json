@@ -1,0 +1,13 @@
+{
+  "startup_changed": true,
+  "user_approved": true,
+  "reboot_requested": true,
+  "before_boot_id": "f30dca2d-6ef8-41d8-bddd-bd163ba86289",
+  "previous_startup_sha256": "ff3a4b2931884c5de3dfd4df7107bdd259288b23b5a3ffa934852fbaa51f983b",
+  "startup_sha256": "f96330498c2f488ae043d4d5e3b4a3e3eec313e2c3754481bee111eb190cd625",
+  "dual_dma_status": [
+    1,
+    1
+  ],
+  "downloaded_on_current_boot": false
+}

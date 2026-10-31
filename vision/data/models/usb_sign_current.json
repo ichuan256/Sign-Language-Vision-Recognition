@@ -1,0 +1,11 @@
+{
+  "model": "vision/data/models/usb_teacher_sign_20261029_v2/model.npz",
+  "sha256": "4cf66a6c3b018986c0f25a1f0852d68ee33acc6682ccbf6b6c9b175eedd4656a",
+  "labels": [
+    "再见",
+    "可以。",
+    "早上",
+    "没关系",
+    "谢谢"
+  ]
+}

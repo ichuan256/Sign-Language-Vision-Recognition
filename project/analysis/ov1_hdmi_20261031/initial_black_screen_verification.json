@@ -1,0 +1,118 @@
+{
+  "active": true,
+  "first": {
+    "run": "/home/xilinx/ov1_hdmi_20261031/captures/ui_1793442637320166000",
+    "state": {
+      "active": true,
+      "physical_camera": 1,
+      "complete_frames": 342,
+      "PC_frames_sent": 207,
+      "HDMI_frames": 276,
+      "elapsed_s": 118.42640664800001,
+      "local_display_hz": 2.3305612980418933,
+      "PC_connection_error": null,
+      "raw_source_frame": 341,
+      "PC_source_frame": 338,
+      "downloaded": false,
+      "raw_waits_for_PC": false
+    },
+    "applied": {
+      "startup_changed": true,
+      "user_approved": true,
+      "reboot_requested": true,
+      "before_boot_id": "f30dca2d-6ef8-41d8-bddd-bd163ba86289",
+      "previous_startup_sha256": "ff3a4b2931884c5de3dfd4df7107bdd259288b23b5a3ffa934852fbaa51f983b",
+      "startup_sha256": "f96330498c2f488ae043d4d5e3b4a3e3eec313e2c3754481bee111eb190cd625",
+      "dual_dma_status": [
+        1,
+        1
+      ],
+      "downloaded_on_current_boot": false
+    },
+    "board_monotonic_s": 313.58409002
+  },
+  "last": {
+    "run": "/home/xilinx/ov1_hdmi_20261031/captures/ui_1793442637320166000",
+    "state": {
+      "active": true,
+      "physical_camera": 1,
+      "complete_frames": 355,
+      "PC_frames_sent": 221,
+      "HDMI_frames": 311,
+      "elapsed_s": 132.45145407400003,
+      "local_display_hz": 2.3480300927934374,
+      "PC_connection_error": null,
+      "raw_source_frame": 354,
+      "PC_source_frame": 354,
+      "downloaded": false,
+      "raw_waits_for_PC": false
+    },
+    "applied": {
+      "startup_changed": true,
+      "user_approved": true,
+      "reboot_requested": true,
+      "before_boot_id": "f30dca2d-6ef8-41d8-bddd-bd163ba86289",
+      "previous_startup_sha256": "ff3a4b2931884c5de3dfd4df7107bdd259288b23b5a3ffa934852fbaa51f983b",
+      "startup_sha256": "f96330498c2f488ae043d4d5e3b4a3e3eec313e2c3754481bee111eb190cd625",
+      "dual_dma_status": [
+        1,
+        1
+      ],
+      "downloaded_on_current_boot": false
+    },
+    "board_monotonic_s": 328.578970859
+  },
+  "interval_s": 14.994880838999961,
+  "observed_rates": {
+    "complete_frames": 0.8669625413886914,
+    "PC_frames_sent": 0.93365196764936,
+    "HDMI_frames": 2.3341299191234
+  },
+  "controller": {
+    "mode": "single_hdmi",
+    "title": "视觉 · OV1 HDMI分屏",
+    "busy": false,
+    "message": "运行中",
+    "error": null,
+    "connected": true,
+    "details": {
+      "mode": "single_hdmi",
+      "active": true,
+      "input": "OV1 physical camera",
+      "inference": "PC Holistic",
+      "local_raw_preview_independent": true,
+      "results": 222,
+      "error": null,
+      "video_frame": 356,
+      "result_hz": 1.3945862413388037,
+      "teacher_ms": 15.99999999962165,
+      "source_board_monotonic_s": 327.585482934,
+      "sign_recognition": {
+        "label": null,
+        "candidate": null,
+        "accepted": false,
+        "reason": "未检测到手",
+        "ranked": [],
+        "classification_results": 0,
+        "backend": "PC frozen Holistic + temporal DTW head",
+        "vocabulary": [
+          "再见",
+          "可以。",
+          "早上",
+          "没关系",
+          "谢谢"
+        ]
+      }
+    },
+    "camera_index": 0,
+    "preview_time": 1793442796.961758,
+    "service_pid": 24056,
+    "camera_sources": [
+      "USB",
+      "OV5640"
+    ],
+    "board_boot_id": "e76d7158-8738-4d79-bed8-18bba720d2d4",
+    "last_poll": 1793442796.961758
+  },
+  "HDMI_user_visual_confirmation_pending": true
+}

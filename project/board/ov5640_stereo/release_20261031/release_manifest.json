@@ -1,0 +1,46 @@
+{
+  "schema": "ov5640-dual-v1",
+  "status": "candidate_board_unverified",
+  "width": 1280,
+  "height": 720,
+  "format": "RGB565_LE",
+  "files": {
+    "bit": {
+      "path": "ov5640_stereo.bit",
+      "sha256": "20bcd0b0681529aadb55ddbc266e1f4f4f850ceba8f74d3ae8d3528bd9920cc2"
+    },
+    "hwh": {
+      "path": "ov5640_stereo.hwh",
+      "sha256": "6b66cbea66a7fd7a8ebfceb2c28eb33c8609980773ce60cded7b072eab3df44c"
+    }
+  },
+  "channels": [
+    {
+      "id": 1,
+      "camera_ip": "camera",
+      "control_ip": "camera_control",
+      "dma_ip": "capture_dma",
+      "control_base": 1092616192,
+      "dma_base": 1077936128
+    },
+    {
+      "id": 2,
+      "camera_ip": "camera_right",
+      "control_ip": "camera_control_right",
+      "dma_ip": "capture_dma_right",
+      "control_base": 1092681728,
+      "dma_base": 1078001664
+    }
+  ],
+  "exposure_synchronized": false,
+  "external_io_timing_verified": false,
+  "HDMI": false,
+  "neural_inference": "PC teacher; none in this bitstream",
+  "build_directory": "project/_tmp/stereo_build_20261031_v1",
+  "timing_gate": "set snapshot_wns 0.515\nset snapshot_whs 0.021\nset snapshot_build_complete 1\nset snapshot_sccb_structure_pass 1\n",
+  "software": {
+    "capture.py": "b3035de5b3f9e1a47da95b36724b816a4c332c0cb76b3039372e865f72248724",
+    "continuous_capture.py": "20fb9fffef9926e0cad7e184afd4054d01f524cfcc14e0cef7d3dd97309c44f8",
+    "stereo_stream.py": "0a49048f62fd1d52128293482b3dc06828f31aa7840f40382486b5304f74da15"
+  }
+}

@@ -1,5 +1,9 @@
 # 视觉模块：代码来源与目录入口
 
+板端部署和显示结果统一看 **[当前状态](../docs/当前状态.md)**。当前AV候选的彩条、静态三栏和实时视觉已实屏确认，音频联合质量和指定语音闭环仍待完成。双目网页与[单目HDMI分屏](../docs/OV单目HDMI分屏.md)保留为历史候选证据；旧W6/lite PL入口不能直接套用。
+
+2026-10-29用户新增USB语义识别任务：保留Holistic教师，后接5词时序模板分类头；这是独立的电脑演示增量，不替代PS教师局部PL迁移路线。操作、17条教学模板和3/11来源留出结果见[USB识别说明](../docs/USB摄像头手语识别.md)。尚未通过摄像头精度验收。
+
 当前主线是 **PS 老师关键点网络 → PL 局部加速 → 板端叠加**。本目录同时保留旧词语识别管线与历史证据，
 不能把每个文件夹都当成当前训练或部署入口。
 
@@ -45,7 +49,8 @@ HDMI/音频从原 `pld-sign-glove` 工程移植到 `project/`、`ASR/`；视觉 
 
 | 工作 | 入口 |
 |---|---|
-| 输入文件、USB 与单目 OV5640 占位 | [framesource/](src/vision/framesource) |
+| 旧文件/USB帧源抽象 | [framesource/](src/vision/framesource)，其中OV/HDMI占位仅限此旧抽象 |
+| 实际OV采集流与兼容发布包 | [ov5640_ssh_source.py](src/vision/keypoints/ov5640_ssh_source.py)、[固件说明](../project/board/ov5640_snapshot/README.md) |
 | PC 关键点与显示连接 | [keypoints/README.md](src/vision/keypoints/README.md) |
 | PS 老师网络的 PL 局部加速 | [当前方案](../docs/方案/04_老师模型PS_PL局部迁移.md) |
 | PS full 老师与开发工具 | [老师运行入口](../project/board/teacher_hands/README.md)、[工具说明](../project/scripts/keypoints/README.md) |

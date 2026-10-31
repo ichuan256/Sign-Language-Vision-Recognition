@@ -1,8 +1,9 @@
 # FPGA 与板端模块
 
+- **[当前状态](../docs/当前状态.md)**：最近部署、实屏验收、运行/暂停状态与接手顺序；旧PID和旧固件记录不能作为当前身份。
 - [当前方案：PS 老师网络的 PL 局部加速](../docs/方案/04_老师模型PS_PL局部迁移.md)
 - [PS full 老师运行入口](board/teacher_hands/README.md)、[模型图与候选证据](analysis/teacher_partition_20261028/README.md)
-- [OV5640 → HDMI 720p 本地候选](board/ov5640_snapshot/HDMI_PREVIEW.md)：内部时序和配对校验通过；本轮板卡未开机，实际显示待验收。[验证记录](analysis/ov5640_hdmi_20261028/README.md)
+- [OV固件与采集入口](board/ov5640_snapshot/README.md)：纯抓图、单目HDMI、视听候选分别核验；[三栏现场记录](analysis/av_three_panel_20261031/README.md)、[历史双目实测](analysis/stereo_web_20261031/README.md)。
 - [开发工具入口](scripts/keypoints/README.md)
 - [历史 lite 整网 PL 实测](analysis/keypoints_pl_20261026/stream_wide.md)：不是 full 老师局部加速结果。
 - [历史 R3 分类器](analysis/r3/README.md)、[移植验收](M0_移植清单.md)、[W6 固件](board/w6/README.md)

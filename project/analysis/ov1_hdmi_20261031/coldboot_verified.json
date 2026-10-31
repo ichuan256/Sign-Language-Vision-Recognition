@@ -1,0 +1,11 @@
+{
+  "boot_id": "e76d7158-8738-4d79-bed8-18bba720d2d4",
+  "marker": {
+    "boot_id": "e76d7158-8738-4d79-bed8-18bba720d2d4",
+    "bit_sha256": "37189d24a396326dd849a55ed135dd3c97287ada3a2a0c562d2718cae7610beb"
+  },
+  "fclk0_mhz": 100.0,
+  "camera1": true,
+  "HDMI": true,
+  "runtime_download": false
+}

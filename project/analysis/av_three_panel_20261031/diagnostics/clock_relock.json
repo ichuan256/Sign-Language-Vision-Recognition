@@ -1,0 +1,41 @@
+{
+  "before": {
+    "0x0": 1,
+    "0x4": 1,
+    "0x8": 65,
+    "0xc": 1690,
+    "0x10": 0,
+    "0x14": 8388,
+    "0x18": 3484394497,
+    "0x1c": 10682623
+  },
+  "after": {
+    "0x0": 1,
+    "0x4": 1,
+    "0x8": 65,
+    "0xc": 1690,
+    "0x10": 0,
+    "0x14": 8388,
+    "0x18": 3484394497,
+    "0x1c": 10682623
+  },
+  "reconfiguration_completed": true,
+  "VDMA_status": "0x11000",
+  "owner": {
+    "pid": 2604,
+    "pid_start_ticks": 31859,
+    "frame_address": 364904448,
+    "frame_bytes": 2764800,
+    "width": 1280,
+    "height": 720,
+    "boot_id": "bf1907da-f7b9-47ea-a7ed-e30c75f834d9",
+    "bit_sha256": "355c08eda3329c07fce6936d495f1d52151697b557f9796c3ebfb23ffbd1828e",
+    "active": true,
+    "closing": false,
+    "pattern": "white/red/green/blue",
+    "downloaded": false
+  },
+  "downloaded": false,
+  "frame_address_preserved": true,
+  "note": "New DRP completion requires MMCM LOCKED during this cycle; not a continuous lock monitor"
+}

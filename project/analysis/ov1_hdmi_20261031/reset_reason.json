@@ -1,0 +1,20 @@
+{
+  "reboot_status_raw": "0x400000",
+  "boot_id": "114765b1-3d7b-452b-aad0-4260abbcb947",
+  "watchdog": {},
+  "temperature": {},
+  "pstore": {},
+  "previous_kernel": {
+    "timed_out": true
+  },
+  "current_dmesg": {
+    "returncode": 0,
+    "stdout": "zocl-drm axi:zyxclmm_drm: error -ENXIO: IRQ index 0 not found\n[drm] Memory 0 is not reserved in device tree. Will allocate memory from CMA",
+    "stderr": ""
+  },
+  "boot_service": {
+    "returncode": 0,
+    "stdout": "Result=success\nExecMainStatus=0\nActiveState=active\nSubState=exited\n",
+    "stderr": ""
+  }
+}

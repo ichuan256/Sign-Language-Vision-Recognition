@@ -4,6 +4,8 @@ PYNQ-Z2 手语识别系统·新主线：**视频输入 → 高动态手势识别
 （HDMI/音频资产自 `pld-sign-glove` 移植，不使用传感器手套识别线）。识别管线与输入源解耦，
 目标输入为单目 OV5640；录制视频与相机采集/显示候选分别验证，采集状态按硬件证据核对。历史 W6 固件含闲置传感器/KWS 实例，新候选按资源预算处理。
 
+**接手先读[当前状态](docs/当前状态.md)**：当前AV候选的彩条、静态三栏和实时视觉已实屏确认；音频交付、指定语音闭环和稳定性继续联调，运行/暂停状态以统一入口为准。
+
 ## 仓库结构
 
 | 目录 | 内容 |
@@ -11,16 +13,17 @@ PYNQ-Z2 手语识别系统·新主线：**视频输入 → 高动态手势识别
 | [ASR/](ASR/README.md) | 音频识别、上位机启动器与音频演示 |
 | [docs/](docs/README.md) | 总体方案、接口约定与协作记录 |
 | [vision/](vision/README.md) | 当前关键点代码，以及保留的旧词语/网页管线；入口解释代码来源与目录职责 |
-| [project/](project/README.md) | FPGA/板端工程、R3 量化与 HLS、构建缓存与日志 |
+| [project/](project/README.md) | FPGA/板端工程、教师局部迁移工具、历史R3/HLS证据与构建日志 |
 
 根目录仅保留这四个主目录，以及 `README.md`、`AGENTS.md` 和 Git 必需文件。
 
 共享素材交接见 [共享包说明](docs/协作/共享包说明.md)，网页依赖在
 `vision/src/vision/webapp/requirements.txt`。新增清单、导出数据、便携工具均放入对应目录，避免根目录平铺。
 
-## 当前阅读入口（2026-10-28）
+## 当前阅读入口
 
-- **当前任务**：[PS 教师网络的 PL 局部加速方案](docs/方案/04_老师模型PS_PL局部迁移.md)。冻结 full 老师结构与权重，首轮只迁一个热点子图；停止学生训练、蒸馏和 QAT。
+- **现场状态与控制**：[统一状态](docs/当前状态.md)、[演示控制台](docs/演示控制台.md)、[旧版与三栏差异](docs/视听三栏_旧版对比_20261101.md)。
+- **视觉加速**：[PS教师网络PL局部加速方案](docs/方案/04_老师模型PS_PL局部迁移.md)。冻结full教师结构与权重，首轮只迁一个热点子图；停止学生训练、蒸馏和QAT。
 - **老师运行入口**：[板端 full palm + landmark](project/board/teacher_hands/README.md)；[实际模型图与候选边界](project/analysis/teacher_partition_20261028/README.md)。新局部加速尚未实现，静态 MAC 不是板端速度。
 - **PC 关键点工具**：[启动与指标](vision/src/vision/keypoints/README.md)。PC 回放/推理与板端独立推理分开计时。
 - **系统与工具**：[总体方案](docs/方案/01_PYNQ-Z2移植与视频手势识别总体方案.md)、[开发工具入口](project/scripts/keypoints/README.md)、[操作约束](AGENTS.md)。
@@ -29,16 +32,16 @@ PYNQ-Z2 手语识别系统·新主线：**视频输入 → 高动态手势识别
 
 ## 已验收与待验收范围
 
-- **M0 移植**：HDMI+音频合一工程已从本仓库干净重建出 bitstream 并**通过板端验收**
+- **历史M0移植**：当时HDMI+音频合一工程从本仓库干净重建，并通过对应W6板端验收
   （部署哈希一致、720p 画面目视确认、LINE IN 左声道信号正常）；
   证据见 [移植验收](project/M0_移植清单.md)。
-- **BTN0 一键启动**：通电后按板载 BTN0，约 1 秒开始音频识别演示（ASR 模型 PC 开机预载，
-  板端 button-watch.service 监听按键）。链路与用法见 `AGENTS.md` §4b。
+- **历史W6 BTN0**：曾实现按键启动电脑ASR及HDMI演示；最近OV候选不含该按钮链，旧监听已禁用。仅对应旧固件的用法见`AGENTS.md` §4b。
 - **历史 M1 识别基线**：8 类 28 条已审定精剪片段，DTW 留出法基线已跑通；
   滑窗实时识别演示（文件源流式输入）端到端命中。结果与口径说明见
   `vision/src/vision/m1/README.md`。
-- **OV5640 → HDMI 720p 本地候选（2026-10-28）**：[预览启动说明](project/board/ov5640_snapshot/HDMI_PREVIEW.md)、[固件与验证记录](project/analysis/ov5640_hdmi_20261028/README.md)。新固件已完成综合/实现、内部时序与配对校验；本轮板卡未开机，尚未部署或进行屏幕验收。
-- **本轮待验收**：PS 老师同条件基线、算子剖析、单段 PL 接入、全部输出一致性和端到端净提速；真实摄像头与身体网络分别核对，不计入手部迁移已完成范围。
+- **OV显示**：[固件兼容关系](project/board/ov5640_snapshot/README.md)。当前AV候选的720p彩条、静态三栏和实时视觉已获实屏确认；指定语音、字幕及对应手语播放的联合验收仍待完成。
+- **语音词表**：[最新扩展](docs/语音词表扩展_cfx567_20261031.md)，557项映射、575种写法、563份视频，SD同步核验完成；最近固件的视听联合播放尚待验收。
+- **教师迁移**：P1已验证PS后处理等价优化与边界重放，下一步测CPU分区接图及拆分损耗，再决定HLS；实际PL接入和端到端净收益未完成。真实相机、PC Holistic与PS手部教师分别验收。
 
 ## 快速开始
 
@@ -46,7 +49,8 @@ PYNQ-Z2 手语识别系统·新主线：**视频输入 → 高动态手势识别
 # PC 关键点工具（不作为本轮板端 PS 基线；输出目录必须是新的）
 F:\PLD\.venv-vision\Scripts\python.exe -X utf8 -m vision.keypoints.live_demo --source "replay:<视频.mp4>" --loop --fps 20 --seconds 60 --headless --output project/_tmp/keypoints/replay_new
 
-# FPGA 构建（Vivado 2024.1，必须走 cmd 批处理）
+# 历史W6构建示例，仅用于该旧固件，不生成最近OV视听候选
+# Vivado 2024.1，必须走cmd批处理；最近候选看发布包自身构建记录
 project\fpga\scripts\run_w6_hdmi.bat
 project\fpga\scripts\launch_w6_build.bat
 ```

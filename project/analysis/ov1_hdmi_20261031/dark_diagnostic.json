@@ -1,0 +1,27 @@
+{
+  "boot_id": "114765b1-3d7b-452b-aad0-4260abbcb947",
+  "now": 1746483610.8277705,
+  "monotonic": 236.042476055,
+  "files": {
+    "color_probe.json": {
+      "text": "{\"pid\": 22262, \"pid_start_ticks\": 314320, \"frame_address\": 364904448, \"frame_bytes\": 2764800, \"width\": 1280, \"height\": 720, \"boot_id\": \"e76d7158-8738-4d79-bed8-18bba720d2d4\", \"bit_sha256\": \"37189d24a396326dd849a55ed135dd3c97287ada3a2a0c562d2718cae7610beb\", \"active\": true, \"closing\": false, \"pattern\": \"white/red/green/blue\", \"downloaded\": false}",
+      "mtime": 1746482382.7599955
+    },
+    "split_writer.json": {
+      "text": "{\"pid\": 23312, \"pid_start_ticks\": 327076, \"active\": true}",
+      "mtime": 1746482517.129995
+    },
+    "color_probe.stderr.log": {
+      "text": "",
+      "mtime": 1746480417.7099984
+    },
+    "live.json": {
+      "text": "{\n  \"active\": true,\n  \"physical_camera\": 1,\n  \"complete_frames\": 10596,\n  \"PC_frames_sent\": 2535,\n  \"HDMI_frames\": 11484,\n  \"elapsed_s\": 1264.1676614400003,\n  \"local_display_hz\": 9.084238072439453,\n  \"PC_connection_error\": null,\n  \"raw_unique_updates\": 7831,\n  \"compose_ms\": 90.00909000042157,\n  \"write_ms\": 67.8609359993061,\n  \"stable_frame_address\": 364904448,\n  \"HDMI_owner_pid\": 22262,\n  \"HDMI_reconfigured\": false,\n  \"in_place_updates\": true,\n  \"tearing_possible\": true,\n  \"raw_source_frame\": 10594,\n  \"PC_source_frame\": 10586,\n  \"downloaded\": false,\n  \"raw_waits_for_PC\": false\n}",
+      "mtime": 1746483781.2099934
+    },
+    "report.json": null,
+    "results.json": null
+  },
+  "processes": [],
+  "latest_run": "/home/xilinx/ov1_hdmi_20261031/captures/ui_1793445737230990900"
+}

@@ -24,7 +24,8 @@ from vision.keypoints.hdmi_link import HDMILink
 
 MODES={'teacher':'模式一 · 教师视频检测','pl':'模式二 · PL视频检测',
        'independent':'模式三 · 板端独立运行','audio':'听觉测试','camera':'视觉 · USB摄像头',
-       'ov5640':'视觉 · 板端OV5640（电脑预览）','idle':'已停止'}
+       'ov5640':'视觉 · 板端OV5640（电脑预览）','stereo':'视觉 · OV双路实时识别',
+       'single_hdmi':'视觉 · OV1 HDMI分屏','av':'视听同步 · HDMI三栏','idle':'已停止'}
 STAGE='/home/xilinx/independent_video_20261028'
 DEPLOY=ROOT/'project/_tmp/kp_stream_deploy_v2/deployment.json'
 OPENER=build_opener(ProxyHandler({}))
@@ -134,13 +135,12 @@ print(json.dumps({'processes':processes,'independent':state,'preview':preview,'r
         except OSError:pass
         # The OV worker handles SIGINT through the original DMA Halted path.
         # Signal before joining the host read, which may be waiting for a frame.
-        if self.state['mode']=='ov5640':
-            snapshot=self.board()
-            for pid in self.matching(snapshot,'demo_stream.py'):
-                self.line.ssh('kill -INT '+str(pid),sudo=True)
+        snapshot=self.board()
+        for name in ('demo_stream.py','stereo_stream.py','split_hdmi_stream.py'):
+            for pid in self.matching(snapshot,name):self.line.ssh('kill -INT '+str(pid),sudo=True)
         self.stop_worker()
         snapshot=self.board()
-        if self.matching(snapshot,'demo_stream.py'):
+        if any(self.matching(snapshot,name) for name in ('demo_stream.py','stereo_stream.py','split_hdmi_stream.py')):
             raise RuntimeError('OV5640进程仍保留DMA缓冲；停止状态未确认，请检查板端，不会强杀')
         # Never kill an unowned neural worker in an active DMA call.
         if self.matching(snapshot,'stream_hand_board.py'):
@@ -167,20 +167,25 @@ print(json.dumps({'processes':processes,'independent':state,'preview':preview,'r
 from pathlib import Path
 boot=Path('/proc/sys/kernel/random/boot_id').read_text().strip()
 p=Path('/run/ov5640_snapshot_download_attempted')
-print(json.dumps({'ov5640_boot':p.exists() and p.read_text().strip()==boot}))
+dual=Path('/run/ov5640_stereo_boot.json')
+dual_boot=dual.exists() and json.loads(dual.read_text()).get('boot_id')==boot
+single=Path('/run/ov1_hdmi_boot.json')
+single_boot=single.exists() and json.loads(single.read_text()).get('boot_id')==boot
+print(json.dumps({'ov5640_boot':single_boot or dual_boot or (p.exists() and p.read_text().strip()==boot)}))
 """
         state=remote(self.args.board,code,timeout=20)
         if state['ov5640_boot']:
-            raise RuntimeError('本次启动加载的是OV5640独立采集固件，不含HDMI/音频/PL关键点；UI不会换固件，请使用OV5640电脑预览入口')
+            raise RuntimeError('本次启动加载的是OV5640独立采集固件，不能运行旧W6音频/关键点入口；请使用与本次冷启动匹配的OV模式')
         code="from pynq import PL; import json; print(json.dumps({'loaded':PL.bitfile_name}))"
         loaded=json.loads(self.line.ssh('env XILINX_XRT=/usr /usr/local/share/pynq-venv/bin/python -c '+shlex.quote(code)))['loaded']
         if not loaded or Path(loaded).name!='kws_hdmi.bit':
             raise RuntimeError('无法确认当前已加载HDMI/PL固件，请核对冷启动记录；UI不会访问硬件或加载位流')
 
-    def tunnel_for(self,video=False):
+    def tunnel_for(self,video=False,simultaneous=False):
         command=['ssh','-N','-o','BatchMode=yes','-o','ExitOnForwardFailure=yes',
             '-o','ConnectTimeout=8','-o','ServerAliveInterval=5','-o','ServerAliveCountMax=2']
-        if video:command+=['-R','18781:127.0.0.1:18780']
+        if simultaneous:command+=['-R','18781:127.0.0.1:18780','-L','18766:127.0.0.1:8766','-R','18765:127.0.0.1:8765']
+        elif video:command+=['-R','18781:127.0.0.1:18780']
         else:command+=['-L','18766:127.0.0.1:8766','-R','18765:127.0.0.1:8765']
         self.tunnel=self.spawn('tunnel_'+str(time.time_ns()),command+[self.args.board])
         time.sleep(1)
@@ -192,7 +197,15 @@ print(json.dumps({'ov5640_boot':p.exists() and p.read_text().strip()==boot}))
             '--output',str(self.worker_output),'--seconds','86400','--control-port','18783',
             '--mode','pl' if mode=='pl' else 'pc']
         if mode!='pl':command+=['--no-pl']
-        if mode=='camera':command+=['--camera',str(camera)]
+        if mode=='camera':
+            command+=['--camera',str(camera)]
+            pointer_path=ROOT/'vision/data/models/usb_sign_current.json'
+            if pointer_path.exists():
+                pointer=json.loads(pointer_path.read_text(encoding='utf-8'))
+                model=(ROOT/pointer['model']).resolve()
+                if not model.is_relative_to(ROOT/'vision/data/models'):raise RuntimeError('手语模型路径无效')
+                if __import__('hashlib').sha256(model.read_bytes()).hexdigest()!=pointer['sha256']:raise RuntimeError('手语模型SHA已改变')
+                command+=['--sign-model',str(model)]
         elif mode=='ov5640':command+=['--ov5640']
         self.worker=self.spawn('video',command,{'KEYPOINT_BOARD_SUDO_PASSWORD':self.password})
         def ready():
@@ -270,9 +283,159 @@ print(json.dumps({'verified':True,'boot_id':boot}))
             capture_output=True,text=True,timeout=25)
         if result.returncode:raise RuntimeError('OV5640流接口部署失败：'+result.stderr)
 
+    def stereo_preflight(self):
+        code="""import hashlib,json
+from pathlib import Path
+from pynq import PL
+root=Path('/home/xilinx/ov5640_stereo_20261031');m=json.loads((root/'release/release_manifest.json').read_text())
+boot=Path('/proc/sys/kernel/random/boot_id').read_text().strip()
+marker=json.loads(Path('/run/ov5640_stereo_boot.json').read_text())
+assert marker['boot_id']==boot and marker['bit_sha256']==m['files']['bit']['sha256'], 'Dual cold boot not confirmed'
+bit=root/'release'/m['files']['bit']['path']
+assert not PL.bitfile_name or Path(PL.bitfile_name).resolve()==bit.resolve(), 'Current firmware is not the dual candidate'
+for kind in ('bit','hwh'):
+    p=root/'release'/m['files'][kind]['path'];assert hashlib.sha256(p.read_bytes()).hexdigest()==m['files'][kind]['sha256']
+for channel in m['channels']:
+    # The module_ref pixel core has no AXI register interface; PYNQ omits it.
+    for key in ('dma_ip','control_ip'):assert channel[key] in PL.ip_dict, 'Missing physical camera AXI IP'
+print(json.dumps({'ready':True,'boot_id':boot}))
+"""
+        try:
+            json.loads(self.line.ssh('env XILINX_XRT=/usr /usr/local/share/pynq-venv/bin/python -c '+shlex.quote(code),sudo=True))
+        except Exception as exc:
+            raise RuntimeError('双路采集候选尚未冷启动部署；当前旧W6或单路固件不能提供双目视频。UI不会重载位流。 '+str(exc)[-900:])
+
+    def start_stereo(self):
+        self.worker_output=self.out/('stereo_'+str(time.time_ns()))
+        command=[self.args.vision_python,'-X','utf8','-m','vision.keypoints.stereo_demo',
+            '--output',str(self.worker_output),'--seconds','3600']
+        pointer=ROOT/'vision/data/models/usb_sign_current.json'
+        if pointer.exists():
+            data=json.loads(pointer.read_text(encoding='utf-8'));model=(ROOT/data['model']).resolve()
+            if not model.is_relative_to(ROOT/'vision/data/models') or __import__('hashlib').sha256(model.read_bytes()).hexdigest()!=data['sha256']:
+                raise RuntimeError('手语分类头SHA/路径不匹配')
+            command+=['--sign-model',str(model)]
+        self.worker=self.spawn('stereo',command,{'KEYPOINT_BOARD_SUDO_PASSWORD':self.password})
+        def ready():
+            if not alive(self.worker):raise RuntimeError('双路采集启动失败，请查看stereo.stderr.log和板端采集报告')
+            try:return json.loads(fetch('http://127.0.0.1:18780/state'))['frames_published']>0
+            except OSError:return False
+        self.wait_until(ready,100,'尚未同时收到左右相机的完整帧；请检查采集报告')
+
+    def single_hdmi_preflight(self,audio=False):
+        code="""import hashlib,json
+from pathlib import Path
+from pynq import PL
+root=Path('/home/xilinx/ov1_hdmi_20261031');m=json.loads((root/'release/release_manifest.json').read_text())
+boot=Path('/proc/sys/kernel/random/boot_id').read_text().strip()
+marker=json.loads(Path('/run/ov1_hdmi_boot.json').read_text())
+assert marker['boot_id']==boot and marker['bit_sha256']==m['files']['bit']['sha256'], 'OV1 HDMI cold boot not confirmed'
+assert not PL.bitfile_name or Path(PL.bitfile_name).resolve()==(root/'release'/m['files']['bit']['path']).resolve()
+for kind in ('bit','hwh'):
+    f=root/'release'/m['files'][kind]['path'];assert hashlib.sha256(f.read_bytes()).hexdigest()==m['files'][kind]['sha256']
+for name in ('capture_dma','camera_control','video/axi_vdma'):assert name in PL.ip_dict, 'Missing OV1 HDMI AXI IP'
+if AUDIO_REQUIRED:
+    assert m['design'].get('audio_input') is True and m['design'].get('audio_base')==0x43c00000, 'Current firmware has no audio input'
+    assert PL.ip_dict['audio_codec_ctrl_0']['phys_addr']==0x43c00000, 'Missing compatible audio AXI IP'
+print(json.dumps({'ready':True,'boot_id':boot}))
+""".replace('AUDIO_REQUIRED',repr(audio))
+        json.loads(self.line.ssh('env XILINX_XRT=/usr /usr/local/share/pynq-venv/bin/python -c '+shlex.quote(code),sudo=True))
+
+    def start_single_hdmi(self,simultaneous=False):
+        self.tunnel_for(video=True,simultaneous=simultaneous)
+        if simultaneous:self.start_av_audio()
+        self.ensure_single_hdmi_owner()
+        self.worker_output=self.out/('single_hdmi_'+str(time.time_ns()))
+        command=[self.args.vision_python,'-X','utf8','-m','vision.keypoints.single_hdmi_demo',
+                 '--output',str(self.worker_output),'--seconds','3600']
+        if simultaneous:command+=['--av']
+        pointer=ROOT/'vision/data/models/usb_sign_current.json'
+        if pointer.exists():
+            data=json.loads(pointer.read_text(encoding='utf-8'));model=(ROOT/data['model']).resolve()
+            if not model.is_relative_to(ROOT/'vision/data/models') or __import__('hashlib').sha256(model.read_bytes()).hexdigest()!=data['sha256']:
+                raise RuntimeError('手语分类头SHA/路径不匹配')
+            command+=['--sign-model',str(model)]
+        self.worker=self.spawn('single_hdmi',command,{'KEYPOINT_BOARD_SUDO_PASSWORD':self.password})
+        def ready():
+            if not alive(self.worker):raise RuntimeError('OV1 HDMI启动失败，请检查single_hdmi.stderr.log和板端报告')
+            try:return json.loads(fetch('http://127.0.0.1:18780/state'))['frames_published']>0
+            except OSError:return False
+        self.wait_until(ready,180 if simultaneous else 100,'OV1尚未传回完整帧，请检查板端HDMI和采集报告')
+        if simultaneous:app_action(8765,'start')
+
+    def start_av_audio(self):
+        if not self.line.pids('board_audio_stream.py'):
+            self.line.start_remote('board_audio_stream.py','--av-manifest /home/xilinx/ov1_hdmi_20261031/release/release_manifest.json')
+        def healthy():
+            try:return fetch('http://127.0.0.1:18766/health')==b'OK'
+            except OSError:return False
+        self.wait_until(healthy,30,'板端音频接口未就绪，请检查board_audio_stream.py.log')
+        try:existing=json.loads(fetch('http://127.0.0.1:8765/state'))
+        except OSError:existing=None
+        if existing is None:
+            self.audio_app=self.spawn('audio',[self.args.audio_python,'-X','utf8',str(ROOT/'ASR/audio_loop.py'),
+                '--model',self.args.model,'--manifest',str(ROOT/'ASR/phrases_sd.json'),
+                '--board-audio-url','http://127.0.0.1:18766/pcm'])
+        def ready():
+            try:
+                state=json.loads(fetch('http://127.0.0.1:8765/state'))
+                expected=__import__('hashlib').sha256((ROOT/'ASR/phrases_sd.json').read_bytes()).hexdigest()
+                if state.get('configured_input')!='board_http' or state.get('lexicon_manifest_sha256')!=expected:
+                    raise RuntimeError('已有语音服务的输入或词表不同，请先正常退出该服务')
+                return bool(fetch('http://127.0.0.1:8765/panel.jpg'))
+            except OSError:return False
+        self.wait_until(ready,120,'语音模型/词表及右栏显示未就绪')
+
+    def camera_preview(self,path):
+        from pathlib import PurePosixPath
+        value=PurePosixPath(path)
+        if str(value.parent)!='/home/xilinx/ov1_hdmi_20261031/captures' or not re.fullmatch(r'ui_\d+',value.name):
+            raise RuntimeError('板端预览路径无效')
+        code="""import base64,json
+from pathlib import Path
+run=Path(RUN_PATH)
+state=json.loads((run/'live.json').read_text())
+image=(run/'latest.jpg').read_bytes();assert len(image)<2*1024*1024
+print(json.dumps(dict(display=state,jpeg=base64.b64encode(image).decode())))
+""".replace('RUN_PATH',repr(str(value)))
+        return remote(self.args.board,code,timeout=15)
+
+    def ensure_single_hdmi_owner(self):
+        expected=__import__('hashlib').sha256((ROOT/'project/board/ov5640_snapshot/hdmi_color_probe.py').read_bytes()).hexdigest()
+        code="""import hashlib,json,subprocess,time
+from pathlib import Path
+from pynq import MMIO
+root=Path('/home/xilinx/ov1_hdmi_20261031');marker=root/'color_probe.json'
+boot=Path('/proc/sys/kernel/random/boot_id').read_text().strip()
+def live():
+    if not marker.exists():return None
+    value=json.loads(marker.read_text());status=Path('/proc')/str(value['pid'])/'stat'
+    if value.get('active') and value.get('boot_id')==boot and status.exists() and int(status.read_text().split()[21])==value['pid_start_ticks']:
+        assert not value.get('closing'), 'HDMI owner is closing; wait for safe shutdown'
+        return value
+    return None
+owner=live();reused=bool(owner)
+if owner is None:
+    assert MMIO(0x40400000,65536).read(0x34)&1 and MMIO(0x44a00000,65536).read(4)&1, 'Unowned DMA still active; will not reconfigure output'
+    script=root/'hdmi_color_probe.py'
+    assert hashlib.sha256(script.read_bytes()).hexdigest()==EXPECTED, 'HDMI owner helper SHA mismatch'
+    with (root/'color_probe.stdout.log').open('ab') as out,(root/'color_probe.stderr.log').open('ab') as err:
+        child=subprocess.Popen(['/usr/local/share/pynq-venv/bin/python','-u',str(script)],stdin=subprocess.DEVNULL,stdout=out,stderr=err,start_new_session=True)
+    deadline=time.monotonic()+25
+    while time.monotonic()<deadline:
+        owner=live()
+        if owner and owner['pid']==child.pid:break
+        assert child.poll() is None, 'HDMI owner failed; inspect color_probe.stderr.log'
+        time.sleep(.2)
+    assert owner and owner['pid']==child.pid, 'HDMI owner not ready'
+print(json.dumps(dict(owner_pid=owner['pid'],frame_address=owner['frame_address'],reused=reused,downloaded=False)))
+""".replace('EXPECTED',repr(expected))
+        result=json.loads(self.line.ssh('env XILINX_XRT=/usr /usr/local/share/pynq-venv/bin/python -c '+shlex.quote(code),sudo=True))
+        self.event('single_hdmi_owner',**result)
+
     def request(self,mode,camera=0,cold_boot=False):
         if mode not in MODES or not isinstance(camera,int) or not 0<=camera<=9:raise ValueError('无效模式或摄像头编号')
-        if mode=='ov5640' and cold_boot is not True:raise ValueError('请先确认OV5640配套固件已在本次冷启动加载')
+        if mode in ('ov5640','stereo','single_hdmi','av') and cold_boot is not True:raise ValueError('请先确认OV5640配套固件已在本次冷启动加载')
         if not self.transition.acquire(blocking=False):raise RuntimeError('正在切换，请等待当前操作完成')
         self.update(busy=True,message='准备切换至'+MODES[mode],error=None)
         def work():
@@ -280,6 +443,9 @@ print(json.dumps({'verified':True,'boot_id':boot}))
             try:
                 self.event('switch_requested',mode=mode,camera_index=camera)
                 if mode=='ov5640':self.ov5640_preflight()
+                elif mode=='stereo':self.stereo_preflight()
+                elif mode=='single_hdmi':self.single_hdmi_preflight()
+                elif mode=='av':self.single_hdmi_preflight(audio=True)
                 elif mode!='idle':self.w6_preflight()
                 mutating=True
                 self.quiesce();self.update(mode='idle',title=MODES['idle'])
@@ -287,6 +453,9 @@ print(json.dumps({'verified':True,'boot_id':boot}))
                 if mode in ('teacher','pl','camera','ov5640'):self.start_video(mode,camera)
                 elif mode=='independent':self.start_independent()
                 elif mode=='audio':self.start_audio()
+                elif mode=='stereo':self.start_stereo()
+                elif mode=='single_hdmi':self.start_single_hdmi()
+                elif mode=='av':self.start_single_hdmi(simultaneous=True)
                 self.update(mode=mode,title=MODES[mode],camera_index=camera,message='运行中' if mode!='idle' else '已停止，HDMI保留最后一帧',error=None)
                 self.event('switch_completed',mode=mode)
             except Exception as exc:
@@ -321,10 +490,14 @@ print(json.dumps({'verified':True,'boot_id':boot}))
                     elif mode=='audio':
                         details=json.loads(fetch('http://127.0.0.1:8765/state'))
                         jpeg=fetch('http://127.0.0.1:8765/frame.jpg')
-                    elif mode in ('teacher','pl','camera','ov5640'):
+                    elif mode in ('teacher','pl','camera','ov5640','stereo','single_hdmi','av'):
                         if not alive(self.worker):raise RuntimeError('视频进程已结束，请重新启动')
                         details=json.loads(fetch('http://127.0.0.1:18783/state'))
                         jpeg=fetch('http://127.0.0.1:18780/frame.jpg')
+                        if mode=='av':
+                            preview=self.camera_preview(details['board_capture_path'])
+                            details['display']=preview['display'];details['audio']=json.loads(fetch('http://127.0.0.1:8765/state'))
+                            jpeg=base64.b64decode(preview['jpeg'])
                     if jpeg:self.preview=jpeg;self.preview_time=time.time()
                     self.update(details=details,preview_time=self.preview_time or None)
                 self.update(connected=True,board_boot_id=snapshot['boot_id'],last_poll=time.time())
@@ -359,7 +532,7 @@ def handler_for(controller,token):
                 size=int(self.headers.get('Content-Length','0'))
                 if not 0<size<=2048:raise ValueError('请求长度无效')
                 data=json.loads(self.rfile.read(size))
-                if data['mode']=='ov5640':controller.request(data['mode'],data.get('camera',0),data.get('cold_boot',False))
+                if data['mode'] in ('ov5640','stereo','single_hdmi','av'):controller.request(data['mode'],data.get('camera',0),data.get('cold_boot',False))
                 else:controller.request(data['mode'],data.get('camera',0))
                 self.send(b'{"accepted":true}','application/json',202)
             except (KeyError,ValueError) as exc:self.send(json.dumps({'error':str(exc)}).encode(),'application/json',400)

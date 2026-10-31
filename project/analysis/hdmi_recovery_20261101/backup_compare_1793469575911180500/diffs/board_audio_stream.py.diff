@@ -1,0 +1,40 @@
+--- before/board_audio_stream.py
++++ after/board_audio_stream.py
+@@ -1,5 +1,7 @@
+ """Serve current W6 LINE IN as mono PCM16, with no overlay download."""
+ import argparse
++import hashlib
++import json
+ import subprocess
+ import threading
+ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+@@ -14,8 +16,28 @@
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument('--port', type=int, default=8766)
+     parser.add_argument('--capture', default=str(Path(__file__).with_name('board_pcm_capture')))
++    parser.add_argument('--av-manifest',type=Path,help='Explicit cold-loaded OV1+HDMI+audio release')
+     args = parser.parse_args()
+-    overlay = Overlay('/home/xilinx/kws_hdmi.bit', download=False)
++    boot=Path('/proc/sys/kernel/random/boot_id').read_text().strip()
++    if args.av_manifest:
++        release=args.av_manifest.resolve().parent
++        manifest=json.loads(args.av_manifest.read_text())
++        assert manifest['design']['audio_input'] is True and manifest['design']['audio_base']==0x43c00000
++        marker=json.loads(Path('/run/ov1_hdmi_boot.json').read_text())
++        assert marker['boot_id']==boot and marker['bit_sha256']==manifest['files']['bit']['sha256']
++        files={}
++        for kind in ('bit','hwh'):
++            item=manifest['files'][kind];path=(release/item['path']).resolve()
++            assert path.parent==release and path.suffix=='.'+kind
++            assert hashlib.sha256(path.read_bytes()).hexdigest()==item['sha256']
++            files[kind]=path
++        assert files['bit'].with_suffix('.hwh')==files['hwh']
++        overlay=Overlay(str(files['bit']),download=False)
++    else:
++        marker=Path('/run/ov1_hdmi_boot.json')
++        if marker.exists() and json.loads(marker.read_text()).get('boot_id')==boot:
++            raise RuntimeError('OV firmware requires explicit verified --av-manifest; do not attach W6 metadata')
++        overlay = Overlay('/home/xilinx/kws_hdmi.bit', download=False)
+     description = overlay.ip_dict['audio_codec_ctrl_0']
+     if description['phys_addr'] != 0x43C00000:
+         raise RuntimeError('Unexpected audio hardware mapping')

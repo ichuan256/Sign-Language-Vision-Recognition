@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-01",
+  "source": "user_explicit_display_feedback",
+  "boot_id": "8eb07956-cc57-43f6-a252-cb0c4e106eb5",
+  "bit_sha256": "b3d53bb0586818f9f1ae7e1908547d7a99d4707a8ba9b64b1da3618d82d61f27",
+  "owner_pid": 1237,
+  "owner_start_ticks": 12657,
+  "frame_address": "0x15e00000",
+  "static_three_columns": {
+    "question": "三个独立区域是否清楚可见？",
+    "answer": "三栏清楚可见",
+    "passed": true
+  },
+  "live_visual": {
+    "question": "移动手时左栏原始画面和中栏对应画面是否更新？",
+    "answer": "三栏可见，左右画面会更新",
+    "passed": true
+  },
+  "real_speech_caption_and_playback_jointly_accepted": false,
+  "note": "User display feedback validates static/live visual layout; ASR counters and video-job counters alone do not validate the spoken phrase or its displayed sign clip."
+}

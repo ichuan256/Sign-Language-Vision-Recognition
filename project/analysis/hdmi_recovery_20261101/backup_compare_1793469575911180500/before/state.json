@@ -1,0 +1,27 @@
+{
+  "boot_id": "114765b1-3d7b-452b-aad0-4260abbcb947",
+  "old_bit_sha256": "37189d24a396326dd849a55ed135dd3c97287ada3a2a0c562d2718cae7610beb",
+  "old_files": {
+    "bit": {
+      "path": "ov5640_snapshot.bit",
+      "sha256": "37189d24a396326dd849a55ed135dd3c97287ada3a2a0c562d2718cae7610beb",
+      "size_bytes": 4045674
+    },
+    "hwh": {
+      "path": "ov5640_snapshot.hwh",
+      "sha256": "476283838eca44c73084032292357e0c44bc55a283cf69a5ee594ba4cb7f5942",
+      "size_bytes": 702690
+    }
+  },
+  "boot_py_sha256": "f96330498c2f488ae043d4d5e3b4a3e3eec313e2c3754481bee111eb190cd625",
+  "software": {
+    "/home/xilinx/ov1_hdmi_20261031/capture.py": "c05ad2e550346e2e83760951ba9fe967f6e98203158fe7971acee092f2d64bc0",
+    "/home/xilinx/ov1_hdmi_20261031/continuous_capture.py": "00e8c9723840c0b9323c26afa53fe277805982f9299111d33ca6afb9eed936f1",
+    "/home/xilinx/ov1_hdmi_20261031/hdmi_preview.py": "da2062515f82bae8a55d405c571a526c72b6b99b481d3390542979e1f5b975c0",
+    "/home/xilinx/ov1_hdmi_20261031/hdmi_color_probe.py": "ab8385037672b8678e70d9440e3a2f817026bdf0e42ac816f852c57a8e5662a4",
+    "/home/xilinx/ov1_hdmi_20261031/split_hdmi_stream.py": "f0d8b7f8921a80bd89845d1275890d40cfdd7fb23391a775703eebe620cd28ad",
+    "/home/xilinx/board_audio_stream.py": "d011a321b0d0414996c153104c83404eee184756e9ec5cd6d8238002c6d1f37e",
+    "/home/xilinx/board_pcm_capture.c": "f58361c75cc6eb5663f9168b5966e1b9ac11f145c302712d763999c2274c14b1",
+    "/home/xilinx/board_pcm_capture": "99d22429a9adc54027ca6f2956a0db020bb3158ba2b945ec1ff6678e2565281f"
+  }
+}

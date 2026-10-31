@@ -1,30 +1,43 @@
-# OV5640 OV1 单路抓图候选
+# OV5640 固件与采集入口
 
-> 相机画面接 HDMI 的独立本地版本见 [HDMI 预览](HDMI_PREVIEW.md)。它需要新建的相机＋HDMI 固件，原有纯采集发布包不含 HDMI。2026-10-28 本轮板卡未开机，未部署或进行显示验收。
+最近板端状态统一看 **[当前状态](../../../docs/当前状态.md)**。当前AV HPD候选的720p彩条、静态三栏和实时视觉已实屏确认，codec和ASR已接入过；音频交付及指定语音闭环仍待验收，当前运行/暂停状态只看统一入口。
 
-> 工作区清理后，`release/` 为原 V15 本地候选，bit SHA256 `486a6c68523d18cbbe76d1b8b7edfba74e59194bacbb90a95a9df2cac1a82bbc`。V14及以前的发布包、构建和历史诊断记录已移到 Windows 回收站；当前构建与溯源证据保留在 `project/analysis/ov5640_color_20261027/build_v15_dvp/`。目录整理没有部署或重启板卡，候选状态不变。
+## 发布包兼容关系
 
-> 2026-10-28，移除 DVP 坏帧几何检测的新候选位于 `release_remove_pl_bad_frame_20261028/`，已部署到板端固定启动目录并由冷启动加载一次。bootpy 显示 FCLK0=100 MHz；板端哈希、manifest/HWH 校验通过。外部 DVP I/O 时序和真实相机采图尚未验收；构建与部署证据见 `project/analysis/ov5640_snapshot_20261028/deployment.md`。板端上一版文件保存在 `.backup_remove_pl_bad_frame_20261028/`。
+| 发布目录 | 能力与记录范围 |
+|---|---|
+| [release_av_hpd_20261101](release_av_hpd_20261101/release_manifest.json) | 当前硬件配对；OV1＋HDMI＋音频＋状态诊断，HPD输入；彩条和三栏视觉已确认，听觉联合质量未验收 |
+| [release_av_runtime_20261101](release_av_runtime_20261101/release_manifest.json) | 已部署的软件更新清单；bit/HWH同上，仅更新采样调度与JPEG发布；AV运行已恢复，交付率及语音闭环待复验 |
+| [release_hdmi_isolation_20261101](release_hdmi_isolation_20261101/release_manifest.json) | 无音频对照；彩条曾实屏确认，已备份；随后同一AV候选也通过，不能据此认定音频硬件导致此前黑屏 |
+| [release_av_status_20261031](release_av_status_20261031/release_manifest.json) | 历史状态诊断候选，尚未修正HPD方向，不继续作为当前接管清单 |
+| [release_av_20261031](release_av_20261031/release_manifest.json) | 历史首次视听合并候选，三栏无信号记录见现场报告 |
+| [release_hdmi](release_hdmi/release_manifest.json) | 历史单目＋HDMI候选，用户曾确认分屏和递增帧号；不含音频/lite关键点核 |
+| [release_remove_pl_bad_frame_20261028](release_remove_pl_bad_frame_20261028/release_manifest.json) | 历史纯抓图候选，不含HDMI/音频；移除DVP坏帧几何检测 |
+| [release](release/release_manifest.json) | 历史V15纯抓图候选，不含HDMI/音频；不是最近部署 |
 
+各包的bit、HWH、helper和manifest须按自身清单成对使用。双路是另一个[独立发布包](../ov5640_stereo/README.md)。
 
+实时接入使用`demo_stream.py`、`split_hdmi_stream.py`和电脑侧`vision.keypoints`；[单目分屏机制](../../../docs/OV单目HDMI分屏.md)、[视听现场记录](../../analysis/av_three_panel_20261031/README.md)分别保留历史验收和最近故障证据。[HDMI_PREVIEW.md](HDMI_PREVIEW.md)是早期独立本地预览入口，不是最近三栏流程。
 
-独立测试固件，只启动 OV1（左目），OV2 保持 RESET/PWDN。输出 1280×720 RGB565 小端，每帧 1,843,200 字节；板端生成 frame.png、frame.raw 和 capture.json。此固件不含 HDMI/音频/识别。
+## 历史纯抓图使用说明
+
+以下仅说明纯抓图候选，不是最近AV配对的运行命令。它只启动OV1（左目），OV2保持RESET/PWDN，输出1280×720 RGB565小端，每帧1,843,200字节；生成frame.png、frame.raw和capture.json，不含HDMI/音频/识别。
 
 ## 使用前提
 
 - 检查所用模块、板卡与 project/analysis/ov5640_stereo_20261026/physical_pin_map_20261027.json 一致。只在断电时接线，确认电源、电平、SCCB 上拉及模块时钟；不要让仍运行的旧 SPI 固件驱动相同引脚。
-- 本地 `release/` 仍是原 V15 候选；当前板卡已冷启动加载 `release_remove_pl_bad_frame_20261028/` 对应的新候选。bit/HWH/manifest 必须成对使用；真实摄像头、PS DDR DMA 集成和外部 I/O 时序仍待板上验收。
+- 本节使用的历史`release/`为V15，或显式选用对应的纯抓图包；不代表板卡已加载它。bit/HWH/manifest必须匹配，冷启动、真实采图及外部I/O验收须分别核对。
 - 抓图前使用新候选的 `release_manifest.json`，并确认 bootpy 的当前 boot/download 标记；不能直接在运行板上再次 Overlay(download=True)。
 - --assume-cold-boot 是操作者对已加载候选的明确确认，不是硬件身份检测。文件哈希和 PL 缓存不能证明运行的固件。程序检查元数据和现有 FCLK，但不能独立证明位流身份。
 
-## 板上抓图（候选已通过上述冷启动加载后）
+### 板上抓图（仅对应纯抓图候选已冷启动时）
 
 把 release/ 和 capture.py 放到板端同一测试目录。以下命令必须在修复候选已完成冷启动加载后执行：
 
     cd /home/xilinx/jupyter_notebooks/ov5640_snapshot
     sudo env XILINX_XRT=/usr /usr/local/share/pynq-venv/bin/python capture.py --manifest release/release_manifest.json --output captures/shot_no_bad_frame_001 --assume-cold-boot
 
-每次使用一个不存在的新输出目录；已有目录拒绝覆盖。成功时查看 captures/shot001/frame.png；从电脑复制该 PNG 即可观察图像。没有板上实拍前，不提供假 PNG。程序只用 Python 标准库编码 PNG，硬件访问时才导入 PYNQ；无需 Pillow。
+每次使用不存在的新输出目录，已有目录拒绝覆盖。成功时查看上述输出目录中的frame.png，从电脑复制即可观察。不提供伪造实拍图；程序仅用Python标准库编码PNG，硬件访问时才导入PYNQ，无需Pillow。
 
 ## 失败诊断
 
@@ -48,7 +61,7 @@
     project/scripts/ov5640/run_snapshot_build.bat <打印出的完整snapshot.xpr路径> <新的构建证据目录>
     python project/scripts/ov5640/package_snapshot.py --build <上述构建证据目录> --output <新的发布目录>
 
-RTL 回归入口 project/fpga/scripts/ov5640_snapshot_sim.tcl，仿真工程可重新打开。V14及以前的历史回归输出已移入回收站；保留当前RTL与软件测试入口，可按需重新运行。当前构建证据在 project/analysis/ov5640_color_20261027/build_v15_dvp/。仿真不包含实际 PS DDR/DMA 硅片，也不等于相机实测。
+纯抓图RTL回归入口为project/fpga/scripts/ov5640_snapshot_sim.tcl，V15构建证据在project/analysis/ov5640_color_20261027/build_v15_dvp/。最近AV候选以其自身release_manifest溯源；仿真不包含实际PS DDR/DMA硅片，不等于相机实测。
 
 外部 DVP 输入/RESET 输出延迟没有凭空补值，保留为板级验收事项；内部时序通过只表示已经约束的内部路径满足要求。
 

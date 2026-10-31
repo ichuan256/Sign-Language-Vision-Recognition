@@ -1,0 +1,52 @@
+{
+  "feedback": [
+    {
+      "bit": "355c",
+      "step": "pure color after audio configured",
+      "answer": "仍然完全黑屏"
+    },
+    {
+      "bit": "355c",
+      "step": "output enable low 300ms then high",
+      "answer": "仍完全黑屏／提示无信号"
+    },
+    {
+      "bit": "37189",
+      "boot": "4458b5f4-4fb9-4e5b-b217-d70345b21455",
+      "step": "known mono firmware normal reboot",
+      "answer": "仍黑屏／无信号"
+    },
+    {
+      "bit": "37189",
+      "step": "monitor off ten seconds and HDMI reseat, board/owner unchanged",
+      "answer": "已恢复彩条",
+      "answer_valid": false,
+      "corrected_outcome": "未恢复彩条",
+      "correction_source": "用户于2026-11-01明确说明原反馈为误输入，实际没有再恢复彩条",
+      "use_for_acceptance": false
+    },
+    {
+      "bit": "355c",
+      "boot": "bf1907da-f7b9-47ea-a7ed-e30c75f834d9",
+      "step": "AV restored, audio configured before color, monitor reopened",
+      "answer": "屏幕重开后仍无信号"
+    },
+    {
+      "bit": "355c",
+      "step": "separate HDMI reseat",
+      "answer": "拔插后仍无信号"
+    },
+    {
+      "bit": "355c",
+      "step": "clock DRP repeated, completion confirmed, frame owner preserved",
+      "answer": "仍无信号"
+    },
+    {
+      "bit": "355c",
+      "step": "640x480 color probe after safe MM2S halt",
+      "answer": "仍无信号"
+    }
+  ],
+  "triple_screen_accepted": false,
+  "real_spoken_loop_accepted": false
+}

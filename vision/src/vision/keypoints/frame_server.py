@@ -1,5 +1,6 @@
 """Loopback-only latest-JPEG sink compatible with the existing W6 HDMI receiver."""
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+import base64
 import json
 import threading
 import time
@@ -28,14 +29,16 @@ class LatestFrameServer:
         self.port = port
         self._lock = threading.Lock()
         self._jpeg = None
+        self._metadata = {}
         self._state = dict(frames_published=0, frame_requests=0, frame_id=None,
                            source_timestamp_s=None, size=[1280, 720], published_monotonic_s=None)
         self.server = self.thread = None
 
-    def publish(self, frame, frame_id, timestamp):
+    def publish(self, frame, frame_id, timestamp, metadata=None):
         jpeg = hdmi_jpeg(frame)
         with self._lock:
             self._jpeg = jpeg  # exactly one frame retained, no per-client frame queue
+            self._metadata = dict(metadata or {},frame_id=frame_id,source_timestamp_s=timestamp)
             self._state.update(frames_published=self._state['frames_published']+1,
                                frame_id=frame_id, source_timestamp_s=timestamp,
                                published_monotonic_s=time.monotonic())
@@ -48,6 +51,7 @@ class LatestFrameServer:
         owner = self
         class Handler(BaseHTTPRequestHandler):
             def do_GET(self):
+                metadata=None
                 with owner._lock:
                     if self.path == '/frame.jpg':
                         payload = owner._jpeg
@@ -56,6 +60,7 @@ class LatestFrameServer:
                         payload = payload if payload is not None else b'No frame published yet'
                         if status == 200:
                             owner._state['frame_requests'] += 1
+                            metadata=dict(owner._metadata)
                     elif self.path == '/state':
                         payload = json.dumps(owner._state).encode()
                         status, content_type = 200, 'application/json'
@@ -65,6 +70,8 @@ class LatestFrameServer:
                 self.send_header('Content-Type', content_type)
                 self.send_header('Content-Length', str(len(payload)))
                 self.send_header('Cache-Control', 'no-store')
+                if metadata is not None:
+                    self.send_header('X-Frame-Metadata',base64.b64encode(json.dumps(metadata,ensure_ascii=False).encode()).decode())
                 self.end_headers()
                 try:
                     self.wfile.write(payload)

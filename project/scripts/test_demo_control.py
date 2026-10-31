@@ -39,6 +39,10 @@ class HTTPContract(unittest.TestCase):
         with self.post({'mode':'camera','camera':2},'test-session') as response:self.assertEqual(response.status,202)
         self.controller.request.assert_called_once_with('camera',2)
 
+    def test_AV_request_preserves_cold_boot_guard(self):
+        with self.post({'mode':'av','cold_boot':True},'test-session') as response:self.assertEqual(response.status,202)
+        self.controller.request.assert_called_once_with('av',0,True)
+
     def test_conflicting_transition_is_reported(self):
         self.controller.request.side_effect=RuntimeError('正在切换')
         with self.assertRaises(HTTPError) as error:self.post({'mode':'pl'},'test-session')
@@ -72,6 +76,9 @@ class SafetyContract(unittest.TestCase):
     def test_OV5640_requires_explicit_cold_boot_confirmation(self):
         c=control.Controller.__new__(control.Controller)
         with self.assertRaisesRegex(ValueError,'冷启动'):c.request('ov5640')
+        with self.assertRaisesRegex(ValueError,'冷启动'):c.request('stereo')
+        with self.assertRaisesRegex(ValueError,'冷启动'):c.request('single_hdmi')
+        with self.assertRaisesRegex(ValueError,'冷启动'):c.request('av')
 
     def test_camera_firmware_blocks_W6_before_PYNQ_access(self):
         c=control.Controller.__new__(control.Controller)

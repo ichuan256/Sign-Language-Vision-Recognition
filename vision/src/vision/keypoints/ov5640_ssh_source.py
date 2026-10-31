@@ -12,14 +12,14 @@ import numpy as np
 
 
 class OV5640SSHSource:
-    def __init__(self,password,output):
+    def __init__(self,password,output,*,work='/home/xilinx/jupyter_notebooks/ov5640_snapshot',worker='demo_stream.py',worker_args=()):
         self.password=password;self.output=Path(output);self.stop=threading.Event()
         self.condition=threading.Condition();self.latest=None;self.error=None;self.sequence=0
         self.pid=None;self.started=time.monotonic()
-        work='/home/xilinx/jupyter_notebooks/ov5640_snapshot'
+        self.capture_output=work+'/captures/ui_'+str(time.time_ns())
         command=('sudo -S -p '+shlex.quote('')+' env XILINX_XRT=/usr /usr/local/share/pynq-venv/bin/python -u '+
-            work+'/demo_stream.py --manifest '+work+'/release/release_manifest.json --output '+
-            work+'/captures/ui_'+str(time.time_ns())+' --assume-cold-boot')
+            shlex.quote(work+'/'+worker)+' --manifest '+shlex.quote(work+'/release/release_manifest.json')+' --output '+
+            shlex.quote(self.capture_output)+' --assume-cold-boot'+''.join(' '+shlex.quote(arg) for arg in worker_args))
         environment=dict(os.environ);environment.pop('KEYPOINT_BOARD_SUDO_PASSWORD',None)
         self.log=(self.output/'ov5640.stderr.log').open('ab')
         self.process=subprocess.Popen(['ssh','-T','-o','BatchMode=yes','-o','ConnectTimeout=8',
@@ -55,17 +55,17 @@ class OV5640SSHSource:
                 packed=np.frombuffer(raw,np.uint8).reshape(720,1280,2)
                 bgr=cv2.cvtColor(packed,cv2.COLOR_BGR5652BGR)
                 with self.condition:
-                    self.latest=(bgr,header['frame'],time.monotonic()-self.started)
+                    self.latest=(bgr,header['frame'],header.get('board_capture_monotonic_s',time.monotonic()-self.started))
                     self.sequence+=1;self.condition.notify_all()
         except Exception as exc:
             with self.condition:self.error=str(exc);self.condition.notify_all()
 
-    def read(self):
+    def read(self,timeout=45):
         with self.condition:
-            self.condition.wait_for(lambda:self.latest is not None or self.error or self.stop.is_set(),timeout=45)
+            self.condition.wait_for(lambda:self.latest is not None or self.error or self.stop.is_set(),timeout=timeout)
             if self.latest is not None:
                 item=self.latest;self.latest=None;return item
-            raise RuntimeError(self.error or 'OV5640 has not delivered a complete frame in 45 seconds')
+            raise RuntimeError(self.error or 'OV5640 has not delivered a complete frame in %s seconds'%timeout)
 
     def release(self):
         if self.stop.is_set():return

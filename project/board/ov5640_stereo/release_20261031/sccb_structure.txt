@@ -1,0 +1,7 @@
+PASS ov1_scl W9 OBUFT I=GND T=dynamic
+SDA_READBACK_ENDPOINTS=system_i/camera/inst/g_left.u_sccb/u_read/rx_shift_reg[0]/D
+PASS ov1_sda Y8 OBUFT I=GND T=dynamic
+PASS ov2_scl V10 OBUFT I=GND T=dynamic
+SDA_READBACK_ENDPOINTS=system_i/camera_right/inst/g_right.u_sccb/u_read/rx_shift_reg[0]/D
+PASS ov2_sda V8 OBUFT I=GND T=dynamic
+

@@ -1,0 +1,104 @@
+{
+  "completed": true,
+  "active_manifest_sha256": "0589e18cd746ca468b52d50209249e2e620c8ccc9f8126c5f85e53a7d345bea7",
+  "old_phrases_behavior_preserved": 455,
+  "original_entries_unchanged": true,
+  "total_entries": 557,
+  "total_phrases": 575,
+  "total_videos": 563,
+  "SD_sync_completed": true,
+  "new_SD_files": 120,
+  "new_SD_bytes": 352456575,
+  "runtime": "not_running; next start loads active manifest",
+  "retired_PC_ASR_pids": [],
+  "FPGA_reprogrammed": false,
+  "camera_capture_started": false,
+  "ASR_model_changed": false,
+  "input_files": 126,
+  "validated_primary_files": 124,
+  "alternate_files_preserved": [
+    {
+      "label": "变化",
+      "source": "vision/video/done/cfx/567/变化/变化_P5.mp4",
+      "sha256": "59248987ef9c2e217d71bcf30792514400bbd64192c305bab7cc4b646301a6ef",
+      "bytes": 2707293,
+      "reason": "Explicit lesson suffix alternate; exact-label primary retained"
+    },
+    {
+      "label": "春天",
+      "source": "vision/video/done/cfx/567/春天/春天_P5.mp4",
+      "sha256": "111331458353b047728f5a2e72e8a92c6a531a20ad79d59a72c879acfd379f44",
+      "bytes": 2681849,
+      "reason": "Explicit lesson suffix alternate; exact-label primary retained"
+    }
+  ],
+  "duplicates": [
+    {
+      "label": "商店",
+      "source": "vision/video/done/cfx/567/商店/商店.mp4",
+      "sha256": "85fdcbcb9d93706bbff5809f347f42b60c051e797ebcb182f079f23e1afcb5bb",
+      "bytes": 2479308,
+      "media": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "frames": 72,
+        "duration_s": 3.0
+      },
+      "fully_decoded": true,
+      "action": "preserve_existing"
+    },
+    {
+      "label": "天气",
+      "source": "vision/video/done/cfx/567/天气/天气.mp4",
+      "sha256": "a89457056561f0c155f7fd4a48693c58d39b827e3a09884a411419a9c478f096",
+      "bytes": 3073323,
+      "media": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 30.0,
+        "frames": 84,
+        "duration_s": 2.8
+      },
+      "fully_decoded": true,
+      "action": "preserve_existing"
+    },
+    {
+      "label": "星期一",
+      "source": "vision/video/done/cfx/567/星期一/星期一.mp4",
+      "sha256": "b34d3167c4cf2df18b6d441ab376d37000fe257da1994dae745163ace93fcfa1",
+      "bytes": 3401402,
+      "media": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "frames": 96,
+        "duration_s": 4.0
+      },
+      "fully_decoded": true,
+      "action": "preserve_existing"
+    },
+    {
+      "label": "春节",
+      "source": "vision/video/done/cfx/567/春节/春节.mp4",
+      "sha256": "9b41de523ec090d51a7f032d7c5b69047dd3bdb0a65af8c7e2c4696f94171d8d",
+      "bytes": 3917814,
+      "media": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "frames": 96,
+        "duration_s": 4.0
+      },
+      "fully_decoded": true,
+      "action": "preserve_existing"
+    }
+  ],
+  "source_directory": "vision/video/done/cfx/567",
+  "new_entries": 120,
+  "SD_all_reread_SHA_verified": true,
+  "cache_regression_tests_passed": 4,
+  "source_inventory": "inventory.json",
+  "microphone_and_HDMI_started": false,
+  "notes": "New text-to-sign playback mappings; acoustic ASR model unchanged; real speech and sign semantics not newly validated"
+}

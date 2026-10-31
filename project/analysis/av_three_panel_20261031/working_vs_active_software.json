@@ -1,0 +1,59 @@
+{
+  "software": {
+    "capture.py": {
+      "before_sha256": "c05ad2e550346e2e83760951ba9fe967f6e98203158fe7971acee092f2d64bc0",
+      "active_sha256": "b3035de5b3f9e1a47da95b36724b816a4c332c0cb76b3039372e865f72248724",
+      "bytes_equal": false,
+      "LF_equal": true,
+      "AST_equal": true
+    },
+    "continuous_capture.py": {
+      "before_sha256": "00e8c9723840c0b9323c26afa53fe277805982f9299111d33ca6afb9eed936f1",
+      "active_sha256": "20fb9fffef9926e0cad7e184afd4054d01f524cfcc14e0cef7d3dd97309c44f8",
+      "bytes_equal": false,
+      "LF_equal": true,
+      "AST_equal": true
+    },
+    "hdmi_preview.py": {
+      "before_sha256": "da2062515f82bae8a55d405c571a526c72b6b99b481d3390542979e1f5b975c0",
+      "active_sha256": "79c2ccbdcaf0a32dca36fb865beb28b27142769be01d74c1696bb984bbdab89c",
+      "bytes_equal": false,
+      "LF_equal": true,
+      "AST_equal": true
+    },
+    "hdmi_color_probe.py": {
+      "before_sha256": "ab8385037672b8678e70d9440e3a2f817026bdf0e42ac816f852c57a8e5662a4",
+      "active_sha256": "ab8385037672b8678e70d9440e3a2f817026bdf0e42ac816f852c57a8e5662a4",
+      "bytes_equal": true,
+      "LF_equal": true,
+      "AST_equal": true
+    },
+    "split_hdmi_stream.py": {
+      "before_sha256": "f0d8b7f8921a80bd89845d1275890d40cfdd7fb23391a775703eebe620cd28ad",
+      "active_sha256": "5e82e6cc69a378b54c782b6f6f9cde6c358ee15a4239f872625f3844449dc43c",
+      "bytes_equal": false,
+      "LF_equal": false,
+      "AST_equal": false
+    },
+    "board_audio_stream.py": {
+      "before_sha256": "d011a321b0d0414996c153104c83404eee184756e9ec5cd6d8238002c6d1f37e",
+      "active_sha256": "866a9e3d271d411d9cea6b75cea9e27d2e88ad39c4f45ebd8f7ca5643196d761",
+      "bytes_equal": false,
+      "LF_equal": false,
+      "AST_equal": false
+    },
+    "board_pcm_capture.c": {
+      "before_sha256": "f58361c75cc6eb5663f9168b5966e1b9ac11f145c302712d763999c2274c14b1",
+      "active_sha256": "f58361c75cc6eb5663f9168b5966e1b9ac11f145c302712d763999c2274c14b1",
+      "bytes_equal": true,
+      "LF_equal": true
+    }
+  },
+  "boot_py_unchanged": true,
+  "boot_py_sha256": "f96330498c2f488ae043d4d5e3b4a3e3eec313e2c3754481bee111eb190cd625",
+  "boot_marker": {
+    "boot_id": "98f9b392-6b7c-4aa9-b0fb-677b4d54372c",
+    "bit_sha256": "e1a7c81eeeed41d9f8cb98d960d73cb7db1c012c126b2d1c9ae82edee5ed990e"
+  },
+  "read_only": true
+}

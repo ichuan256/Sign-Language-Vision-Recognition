@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-01",
+  "scope": "markdown_cleanup_only",
+  "files": [
+    "AGENTS.md",
+    "README.md",
+    "ASR/README.md",
+    "vision/README.md",
+    "vision/analysis/README.md",
+    "project/README.md",
+    "docs/README.md",
+    "docs/当前状态.md",
+    "docs/演示控制台.md",
+    "docs/OV单目HDMI分屏.md",
+    "docs/视听三栏_旧版对比_20261101.md",
+    "docs/方案/04_老师模型PS_PL局部迁移.md",
+    "project/board/ov5640_snapshot/README.md",
+    "project/board/ov5640_stereo/README.md",
+    "project/analysis/av_three_panel_20261031/README.md",
+    "project/analysis/av_three_panel_20261031/AGENTS状态快照_清理前_20261101.md",
+    "project/analysis/ov1_hdmi_20261031/README.md",
+    "project/analysis/ov1_hdmi_20261031/异常复位与显示恢复.md",
+    "project/analysis/stereo_web_20261031/README.md",
+    "project/analysis/docs_cleanup_20261101/README.md"
+  ],
+  "local_links_checked": 163,
+  "issues": [],
+  "firmware": {
+    "bit": {
+      "matches_manifest": true,
+      "included_in_current_state": true
+    },
+    "hwh": {
+      "matches_manifest": true,
+      "included_in_current_state": true
+    }
+  },
+  "lexicon": {
+    "mappings": 557,
+    "written_forms": 575,
+    "sha256": "0589e18cd746ca468b52d50209249e2e620c8ccc9f8126c5f85e53a7d345bea7",
+    "unique_video_files_including_sequences": 563,
+    "matches_documented_counts": true,
+    "active_matches_frozen": true
+  },
+  "runtime_actions": [],
+  "text_checks": {
+    "obsolete_asr_paths_removed": true,
+    "embedded_credential_removed_from_agents": true
+  }
+}

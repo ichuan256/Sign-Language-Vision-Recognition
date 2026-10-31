@@ -1,0 +1,13 @@
+{
+  "original_record": "live_verification.json",
+  "first_samples": 4723200,
+  "last_samples": 5116800,
+  "first_audio_monotonic_s": 17838.062,
+  "last_audio_monotonic_s": 17856.296,
+  "audio_interval_s": 18.23399999999674,
+  "corrected_samples_per_s": 21586.048042122977,
+  "superseded_samples_per_s": 15882.495359533299,
+  "reason": "Use audio acceptance timestamps; original denominator included the last board SSH snapshot wait",
+  "includes_stop_padding": false,
+  "user_screen_was_black": true
+}

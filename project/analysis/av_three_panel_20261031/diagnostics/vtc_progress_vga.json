@@ -1,0 +1,60 @@
+{
+  "owner": {
+    "pid": 7441,
+    "pid_start_ticks": 97572,
+    "frame_address": 362807296,
+    "frame_bytes": 921600,
+    "width": 640,
+    "height": 480,
+    "boot_id": "bf1907da-f7b9-47ea-a7ed-e30c75f834d9",
+    "bit_sha256": "355c08eda3329c07fce6936d495f1d52151697b557f9796c3ebfb23ffbd1828e",
+    "active": true,
+    "closing": false,
+    "pattern": "white/red/green/blue",
+    "downloaded": false
+  },
+  "vtc_control": "0x3f7ef07",
+  "samples": [
+    {
+      "vtc_after_clear": "0x10200",
+      "vtc_after_wait": "0x13200",
+      "vdma_after_wait": "0x11000"
+    },
+    {
+      "vtc_after_clear": "0x10200",
+      "vtc_after_wait": "0x13200",
+      "vdma_after_wait": "0x11000"
+    },
+    {
+      "vtc_after_clear": "0x10200",
+      "vtc_after_wait": "0x13200",
+      "vdma_after_wait": "0x11000"
+    },
+    {
+      "vtc_after_clear": "0x10200",
+      "vtc_after_wait": "0x13200",
+      "vdma_after_wait": "0x11000"
+    },
+    {
+      "vtc_after_clear": "0x10200",
+      "vtc_after_wait": "0x13200",
+      "vdma_after_wait": "0x11000"
+    },
+    {
+      "vtc_after_clear": "0x10200",
+      "vtc_after_wait": "0x13200",
+      "vdma_after_wait": "0x11000"
+    },
+    {
+      "vtc_after_clear": "0x10200",
+      "vtc_after_wait": "0x13200",
+      "vdma_after_wait": "0x11000"
+    },
+    {
+      "vtc_after_clear": "0x10200",
+      "vtc_after_wait": "0x13200",
+      "vdma_after_wait": "0x11000"
+    }
+  ],
+  "downloaded": false
+}

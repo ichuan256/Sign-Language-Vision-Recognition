@@ -1,0 +1,20 @@
+{
+  "enable_before": 1,
+  "enable_after": 1,
+  "owner_preserved": {
+    "pid": 13274,
+    "pid_start_ticks": 177284,
+    "frame_address": 364904448,
+    "frame_bytes": 2764800,
+    "width": 1280,
+    "height": 720,
+    "boot_id": "9a6b739f-497d-43dd-996a-446d3d8f76b5",
+    "bit_sha256": "355c08eda3329c07fce6936d495f1d52151697b557f9796c3ebfb23ffbd1828e",
+    "active": true,
+    "closing": false,
+    "pattern": "white/red/green/blue",
+    "downloaded": false
+  },
+  "downloaded": false,
+  "action": "HDMI output enable low 300ms then high; CMA and VDMA untouched"
+}

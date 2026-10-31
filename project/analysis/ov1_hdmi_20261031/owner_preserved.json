@@ -1,0 +1,31 @@
+{
+  "before": {
+    "pid": 22262,
+    "pid_start_ticks": 314320,
+    "frame_address": 364904448,
+    "frame_bytes": 2764800,
+    "width": 1280,
+    "height": 720,
+    "boot_id": "e76d7158-8738-4d79-bed8-18bba720d2d4",
+    "bit_sha256": "37189d24a396326dd849a55ed135dd3c97287ada3a2a0c562d2718cae7610beb",
+    "active": true,
+    "closing": false,
+    "pattern": "white/red/green/blue",
+    "downloaded": false
+  },
+  "after": {
+    "pid": 22262,
+    "pid_start_ticks": 314320,
+    "frame_address": 364904448,
+    "frame_bytes": 2764800,
+    "width": 1280,
+    "height": 720,
+    "boot_id": "e76d7158-8738-4d79-bed8-18bba720d2d4",
+    "bit_sha256": "37189d24a396326dd849a55ed135dd3c97287ada3a2a0c562d2718cae7610beb",
+    "active": true,
+    "closing": false,
+    "pattern": "white/red/green/blue",
+    "downloaded": false
+  },
+  "user_confirmed_color_bars": true
+}

@@ -1,0 +1,147 @@
+{
+  "date": "2026-10-31",
+  "active": true,
+  "web_url": "http://127.0.0.1:18790",
+  "user_confirmed_both_views_and_increasing_frame_ids": true,
+  "observed_interval_s": 10.032000000000153,
+  "rates": {
+    "1": {
+      "first_frame": 888,
+      "last_frame": 921,
+      "full_frame_updates_per_s": 3.2894736842104764
+    },
+    "2": {
+      "first_frame": 889,
+      "last_frame": 922,
+      "full_frame_updates_per_s": 3.2894736842104764
+    }
+  },
+  "latest": {
+    "mode": "stereo",
+    "active": true,
+    "input": "OV1 + OV2 physical cameras",
+    "inference": "two independent PC Holistic trackers",
+    "exposure_synchronized": false,
+    "depth_estimation": false,
+    "frames": 1842,
+    "cameras": {
+      "1": {
+        "frame": 921,
+        "teacher_ms": 30.99999999994907,
+        "received_age_s": 0.03099999999994907,
+        "capture_completed_monotonic_s": 1204.278219067,
+        "sign_recognition": {
+          "label": null,
+          "candidate": null,
+          "accepted": false,
+          "reason": "未检测到手",
+          "ranked": [],
+          "classification_results": 0,
+          "backend": "PC frozen Holistic + temporal DTW head",
+          "vocabulary": [
+            "再见",
+            "可以。",
+            "早上",
+            "没关系",
+            "谢谢"
+          ]
+        }
+      },
+      "2": {
+        "frame": 922,
+        "teacher_ms": 30.99999999994907,
+        "received_age_s": 0.20300000000042928,
+        "capture_completed_monotonic_s": 1204.108316957,
+        "sign_recognition": {
+          "label": null,
+          "candidate": null,
+          "accepted": false,
+          "reason": "未检测到手",
+          "ranked": [],
+          "classification_results": 0,
+          "backend": "PC frozen Holistic + temporal DTW head",
+          "vocabulary": [
+            "再见",
+            "可以。",
+            "早上",
+            "没关系",
+            "谢谢"
+          ]
+        }
+      }
+    },
+    "error": null,
+    "pair_completion_skew_s": 0.1699021100000664
+  },
+  "board": {
+    "capture_run": "/home/xilinx/ov5640_stereo_20261031/captures/ui_1793440042956220600",
+    "channels": {
+      "1": {
+        "attempts_logged": 990,
+        "outcomes": {
+          "valid": 935,
+          "accepted_loss": 55
+        },
+        "all_logged_DMA_shutdown_confirmed": true,
+        "last": {
+          "index": 989,
+          "elapsed": 252.6958603490001,
+          "outcome": "valid",
+          "camera_status": "0x12",
+          "dma_status": "0x1002",
+          "received_bytes": 1843200,
+          "expected_pixels": 921600,
+          "received_pixels": 921600,
+          "lost_pixels": 0,
+          "loss_percent": 0.0,
+          "threshold_percent": 5.0,
+          "accepted": true,
+          "invalid_reason": null,
+          "image_safe": true,
+          "dma_seconds": 0.04507717599994976,
+          "dma_shutdown_confirmed": true,
+          "attempt_seconds": 0.39648049199990965,
+          "consecutive_errors": 0
+        }
+      },
+      "2": {
+        "attempts_logged": 937,
+        "outcomes": {
+          "valid": 937
+        },
+        "all_logged_DMA_shutdown_confirmed": true,
+        "last": {
+          "index": 936,
+          "elapsed": 252.86144042299998,
+          "outcome": "valid",
+          "camera_status": "0x10012",
+          "dma_status": "0x1002",
+          "received_bytes": 1843200,
+          "expected_pixels": 921600,
+          "received_pixels": 921600,
+          "lost_pixels": 0,
+          "loss_percent": 0.0,
+          "threshold_percent": 5.0,
+          "accepted": true,
+          "invalid_reason": null,
+          "image_safe": true,
+          "dma_seconds": 0.04745954400004848,
+          "dma_shutdown_confirmed": true,
+          "attempt_seconds": 0.40262705200007076,
+          "consecutive_errors": 0
+        }
+      }
+    },
+    "boot_id": "f30dca2d-6ef8-41d8-bddd-bd163ba86289",
+    "marker": {
+      "boot_id": "f30dca2d-6ef8-41d8-bddd-bd163ba86289",
+      "bit_sha256": "20bcd0b0681529aadb55ddbc266e1f4f4f850ceba8f74d3ae8d3528bd9920cc2",
+      "post_download_validation_recovered": true
+    }
+  },
+  "PS_clock_MHz": 100,
+  "FPGA_downloads_this_boot": 1,
+  "exposure_synchronized": false,
+  "depth_estimation": false,
+  "interpretation": "Observed complete-frame delivery per physical camera, not exposure rate or general sign accuracy"
+}

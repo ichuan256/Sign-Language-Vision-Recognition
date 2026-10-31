@@ -1,0 +1,10 @@
+{
+  "boot_id": "a105798e-9796-4819-9070-06b6b4729513",
+  "marker": {
+    "boot_id": "a105798e-9796-4819-9070-06b6b4729513",
+    "bit_sha256": "b3d53bb0586818f9f1ae7e1908547d7a99d4707a8ba9b64b1da3618d82d61f27"
+  },
+  "fclk0_mhz": 100.0,
+  "video_status": true,
+  "downloaded": false
+}

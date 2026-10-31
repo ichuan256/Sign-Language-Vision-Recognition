@@ -1,0 +1,34 @@
+{
+  "before": {
+    "boot_id": "f30dca2d-6ef8-41d8-bddd-bd163ba86289",
+    "boot_py_sha256": "ff3a4b2931884c5de3dfd4df7107bdd259288b23b5a3ffa934852fbaa51f983b",
+    "button_watch_enabled": "disabled",
+    "network_prefix_sha256": "e85e0904d0d58f058637992a4e1fd0ee2e7ef8bd94b0e9ceef5c59b9e5cbee54"
+  },
+  "stage": "/home/xilinx/ov1_hdmi_20261031",
+  "files": {
+    "boot_ov1_hdmi.py": "f96330498c2f488ae043d4d5e3b4a3e3eec313e2c3754481bee111eb190cd625",
+    "capture.py": "c05ad2e550346e2e83760951ba9fe967f6e98203158fe7971acee092f2d64bc0",
+    "continuous_capture.py": "00e8c9723840c0b9323c26afa53fe277805982f9299111d33ca6afb9eed936f1",
+    "hdmi_preview.py": "da2062515f82bae8a55d405c571a526c72b6b99b481d3390542979e1f5b975c0",
+    "split_hdmi_stream.py": "483a5e5ab6f7c1d81171d25fa2d8089cde0cd2fbc6cb76a5ba8dec05a114b7a8",
+    "release/ov5640_snapshot.bit": "37189d24a396326dd849a55ed135dd3c97287ada3a2a0c562d2718cae7610beb",
+    "release/ov5640_snapshot.hwh": "476283838eca44c73084032292357e0c44bc55a283cf69a5ee594ba4cb7f5942",
+    "release/release_manifest.json": "bd368a6da83df957407fe331eb3bd0ac733895a16297d8a045e1ed9858183b88"
+  },
+  "startup_changed": false,
+  "rebooted": false,
+  "display": "OV1 raw left, exact-source PC Holistic annotation right; OV2 disabled",
+  "steps": [
+    "Stop dual capture safely and verify both DMA Halted",
+    "Verify current startup equals backup",
+    "Replace /boot/boot.py with staged boot_ov1_hdmi.py, preserving original network prefix",
+    "Normal reboot; load paired firmware once on new boot",
+    "Start single_hdmi in existing selector"
+  ],
+  "rollback": [
+    "Restore prepared_backup/boot.py",
+    "Normal reboot to restore dual candidate"
+  ],
+  "user_approval_required_for_startup_changes": true
+}

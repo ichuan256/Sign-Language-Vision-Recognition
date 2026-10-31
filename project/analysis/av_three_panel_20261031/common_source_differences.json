@@ -1,0 +1,219 @@
+[
+  {
+    "path": "project/algo/video_hls/color_convert/color_convert/solution1/impl/ip/component.xml",
+    "old_sha256": "5bb4b9f0c9bb0ae9fb645b63f5ec506a664d7f7f359625614b3f5411eda82fc6",
+    "new_sha256": "2779ec0641d650bb02609f84f1b81a7e34f0aaab29d99340dfa7ad8be8fc6a49",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/algo/video_hls/pixel_unpack/pixel_unpack/solution1/impl/ip/component.xml",
+    "old_sha256": "5634d55c045adc03db203b20ea1759d618ad9aa3cc122e005f96e82195b1bfde",
+    "new_sha256": "d124131fd3a6db7ebebca2e0289bd952a6207fc897d2707812f22975bd0efd94",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/board/ov5640_snapshot/capture.py",
+    "old_sha256": "c05ad2e550346e2e83760951ba9fe967f6e98203158fe7971acee092f2d64bc0",
+    "new_sha256": "b3035de5b3f9e1a47da95b36724b816a4c332c0cb76b3039372e865f72248724",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/board/ov5640_snapshot/continuous_capture.py",
+    "old_sha256": "00e8c9723840c0b9323c26afa53fe277805982f9299111d33ca6afb9eed936f1",
+    "new_sha256": "20fb9fffef9926e0cad7e184afd4054d01f524cfcc14e0cef7d3dd97309c44f8",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/board/ov5640_snapshot/hdmi_preview.py",
+    "old_sha256": "da2062515f82bae8a55d405c571a526c72b6b99b481d3390542979e1f5b975c0",
+    "new_sha256": "79c2ccbdcaf0a32dca36fb865beb28b27142769be01d74c1696bb984bbdab89c",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/constraints/ov5640_snapshot_io.json",
+    "old_sha256": "e8ec67adc7c9ce631a3e4ffc8fc266b4b535957bdf208b728c1e694f199cc054",
+    "new_sha256": "89c74ed57f6cf82ef0d730cdc86f7ca9b2058bd6093fa575d85942e1119cc342",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/rtl/ov5640_snapshot/ov5640_snapshot_packet.v",
+    "old_sha256": "5a04c886506d6ff37616d2284dc59b4df30957d711e439f9a411064c3e710e84",
+    "new_sha256": "5cf2f42452164d90b836234c6a11fe6112bdf364121d8cf62d82741e6711922e",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/rtl/ov5640_stereo/ov5640_known_config_sequencer.v",
+    "old_sha256": "38451ca43b25185056c2e07fa9561f8810120243d7f920bf6726de49d5bcb6ae",
+    "new_sha256": "d6864c2ca049632abc4bb589205f163b385cc18c93ead8de23de829f6fccd4a9",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/rtl/ov5640_stereo/ov5640_sccb_masked_write.v",
+    "old_sha256": "b9aab37a90df5fe676b1a0540f21c519eb925ef5406dedd67cd36b28f867eeba",
+    "new_sha256": "d4e76f63ba2c48b8cb78882d1713ddee268110e201ee41c98b0ea8516bd579bd",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/rtl/ov5640_stereo/ov5640_sccb_read.v",
+    "old_sha256": "9a5cec1a704c976754505200d85b88cc49d631e543ad252b13dbed2488c60593",
+    "new_sha256": "9e566ae3e5d5cf94b0feb99f9e66b5f6da3cc2215f545232836d10bdccd27325",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/rtl/ov5640_stereo/ov5640_sccb_register_access.v",
+    "old_sha256": "41e4c9a2ba86efe4accc9b8048d250944f40a193881a0adf8aaaac17e05763c5",
+    "new_sha256": "7c47e6f7a624b9cc4a586a246ae45d6cdbea3f0b5ef43a75449904f569ac4fe8",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/rtl/ov5640_stereo/ov5640_sccb_write.v",
+    "old_sha256": "0f6e2fea4631ffc00ae4cac2b36d33d0950dbd615a94dabb26ada41e0de7b933",
+    "new_sha256": "2b706bf5dbb0a9c0fda031f856f963e1cd4442d3724e5dfcc148f39b9da1c4eb",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/rtl/ov5640_stereo/ov5640_stereo_camera_init.v",
+    "old_sha256": "cb8657d3f66b5d34f02a086bdd01690799063bc92b3f125c47d967089818b1f6",
+    "new_sha256": "c8241ead839d59194f4e0c80a73044ba5c301349f9673db058f36f4cb7e57cd9",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/rtl/ov5640_stereo/ov5640_stereo_known_config.v",
+    "old_sha256": "01b170ac475a94c07905c523e2a1e8a2cfe67d3318b172191d243d91a7ce4b64",
+    "new_sha256": "9ccee197a12a707d9212c01d7b3df8e74e2484daf74ba0c15ed95255cbb68af2",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/rtl/ov5640_stereo/ov5640_stereo_sccb_pair.v",
+    "old_sha256": "b1e90d549853e8fa2af4d0661c36be5f6089652472fd21b7eeac6f58317f3bca",
+    "new_sha256": "9c276809fa6e878dea1b2b7286bbcb4136d80b6c463da062b0a5f1c06b424e05",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/scripts/load_ov5640_pins.tcl",
+    "old_sha256": "55ea3d8ab5c7fd14fb73e78a10695f3d44c9fe85dba6940f0150bacb2540ea10",
+    "new_sha256": "4ee31d624281e953c7990ed49f2245d6433129ccead1fe87baaffb6c3b884e65",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/scripts/ov5640_snapshot_hdmi_bd.tcl",
+    "old_sha256": "6d136e5815946f5beeb93f401922d643cf5902423548120f447f7b69341de48f",
+    "new_sha256": "a87ce04ab11ac1ca53d1db79c8ae3c0f788575be6c6b47b988cf6541d1d70316",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/scripts/ov5640_snapshot_hdmi_prepare.tcl",
+    "old_sha256": "ce1712e06f3fe6e2ecc15e19191e10d3d439ab12746773092ecb070ccfbab594",
+    "new_sha256": "a6defdf9569e714a914211732bc09040ecec0d08c908c0577c58d9c9acaa247b",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/scripts/ov5640_snapshot_prepare.tcl",
+    "old_sha256": "d4df9d57c0b90bdba0c79d69263f31a01efc2c9e4e3860684b5c51427e52b37d",
+    "new_sha256": "abd7f127563529483840b0cff35c70e8d1b43249ec66cd8e44cee90ce88dd8e0",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/scripts/ov5640_snapshot_provenance.tcl",
+    "old_sha256": "220e7b42d4165c1a367e473cffa80d43912b494015025d9714ce491a04b1d2a8",
+    "new_sha256": "692c227b7f83e742cabe2052697d550ae78787aaabc060fc52778631c4c01177",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/scripts/ov5640_snapshot_sccb_gate.tcl",
+    "old_sha256": "7747645f49af7793710fd2193e4e77498297b1d0d1ef72a3b1c15c4efac95a47",
+    "new_sha256": "b04d9ae68cf9882b3c5cb7afeba88eb48799116a6c7df49c087e00a334d1e1a7",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/fpga/xdc/ov5640_snapshot_hdmi.xdc",
+    "old_sha256": "3e31aec22ff4b6e5368a71e971c6791244311bc895261a8b634ca07f44d24dd6",
+    "new_sha256": "40f7a5ee725a510ccc8a29a4c65a5e55725763ea11a4a859002eade18ef40dfd",
+    "classification": "line_endings_only",
+    "reference": "git_HEAD"
+  },
+  {
+    "path": "project/fpga/xdc/ov5640_stereo_pins.xdc",
+    "old_sha256": "babad0e39e764be32c551e2390df2170efe8c701d9081d3ff8f01ddd5d80dd13",
+    "new_sha256": "b380335030b8be267534f9526c2b62f85b72c7ddf22e23093034a9816f7cb5be",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/scripts/ov5640/generate_pin_constraints.py",
+    "old_sha256": "b31744d48f7c807374e828c77116a6fccd27acad83b9d9cd69823adb357a4261",
+    "new_sha256": "742a199b2adc6b88212a78e972611e9c05eb46a18c455c399c0560e966131ba4",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/scripts/ov5640/package_snapshot.py",
+    "old_sha256": "220ccdfe1fa17aaab22b9e719a1ba5137435b62c7ee037779ae24ed244b05616",
+    "new_sha256": "dea005371327bd915b542cd3688ee10a0e5d3bf089bff7dfd02dfcb2787fefeb",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/scripts/ov5640/prepare_snapshot_ps.py",
+    "old_sha256": "b6d805262f3682dede56bfe5b181bea3898ae6dfad8f434ae5a646003f899c7e",
+    "new_sha256": "0f6322c819e5bad18ea7d7236ed7e11f056782597ccd0d8fdf7b51d3b0d97acf",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/scripts/ov5640/snapshot_io_timing.py",
+    "old_sha256": "199072bb183fb9cdfe7a94bbc60f561a329798a157a31159c008bb70dbaf6cb3",
+    "new_sha256": "3ff373b9d8b19228943896198e6ce664639b14c86610f8bc30f2c776055bcf51",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/scripts/ov5640/snapshot_provenance.py",
+    "old_sha256": "b710f39efac43126ee63b2b9004dd77748f0361dce50668b1481f948e337292d",
+    "new_sha256": "3aad2087fcf97f761c513dd6f398a66f088ae228697ebcd494b8f4f55b36d393",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/scripts/ov5640/test_package_hdmi.py",
+    "old_sha256": "5893ca571cabd7d33dcb4b6f32cf40d2f576c3d99f50f405078bb2b691a60963",
+    "new_sha256": "7f16992dd4252a8b5708b6aa0edeed021425bb959e2df55d4b03612f39b93b7d",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/scripts/ov5640/test_pin_constraints.py",
+    "old_sha256": "a110bb2bcf954afc8a2fd9ca45a74482f968b55f20152a59f37c745c43534558",
+    "new_sha256": "e090eed49d525ada39cdec8b48e90771e9d7027928373581653d483983ba6c53",
+    "classification": "line_endings_only",
+    "reference": "current"
+  },
+  {
+    "path": "project/scripts/ov5640/test_snapshot_hardening.py",
+    "old_sha256": "11693a5f27f3b8a71fa20a382ddbe78a4806fcbbca16f43244264d1bf6ea6b51",
+    "new_sha256": "1f30453dbf3c4739b4c202d80c0ebfccfe85c376e8108576ac81d2a82741b439",
+    "classification": "line_endings_only",
+    "reference": "current"
+  }
+]

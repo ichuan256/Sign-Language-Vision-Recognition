@@ -1,6 +1,8 @@
 # 分析与证据入口
 
-当前任务为 [PS 教师网络的 PL 局部加速](../../docs/方案/04_老师模型PS_PL局部迁移.md)，
+最近板端部署、显示与视听待办看[统一状态](../../docs/当前状态.md)；日期分析报告不能替代现场状态。
+
+视觉加速任务为 [PS 教师网络的 PL 局部加速](../../docs/方案/04_老师模型PS_PL局部迁移.md)，
 模型图清单见 [候选证据](../../project/analysis/teacher_partition_20261028/README.md)。学生训练路线已停止。
 最新 [P1 实测](../../project/analysis/teacher_partition_20261028/p1.md) 包含 PS 后处理配对、100 ROI 边界/CPU 重放和 CMA 微基准；不是 PL 加速验收。
 PC 关键点工具见 [代码入口](../README.md)；文件吞吐、摄像头与板端推理分别验收。

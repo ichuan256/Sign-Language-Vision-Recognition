@@ -1,0 +1,317 @@
+{
+  "before_path": "/home/xilinx/av_three_panel_20261031/backup_before_av",
+  "after_path": "/home/xilinx/ov1_hdmi_20261031",
+  "releases": {
+    "before": {
+      "bit": {
+        "actual_sha256": "37189d24a396326dd849a55ed135dd3c97287ada3a2a0c562d2718cae7610beb",
+        "manifest_sha256": "37189d24a396326dd849a55ed135dd3c97287ada3a2a0c562d2718cae7610beb",
+        "matches": true
+      },
+      "hwh": {
+        "actual_sha256": "476283838eca44c73084032292357e0c44bc55a283cf69a5ee594ba4cb7f5942",
+        "manifest_sha256": "476283838eca44c73084032292357e0c44bc55a283cf69a5ee594ba4cb7f5942",
+        "matches": true
+      },
+      "provenance": {
+        "present": false,
+        "matches": false
+      }
+    },
+    "after": {
+      "bit": {
+        "actual_sha256": "b3d53bb0586818f9f1ae7e1908547d7a99d4707a8ba9b64b1da3618d82d61f27",
+        "manifest_sha256": "b3d53bb0586818f9f1ae7e1908547d7a99d4707a8ba9b64b1da3618d82d61f27",
+        "matches": true
+      },
+      "hwh": {
+        "actual_sha256": "8c454fd0e20b68ef0f37212a44cf85345397c4955560117b08fc400649496b6b",
+        "manifest_sha256": "8c454fd0e20b68ef0f37212a44cf85345397c4955560117b08fc400649496b6b",
+        "matches": true
+      },
+      "provenance": {
+        "present": true,
+        "matches": false
+      }
+    }
+  },
+  "software": {
+    "capture.py": {
+      "before_sha256": "c05ad2e550346e2e83760951ba9fe967f6e98203158fe7971acee092f2d64bc0",
+      "after_sha256": "b3035de5b3f9e1a47da95b36724b816a4c332c0cb76b3039372e865f72248724",
+      "bytes_equal": false,
+      "LF_equal": true,
+      "AST_equal": true
+    },
+    "continuous_capture.py": {
+      "before_sha256": "00e8c9723840c0b9323c26afa53fe277805982f9299111d33ca6afb9eed936f1",
+      "after_sha256": "20fb9fffef9926e0cad7e184afd4054d01f524cfcc14e0cef7d3dd97309c44f8",
+      "bytes_equal": false,
+      "LF_equal": true,
+      "AST_equal": true
+    },
+    "hdmi_preview.py": {
+      "before_sha256": "da2062515f82bae8a55d405c571a526c72b6b99b481d3390542979e1f5b975c0",
+      "after_sha256": "79c2ccbdcaf0a32dca36fb865beb28b27142769be01d74c1696bb984bbdab89c",
+      "bytes_equal": false,
+      "LF_equal": true,
+      "AST_equal": true
+    },
+    "hdmi_color_probe.py": {
+      "before_sha256": "ab8385037672b8678e70d9440e3a2f817026bdf0e42ac816f852c57a8e5662a4",
+      "after_sha256": "ce4ad6b440227f15f708a85f100b91d8f433c2082619ae3ebc004d302855a65b",
+      "bytes_equal": false,
+      "LF_equal": false,
+      "AST_equal": false
+    },
+    "split_hdmi_stream.py": {
+      "before_sha256": "f0d8b7f8921a80bd89845d1275890d40cfdd7fb23391a775703eebe620cd28ad",
+      "after_sha256": "5e82e6cc69a378b54c782b6f6f9cde6c358ee15a4239f872625f3844449dc43c",
+      "bytes_equal": false,
+      "LF_equal": false,
+      "AST_equal": false
+    },
+    "board_audio_stream.py": {
+      "before_sha256": "d011a321b0d0414996c153104c83404eee184756e9ec5cd6d8238002c6d1f37e",
+      "after_sha256": "866a9e3d271d411d9cea6b75cea9e27d2e88ad39c4f45ebd8f7ca5643196d761",
+      "bytes_equal": false,
+      "LF_equal": false,
+      "AST_equal": false
+    },
+    "board_pcm_capture.c": {
+      "before_sha256": "f58361c75cc6eb5663f9168b5966e1b9ac11f145c302712d763999c2274c14b1",
+      "after_sha256": "f58361c75cc6eb5663f9168b5966e1b9ac11f145c302712d763999c2274c14b1",
+      "bytes_equal": true,
+      "LF_equal": true
+    }
+  },
+  "boot": {
+    "bytes_equal": true,
+    "before_sha256": "f96330498c2f488ae043d4d5e3b4a3e3eec313e2c3754481bee111eb190cd625",
+    "after_sha256": "f96330498c2f488ae043d4d5e3b4a3e3eec313e2c3754481bee111eb190cd625"
+  },
+  "local_release_matches": {
+    "before": {
+      "bit": true,
+      "hwh": true
+    },
+    "after": {
+      "bit": true,
+      "hwh": true
+    }
+  },
+  "added_modules": {
+    "/video_flags_cdc": "xpm_cdc_gen",
+    "/video_flags_concat": "xlconcat",
+    "/video_status_cdc": "xpm_cdc_gen",
+    "/video_locked_cdc": "xpm_cdc_gen",
+    "/clk_wiz_audio": "clk_wiz",
+    "/audio_codec_ctrl_0": "audio_codec_ctrl",
+    "/video_status_gpio": "axi_gpio"
+  },
+  "removed_modules": {},
+  "common_module_parameter_changes": {
+    "/ps7": {
+      "PCW_I2C1_I2C1_IO": [
+        "<Select>",
+        "EMIO"
+      ],
+      "PCW_EN_I2C1": [
+        "0",
+        "1"
+      ],
+      "PCW_I2C_PERIPHERAL_FREQMHZ": [
+        "25",
+        "108.333336"
+      ],
+      "PCW_EN_EMIO_I2C1": [
+        "0",
+        "1"
+      ],
+      "PCW_I2C1_GRP_INT_IO": [
+        "<Select>",
+        "EMIO"
+      ],
+      "PCW_I2C1_PERIPHERAL_ENABLE": [
+        "0",
+        "1"
+      ],
+      "PCW_I2C1_GRP_INT_ENABLE": [
+        "0",
+        "1"
+      ]
+    },
+    "/control_bus": {
+      "NUM_MI": [
+        "3",
+        "5"
+      ]
+    }
+  },
+  "external_port_changes": {
+    "IIC_1_scl_o": [
+      null,
+      {
+        "DIR": "O",
+        "NAME": "IIC_1_scl_o",
+        "SIGIS": "undef",
+        "SIGNAME": "ps7_I2C1_SCL_O"
+      }
+    ],
+    "hdmi_out_hpd": [
+      {
+        "DIR": "O",
+        "LEFT": "0",
+        "NAME": "hdmi_out_hpd",
+        "RIGHT": "0",
+        "SIGIS": "undef",
+        "SIGNAME": "video_hdmi_out_frontend_hdmi_out_hpd_video_gpio_io_o"
+      },
+      {
+        "DIR": "I",
+        "LEFT": "0",
+        "NAME": "hdmi_out_hpd",
+        "RIGHT": "0",
+        "SIGIS": "undef",
+        "SIGNAME": "External_Ports_hdmi_out_hpd"
+      }
+    ],
+    "IIC_1_scl_t": [
+      null,
+      {
+        "DIR": "O",
+        "NAME": "IIC_1_scl_t",
+        "SIGIS": "undef",
+        "SIGNAME": "ps7_I2C1_SCL_T"
+      }
+    ],
+    "lrclk": [
+      null,
+      {
+        "DIR": "O",
+        "NAME": "lrclk",
+        "SIGIS": "undef",
+        "SIGNAME": "audio_codec_ctrl_0_lrclk"
+      }
+    ],
+    "IIC_1_sda_t": [
+      null,
+      {
+        "DIR": "O",
+        "NAME": "IIC_1_sda_t",
+        "SIGIS": "undef",
+        "SIGNAME": "ps7_I2C1_SDA_T"
+      }
+    ],
+    "bclk": [
+      null,
+      {
+        "DIR": "O",
+        "NAME": "bclk",
+        "SIGIS": "undef",
+        "SIGNAME": "audio_codec_ctrl_0_bclk"
+      }
+    ],
+    "audio_clk_10MHz": [
+      null,
+      {
+        "CLKFREQUENCY": "10000000",
+        "DIR": "O",
+        "NAME": "audio_clk_10MHz",
+        "SIGIS": "clk",
+        "SIGNAME": "clk_wiz_audio_clk_out1"
+      }
+    ],
+    "DDR_reset_n": [
+      {
+        "DIR": "IO",
+        "NAME": "DDR_reset_n",
+        "POLARITY": "ACTIVE_LOW",
+        "SIGIS": "rst",
+        "SIGNAME": "ps7_DDR_DRSTB"
+      },
+      {
+        "DIR": "IO",
+        "NAME": "DDR_reset_n",
+        "SIGIS": "rst",
+        "SIGNAME": "ps7_DDR_DRSTB"
+      }
+    ],
+    "IIC_1_scl_i": [
+      null,
+      {
+        "DIR": "I",
+        "NAME": "IIC_1_scl_i",
+        "SIGIS": "undef",
+        "SIGNAME": "ps7_I2C1_SCL_I"
+      }
+    ],
+    "codec_addr": [
+      null,
+      {
+        "DIR": "O",
+        "LEFT": "1",
+        "NAME": "codec_addr",
+        "RIGHT": "0",
+        "SIGIS": "undef",
+        "SIGNAME": "audio_codec_ctrl_0_codec_address"
+      }
+    ],
+    "IIC_1_sda_o": [
+      null,
+      {
+        "DIR": "O",
+        "NAME": "IIC_1_sda_o",
+        "SIGIS": "undef",
+        "SIGNAME": "ps7_I2C1_SDA_O"
+      }
+    ],
+    "sdata_i": [
+      null,
+      {
+        "DIR": "I",
+        "NAME": "sdata_i",
+        "SIGIS": "undef",
+        "SIGNAME": "External_Ports_sdata_i"
+      }
+    ],
+    "sdata_o": [
+      null,
+      {
+        "DIR": "O",
+        "NAME": "sdata_o",
+        "SIGIS": "undef",
+        "SIGNAME": "audio_codec_ctrl_0_sdata_o"
+      }
+    ],
+    "IIC_1_sda_i": [
+      null,
+      {
+        "DIR": "I",
+        "NAME": "IIC_1_sda_i",
+        "SIGIS": "undef",
+        "SIGNAME": "ps7_I2C1_SDA_I"
+      }
+    ]
+  },
+  "current_owner": {
+    "pid": 1134,
+    "pid_start_ticks": 12788,
+    "frame_address": 364904448,
+    "frame_bytes": 2764800,
+    "width": 1280,
+    "height": 720,
+    "boot_id": "c53952b2-56cd-4545-b989-2039c708b9d0",
+    "bit_sha256": "b3d53bb0586818f9f1ae7e1908547d7a99d4707a8ba9b64b1da3618d82d61f27",
+    "active": true,
+    "closing": false,
+    "pattern": "white/red/green/blue",
+    "downloaded": false
+  },
+  "current_marker": {
+    "boot_id": "c53952b2-56cd-4545-b989-2039c708b9d0",
+    "bit_sha256": "b3d53bb0586818f9f1ae7e1908547d7a99d4707a8ba9b64b1da3618d82d61f27"
+  },
+  "read_only": true,
+  "firmware_deployed": false
+}

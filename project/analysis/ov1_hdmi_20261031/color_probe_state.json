@@ -1,0 +1,33 @@
+{
+  "state": {
+    "active": true,
+    "pid": 12149,
+    "pattern": "white/red/green/blue",
+    "downloaded": false
+  },
+  "vdma_status": "0x11000",
+  "vtc_control": "0x3f7ef07",
+  "frame_addresses": [
+    "0x15c00000",
+    "0x15c00000",
+    "0x15c00000",
+    "0x15c00000"
+  ],
+  "pixels": [
+    "0xffffffff",
+    "0xff0000",
+    "0xff00",
+    "0xff0000ff"
+  ],
+  "dynamic_clock": {
+    "0x0": "0x1",
+    "0x4": "0x1",
+    "0x8": "0x41",
+    "0xc": "0x69a",
+    "0x10": "0x0",
+    "0x14": "0x20c4",
+    "0x18": "0xcfafa401",
+    "0x1c": "0xa300ff"
+  },
+  "checked_monotonic": 1876.094198491
+}

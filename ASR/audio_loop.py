@@ -1,5 +1,6 @@
 """Local streaming ASR -> captions -> real video playback. No Overlay calls."""
 import argparse
+import base64
 import io
 import json
 import secrets
@@ -49,6 +50,7 @@ class AudioInput:
     def __init__(self, session, model, device=None, board_audio_url=None):
         self.session, self.model, self.device = session, model, device
         self.board_audio_url = board_audio_url
+        self.session.update(configured_input='board_http' if board_audio_url else 'pc_microphone')
         # 构造即预载模型（2026-10-23，BTN0 快速启动方案）：识别线程启动时不再加载
         self.recognizer = create_recognizer(model)
         self.stop_event = threading.Event()
@@ -78,8 +80,14 @@ class AudioInput:
                 return
             rec = self.recognizer
             stream = rec.create_stream()
+            blocks=0;sample_count=0
 
-            def accept(samples, rate):
+            def accept(samples, rate, captured=True):
+                nonlocal blocks,sample_count
+                if captured:
+                    blocks+=1;sample_count+=len(samples)
+                    session.update(audio_blocks=blocks,audio_samples=sample_count,audio_sample_rate=rate,
+                                   last_audio_received_monotonic_s=time.monotonic())
                 nonlocal stream
                 stream.accept_waveform(rate, samples)
                 while rec.is_ready(stream):
@@ -140,7 +148,7 @@ class AudioInput:
                         if overflow:
                             raise RuntimeError('麦克风音频溢出，请停止其他高负载任务后重试')
                         accept(samples.reshape(-1), rate)
-            accept(np.zeros(int(rate * 0.8), np.float32), rate)
+            accept(np.zeros(int(rate * 0.8), np.float32), rate, captured=False)
             stream.input_finished()
             while rec.is_ready(stream):
                 rec.decode_stream(stream)
@@ -168,12 +176,45 @@ class Screen:
         self.session = session
         self.frame_lock = threading.Lock()
         self.jpeg = b''
+        self.panel_jpeg = b''
+        self.panel_metadata = {}
         self.stop_event = threading.Event()
         self.thread = threading.Thread(target=self._run, daemon=True)
 
     def current(self):
         with self.frame_lock:
             return self.jpeg
+
+    def current_panel(self):
+        with self.frame_lock:
+            return self.panel_jpeg, dict(self.panel_metadata)
+
+    def compact_panel(self, state, video):
+        """Native-width third HDMI column; keep captions readable at 426px."""
+        image=Image.new('RGB',(426,570),(13,22,39));draw=ImageDraw.Draw(image)
+        def wrap(value,y,color='white',limit=3):
+            lines=[];line=''
+            for char in value:
+                if draw.textlength(line+char,font=self.small)>394:
+                    lines.append(line);line=''
+                line+=char
+            lines.append(line)
+            for index,line in enumerate(lines[:limit]):
+                draw.text((16,y+index*31),line,font=self.small,fill=color)
+        wrap(state['status'],8,(125,218,198),1)
+        wrap(state['partial'] or state['final'] or '等待说话',48,limit=3)
+        draw.rectangle((0,155,425,400),fill=(24,39,61))
+        if video is not None:
+            fitted=ImageOps.contain(video,(426,246))
+            image.paste(fitted,((426-fitted.width)//2,155+(246-fitted.height)//2))
+        else:wrap('等待对应手语视频',250,(151,171,195),1)
+        wrap('播放：'+(state['playing'] or '等待'),418,limit=2)
+        message=state['error'] or ('缺少素材：'+state['missing'] if state['missing'] else '')
+        if message:wrap(message,486,(255,194,102),2)
+        else:
+            wrap('输入音量 %.3f'%(state.get('audio_rms') or 0),486,(125,218,198),1)
+            wrap('已播放 %d 句 | 视频帧 %d'%(state['completed'],state['video_frames']),520,(151,171,195),1)
+        return image
 
     def compose(self, video=None):
         state = self.session.snapshot()
@@ -205,8 +246,15 @@ class Screen:
                   font=self.small, fill=(151, 171, 195))
         output = io.BytesIO()
         image.save(output, 'JPEG', quality=88)
+        panel=io.BytesIO()
+        self.compact_panel(state,video).save(panel,'JPEG',quality=85)
+        metadata={key:state.get(key) for key in ('status','partial','final','playing','playback_text',
+            'video_frames','completed','audio_rms','audio_blocks','audio_samples','audio_sample_rate','source','error','missing')}
+        metadata['published_monotonic_s']=time.monotonic()
         with self.frame_lock:
             self.jpeg = output.getvalue()
+            self.panel_jpeg=panel.getvalue()
+            self.panel_metadata=metadata
 
     def _run(self):
         import cv2
@@ -288,11 +336,12 @@ def make_handler(session, audio, screen):
         def log_message(self, *_):
             pass
 
-        def respond(self, data, content_type, status=200):
+        def respond(self, data, content_type, status=200, headers=None):
             self.send_response(status)
             self.send_header('Content-Type', content_type)
             self.send_header('Content-Length', str(len(data)))
             self.send_header('Cache-Control', 'no-store')
+            for name,value in (headers or {}).items():self.send_header(name,value)
             self.end_headers()
             self.wfile.write(data)
 
@@ -306,6 +355,10 @@ def make_handler(session, audio, screen):
                                  'application/json; charset=utf-8')
                 elif path == '/frame.jpg':
                     self.respond(screen.current(), 'image/jpeg')
+                elif path == '/panel.jpg':
+                    frame,metadata=screen.current_panel()
+                    self.respond(frame,'image/jpeg',headers={'X-Frame-Metadata':base64.b64encode(
+                        json.dumps(metadata,ensure_ascii=False).encode()).decode()})
                 elif path == '/stream.mjpg':
                     self.send_response(200)
                     self.send_header('Content-Type', 'multipart/x-mixed-replace; boundary=frame')

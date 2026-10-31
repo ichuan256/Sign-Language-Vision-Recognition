@@ -1,0 +1,12 @@
+--- before/hdmi_color_probe.py
++++ after/hdmi_color_probe.py
+@@ -28,7 +28,8 @@
+ hdmi.start();hdmi._hdmi.start()
+ vtc=MMIO(overlay.ip_dict['video/hdmi_out/frontend/vtc_out']['phys_addr'],65536)
+ vtc.write(0,vtc.read(0)|1)  # AMD XVTC_CTL_SW_MASK: explicit core enable.
+-MMIO(overlay.ip_dict['video/hdmi_out/frontend/hdmi_out_hpd_video']['phys_addr'],32).write(0,1)
++if not manifest['design'].get('hdmi_hpd_input'):
++    MMIO(overlay.ip_dict['video/hdmi_out/frontend/hdmi_out_hpd_video']['phys_addr'],32).write(0,1)
+ frame=hdmi.newframe()
+ for index,color in enumerate(((255,255,255),(0,0,255),(0,255,0),(255,0,0))):frame[:,index*320:(index+1)*320]=color
+ frame.flush()

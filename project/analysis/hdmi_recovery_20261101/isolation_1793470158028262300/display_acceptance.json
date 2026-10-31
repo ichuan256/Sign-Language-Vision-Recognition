@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-01",
+  "source": "user_explicit_display_feedback",
+  "question": "无音频对照候选已冷启动并输出720p彩条，屏幕现在是什么状态？",
+  "answer": "出现白、红、绿、蓝四条彩条",
+  "physical_display_passed": true,
+  "boot_id": "d4bf5a68-8212-4f81-8e7a-1c731d10e833",
+  "bit_sha256": "e7b78376ea3555efed570d5790d68c6e47d409073f00dcc54b6b8b26ef9040bc",
+  "hwh_sha256": "7ff8d8d65683445a1de460b3d5d4ddcaf55d8861fc3e225fa35987b6186e668a",
+  "owner_pid": 1187,
+  "owner_start_ticks": 12213,
+  "frame_address": "0x15f00000",
+  "width": 1280,
+  "height": 720,
+  "camera_capture_tested": false,
+  "three_panel_tested": false,
+  "audio_hardware_present": false,
+  "runtime_bit_download": false,
+  "startup_file_changed": false,
+  "note": "This is new physical-display acceptance for the no-audio candidate; it does not validate the withdrawn historical color-recovery feedback or the AV candidate."
+}

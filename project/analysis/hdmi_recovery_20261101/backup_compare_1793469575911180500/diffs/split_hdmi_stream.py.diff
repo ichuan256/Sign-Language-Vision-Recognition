@@ -1,0 +1,105 @@
+--- before/split_hdmi_stream.py
++++ after/split_hdmi_stream.py
+@@ -15,9 +15,12 @@
+     p.add_argument('--manifest',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
+     p.add_argument('--assume-cold-boot',action='store_true');p.add_argument('--seconds',type=int,default=3600)
+     p.add_argument('--pc-url',default='http://127.0.0.1:18781/frame.jpg')
++    p.add_argument('--triple',action='store_true',help='OV1 + teacher + live board-audio ASR/playback')
++    p.add_argument('--audio-url',default='http://127.0.0.1:18765/panel.jpg')
+     a=p.parse_args();metadata,files=c.verify_manifest(a.manifest);hp.verify_hdmi_manifest(metadata)
+     cv2.setNumThreads(1)
+     if not a.assume_cold_boot or not 10<=a.seconds<=86400:raise RuntimeError('Explicit cold-boot and bounded capture required')
++    if a.triple and metadata['design'].get('audio_input') is not True:raise RuntimeError('Triple mode needs cold-loaded audio hardware')
+     boot=Path('/proc/sys/kernel/random/boot_id').read_text().strip()
+     marker=json.loads(Path('/run/ov1_hdmi_boot.json').read_text())
+     if marker.get('boot_id')!=boot or marker.get('bit_sha256')!=metadata['files']['bit']['sha256']:raise RuntimeError('OV1 HDMI cold marker mismatch')
+@@ -29,7 +32,7 @@
+     lock=cc.ProcessLock('/run/lock/ov5640_continuous_capture.lock').acquire()
+     if cc.competing_processes():raise RuntimeError('Another camera capture is active')
+     a.output.mkdir(parents=True,exist_ok=False)
+-    stop=threading.Event();condition=threading.Condition();latest=None;pc=None;pc_error=None
++    stop=threading.Event();condition=threading.Condition();latest=None;pc=None;pc_error=None;audio=None;audio_error=None
+     session=None;display=None;publisher=None;fetcher=None;capture_thread=None
+     captured=0;sent=0;shown=0;raw_updates=0;started=time.monotonic()
+     for number in (signal.SIGINT,signal.SIGTERM):signal.signal(number,lambda *_:stop.set())
+@@ -70,10 +73,24 @@
+                     payload=response.read(2*1024*1024)
+                 image=cv2.imdecode(np.frombuffer(payload,np.uint8),cv2.IMREAD_COLOR)
+                 if image is None or image.shape!=(720,1280,3):raise RuntimeError('Invalid annotated PC image')
+-                with condition:pc=dict(image=cv2.resize(image,(640,360)),metadata=info,received=time.monotonic());pc_error=None
++                with condition:pc=dict(image=cv2.resize(image,(426,240) if a.triple else (640,360)),metadata=info,received=time.monotonic());pc_error=None
+             except Exception as exc:
+                 with condition:pc_error=str(exc)
+             stop.wait(.25)
++    def fetch_audio():
++        nonlocal audio,audio_error
++        opener=build_opener(ProxyHandler({}))
++        while not stop.is_set():
++            try:
++                with opener.open(a.audio_url,timeout=2) as response:
++                    info=json.loads(base64.b64decode(response.headers['X-Frame-Metadata']))
++                    payload=response.read(1024*1024)
++                image=cv2.imdecode(np.frombuffer(payload,np.uint8),cv2.IMREAD_COLOR)
++                if image is None or image.shape!=(570,426,3):raise RuntimeError('Invalid audio panel image')
++                with condition:audio=dict(image=image,metadata=info,received=time.monotonic());audio_error=None
++            except Exception as exc:
++                with condition:audio_error=str(exc)
++            stop.wait(.15)
+     # CJK fallback lacks Latin/digits: draw each run with its supported font.
+     cjk=ImageFont.truetype('/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf',23)
+     latin=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',23)
+@@ -89,6 +106,10 @@
+     text(draw,(658,90),'识别结果：标注对应来源帧',color=(100,235,190))
+     text(draw,(18,660),'左右刷新分别计数；当前使用一个摄像头，OV2 未启用。',color=(255,215,90))
+     background=cv2.cvtColor(np.asarray(background),cv2.COLOR_RGB2BGR)
++    layout=None
++    if a.triple:
++        from av_layout import ThreePanel
++        layout=ThreePanel()
+     owner_file=Path('/home/xilinx/ov1_hdmi_20261031/color_probe.json')
+     writer_file=owner_file.with_name('split_writer.json')
+     writer_identity=dict(pid=os.getpid(),pid_start_ticks=int(Path('/proc/self/stat').read_text().split()[21]))
+@@ -118,18 +139,19 @@
+         emit(dict(event='ready',pid=os.getpid(),input='OV1',HDMI=True,independent_local_preview=True))
+         capture_thread=threading.Thread(target=capture);publisher=threading.Thread(target=publish);fetcher=threading.Thread(target=fetch,daemon=True)
+         capture_thread.start();publisher.start();fetcher.start();deadline=time.monotonic();last_saved=0
++        if a.triple:threading.Thread(target=fetch_audio,daemon=True).start()
+         previous_raw=None;small_raw=None;previous_sign=None;sign_strip=None
+         while not stop.is_set() and time.monotonic()-started<a.seconds:
+             compose_started=time.monotonic()
+-            with condition:item=latest;annotation=pc;pc_problem=pc_error
++            with condition:item=latest;annotation=pc;pc_problem=pc_error;audio_panel=audio;audio_problem=audio_error
+             canvas=background.copy()
+             if item is not None:
+                 if previous_raw!=item['frame']:
+                     packed=np.frombuffer(item['raw'],np.uint8).reshape(720,1280,2)
+-                    small_raw=cv2.cvtColor(cv2.resize(packed,(640,360),interpolation=cv2.INTER_NEAREST),cv2.COLOR_BGR5652BGR)
++                    small_raw=cv2.cvtColor(cv2.resize(packed,(426,240) if a.triple else (640,360),interpolation=cv2.INTER_NEAREST),cv2.COLOR_BGR5652BGR)
+                     previous_raw=item['frame'];raw_updates+=1
+-                canvas[145:505,:640]=small_raw
+-            if annotation is not None:canvas[145:505,640:]=annotation['image']
++                if not a.triple:canvas[145:505,:640]=small_raw
++            if annotation is not None and not a.triple:canvas[145:505,640:]=annotation['image']
+             def numbers(x,y,value):cv2.putText(canvas,value,(x,y),cv2.FONT_HERSHEY_SIMPLEX,.65,(235,235,235),1,cv2.LINE_AA)
+             elapsed=time.monotonic()-started
+             numbers(18,565,'Capture %d | New raw %d | Writes %.1f Hz'%(captured,raw_updates,shown/max(elapsed,.001)))
+@@ -144,6 +166,10 @@
+                 strip=Image.new('RGB',(620,40),(18,18,18));text(ImageDraw.Draw(strip),(0,0),label)
+                 sign_strip=cv2.cvtColor(np.asarray(strip),cv2.COLOR_RGB2BGR);previous_sign=label
+             canvas[585:625,658:1278]=sign_strip
++            if a.triple:
++                canvas=layout.compose(small_raw,annotation['image'] if annotation else None,audio_panel,
++                    raw_item=item,teacher_info=annotation['metadata'] if annotation else None,
++                    counts=(captured,raw_updates),now=time.monotonic())
+             compose_ms=(time.monotonic()-compose_started)*1000;write_started=time.monotonic()
+             # Stable fixed address, same as the successful W6 in-place display.
+             # This can tear during a write; no allocation/address swap per frame.
+@@ -158,6 +184,8 @@
+                     in_place_updates=True,tearing_possible=True,
+                     raw_source_frame=item['frame'] if item else None,
+                     PC_source_frame=annotation['metadata']['frame_id'] if annotation else None,
++                    triple_mode=a.triple,audio_connection_error=audio_problem,
++                    audio=audio_panel['metadata'] if audio_panel else None,
+                     downloaded=False,raw_waits_for_PC=False)
+                 temp=a.output/'live.tmp';temp.write_text(json.dumps(state,indent=2));temp.replace(a.output/'live.json')
+                 cv2.imwrite(str(a.output/'latest.jpg'),canvas,[cv2.IMWRITE_JPEG_QUALITY,80]);last_saved=time.monotonic()
