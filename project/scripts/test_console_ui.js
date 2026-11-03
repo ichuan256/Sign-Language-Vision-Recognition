@@ -51,6 +51,13 @@ async function main(){
   assert.equal(bodies[0],bodies[1],'Session renewal must preserve the selected action');
   assert(p.buttons.every(b=>!b.disabled),'Session rejection must not freeze buttons');
  }
- console.log('4 frontend recovery cases passed');
+ {
+  const digitState=state(false);digitState.details={digit_recognition:{value:3,stable:true,reason:'已识别',speech:{ready:true,error:null}}};
+  const p=await page(async()=>response(200,digitState));
+  assert.equal(p.elements.get('signLabel').textContent,'3');
+  assert.equal(p.elements.get('signPanel').hidden,false);
+  assert.equal(p.elements.get('signHelp').hidden,true);
+ }
+ console.log('5 frontend cases passed');
 }
 main().catch(error=>{console.error(error);process.exitCode=1});

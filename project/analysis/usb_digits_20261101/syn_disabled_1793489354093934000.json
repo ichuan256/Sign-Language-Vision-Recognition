@@ -1,0 +1,13 @@
+{
+  "disabled": true,
+  "archive": "/root/sign-digit-disabled_1746525212693296926",
+  "moved": [
+    "/etc/sudoers.d/sign-digit-say",
+    "/usr/local/sbin/sign-digit-say"
+  ],
+  "serial_opened": false,
+  "serial_bytes_sent": 0,
+  "files_deleted": false,
+  "firmware_changed": false,
+  "startup_changed": false
+}

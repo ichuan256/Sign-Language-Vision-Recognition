@@ -1,0 +1,10 @@
+{
+  "installed": true,
+  "sha256": "30a16726689daa31302ee63ed68af21406294590f32290de255b947fbb83e0f5",
+  "backup": "/home/xilinx/usb_tts_20261101/stage_1793489107356164500/backup_1746525000743390073",
+  "scope": "SYN6288 probe and fixed digits only",
+  "bit_hwh_changed": false,
+  "boot_changed": false,
+  "services_changed": false,
+  "serial_permissions_changed": false
+}

@@ -94,13 +94,7 @@ print(json.dumps(dict(display=state,jpeg=base64.b64encode(image).decode())))
         command=[self.args.vision_python,'-X','utf8','-m','vision.keypoints.recording_demo',
             '--output',str(self.worker_output),'--seconds','0','--control-port','18783','--no-pl','--mode','pc']
         if mode=='camera':
-            command+=['--camera',str(camera)]
-            pointer=ROOT/'vision/data/models/usb_sign_current.json'
-            if pointer.exists():
-                value=json.loads(pointer.read_text(encoding='utf-8'));model=(ROOT/value['model']).resolve()
-                if not model.is_relative_to(ROOT/'vision/data/models') or hashlib.sha256(model.read_bytes()).hexdigest()!=value['sha256']:
-                    raise RuntimeError('USB手语模型路径或SHA不符')
-                command+=['--sign-model',str(model)]
+            command+=['--camera',str(camera),'--hand-digits']
         else:command+=['--sd-source']
         self.worker=self.spawn('video',command)
         def ready():

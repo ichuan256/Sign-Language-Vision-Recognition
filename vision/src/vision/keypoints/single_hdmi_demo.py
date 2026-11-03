@@ -83,6 +83,7 @@ def main():
         if head:head.close()
         with lock:state['active']=False
         control.shutdown();control.server_close()
+        (args.output/'live.json').write_text(json.dumps(state,ensure_ascii=False,indent=2),encoding='utf-8')
         (args.output/'report.json').write_text(json.dumps(state,ensure_ascii=False,indent=2),encoding='utf-8')
 
 

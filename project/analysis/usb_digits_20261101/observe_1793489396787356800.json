@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-01",
+  "worker": "project\\_tmp\\demo_control\\20261101_072922\\video_1793489367580102500",
+  "active": true,
+  "source": "USB camera",
+  "teacher_frames": 301,
+  "digit": {
+    "value": null,
+    "candidate": null,
+    "stable": false,
+    "hand_count": 1,
+    "fingers": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "reason": "请伸出1～5根手指",
+    "announce": null,
+    "recognition_events": 1
+  },
+  "recognition_events": [
+    {
+      "frame": 15,
+      "value": 1,
+      "single_hand": true
+    }
+  ],
+  "generated_audio": [],
+  "trained": false,
+  "firmware_changed": false,
+  "scope": "PC frozen Holistic landmarks; geometric single-hand count; speech status recorded only if enabled",
+  "physical_acceptance": "separate user feedback required"
+}

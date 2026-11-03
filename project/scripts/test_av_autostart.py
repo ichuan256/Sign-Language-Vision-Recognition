@@ -28,6 +28,19 @@ class AutoAVTest(unittest.TestCase):
                 c.request(mode,2);request.assert_called_with(mode,2,False)
                 self.assertFalse(c.auto_enabled)
 
+    def test_only_USB_uses_digit_recognition_without_speech(self):
+        for mode in ('camera','sd_teacher'):
+            c=auto.AutoAVController.__new__(auto.AutoAVController)
+            c.out=ROOT/'project/_tmp/test_digit_commands';c.tunnel_for=Mock();c.wait_until=Mock()
+            c.args=Mock(vision_python='python',board='test-board');c.line=Mock(ssh_options=[])
+            c.spawn=Mock()
+            c.start_video(mode,2)
+            command=c.spawn.call_args_list[0].args[1]
+            self.assertEqual('--hand-digits' in command,mode=='camera')
+            self.assertNotIn('--speak-digits',command)
+            self.assertNotIn('--sign-model',command)
+            self.assertIn('--no-pl',command)
+
     def test_fixed_gateway_rejects_arbitrary_commands(self):
         c=auto.AutoAVController.__new__(auto.AutoAVController)
         with self.assertRaises(ValueError):c.gateway('reboot')

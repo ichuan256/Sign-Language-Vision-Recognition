@@ -133,6 +133,7 @@ def main():
     p.add_argument('--sign-model',type=Path,help='Optional temporal sign head over the same frozen teacher landmarks')
     p.add_argument('--video',type=Path,help='Single workspace video for explicit replay verification')
     p.add_argument('--sd-source',action='store_true',help='Read the verified teaching video from the board SD card')
+    p.add_argument('--hand-digits',action='store_true',help='Single-hand finger counts 1..5 on USB input')
     a=p.parse_args();out=a.output.resolve()
     if out.exists() or not out.is_relative_to(ROOT/'project/_tmp') or not (30<=a.seconds<=86400 or (a.seconds==0 and a.no_pl)):
         raise ValueError('New bounded workspace output required')
@@ -140,6 +141,8 @@ def main():
         raise ValueError('Invalid control port or camera index')
     if a.no_pl and a.mode=='pl':raise ValueError('PL view requires PL execution')
     if a.sd_source and (not a.no_pl or a.camera is not None or a.ov5640 or a.video):raise ValueError('SD input requires exclusive teacher-only processing')
+    if a.hand_digits and (a.camera is None or not a.no_pl or a.ov5640 or a.sd_source or a.video or a.sign_model):
+        raise ValueError('Hand digits require exclusive USB teacher input without the temporal sign head')
     if a.ov5640 and (a.camera is not None or not a.no_pl):raise ValueError('OV5640 requires exclusive input and teacher-only processing')
     out.mkdir(parents=True)
     password=os.environ.pop('KEYPOINT_BOARD_SUDO_PASSWORD',None)
@@ -158,6 +161,10 @@ def main():
         if not a.no_pl:raise ValueError('First sign-recognition head runs with the PC teacher only')
         from ..classify.teacher_sign import LiveSignHead
         sign=LiveSignHead(a.sign_model)
+    digits=None
+    if a.hand_digits:
+        from ..classify.hand_digits import StableHandDigits
+        digits=StableHandDigits()
     token=secrets.token_urlsafe(24);lock=threading.Lock();stop=threading.Event()
     state=dict(mode=a.mode,active=True,video_frames=0,teacher_frames=0,teacher_hand_frames=0,
         PC_neural_backend='MediaPipe Holistic',PL_neural_backend='disabled' if a.no_pl else 'W12/A16 lite graph on PL',
@@ -200,7 +207,7 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
             self.send(b'{}','application/json')
     control=ThreadingHTTPServer(('127.0.0.1',a.control_port),Handler);control.daemon_threads=True
     threading.Thread(target=control.serve_forever,daemon=True).start()
-    fonts=[ImageFont.truetype('C:/Windows/Fonts/msyh.ttc',size) for size in (30,22)]
+    fonts=[ImageFont.truetype('C:/Windows/Fonts/msyh.ttc',size) for size in (30,22,64)]
     started=time.monotonic();frames=0;hand_frames=0;clip_index=0;last_write=0
     stream=(out/'teacher_frames.jsonl').open('x',encoding='utf-8')
     try:
@@ -231,6 +238,10 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
                         if sign:sign.observe(result,bgr,timestamp)
                         sign_state=sign.snapshot() if sign else None
                         hands=[result.left_hand_landmarks,result.right_hand_landmarks]
+                        digit_state=None
+                        if digits:
+                            points=[[(p.x,p.y,p.z) for p in h.landmark] if h is not None else None for h in hands]
+                            digit_state=digits.update(points,now,(bgr.shape[1],bgr.shape[0]))
                         hand=hands[record['hand_index']] or next((h for h in hands if h is not None),None)
                         inverse=None
                         if hand is not None:
@@ -250,7 +261,7 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
                             drawing.draw_landmarks(shown,result.pose_landmarks,mp.solutions.holistic.POSE_CONNECTIONS)
                             for h in hands:drawing.draw_landmarks(shown,h,mp.solutions.holistic.HAND_CONNECTIONS)
                             fit(canvas,shown,(10,100,1260,540))
-                            title='视觉测试  USB手语识别' if sign else '视觉测试  SD教学视频实时处理' if a.sd_source else '视觉测试  摄像头实时关键点' if live_camera else '模式1  教师模型 视频关键点检测'
+                            title='USB单手数字识别' if digits else '视觉测试  USB手语识别' if sign else '视觉测试  SD教学视频实时处理' if a.sd_source else '视觉测试  摄像头实时关键点' if live_camera else '模式1  教师模型 视频关键点检测'
                             line='身体33点与双手21点  |  视频关键点叠加'
                         else:
                             shown=bgr.copy()
@@ -268,6 +279,8 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
                         image=Image.fromarray(cv2.cvtColor(canvas,cv2.COLOR_BGR2RGB));draw=ImageDraw.Draw(image)
                         draw.text((22,12),title,font=fonts[0],fill='white')
                         draw.text((22,54),line,font=fonts[1],fill=(170,210,230))
+                        if digit_state is not None:
+                            draw.text((1150,4),str(digit_state['value']) if digit_state['value'] is not None else '—',font=fonts[2],fill=(80,240,200))
                         stage='定位' if mode=='pl' else '检测'
                         draw.text((20,644),f'视频 {record["label"]}  帧 {frames}  处理 {frames/max(now-started,.001):.1f}fps  {stage} {inference_ms:.1f}ms',font=fonts[1],fill='white')
                         if mode=='pl':
@@ -275,6 +288,7 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
                             if latest:detail+=f'  推理 {ps["pl_forward_ms"]:.0f}ms  来源帧 {latest["frame_id"]}  帧龄 {now-latest["submitted"]:.2f}s'
                             if pl.error:detail+='  硬件错误 '+pl.error
                             draw.text((20,681),detail,font=fonts[1],fill=(255,220,100))
+                        elif digit_state is not None:pass
                         elif sign_state:
                             label=sign_state['label'] or '未确定'
                             candidate=sign_state.get('candidate')
@@ -284,11 +298,12 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
                             draw.text((20,681),detail,font=fonts[1],fill=(255,220,100))
                         elif not a.sd_source:draw.text((20,681),'OV5640实时采集，当前固件仅提供电脑预览。' if a.ov5640 else '输入为USB摄像头实时采集。' if a.camera is not None else '输入为录制视频节拍回放；骨架随当前画面更新。',font=fonts[1],fill=(255,220,100))
                         server.publish(cv2.cvtColor(np.asarray(image),cv2.COLOR_RGB2BGR),frames,timestamp,
-                            dict(source_frame=int(local_frame),teacher_ms=inference_ms,clip=record['label'],source=state['input_source'],sd=source_metadata))
+                            dict(source_frame=int(local_frame),teacher_ms=inference_ms,clip=record['label'],source=state['input_source'],sd=source_metadata,digit_recognition=digit_state))
                         row=dict(frame=frames,clip=record['label'],source_frame=int(local_frame),mode=mode,
                                  teacher_inference_ms=inference_ms,hands=sum(h is not None for h in hands))
                         if source_metadata:row['source_metadata']=source_metadata
                         if sign_state:row['sign_recognition']=sign_state
+                        if digit_state is not None:row['digit_recognition']=digit_state
                         stream.write(json.dumps(row,ensure_ascii=False)+'\n')
                         with lock:state.update(video_frames=frames,teacher_frames=frames,teacher_hand_frames=hand_frames,
                             clip=record['label'],teacher_inference_ms=inference_ms,frame_requests=server.state()['frame_requests'],
@@ -296,6 +311,8 @@ setInterval(async()=>{let s=await(await fetch('/state')).json();document.getElem
                             video_frame=int(local_frame),source_metadata=source_metadata)
                         if sign_state:
                             with lock:state['sign_recognition']=sign_state
+                        if digit_state is not None:
+                            with lock:state['digit_recognition']=digit_state
                         if now-last_write>.5:
                             with lock:live=dict(state,**ps)
                             (out/'live.json').write_text(json.dumps(live,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

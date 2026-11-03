@@ -25,6 +25,7 @@ class OV5640SSHSource:
         environment=dict(os.environ);environment.pop('KEYPOINT_BOARD_SUDO_PASSWORD',None)
         self.log=(self.output/'ov5640.stderr.log').open('ab')
         self.process=subprocess.Popen(['ssh','-T','-o','BatchMode=yes','-o','ConnectTimeout=8',
+            '-o','ServerAliveInterval=5','-o','ServerAliveCountMax=3',
             'xilinx@192.168.2.99',command],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=self.log,env=environment)
         if not board_gateway:self.process.stdin.write((password+'\n').encode());self.process.stdin.flush()
         self.process.stdin.close()
@@ -71,17 +72,20 @@ class OV5640SSHSource:
 
     def release(self):
         if self.stop.is_set():return
-        if self.pid is None and self.process.poll() is None:
+        if not self.board_gateway and self.pid is None and self.process.poll() is None:
             raise RuntimeError('OV5640 worker identity unknown; preserve process and inspect board')
         # Do not close the SSH stream or kill its tree while the board may own DMA.
-        if self.pid is not None and self.process.poll() is None:
+        # Losing the local SSH process does not prove the remote DMA worker
+        # stopped. The fixed gateway validates remote identity and Halted state.
+        if self.board_gateway or (self.pid is not None and self.process.poll() is None):
             command=('sudo -n /usr/local/sbin/sign-av-ctl stop' if self.board_gateway else
                 'sudo -S -p '+shlex.quote('')+' kill -INT '+str(self.pid))
             result=subprocess.run(['ssh','-o','BatchMode=yes','-o','ConnectTimeout=8','xilinx@192.168.2.99',command],
                 input=None if self.board_gateway else self.password+'\n',text=True,capture_output=True,timeout=100 if self.board_gateway else 15)
             if result.returncode:raise RuntimeError('OV5640 safe stop request failed; preserve process')
-            try:self.process.wait(timeout=45)
-            except subprocess.TimeoutExpired:raise RuntimeError('OV5640 DMA stop unconfirmed; preserve process and inspect board')
+            if self.process.poll() is None:
+                try:self.process.wait(timeout=45)
+                except subprocess.TimeoutExpired:raise RuntimeError('OV5640 DMA stop unconfirmed; preserve process and inspect board')
         self.stop.set();self.thread.join(timeout=5);self.log.close()
 
     def __enter__(self):return self

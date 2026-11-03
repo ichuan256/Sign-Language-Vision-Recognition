@@ -1,0 +1,163 @@
+{
+  "date": "2026-11-01",
+  "worker": "project\\_tmp\\demo_control\\20261101_071553\\video_1793488568266908500",
+  "active": true,
+  "source": "USB camera",
+  "teacher_frames": 1757,
+  "digit": {
+    "value": null,
+    "candidate": null,
+    "stable": false,
+    "hand_count": 0,
+    "fingers": [],
+    "reason": "请伸出一只手",
+    "announce": null,
+    "recognition_events": 21,
+    "speech": {
+      "ready": true,
+      "error": null,
+      "spoken_count": 21,
+      "last_spoken": 4,
+      "output": "computer speaker",
+      "voice": "Microsoft Huihui Desktop"
+    }
+  },
+  "announcements": [
+    {
+      "frame": 190,
+      "value": 1,
+      "single_hand": true
+    },
+    {
+      "frame": 215,
+      "value": 2,
+      "single_hand": true
+    },
+    {
+      "frame": 246,
+      "value": 3,
+      "single_hand": true
+    },
+    {
+      "frame": 269,
+      "value": 4,
+      "single_hand": true
+    },
+    {
+      "frame": 294,
+      "value": 5,
+      "single_hand": true
+    },
+    {
+      "frame": 330,
+      "value": 1,
+      "single_hand": true
+    },
+    {
+      "frame": 463,
+      "value": 1,
+      "single_hand": true
+    },
+    {
+      "frame": 476,
+      "value": 2,
+      "single_hand": true
+    },
+    {
+      "frame": 488,
+      "value": 3,
+      "single_hand": true
+    },
+    {
+      "frame": 499,
+      "value": 4,
+      "single_hand": true
+    },
+    {
+      "frame": 544,
+      "value": 5,
+      "single_hand": true
+    },
+    {
+      "frame": 960,
+      "value": 1,
+      "single_hand": true
+    },
+    {
+      "frame": 1096,
+      "value": 1,
+      "single_hand": true
+    },
+    {
+      "frame": 1230,
+      "value": 5,
+      "single_hand": true
+    },
+    {
+      "frame": 1260,
+      "value": 4,
+      "single_hand": true
+    },
+    {
+      "frame": 1328,
+      "value": 3,
+      "single_hand": true
+    },
+    {
+      "frame": 1353,
+      "value": 2,
+      "single_hand": true
+    },
+    {
+      "frame": 1368,
+      "value": 1,
+      "single_hand": true
+    },
+    {
+      "frame": 1390,
+      "value": 2,
+      "single_hand": true
+    },
+    {
+      "frame": 1408,
+      "value": 3,
+      "single_hand": true
+    },
+    {
+      "frame": 1426,
+      "value": 4,
+      "single_hand": true
+    }
+  ],
+  "generated_audio": [
+    {
+      "value": 1,
+      "sample_rate": 22050,
+      "seconds": 1.129297052154195
+    },
+    {
+      "value": 2,
+      "sample_rate": 22050,
+      "seconds": 1.129297052154195
+    },
+    {
+      "value": 3,
+      "sample_rate": 22050,
+      "seconds": 1.2193197278911565
+    },
+    {
+      "value": 4,
+      "sample_rate": 22050,
+      "seconds": 1.1893877551020409
+    },
+    {
+      "value": 5,
+      "sample_rate": 22050,
+      "seconds": 1.2043083900226756
+    }
+  ],
+  "trained": false,
+  "firmware_changed": false,
+  "scope": "PC frozen Holistic landmarks; geometric single-hand count; computer Chinese speech",
+  "physical_acceptance": "separate user feedback required"
+}
